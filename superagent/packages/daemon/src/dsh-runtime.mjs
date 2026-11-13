@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { sanitizeAgentChildEnv } from './process-utils.mjs';
+import { homeDir as platformHomeDir } from './platform/index.mjs';
 import { preparePrivateDirectory } from './private-temp.mjs';
 import { getRuntimeDefinition } from './runtime-catalog.mjs';
 
@@ -20,20 +21,101 @@ export const DSH_EFFORTS = RUNTIME?.efforts
 // Operator routes live in DSH's own settings document, not in this process.
 export const DSH_DEFAULT_MODEL = 'deepseek-official/deepseek-flash';
 
-// `<DSH_HOME>/profiles/sdk/cordis.patch.yml` relative to the instance dataDir.
-// DSH's settings service writes this file; it is the single source of truth for
-// model configuration (design §1), so the daemon only ever reads it.
-const DSH_PROFILE_PATCH_SEGMENTS = Object.freeze(['dsh', 'home', 'profiles', 'sdk', 'cordis.patch.yml']);
+// How one instance keeps the DSH home it runs against:
+//
+//   isolated (the default) -- `<dataDir>/dsh/{home,agents}`: credentials,
+//     sessions and model settings belong to this instance alone. Every release
+//     before the setting existed behaved this way, so an omitted field keeps it.
+//   shared -- `~/.dsh` (DSH_HOME) and `~/.agents` (DSH_AGENTS_HOME): the same
+//     home the operator's own DeepSeek Harness uses, so credentials, sessions
+//     and model routes are shared with it. The launch patch stays per instance,
+//     under `<dataDir>/dsh/run`.
+export const DSH_HOME_MODES = Object.freeze(['isolated', 'shared']);
+const DSH_SHARED_HOME_DIR = '.dsh';
+// DSH's default shared agent root, independent of DSH_HOME (`dsh-home-paths`).
+const DSH_SHARED_AGENTS_DIR = '.agents';
+// `<DSH_HOME>/profiles/sdk/cordis.patch.yml`: DSH's settings service writes this
+// file; it is the single source of truth for model configuration (design §1), so
+// the daemon only ever reads it.
+const DSH_PROFILE_PATCH_SEGMENTS = Object.freeze(['profiles', 'sdk', 'cordis.patch.yml']);
+
+/**
+ * The configured placement, or the documented default for a missing value.
+ * @param {*} value - `agents[].dshHomeMode` (or the equivalent daemon env value).
+ * @returns {'isolated'|'shared'} the normalized mode.
+ */
+export function normalizeDshHomeMode(value) {
+  const mode = String(value ?? '').trim() || DSH_HOME_MODES[0];
+  if (!DSH_HOME_MODES.includes(mode)) {
+    throw new Error(`invalid DSH home mode: ${mode}; expected ${DSH_HOME_MODES.join(' or ')}`);
+  }
+  return mode;
+}
+
+function absoluteHomeDir(homeDir) {
+  const value = homeDir ?? platformHomeDir() ?? '';
+  const normalized = typeof value === 'string' ? value.trim() : '';
+  if (!normalized || !path.isAbsolute(normalized)) {
+    throw new Error('dsh homeDir must be an absolute path');
+  }
+  return path.normalize(normalized);
+}
+
+/**
+ * Where one instance's DSH home, shared agent root and launch-patch directory
+ * live. Paths only: nothing is created here.
+ * @param {object} options
+ * @param {string} options.dataDir - the instance data directory.
+ * @param {'isolated'|'shared'} [options.home] - the configured placement.
+ * @param {string} [options.homeDir] - the operator's home directory; only the
+ *   shared placement reads it.
+ * @returns {{mode: string, root: string, home: string, agents: string, run: string}}
+ */
+export function dshDirectoryLayout({ dataDir, home = DSH_HOME_MODES[0], homeDir } = {}) {
+  if (typeof dataDir !== 'string' || !dataDir) throw new Error('dsh dataDir is required');
+  const mode = normalizeDshHomeMode(home);
+  if (mode === 'shared') {
+    const userHome = absoluteHomeDir(homeDir);
+    return Object.freeze({
+      mode,
+      root: userHome,
+      home: path.join(userHome, DSH_SHARED_HOME_DIR),
+      agents: path.join(userHome, DSH_SHARED_AGENTS_DIR),
+      // The generated launch patch is OpenViking SuperAgent's own document and
+      // names this instance's bridge, prompt and action socket: it stays local
+      // to the instance even when the home is shared.
+      run: path.join(dataDir, 'dsh', 'run'),
+    });
+  }
+  const root = path.join(dataDir, 'dsh');
+  return Object.freeze({
+    mode,
+    root,
+    home: path.join(root, 'home'),
+    agents: path.join(root, 'agents'),
+    run: path.join(root, 'run'),
+  });
+}
 
 /**
  * The `llm-pi-ai` settings document of one instance.
  * @param {object} options
  * @param {string} options.dataDir - the instance data directory.
+ * @param {'isolated'|'shared'} [options.home] - the configured placement.
+ * @param {string} [options.homeDir] - the operator's home directory.
  * @returns {string} the absolute path, whether or not it exists yet.
  */
-export function dshProfilePatchPath({ dataDir } = {}) {
-  if (typeof dataDir !== 'string' || !dataDir) throw new Error('dsh dataDir is required');
-  return path.join(dataDir, ...DSH_PROFILE_PATCH_SEGMENTS);
+export function dshProfilePatchPath({ dataDir, home, homeDir } = {}) {
+  return path.join(dshDirectoryLayout({ dataDir, home, homeDir }).home, ...DSH_PROFILE_PATCH_SEGMENTS);
+}
+
+/**
+ * The credential store that sits beside the settings document.
+ * @param {object} options - as {@link dshProfilePatchPath}.
+ * @returns {string} the absolute path, whether or not it exists yet.
+ */
+export function dshCredentialsDocumentPath({ dataDir, home, homeDir } = {}) {
+  return path.join(dshDirectoryLayout({ dataDir, home, homeDir }).home, '.credentials.yaml');
 }
 
 /**
@@ -42,11 +124,13 @@ export function dshProfilePatchPath({ dataDir } = {}) {
  * not restart the process (design §4.4).
  * @param {object} options
  * @param {string} options.dataDir - the instance data directory.
+ * @param {'isolated'|'shared'} [options.home] - the configured placement.
+ * @param {string} [options.homeDir] - the operator's home directory.
  * @returns {string|null} lowercase sha256 hex, or null when there is no document.
  */
-export function dshProfilePatchHash({ dataDir } = {}) {
+export function dshProfilePatchHash({ dataDir, home, homeDir } = {}) {
   try {
-    return createHash('sha256').update(fs.readFileSync(dshProfilePatchPath({ dataDir }))).digest('hex');
+    return createHash('sha256').update(fs.readFileSync(dshProfilePatchPath({ dataDir, home, homeDir }))).digest('hex');
   } catch {
     return null;
   }
@@ -205,23 +289,54 @@ export function parseDshModel(value) {
   return { provider, model };
 }
 
-export function prepareDshEnvironment(dataDir) {
-  const root = preparePrivateDirectory(path.join(dataDir, 'dsh'));
-  return {
-    root,
-    home: preparePrivateDirectory(path.join(root, 'home')),
-    agents: preparePrivateDirectory(path.join(root, 'agents')),
-    run: preparePrivateDirectory(path.join(root, 'run')),
-  };
+/**
+ * Create the directories the DSH runtime needs and return their layout.
+ *
+ * A shared home belongs to the operator's own DeepSeek Harness: it is created
+ * when missing but never tightened, while the launch-patch directory is always
+ * this instance's private one.
+ * @param {string} dataDir - the instance data directory.
+ * @param {object} [options]
+ * @param {'isolated'|'shared'} [options.home] - the configured placement.
+ * @param {string} [options.homeDir] - the operator's home directory.
+ * @returns {{mode: string, root: string, home: string, agents: string, run: string}}
+ */
+export function prepareDshEnvironment(dataDir, { home = DSH_HOME_MODES[0], homeDir } = {}) {
+  const directories = dshDirectoryLayout({ dataDir, home, homeDir });
+  preparePrivateDirectory(path.join(dataDir, 'dsh'));
+  if (directories.mode === 'shared') {
+    fs.mkdirSync(directories.home, { recursive: true, mode: 0o700 });
+    return Object.freeze({
+      ...directories,
+      run: preparePrivateDirectory(directories.run),
+    });
+  }
+  return Object.freeze({
+    mode: directories.mode,
+    root: preparePrivateDirectory(directories.root),
+    home: preparePrivateDirectory(directories.home),
+    agents: preparePrivateDirectory(directories.agents),
+    run: preparePrivateDirectory(directories.run),
+  });
 }
 
+/**
+ * The child environment of one DSH process: every inherited `DSH_*` is dropped
+ * (it belongs to the operator's own DSH, not to this instance), then the home,
+ * shared-agent root and unattended-run flags are set from the placement.
+ * @param {object} environment - the inherited environment.
+ * @param {object} options - `profile`, `actions`, `cliBins`, `dataDir`, `home`,
+ *   `homeDir` and `execPath` (as before).
+ * @returns {object} the sanitized environment.
+ */
 export function sanitizeDshEnv(environment, {
-  profile = '', actions = null, cliBins = [], dataDir, execPath = process.execPath,
+  profile = '', actions = null, cliBins = [], dataDir, home = DSH_HOME_MODES[0], homeDir,
+  execPath = process.execPath,
 } = {}) {
   const safeEnv = sanitizeAgentChildEnv(environment, { profile, actions, cliBins });
   for (const key of Object.keys(safeEnv)) if (/^DSH_/i.test(key)) delete safeEnv[key];
   if (!dataDir) throw new Error('dsh dataDir is required');
-  const directories = prepareDshEnvironment(dataDir);
+  const directories = prepareDshEnvironment(dataDir, { home, homeDir });
   Object.assign(safeEnv, {
     DSH_HOME: directories.home,
     DSH_AGENTS_HOME: directories.agents,
@@ -282,9 +397,9 @@ export function buildDshPatch({
 }
 
 export function writeDshPatch({
-  dataDir, policy = '', bridgePath = DSH_BRIDGE_PATH, mcp = null,
+  dataDir, home = DSH_HOME_MODES[0], homeDir, policy = '', bridgePath = DSH_BRIDGE_PATH, mcp = null,
 } = {}) {
-  const { run } = prepareDshEnvironment(dataDir);
+  const { run } = prepareDshEnvironment(dataDir, { home, homeDir });
   const patch = buildDshPatch({ policy, bridgePath, mcp });
   const patchPath = path.join(run, 'patch.yml');
   const temporary = `${patchPath}.${process.pid}.tmp`;

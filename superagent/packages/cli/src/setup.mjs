@@ -26,6 +26,7 @@ import {
 import { OVRegistrations, detectOpenViking, instanceOvConfig, writeInstanceOvConfig } from './ov.mjs';
 import { configureOpenViking, prepareInstanceOpenViking, saveOVConnection, takenIdentities } from './ov-setup.mjs';
 import { detectDsh, detectRuntimes, which } from './runtimes.mjs';
+import { dshDirectoryLayout } from '../../daemon/src/dsh-runtime.mjs';
 import {
   collectDshModelDraft, dshSettingsDocument, validateDshModelDraft, writeDshModelDraft,
 } from './dsh-model-wizard.mjs';
@@ -278,6 +279,9 @@ function initialState({ id, env, homeDir, current, runtimes, kept }) {
     roleSeed: null,
     workspace: current?.workspace ?? path.join(homeDir, 'superagent-workspace', id),
     runtime: kept ?? runtimes.find((runtime) => runtime.available && (!current || runtime.model === current.model)),
+    // Where the DSH home lives (`agents[].dshHomeMode`): the instance's own
+    // directory unless the owner chose the machine's `~/.dsh`.
+    dshHomeMode: current?.dshHomeMode ?? 'isolated',
     connectors,
     channel: current?.channel ?? connectors[0],
     ovConfig: current?.ovConfig,
@@ -397,8 +401,68 @@ async function askRuntime(ctx, state) {
   state.runtime = await prompter.select(t('Agent 运行时', 'Agent runtime'), choices.map((runtime) => ({
     label: runtime.label, value: runtime, hint: runtime.note, disabled: !runtime.available,
   })), { initial: Math.max(0, choices.findIndex((runtime) => runtime.available && runtime.model === state.runtime?.model)) });
-  // DSH cannot serve a turn without a route: guide the operator into adding one
-  // instead of saving an instance whose runtime has nothing to run.
+}
+
+// Whether the chosen runtime is DeepSeek Harness, whose home placement is a
+// setting of its own (`agents[].dshHomeMode`).
+const BARE_DSH_RUNTIMES = Object.freeze(['dsh', 'deepseek-harness']);
+function isDshRuntime(state) {
+  const model = String(state.runtime?.model ?? '');
+  return BARE_DSH_RUNTIMES.includes(model) || model.startsWith('dsh:');
+}
+
+// The placement an instance (or its in-progress state) already has.
+const dshHomeModeOf = (agent) => (agent?.dshHomeMode === 'shared' ? 'shared' : 'isolated');
+
+// The directory a probe of one instance reads its routes from.
+const dshHomeProbeKey = (agent) => `${dshHomeModeOf(agent)}:${agent?.dataDir ?? ''}`;
+
+// Where this instance's DSH home is, as a label the owner can check.
+function dshHomeLabel({ dshHomeMode = 'isolated', dataDir }, homeDir) {
+  const layout = dshDirectoryLayout({ dataDir, home: dshHomeMode, homeDir });
+  return dshHomeMode === 'shared'
+    ? t(`共享（${shortenHome(layout.home, homeDir)}）`, `shared (${shortenHome(layout.home, homeDir)})`)
+    : t(`独立（${shortenHome(layout.home, homeDir)}）`, `isolated (${shortenHome(layout.home, homeDir)})`);
+}
+
+const DSH_HOME_CHOICES = () => [
+  {
+    label: t('独立', 'Isolated'),
+    hint: t('放在实例数据目录里：凭据、会话和模型设置只属于这个实例',
+      'inside the instance data directory: credentials, sessions and model settings belong to this instance alone'),
+    value: 'isolated',
+  },
+  {
+    label: t('共享', 'Shared'),
+    hint: t('用本机的 ~/.dsh：和本机的 DeepSeek Harness 共用凭据、会话与模型设置',
+      'use the machine’s ~/.dsh: share credentials, sessions and model settings with its DeepSeek Harness'),
+    value: 'shared',
+  },
+];
+
+// The DSH home placement, and then the model route that home needs: a route
+// read before the placement was chosen would come from the wrong home.
+async function askDshHome(ctx, state) {
+  if (!isDshRuntime(state)) return;
+  const { prompter } = ctx;
+  // An unattended run cannot answer this: keep the default placement and let
+  // the model step print its hint, exactly as it did before the question.
+  if (!prompter.tty) {
+    await ensureDshModel(ctx, state);
+    return;
+  }
+  const previous = state.dshHomeMode;
+  state.dshHomeMode = await prompter.select(
+    t('DSH 配置目录', 'DSH configuration directory'),
+    DSH_HOME_CHOICES(),
+    { initial: state.dshHomeMode === 'shared' ? 1 : 0, label: t('DSH 配置目录', 'DSH configuration directory') },
+  );
+  if (state.dshHomeMode !== previous) {
+    // A draft and a route read before the switch belong to the other home.
+    state.dshModel = null;
+    state.dshHomeRoute = null;
+    state.dshProbedHome = null;
+  }
   await ensureDshModel(ctx, state);
 }
 
@@ -659,8 +723,14 @@ const SETTINGS = [
   { key: 'displayName', label: () => t('机器人名字', 'Bot name'), ask: askName, shown: (state) => state.displayName },
   { key: 'role', label: () => t('角色', 'Role'), ask: askRole, shown: (state, { homeDir }) => roleShown(state, homeDir) },
   { key: 'workspace', label: () => t('工作目录', 'Workspace'), ask: askWorkspace, shown: (state, { homeDir }) => shortenHome(state.workspace, homeDir) },
-  { key: 'runtime', label: () => t('Agent 运行时', 'Agent runtime'), ask: askRuntime,
+  { key: 'runtime', label: () => t('Agent 运行时', 'Agent runtime'),
+    // DSH cannot serve a turn without a route: choosing it also guides the
+    // operator into adding one for the home this instance uses.
+    ask: async (ctx, state) => { await askRuntime(ctx, state); await ensureDshModel(ctx, state); },
     shown: (state) => `${state.runtime.kept ? state.runtime.model : state.runtime.label}${state.dshModel ? t('（保存时加 model route）', ' (adds a model route on save)') : ''}` },
+  // Only a DSH instance has a DSH home to place; editInstance hides it otherwise.
+  { key: 'dshHomeMode', label: () => t('DSH 配置目录', 'DSH configuration directory'), ask: askDshHome,
+    shown: (state, { homeDir }) => dshHomeLabel(state, homeDir) },
   { key: 'ims', label: () => t('接入的 IM', 'Connected IMs'), ask: askIms, shown: (state) => imList(state.connectors) },
   { key: 'larkApp', label: () => t('飞书应用', 'Feishu/Lark app'), ask: askLarkApp,
     shown: (state, { current, larkNeeds }) => larkAppShown(state, current, larkNeeds) },
@@ -693,13 +763,16 @@ async function editInstance(ctx, state, { describe, check, before, page }) {
     notice = null;
     const changes = describe(state);
     const changed = (key, value) => value !== before[key] || (key === 'mailboxes' && mailChanged(state));
-    const labels = SETTINGS.map(({ label }) => label());
+    // The DSH home placement only exists on a DSH instance: switching the
+    // runtime to something else drops the row until it is switched back.
+    const visible = SETTINGS.filter(({ key }) => key !== 'dshHomeMode' || isDshRuntime(state));
+    const labels = visible.map(({ label }) => label());
     const labelWidth = Math.max(...labels.map((label) => width(label))) + 2;
     const name = t(`修改 ${current.displayName}（${current.id}）`, `Change ${current.displayName} (${current.id})`);
     let choice;
     try {
       choice = await prompter.select(name, [
-        ...SETTINGS.map(({ key, shown }, index) => {
+        ...visible.map(({ key, shown }, index) => {
           const value = shown(state, ctx);
           return { label: padEnd(labels[index], labelWidth), hint: `${value}${changed(key, value) ? t('（已改）', ' (changed)') : ''}`, value: index };
         }),
@@ -731,7 +804,7 @@ async function editInstance(ctx, state, { describe, check, before, page }) {
     page.cursor = choice;
     // ← inside a setting leaves it as it was and comes back to the list.
     try {
-      await SETTINGS[choice].ask(ctx, state);
+      await visible[choice].ask(ctx, state);
     } catch (error) {
       if (!(error instanceof GoBack)) throw error;
     }
@@ -1458,7 +1531,12 @@ function dshModelHint({ env, state }) {
 async function probeInstanceRoutes(ctx, state) {
   if (!ctx.detect.dsh || !state.dataDir) return '';
   try {
-    const probed = await ctx.detect.dsh({ env: ctx.probeEnv, dataDir: state.dataDir });
+    const probed = await ctx.detect.dsh({
+      env: ctx.probeEnv,
+      dataDir: state.dataDir,
+      home: dshHomeModeOf(state),
+      homeDir: ctx.homeDir,
+    });
     return typeof probed?.route === 'string' ? probed.route : '';
   } catch {
     return '';
@@ -1475,17 +1553,18 @@ function instanceRouteNote(route) {
 // `ov-superagent dsh model list` starts a control process against it. Detection probed a
 // throwaway home, so without this a configured instance would report "no route"
 // even though its turns work.
-async function refreshDshRoutes({ prompter, env, detect, current, runtimes }) {
+async function refreshDshRoutes({ prompter, env, detect, current, runtimes, homeDir }) {
   const at = runtimes.findIndex((runtime) => runtime.id === 'dsh');
   if (at < 0 || !current?.dataDir || typeof detect.dsh !== 'function') return runtimes;
   const model = String(current.model ?? '');
   if (model !== 'dsh' && model !== 'deepseek-harness' && !model.startsWith('dsh:')) return runtimes;
-  if (!fs.existsSync(path.join(current.dataDir, 'dsh', 'home'))) return runtimes;
+  const place = { dataDir: current.dataDir, home: dshHomeModeOf(current), homeDir };
+  if (!fs.existsSync(dshDirectoryLayout(place).home)) return runtimes;
   let refreshed;
   try {
     refreshed = await step(prompter,
       t(`读取实例 ${current.id} 自己的 DSH model route`, `Reading the DSH model routes of instance ${current.id}`),
-      () => detect.dsh({ env, dataDir: current.dataDir }),
+      () => detect.dsh({ env, ...place }),
       (runtime) => (runtime.route
         ? t(`model route：${runtime.route}`, `model route: ${runtime.route}`)
         : t('实例自己的 DSH 里现在没有能服务 model 的 route', 'the instance’s own DSH serves no model route right now')));
@@ -1497,7 +1576,9 @@ async function refreshDshRoutes({ prompter, env, detect, current, runtimes }) {
   if (!refreshed?.available) return runtimes;
   // `probedHome` records where the route came from, so the manifest decision
   // can tell "the instance really serves this" from a throwaway probe.
-  const noted = { ...refreshed, probedHome: current.dataDir, note: refreshed.route ? instanceRouteNote(refreshed.route) : refreshed.note };
+  const noted = {
+    ...refreshed, probedHome: dshHomeProbeKey(current), note: refreshed.route ? instanceRouteNote(refreshed.route) : refreshed.note,
+  };
   return runtimes.map((runtime, index) => (index === at ? noted : runtime));
 }
 
@@ -1508,29 +1589,31 @@ async function refreshDshRoutes({ prompter, env, detect, current, runtimes }) {
 async function ensureDshModel(ctx, state) {
   const { prompter } = ctx;
   const runtime = state.runtime;
-  if (runtime?.model !== 'dsh' || runtime.kept) {
+  if (!isDshRuntime(state) || runtime.kept) {
     // Another runtime replaced the DSH choice: a DSH draft means nothing now.
-    if (runtime?.model !== 'dsh') state.dshModel = null;
+    if (!isDshRuntime(state)) state.dshModel = null;
     return;
   }
   if (state.dshModel) return;
   let route = typeof runtime.route === 'string' ? runtime.route : null;
   if (route === null) return;
-  if (route === '' && state.dataDir && fs.existsSync(path.join(state.dataDir, 'dsh', 'home'))) {
+  const place = { dataDir: state.dataDir, home: dshHomeModeOf(state), homeDir: ctx.homeDir };
+  const probedHome = dshHomeProbeKey(state);
+  if (route === '' && state.dataDir && fs.existsSync(dshDirectoryLayout(place).home)) {
     // A directory that already served DSH keeps its routes there (an instance
     // being re-created over an older home, or one configured with
     // the menu after a setup that had no route). Read once: going
     // back and forth must not start a DSH process per visit, and the runtime
     // entry already carries the answer when the edit flow probed it.
-    if (state.dshProbedHome !== state.dataDir && runtime.probedHome !== state.dataDir) {
-      state.dshProbedHome = state.dataDir;
+    if (state.dshProbedHome !== probedHome && runtime.probedHome !== probedHome) {
+      state.dshProbedHome = probedHome;
       const spinning = prompter.spin(t('读一下实例自己的 DSH model route', 'Reading the instance’s own DSH model routes'));
       state.dshHomeRoute = await probeInstanceRoutes(ctx, state);
       if (state.dshHomeRoute) spinning.succeed(t(`model route：${state.dshHomeRoute}`, `model route: ${state.dshHomeRoute}`));
       else spinning.stop();
     }
     route = state.dshHomeRoute ?? '';
-    if (route) state.runtime = { ...runtime, route, probedHome: state.dataDir };
+    if (route) state.runtime = { ...runtime, route, probedHome };
   }
   if (route) return;
   const hint = dshModelHint({ env: ctx.env, state });
@@ -1554,8 +1637,8 @@ async function ensureDshModel(ctx, state) {
   });
   if (!draft) return;
   state.dshModel = draft;
-  prompter.info(t(`保存实例时把它写进 ${dshSettingsDocument(state.dataDir)}`,
-    `It is written to ${dshSettingsDocument(state.dataDir)} when the instance is saved`));
+  prompter.info(t(`保存实例时把它写进 ${dshSettingsDocument(state.dataDir, place)}`,
+    `It is written to ${dshSettingsDocument(state.dataDir, place)} when the instance is saved`));
 }
 
 // Label/value rows: a box on a colour terminal, indented lines otherwise.
@@ -1708,7 +1791,7 @@ async function setupFlow({
   } else {
     // An instance that already runs keeps its model routes in its own DSH home;
     // the detection probe used a throwaway one and cannot see them.
-    runtimes = await refreshDshRoutes({ prompter, env: probeEnv, detect, current, runtimes });
+    runtimes = await refreshDshRoutes({ prompter, env: probeEnv, detect, current, runtimes, homeDir });
   }
   const kept = keptRuntime(current, runtimes);
   const others = manifest?.agents?.length > 0;
@@ -1796,6 +1879,10 @@ async function setupFlow({
     };
     if (state.role) agent.role = state.role;
     else delete agent.role;
+    // The home placement belongs to a DSH instance; switching to another
+    // runtime drops a value left over from DSH.
+    if (isDshRuntime(state)) agent.dshHomeMode = state.dshHomeMode;
+    else delete agent.dshHomeMode;
     if (state.connectors.includes('lark')) agent.profile = current?.profile ?? `superagent-${state.id}`;
     else delete agent.profile;
     // A new app reads as chosen for it; the app kept reads as it did.
@@ -1862,6 +1949,7 @@ async function setupFlow({
       [t('记忆', 'Memory'), 'OpenViking'],
       [t('其他设置', 'Other settings'), t(`${switchesShown(state)}（以后在修改实例里调）`, `${switchesShown(state)} (change them later by changing the instance)`)],
       [t('工作目录', 'Workspace'), shortenHome(state.workspace, homeDir)],
+      ...(isDshRuntime(state) ? [[t('DSH 配置', 'DSH configuration'), dshHomeLabel(state, homeDir)]] : []),
       [t('数据目录', 'Data'), shortenHome(state.dataDir, homeDir)],
     ]);
     connectionSteps(prompter, ims(state), { saving: true, larkSource: larkSource(state, null) });
@@ -1874,7 +1962,7 @@ async function setupFlow({
 
   const steps = current ? [] : [
     { section: { title: t('OpenViking 记忆', 'OpenViking memory'), step: 1, total: 4 }, ask: chooseOV },
-    { section: { title: t('机器人', 'Bot'), step: 2, total: 4 }, ask: askId }, { ask: askName }, { ask: askRole }, { ask: askWorkspace }, { ask: askRuntime },
+    { section: { title: t('机器人', 'Bot'), step: 2, total: 4 }, ask: askId }, { ask: askName }, { ask: askRole }, { ask: askWorkspace }, { ask: askRuntime }, { ask: askDshHome },
     { ask: prepareOV },
     { section: { title: t('消息渠道', 'Channels'), step: 3, total: 4 }, ask: askIms }, { ask: askChannel }, { ask: askLarkApp }, { ask: askMail },
     { section: { title: t('确认', 'Confirm'), step: 4, total: 4 }, ask: confirmNew },
@@ -1988,7 +2076,10 @@ async function setupFlow({
     try {
       const written = await step(prompter,
         t('把 model route 写进实例的 DSH 配置', 'Writing the model route into the instance’s DSH configuration'),
-        () => ctx.dshTools.write({ dataDir: state.dataDir, draft: state.dshModel, bin: state.runtime.bin || 'dsh', env: probeEnv }),
+        () => ctx.dshTools.write({
+          dataDir: state.dataDir, home: dshHomeModeOf(state), homeDir,
+          draft: state.dshModel, bin: state.runtime.bin || 'dsh', env: probeEnv,
+        }),
         (result) => t(`model route 已写入 ${shortenHome(result.settings, homeDir)}`,
           `The model route is in ${shortenHome(result.settings, homeDir)}`));
       for (const line of written.notes ?? []) prompter.info(line);
@@ -2176,6 +2267,13 @@ function describeChanges(before, after, mailboxes, homeDir, state) {
     changes.push(sameRuntime
       ? `${t('model：', 'Model: ')}${before.model} → ${after.model}`
       : `${t('运行时：', 'Runtime: ')}${before.model} → ${after.model}`);
+  }
+  const wasHome = before.dshHomeMode ?? 'isolated';
+  const isHome = after.dshHomeMode ?? 'isolated';
+  if (wasHome !== isHome) {
+    const label = (mode) => (mode === 'shared' ? t('共享（~/.dsh）', 'shared (~/.dsh)') : t('独立（实例数据目录）', 'isolated (instance data directory)'));
+    changes.push(t(`DSH 配置目录：${label(wasHome)} → ${label(isHome)}（模型会开一次新的会话）`,
+      `DSH configuration: ${label(wasHome)} → ${label(isHome)} (the model starts a new session)`));
   }
   for (const { key, label } of SWITCHES()) {
     const was = before[key] ?? switchDefault(key, before.model);

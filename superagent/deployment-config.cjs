@@ -106,6 +106,7 @@ const AGENT_FIELDS = Object.freeze([
   'role',
   'naturalWriting',
   'model',
+  'dshHomeMode',
   'volcSessionId',
   'volcEnvironmentId',
   'meetingNotes',
@@ -117,6 +118,9 @@ const ROLE_PRESETS = Object.freeze(['colleague', 'assistant', 'qa']);
 // agents[].larkMessageAccess: `owner` reads with the owner's visibility,
 // `bot` only in the chats the bot has joined.
 const LARK_MESSAGE_ACCESS = Object.freeze(['owner', 'bot']);
+// agents[].dshHomeMode: `isolated` keeps the DSH home under the instance data
+// directory (the default), `shared` uses the operator's own `~/.dsh`.
+const DSH_HOME_MODES = Object.freeze(['isolated', 'shared']);
 // Each mailbox is its own email Connector instance; the id is how the model
 // and the logs tell them apart.
 const EMAIL_INSTANCE_ID = /^email-[a-z0-9][a-z0-9-]{0,39}$/;
@@ -330,6 +334,9 @@ function parseAgent(value, index, ignored) {
   if (value.meetingNotes && !connectors.includes('lark')) {
     throw new Error(`${label}.meetingNotes requires the lark connector`);
   }
+  if (value.dshHomeMode !== undefined && !DSH_HOME_MODES.includes(value.dshHomeMode)) {
+    throw new Error(`${label}.dshHomeMode must be ${DSH_HOME_MODES.join(' or ')}`);
+  }
   return Object.freeze({
     id,
     displayName: manifestString(value.displayName, `${label}.displayName`, { maxLength: 40 }),
@@ -350,6 +357,9 @@ function parseAgent(value, index, ignored) {
     role: manifestRole(value.role, `${label}.role`),
     naturalWriting: value.naturalWriting ?? true,
     model,
+    // Where the DSH runtime keeps its home: instance-private by default; the
+    // daemon only reads it when the instance actually runs DSH.
+    dshHomeMode: value.dshHomeMode ?? DSH_HOME_MODES[0],
     volcSessionId,
     volcEnvironmentId,
     meetingNotes: value.meetingNotes ?? false,
@@ -580,6 +590,9 @@ function applyDeploymentAgentEnv(env, deployment, requestedId) {
   else delete env.OV_SUPERAGENT_ROLE;
   env.OV_SUPERAGENT_CHANNEL = agent.channel;
   env.OV_SUPERAGENT_CONNECTORS_JSON = JSON.stringify(agent.connectors);
+  // Where the DSH runtime keeps its home; the daemon applies it only when this
+  // instance runs DSH.
+  env.OV_SUPERAGENT_DSH_HOME_MODE = agent.dshHomeMode;
   if (agent.emailAccounts.length > 0) env.OV_SUPERAGENT_EMAIL_ACCOUNTS_JSON = JSON.stringify(agent.emailAccounts);
   else delete env.OV_SUPERAGENT_EMAIL_ACCOUNTS_JSON;
   if (agent.volcSessionId) {
@@ -609,6 +622,7 @@ module.exports = {
   INSTANCE_ID,
   RESERVED_INSTANCE_IDS,
   ROLE_PRESETS,
+  DSH_HOME_MODES,
   CONTROL_ENV_MAX_BYTES,
   DAEMON_ENV_FIELDS,
   DAEMON_SECRET_ENV_FIELDS,

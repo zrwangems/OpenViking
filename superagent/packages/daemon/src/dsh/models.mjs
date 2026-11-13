@@ -422,6 +422,6 @@ export default {
   // keep counting as a change. A refused restart never moves the baseline.
   _profilePatchChanged() {
     if (this.settingsUpdate || this.restarting || this.sessionRotation) return false;
-    return dshProfilePatchHash({ dataDir: this.config.dataDir }) !== this.profilePatchHash;
+    return dshProfilePatchHash({ dataDir: this.config.dataDir, ...this._dshHomeOptions() }) !== this.profilePatchHash;
   },
 };

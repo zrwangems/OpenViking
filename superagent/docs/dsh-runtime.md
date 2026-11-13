@@ -11,12 +11,21 @@ DSH runtime 用 OpenViking SuperAgent 的常驻会话、历史同步、Agent 工
 - **DSH 的模型设置不写在 manifest 里。** `OV_SUPERAGENT_DSH_EFFORT` 只从启动 OpenViking SuperAgent 的进程环境读取；模型和路由只属于 DSH 自己的设置文档，密钥值只属于 DSH 的 credential 库（见下节）。写进 `config.json` 的这类字段会被当作未知项忽略并告警。
 - 一次启动（从 spawn 到握手结束）默认最多 30 秒。DSH 从源码树跑时是两次 `node --import tsx`（版本探测一次、进程一次），机器空闲时各约 0.4 秒，机器忙时可能是几十秒；超时会让 daemon 启动失败。机器负载高或同时起多个实例时用 `OV_SUPERAGENT_DSH_START_TIMEOUT_MS` 放宽（同样只从进程环境读取）。
 - 默认模型是内置的 `deepseek-official/deepseek-flash`，它要的 `DEEPSEEK_API_KEY` 从进程环境（`~/.ov-superagent/secrets.env` 里的值也会被载入 daemon 进程环境）或实例的 credential 库来：`ov-superagent dsh model key set DEEPSEEK_API_KEY` 存的值同样能让这条内置 route 列出 model（实测）。操作方自己的路由来自 DSH 的设置文档，用 `ov-superagent dsh model` 配置；配好凭据后不依赖环境里的 `DEEPSEEK_API_KEY`。`OV_SUPERAGENT_DSH_EFFORT` 只设置新实例的初始 effort，取值为 `off`、`minimal`、`low`、`medium`、`high`、`xhigh`、`max`，默认 `high`；之后由 `/effort` 与持久化设置决定。
-- 隔离的 DSH_HOME 不读用户自己 `~/.dsh` 保存的凭据或路由。`DEEPSEEK_BASE_URL` 不会被 OpenViking SuperAgent 删掉，daemon 环境里已经有它时会原样传给 DSH 子进程（OpenViking SuperAgent 不为它做转发，写进 manifest 的 `env` 会被当成未知项忽略）。工作区 `.env` 仍可能被 DSH 读取，但进程环境优先；`DSH_*`、`DEEPSEEK_BASE_URL`、`PATH` 这类启动变量不能由 `.env` 提供。
+- 独立模式（默认）的 DSH_HOME 不读用户自己 `~/.dsh` 保存的凭据或路由；共享模式直接用它，见下一节。`DEEPSEEK_BASE_URL` 不会被 OpenViking SuperAgent 删掉，daemon 环境里已经有它时会原样传给 DSH 子进程（OpenViking SuperAgent 不为它做转发，写进 manifest 的 `env` 会被当成未知项忽略）。工作区 `.env` 仍可能被 DSH 读取，但进程环境优先；`DSH_*`、`DEEPSEEK_BASE_URL`、`PATH` 这类启动变量不能由 `.env` 提供。
 - `/runtime dsh` 直接选择。`ov-superagent setup` 的检查是 `dsh --version` 加一次 `initialize → superagent/hello → superagent/llm/models → shutdown` 探测，不创建会话，也不调用模型。探测默认使用临时 DSH_HOME，因此看不到实例自己的路由；编辑已有实例时，setup 会用该实例自己的 DSH_HOME 再跑一次同样的握手（启动补丁换成 `ov-superagent dsh model` 用的控制补丁），所以已配置的实例不会被显示成「没有路由」，见「setup 里没有可用 model 时怎么办」。
+
+## DSH 配置目录：独立还是共享
+
+`ov-superagent setup` 选中 DeepSeek Harness 后会问这个实例的 DSH 配置目录放在哪里，编辑已有实例时也能在设置列表里改：
+
+- **独立（默认）**：`<dataDir>/dsh/home`。凭据、会话和模型设置只属于这个实例。这是引入该设置之前所有版本的行为，manifest 不写 `agents[].dshHomeMode` 就等于它。
+- **共享**：本机的 `~/.dsh`（DSH_HOME）和 `~/.agents`（DSH_AGENTS_HOME）。DSH 的凭据库、会话、设置文档和模型 route 与本机的 DeepSeek Harness 共用；实例仍然用自己的启动补丁（`<dataDir>/dsh/run/patch.yml`），不会改写共享 home 里的其他配置。
+
+manifest 里对应 `agents[].dshHomeMode`，取值 `isolated`（默认）或 `shared`。切换后按新的 home 读写设置文档和凭据库；已有的实例私有配置不会自动迁移，需要时手工拷贝。共享模式下同一台机器的多个 DSH 实例会共用同一个 `~/.dsh`，模型 route 也是共用的。
 
 ## 模型路由存在哪里、字段怎么填
 
-模型配置只有一个事实来源：实例的 DSH 设置文档 `<DSH_HOME>/profiles/sdk/cordis.patch.yml` 里的 `llm-pi-ai` 段。`<DSH_HOME>` 是 `<dataDir>/dsh/home`。这份文档由 DSH 自己的 settings 服务写入；`ov-superagent dsh model` 通过 bridge 调它，OpenViking SuperAgent 不直接写 YAML（只有两处例外：`repair` 恢复读不了的文档，以及 `ov-superagent setup` 给还没有这份文档也没有 credential 库的新实例写第一份文档，见「setup 里没有可用 model 时怎么办」）。`config.json` 里没有 provider 或模型清单。
+模型配置只有一个事实来源：实例的 DSH 设置文档 `<DSH_HOME>/profiles/sdk/cordis.patch.yml` 里的 `llm-pi-ai` 段。`<DSH_HOME>` 是实例的 DSH 配置目录：独立模式为 `<dataDir>/dsh/home`，共享模式为 `~/.dsh`（见上一节）。这份文档由 DSH 自己的 settings 服务写入；`ov-superagent dsh model` 通过 bridge 调它，OpenViking SuperAgent 不直接写 YAML（只有两处例外：`repair` 恢复读不了的文档，以及 `ov-superagent setup` 给还没有这份文档也没有 credential 库的新实例写第一份文档，见「setup 里没有可用 model 时怎么办」）。`config.json` 里没有 provider 或模型清单。
 
 在菜单里添加一个 model 后，写出来的文档是这样（实测 `dsh 0.2.2-rc.1`；路由的 `displayName` 和模型条目的 `name` 默认等于 route id）：
 
@@ -177,9 +186,11 @@ ov-superagent dsh model --instance <实例>    # 菜单里选「添加 model」
 每个实例一个 DSH 子进程，工作目录为实例 workspace。`<dataDir>/dsh` 及其下由 OpenViking SuperAgent 创建的目录（`home`、`agents`、`run`）为 0700，OpenViking SuperAgent 写的 `run/patch.yml`、`run/control-patch.yml` 为 0600。`home` 里面由 DSH 自己创建的东西不由 OpenViking SuperAgent 决定：实测它把 `profiles/`、`profiles/sdk/` 建成 0755，`profiles/sdk/cordis.patch.yml` 初次生成是 0644（那时还只有注释模板，没有路由），settings 服务第一次写入后是 0600。凭据库 `.credentials.yaml` 是 0600。
 
 ```text
-<dataDir>/dsh/home/     DSH_HOME：会话、附件、缓存，以及 DSH 自己的设置与凭据文档
-<dataDir>/dsh/agents/   DSH_AGENTS_HOME：实例自有 skills 与 AGENTS.md
+<dataDir>/dsh/home/     DSH_HOME（独立模式）：会话、附件、缓存，以及 DSH 自己的设置与凭据文档
+<dataDir>/dsh/agents/   DSH_AGENTS_HOME（独立模式）：实例自有 skills 与 AGENTS.md
 <dataDir>/dsh/run/      daemon 每次启动生成的 patch.yml；ov-superagent dsh model 用的 control-patch.yml（0600）
+~/.dsh/                 DSH_HOME（共享模式）：和本机 DeepSeek Harness 共用的设置、凭据与会话
+~/.agents/              DSH_AGENTS_HOME（共享模式）：和本机 DeepSeek Harness 共用的 skills 与 AGENTS.md
 ```
 
 启动命令是 `dsh --profile sdk --patch <dataDir>/dsh/run/patch.yml`。patch 是 JSON 写出的 YAML 兼容配置：禁用原版 `sdk-jsonrpc-server` 行，换入 OpenViking SuperAgent bridge，挂载 `personal_agent` stdio MCP，并禁用无人值守不需要的行。bridge 通过 DSH CLI 的包依赖解析 SDK server 与消息 API，不依赖 OpenViking SuperAgent 安装额外 DSH 包。除 OpenViking SuperAgent 自有的 `superagent/hello`、`session/steer`、`session/cancel` 和 bridge v2 的模型/设置/凭据方法外，请求原样交给原版 SDK transport。
@@ -193,7 +204,7 @@ patch 的分层顺序是 bundle → profile（`<DSH_HOME>/profiles/sdk/cordis.pa
 - home patch 也能把某一行整行 `disabled: true`；`disabled` 与 `config` 是不同键，两个都会留下。把 `llm-pi-ai` 整行禁用后模型插件不激活，需要删掉这一行才能继续用 `ov-superagent dsh model`。
 - 引用不存在的 id 会在 stderr 报 `patch: entry "…" not found`，其余层照常应用。
 
-无人值守策略关闭提问、DSH 定时器、插件管理和 Web 交付卡片工具，并关闭 `subagent_fork`：fork 子 agent 继承父会话历史（含 `decision_id`）且不支持独立 preset，是唯一无法被 preset 收敛的委派入口，因此在 patch 里被 `disabled` 掉。`subagent`（spawn）保留。权限模式为 `danger-full-access`，即本机进程没有额外安全边界；服务端若请求审批，OpenViking SuperAgent 一律拒绝并记录。遥测关闭。工作区 AGENTS.md 和 DSH skills 保留，用户的全局 `~/.dsh`、`~/.agents` 不会混入。
+无人值守策略关闭提问、DSH 定时器、插件管理和 Web 交付卡片工具，并关闭 `subagent_fork`：fork 子 agent 继承父会话历史（含 `decision_id`）且不支持独立 preset，是唯一无法被 preset 收敛的委派入口，因此在 patch 里被 `disabled` 掉。`subagent`（spawn）保留。权限模式为 `danger-full-access`，即本机进程没有额外安全边界；服务端若请求审批，OpenViking SuperAgent 一律拒绝并记录。遥测关闭。工作区 AGENTS.md 和 DSH skills 保留；独立模式下用户的全局 `~/.dsh`、`~/.agents` 不会混入，共享模式正是要用它们。
 
 当前支持的上限锁定 0.2.x，因为 bridge 使用 SDK 的进程内 Agent API；版本低于 `0.2.2-rc.1` 或不带该 bridge 的 DSH 会在启动/握手时被拒绝。
 

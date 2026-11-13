@@ -14,7 +14,7 @@ import { terminateProcessTree } from '../process-utils.mjs';
 import { agentCliCommands } from '../agent-clis.mjs';
 import { agentToolEnv, agentToolServer } from '../actions/api.mjs';
 import { captureStartupStderr } from '../runtime-diagnostics.mjs';
-import { spawnDetached } from '../platform/index.mjs';
+import { homeDir as platformHomeDir, spawnDetached } from '../platform/index.mjs';
 import {
   DSH_BRIDGE_DAEMON_METHODS,
   DSH_BRIDGE_PATH,
@@ -54,6 +54,13 @@ export default {
     return this.config.connectors?.includes('lark') ? this.config.profile : '';
   },
 
+  // Where this instance keeps the DSH home (`agents[].dshHomeMode`). The
+  // operator's home comes from the environment the daemon was started with,
+  // never from the sanitized child environment.
+  _dshHomeOptions() {
+    return { home: this.config.dshHomeMode, homeDir: platformHomeDir(this._environment) };
+  },
+
   // A handshake is several awaits long (version probe, spawn, initialize,
   // catalogue) and stop() can land in any of them. Every point that is about to
   // take ownership of a child asks this first, so a stopped generation cannot
@@ -68,6 +75,7 @@ export default {
       actions: agentToolEnv(this.config, this.authorityToken),
       cliBins: agentCliCommands(this.config).map(({ bin }) => bin),
       dataDir: this.config.dataDir,
+      ...this._dshHomeOptions(),
     });
   },
 
@@ -172,10 +180,11 @@ export default {
     // answers the first turn with MISSING_CREDENTIAL -- naming the credentials
     // service and the export route. Refusing to spawn would block a working
     // configuration on a premise that does not hold.
-    prepareDshEnvironment(this.config.dataDir);
+    prepareDshEnvironment(this.config.dataDir, this._dshHomeOptions());
     const tools = agentToolServer(this.config, this.authorityToken);
     const patchPath = writeDshPatch({
       dataDir: this.config.dataDir,
+      ...this._dshHomeOptions(),
       policy: this.systemPrompt,
       bridgePath: DSH_BRIDGE_PATH,
       mcp: {
@@ -190,7 +199,7 @@ export default {
     // write that landed mid-handshake as applied and silently swallow it (§4.4).
     // A write that still lands between here and DSH's own read only costs one
     // extra restart, which is the safe direction.
-    const startedFrom = dshProfilePatchHash({ dataDir: this.config.dataDir });
+    const startedFrom = dshProfilePatchHash({ dataDir: this.config.dataDir, ...this._dshHomeOptions() });
 
     return new Promise((resolve, reject) => {
       let child;
@@ -377,7 +386,7 @@ export default {
     }
     if (descriptor) return;
     this.logger.warn('dsh_model_settings_invalid', {
-      path: dshProfilePatchPath({ dataDir: this.config.dataDir }),
+      path: dshProfilePatchPath({ dataDir: this.config.dataDir, ...this._dshHomeOptions() }),
       detail: 'llm-pi-ai did not activate; only the built-in routes are available',
     });
   },
@@ -658,7 +667,7 @@ export default {
     // attempt cannot loop on it. The child is spawned much later, so `_handshake`
     // samples the document again right before spawning it and records that value
     // as the baseline (a write landing in between is then still a change).
-    this.profilePatchHash = dshProfilePatchHash({ dataDir: this.config.dataDir });
+    this.profilePatchHash = dshProfilePatchHash({ dataDir: this.config.dataDir, ...this._dshHomeOptions() });
     this.settingsUpdate = (async () => {
       try {
         this.logger.info('dsh_restart_for_settings', { reason });

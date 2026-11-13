@@ -71,13 +71,15 @@ export function controlPatchPath(dataDir) {
  * subset, so no YAML dependency is needed anywhere in this path.
  * @param {object} options
  * @param {string} options.dataDir - instance data directory.
+ * @param {'isolated'|'shared'} [options.home] - the instance's DSH home placement.
+ * @param {string} [options.homeDir] - the operator's home directory (shared only).
  * @param {string} [options.policy] - system-prompt prefix, empty by default.
  * @param {string} [options.bridgePath] - the bridge module to load.
  * @returns {string} the patch path.
  */
-export function writeControlPatch({ dataDir, policy = '', bridgePath = DSH_BRIDGE_PATH }) {
+export function writeControlPatch({ dataDir, home, homeDir, policy = '', bridgePath = DSH_BRIDGE_PATH }) {
   if (typeof dataDir !== 'string' || !dataDir) throw new Error('dataDir is required to write the DSH control patch');
-  const { run } = prepareDshEnvironment(dataDir);
+  const { run } = prepareDshEnvironment(dataDir, { home, homeDir });
   const patch = buildDshPatch({ policy, bridgePath, mcp: null });
   const patchPath = path.join(run, CONTROL_PATCH_FILE);
   const temporary = `${patchPath}.${process.pid}.tmp`;
@@ -166,7 +168,7 @@ export class DshControlClient {
     // Platform spawn, like the DSH session runtime: npm installs `dsh` as a
     // .cmd shim on Windows, and a raw child_process.spawn of that shim throws
     // EINVAL (CreateProcess cannot run a batch file).
-    dataDir, bin = 'dsh', env = process.env, spawnImpl = spawn, policy = '',
+    dataDir, home, homeDir, bin = 'dsh', env = process.env, spawnImpl = spawn, policy = '',
     bridgePath = DSH_BRIDGE_PATH,
     helloTimeoutMs = CONTROL_HELLO_TIMEOUT_MS,
     requestTimeoutMs = CONTROL_REQUEST_TIMEOUT_MS,
@@ -176,7 +178,7 @@ export class DshControlClient {
     if (typeof dataDir !== 'string' || !path.isAbsolute(dataDir)) {
       throw new DshControlError('the instance data directory must be an absolute path');
     }
-    const patchPath = writeControlPatch({ dataDir, policy, bridgePath });
+    const patchPath = writeControlPatch({ dataDir, home, homeDir, policy, bridgePath });
     const command = dshCommand({ bin, patchPath });
     let child;
     try {
@@ -185,7 +187,7 @@ export class DshControlClient {
         // No provider credentials are injected: the document being edited
         // names its own credential references and DSH resolves them from its
         // own credentials file.
-        env: sanitizeDshEnv(env, { dataDir }),
+        env: sanitizeDshEnv(env, { dataDir, home, homeDir }),
         shell: false,
         detached: spawnDetached,
         stdio: ['pipe', 'pipe', 'pipe'],

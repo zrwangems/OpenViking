@@ -262,6 +262,11 @@ export function getConfig() {
     opencodeModel: process.env.OV_SUPERAGENT_OPENCODE_MODEL || '',
     agyModel: process.env.OV_SUPERAGENT_AGY_MODEL || '',
     dshBin: process.env.DSH_BIN || 'dsh',
+    // Where this instance keeps the DSH home (agents[].dshHomeMode): `isolated`
+    // (the default) puts credentials, sessions and model settings under the
+    // instance data directory; `shared` uses the operator's own `~/.dsh`, the
+    // same home their DeepSeek Harness uses.
+    dshHomeMode: enumEnv('OV_SUPERAGENT_DSH_HOME_MODE', 'isolated', ['isolated', 'shared']),
     // Model routes are DSH's own settings document, not a daemon setting and not
     // a manifest field: DSH's own settings service is the only writer, and
     // `ov-superagent dsh model` plus `/model` are the only callers. This is the effort a

@@ -520,6 +520,29 @@ test('explicit silence is on by default except on Ark, an explicit false opts ou
   });
 });
 
+test('DSH home mode defaults to isolated, accepts shared, and is always pinned in the daemon env', () => {
+  const manifest = validManifest();
+  manifest.agents[0].dshHomeMode = 'shared';
+  delete manifest.agents[1].dshHomeMode;
+  withManifest(manifest, (manifestPath) => {
+    const env = { OV_SUPERAGENT_CONFIG: manifestPath, OV_SUPERAGENT_DSH_HOME_MODE: 'shared' };
+    const deployment = loadDeploymentManifest(env);
+    assert.equal(selectDeploymentAgent(deployment, 'alpha').dshHomeMode, 'shared');
+    applyDeploymentAgentEnv(env, deployment, 'alpha');
+    assert.equal(env.OV_SUPERAGENT_DSH_HOME_MODE, 'shared');
+    applyDeploymentAgentEnv(env, deployment, 'beta');
+    assert.equal(env.OV_SUPERAGENT_DSH_HOME_MODE, 'isolated');
+  });
+  const broken = validManifest();
+  broken.agents[0].dshHomeMode = 'private';
+  withManifest(broken, (manifestPath) => {
+    assert.throws(
+      () => loadDeploymentManifest({ OV_SUPERAGENT_CONFIG: manifestPath }),
+      /agents\[0\]\.dshHomeMode must be isolated or shared/,
+    );
+  });
+});
+
 test('staged replies are opt-in per instance and always pinned in the daemon env', () => {
   const manifest = validManifest();
   manifest.agents[1].stagedReplies = true;

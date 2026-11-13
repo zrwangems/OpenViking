@@ -8,6 +8,7 @@
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import fs from 'node:fs';
+import os from 'node:os';
 import { DshAgent } from '../src/dsh.mjs';
 import { after } from 'node:test';
 import { describe, it } from './dsh-node-gate.mjs';
@@ -67,6 +68,26 @@ describe('DshAgent startup and SDK transport', () => {
     assert.equal(context.agent.connected, true);
     assert.equal(context.store.global().sessionReady, true);
     await context.agent.stop();
+  });
+
+  it('runs on the shared DSH home when the instance asks for it', async () => {
+    const homeDir = fs.mkdtempSync(path.join(os.tmpdir(), 'superagent-shared-home-'));
+    try {
+      const context = newAgent({ config: { ...baseConfig(), dshHomeMode: 'shared' } });
+      context.agent._environment = {
+        PATH: '/usr/bin:/bin', HOME: homeDir, USERPROFILE: homeDir, DEEPSEEK_API_KEY: 'test-key',
+      };
+      const child = await startAgent(context);
+      const call = context.spawnCalls[0];
+      assert.equal(call.options.env.DSH_HOME, path.join(homeDir, '.dsh'));
+      assert.equal(call.options.env.DSH_AGENTS_HOME, path.join(homeDir, '.agents'));
+      // The launch patch is this instance's own document, not a shared one.
+      assert.equal(call.args[3], path.join(context.config.dataDir, 'dsh', 'run', 'patch.yml'));
+      assert.equal(context.agent.connected, true);
+      await context.agent.stop();
+    } finally {
+      fs.rmSync(homeDir, { recursive: true, force: true });
+    }
   });
 
   it('rejects unsupported versions before spawning DSH', async () => {

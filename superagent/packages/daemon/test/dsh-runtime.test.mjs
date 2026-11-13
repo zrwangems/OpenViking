@@ -9,9 +9,10 @@ import path from 'node:path';
 import test from 'node:test';
 import {
   DSH_BRIDGE_CLI_METHODS, DSH_BRIDGE_DAEMON_METHODS, DSH_BRIDGE_PATH, DSH_DEFAULT_MODEL,
-  DSH_EFFORTS, DSH_NOT_READY_CODE, assertDshNodeVersion, assertSupportedDshVersion,
+  DSH_EFFORTS, DSH_HOME_MODES, DSH_NOT_READY_CODE, assertDshNodeVersion, assertSupportedDshVersion,
   bridgeHelloSupports, isDshNotReady, retryDshNotReady,
-  buildDshPatch, compareDshVersions, dshCommand, dshProfilePatchHash, dshProfilePatchPath,
+  buildDshPatch, compareDshVersions, dshCommand, dshCredentialsDocumentPath, dshDirectoryLayout,
+  dshProfilePatchHash, dshProfilePatchPath,
   escapeDshTemplate, parseDshModel, parseDshVersion, prepareDshEnvironment, sanitizeDshEnv,
   writeDshPatch,
 } from '../src/dsh-runtime.mjs';
@@ -139,6 +140,33 @@ test('private DSH environment removes inherited DSH settings and pins Node', t =
     assert.equal(fs.statSync(directory).mode & 0o077, 0);
   }
   assert.throws(() => sanitizeDshEnv({}, {}), /dataDir/);
+});
+
+test('a shared DSH home uses the operator home and keeps the launch patch local', t => {
+  const dataDir = temp(t);
+  const homeDir = temp(t);
+  const place = { dataDir, home: 'shared', homeDir };
+  const layout = dshDirectoryLayout(place);
+  assert.deepEqual([...DSH_HOME_MODES], ['isolated', 'shared']);
+  assert.equal(layout.mode, 'shared');
+  assert.equal(layout.home, path.join(homeDir, '.dsh'));
+  assert.equal(layout.agents, path.join(homeDir, '.agents'));
+  // The generated launch patch belongs to this instance, never to the shared home.
+  assert.equal(layout.run, path.join(dataDir, 'dsh', 'run'));
+  assert.equal(dshProfilePatchPath(place),
+    path.join(homeDir, '.dsh', 'profiles', 'sdk', 'cordis.patch.yml'));
+  assert.equal(dshCredentialsDocumentPath(place),
+    path.join(homeDir, '.dsh', '.credentials.yaml'));
+  const env = sanitizeDshEnv({ PATH: '/bin' }, { ...place, execPath: '/node24/bin/node' });
+  assert.equal(env.DSH_HOME, path.join(homeDir, '.dsh'));
+  assert.equal(env.DSH_AGENTS_HOME, path.join(homeDir, '.agents'));
+  assert.equal(writeDshPatch({ ...place, policy: '' }),
+    path.join(dataDir, 'dsh', 'run', 'patch.yml'));
+  // Nothing is written into the shared home by preparing the instance.
+  assert.equal(fs.existsSync(path.join(homeDir, '.dsh', 'profiles')), false);
+  // An unknown placement is refused instead of being guessed.
+  assert.throws(() => dshDirectoryLayout({ dataDir, home: 'elsewhere', homeDir }), /invalid DSH home mode/);
+  assert.throws(() => dshDirectoryLayout({ dataDir, home: 'shared', homeDir: 'relative/home' }), /homeDir/);
 });
 
 test('patch file is private JSON-compatible YAML with an absolute bridge', t => {

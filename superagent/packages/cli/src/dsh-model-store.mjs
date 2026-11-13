@@ -16,15 +16,36 @@
 // here, not in the command surface.
 
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { t } from './i18n.mjs';
 import { CONTROL_PATCH_FILE, DshControlError, withDshControl } from '../../daemon/src/dsh-control.mjs';
+import {
+  dshCredentialsDocumentPath, dshDirectoryLayout, dshProfilePatchPath, normalizeDshHomeMode,
+} from '../../daemon/src/dsh-runtime.mjs';
+import { homeDir as platformHomeDir } from '../../daemon/src/platform/index.mjs';
 import { addModelOps, credentialRefsOf, plainObject, text } from './dsh-model-plan.mjs';
+
+// The operator's home as this command sees it: the environment it runs with, so
+// the shared home follows the same HOME the daemon would use.
+export function dshHomeDir(env = process.env) {
+  return platformHomeDir(env) || os.homedir();
+}
+
+/**
+ * Where one resolved instance keeps its DSH home.
+ * @param {object} agent - the instance, with `dataDir` and `dshHomeMode`.
+ * @param {object} [env] - the environment the command runs with.
+ * @returns {{home: 'isolated'|'shared', homeDir: string}} placement options.
+ */
+export function agentDshHome(agent, env = process.env) {
+  return { home: normalizeDshHomeMode(agent?.dshHomeMode), homeDir: dshHomeDir(env) };
+}
 
 // The credential document of one instance. It sits in DSH's home beside the
 // settings document, and DSH's own credentials service is the only writer.
-function credentialsDocumentPath(agent) {
-  return path.join(agent.dataDir, 'dsh', 'home', '.credentials.yaml');
+function credentialsDocumentPath(agent, env) {
+  return dshCredentialsDocumentPath({ dataDir: agent.dataDir, ...agentDshHome(agent, env) });
 }
 
 /**
@@ -35,10 +56,11 @@ function credentialsDocumentPath(agent) {
  * migration pick a name whose value it cannot see, so it fails closed and writes
  * nothing.
  * @param {object} agent - the resolved instance.
+ * @param {object} [env] - the environment the command runs with.
  * @returns {Set<string>} reference names.
  */
-export function storedCredentialRefs(agent) {
-  const file = credentialsDocumentPath(agent);
+export function storedCredentialRefs(agent, env = process.env) {
+  const file = credentialsDocumentPath(agent, env);
   let contents;
   try {
     contents = fs.readFileSync(file, 'utf8');
@@ -74,6 +96,7 @@ export function dshBin(env, deployment) {
 export function withControl({ agent, deployment, env }, run) {
   return withDshControl({
     dataDir: agent.dataDir,
+    ...agentDshHome(agent, env),
     bin: dshBin(env, deployment),
     env,
   }, run);
@@ -108,7 +131,7 @@ export function isConcurrentWrite(error) {
 
 // The three refusals a settings write can answer with, each with the action
 // that actually fixes it. Anything else is passed through unchanged.
-export function settingsFailure(error, { dataDir }) {
+export function settingsFailure(error, { dataDir, home, homeDir } = {}) {
   const message = String(error?.message ?? error);
   // v2.1 answers with `data.code`; classify on it when it is there and fall
   // back to the message for an older bridge, which forwards only the numeric
@@ -130,8 +153,9 @@ export function settingsFailure(error, { dataDir }) {
     // the DSH source). An override therefore comes from one of the last two, and
     // pointing at the profile document would tell the operator to delete exactly
     // the entry the routes live in.
-    const routeDocument = path.join(dataDir, 'dsh', 'home', 'profiles', 'sdk', 'cordis.patch.yml');
-    const homePatch = path.join(dataDir, 'dsh', 'home', 'cordis.patch.yml');
+    const layout = dshDirectoryLayout({ dataDir, home, homeDir });
+    const routeDocument = dshProfilePatchPath({ dataDir, home, homeDir });
+    const homePatch = path.join(layout.home, 'cordis.patch.yml');
     const overlay = path.join(dataDir, 'dsh', 'run', CONTROL_PATCH_FILE);
     return new Error(t(
       `实例的 home patch 覆盖了 llm-pi-ai，DSH 拒绝写入。请删掉这两处里的 llm-pi-ai 段后重试：\n`
@@ -167,7 +191,7 @@ export function settingsFailure(error, { dataDir }) {
 // the command reports success. The migration needs the values written between
 // the read and the mutate, so it drives this same read/build/write loop itself
 // (`runImport`) rather than through this helper.
-export async function updateSettings(client, buildOps, { dataDir }) {
+export async function updateSettings(client, buildOps, { dataDir, home, homeDir } = {}) {
   for (let attempt = 0; ; attempt += 1) {
     const state = await describeProviders(client);
     const ops = buildOps(state);
@@ -177,7 +201,7 @@ export async function updateSettings(client, buildOps, { dataDir }) {
       return { descriptor: state.descriptor, ops };
     } catch (error) {
       if (attempt === 0 && isConcurrentWrite(error)) continue;
-      throw settingsFailure(error, { dataDir });
+      throw settingsFailure(error, { dataDir, home, homeDir });
     }
   }
 }
@@ -226,16 +250,18 @@ export function modelSpecFromDraft(draft) {
   };
 }
 
-export async function writeModelDraft({ dataDir, draft, bin = 'dsh', env = process.env, spawnImpl }) {
+export async function writeModelDraft({ dataDir, home, homeDir, draft, bin = 'dsh', env = process.env, spawnImpl }) {
   const spec = modelSpecFromDraft(draft);
   const notes = [];
-  const options = { dataDir, bin, env };
+  const options = { dataDir, home, homeDir, bin, env };
   if (spawnImpl) options.spawnImpl = spawnImpl;
   let profile = null;
   await withDshControl(options, async (client) => {
     profile = await writeRouteWithCredential({
       client,
       dataDir,
+      home,
+      homeDir,
       spec,
       notes,
       keyValue: draft.keyValue,
@@ -260,7 +286,7 @@ export async function writeModelDraft({ dataDir, draft, bin = 'dsh', env = proce
  * that reference: an unconfirmed write is kept, because it may have landed.
  * @returns {Promise<object|null>} the written route profile, or null.
  */
-async function writeRouteWithCredential({ client, dataDir, spec, notes, keyValue, build }) {
+async function writeRouteWithCredential({ client, dataDir, home, homeDir, spec, notes, keyValue, build }) {
   const state = await describeProviders(client);
   const ops = build(state);
   if (ops.length === 0) return null;
@@ -279,7 +305,7 @@ async function writeRouteWithCredential({ client, dataDir, spec, notes, keyValue
       // Another writer moved the document between the read and the write. The
       // value is already in place and is the reference this attempt allocated,
       // so it is kept and the caller sees the conflict.
-      throw settingsFailure(error, { dataDir });
+      throw settingsFailure(error, { dataDir, home, homeDir });
     }
     if (wanted && ref && !routeStillNames(state.providers, ref)) {
       // This attempt is what put the value there and no route resolves it, so
@@ -293,7 +319,7 @@ async function writeRouteWithCredential({ client, dataDir, spec, notes, keyValue
           `The reference ${ref} was stored but the route was not written, and removing it failed (${cleanupError.message}); remove it with ov-superagent dsh model key unset ${ref}`));
       }
     }
-    throw settingsFailure(error, { dataDir });
+    throw settingsFailure(error, { dataDir, home, homeDir });
   }
   return profile;
 }
@@ -317,10 +343,10 @@ function routeStillNames(providers, ref) {
  *   `{route, model}`, the dsh `bin` and `env`.
  * @returns {Promise<{profile: object|null, keyRef: string, notes: string[]}>}
  */
-export async function writeModelEdit({ dataDir, draft, previous, bin = 'dsh', env = process.env, spawnImpl }) {
+export async function writeModelEdit({ dataDir, home, homeDir, draft, previous, bin = 'dsh', env = process.env, spawnImpl }) {
   const spec = modelSpecFromDraft(draft);
   const notes = [];
-  const options = { dataDir, bin, env };
+  const options = { dataDir, home, homeDir, bin, env };
   if (spawnImpl) options.spawnImpl = spawnImpl;
   let profile = null;
   await withDshControl(options, async (client) => {
@@ -331,6 +357,8 @@ export async function writeModelEdit({ dataDir, draft, previous, bin = 'dsh', en
     profile = await writeRouteWithCredential({
       client,
       dataDir,
+      home,
+      homeDir,
       spec,
       notes,
       keyValue: draft.keyValue,
@@ -456,8 +484,8 @@ export function discardedNoteFor(contents) {
 // The DSH profile document that owns llm-pi-ai. `repair` is the only writer:
 // every other path goes through DSH's own settings service, so a second writer
 // never races it.
-export function settingsDocumentPath(agent) {
-  return path.join(agent.dataDir, 'dsh', 'home', 'profiles', 'sdk', 'cordis.patch.yml');
+export function settingsDocumentPath(agent, env = process.env) {
+  return dshProfilePatchPath({ dataDir: agent.dataDir, ...agentDshHome(agent, env) });
 }
 
 // The bytes of the document, or null when it does not exist yet. A permission
@@ -557,9 +585,9 @@ export function unreadableDocumentAnswer(error) {
 // A YAML syntax error in these files is not our business: DSH reports that as a
 // startup failure, not as an unreadable llm-pi-ai, and repair aborts on those
 // anyway. An unreadable file here is therefore treated as "cannot rule it out".
-export function overridingLayer({ dataDir }) {
+export function overridingLayer({ dataDir, home, homeDir }) {
   const layers = [
-    { kind: 'home patch', file: path.join(dataDir, 'dsh', 'home', 'cordis.patch.yml') },
+    { kind: 'home patch', file: path.join(dshDirectoryLayout({ dataDir, home, homeDir }).home, 'cordis.patch.yml') },
     { kind: 'launch overlay', file: path.join(dataDir, 'dsh', 'run', CONTROL_PATCH_FILE) },
   ];
   for (const layer of layers) {

@@ -20,6 +20,7 @@ import { t } from './i18n.mjs';
 import {
   PROTOCOLS, addModelOps, credentialRefProblem, deriveKeyRef, modelIdProblem, routeIdProblem,
 } from './dsh-model-plan.mjs';
+import { dshCredentialsDocumentPath, dshProfilePatchPath } from '../../daemon/src/dsh-runtime.mjs';
 import { modelSpecFromDraft, writeModelDraft } from './dsh-model-store.mjs';
 import { probeDsh } from './runtime-probe.mjs';
 
@@ -27,13 +28,15 @@ import { probeDsh } from './runtime-probe.mjs';
 // document's writer, and its global `ns` for the model plugin is this same id.
 export const DSH_MODEL_NAMESPACE = 'llm-pi-ai';
 
-// The document paths of one instance's DSH home.
-export function dshSettingsDocument(dataDir) {
-  return path.join(dataDir, 'dsh', 'home', 'profiles', 'sdk', 'cordis.patch.yml');
+// The document paths of one instance's DSH home. `home`/`homeDir` follow the
+// instance placement (`agents[].dshHomeMode`); the default is the instance's own
+// home, which is where every release before the setting kept it.
+export function dshSettingsDocument(dataDir, { home = 'isolated', homeDir } = {}) {
+  return dshProfilePatchPath({ dataDir, home, homeDir });
 }
 
-export function dshCredentialsDocument(dataDir) {
-  return path.join(dataDir, 'dsh', 'home', '.credentials.yaml');
+export function dshCredentialsDocument(dataDir, { home = 'isolated', homeDir } = {}) {
+  return dshCredentialsDocumentPath({ dataDir, home, homeDir });
 }
 
 /**
@@ -97,11 +100,11 @@ export function freshDshModelDocuments(draft) {
  * @param {object} options - `dataDir`, the draft, the dsh `bin` and `env`.
  * @returns {Promise<{via: 'file'|'service', settings: string, credentials: string|null, keyRef: string, notes: string[]}>}
  */
-export async function writeDshModelDraft({ dataDir, draft, bin = 'dsh', env = process.env }) {
-  const settings = dshSettingsDocument(dataDir);
-  const credentials = dshCredentialsDocument(dataDir);
+export async function writeDshModelDraft({ dataDir, home = 'isolated', homeDir, draft, bin = 'dsh', env = process.env }) {
+  const settings = dshSettingsDocument(dataDir, { home, homeDir });
+  const credentials = dshCredentialsDocument(dataDir, { home, homeDir });
   if (fs.existsSync(settings) || fs.existsSync(credentials)) {
-    const written = await writeModelDraft({ dataDir, draft, bin, env });
+    const written = await writeModelDraft({ dataDir, home, homeDir, draft, bin, env });
     return { via: 'service', settings, credentials: null, keyRef: written.keyRef, notes: written.notes };
   }
   const documents = freshDshModelDocuments(draft);

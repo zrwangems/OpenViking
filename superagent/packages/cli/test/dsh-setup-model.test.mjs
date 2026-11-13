@@ -149,6 +149,8 @@ function dshAnswers({ add = true, pasteKey = 'sk-test-only' } = {}) {
     { match: /Its role/, answer: 'colleague' },
     { match: /Workspace/, answer: '' },
     { match: /Agent runtime/, answer: (choices) => choices.find((choice) => choice.value?.id === 'dsh').value },
+    // The DSH home placement, asked before the route that home needs.
+    { match: /DSH configuration directory/, answer: 'isolated' },
     { match: /Add a model route now\?/, answer: add },
     // The route id is derived from this host (`api.deepseek.com` -> `deepseek`),
     // so the four answers below are the whole wizard.
@@ -332,6 +334,24 @@ test('a bare provider/model would start the default runtime, so the manifest get
   const qualified = resolveRuntimeModelTarget('dsh:deepseek/deepseek-chat');
   assert.equal(qualified.runtime, 'dsh');
   assert.equal(qualified.model, 'deepseek/deepseek-chat');
+});
+
+test('choosing the shared DSH home writes the route into the operator home', async (t) => {
+  const answers = dshAnswers();
+  const placement = answers.find((entry) => /DSH configuration directory/.test(entry.match.source));
+  placement.answer = 'shared';
+  const h = harness(t, { runtimes: [dshRuntime(), ...OTHER_RUNTIMES], detectDsh: () => null, script: answers });
+  assert.equal(await setupCommand(h.options), 0);
+
+  // The manifest records the choice; the route documents land in the machine's
+  // own `~/.dsh` instead of the instance data directory.
+  assert.equal(h.manifest().agents[0].dshHomeMode, 'shared');
+  const settings = path.join(h.home, '.dsh', 'profiles', 'sdk', 'cordis.patch.yml');
+  assert.equal(fs.existsSync(settings), true);
+  assert.equal(JSON.parse(fs.readFileSync(settings, 'utf8'))[0].config.providers.deepseek.baseURL, 'https://api.deepseek.com/v1');
+  // No DSH home is created under the instance data directory; the daemon adds
+  // its own launch-patch directory there when it starts the instance.
+  assert.equal(fs.existsSync(path.join(h.dataDir, 'dsh', 'home')), false);
 });
 
 test('the draft check seeds a throwaway DSH home, then removes it', async (t) => {

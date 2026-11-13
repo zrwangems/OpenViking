@@ -234,10 +234,12 @@ export const RUNTIME_CATALOG = Object.freeze({
   }),
   dsh: runtimeDefinition({
     id: 'dsh',
-    // OpenViking SuperAgent gives DSH a private DSH_HOME (`<dataDir>/dsh/home`) and its own
-    // `--patch` overlay, so the runtime never reads the owner's `~/.dsh`
-    // plugins, skills or credentials. That is config-home isolation: the flags
-    // only select the profile and the patch file.
+    // OpenViking SuperAgent gives DSH its own `--patch` overlay and, by default
+    // (`agents[].dshHomeMode: isolated`), a private DSH_HOME
+    // (`<dataDir>/dsh/home`), so the runtime never reads the owner's `~/.dsh`
+    // plugins, skills or credentials. `shared` keeps the per-instance patch but
+    // points DSH_HOME at `~/.dsh` on purpose. Either way the flags only select
+    // the profile and the patch file.
     ovIsolation: 'config-home',
     aliases: ['dsh', 'deepseek-harness'],
     directAliases: ['dsh', 'deepseek-harness'],

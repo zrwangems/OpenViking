@@ -211,11 +211,14 @@ async function detectTraex({ env, execFileImpl, probe }) {
 // Never reuse the daemon's real DSH_HOME here: the probe runs in a private
 // temporary home, and model routes are DSH's own settings document there.
 //
-// `dataDir` probes one instance's own home instead. Setup uses it when the
-// operator edits an instance that already exists: that instance's routes live
-// in its home, and a throwaway home can never see them, so a configured
-// instance would otherwise read as "no route".
-export async function detectDsh({ env = process.env, execFileImpl = execFile, probe = probeDsh, dataDir = '' } = {}) {
+// `dataDir` probes one instance's own home instead, at the placement that
+// instance uses (`agents[].dshHomeMode`): setup uses it when the operator edits
+// an instance that already exists, because that instance's routes live in its
+// home, and a throwaway home can never see them.
+export async function detectDsh({
+  env = process.env, execFileImpl = execFile, probe = probeDsh, dataDir = '',
+  home = 'isolated', homeDir,
+} = {}) {
   const explicit = env.DSH_BIN?.trim();
   const bin = explicit ? locateBinary(explicit, env) : which('dsh', env);
   const result = {
@@ -242,7 +245,7 @@ export async function detectDsh({ env = process.env, execFileImpl = execFile, pr
   // succeeds, and DSH can enumerate its own routes. Whether those routes carry
   // credentials is DSH's configuration (`ov-superagent dsh model list`), not something a
   // keyless probe can decide — so it is reported, never used to hide the runtime.
-  const handshake = await probe(bin, { env: probeEnv, ...(dataDir ? { dataDir } : {}) });
+  const handshake = await probe(bin, { env: probeEnv, ...(dataDir ? { dataDir, home, homeDir } : {}) });
   result.route = handshake.route ?? '';
   result.fallbackRoute = handshake.fallbackRoute ?? '';
   if (!handshake.compatible) {

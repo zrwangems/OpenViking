@@ -98,7 +98,8 @@ cd OpenViking/superagent
 npm run setup          # Install locked dependencies, pinned lark-cli and Slack CLI, and check managed Pi
 npm test && npm run check
 mkdir -p ~/.ov-superagent && cp config.example.json ~/.ov-superagent/config.json
-# Edit config.json: profile (Feishu), dataDir, workspace, model, ovConfig; ovAutoRecall defaults to false
+# Edit config.json: profile (Feishu), dataDir, workspace, model, ovConfig; ovAutoRecall defaults to false;
+# dshHomeMode selects the DSH home (isolated by default, or shared for the machine's ~/.dsh)
 npm run start:daemon
 ```
 
