@@ -22,10 +22,10 @@ family: logic-and-bit-operations
 | [Detect Rise Nonnegative](detect-rise-nonnegative.md) | Detect rising edge when signal value increases to nonnegative value, and its previous value was strictly negative |
 | [Detect Rise Positive](detect-rise-positive.md) | Detect rising edge when signal value increases to strictly positive value, and its previous value was nonpositive |
 | [Extract Bits](extract-bits.md) | Output selection of contiguous bits from input signal |
-| [Float Extract Bits](float-extract-bits.md) | Extract bits from floating-point input samples (Since R2023a) |
+| [Float Extract Bits](float-extract-bits.md) | Extract bits from floating-point input samples |
 | [Integer to Bit Converter](integer-to-bit-converter.md) | Map vector of integers to vector of bits |
-| [Interval Test](interval-test.md) | Determine if signal is in specified interval |
 | [Interval Test Dynamic](interval-test-dynamic.md) | Determine if signal is in specified interval |
+| [Interval Test](interval-test.md) | Determine if signal is in specified interval |
 | [Logical Operator](logical-operator.md) | Perform specified logical operation on input |
 | [Relational Operator](relational-operator.md) | Perform specified relational operation on inputs |
 | [Shift Arithmetic](shift-arithmetic.md) | Shift bits or binary point of signal |

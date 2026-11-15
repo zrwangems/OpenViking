@@ -14,5 +14,5 @@ family: additional-math-and-discrete
 | [Fixed-Point State-Space](fixed-point-state-space.md) | Implement discrete-time state space |
 | [Increment Real World](increment-real-world.md) | Increase real-world value of signal by one |
 | [Increment Stored Integer](increment-stored-integer.md) | Increase stored integer value of signal by one |
-| [Transfer Fcn Direct Form II](transfer-fcn-direct-form-ii.md) | Implement Direct Form II realization of transfer function |
 | [Transfer Fcn Direct Form II Time Varying](transfer-fcn-direct-form-ii-time-varying.md) | Implement time varying Direct Form II realization of transfer function |
+| [Transfer Fcn Direct Form II](transfer-fcn-direct-form-ii.md) | Implement Direct Form II realization of transfer function |

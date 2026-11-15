@@ -4,6 +4,7 @@
 import csv
 import io
 import json
+import re
 import zipfile
 from pathlib import Path
 
@@ -14,12 +15,14 @@ from openviking.parse.parsers.directory import DirectoryParser
 from openviking.parse.parsers.matlab._zip import read_xml_member
 from openviking.parse.parsers.matlab.catalog import find_block
 from openviking.parse.parsers.matlab.formats import parse_additional
+from openviking.parse.parsers.matlab.library import section
 from openviking.parse.parsers.matlab.mat import parse_mat, parse_mat_documents
 from openviking.parse.parsers.matlab.parser import MatlabParser
 from openviking.parse.parsers.matlab.scripts import parse_m_file, parse_mlx
 from openviking.parse.parsers.matlab.sldd import parse_sldd
 from openviking.parse.parsers.matlab.slx import parse_slx, system_documents
 from openviking.parse.parsers.matlab.stateflow import parse_stateflow, render_stateflow
+from openviking.parse.parsers.matlab.templates import render_block_template
 from openviking.parse.registry import ParserRegistry
 
 SAMPLE = Path(__file__).parents[2] / "matlab_repos" / "DRLHevIps5_4"
@@ -57,7 +60,7 @@ def test_slx_nested_systems_ports_parameters_and_branches():
 
 
 def test_resource_add_inlines_block_library_markdown_directly():
-    documents = system_documents(parse_slx(SAMPLE / "DRLHevIps.slx"))
+    documents = system_documents(parse_slx(SAMPLE / "DRLHevIps.slx"), language="zh-CN")
     power = next(
         content
         for path, content in documents.items()
@@ -65,7 +68,7 @@ def test_resource_add_inlines_block_library_markdown_directly():
     )
     assert "## 块知识模板" in power
     assert "### n-D Lookup Table" in power
-    assert "Approximate n-dimensional function" in power
+    assert "逼近 N 维函数" in power
     assert "#### 端口" in power
     assert "#### 参数说明" in power
     assert "BreakpointsForDimension1" in power
@@ -235,12 +238,19 @@ async def test_builtin_parser_writes_real_nested_artifact(tmp_path):
 async def test_whole_joint_project_upload_including_p_code(tmp_path):
     store = LocalParseOutputStore(tmp_path)
     result = await DirectoryParser().parse(
-        SAMPLE, parse_output_store=store, strict=True, preserve_structure=True
+        SAMPLE,
+        parse_output_store=store,
+        strict=True,
+        preserve_structure=True,
+        language="zh-CN",
     )
     root = Path(result.artifact_ref.root)
 
     assert result.warnings == []
     assert len(list(root.rglob("index.md"))) == 86
+    power = next(root.rglob("Mech_to_Elec_Power_Estimate/index.md")).read_text(encoding="utf-8")
+    assert "逼近 N 维函数" in power
+    assert "Output absolute value of input" not in power
     assert (root / "DRLHevIps5_4" / "DriveCycle" / "WLTC.mat.md").is_file()
     assert (root / "DRLHevIps5_4" / "RunSACEMS.mlx.md").is_file()
     assert "P_max_kW" in (root / "DRLHevIps5_4" / "Eng" / "Eng_param.mat.md").read_text(
@@ -271,6 +281,15 @@ def test_registry_routes_all_matlab_extensions():
     registry = ParserRegistry()
     for suffix in (".slx", ".sldd", ".mlx", ".mat", ".m", ".p"):
         assert isinstance(registry.get_parser_for_file(f"model{suffix}"), MatlabParser)
+
+
+def test_block_templates_follow_resource_language():
+    chinese = render_block_template("Abs", language="zh-CN")[1]
+    english = render_block_template("Abs", language="en")[1]
+    assert "输出输入信号的绝对值" in chinese
+    assert "Abs 模块输出输入信号的绝对值" in chinese
+    assert "Output absolute value of input" in english
+    assert "Abs 模块输出输入信号的绝对值" not in english
 
 
 def test_standard_library_and_external_library_matching():
@@ -322,6 +341,9 @@ def test_scraped_block_knowledge_is_local_and_complete():
         assert page.is_file(), entry
         text = page.read_text(encoding="utf-8")
         assert "documentation_release: R2025b" in text
+        assert "languages: [en, zh-CN]" in text
+        assert "## 中文" in text
+        assert re.search(r"[\u4e00-\u9fff]", section(text, "中文"))
         assert "## Description" in text or "## Ports" in text or "## Parameters" in text
 
     logical = (root / "logic-and-bit-operations" / "logical-operator.md").read_text(

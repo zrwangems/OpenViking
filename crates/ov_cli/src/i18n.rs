@@ -19,6 +19,13 @@ pub(crate) enum Language {
 }
 
 impl Language {
+    pub(crate) fn as_code(self) -> &'static str {
+        match self {
+            Self::En => "en",
+            Self::ZhCn => "zh-CN",
+        }
+    }
+
     pub(crate) fn label(self) -> &'static str {
         match self {
             Self::En => "English",

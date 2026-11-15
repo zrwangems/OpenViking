@@ -10,9 +10,10 @@ directory_contract: mathworks-simulink-blocks-by-category
 
 共 **20** 个官方目录、**341** 个目录条目、**318** 个不同块名。每块保存用途、所属库、端口、参数和特性。Separate Toolboxes/Blocksets 不属于这里的 Simulink 基础产品目录。
 
+- [Additional Math and Discrete](additional-math-and-discrete/index.md)：9 个
 - [Continuous](continuous/index.md)：16 个
-- [Dashboard](dashboard/index.md)：20 个
 - [Customizable Blocks](customizable-blocks/index.md)：19 个
+- [Dashboard](dashboard/index.md)：20 个
 - [Discontinuities](discontinuities/index.md)：14 个
 - [Discrete](discrete/index.md)：21 个
 - [Logic and Bit Operations](logic-and-bit-operations/index.md)：22 个
@@ -29,4 +30,3 @@ directory_contract: mathworks-simulink-blocks-by-category
 - [Sources](sources/index.md)：27 个
 - [String](string/index.md)：16 个
 - [User-Defined Functions](user-defined-functions/index.md)：16 个
-- [Additional Math and Discrete](additional-math-and-discrete/index.md)：9 个

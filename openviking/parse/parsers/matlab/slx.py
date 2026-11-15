@@ -327,7 +327,7 @@ def _child_directory(system: System) -> str:
     return _slug(system.name) + suffix
 
 
-def system_documents(model: System) -> dict[str, str]:
+def system_documents(model: System, language: str = "en") -> dict[str, str]:
     """Return nested ``subsystem/index.md`` documents for a parsed model."""
     documents: dict[str, str] = {}
     paths: list[tuple[System, str]] = []
@@ -335,7 +335,7 @@ def system_documents(model: System) -> dict[str, str]:
     def visit(system: System, directory: str, is_root: bool = False) -> None:
         path = "index.md" if is_root else f"{directory}/index.md"
         paths.append((system, path))
-        documents[path] = _render_system(system, directory, is_root)
+        documents[path] = _render_system(system, directory, is_root, language)
         for child in system.children:
             child_dir = (
                 f"{directory}/{_child_directory(child)}" if directory else _child_directory(child)
@@ -354,8 +354,9 @@ def system_documents(model: System) -> dict[str, str]:
     return documents
 
 
-def _render_system(system: System, directory: str, is_root: bool) -> str:
+def _render_system(system: System, directory: str, is_root: bool, language: str = "en") -> str:
     blocks = {b.sid: b for b in system.blocks}
+    chinese = str(language).lower().startswith("zh")
     lines = [
         "---",
         "type: simulink-subsystem",
@@ -516,7 +517,9 @@ def _render_system(system: System, directory: str, is_root: bool) -> str:
         if catalog_match:
             family, canonical = catalog_match
             source += f" / 目录：`{family}/{_cell(canonical)}`"
-            rendered_template = render_block_template(block.block_type, block.source_block)
+            rendered_template = render_block_template(
+                block.block_type, block.source_block, language=language
+            )
             if rendered_template:
                 canonical_name, template_markdown = rendered_template
                 block_templates.setdefault(
@@ -531,10 +534,15 @@ def _render_system(system: System, directory: str, is_root: bool) -> str:
         lines.extend(
             [
                 "",
-                "## 块知识模板",
+                "## 块知识模板" if chinese else "## Block Knowledge Templates",
                 "",
-                "以下内容在资源添加时由原始 `BlockType` / `SourceBlock` 匹配本地 R2025b 模板并内联。"
-                "同名块只展开一次，各实例自己的配置仍以上表为准。",
+                (
+                    "以下内容在资源添加时由原始 `BlockType` / `SourceBlock` 匹配本地 R2025b 模板并内联。"
+                    "同名块只展开一次，各实例自己的配置仍以上表为准。"
+                    if chinese
+                    else "These R2025b templates were matched by the original `BlockType` / `SourceBlock` "
+                    "during ingestion. Each block type is expanded once; instance parameters remain in the table."
+                ),
             ]
         )
         for canonical_name, template_markdown in block_templates.values():

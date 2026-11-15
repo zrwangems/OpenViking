@@ -8,8 +8,8 @@ family: signal-attributes
 | 块名称 | 官方文档摘要 |
 | --- | --- |
 | [Bus to Vector](bus-to-vector.md) | Convert virtual bus to vector |
-| [Data Type Conversion](data-type-conversion.md) | Convert input signal to specified data type |
 | [Data Type Conversion Inherited](data-type-conversion-inherited.md) | Convert from one data type to another using inherited data type and scaling |
+| [Data Type Conversion](data-type-conversion.md) | Convert input signal to specified data type |
 | [Data Type Duplicate](data-type-duplicate.md) | Force all inputs to same data type |
 | [Data Type Propagation](data-type-propagation.md) | Set data type and scaling of propagated signal based on information from reference signals |
 | [Data Type Scaling Strip](data-type-scaling-strip.md) | Remove scaling and map to built in integer |

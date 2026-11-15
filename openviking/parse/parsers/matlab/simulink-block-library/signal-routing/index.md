@@ -16,8 +16,8 @@ family: signal-routing
 | [Demux](demux.md) | Extract and output elements of virtual vector signal |
 | [Environment Controller](environment-controller.md) | (Removed) Create branches of block diagram that apply only to simulation or only to code generation |
 | [From](from.md) | Accept input from Goto block |
-| [Goto](goto.md) | Pass block input to From blocks |
 | [Goto Tag Visibility](goto-tag-visibility.md) | Define scope of Goto block tag |
+| [Goto](goto.md) | Pass block input to From blocks |
 | [Index Vector](index-vector.md) | Switch output between different inputs based on value of first input |
 | [Manual Switch](manual-switch.md) | Switch between two inputs |
 | [Manual Variant Sink](manual-variant-sink.md) | Switch between multiple variant choices at output |
@@ -30,8 +30,8 @@ family: signal-routing
 | [State Reader](state-reader.md) | Read a block state |
 | [State Writer](state-writer.md) | Write to a block state |
 | [Switch](switch.md) | Switch output between first input and third input based on value of second input |
-| [Variant End](variant-end.md) | Define end of bounded region (Since R2024a) |
+| [Variant End](variant-end.md) | Define end of bounded region |
 | [Variant Sink](variant-sink.md) | Route amongst multiple outputs using variants |
 | [Variant Source](variant-source.md) | Route among multiple inputs using variants |
-| [Variant Start](variant-start.md) | Define start of bounded region (Since R2024a) |
+| [Variant Start](variant-start.md) | Define start of bounded region |
 | [Vector Concatenate](vector-concatenate.md) | Concatenate input vectors of same data type for iterative processing |

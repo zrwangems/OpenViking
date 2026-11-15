@@ -24,6 +24,6 @@ family: dashboard
 | [Radio Button](radio-button.md) | Select parameter value |
 | [Rocker Switch](rocker-switch.md) | Toggle parameter between two values |
 | [Rotary Switch](rotary-switch.md) | Switch parameter to set values on dial |
-| [Slider](slider.md) | Tune parameter value with sliding scale |
 | [Slider Switch](slider-switch.md) | Toggle parameter between two values |
+| [Slider](slider.md) | Tune parameter value with sliding scale |
 | [Toggle Switch](toggle-switch.md) | Toggle parameter between two values |

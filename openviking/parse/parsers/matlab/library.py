@@ -30,6 +30,13 @@ def section(document: str, name: str) -> str:
     return match.group(1).strip() if match else ""
 
 
+def subsection(document: str, name: str) -> str:
+    match = re.search(
+        rf"^### {re.escape(name)}\n(.*?)(?=^### |\Z)", document, re.MULTILINE | re.DOTALL
+    )
+    return match.group(1).strip() if match else ""
+
+
 def front_matter(document: str, name: str) -> str:
     match = re.search(rf"^{re.escape(name)}:\s*['\"]?(.*?)['\"]?\s*$", document, re.MULTILINE)
     return match.group(1) if match else ""

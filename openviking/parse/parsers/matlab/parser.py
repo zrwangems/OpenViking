@@ -43,6 +43,7 @@ class MatlabParser(BaseParser):
             raise FileNotFoundError(f"MATLAB file not found: {path}")
         started = time.time()
         output_store = kwargs.pop("parse_output_store", None)
+        language = kwargs.get("language", "en")
         writer = await create_parse_artifact_writer(
             output_store, viking_fs=self._get_viking_fs() if output_store is None else None
         )
@@ -51,7 +52,7 @@ class MatlabParser(BaseParser):
             suffix = path.suffix.lower()
             if suffix == ".slx" or (suffix == ".mdl" and zipfile.is_zipfile(path)):
                 model = await asyncio.to_thread(parse_slx, path)
-                documents = await asyncio.to_thread(system_documents, model)
+                documents = await asyncio.to_thread(system_documents, model, language)
                 charts = await asyncio.to_thread(parse_stateflow, path)
                 for chart in charts:
                     subsystem_index = f"{chart_system_path(chart)}/index.md"
@@ -85,6 +86,7 @@ class MatlabParser(BaseParser):
                     "stateflow_state_count": sum(len(chart.states) for chart in charts),
                     "stateflow_transition_count": sum(len(chart.transitions) for chart in charts),
                     "original_preserved": False,
+                    "language": "zh-CN" if str(language).lower().startswith("zh") else "en",
                 }
                 title = path.stem
             elif suffix == ".p":

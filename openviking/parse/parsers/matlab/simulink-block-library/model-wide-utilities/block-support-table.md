@@ -2,6 +2,8 @@
 type: simulink-block
 title: 'Block Support Table'
 family: model-wide-utilities
+languages: [en, zh-CN]
+chinese_source: official
 documentation_release: R2025b
 official_category: 'Model-Wide Utilities'
 documentation_page: 'blocksupporttable'
@@ -10,6 +12,38 @@ documentation_page: 'blocksupporttable'
 # Block Support Table
 
 View data type support for Simulink blocks
+
+## 中文
+
+查看对 Simulink 模块的数据类型支持
+
+### 所属库
+
+Simulink / Model-Wide Utilities
+
+### 描述
+
+通过 Block Support Table 模块可访问列出 Simulink® 模块支持的数据类型的表。要查看该表，请双击该模块。
+
+### 模块特性
+
+|  |  |
+| --- | --- |
+| **数据类型** |  |
+| **直接馈通** | `否` |
+| **多维信号** | `否` |
+| **可变大小信号** | `否` |
+| **过零检测** | `否` |
+
+### 扩展功能
+
+#### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+
+代码生成期间忽略 Block Support Table 模块。
+
+### 版本历史记录
+
+**在 R2007b 中推出**
 
 ## Libraries
 

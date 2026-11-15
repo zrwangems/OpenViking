@@ -20,12 +20,12 @@ family: math-operations
 | [Magnitude-Angle to Complex](magnitude-angle-to-complex.md) | Convert magnitude and/or a phase angle signal to complex signal |
 | [Math Function](math-function.md) | Perform mathematical function |
 | [Matrix Concatenate](matrix-concatenate.md) | Concatenate input matrices of same data type for iterative processing |
-| [MinMax](minmax.md) | Output minimum or maximum input value |
 | [MinMax Running Resettable](minmax-running-resettable.md) | Determine minimum or maximum of signal over time |
+| [MinMax](minmax.md) | Output minimum or maximum input value |
 | [Permute Dimensions](permute-dimensions.md) | Rearrange dimensions of multidimensional array dimensions |
 | [Polynomial](polynomial.md) | Perform evaluation of polynomial coefficients on input values |
-| [Product of Elements](product-of-elements.md) | Copy or invert one scalar input, or collapse one nonscalar input |
 | [Product, Matrix Multiply](product-matrix-multiply.md) | Multiply and divide scalars and nonscalars or multiply and invert matrices |
+| [Product of Elements](product-of-elements.md) | Copy or invert one scalar input, or collapse one nonscalar input |
 | [Real-Imag to Complex](real-imag-to-complex.md) | Convert real and/or imaginary inputs to complex signal |
 | [Reshape](reshape.md) | Change dimensionality of signal |
 | [Rounding Function](rounding-function.md) | Apply rounding function to signal |

@@ -81,10 +81,14 @@ pub async fn handle_add_resource(
         merge_csv_options(ctx.config.upload.ignore_dirs.clone(), ignore_dirs);
     let effective_include = merge_csv_options(ctx.config.upload.include.clone(), include);
     let effective_exclude = merge_csv_options(ctx.config.upload.exclude.clone(), exclude);
-    let add_resource_args = parse_add_resource_args(resource_args.as_deref())?;
+    let mut add_resource_args = parse_add_resource_args(resource_args.as_deref())?;
     if let Some(args) = &add_resource_args {
         reject_manifest_run_keys(args)?;
     }
+    let args = add_resource_args.get_or_insert_with(Map::new);
+    args.entry("language".to_string()).or_insert_with(|| {
+        Value::String(crate::i18n::Language::current().as_code().to_string())
+    });
 
     let auth = ctx.config.effective_auth(ctx.sudo);
     let client = client::HttpClient::new(

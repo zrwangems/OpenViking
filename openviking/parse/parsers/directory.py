@@ -311,10 +311,13 @@ class DirectoryParser(BaseParser):
                         and is_media_file
                     ),
                 }
+                if kwargs.get("language"):
+                    job["parse_options"] = {"language": kwargs["language"]}
                 if use_understanding:
                     parse_options = {
                         "parser_backend": ParserBackend.UNDERSTANDING,
                         **account_options,
+                        **job.get("parse_options", {}),
                     }
                     if remote:
                         parse_options.update(
@@ -484,7 +487,7 @@ class DirectoryParser(BaseParser):
                         import_root=str(source_path),
                         split_content=split_content,
                         # Nested archives parse their members through a new DirectoryParser.
-                        parse_options=account_options,
+                        parse_options={**account_options, **job.get("parse_options", {})},
                     )
 
                 file_entry = self._file_status_entry(cf, parser_name, detail)
