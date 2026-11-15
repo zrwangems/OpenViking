@@ -10,25 +10,6 @@ language: en
 
 # Permute Dimensions
 
-Rearrange dimensions of multidimensional array dimensions
-
-## Libraries
-
-Simulink / Math Operations
-
-## Description
-
-The Permute Dimensions block reorders the elements of the input signal by
-permuting its dimensions. You specify the permutation to be applied to the input signal
-using the **Order** parameter.
-
-For example, to transpose a 3-by-5 input signal, specify the permutation vector `[2
-1]` for the **Order** parameter. When you do, the block
-reorders the elements of the input signal and outputs a 5-by-3 matrix.
-
-You can use an array of buses as an input signal to a Permute Dimensions
-block. For details about defining and using an array of buses, see Group Nonvirtual Buses in Arrays of Buses.
-
 ## Ports
 
 ### Input
@@ -73,6 +54,10 @@ the input signal.
 | **Value**: N-element vector |
 | **Default**: `'[2 1]'` |
 
+## Libraries
+
+Simulink / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -94,3 +79,18 @@ the input signal.
 ## Version History
 
 **Introduced in R2007a**
+
+## Description
+
+Rearrange dimensions of multidimensional array dimensions
+
+The Permute Dimensions block reorders the elements of the input signal by
+permuting its dimensions. You specify the permutation to be applied to the input signal
+using the **Order** parameter.
+
+For example, to transpose a 3-by-5 input signal, specify the permutation vector `[2
+1]` for the **Order** parameter. When you do, the block
+reorders the elements of the input signal and outputs a 5-by-3 matrix.
+
+You can use an array of buses as an input signal to a Permute Dimensions
+block. For details about defining and using an array of buses, see Group Nonvirtual Buses in Arrays of Buses.

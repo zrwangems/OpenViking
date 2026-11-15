@@ -10,19 +10,6 @@ language: en
 
 # Reshape
 
-Change dimensionality of signal
-
-## Libraries
-
-Simulink / Math Operations HDL Coder / Math Operations
-
-## Description
-
-The Reshape block changes the dimensionality of the input signal to a dimensionality that
-you specify, using the **Output dimensionality** parameter. For
-example, you can use the block to change an *N*-element vector to a
-1-by-*N* or *N*-by-1 matrix signal.
-
 ## Ports
 
 ### Input
@@ -91,6 +78,10 @@ dimensionality** to
 | **Value**: `'[1,1]'` | `'integer'` | `'[integer,integer]'` |
 | **Default**: `'[1,1]'` |
 
+## Libraries
+
+Simulink / Math Operations HDL Coder / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -139,3 +130,12 @@ The loop unrolled code is generated when target language is Verilog®. For more 
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Change dimensionality of signal
+
+The Reshape block changes the dimensionality of the input signal to a dimensionality that
+you specify, using the **Output dimensionality** parameter. For
+example, you can use the block to change an *N*-element vector to a
+1-by-*N* or *N*-by-1 matrix signal.

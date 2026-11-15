@@ -10,22 +10,6 @@ language: en
 
 # Complex to Real-Imag
 
-Output real and imaginary parts of complex input signal
-
-## Libraries
-
-Simulink / Math Operations HDL Coder / Math Operations
-
-## Description
-
-The Complex to Real-Imag block outputs the real and/or imaginary part
-of the input signal, depending on the setting of the **Output**
-parameter. The real outputs are of the same data type as the complex input. The input
-can be an array (vector or matrix) of complex signals, in which case the output signals
-are arrays of the same dimensions. The real array contains the real parts of the
-corresponding complex input elements. The imaginary output similarly contains the
-imaginary parts of the input elements.
-
 ## Ports
 
 ### Input
@@ -82,6 +66,10 @@ the `set_param` function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
 
+## Libraries
+
+Simulink / Math Operations HDL Coder / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -122,3 +110,15 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Output real and imaginary parts of complex input signal
+
+The Complex to Real-Imag block outputs the real and/or imaginary part
+of the input signal, depending on the setting of the **Output**
+parameter. The real outputs are of the same data type as the complex input. The input
+can be an array (vector or matrix) of complex signals, in which case the output signals
+are arrays of the same dimensions. The real array contains the real parts of the
+corresponding complex input elements. The imaginary output similarly contains the
+imaginary parts of the input elements.

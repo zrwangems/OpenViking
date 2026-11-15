@@ -10,13 +10,55 @@ language: en
 
 # Reinitialize Function
 
-Execute subsystem on model or subsystem reinitialize event
+## Ports
+
+Not documented in R2025b.
+
+## Parameters
+
+Not documented in R2025b.
 
 ## Libraries
 
 Simulink / User-Defined Functions
 
+## Block Characteristics
+
+|  |  |
+| --- | --- |
+| **Data Types** | `Booleana` | `busa` | `doublea` | `enumerateda` | `fixed pointa` | `halfa` | `integera` | `singlea` | `stringa` |
+| **Direct Feedthrough** | `no` |
+| **Multidimensional Signals** | `yesa` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
+|  |  |
+| --- | --- |
+| a Actual data type or capability support depends on block implementation. | |
+
+## Extended Capabilities
+
+### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
+
+Actual code generation support depends on block implementation.
+
+### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
+
+Actual data type support depends on block implementation.
+
+## Version History
+
+**Introduced in R2022a**
+
+### R2025a: Variant control variables in mask and model workspaces supported
+
+You can define variant control variables in the mask and model workspaces to control
+active variants in Reinitialize
+Function block, provided the **Generate preprocessor
+conditionals** parameter is `off`.
+
 ## Description
+
+Execute subsystem on model or subsystem reinitialize event
 
 The Reinitialize Function block is a preconfigured Subsystem block that executes on a model or subsystem reinitialize event. By
 default, the Reinitialize Function block includes:
@@ -87,37 +129,3 @@ Related Blocks button from the action bar. When multiple blocks correspond to th
 selected block, a list of related blocks opens. You can filter the list of related blocks by
 entering a search term in the text box. After you select a related block from the list, window
 focus goes to the open diagram or new tab that shows the related block.
-
-## Block Characteristics
-
-|  |  |
-| --- | --- |
-| **Data Types** | `Booleana` | `busa` | `doublea` | `enumerateda` | `fixed pointa` | `halfa` | `integera` | `singlea` | `stringa` |
-| **Direct Feedthrough** | `no` |
-| **Multidimensional Signals** | `yesa` |
-| **Variable-Size Signals** | `no` |
-| **Zero-Crossing Detection** | `no` |
-|  |  |
-| --- | --- |
-| a Actual data type or capability support depends on block implementation. | |
-
-## Extended Capabilities
-
-### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
-
-Actual code generation support depends on block implementation.
-
-### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
-
-Actual data type support depends on block implementation.
-
-## Version History
-
-**Introduced in R2022a**
-
-### R2025a: Variant control variables in mask and model workspaces supported
-
-You can define variant control variables in the mask and model workspaces to control
-active variants in Reinitialize
-Function block, provided the **Generate preprocessor
-conditionals** parameter is `off`.

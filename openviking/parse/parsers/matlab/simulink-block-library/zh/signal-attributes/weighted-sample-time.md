@@ -11,42 +11,6 @@ chinese_source: worker-translation
 
 # Weighted Sample Time
 
-
-
-支持涉及采样时间的计算
-
-## 库
-
-Simulink / Signal Attributes
-
-## 描述
-
-Weighted Sample Time 模块输出加权采样时间、加权采样率或经数学调整的加权采样时间，具体取决于 **Operation** 和 **Weight value** 参数的设置以及函数输出的执行上下文。
-
-使用 **Operation** 参数指定模块运算。
-
-用于推导输出的采样时间取决于该模块是在周期还是非周期（或触发）执行上下文中使用。对于周期执行上下文，模块使用模型的采样时间。对于非周期或触发执行上下文，模块使用离散信号的采样时间。
-
-使用 **Weight value** 参数指定采样时间权重因子。如果权重值 `w` 为 `1`，则该值不会出现在模块图标上的方程中。
-
-**提示**
-
-可以使用 Weighted Sample Time 和 Weighted Sample Time Math 模块从 Simulink® 信号中提取采样时间。将 **Operation** 参数设置为 `Ts Only`，将 **Weight value** 参数设置为 `1.0`。使用此配置时，该模块输出输入信号的采样时间。
-
-该模块使用 MATLAB® 运算符的优先级规则计算其输出。例如，如果 **Operation** 参数设置为 `+`，则模块使用以下表达式计算输出：
-
-```
-u + (Ts * w)
-```
-
-如果 **Operation** 参数设置为 `/`，则模块使用以下表达式计算输出：
-
-```
-(u / Ts) / w)
-```
-
-有关详细信息，请参阅运算符优先级。
-
 ## 端口
 
 ### 输入
@@ -255,6 +219,10 @@ u + (Ts * w)
 
 要启用此参数，请将 **Mode** 设置为 `Built in` 或 `Fixed point`。有关详细信息，请参阅使用 Data Type Assistant 指定数据类型。
 
+## 所属库
+
+Simulink / Signal Attributes
+
 ## 模块特性
 
 |  |  |
@@ -301,3 +269,33 @@ Weighted Sample Time 模块现在支持：
   - **Slope**
   - **Bias**
   - **Data type override**
+
+## 描述
+
+支持涉及采样时间的计算
+
+Weighted Sample Time 模块输出加权采样时间、加权采样率或经数学调整的加权采样时间，具体取决于 **Operation** 和 **Weight value** 参数的设置以及函数输出的执行上下文。
+
+使用 **Operation** 参数指定模块运算。
+
+用于推导输出的采样时间取决于该模块是在周期还是非周期（或触发）执行上下文中使用。对于周期执行上下文，模块使用模型的采样时间。对于非周期或触发执行上下文，模块使用离散信号的采样时间。
+
+使用 **Weight value** 参数指定采样时间权重因子。如果权重值 `w` 为 `1`，则该值不会出现在模块图标上的方程中。
+
+**提示**
+
+可以使用 Weighted Sample Time 和 Weighted Sample Time Math 模块从 Simulink® 信号中提取采样时间。将 **Operation** 参数设置为 `Ts Only`，将 **Weight value** 参数设置为 `1.0`。使用此配置时，该模块输出输入信号的采样时间。
+
+该模块使用 MATLAB® 运算符的优先级规则计算其输出。例如，如果 **Operation** 参数设置为 `+`，则模块使用以下表达式计算输出：
+
+```
+u + (Ts * w)
+```
+
+如果 **Operation** 参数设置为 `/`，则模块使用以下表达式计算输出：
+
+```
+(u / Ts) / w)
+```
+
+有关详细信息，请参阅运算符优先级。

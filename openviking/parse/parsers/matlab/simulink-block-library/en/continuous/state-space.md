@@ -10,40 +10,6 @@ language: en
 
 # State-Space
 
-Implement linear state-space system
-
-## Libraries
-
-Simulink / Continuous
-
-## Description
-
-The State-Space block implements a system whose behavior you
-define as
-
-x˙=Ax+Buy=Cx+Dux|t=t0=x0,
-
-where *x* is the state vector, *u* is the input vector,
-*y* is the output vector, and *x0* is the initial
-condition of the state vector. The A, B, C, and D matrices can be specified as either
-sparse matrices or dense matrices. The matrix coefficients must have these
-characteristics:
-
-- *A* must be an *n*-by-*n*
-  matrix, where *n* is the number of states.
-- *B* must be an *n*-by-*m*
-  matrix, where *m* is the number of inputs.
-- *C* must be an *r*-by-*n*
-  matrix, where *r* is the number of outputs.
-- *D* must be an *r*-by-*m*
-  matrix.
-
-In general, the block has one input port and one output port. The number of rows in C or D matrix is the same as the width of the output port. The number of columns in the B or D matrix are the same as the width of the input port. If you want to model an autonomous linear system with no inputs, set the B and D matrices to empty. In this case, the block acts as a source block with no input port and one output port, and implements the following system:
-
-x˙=Axy=Cxx|t=t0=x0.
-
-Simulink® software converts a matrix containing zeros to a sparse matrix for efficient multiplication.
-
 ## Ports
 
 ### Input
@@ -287,6 +253,10 @@ programmatically, use the `get_param` function.
 **Example:** `set_param("MyModel/Descriptor
 State-Space",ContinuousStateAttributes={'position','velocity'})`
 
+## Libraries
+
+Simulink / Continuous
+
 ## Block Characteristics
 
 |  |  |
@@ -308,3 +278,33 @@ In general, consider using the Simulink Model Discretizer to map continuous bloc
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Implement linear state-space system
+
+The State-Space block implements a system whose behavior you
+define as
+
+x˙=Ax+Buy=Cx+Dux|t=t0=x0,
+
+where *x* is the state vector, *u* is the input vector,
+*y* is the output vector, and *x0* is the initial
+condition of the state vector. The A, B, C, and D matrices can be specified as either
+sparse matrices or dense matrices. The matrix coefficients must have these
+characteristics:
+
+- *A* must be an *n*-by-*n*
+  matrix, where *n* is the number of states.
+- *B* must be an *n*-by-*m*
+  matrix, where *m* is the number of inputs.
+- *C* must be an *r*-by-*n*
+  matrix, where *r* is the number of outputs.
+- *D* must be an *r*-by-*m*
+  matrix.
+
+In general, the block has one input port and one output port. The number of rows in C or D matrix is the same as the width of the output port. The number of columns in the B or D matrix are the same as the width of the input port. If you want to model an autonomous linear system with no inputs, set the B and D matrices to empty. In this case, the block acts as a source block with no input port and one output port, and implements the following system:
+
+x˙=Axy=Cxx|t=t0=x0.
+
+Simulink® software converts a matrix containing zeros to a sparse matrix for efficient multiplication.

@@ -11,68 +11,13 @@ chinese_source: worker-translation
 
 # Display
 
+## 端口
 
-
-以可自定义的外观在仿真期间显示信号值
-
-## 库
-
-Simulink / Dashboard / Customizable Blocks
-
-## 说明
-
-Display 模块连接到模型中的信号，并在仿真期间显示信号值。Display 模块可以显示标量信号。当您在 Customizable Blocks 库中使用 Display 模块时，可以自定义该模块的外观，使其看起来像系统中的真实显示屏。将 Display 模块与其他 dashboard 模块一起使用，可为您的模型构建包含控件和指示器的交互式 dashboard。
-
-### 自定义 Display 模块
-
-当您将 Display 模块添加到模型时，该模块预配置了默认设计。您可以使用默认设计使用该模块，也可以自定义该模块的外观。
-
-要自定义模块的外观，请使用设计模式。选择该模块后，可以通过以下三种方式之一进入设计模式：
-
-- 在 Simulink® Toolstrip 中，在模块特定选项卡上的 **Design** 下，点击 **Edit**。
-- 在 Property Inspector 中，在 **Design** 选项卡上，点击 **Edit**。
-- 暂停在模块上出现的省略号上，然后点击 Edit Custom Block 按钮。
-
-在设计模式中，可以使用模块上方的工具栏自定义显示。要访问其他自定义选项或输入设计设置的精确值，请使用 Property Inspector 中的 **Design** 选项卡。
-
-设计模式下的可自定义 Display 模块，工具栏和 Property Inspector 中的 Design 选项卡可见。
-
-**设计模式操作**
-
-| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
-| --- | --- | --- |
-| 更改字体。可从 WYSIWYG（所见即所得）字体列表中选择，这些字体在所有平台上外观相同。 | 是 | 是 |
-| 更改字体大小。 | 是 | 是 |
-| 更改文本颜色。 | 是 | 是 |
-| 将文本加粗、倾斜或加下划线。 | 是 | 是 |
-| 上传背景图像。 | 是 | 是 |
-| 设置纯色背景颜色。 | 否 | 是 |
-| 上传前景图像。 | 否 | 是 |
-| 更改文本在模块中的位置。 | 否 | 是 |
-
-除了使用工具栏和 **Design** 选项卡自定义模块设计外，您还可以在画布中以交互方式重新定位文本。
-
-完成设计编辑后，要退出设计模式，请点击画布右上角的 **X**。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口连接到模型元素。要连接 dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后点击 Connect 按钮。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
-
-要将 Display 模块连接到模型中的信号，或更改 Display 模块的连接，请进入连接模式。选择要连接到的信号线。在出现的列表中，选择要连接到的信号。然后，暂停在 dashboard 模块上，并点击 Done Connecting 按钮。要查看 dashboard 模块显示所连接模块的值，请运行仿真。
-
-有关连接 dashboard 模块的详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
-
-您还可以将 dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-未连接的 Display 模块连接到 Sine Wave 模块发送到 Outport 模块的信号。
-
-未连接的 Half Gauge 模块连接到 Sine Wave 模块发送到 Display 模块的信号。
+R2025b 官方文档未提供。
 
 ## 参数
 
 使用 Property Inspector 和 Block Parameters 对话框指定模块参数的值。要设置 dashboard 模块的核心参数，请使用 Block Parameters 对话框或 Property Inspector 中的 **Parameters** 选项卡。要自定义模块，请使用 Property Inspector 中的 **Design** 选项卡。要打开模块的 Block Parameters 对话框，请双击该模块。要打开 Property Inspector，请在 **Modeling** 选项卡上的 **Design** 下，选择 **Property Inspector**。
-
-## 参数
 
 要设置 dashboard 模块的核心参数，请打开 Property Inspector，然后点击 **Parameters** 选项卡。
 
@@ -301,6 +246,10 @@ Dashboard 模块不使用端口连接到模型元素。要将 dashboard 模块�
 
 选择此参数可在使用 Property Inspector 调整图像大小时保持纵横比。
 
+## 所属库
+
+Simulink / Dashboard / Customizable Blocks
+
 ## 模块特性
 
 |  |  |
@@ -352,3 +301,54 @@ Dashboard 模块在代码生成时会被忽略。
 要将面板返回到模型画布，请在面板窗口 toolstrip 中，点击 Open in canvas。
 
 有关在新窗口中打开面板的详细信息，请参阅 Open Panels in New Window。
+
+## 描述
+
+以可自定义的外观在仿真期间显示信号值
+
+Display 模块连接到模型中的信号，并在仿真期间显示信号值。Display 模块可以显示标量信号。当您在 Customizable Blocks 库中使用 Display 模块时，可以自定义该模块的外观，使其看起来像系统中的真实显示屏。将 Display 模块与其他 dashboard 模块一起使用，可为您的模型构建包含控件和指示器的交互式 dashboard。
+
+### 自定义 Display 模块
+
+当您将 Display 模块添加到模型时，该模块预配置了默认设计。您可以使用默认设计使用该模块，也可以自定义该模块的外观。
+
+要自定义模块的外观，请使用设计模式。选择该模块后，可以通过以下三种方式之一进入设计模式：
+
+- 在 Simulink® Toolstrip 中，在模块特定选项卡上的 **Design** 下，点击 **Edit**。
+- 在 Property Inspector 中，在 **Design** 选项卡上，点击 **Edit**。
+- 暂停在模块上出现的省略号上，然后点击 Edit Custom Block 按钮。
+
+在设计模式中，可以使用模块上方的工具栏自定义显示。要访问其他自定义选项或输入设计设置的精确值，请使用 Property Inspector 中的 **Design** 选项卡。
+
+设计模式下的可自定义 Display 模块，工具栏和 Property Inspector 中的 Design 选项卡可见。
+
+**设计模式操作**
+
+| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
+| --- | --- | --- |
+| 更改字体。可从 WYSIWYG（所见即所得）字体列表中选择，这些字体在所有平台上外观相同。 | 是 | 是 |
+| 更改字体大小。 | 是 | 是 |
+| 更改文本颜色。 | 是 | 是 |
+| 将文本加粗、倾斜或加下划线。 | 是 | 是 |
+| 上传背景图像。 | 是 | 是 |
+| 设置纯色背景颜色。 | 否 | 是 |
+| 上传前景图像。 | 否 | 是 |
+| 更改文本在模块中的位置。 | 否 | 是 |
+
+除了使用工具栏和 **Design** 选项卡自定义模块设计外，您还可以在画布中以交互方式重新定位文本。
+
+完成设计编辑后，要退出设计模式，请点击画布右上角的 **X**。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口连接到模型元素。要连接 dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后点击 Connect 按钮。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
+
+要将 Display 模块连接到模型中的信号，或更改 Display 模块的连接，请进入连接模式。选择要连接到的信号线。在出现的列表中，选择要连接到的信号。然后，暂停在 dashboard 模块上，并点击 Done Connecting 按钮。要查看 dashboard 模块显示所连接模块的值，请运行仿真。
+
+有关连接 dashboard 模块的详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
+
+您还可以将 dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+未连接的 Display 模块连接到 Sine Wave 模块发送到 Outport 模块的信号。
+
+未连接的 Half Gauge 模块连接到 Sine Wave 模块发送到 Display 模块的信号。

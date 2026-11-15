@@ -11,65 +11,6 @@ chinese_source: official
 
 # Simulink Function
 
-使用 Simulink 模块定义函数
-
-## 所属库
-
-Simulink / User-Defined Functions
-
-## 描述
-
-Simulink Function 模块是预配置为能够使用 Simulink® 模块实现函数的 Subsystem 模块。要使用 Simulink Function 模块定义和调用函数，请执行以下操作：
-
-- 指定包含函数名称以及输入和输出参量的函数原型，例如 `y = f(u)`。
-- 使用 Simulink 库中的模块实现函数行为。
-- 配置您的 Simulink Function 模块，以便在模型层次结构中的任何位置调用和重用。
-
-Simulink Function block with view of inside the subsystem.
-
-调用函数时，调用方通过输入参量向函数发送数据，根据实现的行为执行函数，然后通过输出参量从函数接收数据。
-
-有关详细信息，请参阅 Simulink Functions Overview。
-
-### 指定函数原型
-
-函数原型与函数的实现是分离的。它指定输入和输出参量，以及应该如何从模型层次结构中的其他模块调用该函数。函数原型中指定的每个输入或输出参量分别由 Argument Inport 模块或 Argument Outport 模块表示。您可以通过双击模块上显示的文本来编辑函数原型。
-
-### 实现函数行为
-
-要实现所需的函数行为，请在子系统中添加任何必需的 Simulink 模块。除了 Argument Inport 和 Argument Outport 模块之外，Simulink Function 模块还可以使用 Inport 和 Outport 模块来输入和输出数据。
-
-有关示例，请参阅Monitor Ink Status on Shared Printer Using Simulink Functions。
-
-### 配置 Simulink Function 模块
-
-要配置 Simulink Function 模块，请打开位于 Simulink Function 模块内的 Trigger 模块的模块参数。
-
-- **函数名称** - 指定 Simulink Function 模块的函数名称。
-- **函数可见性** - 选择函数的作用域可见性。
-
-  如果**函数可见性**设置为 `port`，您还可以指定以下参数：
-
-  - **异步执行函数调用** - 指定函数是同步执行还是异步执行。
-  - **示波器到端口** - 指定导出函数端口的名称。
-
-### 调用 Simulink 函数
-
-您可以使用函数调用方和函数原型来调用和执行您的函数。在 Simulink Function 模块中定义的函数可以从 Function Caller 模块、Chart (Stateflow)、MATLAB Function 模块、MATLAB System 模块或 S-Function 模块中调用。
-
-有关详细信息，请参阅Call a Simulink Function from a Model。
-
-### 模型注意事项
-
-当使用 Simulink Function 模块时，考虑您的模型是否需要在函数调用之间的状态持久性或连续采样时间。
-
-- 函数调用之间的状态持久性 - 如果 Simulink Function 模块包含任何带状态的模块（例如 Unit Delay 或 Memory 模块），则其状态值在函数调用之间是持久性的。如果存在对该函数的多次调用，状态值在来自不同调用方的调用之间也是持久性的。
-- 无法继承连续采样时间 - Simulink Function 模块无法继承连续采样时间。
-
-### 使用 Simulink Function 模块的代码生成
-
-如果您有 Simulink Coder™ 或 Embedded Coder®，您可以从包含 Simulink 函数的模型中生成代码。有关详细信息，请参阅 Simulink Function Blocks and Code Generation (Embedded Coder)和Configure Entry-Point Function Interfaces for Simulink Function and Function Caller Blocks (Embedded Coder)。
-
 ## 端口
 
 ### 输入
@@ -185,6 +126,10 @@ Simulink Function block with view of inside the subsystem.
 
 要配置 Simulink Function 模块的作用域可见性和同步性，请打开位于 Simulink Function 模块内的 Trigger 模块的模块参数。
 
+## 所属库
+
+Simulink / User-Defined Functions
+
 ## 模块特性
 
 |  |  |
@@ -208,7 +153,7 @@ Simulink Function block with view of inside the subsystem.
 
 实际数据类型支持取决于模块实现。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2014b 中推出**
 
@@ -231,3 +176,58 @@ Simulink Function block with view of inside the subsystem.
 ### R2022a: 作用域限于端口的 Simulink Function 模块
 
 为 R2022a 添加了新的适用于 Simulink Function 模块的作用域限于端口的可见性选项。要创建一个作用域限于端口的 Simulink Function 模块，请将 Simulink Function 模块内 Trigger 模块的**函数可见性**参数设置为**端口**，并在**示波器到端口**字段中输入端口名称。使用作用域限于端口的 Simulink Function 模块实现通过导出由 Function Element 模块创建的函数端口调用的函数。请参阅Model Client and Server Components Using Function Ports。
+
+## 描述
+
+使用 Simulink 模块定义函数
+
+Simulink Function 模块是预配置为能够使用 Simulink® 模块实现函数的 Subsystem 模块。要使用 Simulink Function 模块定义和调用函数，请执行以下操作：
+
+- 指定包含函数名称以及输入和输出参量的函数原型，例如 `y = f(u)`。
+- 使用 Simulink 库中的模块实现函数行为。
+- 配置您的 Simulink Function 模块，以便在模型层次结构中的任何位置调用和重用。
+
+Simulink Function block with view of inside the subsystem.
+
+调用函数时，调用方通过输入参量向函数发送数据，根据实现的行为执行函数，然后通过输出参量从函数接收数据。
+
+有关详细信息，请参阅 Simulink Functions Overview。
+
+### 指定函数原型
+
+函数原型与函数的实现是分离的。它指定输入和输出参量，以及应该如何从模型层次结构中的其他模块调用该函数。函数原型中指定的每个输入或输出参量分别由 Argument Inport 模块或 Argument Outport 模块表示。您可以通过双击模块上显示的文本来编辑函数原型。
+
+### 实现函数行为
+
+要实现所需的函数行为，请在子系统中添加任何必需的 Simulink 模块。除了 Argument Inport 和 Argument Outport 模块之外，Simulink Function 模块还可以使用 Inport 和 Outport 模块来输入和输出数据。
+
+有关示例，请参阅Monitor Ink Status on Shared Printer Using Simulink Functions。
+
+### 配置 Simulink Function 模块
+
+要配置 Simulink Function 模块，请打开位于 Simulink Function 模块内的 Trigger 模块的模块参数。
+
+- **函数名称** - 指定 Simulink Function 模块的函数名称。
+- **函数可见性** - 选择函数的作用域可见性。
+
+  如果**函数可见性**设置为 `port`，您还可以指定以下参数：
+
+  - **异步执行函数调用** - 指定函数是同步执行还是异步执行。
+  - **示波器到端口** - 指定导出函数端口的名称。
+
+### 调用 Simulink 函数
+
+您可以使用函数调用方和函数原型来调用和执行您的函数。在 Simulink Function 模块中定义的函数可以从 Function Caller 模块、Chart (Stateflow)、MATLAB Function 模块、MATLAB System 模块或 S-Function 模块中调用。
+
+有关详细信息，请参阅Call a Simulink Function from a Model。
+
+### 模型注意事项
+
+当使用 Simulink Function 模块时，考虑您的模型是否需要在函数调用之间的状态持久性或连续采样时间。
+
+- 函数调用之间的状态持久性 - 如果 Simulink Function 模块包含任何带状态的模块（例如 Unit Delay 或 Memory 模块），则其状态值在函数调用之间是持久性的。如果存在对该函数的多次调用，状态值在来自不同调用方的调用之间也是持久性的。
+- 无法继承连续采样时间 - Simulink Function 模块无法继承连续采样时间。
+
+### 使用 Simulink Function 模块的代码生成
+
+如果您有 Simulink Coder™ 或 Embedded Coder®，您可以从包含 Simulink 函数的模型中生成代码。有关详细信息，请参阅 Simulink Function Blocks and Code Generation (Embedded Coder)和Configure Entry-Point Function Interfaces for Simulink Function and Function Caller Blocks (Embedded Coder)。

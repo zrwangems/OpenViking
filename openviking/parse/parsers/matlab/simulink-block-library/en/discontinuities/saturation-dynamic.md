@@ -10,24 +10,6 @@ language: en
 
 # Saturation Dynamic
 
-Limit input signal to dynamic upper and lower saturation values
-
-## Libraries
-
-Simulink / Discontinuities HDL Coder / Discontinuities
-
-## Description
-
-The Saturation Dynamic block produces an output signal that is the value of the input signal
-bounded to the saturation values from the input ports `up` and
-`lo`.
-
-| Input | Output |
-| --- | --- |
-| `lo` ≤ Input value ≤ `up` | Input value |
-| Input value < `lo` | Lower limit |
-| Input value > `up` | Upper limit |
-
 ## Ports
 
 ### Input
@@ -270,6 +252,10 @@ greater than this maximum value causes overflow of the 8-bit integer.
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Discontinuities HDL Coder / Discontinuities
+
 ## Block Characteristics
 
 |  |  |
@@ -311,3 +297,17 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Limit input signal to dynamic upper and lower saturation values
+
+The Saturation Dynamic block produces an output signal that is the value of the input signal
+bounded to the saturation values from the input ports `up` and
+`lo`.
+
+| Input | Output |
+| --- | --- |
+| `lo` ≤ Input value ≤ `up` | Input value |
+| Input value < `lo` | Lower limit |
+| Input value > `up` | Upper limit |

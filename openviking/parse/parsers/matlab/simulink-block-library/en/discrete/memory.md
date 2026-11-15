@@ -10,101 +10,6 @@ language: en
 
 # Memory
 
-Output input from previous time step
-
-## Libraries
-
-Simulink / Discrete HDL Coder / Discrete
-
-## Description
-
-The Memory block holds and delays its input by one major integration
-time step. When placed in an iterator subsystem, it holds and delays its input by one
-iteration. This block accepts continuous and discrete signals. The block accepts one
-input and generates one output. Each signal can be a scalar, vector, matrix, or N-D
-array. If the input is non-scalar, the block holds and delays all elements of the input
-by the same time
-step.
-
-You specify the block output for the first time step using the **Initial
-condition** parameter. Careful selection of this parameter can minimize
-unwanted output behavior. However, you cannot specify the sample time. This block’s
-sample time depends on the type of solver used, or you can specify to inherit it. The
-**Inherit sample time** parameter determines whether sample time is
-inherited or based on the solver.
-
-**Tip**
-
-Avoid using the Memory block when both these conditions are true:
-
-- Your model uses the variable-step solver `ode15s` or
-  `ode113`.
-- The input to the block changes during simulation.
-
-When the Memory block inherits a discrete sample time, the block is analogous to the
-Unit Delay block. However, the Memory
-block does not support state logging. If logging the final state is necessary, use a
-Unit Delay block instead.
-
-### Comparison with Similar Blocks
-
-The Memory, Unit Delay, and Zero-Order Hold
-blocks provide similar functionality but have different capabilities. Also, the purpose of
-each block is different.
-
-This table shows recommended usage for each block.
-
-| Block | Purpose of the Block | Reference Examples |
-| --- | --- | --- |
-| Unit Delay | Implement a delay using a discrete sample time that you specify. The block accepts and outputs signals with a discrete sample time. | - Engine Timing Model with Closed Loop Control (Compression subsystem) |
-| Memory | Implement a delay by one major integration time step. Ideally, the block accepts continuous (or fixed in minor time step) signals and outputs a signal that is fixed in minor time step. | - Building a Clutch Lock-Up Model (Friction Mode Logic/Lockup FSM subsystem) - Capture the Velocity of a Bouncing Ball with the Memory Block |
-| Zero-Order Hold | Convert an input signal with a continuous sample time to an output signal with a discrete sample time. | - Developing the Apollo Lunar Module Digital Autopilot - Radar Tracking Using MATLAB Function Blocks |
-
-Each block has the following capabilities.
-
-| Capability | Memory | Unit Delay | Zero-Order Hold |
-| --- | --- | --- | --- |
-| Specification of initial condition | Yes | Yes | No, because the block output at time t = 0 must match the input value. |
-| Specification of sample time | No, because the block can only inherit sample time from the driving block or the solver used for the entire model. | Yes | Yes |
-| Support for frame-based signals | No | Yes | Yes |
-| Support for state logging | No | Yes | No |
-
-### Bus Support
-
-The Memory block is a bus-capable block. The input can be a virtual
-or nonvirtual bus signal subject to the following restrictions:
-
-- **Initial condition** must be zero, a nonzero scalar, or
-  a finite numeric structure.
-- If **Initial condition** is zero or a structure, and you
-  specify a **State name**, the input cannot be a virtual
-  bus.
-- If **Initial condition** is a nonzero scalar, you cannot
-  specify a **State name**.
-
-For information about specifying an initial condition structure, see Specify Initial Conditions for Bus Elements.
-
-All signals in a nonvirtual bus input to a Memory block must have
-the same sample time, even if the elements of the associated bus object specify
-inherited sample times. You can use a Rate Transition block to change the
-sample time of an individual signal, or of all signals in a bus. See Modify Sample Times for Nonvirtual Buses and
-Bus-Capable
-Blocks for more information.
-
-You can use an array of buses as an input signal to a Memory block.
-You can specify the **Initial condition** parameter with:
-
-- The value `0`. In this case, all the individual
-  signals in the array of buses use the initial value
-  `0`.
-- An array of structures that specifies an initial condition for each of
-  the individual signals in the array of buses.
-- A scalar structure that specifies an initial condition for each of the
-  elements that the bus type defines. Use this technique to specify the
-  same initial conditions for each of the buses in the array.
-
-For details about defining and using an array of buses, see Group Nonvirtual Buses in Arrays of Buses.
-
 ## Ports
 
 ### Input
@@ -263,6 +168,10 @@ To enable this parameter, specify a value for **State name**. This parameter app
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Discrete HDL Coder / Discrete
+
 ## Block Characteristics
 
 |  |  |
@@ -309,3 +218,94 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Output input from previous time step
+
+The Memory block holds and delays its input by one major integration
+time step. When placed in an iterator subsystem, it holds and delays its input by one
+iteration. This block accepts continuous and discrete signals. The block accepts one
+input and generates one output. Each signal can be a scalar, vector, matrix, or N-D
+array. If the input is non-scalar, the block holds and delays all elements of the input
+by the same time
+step.
+
+You specify the block output for the first time step using the **Initial
+condition** parameter. Careful selection of this parameter can minimize
+unwanted output behavior. However, you cannot specify the sample time. This block’s
+sample time depends on the type of solver used, or you can specify to inherit it. The
+**Inherit sample time** parameter determines whether sample time is
+inherited or based on the solver.
+
+**Tip**
+
+Avoid using the Memory block when both these conditions are true:
+
+- Your model uses the variable-step solver `ode15s` or
+  `ode113`.
+- The input to the block changes during simulation.
+
+When the Memory block inherits a discrete sample time, the block is analogous to the
+Unit Delay block. However, the Memory
+block does not support state logging. If logging the final state is necessary, use a
+Unit Delay block instead.
+
+### Comparison with Similar Blocks
+
+The Memory, Unit Delay, and Zero-Order Hold
+blocks provide similar functionality but have different capabilities. Also, the purpose of
+each block is different.
+
+This table shows recommended usage for each block.
+
+| Block | Purpose of the Block | Reference Examples |
+| --- | --- | --- |
+| Unit Delay | Implement a delay using a discrete sample time that you specify. The block accepts and outputs signals with a discrete sample time. | - Engine Timing Model with Closed Loop Control (Compression subsystem) |
+| Memory | Implement a delay by one major integration time step. Ideally, the block accepts continuous (or fixed in minor time step) signals and outputs a signal that is fixed in minor time step. | - Building a Clutch Lock-Up Model (Friction Mode Logic/Lockup FSM subsystem) - Capture the Velocity of a Bouncing Ball with the Memory Block |
+| Zero-Order Hold | Convert an input signal with a continuous sample time to an output signal with a discrete sample time. | - Developing the Apollo Lunar Module Digital Autopilot - Radar Tracking Using MATLAB Function Blocks |
+
+Each block has the following capabilities.
+
+| Capability | Memory | Unit Delay | Zero-Order Hold |
+| --- | --- | --- | --- |
+| Specification of initial condition | Yes | Yes | No, because the block output at time t = 0 must match the input value. |
+| Specification of sample time | No, because the block can only inherit sample time from the driving block or the solver used for the entire model. | Yes | Yes |
+| Support for frame-based signals | No | Yes | Yes |
+| Support for state logging | No | Yes | No |
+
+### Bus Support
+
+The Memory block is a bus-capable block. The input can be a virtual
+or nonvirtual bus signal subject to the following restrictions:
+
+- **Initial condition** must be zero, a nonzero scalar, or
+  a finite numeric structure.
+- If **Initial condition** is zero or a structure, and you
+  specify a **State name**, the input cannot be a virtual
+  bus.
+- If **Initial condition** is a nonzero scalar, you cannot
+  specify a **State name**.
+
+For information about specifying an initial condition structure, see Specify Initial Conditions for Bus Elements.
+
+All signals in a nonvirtual bus input to a Memory block must have
+the same sample time, even if the elements of the associated bus object specify
+inherited sample times. You can use a Rate Transition block to change the
+sample time of an individual signal, or of all signals in a bus. See Modify Sample Times for Nonvirtual Buses and
+Bus-Capable
+Blocks for more information.
+
+You can use an array of buses as an input signal to a Memory block.
+You can specify the **Initial condition** parameter with:
+
+- The value `0`. In this case, all the individual
+  signals in the array of buses use the initial value
+  `0`.
+- An array of structures that specifies an initial condition for each of
+  the individual signals in the array of buses.
+- A scalar structure that specifies an initial condition for each of the
+  elements that the bus type defines. Use this technique to specify the
+  same initial conditions for each of the buses in the array.
+
+For details about defining and using an array of buses, see Group Nonvirtual Buses in Arrays of Buses.

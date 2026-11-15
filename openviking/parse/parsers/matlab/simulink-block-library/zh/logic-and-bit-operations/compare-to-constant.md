@@ -11,16 +11,6 @@ chinese_source: official
 
 # Compare To Constant
 
-确定信号与指定常量的比较方式
-
-## 所属库
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
-## 描述
-
-Compare To Constant 模块用于将输入信号与常量进行比较。在**常量值**参数中指定常量。使用**运算符**参数指定输入与常量值的比较方式。
-
 ## 端口
 
 ### 输入
@@ -99,6 +89,10 @@ Compare To Constant 模块用于将输入信号与常量进行比较。在**常�
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'on'` |
 
+## 所属库
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
 ## 模块特性
 
 |  |  |
@@ -137,6 +131,12 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+确定信号与指定常量的比较方式
+
+Compare To Constant 模块用于将输入信号与常量进行比较。在**常量值**参数中指定常量。使用**运算符**参数指定输入与常量值的比较方式。

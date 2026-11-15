@@ -10,35 +10,6 @@ language: en
 
 # Model
 
-Reference another model to create model hierarchy
-
-## Libraries
-
-Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
-
-## Description
-
-The Model block references the specified model. It displays input and
-output ports that correspond to the top-level input and output ports of the referenced
-model. These ports allow you to connect the referenced model to other blocks in the
-parent model.
-
-To determine whether the Model block is better suited for your goal
-than another block with similar functionality, see Explore Types of Model Components and Compare Capabilities of Model Components.
-
-For instructions on how to reference a model with a Model block, see
-Reference Existing Models.
-
-By default, the Model block displays a representation of the contents
-of the referenced model. For more information, see Preview Content of Model Components.
-To see the contents of a referenced model, double-click the Model
-block.
-
-If you have a Simulink®
-Coder™ license, you can conceal the implementation details of a referenced model
-by protecting the model. To protect a model, see Protect Models to Conceal Contents (Simulink Coder). To
-reference a protected model, see Reference Protected Models from Third Parties.
-
 ## Ports
 
 ### Input
@@ -970,6 +941,10 @@ the `set_param` function.
 **Example:** `set_param(gcb,OutputSignalHandling="Zero-order
 Hold")`
 
+## Libraries
+
+Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
+
 ## Block Characteristics
 
 |  |  |
@@ -1215,3 +1190,28 @@ block parameter compiles all variants.
 If you have scripts that use Model block parameters for variants,
 you must update them to use Variant Subsystem block
 parameters.
+
+## Description
+
+Reference another model to create model hierarchy
+
+The Model block references the specified model. It displays input and
+output ports that correspond to the top-level input and output ports of the referenced
+model. These ports allow you to connect the referenced model to other blocks in the
+parent model.
+
+To determine whether the Model block is better suited for your goal
+than another block with similar functionality, see Explore Types of Model Components and Compare Capabilities of Model Components.
+
+For instructions on how to reference a model with a Model block, see
+Reference Existing Models.
+
+By default, the Model block displays a representation of the contents
+of the referenced model. For more information, see Preview Content of Model Components.
+To see the contents of a referenced model, double-click the Model
+block.
+
+If you have a Simulink®
+Coder™ license, you can conceal the implementation details of a referenced model
+by protecting the model. To protect a model, see Protect Models to Conceal Contents (Simulink Coder). To
+reference a protected model, see Reference Protected Models from Third Parties.

@@ -10,18 +10,6 @@ language: en
 
 # Terminator
 
-Terminate unconnected output port
-
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Sinks HDL Coder / Sinks
-
-## Description
-
-Use the Terminator block to cap blocks whose output ports do not connect to other
-blocks. If you run a simulation with blocks having unconnected output ports, Simulink® issues warning messages. Using Terminator blocks to cap those blocks helps
-prevent warning messages.
-
 ## Ports
 
 ### Input
@@ -33,6 +21,14 @@ unconnected during a simulation. The port accepts real or complex
 signals of all data types.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
+
+## Parameters
+
+Not documented in R2025b.
+
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Sinks HDL Coder / Sinks
 
 ## Block Characteristics
 
@@ -72,3 +68,11 @@ implementation and synthesized logic.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Terminate unconnected output port
+
+Use the Terminator block to cap blocks whose output ports do not connect to other
+blocks. If you run a simulation with blocks having unconnected output ports, Simulink® issues warning messages. Using Terminator blocks to cap those blocks helps
+prevent warning messages.

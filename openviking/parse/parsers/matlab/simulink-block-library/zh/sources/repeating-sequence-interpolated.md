@@ -11,16 +11,6 @@ chinese_source: official
 
 # Repeating Sequence Interpolated
 
-输出离散时间序列并重复，从而在数据点之间插值
-
-## 所属库
-
-Simulink / Sources
-
-## 描述
-
-Repeating Sequence Interpolated 模块根据**时间值的向量**和**输出值的向量**参数中的值输出周期性离散序列。在数据点之间，该模块使用您为**查找方法**参数指定的方法来确定输出。
-
 ## 端口
 
 ### 输出
@@ -163,6 +153,10 @@ Repeating Sequence Interpolated 模块根据**时间值的向量**和**输出值
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
 
+## 所属库
+
+Simulink / Sources
+
 ## 模块特性
 
 |  |  |
@@ -183,6 +177,12 @@ Repeating Sequence Interpolated 模块根据**时间值的向量**和**输出值
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+输出离散时间序列并重复，从而在数据点之间插值
+
+Repeating Sequence Interpolated 模块根据**时间值的向量**和**输出值的向量**参数中的值输出周期性离散序列。在数据点之间，该模块使用您为**查找方法**参数指定的方法来确定输出。

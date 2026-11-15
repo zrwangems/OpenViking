@@ -10,19 +10,6 @@ language: en
 
 # Detect Decrease
 
-Detect decrease in signal value
-
-## Libraries
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
-## Description
-
-The Detect Decrease block determines if an input is strictly less than
-its previous value.
-
-This block supports only discrete sample times.
-
 ## Ports
 
 ### Input
@@ -100,6 +87,10 @@ Set the output data type to `boolean` or
 | **Values**: `'boolean'` | `'uint8'` |
 | **Default**: `'boolean'` |
 
+## Libraries
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -141,3 +132,12 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Detect decrease in signal value
+
+The Detect Decrease block determines if an input is strictly less than
+its previous value.
+
+This block supports only discrete sample times.

@@ -13,8 +13,6 @@ from typing import Iterable
 from defusedxml import ElementTree as ET
 
 from openviking.parse.parsers.matlab._zip import read_xml_member
-from openviking.parse.parsers.matlab.catalog import find_block
-from openviking.parse.parsers.matlab.templates import render_block_template
 
 
 @dataclass
@@ -261,22 +259,6 @@ _UI_PARAMETERS = {
     "RefBlkName",
     "VectorParamsAs1DForOutWhenUnconnected",
 }
-_SIMPLE_BLOCKS = {
-    "Add",
-    "Sum",
-    "Or",
-    "And",
-    "Logic",
-    "RelationalOperator",
-    "Product",
-    "Gain",
-    "BusCreator",
-    "BusSelector",
-    "Mux",
-    "Demux",
-    "Terminator",
-    "Ground",
-}
 
 
 def _display_parameters(block: Block) -> dict[str, str]:
@@ -311,15 +293,6 @@ def _mermaid_text(value: str) -> str:
     )
 
 
-def _system_path(system: System) -> str:
-    names: list[str] = []
-    current = system.parent
-    while current is not None:
-        names.append(_slug(current.name))
-        current = current.parent
-    return "/".join(reversed(names))
-
-
 def _child_directory(system: System) -> str:
     siblings = system.parent.children if system.parent else []
     duplicates = sum(_slug(s.name) == _slug(system.name) for s in siblings)
@@ -328,14 +301,22 @@ def _child_directory(system: System) -> str:
 
 
 def system_documents(model: System, language: str = "en") -> dict[str, str]:
-    """Return nested ``subsystem/index.md`` documents for a parsed model."""
+    """Return compact system pages with directories only for nested systems.
+
+    The model root and systems with children use ``main.md``. A leaf system is
+    one sibling Markdown file, for example ``xCU/xCU_Output.md``.
+    """
+    del language  # Model identifiers and values are never localized.
     documents: dict[str, str] = {}
-    paths: list[tuple[System, str]] = []
 
     def visit(system: System, directory: str, is_root: bool = False) -> None:
-        path = "index.md" if is_root else f"{directory}/index.md"
-        paths.append((system, path))
-        documents[path] = _render_system(system, directory, is_root, language)
+        if is_root:
+            path = "main.md"
+        elif system.children:
+            path = f"{directory}/main.md"
+        else:
+            path = f"{directory}.md"
+        documents[path] = _render_system(system, is_root)
         for child in system.children:
             child_dir = (
                 f"{directory}/{_child_directory(child)}" if directory else _child_directory(child)
@@ -343,212 +324,26 @@ def system_documents(model: System, language: str = "en") -> dict[str, str]:
             visit(child, child_dir)
 
     visit(model, "", True)
-    types = sorted({kind for system, _ in paths for kind in system.subsystem_types})
-    index = ["", "## 全模型子系统类型索引", "", "| 类型 | 子系统 |", "| --- | --- |"]
-    for kind in types:
-        members = [
-            f"[{system.name}]({path})" for system, path in paths if kind in system.subsystem_types
-        ]
-        index.append(f"| `{kind}` | {'；'.join(members)} |")
-    documents["index.md"] += "\n".join(index) + "\n"
     return documents
 
 
-def _render_system(system: System, directory: str, is_root: bool, language: str = "en") -> str:
-    blocks = {b.sid: b for b in system.blocks}
-    chinese = str(language).lower().startswith("zh")
+def _render_system(system: System, is_root: bool) -> str:
+    """Render only the signal graph, interface ports, and node parameters."""
+    blocks = {block.sid: block for block in system.blocks}
     lines = [
         "---",
-        "type: simulink-subsystem",
+        f"type: {'simulink-model' if is_root else 'simulink-subsystem'}",
         f"system_ref: {system.ref}",
         f"subsystem_types: [{', '.join(system.subsystem_types)}]",
         "---",
         "",
         f"# {system.name}",
         "",
-        f"源文件系统 ID：`{system.ref}`。本页由 SLX XML 确定性生成，不执行模型，也不推断未在文件中出现的动态语义。",
+        "## 信号流程图",
         "",
-        "## 子系统类型与执行控制",
-        "",
-        "类型：" + "、".join(f"`{kind}`" for kind in system.subsystem_types) + "。",
-        "",
-        "| 控制块 | 类型 | SID | 参数 |",
-        "| --- | --- | --- | --- |",
+        "```mermaid",
+        "flowchart LR",
     ]
-    for block in system.control_ports:
-        params = "<br>".join(
-            f"`{_cell(key)}` = `{_cell(value)}`"
-            for key, value in sorted(_display_parameters(block).items())
-        )
-        lines.append(
-            f"| {_cell(block.name)} | {block.block_type} | {block.sid} | {params or '-'} |"
-        )
-    if not system.control_ports:
-        lines.append("| - | 无显式执行控制块 | - | - |")
-    if "variant" in system.subsystem_types and system.owner:
-        lines.extend(
-            [
-                "",
-                "可变子系统配置："
-                + "；".join(
-                    f"`{key}` = `{value}`"
-                    for key, value in sorted(system.owner.parameters.items())
-                    if key.startswith("Variant") or key in {"LabelModeActiveChoice", "EmptyChoice"}
-                ),
-            ]
-        )
-    lines.extend(
-        [
-            "",
-            "## 输入",
-            "",
-            "| 端口 | 信号 | 源块 SID |",
-            "| --- | --- | --- |",
-        ]
-    )
-    for port in system.inputs:
-        lines.append(f"| {port.parameters.get('Port', '1')} | {_cell(port.name)} | {port.sid} |")
-    if not system.inputs:
-        lines.append("| - | 无显式 Inport | - |")
-    lines.extend(["", "## 输出", "", "| 端口 | 信号 | 目标块 SID |", "| --- | --- | --- |"])
-    for port in system.outputs:
-        lines.append(f"| {port.parameters.get('Port', '1')} | {_cell(port.name)} | {port.sid} |")
-    if not system.outputs:
-        lines.append("| - | 无显式 Outport | - |")
-
-    lines.extend(
-        [
-            "",
-            "## 物理端口与物理信号端口",
-            "",
-            "`ConnectionPort` 与 Simscape 子系统的 `PMIOPort` 都是守恒网络节点，不分输入输出。网络域只采用 XML 明示值，未知时不根据端口左右位置猜测。Simscape 有向物理信号由 SSC 的 inputs / outputs 表达。",
-            "",
-            "| 名称 | 端口类型 | 方向 / 位置 | 网络域 | SID |",
-            "| --- | --- | --- | --- | --- |",
-        ]
-    )
-    for port in system.physical_ports:
-        direction = port.parameters.get("Side", "bidirectional / conserving")
-        kind = "conserving"
-        domain = port.parameters.get("Domain") or port.parameters.get("PortDomain") or "未声明"
-        lines.append(
-            f"| {_cell(port.name)} | {kind} | {_cell(direction)} | {_cell(domain)} | {port.sid} |"
-        )
-    if not system.physical_ports:
-        lines.append("| - | 无显式物理端口 | - | - | - |")
-
-    dependency_blocks = [
-        block
-        for block in system.blocks
-        if block.block_type
-        in {"ModelReference", "Reference", "S-Function", "MATLABSystem", "SimscapeComponentBlock"}
-        or block.source_block
-    ]
-    if dependency_blocks:
-        lines.extend(
-            ["", "## 模型引用与外部依赖", "", "| 块 | 类型 | 引用 / 实现 |", "| --- | --- | --- |"]
-        )
-        for block in dependency_blocks:
-            reference = (
-                block.parameters.get("ModelName")
-                or block.source_block
-                or block.parameters.get("FunctionName")
-                or block.parameters.get("SystemName")
-                or "未声明"
-            )
-            lines.append(f"| {_cell(block.name)} | {block.block_type} | `{_cell(reference)}` |")
-
-    lines.extend(["", "## 子系统", ""])
-    if is_root:
-        lines.append("- [解析覆盖清单](coverage.md)：Stateflow、外部库和二进制工作区边界")
-    if system.children:
-        for child in system.children:
-            kinds = ", ".join(child.subsystem_types)
-            variant = ""
-            if child.owner and "variant" in system.subsystem_types:
-                variant = child.owner.parameters.get("VariantControl", "")
-            lines.append(
-                f"- [{child.name}]({_child_directory(child)}/index.md) (`{child.ref}`; `{kinds}`"
-                + (f"; VariantControl=`{_cell(variant)}`" if variant else "")
-                + ")"
-            )
-    else:
-        lines.append("无嵌套子系统。")
-
-    lines.extend(
-        [
-            "",
-            "## 可配置块",
-            "",
-            "仅列出带业务参数的块及引用块；Add、And、Or 等简单运算的连接关系保留在流程图中。",
-            "",
-            "| 块 | 类型 / 库来源 | SID | 参数 |",
-            "| --- | --- | --- | --- |",
-        ]
-    )
-    rows = 0
-    block_templates: dict[str, tuple[str, str]] = {}
-    for block in system.blocks:
-        if block.block_type in {
-            "Inport",
-            "Outport",
-            "ConnectionPort",
-            "PMIOPort",
-            "EnablePort",
-            "TriggerPort",
-            "ActionPort",
-            "ResetPort",
-        }:
-            continue
-        params = _display_parameters(block)
-        if block.block_type == "SubSystem" and not params:
-            continue
-        if block.block_type in _SIMPLE_BLOCKS and not params:
-            continue
-        if not params and not block.source_block and block.block_type in _SIMPLE_BLOCKS:
-            continue
-        if not params and not block.source_block:
-            continue
-        param_text = "<br>".join(f"`{_cell(k)}` = `{_cell(v)}`" for k, v in sorted(params.items()))
-        source = block.block_type + (
-            f" / `{_cell(block.source_block)}`" if block.source_block else ""
-        )
-        catalog_match = find_block(block.block_type, block.source_block)
-        if catalog_match:
-            family, canonical = catalog_match
-            source += f" / 目录：`{family}/{_cell(canonical)}`"
-            rendered_template = render_block_template(
-                block.block_type, block.source_block, language=language
-            )
-            if rendered_template:
-                canonical_name, template_markdown = rendered_template
-                block_templates.setdefault(
-                    f"{family}/{canonical_name}", (canonical_name, template_markdown)
-                )
-        lines.append(f"| {_cell(block.name)} | {source} | {block.sid} | {param_text or '-'} |")
-        rows += 1
-    if not rows:
-        lines.append("| - | - | - | 无 |")
-
-    if block_templates:
-        lines.extend(
-            [
-                "",
-                "## 块知识模板" if chinese else "## Block Knowledge Templates",
-                "",
-                (
-                    "以下内容在资源添加时由原始 `BlockType` / `SourceBlock` 匹配本地 R2025b 模板并内联。"
-                    "同名块只展开一次，各实例自己的配置仍以上表为准。"
-                    if chinese
-                    else "These R2025b templates were matched by the original `BlockType` / `SourceBlock` "
-                    "during ingestion. Each block type is expanded once; instance parameters remain in the table."
-                ),
-            ]
-        )
-        for canonical_name, template_markdown in block_templates.values():
-            lines.extend(["", f"### {canonical_name}", "", template_markdown, ""])
-
-    lines.extend(["", "## 信号逻辑流程图", "", "```mermaid", "flowchart LR"])
     for block in system.blocks:
         node = f"b{_slug(block.sid)}"
         shape_left, shape_right = (
@@ -578,27 +373,71 @@ def _render_system(system: System, directory: str, is_root: bool, language: str 
         [
             "```",
             "",
-            "## 连接表",
+            "## 输入",
             "",
-            "| 信号 / 网络 | 端点 A | 端点 B | 语义 |",
+            "| 端口 | 信号 | SID |",
+            "| --- | --- | --- |",
+        ]
+    )
+    for port in system.inputs:
+        lines.append(f"| {port.parameters.get('Port', '1')} | {_cell(port.name)} | {port.sid} |")
+    if not system.inputs:
+        lines.append("| - | 无显式 Inport | - |")
+
+    lines.extend(["", "## 输出", "", "| 端口 | 信号 | SID |", "| --- | --- | --- |"])
+    for port in system.outputs:
+        lines.append(f"| {port.parameters.get('Port', '1')} | {_cell(port.name)} | {port.sid} |")
+    if not system.outputs:
+        lines.append("| - | 无显式 Outport | - |")
+
+    children = {child.owner.sid: child for child in system.children if child.owner}
+    lines.extend(
+        [
+            "",
+            "## 节点",
+            "",
+            "| 节点 | 类型 | SID | 参数 |",
             "| --- | --- | --- | --- |",
         ]
     )
-    if system.edges:
-        for edge in system.edges:
-            source_sid, source_port = _endpoint(edge.source)
-            destination_sid, destination_port = _endpoint(edge.destination)
-            source = blocks.get(source_sid)
-            destination = blocks.get(destination_sid)
-            source_kind = "out" if edge.kind == "signal" else _endpoint_kind(edge.source)
-            destination_kind = "in" if edge.kind == "signal" else _endpoint_kind(edge.destination)
-            semantic = "有向信号" if edge.kind == "signal" else "守恒网络连接（无输入输出方向）"
-            lines.append(
-                f"| {_cell(edge.name) or '-'} | {_cell(source.name if source else source_sid)} ({source_kind}:{source_port}) "
-                f"| {_cell(destination.name if destination else destination_sid)} ({destination_kind}:{destination_port}) | {semantic} |"
+    rows = 0
+    if system.owner:
+        owner_params = _display_parameters(system.owner)
+        if owner_params:
+            param_text = "<br>".join(
+                f"`{_cell(key)}` = `{_cell(value)}`" for key, value in sorted(owner_params.items())
             )
-    else:
-        lines.append("| - | 无显式连线 | - |")
+            lines.append(
+                f"| 当前子系统 / {_cell(system.owner.name)} | {system.owner.block_type} "
+                f"| {system.owner.sid} | {param_text} |"
+            )
+            rows += 1
+    for block in system.blocks:
+        if block.block_type in {"Inport", "Outport"}:
+            continue
+        child = children.get(block.sid)
+        if child:
+            child_path = f"{_child_directory(child)}/{'main.md' if child.children else ''}"
+            if not child.children:
+                child_path = f"{_child_directory(child)}.md"
+            name = f"[{_cell(block.name)}]({child_path})"
+        else:
+            name = _cell(block.name)
+        params = _display_parameters(block)
+        if block.block_type in {"ConnectionPort", "PMIOPort"}:
+            params = {**params, "Direction": "bidirectional / conserving"}
+        param_text = "<br>".join(
+            f"`{_cell(key)}` = `{_cell(value)}`" for key, value in sorted(params.items())
+        )
+        source = block.block_type + (
+            f" / `{_cell(block.source_block)}`" if block.source_block else ""
+        )
+        lines.append(f"| {name} | {source} | {block.sid} | {param_text or '-'} |")
+        rows += 1
+    if not rows:
+        lines.append("| - | 无内部节点 | - | - |")
+    if is_root:
+        lines.extend(["", "- [解析覆盖清单](coverage.md)"])
     lines.append("")
     return "\n".join(lines)
 

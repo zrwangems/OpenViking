@@ -10,29 +10,6 @@ language: en
 
 # Transfer Fcn Direct Form II Time Varying
 
-Implement time varying Direct Form II realization of transfer function
-
-## Libraries
-
-Simulink / Additional Math & Discrete / Additional Discrete
-
-## Description
-
-The Transfer Fcn Direct Form II Time Varying block implements a Direct Form
-II realization of the specified transfer function. The block supports only single
-input-single output (SISO) transfer functions.
-
-The input signal labeled **Den No Lead** contains the denominator
-coefficients of the transfer function. The full denominator has a leading coefficient of
-one, but it is excluded from the input signal. For example, to use a denominator of
-`[1 -1.7 0.72]`, specify a signal with the value `[-1.7
-0.72]`. The input signal labeled **Num** contains the
-numerator coefficients. The data types of the numerator and denominator coefficients can
-be different, but the length of the numerator vector and the full denominator vector
-must be the same. Pad the numerator vector with zeros, if needed.
-
-The block automatically selects the data types and scalings of the output, the coefficients, and any temporary variables.
-
 ## Ports
 
 ### Input
@@ -134,6 +111,10 @@ saturation code.
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Additional Math & Discrete / Additional Discrete
+
 ## Block Characteristics
 
 |  |  |
@@ -164,3 +145,22 @@ unit by selecting the **Treat as atomic unit** option.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Implement time varying Direct Form II realization of transfer function
+
+The Transfer Fcn Direct Form II Time Varying block implements a Direct Form
+II realization of the specified transfer function. The block supports only single
+input-single output (SISO) transfer functions.
+
+The input signal labeled **Den No Lead** contains the denominator
+coefficients of the transfer function. The full denominator has a leading coefficient of
+one, but it is excluded from the input signal. For example, to use a denominator of
+`[1 -1.7 0.72]`, specify a signal with the value `[-1.7
+0.72]`. The input signal labeled **Num** contains the
+numerator coefficients. The data types of the numerator and denominator coefficients can
+be different, but the length of the numerator vector and the full denominator vector
+must be the same. Pad the numerator vector with zeros, if needed.
+
+The block automatically selects the data types and scalings of the output, the coefficients, and any temporary variables.

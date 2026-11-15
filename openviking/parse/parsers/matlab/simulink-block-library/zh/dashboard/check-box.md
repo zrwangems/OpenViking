@@ -11,39 +11,9 @@ chinese_source: worker-translation
 
 # Check Box
 
+## 端口
 
-
-选择参数或变量值
-
-## 库
-
-Simulink / Dashboard
-
-## 说明
-
-Check Box 模块允许您在仿真期间通过选中或清除该复选框来设置参数或变量的值。将 Check Box 模块与其他 Dashboard 模块一起使用，可以为您的模型创建交互式仪表板。
-
-在仿真期间以及模块处于选中状态时，双击 Check Box 模块不会打开其对话框。要编辑模块的参数，可以使用 **属性检查器**，或者右键单击该模块，然后从上下文菜单中选择 **模块参数**。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标悬停在要连接的模块上，然后单击“连接”按钮。要在已连接的模块上进入连接模式，请选择该模块，将鼠标悬停在出现的省略号 (…) 上，然后在展开的操作菜单中单击“连接”按钮。
-
-要将控制模块连接到模型中的参数，或更改控制模块的连接，请进入连接模式。选择要将其参数连接到目标的模块。在出现的列表中，选择要连接到的参数。然后，将鼠标悬停在 Dashboard 模块上，并单击“完成连接”按钮。
-
-在更新模型图之前，控制模块无法连接到由变量定义的参数。要在仿真未运行时连接到由变量定义的参数，或修改定义已连接参数值的变量的值，请按 **Ctrl+D** 更新模型图。
-
-您可以连接到具有标量值的参数，或连接到矩阵或结构的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
-
-您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画显示如何将 Check Box 模块连接到您的模型。
-
-未连接的 Check Box 模块会连接到 Gain 模块的 Gain 参数。
-
-### 参数记录
-
-连接到 Dashboard 模块的可调参数会记录到 Simulation Data Inspector 中，您可以在其中查看参数值以及记录的信号数据。通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，您可以在 MATLAB® 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素进行访问。
+R2025b 官方文档未提供。
 
 ## 参数
 
@@ -165,6 +135,10 @@ Dashboard 模块不使用端口连接到模型元素。要将 Dashboard 模块�
 | **类型：** character vector | string |
 | **值：** `[r g b]` vector |
 
+## 所属库
+
+Simulink / Dashboard
+
 ## 模块特性
 
 |  |  |
@@ -256,3 +230,31 @@ Dashboard 模块不使用端口连接到模型元素。要将 Dashboard 模块�
 ### R2019a：以编程方式添加和配置 Dashboard 模块
 
 从 R2019a 开始，您可以使用 `add_block` 和 `set_param` 等函数在模型中创建和配置 Dashboard 库中的模块。
+
+## 描述
+
+选择参数或变量值
+
+Check Box 模块允许您在仿真期间通过选中或清除该复选框来设置参数或变量的值。将 Check Box 模块与其他 Dashboard 模块一起使用，可以为您的模型创建交互式仪表板。
+
+在仿真期间以及模块处于选中状态时，双击 Check Box 模块不会打开其对话框。要编辑模块的参数，可以使用 **属性检查器**，或者右键单击该模块，然后从上下文菜单中选择 **模块参数**。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标悬停在要连接的模块上，然后单击“连接”按钮。要在已连接的模块上进入连接模式，请选择该模块，将鼠标悬停在出现的省略号 (…) 上，然后在展开的操作菜单中单击“连接”按钮。
+
+要将控制模块连接到模型中的参数，或更改控制模块的连接，请进入连接模式。选择要将其参数连接到目标的模块。在出现的列表中，选择要连接到的参数。然后，将鼠标悬停在 Dashboard 模块上，并单击“完成连接”按钮。
+
+在更新模型图之前，控制模块无法连接到由变量定义的参数。要在仿真未运行时连接到由变量定义的参数，或修改定义已连接参数值的变量的值，请按 **Ctrl+D** 更新模型图。
+
+您可以连接到具有标量值的参数，或连接到矩阵或结构的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
+
+您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画显示如何将 Check Box 模块连接到您的模型。
+
+未连接的 Check Box 模块会连接到 Gain 模块的 Gain 参数。
+
+### 参数记录
+
+连接到 Dashboard 模块的可调参数会记录到 Simulation Data Inspector 中，您可以在其中查看参数值以及记录的信号数据。通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，您可以在 MATLAB® 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素进行访问。

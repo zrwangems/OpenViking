@@ -10,13 +10,54 @@ language: en
 
 # Function-Call Feedback Latch
 
-Break feedback loop involving data signals between function-call blocks
+## Ports
+
+### Input
+
+### **In** — Signal from function-call subsystem block scalar | vector | matrix
+
+Signal from function-call subsystem block.
+
+**Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+### Output
+
+### **Out** — Signal to function-call subsystem scalar | vector | matrix
+
+Signal to function-call subsystem.
+
+**Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+
+## Parameters
+
+Not documented in R2025b.
 
 ## Libraries
 
 Simulink / Ports & Subsystems
 
+## Block Characteristics
+
+|  |  |
+| --- | --- |
+| **Data Types** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `integer` | `single` |
+| **Direct Feedthrough** | `no` |
+| **Multidimensional Signals** | `yes` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
+
+## Extended Capabilities
+
+### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
+
+### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
+
+## Version History
+
+**Introduced in R2011a**
+
 ## Description
+
+Break feedback loop involving data signals between function-call blocks
 
 Use the Function-Call Feedback Latch block to break a feedback loop of
 data signals between one or more function-call blocks. Specifically, break a feedback
@@ -64,40 +105,3 @@ feedback loops for the following reasons:
   subsystems.
 - The latch block can result in better performance, in terms of memory
   optimization, for generated code.
-
-## Ports
-
-### Input
-
-### **In** — Signal from function-call subsystem block scalar | vector | matrix
-
-Signal from function-call subsystem block.
-
-**Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-### Output
-
-### **Out** — Signal to function-call subsystem scalar | vector | matrix
-
-Signal to function-call subsystem.
-
-**Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
-## Block Characteristics
-
-|  |  |
-| --- | --- |
-| **Data Types** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `integer` | `single` |
-| **Direct Feedthrough** | `no` |
-| **Multidimensional Signals** | `yes` |
-| **Variable-Size Signals** | `no` |
-| **Zero-Crossing Detection** | `no` |
-
-## Extended Capabilities
-
-### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
-
-### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
-
-## Version History
-
-**Introduced in R2011a**

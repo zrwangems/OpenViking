@@ -10,34 +10,6 @@ language: en
 
 # Coulomb and Viscous Friction
 
-Model discontinuity at zero, with linear gain elsewhere
-
-## Libraries
-
-Simulink / Discontinuities HDL Coder / Discontinuities
-
-## Description
-
-The Coulomb and Viscous Friction block models Coulomb (static) and viscous (dynamic)
-friction. The block models a discontinuity at zero and a linear gain otherwise.
-
-The block output matches the MATLAB® result for:
-
-```
-y = sign(x) .* (Gain .* abs(x) + Offset)
-```
-
-where `y` is the output, `x` is
-the input, `Gain` is the signal gain for nonzero
-input values, and `Offset` is the Coulomb friction.
-
-The block accepts one input and generates one output. The input can be a scalar, vector, or matrix with real and complex elements.
-
-- For a scalar input, `Gain` and `Offset` can
-  have dimensions that differ from the input. The output is a scalar,
-  vector, or matrix depending on the dimensions of `Gain` and `Offset`.
-- For a vector or matrix input, `Gain` and `Offset` must be scalar or have the same dimensions as the input. The output is a vector or matrix of the same dimensions as the input.
-
 ## Ports
 
 ### Input
@@ -86,6 +58,10 @@ Specify the signal gain for nonzero input values.
 | **Value**: real values |
 | **Default**: `'1'` |
 
+## Libraries
+
+Simulink / Discontinuities HDL Coder / Discontinuities
+
 ## Block Characteristics
 
 |  |  |
@@ -128,3 +104,27 @@ HDL code generation does not support complex input.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Model discontinuity at zero, with linear gain elsewhere
+
+The Coulomb and Viscous Friction block models Coulomb (static) and viscous (dynamic)
+friction. The block models a discontinuity at zero and a linear gain otherwise.
+
+The block output matches the MATLAB® result for:
+
+```
+y = sign(x) .* (Gain .* abs(x) + Offset)
+```
+
+where `y` is the output, `x` is
+the input, `Gain` is the signal gain for nonzero
+input values, and `Offset` is the Coulomb friction.
+
+The block accepts one input and generates one output. The input can be a scalar, vector, or matrix with real and complex elements.
+
+- For a scalar input, `Gain` and `Offset` can
+  have dimensions that differ from the input. The output is a scalar,
+  vector, or matrix depending on the dimensions of `Gain` and `Offset`.
+- For a vector or matrix input, `Gain` and `Offset` must be scalar or have the same dimensions as the input. The output is a vector or matrix of the same dimensions as the input.

@@ -11,19 +11,6 @@ chinese_source: worker-translation
 
 # Submatrix
 
-
-
-从矩阵输入中选择元素子集（子矩阵）
-
-## 库
-
-Simulink / Matrix Operations
-
-## 描述
-
-Submatrix 模块从 *M*×*N* 输入矩阵 `u` 中提取连续子矩阵 *y*。
-有关选择要提取的行和列的详细信息，请参阅 Range Specification Options。
-
 ## 端口
 
 ### 输入
@@ -202,6 +189,10 @@ Submatrix 模块从 *M*×*N* 输入矩阵 `u` 中提取连续子矩阵 *y*。
 
 要启用此参数，请将 **Ending column** 设置为 `Offset from middle` 或 `Offset from last`。
 
+## 所属库
+
+Simulink / Matrix Operations
+
 ## 模块特性
 
 |  |  |
@@ -227,3 +218,10 @@ Submatrix 模块从 *M*×*N* 输入矩阵 `u` 中提取连续子矩阵 *y*。
 ### R2021b：创建 Submatrix Block 已移动到 Simulink Matrix Operations Library
 
 Submatrix 模块已从 **DSP System Toolbox** > **Math Functions** > **Matrices and Linear Algebra** > **Matrix Operations** 库移动到 **Simulink** > **Matrix Operations** 库。所有现有模型继续正常工作。
+
+## 描述
+
+从矩阵输入中选择元素子集（子矩阵）
+
+Submatrix 模块从 *M*×*N* 输入矩阵 `u` 中提取连续子矩阵 *y*。
+有关选择要提取的行和列的详细信息，请参阅 Range Specification Options。

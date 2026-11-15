@@ -42,13 +42,27 @@ def test_slx_nested_systems_ports_parameters_and_branches():
     assert len(documents) == len(systems)
     assert any(system.inputs for system in systems)
     assert any(system.outputs for system in systems)
-    assert all(path == "index.md" or path.endswith("/index.md") for path in documents)
-    assert all("## 信号逻辑流程图" in content for content in documents.values())
-    assert all("```mermaid" in content for content in documents.values())
+    assert documents["main.md"].startswith("---\ntype: simulink-model\n")
+    assert "xCU/xCU_Output.md" in documents
+    assert "xCU/xCU/main.md" in documents
+    assert not any(path.endswith("/index.md") or path == "index.md" for path in documents)
+    for path, content in documents.items():
+        if path != "main.md":
+            assert content.startswith("---\ntype: simulink-subsystem\n"), path
+        assert [line for line in content.splitlines() if line.startswith("## ")] == [
+            "## 信号流程图",
+            "## 输入",
+            "## 输出",
+            "## 节点",
+        ]
+        assert content.index("## 信号流程图") < content.index("## 输入")
+        assert "## 块知识模板" not in content
+        assert "## 连接表" not in content
+        assert "```mermaid" in content
     assert any("DRL_single" in path for path in documents)
 
     battery = parse_slx(SAMPLE / "Bat" / "Bat.slx")
-    battery_doc = system_documents(battery)["index.md"]
+    battery_doc = system_documents(battery)["main.md"]
     assert "BattTemp" in battery_doc
     assert "BattSoc" in battery_doc
     assert "Bidirectional DC-DC" in battery_doc
@@ -58,26 +72,19 @@ def test_slx_nested_systems_ports_parameters_and_branches():
     assert "464#out:1" in {edge.source for edge in battery.edges}
 
 
-def test_resource_add_inlines_block_library_markdown_directly():
+def test_model_pages_stay_compact_and_keep_instance_parameters():
     documents = system_documents(parse_slx(SAMPLE / "DRLHevIps.slx"), language="zh-CN")
-    power = next(
-        content
-        for path, content in documents.items()
-        if path.endswith("Mech_to_Elec_Power_Estimate/index.md")
-    )
-    assert "## 块知识模板" in power
-    assert "### n-D Lookup Table" in power
-    assert "逼近 N 维函数" in power
-    assert "#### 端口" in power
-    assert "#### 参数说明" in power
+    power_path = next(path for path in documents if path.endswith("Mech_to_Elec_Power_Estimate.md"))
+    power = documents[power_path]
+    assert "Lookup_n-D" in power
     assert "BreakpointsForDimension1" in power
-    assert "https://" not in power
-    # The instance value is not overwritten by the generic template.
     assert "`Table` = `MotMapEff'`" in power
+    assert "逼近 N 维函数" not in power
+    assert len(power) < 10_000
 
-    battery = system_documents(parse_slx(SAMPLE / "Bat" / "Bat.slx"))["index.md"]
-    assert "### Constant" in battery
-    assert "### Datasheet Battery" not in battery
+    battery = system_documents(parse_slx(SAMPLE / "Bat" / "Bat.slx"))["main.md"]
+    assert "Constant" in battery
+    assert "Datasheet Battery" in battery
 
 
 def test_slx_deduplicates_colliding_directory_names():
@@ -199,9 +206,10 @@ def test_mat_shapes_struct_fields_and_m_source():
     assert rows[-1][:2] == ["1800", "2"]
     assert not warnings
 
-    opaque, _ = parse_mat(SAMPLE / "Result" / "DRLEMSagent.mat")
-    assert "DRLEMSagent" in opaque
-    assert "MATLAB opaque 对象" in opaque
+    agent, _ = parse_mat(SAMPLE / "Result" / "DRLEMSagent.mat")
+    assert "DRLEMSagent" in agent
+    assert "struct fields: _TypeSystem, _Class, _ObjectMetadata" in agent
+    assert "DRLEMSagent[1]._ObjectMetadata" in agent
 
     source = parse_m_file(SAMPLE / "Eng" / "Eng_param_Handle.m")
     assert "type: matlab-code" in source
@@ -214,7 +222,12 @@ async def test_builtin_parser_writes_real_nested_artifact(tmp_path):
     parser = MatlabParser()
     result = await parser.parse(SAMPLE / "DRLHevIps.slx", parse_output_store=store)
     root = Path(result.artifact_ref.root)
-    docs = list(root.rglob("index.md"))
+    docs = [
+        path
+        for path in root.rglob("*.md")
+        if "type: simulink-model" in path.read_text(encoding="utf-8")
+        or "type: simulink-subsystem" in path.read_text(encoding="utf-8")
+    ]
 
     assert result.meta["system_count"] == 65
     assert result.meta["block_count"] > 1000
@@ -222,8 +235,17 @@ async def test_builtin_parser_writes_real_nested_artifact(tmp_path):
     assert result.meta["stateflow_state_count"] == 37
     assert result.meta["stateflow_transition_count"] == 40
     assert len(docs) == 65
-    timer = next(root.rglob("Timer/stateflow_988.md"))
+    model_root = root / "DRLHevIps"
+    assert (model_root / "main.md").is_file()
+    assert (model_root / "xCU" / "xCU_Output.md").is_file()
+    assert not (model_root / "xCU" / "xCU_Output").exists()
+    timer = model_root / "stateflow" / "chart_988.md"
     assert "after(0.1, sec)" in timer.read_text(encoding="utf-8")
+    # Read the persisted artifact back and verify every generated relative link.
+    for document in docs:
+        content = document.read_text(encoding="utf-8")
+        for link in re.findall(r"\]\(([^)]+\.md)\)", content):
+            assert (document.parent / link).resolve().is_file(), (document, link)
     assert (root / ".artifact_manifest.json").is_file()
     assert result.parser_name == "MatlabParser"
     assert not (root / "DRLHevIps" / "DRLHevIps.slx").exists()
@@ -246,9 +268,19 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     root = Path(result.artifact_ref.root)
 
     assert result.warnings == []
-    assert len(list(root.rglob("index.md"))) == 86
-    power = next(root.rglob("Mech_to_Elec_Power_Estimate/index.md")).read_text(encoding="utf-8")
-    assert "逼近 N 维函数" in power
+    system_pages = [
+        path
+        for path in root.rglob("*.md")
+        if "type: simulink-model" in path.read_text(encoding="utf-8")
+        or "type: simulink-subsystem" in path.read_text(encoding="utf-8")
+    ]
+    assert len(system_pages) == 85
+    assert not any(
+        path.name == "index.md" and "simulink-" in path.read_text(encoding="utf-8")
+        for path in system_pages
+    )
+    power = next(root.rglob("Mech_to_Elec_Power_Estimate.md")).read_text(encoding="utf-8")
+    assert "逼近 N 维函数" not in power
     assert "Output absolute value of input" not in power
     assert (root / "DRLHevIps5_4" / "DriveCycle" / "WLTC.mat.md").is_file()
     assert (root / "DRLHevIps5_4" / "RunSACEMS.mlx.md").is_file()
@@ -326,8 +358,7 @@ def test_scraped_block_knowledge_is_local_and_complete():
     assert len(documents) == len(chinese_documents) == 341
     assert len({path.parent.name for path in documents}) == 20
     assert not any(
-        "https://" in path.read_text(encoding="utf-8")
-        for path in [*documents, *chinese_documents]
+        "https://" in path.read_text(encoding="utf-8") for path in [*documents, *chinese_documents]
     )
     manifest = json.loads(
         (
@@ -352,7 +383,28 @@ def test_scraped_block_knowledge_is_local_and_complete():
         assert "## 中文" not in text
         assert "language: zh-CN" in chinese_text
         assert re.search(r"[\u4e00-\u9fff]", chinese_text)
-        assert "## Description" in text or "## Ports" in text or "## Parameters" in text
+        expected = [
+            "## Ports",
+            "## Parameters",
+            "## Libraries",
+            "## Block Characteristics",
+            "## Extended Capabilities",
+            "## Version History",
+            "## Description",
+        ]
+        assert [line for line in text.splitlines() if line.startswith("## ")] == expected
+        chinese_expected = [
+            "## 端口",
+            "## 参数",
+            "## 所属库",
+            "## 模块特性",
+            "## 扩展功能",
+            "## 版本历史",
+            "## 描述",
+        ]
+        assert [
+            line for line in chinese_text.splitlines() if line.startswith("## ")
+        ] == chinese_expected
 
     logical = (english / "logic-and-bit-operations" / "logical-operator.md").read_text(
         encoding="utf-8"
@@ -393,11 +445,10 @@ def test_real_simscape_model_preserves_conserving_network_semantics():
     model = parse_slx(path)
     assert len(model.edges) == 8
     assert all(edge.kind == "physical-conserving" for edge in model.edges)
-    document = system_documents(model)["index.md"]
-    assert "守恒网络连接（无输入输出方向）" in document
-    assert "rconn:1 ↔ lconn:1" in document
+    document = system_documents(model)["main.md"]
+    assert "---|rconn:1 ↔ lconn:1|" in document
     assert not any("conn:" in line and "-->" in line for line in document.splitlines())
-    assert "## 模型引用与外部依赖" in document
+    assert "## 节点" in document
     assert "SimscapeComponentBlock" in document
 
 
@@ -437,14 +488,15 @@ def test_subsystem_types_controls_variant_choices_and_physical_ports(tmp_path):
     assert model.subsystem_types == ["subsystem"]
     assert model.children[0].subsystem_types == ["enabled", "triggered"]
     assert model.children[1].subsystem_types == ["variant"]
-    root = documents["index.md"]
-    assert "## 全模型子系统类型索引" in root
-    assert "StatesWhenEnabling" in documents["Enabled/index.md"]
-    assert "VariantControlMode" in documents["Variants/index.md"]
-    assert "VariantControl=`V == 1`" in documents["Variants/index.md"]
-    assert "| Electrical + | conserving | Left | electrical | 3 |" in root
-    assert "| Torque | conserving | Right | 未声明 | 5 |" in root
-    assert "守恒网络连接（无输入输出方向）" in root
+    root = documents["main.md"]
+    assert "type: simulink-model" in root
+    assert "StatesWhenEnabling" in documents["Enabled.md"]
+    assert "VariantControlMode" in documents["Variants/main.md"]
+    assert "VariantControl` = `V == 1" in documents["Variants/main.md"]
+    assert "| Electrical + | ConnectionPort | 3 |" in root
+    assert "Domain` = `electrical" in root
+    assert "| Torque | PMIOPort | 5 |" in root
+    assert "bidirectional / conserving" in root
 
 
 def test_additional_formats_text_containers_and_opaque_originals(tmp_path):

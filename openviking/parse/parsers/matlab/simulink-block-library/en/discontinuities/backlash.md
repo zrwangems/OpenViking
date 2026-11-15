@@ -10,61 +10,6 @@ language: en
 
 # Backlash
 
-Model behavior of system with play
-
-## Libraries
-
-Simulink / Discontinuities HDL Coder / Discontinuities
-
-## Description
-
-The Backlash block implements a system in which a change in input causes an equal
-change in output, except when the input changes direction. When the input changes
-direction, the initial change in input has no effect on the output. The amount of
-side-to-side play in the system is referred to as the *deadband*. The
-deadband is centered about the output. This figure shows an initial state, with the
-default deadband width of 1 and initial output of 0.
-
-A system with play can be in one of three modes.
-
-| Mode | Input | Output |
-| --- | --- | --- |
-| Disengaged | Inside deadband zone. | Remains constant. |
-| Engaged-positive direction | Outside deadband zone and increasing. | Equals input *minus* half of deadband width. |
-| Engaged-negative direction | Outside deadband zone and decreasing. | Equals input *plus* half of deadband width. |
-
-The **Initial output** parameter value defines the
-initial center of the deadband zone.
-
-This table shows output values when initial conditions are: **Deadband
-width** = `2` and **Initial output** =
-`5`.
-
-| Output Value | Condition |
-| --- | --- |
-| 5 | 4 <= input <= 6 |
-| input + 1 | input < 4 |
-| input - 1 | input > 6 |
-
-For example, you can use the Backlash block to model the meshing of two gears. The
-input and output are both shafts with a gear on one end, and the input shaft drives the
-output shaft. Extra space between the gear teeth introduces *play*.
-The width of this spacing is the **Deadband width**
-parameter. If the system is disengaged initially, the **Initial
-output** parameter defines the output.
-
-These figures illustrate operation when the initial input is within the deadband and
-the system begins in disengaged mode.
-
-When the input increases and reaches the end of the deadband, it engages the output.
-The output remains at its previous value.
-
-After the input engages the output, the output changes by the same amount as the
-input.
-
-If the input reverses direction, it disengages from the output. The output remains
-constant until the input reaches the end of the deadband and engages again.
-
 ## Ports
 
 ### Input
@@ -168,6 +113,10 @@ does not detect or locate zero crossings for this block.
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'on'` |
 
+## Libraries
+
+Simulink / Discontinuities HDL Coder / Discontinuities
+
 ## Block Characteristics
 
 |  |  |
@@ -210,3 +159,54 @@ output** parameters support only scalar values.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Model behavior of system with play
+
+The Backlash block implements a system in which a change in input causes an equal
+change in output, except when the input changes direction. When the input changes
+direction, the initial change in input has no effect on the output. The amount of
+side-to-side play in the system is referred to as the *deadband*. The
+deadband is centered about the output. This figure shows an initial state, with the
+default deadband width of 1 and initial output of 0.
+
+A system with play can be in one of three modes.
+
+| Mode | Input | Output |
+| --- | --- | --- |
+| Disengaged | Inside deadband zone. | Remains constant. |
+| Engaged-positive direction | Outside deadband zone and increasing. | Equals input *minus* half of deadband width. |
+| Engaged-negative direction | Outside deadband zone and decreasing. | Equals input *plus* half of deadband width. |
+
+The **Initial output** parameter value defines the
+initial center of the deadband zone.
+
+This table shows output values when initial conditions are: **Deadband
+width** = `2` and **Initial output** =
+`5`.
+
+| Output Value | Condition |
+| --- | --- |
+| 5 | 4 <= input <= 6 |
+| input + 1 | input < 4 |
+| input - 1 | input > 6 |
+
+For example, you can use the Backlash block to model the meshing of two gears. The
+input and output are both shafts with a gear on one end, and the input shaft drives the
+output shaft. Extra space between the gear teeth introduces *play*.
+The width of this spacing is the **Deadband width**
+parameter. If the system is disengaged initially, the **Initial
+output** parameter defines the output.
+
+These figures illustrate operation when the initial input is within the deadband and
+the system begins in disengaged mode.
+
+When the input increases and reaches the end of the deadband, it engages the output.
+The output remains at its previous value.
+
+After the input engages the output, the output changes by the same amount as the
+input.
+
+If the input reverses direction, it disengages from the output. The output remains
+constant until the input reaches the end of the deadband and engages again.

@@ -10,42 +10,9 @@ language: en
 
 # MultiStateImage
 
-Display image reflecting input value
+## Ports
 
-## Libraries
-
-Simulink / Dashboard
-
-## Description
-
-The MultiStateImage block displays an image to indicate the value of
-the input signal. You can use the MultiStateImage block with other
-Dashboard blocks to build an interactive dashboard of controls and indicators for your
-model. You can specify pairs of input values and images to provide the information you
-want during simulation.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
-use connect mode. To enter connect mode on an unconnected block, pause on the block you want
-to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a display block to a signal in your model or change the connection of a display
-block, enter connect mode. Select the signal line to which you want to connect. From the
-list that appears, select the signal to which you want to connect. Then, pause on the
-dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
-connected block, run the simulation.
-
-For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-This animation shows how to connect the MultiStateImage block to
-your model.
-
-An unconnected MultiStateImage block connects to the signal that a Pulse Generator block sends to a Display block.
+Not documented in R2025b.
 
 ## Parameters
 
@@ -191,6 +158,10 @@ model, the label is the name of the connected element.
 | **Values:** `'Top'` | `'Bottom'` | `'Hide'` |
 | **Default:** `'Top'` |
 
+## Libraries
+
+Simulink / Dashboard
+
 ## Block Characteristics
 
 |  |  |
@@ -210,3 +181,36 @@ Dashboard blocks are ignored for code generation.
 ## Version History
 
 **Introduced in R2016b**
+
+## Description
+
+Display image reflecting input value
+
+The MultiStateImage block displays an image to indicate the value of
+the input signal. You can use the MultiStateImage block with other
+Dashboard blocks to build an interactive dashboard of controls and indicators for your
+model. You can specify pairs of input values and images to provide the information you
+want during simulation.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
+use connect mode. To enter connect mode on an unconnected block, pause on the block you want
+to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a display block to a signal in your model or change the connection of a display
+block, enter connect mode. Select the signal line to which you want to connect. From the
+list that appears, select the signal to which you want to connect. Then, pause on the
+dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
+connected block, run the simulation.
+
+For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+This animation shows how to connect the MultiStateImage block to
+your model.
+
+An unconnected MultiStateImage block connects to the signal that a Pulse Generator block sends to a Display block.

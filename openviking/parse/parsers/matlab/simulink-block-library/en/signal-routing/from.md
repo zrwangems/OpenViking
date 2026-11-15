@@ -10,56 +10,6 @@ language: en
 
 # From
 
-Accept input from Goto block
-
-## Libraries
-
-Simulink / Signal Routing HDL Coder / Signal Routing
-
-## Description
-
-The From block accepts a signal from a corresponding Goto
-block, then passes it as output. The data type of the output is the same as that of the
-input from the Goto block. From and Goto
-blocks allow you to pass a signal from one block to another without actually connecting
-them.
-
-For example, this model uses a Goto block and a From
-block.
-
-A Sine Wave block connects to a Goto block. The corresponding From block connects to a Gain block.
-
-An equivalent model passes the Sine Wave block signal directly to the
-Gain block.
-
-The Sine Wave block connects directly to the Gain block.
-
-A From block can receive its signal from only one Goto
-block, although a Goto block can pass its signal to more than one
-From block.
-
-To associate a Goto block with a From block, enter the
-Goto block tag in the **Goto Tag**
-parameter.
-
-The visibility of a Goto block tag determines the From blocks
-that can receive its signal. For more information, see Goto and Goto Tag Visibility. The block indicates
-the visibility of the Goto block tag:
-
-- A local tag name is enclosed in brackets (`[]`).
-- A scoped tag name is enclosed in braces (`{}`).
-- A global tag name appears without additional characters.
-
-The From block supports signal label propagation. For more information, see
-Signal Label Propagation.
-
-You can simplify your model diagrams by replacing lengthy signal lines with sets of
-connected Goto and From blocks. However, when you want to
-trace a signal path, it can be useful to see the signal lines. You can convert signal
-lines and virtual buses to Goto and From block sets, and
-you can convert Goto and From block sets to signal lines.
-For more information, see Convert Signal Lines to Goto and From Blocks and Vice Versa.
-
 ## Ports
 
 ### Output
@@ -165,6 +115,10 @@ or both the tag and the signal name.
 | **Values:** `'Signal name' | 'Tag' | 'Tag and signal name'` |
 | **Default:** `'Tag'` |
 
+## Libraries
+
+Simulink / Signal Routing HDL Coder / Signal Routing
+
 ## Block Characteristics
 
 |  |  |
@@ -209,4 +163,50 @@ You can convert signal lines and virtual buses to sets of connected
 Goto and From blocks, and you can convert
 Goto and From block sets to signal lines.
 
+For more information, see Convert Signal Lines to Goto and From Blocks and Vice Versa.
+
+## Description
+
+Accept input from Goto block
+
+The From block accepts a signal from a corresponding Goto
+block, then passes it as output. The data type of the output is the same as that of the
+input from the Goto block. From and Goto
+blocks allow you to pass a signal from one block to another without actually connecting
+them.
+
+For example, this model uses a Goto block and a From
+block.
+
+A Sine Wave block connects to a Goto block. The corresponding From block connects to a Gain block.
+
+An equivalent model passes the Sine Wave block signal directly to the
+Gain block.
+
+The Sine Wave block connects directly to the Gain block.
+
+A From block can receive its signal from only one Goto
+block, although a Goto block can pass its signal to more than one
+From block.
+
+To associate a Goto block with a From block, enter the
+Goto block tag in the **Goto Tag**
+parameter.
+
+The visibility of a Goto block tag determines the From blocks
+that can receive its signal. For more information, see Goto and Goto Tag Visibility. The block indicates
+the visibility of the Goto block tag:
+
+- A local tag name is enclosed in brackets (`[]`).
+- A scoped tag name is enclosed in braces (`{}`).
+- A global tag name appears without additional characters.
+
+The From block supports signal label propagation. For more information, see
+Signal Label Propagation.
+
+You can simplify your model diagrams by replacing lengthy signal lines with sets of
+connected Goto and From blocks. However, when you want to
+trace a signal path, it can be useful to see the signal lines. You can convert signal
+lines and virtual buses to Goto and From block sets, and
+you can convert Goto and From block sets to signal lines.
 For more information, see Convert Signal Lines to Goto and From Blocks and Vice Versa.

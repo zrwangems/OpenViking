@@ -11,18 +11,6 @@ chinese_source: worker-translation
 
 # Decrement Time To Zero
 
-
-
-将信号的实际值按采样时间递减，但仅递减到零
-
-## 库
-
-Simulink / Additional Math & Discrete / Additional Math: Increment - Decrement
-
-## 描述
-
-Decrement Time To Zero 模块将信号的实际值减去采样时间 `Ts`。输出永远不会低于零。
-
 ## 端口
 
 ### 输入
@@ -40,6 +28,14 @@ Decrement Time To Zero 模块将信号的实际值减去采样时间 `Ts`。输�
 输出是输入信号的实际值减去采样时间 `Ts` 后的结果。输出永远不会低于零。输出与输入具有相同的数据类型和维度。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+
+## 参数
+
+R2025b 官方文档未提供。
+
+## 所属库
+
+Simulink / Additional Math & Discrete / Additional Math: Increment - Decrement
 
 ## 模块特性
 
@@ -60,3 +56,9 @@ Decrement Time To Zero 模块将信号的实际值减去采样时间 `Ts`。输�
 ## 版本历史
 
 **在 R2006a 之前引入**
+
+## 描述
+
+将信号的实际值按采样时间递减，但仅递减到零
+
+Decrement Time To Zero 模块将信号的实际值减去采样时间 `Ts`。输出永远不会低于零。

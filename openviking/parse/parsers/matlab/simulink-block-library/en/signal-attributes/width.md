@@ -10,20 +10,6 @@ language: en
 
 # Width
 
-Output width of input vector
-
-## Libraries
-
-Simulink / Signal Attributes
-
-## Description
-
-The Width block generates as output the width of its input
-vector.
-
-You can use an array of buses as an input signal to a Width block. For
-details about defining and using an array of buses, see Group Nonvirtual Buses in Arrays of Buses.
-
 ## Ports
 
 ### Input
@@ -89,6 +75,10 @@ the sample time, clear this check box.
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'on'` |
 
+## Libraries
+
+Simulink / Signal Attributes
+
 ## Block Characteristics
 
 |  |  |
@@ -116,3 +106,13 @@ The Width block has these changes:
 - Support for symbolic dimensions.
 - New parameter, **Always use constant sample
   time**.
+
+## Description
+
+Output width of input vector
+
+The Width block generates as output the width of its input
+vector.
+
+You can use an array of buses as an input signal to a Width block. For
+details about defining and using an array of buses, see Group Nonvirtual Buses in Arrays of Buses.

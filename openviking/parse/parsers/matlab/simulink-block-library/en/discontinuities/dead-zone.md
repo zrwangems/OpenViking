@@ -10,27 +10,6 @@ language: en
 
 # Dead Zone
 
-Provide region of zero output
-
-## Libraries
-
-Simulink / Discontinuities HDL Coder / Discontinuities
-
-## Description
-
-The Dead Zone block generates zero output within a specified region,
-called its dead zone. You specify the lower limit (`LL`) and upper
-limit (`UL`) of the dead zone as the **Start of dead
-zone** and **End of dead zone** parameters. The block
-output depends on the input (`U`) and the values for the lower and
-upper limits.
-
-| Input | Output |
-| --- | --- |
-| `U >= LL` and `U <= UL` | Zero |
-| `U > UL` | `U` – `UL` |
-| `U < LL` | `U` – `LL` |
-
 ## Ports
 
 ### Input
@@ -178,6 +157,10 @@ the `set_param` function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
 
+## Libraries
+
+Simulink / Discontinuities HDL Coder / Discontinuities
+
 ## Block Characteristics
 
 |  |  |
@@ -214,3 +197,20 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Provide region of zero output
+
+The Dead Zone block generates zero output within a specified region,
+called its dead zone. You specify the lower limit (`LL`) and upper
+limit (`UL`) of the dead zone as the **Start of dead
+zone** and **End of dead zone** parameters. The block
+output depends on the input (`U`) and the values for the lower and
+upper limits.
+
+| Input | Output |
+| --- | --- |
+| `U >= LL` and `U <= UL` | Zero |
+| `U > UL` | `U` – `UL` |
+| `U < LL` | `U` – `LL` |

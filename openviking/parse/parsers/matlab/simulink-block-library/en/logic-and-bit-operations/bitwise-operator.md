@@ -10,26 +10,6 @@ language: en
 
 # Bitwise Operator
 
-Specified bitwise operation on inputs
-
-## Libraries
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
-## Description
-
-The Bitwise Operator block performs the bitwise operation that you
-specify on one or more operands. Unlike logic operations of the Logical Operator block, bitwise
-operations treat the operands as a vector of bits rather than a single value.
-
-### Restrictions on Block Operations
-
-The Bitwise Operator block does not support shift operations. For
-shift operations, use the Shift Arithmetic block.
-
-When configured as a multi-input XOR gate, this block performs modulo-2 addition
-according to the IEEE® Standard for Logic Elements.
-
 ## Ports
 
 ### Input
@@ -190,6 +170,10 @@ mask**.
 | **Values**: `'Real World Value'` | `'Stored Integer'` |
 | **Default**: `'Stored Integer'` |
 
+## Libraries
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -231,3 +215,19 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Specified bitwise operation on inputs
+
+The Bitwise Operator block performs the bitwise operation that you
+specify on one or more operands. Unlike logic operations of the Logical Operator block, bitwise
+operations treat the operands as a vector of bits rather than a single value.
+
+### Restrictions on Block Operations
+
+The Bitwise Operator block does not support shift operations. For
+shift operations, use the Shift Arithmetic block.
+
+When configured as a multi-input XOR gate, this block performs modulo-2 addition
+according to the IEEE® Standard for Logic Elements.

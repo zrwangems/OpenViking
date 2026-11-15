@@ -11,20 +11,6 @@ chinese_source: official
 
 # C Caller
 
-在 Simulink 中集成 C 代码
-
-## 所属库
-
-Simulink / User-Defined Functions
-
-## 描述
-
-C Caller 模块将您的外部 C 代码集成到 Simulink® 中。此模块导入并列出您的外部 C 代码中的函数，并使您能够选择已解析的 C 函数以集成到您的 Simulink 模型中。C Caller 模块独立支持代码生成。对于更复杂的模型，代码生成取决于您的 Simulink 模型的能力。
-
-要使用 C Caller 模块，请使用**配置参数**下的**仿真目标**定义您的源代码和任何支持文件。然后，使用**库浏览器** > **Simulink** > **用户定义函数**将 C Caller 模块置于 Simulink 画布上。要更改定义的源代码文件及其依赖关系，请通过点击模块对话框中的 Configure custom code settings button. 转至**配置参数**中的**仿真目标**选项卡。在更改源代码或任何依赖关系后，请通过点击模块对话框上的 Refresh custom code button. 刷新函数列表。要浏览源代码中的函数定义，请使用 Go to function button. 图标访问您的源文件。
-
-您可以使用 `addGlobalArg` 函数将自定义代码中的全局变量作为全局参量添加到模块，或使用 `deleteGlobalArg` 函数从模块中删除全局参量。 *(自 R2024b 起)*
-
 ## 端口
 
 ### 输入
@@ -135,6 +121,10 @@ allAvailableFunctions =
 | **类型**：字符串标量或字符向量 |
 | **默认值**：`"-1"` |
 
+## 所属库
+
+Simulink / User-Defined Functions
+
 ## 模块特性
 
 |  |  |
@@ -156,7 +146,7 @@ allAvailableFunctions =
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2018b 中推出**
 
@@ -164,3 +154,13 @@ allAvailableFunctions =
 
 - 当模块调用使用字符指针 (`char*`) 或字符数组 (`char[]`) 作为输入或输出数据类型的 C 函数时，现在模块在其端口接受 Simulink 字符串。
 - 您现在可以使用命令行 API 手动将自定义代码中的全局变量作为全局参量添加到模块，或从模块中删除现有全局参量。此增强功能使您能够更直接地控制由模块调用的自定义代码中全局变量的行为。
+
+## 描述
+
+在 Simulink 中集成 C 代码
+
+C Caller 模块将您的外部 C 代码集成到 Simulink® 中。此模块导入并列出您的外部 C 代码中的函数，并使您能够选择已解析的 C 函数以集成到您的 Simulink 模型中。C Caller 模块独立支持代码生成。对于更复杂的模型，代码生成取决于您的 Simulink 模型的能力。
+
+要使用 C Caller 模块，请使用**配置参数**下的**仿真目标**定义您的源代码和任何支持文件。然后，使用**库浏览器** > **Simulink** > **用户定义函数**将 C Caller 模块置于 Simulink 画布上。要更改定义的源代码文件及其依赖关系，请通过点击模块对话框中的 Configure custom code settings button. 转至**配置参数**中的**仿真目标**选项卡。在更改源代码或任何依赖关系后，请通过点击模块对话框上的 Refresh custom code button. 刷新函数列表。要浏览源代码中的函数定义，请使用 Go to function button. 图标访问您的源文件。
+
+您可以使用 `addGlobalArg` 函数将自定义代码中的全局变量作为全局参量添加到模块，或使用 `deleteGlobalArg` 函数从模块中删除全局参量。 *(自 R2024b 起)*

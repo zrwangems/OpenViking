@@ -10,61 +10,6 @@ language: en
 
 # Environment Controller
 
-(Removed) Create branches of block diagram that apply only to simulation or only to code generation
-
-## Libraries
-
-Simulink / Signal Routing
-
-## Description
-
-The Environment Controller block outputs the signal at its
-**Sim** port only if the model that contains it is being simulated.
-It outputs the signal at its **Coder** port only if code is being
-generated from the model. This option enables you to create branches of a block diagram
-that apply only to simulation or code generation. This table describes various scenarios
-where either the **Sim** or **Coder** port
-applies.
-
-| Scenario | Output |
-| --- | --- |
-| Normal mode simulation | **Sim** |
-| Accelerator mode simulation | **Sim** |
-| Rapid accelerator mode simulation | **Sim** |
-| Simulation of a referenced model in normal or accelerator modes | **Sim** |
-| Simulation of a referenced model in processor-in-the-loop (PIL) mode | **Coder**  (uses the same code generated for a referenced model) |
-| External mode simulation | **Coder** |
-| Standard code generation | **Coder** |
-| Code generation of a referenced model | **Coder** |
-
-Simulink®
-Coder™ software does not generate code for blocks connected to the
-**Sim** port if these conditions hold:
-
-- On the **Code Generation > Optimization** pane of the
-  Configuration Parameters dialog box, you set **Default parameter
-  behavior** to `Inlined`.
-- The blocks connected to the **Sim** port do not have external
-  signals.
-- The **Sim** port input path does not contain an S-function or
-  an Interpreted MATLAB Function block.
-
-If you enable block reduction optimization, Simulink eliminates blocks in the branch connected to the
-**Coder** port when compiling the model for simulation. For more
-information, see Block reduction.
-
-**Note**
-
-Simulink
-Coder code generation eliminates the blocks connected to the simulation
-branch only if the simulation branch has the same signal dimensions as the code
-generation branch. Regardless of whether it eliminates the simulation branch,
-Simulink
-Coder uses the sample times on the simulation branch as well as the code
-generation branch to determine the fundamental sample time of the generated code and
-might, in some cases, generate sample-time handling code that applies only to sample
-times specified on the simulation branch.
-
 ## Ports
 
 ### Input
@@ -94,6 +39,14 @@ on what the block outputs in various simulation and code generation
 modes, see Description.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+
+## Parameters
+
+Not documented in R2025b.
+
+## Libraries
+
+Simulink / Signal Routing
 
 ## Block Characteristics
 
@@ -172,3 +125,54 @@ Controller block:
     Configuration Analysis tool.
 
   For more information, see Variant Manager for Simulink.
+
+## Description
+
+(Removed) Create branches of block diagram that apply only to simulation or only to code generation
+
+The Environment Controller block outputs the signal at its
+**Sim** port only if the model that contains it is being simulated.
+It outputs the signal at its **Coder** port only if code is being
+generated from the model. This option enables you to create branches of a block diagram
+that apply only to simulation or code generation. This table describes various scenarios
+where either the **Sim** or **Coder** port
+applies.
+
+| Scenario | Output |
+| --- | --- |
+| Normal mode simulation | **Sim** |
+| Accelerator mode simulation | **Sim** |
+| Rapid accelerator mode simulation | **Sim** |
+| Simulation of a referenced model in normal or accelerator modes | **Sim** |
+| Simulation of a referenced model in processor-in-the-loop (PIL) mode | **Coder**  (uses the same code generated for a referenced model) |
+| External mode simulation | **Coder** |
+| Standard code generation | **Coder** |
+| Code generation of a referenced model | **Coder** |
+
+Simulink®
+Coder™ software does not generate code for blocks connected to the
+**Sim** port if these conditions hold:
+
+- On the **Code Generation > Optimization** pane of the
+  Configuration Parameters dialog box, you set **Default parameter
+  behavior** to `Inlined`.
+- The blocks connected to the **Sim** port do not have external
+  signals.
+- The **Sim** port input path does not contain an S-function or
+  an Interpreted MATLAB Function block.
+
+If you enable block reduction optimization, Simulink eliminates blocks in the branch connected to the
+**Coder** port when compiling the model for simulation. For more
+information, see Block reduction.
+
+**Note**
+
+Simulink
+Coder code generation eliminates the blocks connected to the simulation
+branch only if the simulation branch has the same signal dimensions as the code
+generation branch. Regardless of whether it eliminates the simulation branch,
+Simulink
+Coder uses the sample times on the simulation branch as well as the code
+generation branch to determine the fundamental sample time of the generated code and
+might, in some cases, generate sample-time handling code that applies only to sample
+times specified on the simulation branch.

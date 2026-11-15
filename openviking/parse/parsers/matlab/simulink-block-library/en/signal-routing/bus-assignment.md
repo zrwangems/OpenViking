@@ -10,36 +10,6 @@ language: en
 
 # Bus Assignment
 
-Assign new values to specified bus elements
-
-## Libraries
-
-Simulink / Signal Routing HDL Coder / Signal Routing
-
-## Description
-
-The Bus Assignment block assigns new values to selected bus elements. Use a
-Bus Assignment block to change element values without extracting
-elements and reassembling the bus with the desired elements. A Bus
-Assignment block simplifies updating a bus to reflect the processing that
-occurs in a separate component, such as a subsystem or referenced model.
-
-The Bus Assignment block assigns elements connected to the assignment ports
-to specified elements of the bus connected to the bus input port. The block replaces the
-elements previously assigned to those elements. The change does not affect the
-composition of the bus. The change affects only the values of the elements. Elements not
-replaced are unaffected by the replacement of other elements.
-
-The elements to which you assign values can be nonbus signals or buses, including arrays of
-buses, as long as they are elements of the input bus. The new values must match the attributes
-of the elements in the original bus.
-
-By default, the software repairs broken selections for a Bus Assignment block
-that are due to upstream bus hierarchy changes. A warning notifies you when a repair modifies
-the model. To prevent the software from making these repairs automatically, set the
-**Repair bus selections** configuration
-parameter to `Error without repair`.
-
 ## Ports
 
 ### Input
@@ -179,6 +149,10 @@ the `set_param` function.
 
 **Example:** `set_param(gcb,'AssignedSignals','sine,chirp')`
 
+## Libraries
+
+Simulink / Signal Routing HDL Coder / Signal Routing
+
 ## Block Characteristics
 
 |  |  |
@@ -239,3 +213,29 @@ Actual data type or capability support depends on block implementation.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Assign new values to specified bus elements
+
+The Bus Assignment block assigns new values to selected bus elements. Use a
+Bus Assignment block to change element values without extracting
+elements and reassembling the bus with the desired elements. A Bus
+Assignment block simplifies updating a bus to reflect the processing that
+occurs in a separate component, such as a subsystem or referenced model.
+
+The Bus Assignment block assigns elements connected to the assignment ports
+to specified elements of the bus connected to the bus input port. The block replaces the
+elements previously assigned to those elements. The change does not affect the
+composition of the bus. The change affects only the values of the elements. Elements not
+replaced are unaffected by the replacement of other elements.
+
+The elements to which you assign values can be nonbus signals or buses, including arrays of
+buses, as long as they are elements of the input bus. The new values must match the attributes
+of the elements in the original bus.
+
+By default, the software repairs broken selections for a Bus Assignment block
+that are due to upstream bus hierarchy changes. A warning notifies you when a repair modifies
+the model. To prevent the software from making these repairs automatically, set the
+**Repair bus selections** configuration
+parameter to `Error without repair`.

@@ -11,19 +11,9 @@ chinese_source: worker-translation
 
 # Unit System Configuration
 
+## 端口
 
-
-将单位限制为指定的允许单位系统
-
-## 库
-
-Simulink / Ports & Subsystems
-
-## 说明
-
-Unit System Configuration 模块为组件指定允许和不允许的单位系统。它限制某个子系统或顶层模型及其所有子级的单位系统，除非在子级中用另一个 Unit System Configuration 模块覆盖它。
-
-此模块支持普通、加速和快速加速模式以及快速重启。
+R2025b 官方文档未提供。
 
 ## 参数
 
@@ -73,6 +63,10 @@ Unit System Configuration 模块为组件指定允许和不允许的单位系统
 | **值：** `'on' | 'off'` |
 | **默认：** `'on'` |
 
+## 所属库
+
+Simulink / Ports & Subsystems
+
 ## 模块特性
 
 |  |  |
@@ -92,3 +86,11 @@ Unit System Configuration 模块为组件指定允许和不允许的单位系统
 ## 版本历史
 
 **在 R2016a 中引入**
+
+## 描述
+
+将单位限制为指定的允许单位系统
+
+Unit System Configuration 模块为组件指定允许和不允许的单位系统。它限制某个子系统或顶层模型及其所有子级的单位系统，除非在子级中用另一个 Unit System Configuration 模块覆盖它。
+
+此模块支持普通、加速和快速加速模式以及快速重启。

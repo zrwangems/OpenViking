@@ -11,23 +11,6 @@ chinese_source: worker-translation
 
 # Bit to Integer Converter
 
-
-
-将位向量映射为对应的整数向量
-
-## 库
-
-Simulink / Logic and Bit Operations Communications Toolbox / Utility Blocks HDL Coder / Logic and Bit Operations
-
-## 描述
-
-Bit to Integer Converter 模块将输入向量中的位组映射为输出向量中的整数。
-
-如果 *M* 由 **每个整数的位数(M)** 参数指定：
-
-- 对于无符号整数，该模块将每组 *M* 位映射为范围 [0, (2*M* – 1)] 内的整数。因此，输出向量长度是输入向量长度的 1/*M* 倍。
-- 对于有符号整数，该模块将每组 *M* 位映射为范围 [(–2*M*-1), (2*M* – 1 – 1)] 内的整数。
-
 ## 端口
 
 ### 输入
@@ -134,6 +117,10 @@ Bit to Integer Converter 模块将输入向量中的位组映射为输出向量�
 | **值**: `'Inherit via internal rule'` | `'Smallest integer'` | `'Same as input'` | `'double'` | `'single'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` |
 | **默认值**: `'Inherit via internal rule'` |
 
+## 所属库
+
+Simulink / Logic and Bit Operations Communications Toolbox / Utility Blocks HDL Coder / Logic and Bit Operations
+
 ## 模块特性
 
 |  |  |
@@ -204,3 +191,14 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的附加配置选项。
 ### R2022a：Bit to Integer Converter 模块已添加至 Simulink Logic and Bit Operations 库
 
 Bit to Integer Converter 模块已从 **Communications Toolbox** > **Utility Blocks** 库添加到 **Simulink** > **Logic and Bit Operations** 库。所有现有模型继续正常工作。
+
+## 描述
+
+将位向量映射为对应的整数向量
+
+Bit to Integer Converter 模块将输入向量中的位组映射为输出向量中的整数。
+
+如果 *M* 由 **每个整数的位数(M)** 参数指定：
+
+- 对于无符号整数，该模块将每组 *M* 位映射为范围 [0, (2*M* – 1)] 内的整数。因此，输出向量长度是输入向量长度的 1/*M* 倍。
+- 对于有符号整数，该模块将每组 *M* 位映射为范围 [(–2*M*-1), (2*M* – 1 – 1)] 内的整数。

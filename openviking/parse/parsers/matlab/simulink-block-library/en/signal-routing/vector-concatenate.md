@@ -10,28 +10,6 @@ language: en
 
 # Vector Concatenate
 
-Concatenate input vectors of same data type for iterative processing
-
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Math Operations Simulink / Signal Routing HDL Coder / Math Operations HDL Coder / Signal Routing
-
-## Description
-
-The Vector Concatenate block concatenates input signals to create a nonscalar signal
-that you can iteratively process with a subsystem, for example, a for-each, while-iterator, or
-for-iterator subsystem.
-
-You can use multiple Vector Concatenate blocks to create the output signal in
-stages, but the result is flat, as if you used a single block to concatenate the
-signals.
-
-The signals in the output signal appear in the same order as the input signals for the
-block. For a description of the port order for various block orientations, see Identify Port Location on Rotated or Flipped Block.
-
-You must use a Vector Concatenate or Matrix Concatenate block
-to define an array of buses. For more information, see Group Nonvirtual Buses in Arrays of Buses.
-
 ## Ports
 
 ### Input
@@ -158,6 +136,10 @@ the `set_param` function.
 
 **Example:** `set_param(gcb,'ConcatenateDimension','3')`
 
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Math Operations Simulink / Signal Routing HDL Coder / Math Operations HDL Coder / Signal Routing
+
 ## Block Characteristics
 
 |  |  |
@@ -205,3 +187,21 @@ more information, see Unroll For-Generate Loops (HDL Coder)
 ## Version History
 
 **Introduced in R2009b**
+
+## Description
+
+Concatenate input vectors of same data type for iterative processing
+
+The Vector Concatenate block concatenates input signals to create a nonscalar signal
+that you can iteratively process with a subsystem, for example, a for-each, while-iterator, or
+for-iterator subsystem.
+
+You can use multiple Vector Concatenate blocks to create the output signal in
+stages, but the result is flat, as if you used a single block to concatenate the
+signals.
+
+The signals in the output signal appear in the same order as the input signals for the
+block. For a description of the port order for various block orientations, see Identify Port Location on Rotated or Flipped Block.
+
+You must use a Vector Concatenate or Matrix Concatenate block
+to define an array of buses. For more information, see Group Nonvirtual Buses in Arrays of Buses.

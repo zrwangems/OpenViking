@@ -11,28 +11,6 @@ chinese_source: worker-translation
 
 # Python Code
 
-
-
-将原生 Python 代码集成到 Simulink 模型中
-
-## 库
-
-Simulink / User-Defined Functions
-
-## 描述
-
-Python Code 模块将原生 Python® 代码集成到 Simulink® 模型中。使用此模块可导入外部代码，并通过指定模块接口以及为模块初始化、输出和终止编写 Python 代码，来自定义代码的集成。
-
-Python Code 模块支持初始化持久数据。持久数据可以包括 Python 类对象。使用存储 Python 对象的持久变量，以在时间步之间保留状态值。
-
-有关使用此模块集成 Python 代码的步骤，请参阅使用 Python Code 模块将 Python 代码集成到 Simulink 中。
-
-**注意**
-
-必须在系统中安装兼容版本的 Python 才能使用此模块。这可能涉及在 Linux 和 Mac 上安装相应的 Python 开发头文件。必须将 MATLAB 中的 Python 的 `ExecutionMode` 设置为 `InProcess`。有关详细信息，请参阅配置系统以使用 Python。
-
-Python Code 不支持在 Dataflow Subsystem 内进行仿真。当放置在 For Each Subsystem 内时，也不支持在快速加速模式下进行仿真
-
 ## 端口
 
 ### 输入
@@ -136,6 +114,10 @@ Python 代码中使用的符号和符号属性，指定为表。必须在表中�
 | **值：** `""` | `Python code` |
 | **默认值：** `""` |
 
+## 所属库
+
+Simulink / User-Defined Functions
+
 ## 模块特性
 
 |  |  |
@@ -158,3 +140,19 @@ Python 代码中使用的符号和符号属性，指定为表。必须在表中�
 ## 版本历史
 
 **在 R2025a 中引入**
+
+## 描述
+
+将原生 Python 代码集成到 Simulink 模型中
+
+Python Code 模块将原生 Python® 代码集成到 Simulink® 模型中。使用此模块可导入外部代码，并通过指定模块接口以及为模块初始化、输出和终止编写 Python 代码，来自定义代码的集成。
+
+Python Code 模块支持初始化持久数据。持久数据可以包括 Python 类对象。使用存储 Python 对象的持久变量，以在时间步之间保留状态值。
+
+有关使用此模块集成 Python 代码的步骤，请参阅使用 Python Code 模块将 Python 代码集成到 Simulink 中。
+
+**注意**
+
+必须在系统中安装兼容版本的 Python 才能使用此模块。这可能涉及在 Linux 和 Mac 上安装相应的 Python 开发头文件。必须将 MATLAB 中的 Python 的 `ExecutionMode` 设置为 `InProcess`。有关详细信息，请参阅配置系统以使用 Python。
+
+Python Code 不支持在 Dataflow Subsystem 内进行仿真。当放置在 For Each Subsystem 内时，也不支持在快速加速模式下进行仿真

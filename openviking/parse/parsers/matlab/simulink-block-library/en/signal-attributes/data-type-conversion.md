@@ -10,100 +10,6 @@ language: en
 
 # Data Type Conversion
 
-Convert input signal to specified data type
-
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Signal Attributes HDL Coder / Commonly Used Blocks HDL Coder / HDL Floating Point Operations HDL Coder / Signal Attributes
-
-## Description
-
-The Data Type Conversion block converts an input signal of any Simulink® data type to the data type that you specify.
-
-**Note**
-
-To control the output data type by specifying block parameters,
-or to inherit a data type from a downstream block, use the Data Type Conversion block. To inherit a data type from a different
-signal in the model, use the Data Type Conversion Inherited block.
-
-### Convert Fixed-Point Signals
-
-When you convert between fixed-point data types, the **Input and output to have
-equal** parameter controls block behavior. This parameter does not
-change the behavior of the block when:
-
-- The input and output do not have a fixed-point data type.
-- The input or output has a fixed-point data type with trivial
-  scaling.
-
-For more information about fixed-point numbers, see Fixed-Point Numbers in Simulink (Fixed-Point Designer).
-
-To convert a signal from one data type to another by attempting to preserve the real-world
-value of the input signal, select `Real World Value (RWV)`,
-the default setting. The block accounts for the limits imposed by the scaling of the
-input and output and attempts to generate an output of equal real-world
-value.
-
-To change the real-world value of the input signal by performing a scaling reinterpretation
-of the stored integer value, select `Stored Integer (SI)`.
-Within the limits of the specified data types, the block attempts to preserve the
-stored integer value of the signal during conversion. A best practice is to specify
-input and output data types using the same word length and signedness. Doing so
-ensures that the block changes only the scaling of the signal. Specifying a
-different signedness or word length for the input and output could produce
-unexpected results such as range loss or unexpected sign extensions. For an example,
-see Convert Data Types in Simulink Models.
-
-If you select `Stored Integer (SI)`, the block does not perform a
-lower-level bit reinterpretation of a floating-point input signal. For example, if
-the input is `single` and has value `5`, the bits
-that store the input in memory are given in hexadecimal by the following
-command.
-
-```
-num2hex(single(5))
-```
-
-```
-40a00000
-```
-
-However, the Data Type Conversion block does
-not treat the stored integer value as `40a00000`,
-but instead as the real-world value, `5`. After conversion,
-the stored integer value of the output is `5`.
-
-### Cast Enumerated Signals
-
-Use a Data Type Conversion block to cast enumerated signals as follows:
-
-1. To cast a signal of enumerated type to a signal of any numeric
-   type.
-
-   The underlying integers of all enumerated values input to the
-   Data Type Conversion block must be within the range
-   of the numeric type. Otherwise, an error occurs during
-   simulation.
-2. To cast a signal of any integer type to a signal of enumerated
-   type.
-
-   The value input to the Data Type Conversion block must
-   match the underlying value of an enumerated value. Otherwise, an error
-   occurs during simulation.
-
-   You can enable the **Saturate on integer overflow** parameter so that
-   Simulink uses the default value of the enumerated type when the
-   value input to the block does not match the underlying value of an
-   enumerated value. See Type Casting for Enumerations (Simulink Coder).
-
-You cannot use a Data Type Conversion block in these cases:
-
-- To cast a noninteger numeric signal to an enumerated signal.
-- To cast a complex signal to an enumerated signal, regardless of the
-  data types of the real and imaginary parts of the complex signal.
-
-See Simulink Enumerations for information on working with enumerated types.
-
 ## Ports
 
 ### Input
@@ -492,6 +398,10 @@ information, see Specifying a Fixed-Point Data Type.
 To enable this parameter, set **Scaling** to
 `Slope and bias`.
 
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Signal Attributes HDL Coder / Commonly Used Blocks HDL Coder / HDL Floating Point Operations HDL Coder / Signal Attributes
+
 ## Block Characteristics
 
 |  |  |
@@ -552,3 +462,93 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Convert input signal to specified data type
+
+The Data Type Conversion block converts an input signal of any Simulink® data type to the data type that you specify.
+
+**Note**
+
+To control the output data type by specifying block parameters,
+or to inherit a data type from a downstream block, use the Data Type Conversion block. To inherit a data type from a different
+signal in the model, use the Data Type Conversion Inherited block.
+
+### Convert Fixed-Point Signals
+
+When you convert between fixed-point data types, the **Input and output to have
+equal** parameter controls block behavior. This parameter does not
+change the behavior of the block when:
+
+- The input and output do not have a fixed-point data type.
+- The input or output has a fixed-point data type with trivial
+  scaling.
+
+For more information about fixed-point numbers, see Fixed-Point Numbers in Simulink (Fixed-Point Designer).
+
+To convert a signal from one data type to another by attempting to preserve the real-world
+value of the input signal, select `Real World Value (RWV)`,
+the default setting. The block accounts for the limits imposed by the scaling of the
+input and output and attempts to generate an output of equal real-world
+value.
+
+To change the real-world value of the input signal by performing a scaling reinterpretation
+of the stored integer value, select `Stored Integer (SI)`.
+Within the limits of the specified data types, the block attempts to preserve the
+stored integer value of the signal during conversion. A best practice is to specify
+input and output data types using the same word length and signedness. Doing so
+ensures that the block changes only the scaling of the signal. Specifying a
+different signedness or word length for the input and output could produce
+unexpected results such as range loss or unexpected sign extensions. For an example,
+see Convert Data Types in Simulink Models.
+
+If you select `Stored Integer (SI)`, the block does not perform a
+lower-level bit reinterpretation of a floating-point input signal. For example, if
+the input is `single` and has value `5`, the bits
+that store the input in memory are given in hexadecimal by the following
+command.
+
+```
+num2hex(single(5))
+```
+
+```
+40a00000
+```
+
+However, the Data Type Conversion block does
+not treat the stored integer value as `40a00000`,
+but instead as the real-world value, `5`. After conversion,
+the stored integer value of the output is `5`.
+
+### Cast Enumerated Signals
+
+Use a Data Type Conversion block to cast enumerated signals as follows:
+
+1. To cast a signal of enumerated type to a signal of any numeric
+   type.
+
+   The underlying integers of all enumerated values input to the
+   Data Type Conversion block must be within the range
+   of the numeric type. Otherwise, an error occurs during
+   simulation.
+2. To cast a signal of any integer type to a signal of enumerated
+   type.
+
+   The value input to the Data Type Conversion block must
+   match the underlying value of an enumerated value. Otherwise, an error
+   occurs during simulation.
+
+   You can enable the **Saturate on integer overflow** parameter so that
+   Simulink uses the default value of the enumerated type when the
+   value input to the block does not match the underlying value of an
+   enumerated value. See Type Casting for Enumerations (Simulink Coder).
+
+You cannot use a Data Type Conversion block in these cases:
+
+- To cast a noninteger numeric signal to an enumerated signal.
+- To cast a complex signal to an enumerated signal, regardless of the
+  data types of the real and imaginary parts of the complex signal.
+
+See Simulink Enumerations for information on working with enumerated types.

@@ -11,25 +11,6 @@ chinese_source: official
 
 # Mux
 
-将相同数据类型和复/实性的输入信号合并为虚拟向量
-
-## 所属库
-
-Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Commonly Used Blocks HDL Coder / Signal Routing
-
-## 描述
-
-Mux 模块将具有相同数据类型和复/实性的输入合并为一个虚拟向量。您可以使用多个 Mux 模块分多个阶段创建复路信号，但结果是平面结构，就像您只使用一个 Mux 模块一样。
-
-理想情况下，使用 Mux 模块仅对函数调用信号进行分组。
-
-Mux 模块可以基于具有相同数据类型和复/实性的信号创建一个虚拟向量，但其他模块可以更灵活、更高效地对信号进行分组。
-
-- 要对信号或消息进行分组，请使用 Bus Creator 模块，而不是 Mux 模块。Bus Creator 模块会创建虚拟总线，让您能够灵活地将不同数据类型和复/实性的元素进行组合。虚拟总线还允许您按名称而不是索引来访问元素。如果模块需要虚拟向量而不是虚拟总线，模型编译会将总线转换为向量。
-- 要串联输入信号，请使用 Vector Concatenate 模块，而不是 Mux 模块。Vector Concatenate 模块创建一个非虚拟向量，这可提高生成代码的效率。
-
-有关复路信号、虚拟总线和串联信号的比较，请参阅Explore Composite Interfaces。
-
 ## 端口
 
 ### 输入
@@ -110,6 +91,10 @@ Mux 模块的输入信号可以是标量和向量的任意组合，但它们必�
 
 **示例:** `set_param(gcb,'DisplayOption','signals')`
 
+## 所属库
+
+Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Commonly Used Blocks HDL Coder / Signal Routing
+
 ## 模块特性
 
 |  |  |
@@ -158,6 +143,21 @@ HDL 代码生成不支持总线。
 
 实际数据类型或功能支持取决于模块实现。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+将相同数据类型和复/实性的输入信号合并为虚拟向量
+
+Mux 模块将具有相同数据类型和复/实性的输入合并为一个虚拟向量。您可以使用多个 Mux 模块分多个阶段创建复路信号，但结果是平面结构，就像您只使用一个 Mux 模块一样。
+
+理想情况下，使用 Mux 模块仅对函数调用信号进行分组。
+
+Mux 模块可以基于具有相同数据类型和复/实性的信号创建一个虚拟向量，但其他模块可以更灵活、更高效地对信号进行分组。
+
+- 要对信号或消息进行分组，请使用 Bus Creator 模块，而不是 Mux 模块。Bus Creator 模块会创建虚拟总线，让您能够灵活地将不同数据类型和复/实性的元素进行组合。虚拟总线还允许您按名称而不是索引来访问元素。如果模块需要虚拟向量而不是虚拟总线，模型编译会将总线转换为向量。
+- 要串联输入信号，请使用 Vector Concatenate 模块，而不是 Mux 模块。Vector Concatenate 模块创建一个非虚拟向量，这可提高生成代码的效率。
+
+有关复路信号、虚拟总线和串联信号的比较，请参阅Explore Composite Interfaces。

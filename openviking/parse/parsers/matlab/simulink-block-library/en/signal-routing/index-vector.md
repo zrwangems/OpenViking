@@ -10,33 +10,6 @@ language: en
 
 # Index Vector
 
-Switch output between different inputs based on value of first input
-
-## Libraries
-
-Simulink / Signal Routing HDL Coder / Signal Routing
-
-## Description
-
-The Index Vector block is a special configuration of the Multiport Switch block in which you specify one data input and the control
-input is zero-based. The block output is the element of the input vector whose index
-matches the control input. For example, if the input vector is `[18 15 17
-10]` and the control input is `3`, the element that
-matches the index of 3 (zero-based) is 10, and that becomes the output value.
-
-The Index Vector and Multiport Switch blocks are alternative configurations of the same
-block.
-
-- Index Vector — Switch output between different inputs based on value of first
-  input.
-- Multiport Switch — Select output signal based on control
-  signal.
-
-To configure a Multiport Switch block to work as an Index
-Vector block set **Number of data ports** to
-`1` and **Data port order** to
-`Zero-based contiguous`.
-
 ## Ports
 
 ### Input
@@ -421,6 +394,10 @@ Select this check box to allow input signals with different sizes.
 | **Value:** `'on'` | `'off'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Signal Routing HDL Coder / Signal Routing
+
 ## Block Characteristics
 
 |  |  |
@@ -450,3 +427,26 @@ ports** set to 1. For HDL code generation information, see Multiport Switch.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Switch output between different inputs based on value of first input
+
+The Index Vector block is a special configuration of the Multiport Switch block in which you specify one data input and the control
+input is zero-based. The block output is the element of the input vector whose index
+matches the control input. For example, if the input vector is `[18 15 17
+10]` and the control input is `3`, the element that
+matches the index of 3 (zero-based) is 10, and that becomes the output value.
+
+The Index Vector and Multiport Switch blocks are alternative configurations of the same
+block.
+
+- Index Vector — Switch output between different inputs based on value of first
+  input.
+- Multiport Switch — Select output signal based on control
+  signal.
+
+To configure a Multiport Switch block to work as an Index
+Vector block set **Number of data ports** to
+`1` and **Data port order** to
+`Zero-based contiguous`.

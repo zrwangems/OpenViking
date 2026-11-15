@@ -10,224 +10,6 @@ language: en
 
 # Playback
 
-Load data from workspace, file, or Simulation Data Inspector
-
-## Libraries
-
-Simulink / Sources
-
-## Description
-
-Use the Playback block to load input data for simulation. The
-Playback block supports loading real or complex signals with fixed or
-variable dimensions, discrete and continuous signals, and messages. Using the
-Playback block, you can load data from:
-
-- Workspace variables of any data format supported by the Simulation Data
-  Inspector
-- Files in the same formats supported by the Record block and the Simulation
-  Data Inspector such as MAT, MLDATX *(since R2023a)*, and
-  Microsoft®
-  Excel® files
-- Data from a custom file reader
-- Runs in the Simulation Data Inspector
-
-For more information about workspace variables and file formats supported
-by the Playback block, see Import Data from Workspace or File into Simulation Data Inspector.
-
-You can also use the Playback block in conjunction with the Record block as part of
-a record and playback workflow. Use the Record block to record data from
-physical devices or simulations. Then, use the Playback block to load the
-recorded data into a model. Using real or simulated data, you can then develop, test,
-and optimize the model.
-
-### Add Data to Playback Block
-
-You can add signals, messages, multidimensional signals, buses, and arrays of buses to the
-Playback block. To load data to a model using the
-Playback block, first add data to the block. Then, select the
-data to load by assigning signals or messages to ports. When you run a simulation,
-the Playback block loads data into the model.
-
-To add signals to the Playback block interactively, double-click the block.
-When you double-click a Playback block that has no signals, the block
-shows a screen with options to add data.
-
-You can choose from three types of sources to add data to the Playback block:
-
-- Add a workspace variable from the base workspace, model workspace, or
-  mask workspace.
-- Add data from a file. If the file is not on the MATLAB® path or in your current directory, you can click the
-  folder icon to browse for your data.
-- Add data from the workspace, a file, or the Simulation Data Inspector
-  using the Add Signals dialog box.
-
-Use the Add Signals dialog box to access more options for adding data from the workspace or
-a file or to add data from the Simulation Data Inspector. You can also search for specific signals. *(since R2024a)* As you
-type the signal name, the table of signals updates to display only the signal names
-that contain your search term. You can also refine your search to exclude partial
-matches, match specific capitalization, or use regular expressions to find signals
-that follow a certain pattern.
-
-When you add data from the workspace or a file, you can choose to reference the signals in
-the source or save a copy of the signals in the model. Adding signal data from the
-Simulation Data Inspector always saves a copy of the signals in the model.
-
-Referencing the signal in the source links the signal in the
-Playback block to the variable or file that contains the signal
-data. If the data in the source variable or file changes, that change is reflected
-in the data loaded by the Playback block. When linking data, only
-metadata is stored on the block for each signal.
-
-When you save a copy of the signals in the model, the Playback
-block loads from the copied data. Changes made to the original data source variable
-or file are not reflected in the Playback block output.
-
-The Add Signals dialog box also allows you to choose whether to assign ports automatically
-or manually. If you choose to manually assign ports, you can create ports using the
-**Port Editor** and assign ports using the port column of the
-signal table.
-
-To add signals to the Playback block
-programmatically, use the `Simulink.playback.createSignals` function to create a `Simulink.playback.Signal` object that contains the signals to add.
-Then, use the `set_param` function to apply the
-`Simulink.playback.Signal` object to the
-**Signals** parameter of the Playback
-block. *(since R2024a)*
-
-For example, to add signals with the variable names `x1` and
-`x2` from the workspace to the Playback
-block:
-
-1. Use the `Simulink.playback.createSignals` function to
-   create a `Simulink.playback.Signal` object for the
-   `x1` and `x2` signals. Specify the
-   source of the data as the workspace, and list the variable names of the
-   signals to be added.
-2. Use the `set_param` function to set the
-   `Simulink.playback.Signals` object as the value of the
-   **Signals** parameter.
-
-```
-pbSig  = Simulink.playback.createSignals("workspace","Variables",["x1","x2"]);
-set_param("PlaybackModel/Playback","Signals",pbSig);
-```
-
-### View Signals in Sparkline Visualization
-
-After you add signal data, you can visualize the signals in the Playback
-block to verify the data before loading it into your model.
-
-By default, the Playback block plots your data using a sparkline plot. A
-sparkline is created for each signal added to the Playback block. If
-you add input data for a bus, a sparkline is created for each bus element.
-Multidimensional signals must be converted to channels or frames to visualize the
-data. Use the check boxes next to each signal name to control which signals are
-plotted.
-
-**Note**
-
-You can select or clear the check boxes to change the appearance of the
-sparklines visualization without affecting which signals the
-Playback block loads into your model during simulation. To
-control which signals are loaded to the model, use the port column in the table
-of signals.
-
-To change the appearance of the signal table, click
-**Preferences**. In the Preferences dialog box, you can
-choose which signal properties to display and how to group the data in the signal
-table. You can group data by: *(since R2023b)*
-
-- Hierarchy — Group data based on the data hierarchy.
-- Source — Group data based on the origin of the
-  data. *(since R2024b)*
-
-  - File — Signals sourced and referenced from a file are
-    collected in a group specified by the filename. If you add
-    signals from multiple files, a group is created for each
-    file.
-  - Workspace — Signals sourced and referenced from the workspace
-    are collected in a group named
-    `Workspace`.
-  - Saved in model — Signals that are saved to the model, such as
-    signals sourced from the Simulation Data Inspector, are
-    collected in a group named `Signals saved in
-    model`.
-- No grouping — Display a flat list of signals.
-
-### View Signals in Data Table
-
-*Since R2025a*
-
-To view signals in a data table, on the **Simulation** tab, in the
-**View** section, click **Show Table**. By
-default, the Playback block creates a 2-by-1 layout with the sparklines
-visualization in the upper subplot and the data table in the lower subplot. Toggle
-which signals are plotted and appear in the table by selecting or clearing the check
-box next to each signal name. The table displays all plotted signals with
-color-coordinated columns. When you select a signal from the signal table or
-sparkline visualization, the Playback block also highlights the corresponding column
-in the data table.
-
-A 2-by-1 layout in the Playback block showing a sparkline visualization in the upper subplot and a data table in the lower subplot.
-
-You can change the position of the data table, use cursors to examine your data,
-and configure how the data in the table is presented with respect to time. For more
-information, see View Table of Data in Playback Block.
-
-### View and Edit Signals and Ports
-
-You can view and edit signal properties using the **Properties**
-pane in the Playback block.
-
-In the **Properties** pane, you can edit any row with a white background.
-The number of editable fields depends on whether you choose to reference the signal
-in the source or save a copy of the data in the model.
-
-Port properties for the Playback block can be set separately from the signal
-properties using the **Port Editor**.
-
-Using the **Port Editor**, you can add ports, delete ports, and edit port
-properties. You can also change port assignments using the **Port**
-column of the signal table. By default, port properties are inherited from the
-signal. However, you can set a port property independently of the signal property.
-When compatible with the signal property, the port property determines the output of
-the Playback block. For example, you can convert the units of a
-signal with assigned measurement by setting the **Units** property
-for that port to a different unit of measurement. When the signal units and port
-units are compatible, the Playback block performs a unit conversion.
-
-The Playback block supports multirate sample times, allowing you to set a
-different sample time for each port. Port sample times can also be set separately
-from the signal sample time.
-
-### Export Data Added to Playback Block
-
-*Since R2023a*
-
-You can use the Playback block to aggregate data from the workspace, files,
-and the Simulation Data Inspector (linked to from the source or saved in the model)
-and export that data to the workspace or a file. The Playback block
-exports all data added to the block, even signals that are not assigned to ports. To
-export all data added to the Playback block:
-
-1. On the **Simulation** tab, in the
-   **Share** section, click
-   **Export**.
-2. Select **Base workspace** or
-   **File** to export the data to the workspace or to
-   a file. You can choose to export the data to the workspace or to a MAT,
-   MLDATX, or Microsoft
-   Excel file.
-3. Click **Export**.
-
-If you choose to export data to an MLDATX file, you can specify the name of the run using
-the **Exported run name** text box.
-
-If you choose to export data to an Excel file, click
-**Options** to select meta data to export and specify how
-time data is exported.
-
 ## Ports
 
 ### Output
@@ -651,6 +433,10 @@ signal. To view or change the interpolation method for a selected
 signal, use the `Interp Method` property in the
 **Properties** pane.
 
+## Libraries
+
+Simulink / Sources
+
 ## Block Characteristics
 
 |  |  |
@@ -714,3 +500,217 @@ you to selectively load individual signals from large data sets.
 You can aggregate data that has been added to the Playback block from different
 sources (linked to from the source or saved in the model) and export that data to
 the workspace or a file.
+
+## Description
+
+Load data from workspace, file, or Simulation Data Inspector
+
+Use the Playback block to load input data for simulation. The
+Playback block supports loading real or complex signals with fixed or
+variable dimensions, discrete and continuous signals, and messages. Using the
+Playback block, you can load data from:
+
+- Workspace variables of any data format supported by the Simulation Data
+  Inspector
+- Files in the same formats supported by the Record block and the Simulation
+  Data Inspector such as MAT, MLDATX *(since R2023a)*, and
+  Microsoft®
+  Excel® files
+- Data from a custom file reader
+- Runs in the Simulation Data Inspector
+
+For more information about workspace variables and file formats supported
+by the Playback block, see Import Data from Workspace or File into Simulation Data Inspector.
+
+You can also use the Playback block in conjunction with the Record block as part of
+a record and playback workflow. Use the Record block to record data from
+physical devices or simulations. Then, use the Playback block to load the
+recorded data into a model. Using real or simulated data, you can then develop, test,
+and optimize the model.
+
+### Add Data to Playback Block
+
+You can add signals, messages, multidimensional signals, buses, and arrays of buses to the
+Playback block. To load data to a model using the
+Playback block, first add data to the block. Then, select the
+data to load by assigning signals or messages to ports. When you run a simulation,
+the Playback block loads data into the model.
+
+To add signals to the Playback block interactively, double-click the block.
+When you double-click a Playback block that has no signals, the block
+shows a screen with options to add data.
+
+You can choose from three types of sources to add data to the Playback block:
+
+- Add a workspace variable from the base workspace, model workspace, or
+  mask workspace.
+- Add data from a file. If the file is not on the MATLAB® path or in your current directory, you can click the
+  folder icon to browse for your data.
+- Add data from the workspace, a file, or the Simulation Data Inspector
+  using the Add Signals dialog box.
+
+Use the Add Signals dialog box to access more options for adding data from the workspace or
+a file or to add data from the Simulation Data Inspector. You can also search for specific signals. *(since R2024a)* As you
+type the signal name, the table of signals updates to display only the signal names
+that contain your search term. You can also refine your search to exclude partial
+matches, match specific capitalization, or use regular expressions to find signals
+that follow a certain pattern.
+
+When you add data from the workspace or a file, you can choose to reference the signals in
+the source or save a copy of the signals in the model. Adding signal data from the
+Simulation Data Inspector always saves a copy of the signals in the model.
+
+Referencing the signal in the source links the signal in the
+Playback block to the variable or file that contains the signal
+data. If the data in the source variable or file changes, that change is reflected
+in the data loaded by the Playback block. When linking data, only
+metadata is stored on the block for each signal.
+
+When you save a copy of the signals in the model, the Playback
+block loads from the copied data. Changes made to the original data source variable
+or file are not reflected in the Playback block output.
+
+The Add Signals dialog box also allows you to choose whether to assign ports automatically
+or manually. If you choose to manually assign ports, you can create ports using the
+**Port Editor** and assign ports using the port column of the
+signal table.
+
+To add signals to the Playback block
+programmatically, use the `Simulink.playback.createSignals` function to create a `Simulink.playback.Signal` object that contains the signals to add.
+Then, use the `set_param` function to apply the
+`Simulink.playback.Signal` object to the
+**Signals** parameter of the Playback
+block. *(since R2024a)*
+
+For example, to add signals with the variable names `x1` and
+`x2` from the workspace to the Playback
+block:
+
+1. Use the `Simulink.playback.createSignals` function to
+   create a `Simulink.playback.Signal` object for the
+   `x1` and `x2` signals. Specify the
+   source of the data as the workspace, and list the variable names of the
+   signals to be added.
+2. Use the `set_param` function to set the
+   `Simulink.playback.Signals` object as the value of the
+   **Signals** parameter.
+
+```
+pbSig  = Simulink.playback.createSignals("workspace","Variables",["x1","x2"]);
+set_param("PlaybackModel/Playback","Signals",pbSig);
+```
+
+### View Signals in Sparkline Visualization
+
+After you add signal data, you can visualize the signals in the Playback
+block to verify the data before loading it into your model.
+
+By default, the Playback block plots your data using a sparkline plot. A
+sparkline is created for each signal added to the Playback block. If
+you add input data for a bus, a sparkline is created for each bus element.
+Multidimensional signals must be converted to channels or frames to visualize the
+data. Use the check boxes next to each signal name to control which signals are
+plotted.
+
+**Note**
+
+You can select or clear the check boxes to change the appearance of the
+sparklines visualization without affecting which signals the
+Playback block loads into your model during simulation. To
+control which signals are loaded to the model, use the port column in the table
+of signals.
+
+To change the appearance of the signal table, click
+**Preferences**. In the Preferences dialog box, you can
+choose which signal properties to display and how to group the data in the signal
+table. You can group data by: *(since R2023b)*
+
+- Hierarchy — Group data based on the data hierarchy.
+- Source — Group data based on the origin of the
+  data. *(since R2024b)*
+
+  - File — Signals sourced and referenced from a file are
+    collected in a group specified by the filename. If you add
+    signals from multiple files, a group is created for each
+    file.
+  - Workspace — Signals sourced and referenced from the workspace
+    are collected in a group named
+    `Workspace`.
+  - Saved in model — Signals that are saved to the model, such as
+    signals sourced from the Simulation Data Inspector, are
+    collected in a group named `Signals saved in
+    model`.
+- No grouping — Display a flat list of signals.
+
+### View Signals in Data Table
+
+*Since R2025a*
+
+To view signals in a data table, on the **Simulation** tab, in the
+**View** section, click **Show Table**. By
+default, the Playback block creates a 2-by-1 layout with the sparklines
+visualization in the upper subplot and the data table in the lower subplot. Toggle
+which signals are plotted and appear in the table by selecting or clearing the check
+box next to each signal name. The table displays all plotted signals with
+color-coordinated columns. When you select a signal from the signal table or
+sparkline visualization, the Playback block also highlights the corresponding column
+in the data table.
+
+A 2-by-1 layout in the Playback block showing a sparkline visualization in the upper subplot and a data table in the lower subplot.
+
+You can change the position of the data table, use cursors to examine your data,
+and configure how the data in the table is presented with respect to time. For more
+information, see View Table of Data in Playback Block.
+
+### View and Edit Signals and Ports
+
+You can view and edit signal properties using the **Properties**
+pane in the Playback block.
+
+In the **Properties** pane, you can edit any row with a white background.
+The number of editable fields depends on whether you choose to reference the signal
+in the source or save a copy of the data in the model.
+
+Port properties for the Playback block can be set separately from the signal
+properties using the **Port Editor**.
+
+Using the **Port Editor**, you can add ports, delete ports, and edit port
+properties. You can also change port assignments using the **Port**
+column of the signal table. By default, port properties are inherited from the
+signal. However, you can set a port property independently of the signal property.
+When compatible with the signal property, the port property determines the output of
+the Playback block. For example, you can convert the units of a
+signal with assigned measurement by setting the **Units** property
+for that port to a different unit of measurement. When the signal units and port
+units are compatible, the Playback block performs a unit conversion.
+
+The Playback block supports multirate sample times, allowing you to set a
+different sample time for each port. Port sample times can also be set separately
+from the signal sample time.
+
+### Export Data Added to Playback Block
+
+*Since R2023a*
+
+You can use the Playback block to aggregate data from the workspace, files,
+and the Simulation Data Inspector (linked to from the source or saved in the model)
+and export that data to the workspace or a file. The Playback block
+exports all data added to the block, even signals that are not assigned to ports. To
+export all data added to the Playback block:
+
+1. On the **Simulation** tab, in the
+   **Share** section, click
+   **Export**.
+2. Select **Base workspace** or
+   **File** to export the data to the workspace or to
+   a file. You can choose to export the data to the workspace or to a MAT,
+   MLDATX, or Microsoft
+   Excel file.
+3. Click **Export**.
+
+If you choose to export data to an MLDATX file, you can specify the name of the run using
+the **Exported run name** text box.
+
+If you choose to export data to an Excel file, click
+**Options** to select meta data to export and specify how
+time data is exported.

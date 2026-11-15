@@ -11,16 +11,6 @@ chinese_source: official
 
 # Interval Test Dynamic
 
-确定信号是否在指定区间中
-
-## 所属库
-
-Simulink / Logic and Bit Operations
-
-## 描述
-
-如果输入介于外部信号 **up** 和 **lo** 的值之间，则 Interval Test Dynamic 模块输出 true (`1`)。如果输入在这些值的范围之外，模块将输出 false (`0`)。要控制模块如何处理等于信号 **lo** 或信号 **up** 的输入值，请使用 **Interval closed on left** 和 **Interval closed on right** 复选框。
-
 ## 端口
 
 ### 输入
@@ -103,6 +93,10 @@ Simulink / Logic and Bit Operations
 | **值：**`'boolean' | 'uint8'` |
 | **默认值：**`'boolean'` |
 
+## 所属库
+
+Simulink / Logic and Bit Operations
+
 ## 模块特性
 
 |  |  |
@@ -137,6 +131,12 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+确定信号是否在指定区间中
+
+如果输入介于外部信号 **up** 和 **lo** 的值之间，则 Interval Test Dynamic 模块输出 true (`1`)。如果输入在这些值的范围之外，模块将输出 false (`0`)。要控制模块如何处理等于信号 **lo** 或信号 **up** 的输入值，请使用 **Interval closed on left** 和 **Interval closed on right** 复选框。

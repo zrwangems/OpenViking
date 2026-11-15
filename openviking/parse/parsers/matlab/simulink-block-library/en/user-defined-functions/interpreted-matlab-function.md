@@ -10,32 +10,6 @@ language: en
 
 # Interpreted MATLAB Function
 
-(To be removed) Apply MATLAB function or expression to input
-
-## Libraries
-
-Simulink / User-Defined Functions
-
-## Description
-
-The Interpreted MATLAB Function block applies the specified MATLAB® function or expression to the input. The output of the function must match
-the output dimensions of the block. Use the Interpreted MATLAB Function block only in the
-current workspace.
-
-Some valid expressions for this block are:
-
-```
-sin
-atan2(u(1), u(2))
-u(1)^u(2)
-```
-
-**Note**
-
-This block is slow because it calls the MATLAB parser during each integration step. Consider using built-in blocks
-such as the Math Function block instead. Alternatively, you can write the function
-as a MEX file S-function, then access it using the S-Function block.
-
 ## Ports
 
 ### Input
@@ -104,6 +78,10 @@ Select this check box to output a 2-D array as a 1-D array containing the
 This parameter is not visible in the block dialog box unless it is explicitly set
 to a value other than `-1`. To learn more, see Blocks for Which Sample Time Is Not Recommended.
 
+## Libraries
+
+Simulink / User-Defined Functions
+
 ## Block Characteristics
 
 |  |  |
@@ -113,6 +91,10 @@ to a value other than `-1`. To learn more, see Blocks for Which Sample Time Is N
 | **Multidimensional Signals** | `no` |
 | **Variable-Size Signals** | `no` |
 | **Zero-Crossing Detection** | `no` |
+
+## Extended Capabilities
+
+Not documented in R2025b.
 
 ## Version History
 
@@ -124,3 +106,25 @@ The Interpreted MATLAB Function block will be removed in a future
 release. Use built-in blocks instead is recommended. Use the MATLAB Function block if MATLAB
 code is required for modeling. You can also consider writing the function as a MEX
 file S-function and implement it using the S-Function block.
+
+## Description
+
+(To be removed) Apply MATLAB function or expression to input
+
+The Interpreted MATLAB Function block applies the specified MATLAB® function or expression to the input. The output of the function must match
+the output dimensions of the block. Use the Interpreted MATLAB Function block only in the
+current workspace.
+
+Some valid expressions for this block are:
+
+```
+sin
+atan2(u(1), u(2))
+u(1)^u(2)
+```
+
+**Note**
+
+This block is slow because it calls the MATLAB parser during each integration step. Consider using built-in blocks
+such as the Math Function block instead. Alternatively, you can write the function
+as a MEX file S-function, then access it using the S-Function block.

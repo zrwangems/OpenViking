@@ -11,22 +11,6 @@ chinese_source: official
 
 # Rounding Function
 
-对信号应用舍入函数
-
-## 所属库
-
-Simulink / Math Operations
-
-## 描述
-
-Rounding Function 模块对输入信号的每个元素进行舍入以产生输出信号。
-
-您可以从**函数**参数列表中选择舍入类型。所选函数的名称显示在模块上。
-
-**提示**
-
-当您需要向量或矩阵输出时，请使用 Rounding Function 模块。
-
 ## 端口
 
 ### 输入
@@ -83,6 +67,10 @@ Rounding Function 模块对输入信号的每个元素进行舍入以产生输�
 | **参数:** | `SampleTime` |
 | **值:** | `"-1"` (默认) | scalar or vector in quotes |
 
+## 所属库
+
+Simulink / Math Operations
+
 ## 模块特性
 
 |  |  |
@@ -128,6 +116,18 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+对信号应用舍入函数
+
+Rounding Function 模块对输入信号的每个元素进行舍入以产生输出信号。
+
+您可以从**函数**参数列表中选择舍入类型。所选函数的名称显示在模块上。
+
+**提示**
+
+当您需要向量或矩阵输出时，请使用 Rounding Function 模块。

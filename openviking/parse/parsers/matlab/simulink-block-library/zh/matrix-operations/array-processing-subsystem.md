@@ -11,22 +11,6 @@ chinese_source: worker-translation
 
 # Array Processing Subsystem
 
-
-
-将算法应用于矩阵的每个元素
-
-## 库
-
-Simulink / Matrix Operations
-
-## 说明
-
-Array Processing Subsystem block 是一个 Neighborhood Processing Subsystem block，它使用标量邻域将算法应用于输入矩阵的每个元素。在每个迭代步骤中，子系统内部的 inport 接收输入矩阵中的一个元素。子系统内部的 outport 接收一个标量值，子系统将该标量值用作输出矩阵中对应元素的值。输出矩阵表示将子系统内部的算法应用于输入矩阵的每个元素所得到的结果，类似于 `arrayfun` 函数和 For Each Subsystem block。
-
-Array Processing Subsystem block 针对大型输入矩阵（例如图像数据）进行了优化。对于高性能的逐元素操作（例如图像处理任务），请使用 Array Processing Subsystem block。
-
-Array Processing Subsystem block 包含一个 Array Processing block，它充当子系统的控制模块。
-
 ## 端口
 
 ### 输入
@@ -515,6 +499,10 @@ Code Generation 选项卡上的参数需要 Simulink Coder™ 或 Embedded Coder
 | **参数：** | `RTWMemSecDataParameters` |
 | **值：** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
 
+## 所属库
+
+Simulink / Matrix Operations
+
 ## 模块特性
 
 |  |  |
@@ -547,3 +535,13 @@ Code Generation 选项卡上的参数需要 Simulink Coder™ 或 Embedded Coder
 ### R2024b：HDL 代码生成支持
 
 如果您拥有 HDL Coder™ 许可证，则可以为 Array Processing Subsystem block 生成 HDL 代码。
+
+## 描述
+
+将算法应用于矩阵的每个元素
+
+Array Processing Subsystem block 是一个 Neighborhood Processing Subsystem block，它使用标量邻域将算法应用于输入矩阵的每个元素。在每个迭代步骤中，子系统内部的 inport 接收输入矩阵中的一个元素。子系统内部的 outport 接收一个标量值，子系统将该标量值用作输出矩阵中对应元素的值。输出矩阵表示将子系统内部的算法应用于输入矩阵的每个元素所得到的结果，类似于 `arrayfun` 函数和 For Each Subsystem block。
+
+Array Processing Subsystem block 针对大型输入矩阵（例如图像数据）进行了优化。对于高性能的逐元素操作（例如图像处理任务），请使用 Array Processing Subsystem block。
+
+Array Processing Subsystem block 包含一个 Array Processing block，它充当子系统的控制模块。

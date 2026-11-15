@@ -11,18 +11,6 @@ chinese_source: worker-translation
 
 # Identity Matrix
 
-
-
-生成主对角线为 1、其他位置为 0 的矩阵
-
-## 库
-
-Simulink / Matrix Operations
-
-## 说明
-
-Identity Matrix 模块输出一个单位矩阵，类似于 MATLAB® `eye` 函数。该模块生成一个方阵或矩形矩阵，主对角线为 1，其他位置为 0。
-
 ## 端口
 
 ### 输入
@@ -168,6 +156,10 @@ Identity Matrix 模块输出一个单位矩阵，类似于 MATLAB® `eye` 函数
 | **值：** 标量或向量 |
 | **默认：** `'1'` |
 
+## 所属库
+
+Simulink / Matrix Operations
+
 ## 模块特性
 
 |  |  |
@@ -189,3 +181,9 @@ Identity Matrix 模块输出一个单位矩阵，类似于 MATLAB® `eye` 函数
 ### R2022a：Identity Matrix 模块已添加到 Simulink Matrix Operations 库
 
 Identity Matrix 模块已从 **DSP System Toolbox** > **Math Functions** > **Matrices and Linear**  > **Matrix Operations** 库中移除。要获得等效功能，请使用 **Simulink** > **Matrix Operations** 库中的 Identity Matrix 模块。所有现有模型继续工作。
+
+## 描述
+
+生成主对角线为 1、其他位置为 0 的矩阵
+
+Identity Matrix 模块输出一个单位矩阵，类似于 MATLAB® `eye` 函数。该模块生成一个方阵或矩形矩阵，主对角线为 1，其他位置为 0。

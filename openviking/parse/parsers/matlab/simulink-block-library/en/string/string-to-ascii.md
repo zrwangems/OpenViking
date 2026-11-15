@@ -10,19 +10,6 @@ language: en
 
 # String to ASCII
 
-Convert string signal to uint8 vector
-
-## Libraries
-
-Simulink / String
-
-## Description
-
-The String To ASCII block converts a string signal to a uint8 vector. The
-block converts each character in the string to its corresponding ASCII value. For
-example, the block converts the input string `"Hello"` to `[72
-101 108 108 111]`.
-
 ## Ports
 
 ### Input
@@ -61,6 +48,10 @@ Size of output string vector, specified as a scalar.
 | **Values:** scalar |
 | **Default:** `'31'` |
 
+## Libraries
+
+Simulink / String
+
 ## Block Characteristics
 
 |  |  |
@@ -85,3 +76,12 @@ The String to
 ASCII block output dimension has changed from a 2D row vector, such as a
 2-by-*N* vector, to a 1D vector, *N*.
 *N* is the number of elements.
+
+## Description
+
+Convert string signal to uint8 vector
+
+The String To ASCII block converts a string signal to a uint8 vector. The
+block converts each character in the string to its corresponding ASCII value. For
+example, the block converts the input string `"Hello"` to `[72
+101 108 108 111]`.

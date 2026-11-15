@@ -11,18 +11,6 @@ chinese_source: official
 
 # Detect Change
 
-检测信号值的变化
-
-## 所属库
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
-## 描述
-
-Detect Change 模块确定输入信号是否不等于其上一个值。初始条件确定上一个输入 U/z 的初始值。
-
-此模块仅支持定步长离散采样时间。
-
 ## 端口
 
 ### 输入
@@ -92,6 +80,10 @@ Detect Change 模块确定输入信号是否不等于其上一个值。初始条
 | **值**：`'boolean'` | `'uint8'` |
 | **默认值**：`'boolean'` |
 
+## 所属库
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
 ## 模块特性
 
 |  |  |
@@ -128,6 +120,14 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+检测信号值的变化
+
+Detect Change 模块确定输入信号是否不等于其上一个值。初始条件确定上一个输入 U/z 的初始值。
+
+此模块仅支持定步长离散采样时间。

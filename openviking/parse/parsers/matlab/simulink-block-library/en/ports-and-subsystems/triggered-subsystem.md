@@ -10,23 +10,6 @@ language: en
 
 # Triggered Subsystem
 
-Subsystem whose execution is triggered by external input
-
-## Libraries
-
-Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
-
-## Description
-
-The Triggered Subsystem block is a Subsystem block preconfigured as a starting point for creating a subsystem that
-executes each time the control signal has a trigger value.
-
-Use Triggered Subsystem blocks to model:
-
-- A task that runs with the detection of a trigger value.
-- An interrupt from I/O hardware.
-- A processor request to handle an exception or error.
-
 ## Ports
 
 ### Input
@@ -795,6 +778,10 @@ the `set_param` function.
 | **Values:** | `''` (default) | subsystem filename in quotes |
 | **Data Types:** | `char` | `string` |
 
+## Libraries
+
+Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
+
 ## Block Characteristics
 
 |  |  |
@@ -871,3 +858,16 @@ Actual data type support depends on block implementation.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Subsystem whose execution is triggered by external input
+
+The Triggered Subsystem block is a Subsystem block preconfigured as a starting point for creating a subsystem that
+executes each time the control signal has a trigger value.
+
+Use Triggered Subsystem blocks to model:
+
+- A task that runs with the detection of a trigger value.
+- An interrupt from I/O hardware.
+- A processor request to handle an exception or error.

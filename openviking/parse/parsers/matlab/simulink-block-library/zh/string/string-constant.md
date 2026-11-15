@@ -11,16 +11,6 @@ chinese_source: official
 
 # String Constant
 
-输出指定的字符串
-
-## 所属库
-
-Simulink / String
-
-## 描述
-
-String Constant 模块输出由**字符串**参数指定的字符串。当您需要类型为字符串的常量时，请使用此模块。
-
 ## 端口
 
 ### 输出
@@ -71,6 +61,10 @@ String Constant 模块输出由**字符串**参数指定的字符串。当您需
 
 点击**显示数据类型助手**按钮将启用此参数。
 
+## 所属库
+
+Simulink / String
+
 ## 模块特性
 
 |  |  |
@@ -100,6 +94,12 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 | **ConstrainedOutputPipeline** | 通过移动设计中现有延迟的方式来放置在输出端的寄存器的数量。分布式流水线不会重新分发这些寄存器。默认值为 `0`。有关详细信息，请参阅ConstrainedOutputPipeline (HDL Coder)。 |
 | **OutputPipeline** | 要在生成的代码中插入的输出流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅OutputPipeline (HDL Coder)。 |
 
-## 版本历史记录
+## 版本历史
 
 **在 R2018a 中推出**
+
+## 描述
+
+输出指定的字符串
+
+String Constant 模块输出由**字符串**参数指定的字符串。当您需要类型为字符串的常量时，请使用此模块。

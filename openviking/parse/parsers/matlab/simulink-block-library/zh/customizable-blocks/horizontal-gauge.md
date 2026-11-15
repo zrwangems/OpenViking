@@ -11,71 +11,13 @@ chinese_source: worker-translation
 
 # Horizontal Gauge
 
+## 端口
 
-
-在仿真期间在水平仪表上显示信号值，外观可自定义
-
-## 库
-
-Simulink / Dashboard / Customizable Blocks
-
-## 说明
-
-在仿真期间，Horizontal Gauge 模块在可自定义外观以类似于真实系统中仪表的线性仪表上显示所连接信号的值。您可以修改 Horizontal Gauge 模块上的范围和刻度值，以适合您的数据。将 Horizontal Gauge 模块与其他 dashboard 模块一起使用，为您的模型构建由控件和指示器组成的交互式 dashboard。
-
-### 自定义 Horizontal Gauge 模块
-
-当您将 Horizontal Gauge 模块添加到模型时，该模块已预配置为默认设计。您可以将该模块与默认设计一起使用，也可以自定义该模块的外观。
-
-要自定义该模块的外观，请使用设计模式。选择该模块后，可以通过以下三种方式之一进入设计模式：
-
-- 在 Simulink® Toolstrip 中，在模块特定的选项卡上，在 **Design** 下，点击 **Edit**。
-- 在 Property Inspector 中，在 **Design** 选项卡上，点击 **Edit**。
-- 暂停在模块上方出现的省略号上，然后点击 Edit Custom Block 按钮 。
-
-在设计模式中，您可以使用模块上方的工具栏自定义圆形仪表。要访问更多自定义选项或为设计设置输入精确值，请使用 Property Inspector 中的 **Design** 选项卡。
-
-处于设计模式的 Horizontal Gauge 模块，其中工具栏和 Property Inspector 中的 Design 选项卡可见。
-
-**设计模式操作**
-
-| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
-| --- | --- | --- |
-| 上传指针图像。 | Yes | Yes |
-| 上传背景图像。 | Yes | Yes |
-| 设置纯色背景颜色。 | No | Yes |
-| 上传前景图像。 | No | Yes |
-| 指定值条从其增长的原点位置。 | No | Yes |
-| 更改刻度线、刻度标签或值条的颜色和不透明度。 | Yes | Yes |
-| 将刻度方向指定为从左到右或从右到左。 | No | Yes |
-| 更改刻度和指针的大小。 | No | Yes |
-| 更改刻度和指针的位置。 | No | Yes |
-
-要使用工具栏更改刻度线、刻度标签或值条的颜色和不透明度，请在工具栏从左数第二部分中，选择要更改其颜色的组件。要更改颜色，请点击色轮。要更改不透明度，请移动滑块。
-
-除了使用工具栏和 **Design** 选项卡自定义模块设计外，您还可以在画布中以交互方式调整组件大小并重新定位组件。
-
-完成设计编辑后，要退出设计模式，请点击画布右上角的 **X**。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口连接到模型元素。要连接 dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后点击 Connect 按钮 。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
-
-要将显示模块连接到模型中的信号，或更改显示模块的连接，请进入连接模式。选择要连接的信号线。在出现的列表中，选择要连接的信号。然后，暂停在 dashboard 模块上，并点击 Done Connecting 按钮 。要查看 dashboard 模块显示所连接模块的值，请运行仿真。
-
-有关连接 dashboard 模块的详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
-
-您还可以将 dashboard 模块连接到 Stateflow® chart。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画展示了如何将 Horizontal Gauge 模块连接到您的模型。
-
-未连接的 Horizontal Gauge 模块连接到 Sine Wave 模块发送到 Outport 模块的信号。
+R2025b 官方文档未提供。
 
 ## 参数
 
 使用 Property Inspector 和 Block Parameters 对话框指定模块参数的值。要设置 dashboard 模块的核心参数，请使用 Block Parameters 对话框或 Property Inspector 中的 **Parameters** 选项卡。要自定义模块，请使用 Property Inspector 中的 **Design** 选项卡。要为模块打开 Block Parameters 对话框，请双击该模块。要打开 Property Inspector，请在 **Modeling** 选项卡上的 **Design** 下，选择 **Property Inspector**。
-
-## 参数
 
 要设置 dashboard 模块的核心参数，请打开 Property Inspector，然后点击 **Parameters** 选项卡。
 
@@ -470,6 +412,10 @@ Dashboard 模块不使用端口连接到模型元素。要将 dashboard 模块�
 
 选择此参数可在使用 Property Inspector 调整图像大小时保持宽高比。
 
+## 所属库
+
+Simulink / Dashboard / Customizable Blocks
+
 ## 模块特性
 
 |  |  |
@@ -641,3 +587,57 @@ Customizable Blocks 库中的模块有一个选项，可添加前景图像作为
 ### R2020b：向 Horizontal Gauge、Vertical Gauge 和 Circular Gauge 模块添加前景图像
 
 从 R2020b 开始，您可以向模型中的 Horizontal Gauge、Vertical Gauge 或 Circular Gauge 模块添加前景图像。
+
+## 描述
+
+在仿真期间在水平仪表上显示信号值，外观可自定义
+
+在仿真期间，Horizontal Gauge 模块在可自定义外观以类似于真实系统中仪表的线性仪表上显示所连接信号的值。您可以修改 Horizontal Gauge 模块上的范围和刻度值，以适合您的数据。将 Horizontal Gauge 模块与其他 dashboard 模块一起使用，为您的模型构建由控件和指示器组成的交互式 dashboard。
+
+### 自定义 Horizontal Gauge 模块
+
+当您将 Horizontal Gauge 模块添加到模型时，该模块已预配置为默认设计。您可以将该模块与默认设计一起使用，也可以自定义该模块的外观。
+
+要自定义该模块的外观，请使用设计模式。选择该模块后，可以通过以下三种方式之一进入设计模式：
+
+- 在 Simulink® Toolstrip 中，在模块特定的选项卡上，在 **Design** 下，点击 **Edit**。
+- 在 Property Inspector 中，在 **Design** 选项卡上，点击 **Edit**。
+- 暂停在模块上方出现的省略号上，然后点击 Edit Custom Block 按钮 。
+
+在设计模式中，您可以使用模块上方的工具栏自定义圆形仪表。要访问更多自定义选项或为设计设置输入精确值，请使用 Property Inspector 中的 **Design** 选项卡。
+
+处于设计模式的 Horizontal Gauge 模块，其中工具栏和 Property Inspector 中的 Design 选项卡可见。
+
+**设计模式操作**
+
+| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
+| --- | --- | --- |
+| 上传指针图像。 | Yes | Yes |
+| 上传背景图像。 | Yes | Yes |
+| 设置纯色背景颜色。 | No | Yes |
+| 上传前景图像。 | No | Yes |
+| 指定值条从其增长的原点位置。 | No | Yes |
+| 更改刻度线、刻度标签或值条的颜色和不透明度。 | Yes | Yes |
+| 将刻度方向指定为从左到右或从右到左。 | No | Yes |
+| 更改刻度和指针的大小。 | No | Yes |
+| 更改刻度和指针的位置。 | No | Yes |
+
+要使用工具栏更改刻度线、刻度标签或值条的颜色和不透明度，请在工具栏从左数第二部分中，选择要更改其颜色的组件。要更改颜色，请点击色轮。要更改不透明度，请移动滑块。
+
+除了使用工具栏和 **Design** 选项卡自定义模块设计外，您还可以在画布中以交互方式调整组件大小并重新定位组件。
+
+完成设计编辑后，要退出设计模式，请点击画布右上角的 **X**。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口连接到模型元素。要连接 dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后点击 Connect 按钮 。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
+
+要将显示模块连接到模型中的信号，或更改显示模块的连接，请进入连接模式。选择要连接的信号线。在出现的列表中，选择要连接的信号。然后，暂停在 dashboard 模块上，并点击 Done Connecting 按钮 。要查看 dashboard 模块显示所连接模块的值，请运行仿真。
+
+有关连接 dashboard 模块的详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
+
+您还可以将 dashboard 模块连接到 Stateflow® chart。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画展示了如何将 Horizontal Gauge 模块连接到您的模型。
+
+未连接的 Horizontal Gauge 模块连接到 Sine Wave 模块发送到 Outport 模块的信号。

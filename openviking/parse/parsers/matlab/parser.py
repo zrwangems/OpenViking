@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import asyncio
+import posixpath
 import time
 import zipfile
 from pathlib import Path
@@ -55,20 +56,20 @@ class MatlabParser(BaseParser):
                 documents = await asyncio.to_thread(system_documents, model, language)
                 charts = await asyncio.to_thread(parse_stateflow, path)
                 for chart in charts:
-                    subsystem_index = f"{chart_system_path(chart)}/index.md"
-                    if subsystem_index in documents:
-                        chart_name = f"{chart_system_path(chart)}/stateflow_{chart.chart_id}.md"
-                        link = f"stateflow_{chart.chart_id}.md"
+                    system_path = chart_system_path(chart)
+                    nested_page = f"{system_path}/main.md"
+                    leaf_page = f"{system_path}.md"
+                    if nested_page in documents:
+                        subsystem_index = nested_page
+                    elif leaf_page in documents:
+                        subsystem_index = leaf_page
                     else:
-                        chart_name = f"stateflow/chart_{chart.chart_id}.md"
-                        subsystem_index = "index.md"
-                        link = f"stateflow/chart_{chart.chart_id}.md"
+                        subsystem_index = "main.md"
+                    chart_name = f"stateflow/chart_{chart.chart_id}.md"
                     documents[chart_name] = render_stateflow(chart)
-                    section = (
-                        f"## Stateflow\n\n- [Chart {chart.chart_id}：状态、动作与转移]({link})\n\n"
-                    )
-                    documents[subsystem_index] = documents[subsystem_index].replace(
-                        "## 子系统", section + "## 子系统", 1
+                    link = posixpath.relpath(chart_name, posixpath.dirname(subsystem_index))
+                    documents[subsystem_index] += (
+                        f"\n- [Stateflow Chart {chart.chart_id}：状态、动作与转移]({link})\n"
                     )
                 root_dir = path.stem
                 for name, content in documents.items():

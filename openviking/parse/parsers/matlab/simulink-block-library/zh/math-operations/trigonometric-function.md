@@ -11,55 +11,6 @@ chinese_source: official
 
 # Trigonometric Function
 
-指定应用于输入信号的三角函数
-
-## 所属库
-
-Simulink / Math Operations HDL Coder / Math Operations HDL Coder / HDL Floating Point Operations
-
-## 描述
-
-Trigonometric Function 模块执行常见的三角函数，并以 rad 或 rev 为单位输出结果。
-
-### 支持的函数
-
-可以从**函数**下拉列表中选择以下函数之一。
-
-| 函数 | 描述 | 数学表达式 | MATLAB® 等效函数 |
-| --- | --- | --- | --- |
-| `sin` | 输入信号的正弦 | `sin(u)` | `sin` |
-| `cos` | 输入信号的余弦 | `cos(u)` | `cos` |
-| `tan` | 输入信号的正切 | `tan(u)` | `tan` |
-| `asin` | 输入信号的反正弦 | `asin(u)` | `asin` |
-| `acos` | 输入信号的反余弦 | `acos(u)` | `acos` |
-| `atan` | 输入信号的反正切 | `atan(u)` | `atan` |
-| `atan2` | 输入信号的四象限反正切 | `atan2(u)` | `atan2` |
-| `sinh` | 输入信号的双曲正弦 | `sinh(u)` | `sinh` |
-| `cosh` | 输入信号的双曲余弦 | `cosh(u)` | `cosh` |
-| `tanh` | 输入信号的双曲正切 | `tanh(u)` | `tanh` |
-| `asinh` | 输入信号的反双曲正弦 | `asinh(u)` | `asinh` |
-| `acosh` | 输入信号的反双曲余弦 | `acosh(u)` | `acosh` |
-| `atanh` | 输入信号的反双曲正切 | `atanh(u)` | `atanh` |
-| `sincos` | 输入信号的正弦；输入信号的余弦 | — | — |
-| `cos + jsin` | 输入信号的复指数 | — | — |
-
-### CORDIC 逼近方法
-
-CORDIC 是 COordinate Rotation DIgital Computer（坐标旋转数字计算方法）的缩写。基于吉文斯旋转的 CORDIC 算法是最节省硬件资源的可用算法之一，因为它只需进行迭代移位相加运算。有关详细信息，请参阅详细信息。模块输入有进一步的要求。
-
-有关何时将**函数**设置为 `sin`、`cos`、`sincos` 或 `cos + jsin`，并将**逼近方法**设置为 **CORDIC** 的详细信息，请参阅 Port\_1。
-
-下表概述了输入无效时发生的情况。
-
-| 模块用法 | 无效输入的影响 |
-| --- | --- |
-| 仿真模式 | 出现错误。 |
-| 生成的代码 | 发生未定义的行为。对于生成的代码，避免依赖未定义的行为。 |
-
-### 查找逼近方法
-
-有关何时将**函数**设置为 `sin`、`cos`、`sincos` 或 `cos + jsin`，并将**逼近方法**设置为**查找**的详细信息，请参阅 Port\_1。
-
 ## 端口
 
 ### 输入
@@ -429,6 +380,10 @@ CORDIC 逼近定点类型传播：
 - 将**模式**设置为**定点**
 - 将**定标**设置为**二进制小数点**
 
+## 所属库
+
+Simulink / Math Operations HDL Coder / Math Operations HDL Coder / HDL Floating Point Operations
+
 ## 模块特性
 
 |  |  |
@@ -519,6 +474,51 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 当**函数**设置为 **sin**、**cos**、**sincos**、**cos + jsin** 或 `atan2` 且**逼近方法**设置为 **CORDIC** 时，此模块支持定点和基整数数据类型。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+指定应用于输入信号的三角函数
+
+Trigonometric Function 模块执行常见的三角函数，并以 rad 或 rev 为单位输出结果。
+
+### 支持的函数
+
+可以从**函数**下拉列表中选择以下函数之一。
+
+| 函数 | 描述 | 数学表达式 | MATLAB® 等效函数 |
+| --- | --- | --- | --- |
+| `sin` | 输入信号的正弦 | `sin(u)` | `sin` |
+| `cos` | 输入信号的余弦 | `cos(u)` | `cos` |
+| `tan` | 输入信号的正切 | `tan(u)` | `tan` |
+| `asin` | 输入信号的反正弦 | `asin(u)` | `asin` |
+| `acos` | 输入信号的反余弦 | `acos(u)` | `acos` |
+| `atan` | 输入信号的反正切 | `atan(u)` | `atan` |
+| `atan2` | 输入信号的四象限反正切 | `atan2(u)` | `atan2` |
+| `sinh` | 输入信号的双曲正弦 | `sinh(u)` | `sinh` |
+| `cosh` | 输入信号的双曲余弦 | `cosh(u)` | `cosh` |
+| `tanh` | 输入信号的双曲正切 | `tanh(u)` | `tanh` |
+| `asinh` | 输入信号的反双曲正弦 | `asinh(u)` | `asinh` |
+| `acosh` | 输入信号的反双曲余弦 | `acosh(u)` | `acosh` |
+| `atanh` | 输入信号的反双曲正切 | `atanh(u)` | `atanh` |
+| `sincos` | 输入信号的正弦；输入信号的余弦 | — | — |
+| `cos + jsin` | 输入信号的复指数 | — | — |
+
+### CORDIC 逼近方法
+
+CORDIC 是 COordinate Rotation DIgital Computer（坐标旋转数字计算方法）的缩写。基于吉文斯旋转的 CORDIC 算法是最节省硬件资源的可用算法之一，因为它只需进行迭代移位相加运算。有关详细信息，请参阅详细信息。模块输入有进一步的要求。
+
+有关何时将**函数**设置为 `sin`、`cos`、`sincos` 或 `cos + jsin`，并将**逼近方法**设置为 **CORDIC** 的详细信息，请参阅 Port\_1。
+
+下表概述了输入无效时发生的情况。
+
+| 模块用法 | 无效输入的影响 |
+| --- | --- |
+| 仿真模式 | 出现错误。 |
+| 生成的代码 | 发生未定义的行为。对于生成的代码，避免依赖未定义的行为。 |
+
+### 查找逼近方法
+
+有关何时将**函数**设置为 `sin`、`cos`、`sincos` 或 `cos + jsin`，并将**逼近方法**设置为**查找**的详细信息，请参阅 Port\_1。

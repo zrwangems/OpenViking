@@ -10,52 +10,6 @@ language: en
 
 # Goto
 
-Pass block input to From blocks
-
-## Libraries
-
-Simulink / Signal Routing HDL Coder / Signal Routing
-
-## Description
-
-The Goto block passes its input to its corresponding From
-blocks. The input can be a real- or complex-valued signal or vector of any data type.
-From and Goto blocks allow you to pass a signal from
-one block to another without actually connecting them.
-
-A Goto block can pass its input signal to more than one From
-block, although a From block can receive a signal from only one
-Goto block. The input to that Goto block is passed to
-the From blocks associated with it as though the blocks were physically
-connected.
-
-For example, this model uses a Goto block and a From
-block.
-
-A Sine Wave block connects to a Goto block. The corresponding From block connects to a Gain block.
-
-An equivalent model passes the Sine Wave block signal directly to the
-Gain block.
-
-The Sine Wave block connects directly to the Gain block.
-
-Goto blocks and From blocks are matched by the use of
-Goto tags.
-
-The **Tag
-visibility** parameter determines where From blocks can
-access the signal.
-
-The Goto block supports signal label propagation. For more information, see
-Signal Label Propagation.
-
-You can simplify your model diagrams by replacing lengthy signal lines with sets of
-connected Goto and From blocks. However, when you want to
-trace a signal path, it can be useful to see the signal lines. You can convert signal
-lines and virtual buses to Goto and From block sets, and
-you can convert Goto and From block sets to signal lines.
-For more information, see Convert Signal Lines to Goto and From Blocks and Vice Versa.
-
 ## Ports
 
 ### Input
@@ -197,6 +151,10 @@ filter the list of related blocks by entering a search term in the text box.
 After you select a related block from the list, window focus goes to the
 open diagram or new tab that shows the related block.
 
+## Libraries
+
+Simulink / Signal Routing HDL Coder / Signal Routing
+
 ## Block Characteristics
 
 |  |  |
@@ -242,4 +200,46 @@ You can convert signal lines and virtual buses to sets of connected
 Goto and From blocks, and you can convert
 Goto and From block sets to signal lines.
 
+For more information, see Convert Signal Lines to Goto and From Blocks and Vice Versa.
+
+## Description
+
+Pass block input to From blocks
+
+The Goto block passes its input to its corresponding From
+blocks. The input can be a real- or complex-valued signal or vector of any data type.
+From and Goto blocks allow you to pass a signal from
+one block to another without actually connecting them.
+
+A Goto block can pass its input signal to more than one From
+block, although a From block can receive a signal from only one
+Goto block. The input to that Goto block is passed to
+the From blocks associated with it as though the blocks were physically
+connected.
+
+For example, this model uses a Goto block and a From
+block.
+
+A Sine Wave block connects to a Goto block. The corresponding From block connects to a Gain block.
+
+An equivalent model passes the Sine Wave block signal directly to the
+Gain block.
+
+The Sine Wave block connects directly to the Gain block.
+
+Goto blocks and From blocks are matched by the use of
+Goto tags.
+
+The **Tag
+visibility** parameter determines where From blocks can
+access the signal.
+
+The Goto block supports signal label propagation. For more information, see
+Signal Label Propagation.
+
+You can simplify your model diagrams by replacing lengthy signal lines with sets of
+connected Goto and From blocks. However, when you want to
+trace a signal path, it can be useful to see the signal lines. You can convert signal
+lines and virtual buses to Goto and From block sets, and
+you can convert Goto and From block sets to signal lines.
 For more information, see Convert Signal Lines to Goto and From Blocks and Vice Versa.

@@ -10,29 +10,6 @@ language: en
 
 # Counter Free-Running
 
-Count up and overflow back to zero after reaching maximum value for specified number of bits
-
-## Libraries
-
-Simulink / Sources HDL Coder / Sources
-
-## Description
-
-The Counter Free-Running block counts up until reaching the maximum value,
-2*Nbits* – 1, where
-*Nbits* is the number of bits. Then the counter overflows to zero
-and begins counting up again.
-
-After overflow, the counter always initializes to zero. However, if you select the global
-doubles override, the Counter Free-Running block does not wrap back to
-zero.
-
-**Note**
-
-This block does not report wrap on overflow warnings during simulation. To report
-these warnings, see the `Simulink.restoreDiagnostic`
-reference page. The block does report errors due to wrap on overflow.
-
 ## Ports
 
 ### Output
@@ -86,6 +63,10 @@ parameter to `-1`. For more information, see Specify Sample Time.
 | **Values:** scalar | vector |
 | **Default:** `'-1'` |
 
+## Libraries
+
+Simulink / Sources HDL Coder / Sources
+
 ## Block Characteristics
 
 |  |  |
@@ -132,3 +113,22 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Count up and overflow back to zero after reaching maximum value for specified number of bits
+
+The Counter Free-Running block counts up until reaching the maximum value,
+2*Nbits* – 1, where
+*Nbits* is the number of bits. Then the counter overflows to zero
+and begins counting up again.
+
+After overflow, the counter always initializes to zero. However, if you select the global
+doubles override, the Counter Free-Running block does not wrap back to
+zero.
+
+**Note**
+
+This block does not report wrap on overflow warnings during simulation. To report
+these warnings, see the `Simulink.restoreDiagnostic`
+reference page. The block does report errors due to wrap on overflow.

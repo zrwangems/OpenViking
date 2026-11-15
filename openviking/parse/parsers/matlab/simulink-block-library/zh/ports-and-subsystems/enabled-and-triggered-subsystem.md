@@ -11,24 +11,6 @@ chinese_source: official
 
 # Enabled and Triggered Subsystem
 
-由外部输入使能和触发执行的子系统
-
-## 所属库
-
-Simulink / Ports & Subsystems
-
-## 描述
-
-Enabled and Triggered Subsystem 模块是一个预先配置的 Subsystem 模块，可以作为一个起点，用于创建在同时发生以下两种情况时执行的子系统：
-
-- 使能控制信号具有正值。
-- 触发控制信号具有触发值。
-
-使用 Enabled and Triggered Subsystem 模块可以建模：
-
-- 可选功能。
-- 替代功能。
-
 ## 端口
 
 ### 输入
@@ -570,6 +552,10 @@ Enabled and Triggered Subsystem 模块是一个预先配置的 Subsystem 模块�
 | **值:** | `''` (默认) | subsystem filename in quotes |
 | **数据类型:** | `char` | `string` |
 
+## 所属库
+
+Simulink / Ports & Subsystems
+
 ## 模块特性
 
 |  |  |
@@ -593,6 +579,20 @@ Enabled and Triggered Subsystem 模块是一个预先配置的 Subsystem 模块�
 
 实际数据类型支持取决于模块实现。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+由外部输入使能和触发执行的子系统
+
+Enabled and Triggered Subsystem 模块是一个预先配置的 Subsystem 模块，可以作为一个起点，用于创建在同时发生以下两种情况时执行的子系统：
+
+- 使能控制信号具有正值。
+- 触发控制信号具有触发值。
+
+使用 Enabled and Triggered Subsystem 模块可以建模：
+
+- 可选功能。
+- 替代功能。

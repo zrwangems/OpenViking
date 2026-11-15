@@ -10,60 +10,6 @@ language: en
 
 # Discrete Zero-Pole
 
-Model system defined by zeros and poles of discrete transfer function
-
-## Libraries
-
-Simulink / Discrete
-
-## Description
-
-The Discrete Zero-Pole block models a discrete system defined by the zeros,
-poles, and gain of a *z*-domain transfer function. This block assumes
-that the transfer function has the following form:
-
-H(z)=KZ(z)P(z)=K(z−Z1)(z−Z2)...(z−Zm)(z−P1)(z−P2)...(z−Pn),
-
-where *Z* represents the zeros vector, *P* the poles
-vector, and *K* the gain. The number of poles must be greater than or
-equal to the number of zeros (*n* ≥ *m*). If
-the poles and zeros are complex, they must be complex conjugate pairs.
-
-The block displays the transfer function depending on how the
-parameters are specified. See Zero-Pole for more information.
-
-### Modeling a Single-Output System
-
-For a single-output system, the input and the output of the block are scalar
-time-domain signals. To model this system:
-
-1. Enter a vector for the zeros of the transfer function in the
-   **Zeros** field.
-2. Enter a vector for the poles of the transfer function in the
-   **Poles** field.
-3. Enter a 1-by-1 vector for the gain of the transfer function in the
-   **Gain** field.
-
-### Modeling a Multiple-Output System
-
-For a multiple-output system, the block input is a scalar and the output is a
-vector, where each element is an output of the system. To model this system:
-
-1. Enter a matrix of zeros in the **Zeros** field.
-
-   Each *column* of this matrix contains the zeros of a
-   transfer function that relates the system input to one of the
-   outputs.
-2. Enter a vector for the poles common to all transfer functions of the
-   system in the **Poles** field.
-3. Enter a vector of gains in the **Gain** field.
-
-   Each element is the gain of the corresponding transfer function in
-   **Zeros**.
-
-Each element of the output vector corresponds to a column in
-**Zeros**.
-
 ## Ports
 
 ### Input
@@ -201,6 +147,10 @@ To enable this parameter, specify a value for **State name**. This parameter app
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Discrete
+
 ## Block Characteristics
 
 |  |  |
@@ -221,3 +171,53 @@ Generated code relies on `memcpy` or `memset` functions
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Model system defined by zeros and poles of discrete transfer function
+
+The Discrete Zero-Pole block models a discrete system defined by the zeros,
+poles, and gain of a *z*-domain transfer function. This block assumes
+that the transfer function has the following form:
+
+H(z)=KZ(z)P(z)=K(z−Z1)(z−Z2)...(z−Zm)(z−P1)(z−P2)...(z−Pn),
+
+where *Z* represents the zeros vector, *P* the poles
+vector, and *K* the gain. The number of poles must be greater than or
+equal to the number of zeros (*n* ≥ *m*). If
+the poles and zeros are complex, they must be complex conjugate pairs.
+
+The block displays the transfer function depending on how the
+parameters are specified. See Zero-Pole for more information.
+
+### Modeling a Single-Output System
+
+For a single-output system, the input and the output of the block are scalar
+time-domain signals. To model this system:
+
+1. Enter a vector for the zeros of the transfer function in the
+   **Zeros** field.
+2. Enter a vector for the poles of the transfer function in the
+   **Poles** field.
+3. Enter a 1-by-1 vector for the gain of the transfer function in the
+   **Gain** field.
+
+### Modeling a Multiple-Output System
+
+For a multiple-output system, the block input is a scalar and the output is a
+vector, where each element is an output of the system. To model this system:
+
+1. Enter a matrix of zeros in the **Zeros** field.
+
+   Each *column* of this matrix contains the zeros of a
+   transfer function that relates the system input to one of the
+   outputs.
+2. Enter a vector for the poles common to all transfer functions of the
+   system in the **Poles** field.
+3. Enter a vector of gains in the **Gain** field.
+
+   Each element is the gain of the corresponding transfer function in
+   **Zeros**.
+
+Each element of the output vector corresponds to a column in
+**Zeros**.

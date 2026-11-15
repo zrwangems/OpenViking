@@ -10,24 +10,6 @@ language: en
 
 # Queue
 
-Enqueue messages and entities
-
-## Libraries
-
-Simulink / Messages & Events SimEvents
-
-## Description
-
-This block stores entities or messages in a queue, based on their order of arrival or
-priority. Each element at the head of the queue departs when the downstream block is
-ready to accept it.
-
-You can specify the capacity of the queue, and the policy when the queue is full. The
-block supports three different message or queue sorting policies, first-in-first out
-(FIFO), last-in-first out (LIFO), and priority. The priority queue can be used only when
-the **Overwrite the oldest element if queue is full** check box is
-cleared.
-
 ## Ports
 
 ### Input
@@ -436,6 +418,10 @@ full** check box.
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
 
+## Libraries
+
+Simulink / Messages & Events SimEvents
+
 ## Block Characteristics
 
 |  |  |
@@ -461,3 +447,17 @@ Allow tasks to execute concurrently on target.
 ## Version History
 
 **Introduced in R2016a**
+
+## Description
+
+Enqueue messages and entities
+
+This block stores entities or messages in a queue, based on their order of arrival or
+priority. Each element at the head of the queue departs when the downstream block is
+ready to accept it.
+
+You can specify the capacity of the queue, and the policy when the queue is full. The
+block supports three different message or queue sorting policies, first-in-first out
+(FIFO), last-in-first out (LIFO), and priority. The priority queue can be used only when
+the **Overwrite the oldest element if queue is full** check box is
+cleared.

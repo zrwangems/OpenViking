@@ -11,20 +11,6 @@ chinese_source: official
 
 # Gain
 
-将输入乘以常量
-
-## 所属库
-
-Simulink / Commonly Used Blocks Simulink / Math Operations HDL Coder / Commonly Used Blocks HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
-
-## 描述
-
-Gain 模块将输入乘以一个常量值，即增益。输入和增益可以是标量、向量或矩阵。
-
-在**增益**参数中指定增益的值。**乘法**参数用于指定按元素还是矩阵乘法。对于矩阵乘法，此参数还用于指示被乘数的阶。
-
-通过舍入到最邻近整数和饱和操作将增益从双精度型离线转换为模块封装中指定的数据类型。然后将输入和增益相乘，结果通过指定的舍入和溢出模式转换为输出数据类型。
-
 ## 端口
 
 ### 输入
@@ -380,6 +366,10 @@ Gain 模块的输出是输入乘以常量增益值的结果。当 Gain 模块的
 | **参数:** | `ParamDataTypeStr` |
 | **值:** | `'Inherit: Inherit via internal rule'` (默认) | `'Inherit: Same as input'` | `'Inherit: Inherit from 'Gain''` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'fixdt(1,16)'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
 
+## 所属库
+
+Simulink / Commonly Used Blocks Simulink / Math Operations HDL Coder / Commonly Used Blocks HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
+
 ## 模块特性
 
 |  |  |
@@ -440,6 +430,16 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+将输入乘以常量
+
+Gain 模块将输入乘以一个常量值，即增益。输入和增益可以是标量、向量或矩阵。
+
+在**增益**参数中指定增益的值。**乘法**参数用于指定按元素还是矩阵乘法。对于矩阵乘法，此参数还用于指示被乘数的阶。
+
+通过舍入到最邻近整数和饱和操作将增益从双精度型离线转换为模块封装中指定的数据类型。然后将输入和增益相乘，结果通过指定的舍入和溢出模式转换为输出数据类型。

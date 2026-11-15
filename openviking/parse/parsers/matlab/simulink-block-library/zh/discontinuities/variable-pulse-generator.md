@@ -11,24 +11,6 @@ chinese_source: official
 
 # Variable Pulse Generator
 
-生成理想的时变脉冲信号
-
-## 所属库
-
-Simulink / Discontinuities
-
-## 描述
-
-使用 Variable Pulse Generator 模块创建理想的调制脉冲信号。
-
-一般情况下，模块的输出脉冲描述为
-
-y(t)={1tk<t<tk+pw0tk+pw<t<tk+1
-
-其中 *pw* 是输出脉冲宽度。
-
-有关脉冲宽度调制的实现，请参阅PWM。
-
 ## 端口
 
 ### 输入
@@ -82,6 +64,10 @@ y(t)={1tk<t<tk+pw0tk+pw<t<tk+1
 
 此参数要求**采样模式**设置为**离散**
 
+## 所属库
+
+Simulink / Discontinuities
+
 ## 模块特性
 
 |  |  |
@@ -100,6 +86,20 @@ y(t)={1tk<t<tk+pw0tk+pw<t<tk+1
 
 通常，考虑使用 Simulink 模型离散化器将连续模块映射到支持生产代码生成的离散等效模块。要启动模型离散化器，请在 Simulink® 编辑器中，在 **App** 选项卡上，在 **App** 下，在**控制系统**下，点击**模型离散化器**。一个例外是 Second-Order Integrator 模块，因为对于该模块，模型离散化器产生近似离散化。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2020b 中推出**
+
+## 描述
+
+生成理想的时变脉冲信号
+
+使用 Variable Pulse Generator 模块创建理想的调制脉冲信号。
+
+一般情况下，模块的输出脉冲描述为
+
+y(t)={1tk<t<tk+pw0tk+pw<t<tk+1
+
+其中 *pw* 是输出脉冲宽度。
+
+有关脉冲宽度调制的实现，请参阅PWM。

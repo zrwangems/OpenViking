@@ -10,33 +10,6 @@ language: en
 
 # Variant Start
 
-Define start of bounded region
-
-## Libraries
-
-Simulink / Signal Routing
-
-## Description
-
-The Variant Start block defines the start of the bounded region that allows
-you to limit variant condition propagation without introducing a level of hierarchy. Define
-the end of the bounded region by using Variant End. For every Variant
-Start block, there is a single corresponding Variant End block. When
-you specify the variant conditions on the Variant Start block, the
-corresponding Variant End block inherits the conditions and other parameters
-based on the unique **Variant Start End Tag** on compile.
-
-In a given hierarchy, a region between the outport of a Variant Start block
-and the corresponding inport of the Variant End block is defined as a bounded
-region if the following conditions are met:
-
-- You can create a subsystem that wraps all the blocks within the choice without
-  intersecting with the other choice. Thus, there is a clear demarcation of
-  choices.
-- You can create a subsystem with only one inport(connected to the outport of the
-  Variant Start block), and only one outport (connected to the outport of
-  the destination). Choices do not branch out of the region.
-
 ## Ports
 
 ### Input
@@ -367,6 +340,10 @@ Variant Start block.
 | **Values:** `'off'` | `'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Signal Routing
+
 ## Block Characteristics
 
 |  |  |
@@ -386,3 +363,26 @@ Variant Start block.
 ## Version History
 
 **Introduced in R2024a**
+
+## Description
+
+Define start of bounded region
+
+The Variant Start block defines the start of the bounded region that allows
+you to limit variant condition propagation without introducing a level of hierarchy. Define
+the end of the bounded region by using Variant End. For every Variant
+Start block, there is a single corresponding Variant End block. When
+you specify the variant conditions on the Variant Start block, the
+corresponding Variant End block inherits the conditions and other parameters
+based on the unique **Variant Start End Tag** on compile.
+
+In a given hierarchy, a region between the outport of a Variant Start block
+and the corresponding inport of the Variant End block is defined as a bounded
+region if the following conditions are met:
+
+- You can create a subsystem that wraps all the blocks within the choice without
+  intersecting with the other choice. Thus, there is a clear demarcation of
+  choices.
+- You can create a subsystem with only one inport(connected to the outport of the
+  Variant Start block), and only one outport (connected to the outport of
+  the destination). Choices do not branch out of the region.

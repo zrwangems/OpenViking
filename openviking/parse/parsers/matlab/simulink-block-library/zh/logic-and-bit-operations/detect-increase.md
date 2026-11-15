@@ -11,21 +11,6 @@ chinese_source: official
 
 # Detect Increase
 
-检测信号值的增长
-
-## 所属库
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
-## 描述
-
-Detect Increase 模块确定输入信号是否严格大于上一个值。
-
-- 当输入信号大于上一个值时，输出为 true（等于 `1`）。
-- 当输入信号小于或等于上一个值时，输出为 false（等于 `0`）。
-
-此模块仅支持离散采样时间。
-
 ## 端口
 
 ### 输入
@@ -98,6 +83,10 @@ Detect Increase 模块确定输入信号是否严格大于上一个值。
 | **值：**`'boolean' | 'uint8'` |
 | **默认值：**`'boolean'` |
 
+## 所属库
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
 ## 模块特性
 
 |  |  |
@@ -134,6 +123,17 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+检测信号值的增长
+
+Detect Increase 模块确定输入信号是否严格大于上一个值。
+
+- 当输入信号大于上一个值时，输出为 true（等于 `1`）。
+- 当输入信号小于或等于上一个值时，输出为 false（等于 `0`）。
+
+此模块仅支持离散采样时间。

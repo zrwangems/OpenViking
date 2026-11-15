@@ -10,19 +10,6 @@ language: en
 
 # Clock
 
-Display and provide simulation time
-
-## Libraries
-
-Simulink / Sources
-
-## Description
-
-The Clock block outputs the current simulation time at each simulation step.
-This block is useful for other blocks that need the simulation time.
-
-When you need the current time within a discrete system, use the Digital Clock block.
-
 ## Ports
 
 ### Output
@@ -73,6 +60,10 @@ To display the simulation time on the block icon, you must select the
 | **Value:** scalar |
 | **Default:** `'10'` |
 
+## Libraries
+
+Simulink / Sources
+
 ## Block Characteristics
 
 |  |  |
@@ -98,3 +89,12 @@ Thus, blocks suitable for production code remain suitable.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Display and provide simulation time
+
+The Clock block outputs the current simulation time at each simulation step.
+This block is useful for other blocks that need the simulation time.
+
+When you need the current time within a discrete system, use the Digital Clock block.

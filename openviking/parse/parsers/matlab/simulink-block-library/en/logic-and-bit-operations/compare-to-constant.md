@@ -10,18 +10,6 @@ language: en
 
 # Compare To Constant
 
-Determine how signal compares to specified constant
-
-## Libraries
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
-## Description
-
-The Compare To Constant block compares an input signal to a constant. Specify the
-constant in the **Constant value** parameter. Specify how the input is
-compared to the constant value with the **Operator** parameter.
-
 ## Ports
 
 ### Input
@@ -111,6 +99,10 @@ Select to enable zero-crossing detection. For more information, see Zero-Crossin
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'on'` |
 
+## Libraries
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -153,3 +145,11 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Determine how signal compares to specified constant
+
+The Compare To Constant block compares an input signal to a constant. Specify the
+constant in the **Constant value** parameter. Specify how the input is
+compared to the constant value with the **Operator** parameter.

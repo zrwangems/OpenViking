@@ -10,121 +10,6 @@ language: en
 
 # Rate Transition
 
-Handle transfer of data between blocks operating at different rates
-
-## Libraries
-
-Simulink / Signal Attributes HDL Coder / Signal Attributes
-
-## Description
-
-The Rate Transition block transfers data from the output of a block
-operating at one rate to the input of a block operating at a different rate. Use the block
-parameters to trade data integrity and deterministic transfer for faster response or lower
-memory requirements. To learn about data integrity and deterministic data transfer, see Data Transfer Considerations (Simulink Coder).
-
-### Transition Handling Behaviors
-
-| Behavior | Parameter Settings | Notes |
-| --- | --- | --- |
-| - Data integrity - Deterministic data transfer - Maximum latency | Select:  - **Ensure data integrity during data transfer** - **Ensure deterministic data transfer** | - Generated code transfers data so that the data bytes for the signal   (including elements of a wide signal) are from the same time step. - Relative sample time (delay) from which the data is transferred from one   rate to another is the same. - The code generator produces ANSI® C code only. - Target-specific critical-section protection is not needed. |
-| - Data integrity - Nondeterministic data transfer - Minimum latency - Higher memory requirements | Select:  - **Ensure data integrity during data transfer**  Clear:  - **Ensure deterministic data transfer** | - Generated code transfers data so that data bytes for the signal (including   elements of a wide signal) are from the same time step. - Relative sample time (delay) for which the data is transferred can vary   from one transfer of data to the next. Code that reads and writes the data   runs more often than the case when you select **Ensure data integrity   during data transfer** and **Ensure deterministic data   transfer**. In the worst case scenario, the delay is equivalent to   when you select **Ensure data integrity during data   transfer** and **Ensure deterministic data   transfer**, but the delay can be less, which can be important for   some applications. - Supports data transfers to and from asynchronous rates. - The code generator produces ANSI C code only. - Target-specific critical-section protection is not needed. |
-| - Potential loss of data integrity - Nondeterministic data transfer - Minimum latency - Lower memory requirements | Clear:  - **Ensure data integrity during data transfer** - **Ensure deterministic data transfer** | - Code generator does not generate code for the Rate   Transition block. - Acceptable for applications where atomic access of scalar data types is   guaranteed and when the relative temporal values of the data are not   important. - Delay is not introduced. |
-
-The behavior of the Rate Transition block depends on:
-
-- Sample times of the ports to which the block connects (see Effects of Synchronous Sample Times and Effects of Asynchronous Sample Times)
-- Priorities of the tasks for the source and destination sample times (see Sample time properties)
-- Whether the model specifies a fixed- or variable-step solver (see Compare Solvers)
-- Setting of model configuration parameters **Device vendor** and
-  **Device type** (see Effects of Device Configuration)
-
-### Block Labels
-
-When you update a model diagram, a label appears on the Rate Transition
-block to indicate simulation behavior.
-
-| Label | Block Behavior |
-| --- | --- |
-| `ZOH` | Acts as a zero-order hold |
-| `1/z` | Acts as a unit delay |
-| `Buf` | Copies input to output under semaphore control |
-| `Db_buf` | Copies input to output by using double buffers |
-| `3buf` | Copies input to output by using triple buffers |
-| `Copy` | Unprotected copy of input to output |
-| `NoOp` | No operation |
-| `Mixed` | Expands to multiple blocks with different behaviors |
-| `RT` | Indicates data transfer between partitions when using the Schedule Editor.  For more information, see Using the Schedule Editor. |
-| `Memory` | Indicates memory mode. The block is in memory mode when **Ensure deterministic data transfer (maximum delay)** is cleared. |
-
-The block behavior label shows the method that ensures safe transfer of data between
-tasks operating at different rates. You can use the sample-time colors feature (see View Sample Time Information) to display the relative rates that the block
-bridges. Consider this example model:
-
-Model that includes Rate Transition blocks that handle a fast-to-slow rate transition and a slow-to-fast rate transition.
-
-Sample-time colors and the block behavior labels show:
-
-- The Rate Transition block at the top of the diagram acts as a
-  zero-order hold in a fast-to-slow transition.
-- The Rate Transition block at the bottom of the diagram acts as a unit
-  delay in a slow-to-fast transition.
-
-For more information, see Data Transfer Representation and Processing (Simulink Coder).
-
-### Effects of Synchronous Sample Times
-
-This table summarizes how each label appears when the sample times of the input and
-output ports (`inTs` and `outTs`) are periodic, or
-synchronous.
-
-| Block Settings | | Block Label | | |
-| --- | --- | --- | --- | --- |
-| Rate Transition | Conditions for Rate Transition Block | With Data Integrity and Determinism | With Only Data Integrity | Without Data Integrity or Determinism |
-| `inTs` = `outTs`  (Equal) | `inTsOffset` < `outTsOffset` | None (error) | `Buf` | `Copy` or `NoOp` (see note that follows the table) |
-| `inTsOffset` = `outTsOffset` | `Copy` or `NoOp` (see note that follows the table) | `Copy` or `NoOp` (see note that follows the table) |
-| `inTsOffset` > `outTsOffset` | None (error) | `Db_buf` |
-| `inTs` < `outTs`  (Fast to slow) | `inTs` = `outTs / N`  `inTsOffset`, `outTsOffset` = 0 | `ZOH` | `Buf` |
-| `inTs` = `outTs / N`  `inTsOffset` ≤ `outTsOffset` | None (error) |
-| `inTs` = `outTs / N`  `inTsOffset` > `outTsOffset` | None (error) | `Db_buf` |
-| `inTs` ≠ `outTs / N` | None (error) |
-| `inTs` > `outTs`  (Slow to fast) | `inTs` = `outTs * N`  `inTsOffset`, `outTsOffset` = 0 | `1/z` | `Db_buf` |
-| `inTs` = `outTs * N`  `inTsOffset` ≤ `outTsOffset` | None (error) |
-| `inTs` = `outTs * N`  `inTsOffset` > `outTsOffset` | None (error) |
-| `inTs` ≠ `outTs * N` | None (error) |
-| **KEY**  - `inTs`, `outTs`: Sample times of input   and output ports, respectively - `inTsOffset`, `outTsOffset`: Sample time   offsets of input and output ports, respectively - `N`: Integer value > 1 | | | | |
-
-**Note**
-
-When you select model configuration parameter **Block reduction**,
-`Copy` reduces to `NoOp`. No code generation occurs
-for a Rate Transition block with a `NoOp` label. To
-prevent a block from being reduced when block reduction is on, add a test point to the
-block output (see Configure Signals as Test Points).
-
-### Effects of Asynchronous Sample Times
-
-This table summarizes how each label appears when the sample time of the input or output
-port (`inTs` or `outTs`) is not periodic, or
-asynchronous.
-
-| Block Settings | | Block Label | | |
-| --- | --- | --- | --- | --- |
-| With Data Integrity and Determinism | With Only Data Integrity | Without Data Integrity or Determinism |
-| `inTs` = `outTs` | | `Copy` | `Copy` | `Copy` |
-| `inTs` ≠ `outTs` | | None (error) | `Db_buf` |
-| **KEY**  - `inTs`, `outTs`: Sample times of input   and output ports, respectively | | | | |
-
-### Effects of Device Configuration
-
-If the settings of model configuration parameters **Device vendor**
-and **Device type** specify hardware that supports atomic data load and
-store operations, the code generator optimizes the generated rate transition code when the
-target hardware supports atomic load and store operations for the data type of the signal
-being transferred. The code generator takes advantage of the hardware data load and store
-capability by replacing double-buffering code between asynchronous tasks with code that
-performs a single memory copy.
-
 ## Ports
 
 ### Input
@@ -281,6 +166,10 @@ to `Multiple of input port sample time`.
 | **Values:** scalar |
 | **Default:** `'1'` |
 
+## Libraries
+
+Simulink / Signal Attributes HDL Coder / Signal Attributes
+
 ## Block Characteristics
 
 |  |  |
@@ -370,3 +259,114 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Handle transfer of data between blocks operating at different rates
+
+The Rate Transition block transfers data from the output of a block
+operating at one rate to the input of a block operating at a different rate. Use the block
+parameters to trade data integrity and deterministic transfer for faster response or lower
+memory requirements. To learn about data integrity and deterministic data transfer, see Data Transfer Considerations (Simulink Coder).
+
+### Transition Handling Behaviors
+
+| Behavior | Parameter Settings | Notes |
+| --- | --- | --- |
+| - Data integrity - Deterministic data transfer - Maximum latency | Select:  - **Ensure data integrity during data transfer** - **Ensure deterministic data transfer** | - Generated code transfers data so that the data bytes for the signal   (including elements of a wide signal) are from the same time step. - Relative sample time (delay) from which the data is transferred from one   rate to another is the same. - The code generator produces ANSI® C code only. - Target-specific critical-section protection is not needed. |
+| - Data integrity - Nondeterministic data transfer - Minimum latency - Higher memory requirements | Select:  - **Ensure data integrity during data transfer**  Clear:  - **Ensure deterministic data transfer** | - Generated code transfers data so that data bytes for the signal (including   elements of a wide signal) are from the same time step. - Relative sample time (delay) for which the data is transferred can vary   from one transfer of data to the next. Code that reads and writes the data   runs more often than the case when you select **Ensure data integrity   during data transfer** and **Ensure deterministic data   transfer**. In the worst case scenario, the delay is equivalent to   when you select **Ensure data integrity during data   transfer** and **Ensure deterministic data   transfer**, but the delay can be less, which can be important for   some applications. - Supports data transfers to and from asynchronous rates. - The code generator produces ANSI C code only. - Target-specific critical-section protection is not needed. |
+| - Potential loss of data integrity - Nondeterministic data transfer - Minimum latency - Lower memory requirements | Clear:  - **Ensure data integrity during data transfer** - **Ensure deterministic data transfer** | - Code generator does not generate code for the Rate   Transition block. - Acceptable for applications where atomic access of scalar data types is   guaranteed and when the relative temporal values of the data are not   important. - Delay is not introduced. |
+
+The behavior of the Rate Transition block depends on:
+
+- Sample times of the ports to which the block connects (see Effects of Synchronous Sample Times and Effects of Asynchronous Sample Times)
+- Priorities of the tasks for the source and destination sample times (see Sample time properties)
+- Whether the model specifies a fixed- or variable-step solver (see Compare Solvers)
+- Setting of model configuration parameters **Device vendor** and
+  **Device type** (see Effects of Device Configuration)
+
+### Block Labels
+
+When you update a model diagram, a label appears on the Rate Transition
+block to indicate simulation behavior.
+
+| Label | Block Behavior |
+| --- | --- |
+| `ZOH` | Acts as a zero-order hold |
+| `1/z` | Acts as a unit delay |
+| `Buf` | Copies input to output under semaphore control |
+| `Db_buf` | Copies input to output by using double buffers |
+| `3buf` | Copies input to output by using triple buffers |
+| `Copy` | Unprotected copy of input to output |
+| `NoOp` | No operation |
+| `Mixed` | Expands to multiple blocks with different behaviors |
+| `RT` | Indicates data transfer between partitions when using the Schedule Editor.  For more information, see Using the Schedule Editor. |
+| `Memory` | Indicates memory mode. The block is in memory mode when **Ensure deterministic data transfer (maximum delay)** is cleared. |
+
+The block behavior label shows the method that ensures safe transfer of data between
+tasks operating at different rates. You can use the sample-time colors feature (see View Sample Time Information) to display the relative rates that the block
+bridges. Consider this example model:
+
+Model that includes Rate Transition blocks that handle a fast-to-slow rate transition and a slow-to-fast rate transition.
+
+Sample-time colors and the block behavior labels show:
+
+- The Rate Transition block at the top of the diagram acts as a
+  zero-order hold in a fast-to-slow transition.
+- The Rate Transition block at the bottom of the diagram acts as a unit
+  delay in a slow-to-fast transition.
+
+For more information, see Data Transfer Representation and Processing (Simulink Coder).
+
+### Effects of Synchronous Sample Times
+
+This table summarizes how each label appears when the sample times of the input and
+output ports (`inTs` and `outTs`) are periodic, or
+synchronous.
+
+| Block Settings | | Block Label | | |
+| --- | --- | --- | --- | --- |
+| Rate Transition | Conditions for Rate Transition Block | With Data Integrity and Determinism | With Only Data Integrity | Without Data Integrity or Determinism |
+| `inTs` = `outTs`  (Equal) | `inTsOffset` < `outTsOffset` | None (error) | `Buf` | `Copy` or `NoOp` (see note that follows the table) |
+| `inTsOffset` = `outTsOffset` | `Copy` or `NoOp` (see note that follows the table) | `Copy` or `NoOp` (see note that follows the table) |
+| `inTsOffset` > `outTsOffset` | None (error) | `Db_buf` |
+| `inTs` < `outTs`  (Fast to slow) | `inTs` = `outTs / N`  `inTsOffset`, `outTsOffset` = 0 | `ZOH` | `Buf` |
+| `inTs` = `outTs / N`  `inTsOffset` ≤ `outTsOffset` | None (error) |
+| `inTs` = `outTs / N`  `inTsOffset` > `outTsOffset` | None (error) | `Db_buf` |
+| `inTs` ≠ `outTs / N` | None (error) |
+| `inTs` > `outTs`  (Slow to fast) | `inTs` = `outTs * N`  `inTsOffset`, `outTsOffset` = 0 | `1/z` | `Db_buf` |
+| `inTs` = `outTs * N`  `inTsOffset` ≤ `outTsOffset` | None (error) |
+| `inTs` = `outTs * N`  `inTsOffset` > `outTsOffset` | None (error) |
+| `inTs` ≠ `outTs * N` | None (error) |
+| **KEY**  - `inTs`, `outTs`: Sample times of input   and output ports, respectively - `inTsOffset`, `outTsOffset`: Sample time   offsets of input and output ports, respectively - `N`: Integer value > 1 | | | | |
+
+**Note**
+
+When you select model configuration parameter **Block reduction**,
+`Copy` reduces to `NoOp`. No code generation occurs
+for a Rate Transition block with a `NoOp` label. To
+prevent a block from being reduced when block reduction is on, add a test point to the
+block output (see Configure Signals as Test Points).
+
+### Effects of Asynchronous Sample Times
+
+This table summarizes how each label appears when the sample time of the input or output
+port (`inTs` or `outTs`) is not periodic, or
+asynchronous.
+
+| Block Settings | | Block Label | | |
+| --- | --- | --- | --- | --- |
+| With Data Integrity and Determinism | With Only Data Integrity | Without Data Integrity or Determinism |
+| `inTs` = `outTs` | | `Copy` | `Copy` | `Copy` |
+| `inTs` ≠ `outTs` | | None (error) | `Db_buf` |
+| **KEY**  - `inTs`, `outTs`: Sample times of input   and output ports, respectively | | | | |
+
+### Effects of Device Configuration
+
+If the settings of model configuration parameters **Device vendor**
+and **Device type** specify hardware that supports atomic data load and
+store operations, the code generator optimizes the generated rate transition code when the
+target hardware supports atomic load and store operations for the data type of the signal
+being transferred. The code generator takes advantage of the hardware data load and store
+capability by replacing double-buffering code between asynchronous tasks with code that
+performs a single memory copy.

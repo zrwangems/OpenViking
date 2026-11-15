@@ -10,17 +10,6 @@ language: en
 
 # Difference
 
-Calculate change in signal over one time step
-
-## Libraries
-
-Simulink / Discrete
-
-## Description
-
-The Difference block outputs the current input value minus the previous input
-value.
-
 ## Ports
 
 ### Input
@@ -246,6 +235,10 @@ saturation code.
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Discrete
+
 ## Block Characteristics
 
 |  |  |
@@ -293,3 +286,10 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Calculate change in signal over one time step
+
+The Difference block outputs the current input value minus the previous input
+value.

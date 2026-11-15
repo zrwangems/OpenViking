@@ -10,65 +10,6 @@ language: en
 
 # Propagation Delay
 
-Model loop delay, latency, pulse delay
-
-## Libraries
-
-Simulink / Discrete
-
-## Description
-
-The Propagation Delay block delays the current value for a signal into the
-future by an amount specified by a delay signal. The Propagation Delay block is
-well suited for implementing time delay in a discrete system.
-
-On each simulation step *k*, the block samples the signal input
-*U**k* and the delay input
-*D**k*. The block output value
-becomes the signal value after the delay time
-*D**k* has elapsed from the
-current simulation time
-*T**k*.
-
-*y*(*t*) =
-*U**k* when *t* =
-*T**k* +
-*D**k*
-
-At the start of the simulation, the block output value is the **Initial
-output** block parameter value *Y*0. The
-first sample of the delay signal *D*0 determines when
-the block output changes from the **Initial output** value to the delayed
-input signal values.
-
-*y*(*t*) =
-*Y*0 when *t* < *T*0 +
-*D*0
-
-When the simulation reaches the time *T*0 +
-*D*0, the block output is determined by the signal and delay samples.
-
-*y*(*t*) =
-*U**k* when
-*T**k* +
-*D**k* ≤ *t*
-≤ *T**k*+1 +
-*D**k*+1,
-
-where:
-
-- *U**k* is the sample of the
-  input signal taken at *t* =
-  *T**k*.
-- *D**k* is the sample of the
-  delay signal taken at *t* =
-  *T**k*.
-- *T**k*+1 is the simulation
-  time at which the next signal and delay samples were taken.
-- *D**k*+1 is the delay
-  sample taken at time
-  *T**k*+1.
-
 ## Ports
 
 ### Input
@@ -195,6 +136,10 @@ intervals**.
 | **Values:** numeric scalar |
 | **Default:** `0.1` |
 
+## Libraries
+
+Simulink / Discrete
+
 ## Block Characteristics
 
 |  |  |
@@ -221,3 +166,58 @@ allocation.
 ## Version History
 
 **Introduced in R2022b**
+
+## Description
+
+Model loop delay, latency, pulse delay
+
+The Propagation Delay block delays the current value for a signal into the
+future by an amount specified by a delay signal. The Propagation Delay block is
+well suited for implementing time delay in a discrete system.
+
+On each simulation step *k*, the block samples the signal input
+*U**k* and the delay input
+*D**k*. The block output value
+becomes the signal value after the delay time
+*D**k* has elapsed from the
+current simulation time
+*T**k*.
+
+*y*(*t*) =
+*U**k* when *t* =
+*T**k* +
+*D**k*
+
+At the start of the simulation, the block output value is the **Initial
+output** block parameter value *Y*0. The
+first sample of the delay signal *D*0 determines when
+the block output changes from the **Initial output** value to the delayed
+input signal values.
+
+*y*(*t*) =
+*Y*0 when *t* < *T*0 +
+*D*0
+
+When the simulation reaches the time *T*0 +
+*D*0, the block output is determined by the signal and delay samples.
+
+*y*(*t*) =
+*U**k* when
+*T**k* +
+*D**k* ≤ *t*
+≤ *T**k*+1 +
+*D**k*+1,
+
+where:
+
+- *U**k* is the sample of the
+  input signal taken at *t* =
+  *T**k*.
+- *D**k* is the sample of the
+  delay signal taken at *t* =
+  *T**k*.
+- *T**k*+1 is the simulation
+  time at which the next signal and delay samples were taken.
+- *D**k*+1 is the delay
+  sample taken at time
+  *T**k*+1.

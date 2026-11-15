@@ -10,43 +10,6 @@ language: en
 
 # MATLAB Function
 
-Include MATLAB code in Simulink models
-
-## Libraries
-
-Simulink / User-Defined Functions HDL Coder / User-Defined Functions
-
-## Description
-
-The MATLAB Function block enables you to write MATLAB® functions that execute in Simulink® models. The MATLAB function executes during simulation at each time step. For more
-information about integrating MATLAB code into your Simulink models, see Implement MATLAB Functions in Simulink with MATLAB Function Blocks. If you
-have a Simulink
-Coder™ license, you can also generate C/C++ code from a MATLAB
-Function block for a Simulink
-Coder target.
-
-Double-click the MATLAB Function block to open the MATLAB Function Block Editor, where you write the MATLAB function. You can also define variables, add an input trigger, and create
-function call outputs by using the Model Explorer or the **Symbols**
-pane. For more information, see Create and Define MATLAB Function Block Variables, Manage the Input Trigger of a MATLAB Function Block,
-and Manage Function Call Outputs of a MATLAB Function Block.
-
-In the **Symbols** pane, you can declare a block input to be a
-Simulink parameter instead of a port. The MATLAB Function block also
-supports inheritance of types and size for inputs, outputs, and parameters. You can
-specify these properties explicitly. See Define and Modify Variable Data Types, Specify Size of MATLAB Function Block Variables, and Use Data in Multiple MATLAB Function Blocks by Defining Parameter Variables.
-
-When you simulate a model that contains a MATLAB Function block, the
-software generates binary code or C/C++ MATLAB executable (MEX) code from the block and integrates this code with the
-model. The MATLAB Function block uses the same infrastructure as
-MATLAB
-Coder, which you use to generate C/C++ code from MATLAB code outside of Simulink. Consequentially, the MATLAB Function block code must use
-MATLAB conventions that are supported for code generation. See Code and Integration Limitations for MATLAB Function Blocks.
-
-To support visualization of data, the MATLAB Function block supports
-calls to MATLAB functions for simulation only. See Use MATLAB Engine to Execute a Function Call in MATLAB Function Blocks. If you generate code using Simulink
-Coder, the calls do not appear in the generated code if the function calls do
-not directly affect the Simulink inputs or outputs.
-
 ## Ports
 
 ### Input
@@ -447,6 +410,10 @@ the property using these options:
 | **Parameter:** | `EmlDefaultFimath` |
 | **Values:** | `"Same as MATLAB Default"` (default) | `"Other:UserSpecified"` |
 
+## Libraries
+
+Simulink / User-Defined Functions HDL Coder / User-Defined Functions
+
 ## Block Characteristics
 
 |  |  |
@@ -638,3 +605,36 @@ fixed-point numbers with a word length of 64 bits and a fraction length of 0.
 
 Simulink strings are now supported in MATLAB Function
 blocks.
+
+## Description
+
+Include MATLAB code in Simulink models
+
+The MATLAB Function block enables you to write MATLAB® functions that execute in Simulink® models. The MATLAB function executes during simulation at each time step. For more
+information about integrating MATLAB code into your Simulink models, see Implement MATLAB Functions in Simulink with MATLAB Function Blocks. If you
+have a Simulink
+Coder™ license, you can also generate C/C++ code from a MATLAB
+Function block for a Simulink
+Coder target.
+
+Double-click the MATLAB Function block to open the MATLAB Function Block Editor, where you write the MATLAB function. You can also define variables, add an input trigger, and create
+function call outputs by using the Model Explorer or the **Symbols**
+pane. For more information, see Create and Define MATLAB Function Block Variables, Manage the Input Trigger of a MATLAB Function Block,
+and Manage Function Call Outputs of a MATLAB Function Block.
+
+In the **Symbols** pane, you can declare a block input to be a
+Simulink parameter instead of a port. The MATLAB Function block also
+supports inheritance of types and size for inputs, outputs, and parameters. You can
+specify these properties explicitly. See Define and Modify Variable Data Types, Specify Size of MATLAB Function Block Variables, and Use Data in Multiple MATLAB Function Blocks by Defining Parameter Variables.
+
+When you simulate a model that contains a MATLAB Function block, the
+software generates binary code or C/C++ MATLAB executable (MEX) code from the block and integrates this code with the
+model. The MATLAB Function block uses the same infrastructure as
+MATLAB
+Coder, which you use to generate C/C++ code from MATLAB code outside of Simulink. Consequentially, the MATLAB Function block code must use
+MATLAB conventions that are supported for code generation. See Code and Integration Limitations for MATLAB Function Blocks.
+
+To support visualization of data, the MATLAB Function block supports
+calls to MATLAB functions for simulation only. See Use MATLAB Engine to Execute a Function Call in MATLAB Function Blocks. If you generate code using Simulink
+Coder, the calls do not appear in the generated code if the function calls do
+not directly affect the Simulink inputs or outputs.

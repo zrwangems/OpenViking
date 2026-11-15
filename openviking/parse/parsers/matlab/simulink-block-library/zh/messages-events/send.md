@@ -11,16 +11,6 @@ chinese_source: official
 
 # Send
 
-创建并发送消息
-
-## 所属库
-
-Simulink / Messages & Events SimEvents
-
-## 描述
-
-Send 模块读取输入信号的值，并发送携带此值的消息。在基于消息的通信中，消息是感兴趣的离散项，携带 Simulink 支持的任何类型的数据。Send 和 Message Send 模块是相同的模块。
-
 ## 端口
 
 ### 输入
@@ -63,6 +53,10 @@ Send 模块读取输入信号的值，并发送携带此值的消息。在基于
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
 
+## 所属库
+
+Simulink / Messages & Events SimEvents
+
 ## 模块特性
 
 |  |  |
@@ -81,6 +75,12 @@ Send 模块读取输入信号的值，并发送携带此值的消息。在基于
 
 Send 模块不支持行优先代码生成。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2016a 中推出**
+
+## 描述
+
+创建并发送消息
+
+Send 模块读取输入信号的值，并发送携带此值的消息。在基于消息的通信中，消息是感兴趣的离散项，携带 Simulink 支持的任何类型的数据。Send 和 Message Send 模块是相同的模块。

@@ -10,26 +10,6 @@ language: en
 
 # Sqrt
 
-Calculate square root, signed square root, or reciprocal of square root
-
-## Libraries
-
-Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
-
-## Description
-
-The Sqrt block calculates the square root, signed square root, or
-reciprocal of square root on the input signal. Select one of the following functions
-from the **Function** parameter list.
-
-| Function | Description | Mathematical Expression | MATLAB® Equivalent |
-| --- | --- | --- | --- |
-| `sqrt` | Square root of the input | `u0.5` | `sqrt` |
-| `signedSqrt` | Square root of the absolute value of the input, multiplied by the sign of the input | `sign(u)*|u|0.5` | — |
-| `rSqrt` | Reciprocal of the square root of the input | `u-0.5` | — |
-
-The block icon changes to match the function.
-
 ## Ports
 
 ### Input
@@ -448,6 +428,10 @@ the `set_param` function.
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **Values:** | `'on'` (default) | `'off'` |
 
+## Libraries
+
+Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -595,3 +579,19 @@ Use SqrtFunction Architecture for Square Root Block (HDL Coder)
 ## Version History
 
 **Introduced in R2010a**
+
+## Description
+
+Calculate square root, signed square root, or reciprocal of square root
+
+The Sqrt block calculates the square root, signed square root, or
+reciprocal of square root on the input signal. Select one of the following functions
+from the **Function** parameter list.
+
+| Function | Description | Mathematical Expression | MATLAB® Equivalent |
+| --- | --- | --- | --- |
+| `sqrt` | Square root of the input | `u0.5` | `sqrt` |
+| `signedSqrt` | Square root of the absolute value of the input, multiplied by the sign of the input | `sign(u)*|u|0.5` | — |
+| `rSqrt` | Reciprocal of the square root of the input | `u-0.5` | — |
+
+The block icon changes to match the function.

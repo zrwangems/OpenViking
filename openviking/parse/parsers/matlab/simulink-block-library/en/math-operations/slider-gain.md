@@ -10,17 +10,6 @@ language: en
 
 # Slider Gain
 
-Vary scalar gain using slider
-
-## Libraries
-
-Simulink / Math Operations
-
-## Description
-
-The Slider Gain block performs a scalar gain that you can modify during simulation.
-Modify the gain using the slider parameter.
-
 ## Ports
 
 ### Input
@@ -82,6 +71,10 @@ Specify the upper limit of the slider range.
 | **Values**: real scalar |
 | **Default**: `'2'` |
 
+## Libraries
+
+Simulink / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -103,3 +96,10 @@ Specify the upper limit of the slider range.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Vary scalar gain using slider
+
+The Slider Gain block performs a scalar gain that you can modify during simulation.
+Modify the gain using the slider parameter.

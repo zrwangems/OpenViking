@@ -10,20 +10,6 @@ language: en
 
 # Squeeze
 
-Remove singleton dimensions from multidimensional signal
-
-## Libraries
-
-Simulink / Math Operations
-
-## Description
-
-The Squeeze block removes singleton dimensions from its
-multidimensional input signal. A singleton dimension is any dimension whose size is one.
-The Squeeze block operates only on signals whose number of dimensions is
-greater than two. Scalar, vector, and matrix signals pass through the
-Squeeze block unchanged.
-
 ## Ports
 
 ### Input
@@ -43,6 +29,14 @@ If there are no singleton dimensions in the input, then the input signal
 is passed through unchanged to the output.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+
+## Parameters
+
+Not documented in R2025b.
+
+## Libraries
+
+Simulink / Math Operations
 
 ## Block Characteristics
 
@@ -65,3 +59,13 @@ is passed through unchanged to the output.
 ## Version History
 
 **Introduced in R2007b**
+
+## Description
+
+Remove singleton dimensions from multidimensional signal
+
+The Squeeze block removes singleton dimensions from its
+multidimensional input signal. A singleton dimension is any dimension whose size is one.
+The Squeeze block operates only on signals whose number of dimensions is
+greater than two. Scalar, vector, and matrix signals pass through the
+Squeeze block unchanged.

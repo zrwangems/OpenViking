@@ -10,19 +10,6 @@ language: en
 
 # ASCII to String
 
-Uint8 vector signal to string signal
-
-## Libraries
-
-Simulink / String
-
-## Description
-
-The ASCII to String block converts uint8 vector signals to string
-signals. The block treats each element in the input vector as an ASCII value during the
-conversion. For example, the block converts an input vector of `[72 101 108 108
-111]` to the string `"Hello"`.
-
 ## Ports
 
 ### Input
@@ -55,6 +42,14 @@ string.
 
 **Data Types:** `string`
 
+## Parameters
+
+Not documented in R2025b.
+
+## Libraries
+
+Simulink / String
+
 ## Block Characteristics
 
 |  |  |
@@ -72,3 +67,12 @@ string.
 ## Version History
 
 **Introduced in R2018a**
+
+## Description
+
+Uint8 vector signal to string signal
+
+The ASCII to String block converts uint8 vector signals to string
+signals. The block treats each element in the input vector as an ASCII value during the
+conversion. For example, the block converts an input vector of `[72 101 108 108
+111]` to the string `"Hello"`.

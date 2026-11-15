@@ -10,37 +10,6 @@ language: en
 
 # Shift Arithmetic
 
-Shift bits or binary point of signal
-
-## Libraries
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
-## Description
-
-The Shift Arithmetic block can shift the bits or the binary point of an input
-signal, or both.
-
-For example, shifting the binary point on an input of data type `sfix(8)`
-by two places to the right and left gives these decimal values.
-
-| Shift Operation | Binary Value | Decimal Value |
-| --- | --- | --- |
-| No shift (original number) | 11001.011 | –6.625 |
-| Binary point shift right by two places | 1100101.1 | –26.5 |
-| Binary point shift left by two places | 110.01011 | –1.65625 |
-
-This block performs arithmetic bit shifts on signed numbers. Therefore, the block recycles
-the most significant bit for each bit shift. Shifting the bits on an input of data type
-`sfix(8)` by two places to the right and left gives these decimal
-values.
-
-| Shift Operation | Binary Value | Decimal Value |
-| --- | --- | --- |
-| No shift (original number) | 11001.011 | –6.625 |
-| Bit shift right by two places | 11110.010 | –1.75 |
-| Bit shift left by two places | 00101.100 | 5.5 |
-
 ## Ports
 
 ### Input
@@ -182,6 +151,10 @@ For more information, see Code Generation for Out-of-Range Bit Shift Values.
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
 
+## Libraries
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -236,3 +209,30 @@ port**, binary point shifting is not supported.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Shift bits or binary point of signal
+
+The Shift Arithmetic block can shift the bits or the binary point of an input
+signal, or both.
+
+For example, shifting the binary point on an input of data type `sfix(8)`
+by two places to the right and left gives these decimal values.
+
+| Shift Operation | Binary Value | Decimal Value |
+| --- | --- | --- |
+| No shift (original number) | 11001.011 | –6.625 |
+| Binary point shift right by two places | 1100101.1 | –26.5 |
+| Binary point shift left by two places | 110.01011 | –1.65625 |
+
+This block performs arithmetic bit shifts on signed numbers. Therefore, the block recycles
+the most significant bit for each bit shift. Shifting the bits on an input of data type
+`sfix(8)` by two places to the right and left gives these decimal
+values.
+
+| Shift Operation | Binary Value | Decimal Value |
+| --- | --- | --- |
+| No shift (original number) | 11001.011 | –6.625 |
+| Bit shift right by two places | 11110.010 | –1.75 |
+| Bit shift left by two places | 00101.100 | 5.5 |

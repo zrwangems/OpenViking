@@ -11,28 +11,6 @@ chinese_source: official
 
 # Switch Case Action Subsystem
 
-由 Switch Case 模块使能执行的子系统
-
-## 所属库
-
-Simulink / Ports & Subsystems
-
-## 描述
-
-Switch Case Action Subsystem 模块是经过预先配置的 Subsystem 模块，您可基于它创建由 Switch Case 模块控制执行的子系统。Switch Case 模块的输入端口选择使用 **case 条件**参数定义的 case。根据输入值和选择的 case，该模块发送动作信号，以执行 Switch Case Action Subsystem 模块。子系统的执行由放置在子系统内部的 Action Port 模块控制。
-
-Simulink® 会忽略对 Switch Case Action Subsystem 模块设置的优先级。在这种情况下，请对启动子系统执行的 Switch Case 模块设置优先级。
-
-Switch Case Action Subsystem 模块中的所有模块都必须以与 Switch Case 驱动模块相同的速率运行。可以通过将每个模块采样时间参数都设置为继承 (`-1`) 或与 Switch Case 模块相同的采样时间来实现此要求。
-
-### 合并来自 Switch Case 执行子系统模块的信号
-
-示例模型 `ex_switch_case_block` 显示如何基于多个子系统输出信号创建一个信号。有关详细信息，请参阅选择子系统执行。
-
-Model ex\_switch\_case\_block
-
-Switch Case 模块从一组子系统中选择一个 If Action Subsystem 模块执行。无论 Switch Case 模块选择哪个子系统，您都可以用 Merge 模块创建一个结果信号。
-
 ## 端口
 
 ### 输入
@@ -532,6 +510,10 @@ Action Port 模块在 Simulink 库浏览器中不可用。使用 Switch Case Act
 | **参数:** | `RTWMemSecDataParameters` |
 | **值:** | `'Inherit from model'` (默认) | `'Default'` | model memory section in quotes |
 
+## 所属库
+
+Simulink / Ports & Subsystems
+
 ## 模块特性
 
 |  |  |
@@ -591,6 +573,24 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 实际数据类型支持取决于模块实现。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+由 Switch Case 模块使能执行的子系统
+
+Switch Case Action Subsystem 模块是经过预先配置的 Subsystem 模块，您可基于它创建由 Switch Case 模块控制执行的子系统。Switch Case 模块的输入端口选择使用 **case 条件**参数定义的 case。根据输入值和选择的 case，该模块发送动作信号，以执行 Switch Case Action Subsystem 模块。子系统的执行由放置在子系统内部的 Action Port 模块控制。
+
+Simulink® 会忽略对 Switch Case Action Subsystem 模块设置的优先级。在这种情况下，请对启动子系统执行的 Switch Case 模块设置优先级。
+
+Switch Case Action Subsystem 模块中的所有模块都必须以与 Switch Case 驱动模块相同的速率运行。可以通过将每个模块采样时间参数都设置为继承 (`-1`) 或与 Switch Case 模块相同的采样时间来实现此要求。
+
+### 合并来自 Switch Case 执行子系统模块的信号
+
+示例模型 `ex_switch_case_block` 显示如何基于多个子系统输出信号创建一个信号。有关详细信息，请参阅选择子系统执行。
+
+Model ex\_switch\_case\_block
+
+Switch Case 模块从一组子系统中选择一个 If Action Subsystem 模块执行。无论 Switch Case 模块选择哪个子系统，您都可以用 Merge 模块创建一个结果信号。

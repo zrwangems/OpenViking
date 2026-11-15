@@ -10,29 +10,6 @@ language: en
 
 # Matrix Concatenate
 
-Concatenate input matrices of same data type for iterative processing
-
-## Libraries
-
-Simulink / Math Operations Simulink / Matrix Operations DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations HDL Coder / Math Operations
-
-## Description
-
-The Matrix Concatenate block concatenates input signals to create a nonscalar
-signal that you can iteratively process with a subsystem, for example, a for-each,
-while-iterator, or for-iterator subsystem.
-
-You can use multiple Matrix Concatenate blocks to create the output signal in
-stages, but the result is flat along each concatenation dimension, as if you used a single
-block to concatenate the signals.
-
-The signals in the output signal appear in the same order as the input signals for the block
-along the concatenation dimension. For a description of the port order for various block
-orientations, see Identify Port Location on Rotated or Flipped Block.
-
-You must use a Vector Concatenate or Matrix Concatenate block
-to define an array of buses. For more information, see Group Nonvirtual Buses in Arrays of Buses.
-
 ## Ports
 
 ### Input
@@ -159,6 +136,10 @@ the `set_param` function.
 
 **Example:** `set_param(gcb,'ConcatenateDimension','2')`
 
+## Libraries
+
+Simulink / Math Operations Simulink / Matrix Operations DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations HDL Coder / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -231,3 +212,22 @@ more information, see Unroll For-Generate Loops (HDL Coder)
 ## Version History
 
 **Introduced in R2009b**
+
+## Description
+
+Concatenate input matrices of same data type for iterative processing
+
+The Matrix Concatenate block concatenates input signals to create a nonscalar
+signal that you can iteratively process with a subsystem, for example, a for-each,
+while-iterator, or for-iterator subsystem.
+
+You can use multiple Matrix Concatenate blocks to create the output signal in
+stages, but the result is flat along each concatenation dimension, as if you used a single
+block to concatenate the signals.
+
+The signals in the output signal appear in the same order as the input signals for the block
+along the concatenation dimension. For a description of the port order for various block
+orientations, see Identify Port Location on Rotated or Flipped Block.
+
+You must use a Vector Concatenate or Matrix Concatenate block
+to define an array of buses. For more information, see Group Nonvirtual Buses in Arrays of Buses.

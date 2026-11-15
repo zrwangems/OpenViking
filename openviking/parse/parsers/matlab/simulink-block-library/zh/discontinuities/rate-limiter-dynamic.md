@@ -11,28 +11,6 @@ chinese_source: official
 
 # Rate Limiter Dynamic
 
-限制信号变化的速率
-
-## 所属库
-
-Simulink / Discontinuities
-
-## 描述
-
-Rate Limiter Dynamic 模块限制信号的上升和下降速率。
-
-- 外部信号 `up` 设置信号上升沿速率的上限。
-- 外部信号 `lo` 设置信号下降沿速率的下限。
-
-使用 Rate Limiter Dynamic 模块时，请遵循以下指导原则：
-
-- 确保 `up` 和 `lo` 的数据类型与输入信号 `u` 的数据类型相同。
-
-  如果下限使用有符号类型，而输入信号使用无符号类型，则输出信号将一直增加，而不管输入信号和限制。
-- 使用定步长求解器仿真包含此模块的模型。
-
-  因为 Rate Limiter Dynamic 模块仅支持离散采样时间。
-
 ## 端口
 
 ### 输入
@@ -62,6 +40,14 @@ Rate Limiter Dynamic 模块限制信号的上升和下降速率。
 
 **数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point` | `enumerated` | `bus`
 
+## 参数
+
+R2025b 官方文档未提供。
+
+## 所属库
+
+Simulink / Discontinuities
+
 ## 模块特性
 
 |  |  |
@@ -82,6 +68,24 @@ Rate Limiter Dynamic 模块限制信号的上升和下降速率。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+限制信号变化的速率
+
+Rate Limiter Dynamic 模块限制信号的上升和下降速率。
+
+- 外部信号 `up` 设置信号上升沿速率的上限。
+- 外部信号 `lo` 设置信号下降沿速率的下限。
+
+使用 Rate Limiter Dynamic 模块时，请遵循以下指导原则：
+
+- 确保 `up` 和 `lo` 的数据类型与输入信号 `u` 的数据类型相同。
+
+  如果下限使用有符号类型，而输入信号使用无符号类型，则输出信号将一直增加，而不管输入信号和限制。
+- 使用定步长求解器仿真包含此模块的模型。
+
+  因为 Rate Limiter Dynamic 模块仅支持离散采样时间。

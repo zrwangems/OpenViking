@@ -11,71 +11,6 @@ chinese_source: official
 
 # Signal Editor
 
-显示、创建、编辑和切换可互换场景。
-
-## 所属库
-
-Simulink / Sources
-
-## 描述
-
-可以使用 Signal Editor 模块显示、创建和编辑包含信号的可互换场景。信号可以是：
-
-- MATLAB® `timeseries` 对象。`timeseries` 对象不能有空的 `Data` 属性。
-- `timetable` 对象。`timetable` 对象不能表示多个变量。
-- MATLAB `timeseries` 或 `timetable` 对象的结构体。
-- 二维矩阵。
-
-该模块为每个信号创建一个端口。
-
-要创建和编辑场景以及场景中包含的信号，请点击**打开信号编辑器** ()。您也可以使用 Signal Editor 模块切换模型的场景。
-
-Signal Editor 模块支持包含作为一个或多个标量 `Simulink.SimulationData.Dataset` 对象的信号的 MAT 文件。
-
-### 创建和编辑场景和信号
-
-要创建和编辑场景及其中包含的信号，请点击  打开信号编辑器工具。信号编辑器工具使您能够以下列方式轻松操作信号：
-
-- 创建和编辑多个数据集的多个信号。默认情况下，信号编辑器会创建时间序列格式数据。
-- 使用信号符号通过 MATLAB 表达式创建更复杂的信号。您可以使用创建和插入对话框，或在表格区域中手动输入简单的 MATLAB 表达式。
-- 使用现有场景获取现有数据集以便对其编辑和创建信号。
-- 创建和编辑多维信号。
-
-有关信号编辑器工具的详细信息，请参阅创建和编辑信号数据。
-
-### 编程交互
-
-要以编程方式获取 Signal Editor 模块中的场景和信号的总数，请将 `get_param` 函数分别与 `NumberOfScenarios` 和 `NumberOfSignals` 参数结合使用。这些只读参数包含字符向量形式的值。要将这些值转换为双精度值，请使用 `str2double` 函数。
-
-要以编程方式启用 Signal Editor 模块来标记输出信号线，请使用 `set_param` 函数将 `PreserveSignalName` 设置为 `'on'`（默认值）。
-
-```
-set_param(gcb,'PreserveSignalName','on')
-```
-
-有关编程交互的详细信息，请参阅参数和替换 signalbuilder 的程序化使用。
-
-### 导入和导出
-
-信号编辑器通过允许您执行以下操作来支持自定义文件类型（如 Microsoft® Excel®）：
-
-- 编辑从注册的自定义文件类型导入的信号。有关详细信息，请参阅Import Custom File Type。
-- 将信号从信号编辑器导出为您注册的自定义文件类型。有关详细信息，请参阅Export Signals to Custom Registered File Types。
-
-### 从 Signal Builder 模块迁移
-
-您可以使用 `signalBuilderToSignalEditor` 函数将 Signal Builder 模块配置移到 Signal Editor 模块。有关详细信息，请参阅用 Signal Editor 模块替换信号生成器模块和从信号生成器模块迁移到 Signal Editor 模块。
-
-### 快速重启
-
-Signal Editor 模块支持快速重启。启用快速重启后，您仍可以：
-
-- 更改激活场景。
-- 更改活动信号。
-
-  虽然您可以更改活动信号，但无法编辑模块中的信号属性。
-- 打开信号编辑器并编辑数据。
-
 ## 端口
 
 ### 输出参量
@@ -414,6 +349,10 @@ signal:   2 3 4 5 6
 | **值**：`'Setting to zero' | 'Extrapolation' | 'Holding final value'` |
 | **默认值**：`'Setting to zero'` |
 
+## 所属库
+
+Simulink / Sources
+
 ## 模块特性
 
 |  |  |
@@ -454,7 +393,7 @@ HDL Coder™ 具有影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2017b 中推出**
 
@@ -502,3 +441,64 @@ Signal Editor 模块对话框有以下更新：
 ### R2021a: 总线数组支持
 
 信号编辑器 模块支持加载总线数组的数据。顶层模型中的 信号编辑器 模块可以在普通或加速模式仿真中加载总线数组的数据。仅当引用模型在普通模式下执行时，才支持使用引用模型中的 信号编辑器 模块加载总线数组的数据。
+
+## 描述
+
+显示、创建、编辑和切换可互换场景。
+
+可以使用 Signal Editor 模块显示、创建和编辑包含信号的可互换场景。信号可以是：
+
+- MATLAB® `timeseries` 对象。`timeseries` 对象不能有空的 `Data` 属性。
+- `timetable` 对象。`timetable` 对象不能表示多个变量。
+- MATLAB `timeseries` 或 `timetable` 对象的结构体。
+- 二维矩阵。
+
+该模块为每个信号创建一个端口。
+
+要创建和编辑场景以及场景中包含的信号，请点击**打开信号编辑器** ()。您也可以使用 Signal Editor 模块切换模型的场景。
+
+Signal Editor 模块支持包含作为一个或多个标量 `Simulink.SimulationData.Dataset` 对象的信号的 MAT 文件。
+
+### 创建和编辑场景和信号
+
+要创建和编辑场景及其中包含的信号，请点击  打开信号编辑器工具。信号编辑器工具使您能够以下列方式轻松操作信号：
+
+- 创建和编辑多个数据集的多个信号。默认情况下，信号编辑器会创建时间序列格式数据。
+- 使用信号符号通过 MATLAB 表达式创建更复杂的信号。您可以使用创建和插入对话框，或在表格区域中手动输入简单的 MATLAB 表达式。
+- 使用现有场景获取现有数据集以便对其编辑和创建信号。
+- 创建和编辑多维信号。
+
+有关信号编辑器工具的详细信息，请参阅创建和编辑信号数据。
+
+### 编程交互
+
+要以编程方式获取 Signal Editor 模块中的场景和信号的总数，请将 `get_param` 函数分别与 `NumberOfScenarios` 和 `NumberOfSignals` 参数结合使用。这些只读参数包含字符向量形式的值。要将这些值转换为双精度值，请使用 `str2double` 函数。
+
+要以编程方式启用 Signal Editor 模块来标记输出信号线，请使用 `set_param` 函数将 `PreserveSignalName` 设置为 `'on'`（默认值）。
+
+```
+set_param(gcb,'PreserveSignalName','on')
+```
+
+有关编程交互的详细信息，请参阅参数和替换 signalbuilder 的程序化使用。
+
+### 导入和导出
+
+信号编辑器通过允许您执行以下操作来支持自定义文件类型（如 Microsoft® Excel®）：
+
+- 编辑从注册的自定义文件类型导入的信号。有关详细信息，请参阅Import Custom File Type。
+- 将信号从信号编辑器导出为您注册的自定义文件类型。有关详细信息，请参阅Export Signals to Custom Registered File Types。
+
+### 从 Signal Builder 模块迁移
+
+您可以使用 `signalBuilderToSignalEditor` 函数将 Signal Builder 模块配置移到 Signal Editor 模块。有关详细信息，请参阅用 Signal Editor 模块替换信号生成器模块和从信号生成器模块迁移到 Signal Editor 模块。
+
+### 快速重启
+
+Signal Editor 模块支持快速重启。启用快速重启后，您仍可以：
+
+- 更改激活场景。
+- 更改活动信号。
+
+  虽然您可以更改活动信号，但无法编辑模块中的信号属性。
+- 打开信号编辑器并编辑数据。

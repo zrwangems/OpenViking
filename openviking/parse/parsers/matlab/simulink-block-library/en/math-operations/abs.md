@@ -10,31 +10,6 @@ language: en
 
 # Abs
 
-Output absolute value of input
-
-## Libraries
-
-Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
-
-## Description
-
-The Abs block outputs the absolute value of the input.
-
-For signed-integer data types, the absolute value of the most negative value is not
-representable by the data type. In this case, the **Saturate on integer
-overflow** check box controls the behavior of the block.
-
-| If you... | The block... | And... |
-| --- | --- | --- |
-| Select this check box | Saturates to the most positive value of the integer data type | - For 8-bit signed integers, -128 maps to 127. - For 16-bit signed integers, -32768 maps to 32767. - For 32-bit signed integers, -2147483648 maps to   2147483647. |
-| Do not select this check box | Wraps to the most negative value of the integer data type | - For 8-bit signed integers, -128 remains -128. - For 16-bit signed integers, -32768 remains -32768. - For 32-bit signed integers, -2147483648 remains   -2147483648. |
-
-The Abs block supports zero-crossing detection. However, when you select
-**Enable zero-crossing detection** on the dialog box, the block
-does not report the simulation minimum or maximum in the Fixed-Point Tool. If you want
-to use the Fixed-Point Tool to analyze a model, disable zero-crossing detection for all
-Abs blocks in the model first.
-
 ## Ports
 
 ### Input
@@ -237,6 +212,10 @@ this case, the code generator does not produce saturation code.
 | **Value**: `'off'` | `'on'` |
 | **Default**: `'off'` |
 
+## Libraries
+
+Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -288,3 +267,24 @@ instead.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Output absolute value of input
+
+The Abs block outputs the absolute value of the input.
+
+For signed-integer data types, the absolute value of the most negative value is not
+representable by the data type. In this case, the **Saturate on integer
+overflow** check box controls the behavior of the block.
+
+| If you... | The block... | And... |
+| --- | --- | --- |
+| Select this check box | Saturates to the most positive value of the integer data type | - For 8-bit signed integers, -128 maps to 127. - For 16-bit signed integers, -32768 maps to 32767. - For 32-bit signed integers, -2147483648 maps to   2147483647. |
+| Do not select this check box | Wraps to the most negative value of the integer data type | - For 8-bit signed integers, -128 remains -128. - For 16-bit signed integers, -32768 remains -32768. - For 32-bit signed integers, -2147483648 remains   -2147483648. |
+
+The Abs block supports zero-crossing detection. However, when you select
+**Enable zero-crossing detection** on the dialog box, the block
+does not report the simulation minimum or maximum in the Fixed-Point Tool. If you want
+to use the Fixed-Point Tool to analyze a model, disable zero-crossing detection for all
+Abs blocks in the model first.

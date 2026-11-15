@@ -10,25 +10,6 @@ language: en
 
 # Receive
 
-Receive messages
-
-## Libraries
-
-Simulink / Messages & Events SimEvents
-
-## Description
-
-The Receive block extracts data from received messages and writes them
-to the output signal port. If there are no new messages when the block executes, the
-block uses the **Value source when queue is empty** value.
-Receive and Message Receive blocks are identical
-blocks.
-
-- Select `Hold last value` to hold data read from the
-  last message.
-- Select `Use initial value` to write default
-  data.
-
 ## Ports
 
 ### Input
@@ -248,6 +229,10 @@ more information.
 | **Values**: `'-1'` | scalar |
 | **Default**: `'-1'` |
 
+## Libraries
+
+Simulink / Messages & Events SimEvents
+
 ## Block Characteristics
 
 |  |  |
@@ -274,3 +259,18 @@ Receive blocks do not support row-major code generation.
 ## Version History
 
 **Introduced in R2016a**
+
+## Description
+
+Receive messages
+
+The Receive block extracts data from received messages and writes them
+to the output signal port. If there are no new messages when the block executes, the
+block uses the **Value source when queue is empty** value.
+Receive and Message Receive blocks are identical
+blocks.
+
+- Select `Hold last value` to hold data read from the
+  last message.
+- Select `Use initial value` to write default
+  data.

@@ -10,61 +10,6 @@ language: en
 
 # Variant Source
 
-Route among multiple inputs using variants
-
-## Libraries
-
-Simulink / Signal Routing
-
-## Description
-
-The Variant Source block enables you to include multiple
-implementations of a component on the source of a signal in a single layer.
-
-For example, suppose you want to simulate this model to control the speed of the car
-windshield wiper by using different rain sensors. The Variant Source
-block switches between different rain sensors. The control logic uses this information
-to output the result to the Variant Sink block. The Variant
-Sink block then switches between the wiper motor model during simulation and
-the command to the sensor during code generation. The variant blocks switch between
-choices based on the Types of Variant Control Modes in Variant Blocks you select. For
-more information, see Introduction to Variant Controls.
-
-**Note**
-
-At most, one variant choice connected to input port of the Variant
-Source block is active during simulation.
-
-Multiple implementations to control speed of car windshield using a Variant Source block
-
-The Variant Source block has one or more input ports and only one
-output port. You can connect the varying choices to the input port of the block so that,
-at most, one choice is active during model execution.
-
-The Variant Source block is associated with a Variant control mode and a
-Variant activation time. The
-variant control mode determines how to specify the variant control. The variant
-activation time determines a time to activate the choices and to decide whether to
-include only the active choice or both active and inactive choices in the generated
-code. During simulation, Simulink® connects the active choice directly to the output port of the
-Variant Source block and ignores the inactive choices.
-
-Using a Variant Source block allows you to:
-
-- Propagate variant conditions throughout the model.
-- Visualize all possible implementations of variant choices in a single
-  layer of your model, which improves model readability.
-- Simulink eliminates inactive blocks throughout the model, which
-  improves runtime performance. If all the variant choices are inactive,
-  Simulink removes the variant region completely from your model.
-- Variant sources and sinks provide variant component interfaces that you
-  can use to quickly model variant choices.
-
-The color and icon of the variant badge on the block icon changes depending on the values of
-the **Variant activation time**, **Variant control
-mode**, and **Allow zero active variant controls**
-parameters. For more information, see Variant Badges.
-
 ## Ports
 
 ### Input
@@ -502,6 +447,10 @@ Variant Source block.
 | **Values:** `'off'` | `'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Signal Routing
+
 ## Block Characteristics
 
 |  |  |
@@ -532,3 +481,54 @@ with predefined fixes. Select the most appropriate fix, and click the
 **Fix** button. You may need to provide
 additional information to resolve the error. If successful, the red border
 disappears. If not, a failure message appears.
+
+## Description
+
+Route among multiple inputs using variants
+
+The Variant Source block enables you to include multiple
+implementations of a component on the source of a signal in a single layer.
+
+For example, suppose you want to simulate this model to control the speed of the car
+windshield wiper by using different rain sensors. The Variant Source
+block switches between different rain sensors. The control logic uses this information
+to output the result to the Variant Sink block. The Variant
+Sink block then switches between the wiper motor model during simulation and
+the command to the sensor during code generation. The variant blocks switch between
+choices based on the Types of Variant Control Modes in Variant Blocks you select. For
+more information, see Introduction to Variant Controls.
+
+**Note**
+
+At most, one variant choice connected to input port of the Variant
+Source block is active during simulation.
+
+Multiple implementations to control speed of car windshield using a Variant Source block
+
+The Variant Source block has one or more input ports and only one
+output port. You can connect the varying choices to the input port of the block so that,
+at most, one choice is active during model execution.
+
+The Variant Source block is associated with a Variant control mode and a
+Variant activation time. The
+variant control mode determines how to specify the variant control. The variant
+activation time determines a time to activate the choices and to decide whether to
+include only the active choice or both active and inactive choices in the generated
+code. During simulation, Simulink® connects the active choice directly to the output port of the
+Variant Source block and ignores the inactive choices.
+
+Using a Variant Source block allows you to:
+
+- Propagate variant conditions throughout the model.
+- Visualize all possible implementations of variant choices in a single
+  layer of your model, which improves model readability.
+- Simulink eliminates inactive blocks throughout the model, which
+  improves runtime performance. If all the variant choices are inactive,
+  Simulink removes the variant region completely from your model.
+- Variant sources and sinks provide variant component interfaces that you
+  can use to quickly model variant choices.
+
+The color and icon of the variant badge on the block icon changes depending on the values of
+the **Variant activation time**, **Variant control
+mode**, and **Allow zero active variant controls**
+parameters. For more information, see Variant Badges.

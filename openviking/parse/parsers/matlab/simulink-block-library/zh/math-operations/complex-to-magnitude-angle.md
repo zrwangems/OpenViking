@@ -11,16 +11,6 @@ chinese_source: official
 
 # Complex to Magnitude-Angle
 
-计算复信号的幅值和/或相位角
-
-## 所属库
-
-Simulink / Math Operations
-
-## 描述
-
-Complex to Magnitude-Angle 模块输出输入信号的幅值和/或相位角，具体取决于**输出**参数的设置。输出是与模块输入具有相同数据类型的实数值。输入可以是复信号数组，这种情况下，输出信号也是数组。幅值信号数组包含对应的复数输入元素的幅值。同样，角度输出包含输入元素的角度。
-
 ## 端口
 
 ### 输入
@@ -132,6 +122,10 @@ CORDIC 算法执行的迭代次数，指定为正整数值标量。增加迭代�
 | **参数:** | `SampleTime` |
 | **值:** | `"-1"` (默认) | scalar or vector in quotes |
 
+## 所属库
+
+Simulink / Math Operations
+
 ## 模块特性
 
 |  |  |
@@ -146,7 +140,7 @@ CORDIC 算法执行的迭代次数，指定为正整数值标量。增加迭代�
 
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
 
@@ -157,3 +151,9 @@ Complex to Magnitude-Angle 模块现在支持 CORDIC 逼近方法。此方法允
 选择 CORDIC 方法时，模块图标会更新。新参数“迭代次数”允许您定义 CORDIC 算法的迭代次数。
 
 Complex to Magnitude-Angle block icon with CORDIC approximation method input
+
+## 描述
+
+计算复信号的幅值和/或相位角
+
+Complex to Magnitude-Angle 模块输出输入信号的幅值和/或相位角，具体取决于**输出**参数的设置。输出是与模块输入具有相同数据类型的实数值。输入可以是复信号数组，这种情况下，输出信号也是数组。幅值信号数组包含对应的复数输入元素的幅值。同样，角度输出包含输入元素的角度。

@@ -10,27 +10,6 @@ language: en
 
 # To String
 
-Convert input signal to string signal
-
-## Libraries
-
-Simulink / String
-
-## Description
-
-The To String block creates a string signal from an input signal. For
-example, consider using this signal to convert a logical value `1` or
-`0` to its string equivalent `"false"` or
-`"true"`.
-
-The To String block generates efficient code for enumerations by generating a shared
-function for each enumeration type. For more information on enumerations, see Simulink Enumerations.
-
-When a MinGW® compiler compiles code generated from the block, running the compiled code
-may produce nonstandard results for floating-point inputs. For example, a numeric input
-of `501.987` returns the string `"5.019870e+002"`
-instead of the expected string `"5.019870e+02"`.
-
 ## Ports
 
 ### Input
@@ -65,6 +44,14 @@ a string, surrounded by double quotes.
 
 **Data Types:** `string`
 
+## Parameters
+
+Not documented in R2025b.
+
+## Libraries
+
+Simulink / String
+
 ## Block Characteristics
 
 |  |  |
@@ -90,3 +77,20 @@ a string, surrounded by double quotes.
 The To String block now generates more efficient code for enumerations by
 generating a shared function for each enumeration type. Prior to R2024b, this block
 generated inlined code for enumerations.
+
+## Description
+
+Convert input signal to string signal
+
+The To String block creates a string signal from an input signal. For
+example, consider using this signal to convert a logical value `1` or
+`0` to its string equivalent `"false"` or
+`"true"`.
+
+The To String block generates efficient code for enumerations by generating a shared
+function for each enumeration type. For more information on enumerations, see Simulink Enumerations.
+
+When a MinGW® compiler compiles code generated from the block, running the compiled code
+may produce nonstandard results for floating-point inputs. For example, a numeric input
+of `501.987` returns the string `"5.019870e+002"`
+instead of the expected string `"5.019870e+02"`.

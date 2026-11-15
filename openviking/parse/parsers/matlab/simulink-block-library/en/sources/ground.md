@@ -10,43 +10,6 @@ language: en
 
 # Ground
 
-Ground unconnected input port
-
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Sources HDL Coder / Sources
-
-## Description
-
-The Ground block connects to blocks whose input ports do not connect to other
-blocks. If you run a simulation with blocks that have unconnected input ports, the
-software issues warnings. Using a Ground block to ground those
-unconnected blocks can prevent these warnings.
-
-### Working with Fixed-Point Data Types
-
-When working with fixed-point data types, there may be instances where the fixed-point data
-type cannot represent zero exactly. In these cases, the Ground block
-outputs a nonzero value that is the closest possible value to zero. This behavior
-applies only to fixed-point data types with nonzero bias. These expressions are
-examples of fixed-point data types that cannot represent zero:
-
-- `fixdt(0, 8, 1, 1)` — an unsigned 8-bit type with
-  slope of 1 and bias of 1
-- `fixdt(1, 8, 6, 3)` — a signed 8-bit type with
-  slope of 6 and bias of 3
-
-### Working with Enumerated Data Types
-
-When working with enumerated data types, the Ground block outputs the
-default value of the enumeration. This behavior applies whether:
-
-- The enumeration can represent zero
-- The default value of the enumeration is zero
-
-If the enumerated type does not have a default value, the Ground block
-outputs the first enumeration value in the type definition.
-
 ## Ports
 
 ### Output
@@ -57,6 +20,14 @@ The Ground block outputs a scalar signal with zero value, and the same
 data type as the port to which it connects.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
+
+## Parameters
+
+Not documented in R2025b.
+
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Sources HDL Coder / Sources
 
 ## Block Characteristics
 
@@ -99,3 +70,36 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Ground unconnected input port
+
+The Ground block connects to blocks whose input ports do not connect to other
+blocks. If you run a simulation with blocks that have unconnected input ports, the
+software issues warnings. Using a Ground block to ground those
+unconnected blocks can prevent these warnings.
+
+### Working with Fixed-Point Data Types
+
+When working with fixed-point data types, there may be instances where the fixed-point data
+type cannot represent zero exactly. In these cases, the Ground block
+outputs a nonzero value that is the closest possible value to zero. This behavior
+applies only to fixed-point data types with nonzero bias. These expressions are
+examples of fixed-point data types that cannot represent zero:
+
+- `fixdt(0, 8, 1, 1)` — an unsigned 8-bit type with
+  slope of 1 and bias of 1
+- `fixdt(1, 8, 6, 3)` — a signed 8-bit type with
+  slope of 6 and bias of 3
+
+### Working with Enumerated Data Types
+
+When working with enumerated data types, the Ground block outputs the
+default value of the enumeration. This behavior applies whether:
+
+- The enumeration can represent zero
+- The default value of the enumeration is zero
+
+If the enumerated type does not have a default value, the Ground block
+outputs the first enumeration value in the type definition.

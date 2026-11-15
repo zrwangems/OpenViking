@@ -11,26 +11,6 @@ chinese_source: worker-translation
 
 # Function Element
 
-
-
-指定要通过导出函数端口调用的函数
-
-## 库
-
-Simulink / Ports & Subsystems
-
-## 说明
-
-Function Element 模块允许由另一个被引用模型中的函数调用方调用某个被引用模型中的 Simulink® 函数。当 Function Element 模块放置在由 Model 模块引用的模型的根层级时，会在 Model 模块中创建一个导出函数端口。当导出函数端口连接到另一个 Model 模块的调用函数端口时，该另一个 Model 模块中的函数调用方可以通过这些 Model 模块各自的函数端口发出函数调用并接收返回值。
-
-Simulink 画布显示 2 个带有函数端口的被引用模型以及连接它们的线。
-
-Simulink 画布显示 Function Element 模块和 Simulink Function 模块。
-
-通过使用多个 Function Element 模块，可以通过单个导出函数端口调用某个被引用模型中的多个 Simulink 函数。使用同一端口的所有 Function Element 模块共享一个对话框。一个模型可以有多个导出函数端口。
-
-Function Element 模块必须放置在指定为 export-function 模型的模型的根层级。请参阅 Export-Function Models Overview。对于每个 Function Element 模块，还应在该模型的根层级放置一个端口作用域的 Simulink Function 模块，用于定义要通过 Function Element 模块调用的函数。
-
 ## 端口
 
 ### 输入
@@ -141,6 +121,10 @@ Function Element 模块必须放置在指定为 export-function 模型的模型�
 
 **示例：** `set_param("mymodel/client", OutDataTypeStr="Bus: ServiceInterface")`
 
+## 所属库
+
+Simulink / Ports & Subsystems
+
 ## 模块特性
 
 |  |  |
@@ -188,3 +172,17 @@ Function Element 模块必须放置在指定为 export-function 模型的模型�
 - 复制并粘贴 Function Element 模块。
 
 在以前版本中，这些操作会创建端口或向端口添加元素。
+
+## 描述
+
+指定要通过导出函数端口调用的函数
+
+Function Element 模块允许由另一个被引用模型中的函数调用方调用某个被引用模型中的 Simulink® 函数。当 Function Element 模块放置在由 Model 模块引用的模型的根层级时，会在 Model 模块中创建一个导出函数端口。当导出函数端口连接到另一个 Model 模块的调用函数端口时，该另一个 Model 模块中的函数调用方可以通过这些 Model 模块各自的函数端口发出函数调用并接收返回值。
+
+Simulink 画布显示 2 个带有函数端口的被引用模型以及连接它们的线。
+
+Simulink 画布显示 Function Element 模块和 Simulink Function 模块。
+
+通过使用多个 Function Element 模块，可以通过单个导出函数端口调用某个被引用模型中的多个 Simulink 函数。使用同一端口的所有 Function Element 模块共享一个对话框。一个模型可以有多个导出函数端口。
+
+Function Element 模块必须放置在指定为 export-function 模型的模型的根层级。请参阅 Export-Function Models Overview。对于每个 Function Element 模块，还应在该模型的根层级放置一个端口作用域的 Simulink Function 模块，用于定义要通过 Function Element 模块调用的函数。

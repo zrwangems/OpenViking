@@ -11,20 +11,6 @@ chinese_source: worker-translation
 
 # Bit Clear
 
-
-
-将存储整数的指定位置零
-
-## 库
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
-## 描述
-
-Bit Clear 模块将存储整数的指定位（由其索引给出）设置为零。缩放将被忽略。
-
-您可以使用 **Index of bit** 参数指定要设置为零的位，其中位 0 是最低有效位。
-
 ## 端口
 
 ### 输入
@@ -56,6 +42,10 @@ Bit Clear 模块将存储整数的指定位（由其索引给出）设置为零�
 | **类型**: character vector |
 | **值**: 标量 | 向量 |
 | **默认**: `'0'` |
+
+## 所属库
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
 
 ## 模块特性
 
@@ -97,3 +87,11 @@ HDL Coder™ 提供了影响 HDL 实现和综合逻辑的附加配置选项。
 ## 版本历史
 
 **在 R2006a 之前引入**
+
+## 描述
+
+将存储整数的指定位置零
+
+Bit Clear 模块将存储整数的指定位（由其索引给出）设置为零。缩放将被忽略。
+
+您可以使用 **Index of bit** 参数指定要设置为零的位，其中位 0 是最低有效位。

@@ -11,50 +11,6 @@ chinese_source: worker-translation
 
 # Neighborhood Processing Subsystem
 
-
-
-创建遵循邻域模式的算法
-
-## 库
-
-Simulink / Matrix Operations
-
-## 描述
-
-Neighborhood Processing Subsystem 模块是预配置为创建遵循邻域模式的子系统的起点的 Subsystem 模块。在每个仿真时间步，子系统迭代输入数组的每个元素。对于每个元素，子系统处理围绕该元素的邻域值。将该子系统用于图像处理。某些图像处理算法涉及分块处理图像，而不是一次处理整个图像。
-
-### 配置子系统
-
-Neighborhood Processing Subsystem 包含一个 Neighborhood 模块，该模块充当子系统的控制模块。指定 Neighborhood 模块的参数以配置子系统的行为。
-
-**邻域大小** 参数控制邻域的维度。对于输入矩阵边缘附近的元素，邻域可能延伸到输入矩阵之外。**填充选项** 参数控制子系统如何处理来自输入矩阵外部的值。可以将子系统配置为使用常量填充这些值，或通过重用矩阵内部的值来填充。如果使用 `Constant` 填充选项，请使用 **填充常量** 参数设置常量值。
-
-可以将 Neighborhood Processing Subsystem 模块配置为仅处理输入矩阵的某些元素。使用 **步幅** 参数将 Neighborhood Processing Subsystem 模块配置为在每次迭代时跳过一定数量的元素。使用 **处理偏移量** 和 **处理宽度** 参数分别定义图像中感兴趣区域 (ROI) 的左上边界和右下边界。Neighborhood Processing Subsystem 模块仅迭代该区域。
-
-**输出大小** 参数控制输出矩阵的大小。`Same` 值将输出矩阵配置为与 ROI 大小相同。`Full` 值通过为 ROI 之外但其邻域包含至少一个来自 ROI 的元素的元素计算值，生成更大的输出矩阵。`Valid` 值通过仅为邻域不超出 ROI 的元素计算值，生成更小的输出矩阵。使用此设置时，**填充常量** 参数被禁用。
-
-### 示例
-
-考虑此模型。
-
-一个包含值为 "ones(5,5)" 的 Constant 模块的模型，该模块传递给 Neighborhood Processing Subsystem，后者输出到 Display 模块。Display 模块不显示任何值。
-
-在此示例中，Neighborhood Processing Subsystem 模块获取 5×5 矩阵，并使用 `Same` 输出大小选项输出相同维度的矩阵。该子系统包含以下模块。
-
-一个包含一个输入端口和一个输出端口的 Neighborhood Processing Subsystem。输入端口连接到 Sum of Elements 模块，该模块输出到输出端口。
-
-在 Neighborhood Processing Subsystem 模块内部，输入端口不会接收完整的 5×5 矩阵。相反，由于 **邻域大小** 参数值为 `[3 3]`，输入端口接收一个更小的 3×3 元素窗口。子系统迭代输入矩阵的元素，在每次迭代时将每个元素的邻域传递到输入端口。
-
-该模型使用 `Constant` 填充选项，填充值为 `0`。对于延伸到输入矩阵之外的邻域，子系统将外部值视为 `0`。
-
-Neighborhood Processing Subsystem 模块的输出端口接收一个标量，该标量表示窗口中心元素的派生值。在此情况下，**Sum over** 参数设置为 `All dimensions` 的 Sum of Elements 模块为每个窗口生成一个标量，表示该窗口中值的和。
-
-运行模型以填充 Display 模块。
-
-与之前相同的模型，Display 模块填充了一个 5×5 矩阵。内部 9 个元素的值为 9，角元素的值为 4，非角边缘元素的值为 6。
-
-输出矩阵的每个值是对应元素及其在输入矩阵中的八个直接相邻元素的和。内部元素周围都是 `1`，因此值为 `9`。外部元素的值较低，因为所选填充方法对输入矩阵外部的元素使用值 `0`。
-
 ## 端口
 
 ### 输入
@@ -538,6 +494,10 @@ Neighborhood Processing Subsystem 模块的输出端口接收一个标量，该�
 | **参数：** | `RTWMemSecDataParameters` |
 | **值：** | `'Inherit from model'` (默认) | `'Default'` | 带引号的模型内存段 |
 
+## 所属库
+
+Simulink / Matrix Operations
+
 ## 模块特性
 
 |  |  |
@@ -622,3 +582,41 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 ### R2025a：不支持具有状态的模块
 
 Neighborhood Processing Subsystem 模块不能包含具有状态的模块。
+
+## 描述
+
+创建遵循邻域模式的算法
+
+Neighborhood Processing Subsystem 模块是预配置为创建遵循邻域模式的子系统的起点的 Subsystem 模块。在每个仿真时间步，子系统迭代输入数组的每个元素。对于每个元素，子系统处理围绕该元素的邻域值。将该子系统用于图像处理。某些图像处理算法涉及分块处理图像，而不是一次处理整个图像。
+
+### 配置子系统
+
+Neighborhood Processing Subsystem 包含一个 Neighborhood 模块，该模块充当子系统的控制模块。指定 Neighborhood 模块的参数以配置子系统的行为。
+
+**邻域大小** 参数控制邻域的维度。对于输入矩阵边缘附近的元素，邻域可能延伸到输入矩阵之外。**填充选项** 参数控制子系统如何处理来自输入矩阵外部的值。可以将子系统配置为使用常量填充这些值，或通过重用矩阵内部的值来填充。如果使用 `Constant` 填充选项，请使用 **填充常量** 参数设置常量值。
+
+可以将 Neighborhood Processing Subsystem 模块配置为仅处理输入矩阵的某些元素。使用 **步幅** 参数将 Neighborhood Processing Subsystem 模块配置为在每次迭代时跳过一定数量的元素。使用 **处理偏移量** 和 **处理宽度** 参数分别定义图像中感兴趣区域 (ROI) 的左上边界和右下边界。Neighborhood Processing Subsystem 模块仅迭代该区域。
+
+**输出大小** 参数控制输出矩阵的大小。`Same` 值将输出矩阵配置为与 ROI 大小相同。`Full` 值通过为 ROI 之外但其邻域包含至少一个来自 ROI 的元素的元素计算值，生成更大的输出矩阵。`Valid` 值通过仅为邻域不超出 ROI 的元素计算值，生成更小的输出矩阵。使用此设置时，**填充常量** 参数被禁用。
+
+### 示例
+
+考虑此模型。
+
+一个包含值为 "ones(5,5)" 的 Constant 模块的模型，该模块传递给 Neighborhood Processing Subsystem，后者输出到 Display 模块。Display 模块不显示任何值。
+
+在此示例中，Neighborhood Processing Subsystem 模块获取 5×5 矩阵，并使用 `Same` 输出大小选项输出相同维度的矩阵。该子系统包含以下模块。
+
+一个包含一个输入端口和一个输出端口的 Neighborhood Processing Subsystem。输入端口连接到 Sum of Elements 模块，该模块输出到输出端口。
+
+在 Neighborhood Processing Subsystem 模块内部，输入端口不会接收完整的 5×5 矩阵。相反，由于 **邻域大小** 参数值为 `[3 3]`，输入端口接收一个更小的 3×3 元素窗口。子系统迭代输入矩阵的元素，在每次迭代时将每个元素的邻域传递到输入端口。
+
+该模型使用 `Constant` 填充选项，填充值为 `0`。对于延伸到输入矩阵之外的邻域，子系统将外部值视为 `0`。
+
+Neighborhood Processing Subsystem 模块的输出端口接收一个标量，该标量表示窗口中心元素的派生值。在此情况下，**Sum over** 参数设置为 `All dimensions` 的 Sum of Elements 模块为每个窗口生成一个标量，表示该窗口中值的和。
+
+运行模型以填充 Display 模块。
+
+与之前相同的模型，Display 模块填充了一个 5×5 矩阵。内部 9 个元素的值为 9，角元素的值为 4，非角边缘元素的值为 6。
+
+输出矩阵的每个值是对应元素及其在输入矩阵中的八个直接相邻元素的和。内部元素周围都是 `1`，因此值为 `9`。外部元素的值较低，因为所选填充方法对输入矩阵外部的元素使用值 `0`。

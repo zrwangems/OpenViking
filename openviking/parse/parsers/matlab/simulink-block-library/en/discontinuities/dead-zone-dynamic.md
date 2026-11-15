@@ -10,28 +10,6 @@ language: en
 
 # Dead Zone Dynamic
 
-Provide dynamic region of zero output
-
-## Libraries
-
-Simulink / Discontinuities HDL Coder / Discontinuities
-
-## Description
-
-The Dead Zone Dynamic block generates a region of zero output based on dynamic input
-signals that specify the upper and lower limit. The block output depends on the input
-**u**, and the values of the input signals **up**
-and **lo**.
-
-| Input | Output |
-| --- | --- |
-| `u >= lo` and `u <= up` | Zero |
-| `u > up` | `u` – `up` |
-| `u < lo` | `u` – `lo` |
-
-The Dead Zone Dynamic block is a masked subsystem and does not have any
-parameters.
-
 ## Ports
 
 ### Input
@@ -65,6 +43,14 @@ Output signal after the dynamic dead zone algorithm is applied to the
 input signal.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+
+## Parameters
+
+Not documented in R2025b.
+
+## Libraries
+
+Simulink / Discontinuities HDL Coder / Discontinuities
 
 ## Block Characteristics
 
@@ -104,3 +90,21 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Provide dynamic region of zero output
+
+The Dead Zone Dynamic block generates a region of zero output based on dynamic input
+signals that specify the upper and lower limit. The block output depends on the input
+**u**, and the values of the input signals **up**
+and **lo**.
+
+| Input | Output |
+| --- | --- |
+| `u >= lo` and `u <= up` | Zero |
+| `u > up` | `u` – `up` |
+| `u < lo` | `u` – `lo` |
+
+The Dead Zone Dynamic block is a masked subsystem and does not have any
+parameters.

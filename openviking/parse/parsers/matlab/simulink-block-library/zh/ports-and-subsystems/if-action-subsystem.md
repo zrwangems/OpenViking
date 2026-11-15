@@ -11,34 +11,6 @@ chinese_source: official
 
 # If Action Subsystem
 
-由 If 模块使能执行的子系统。
-
-## 所属库
-
-Simulink / Ports & Subsystems
-
-## 描述
-
-If Action Subsystem 模块是经过预先配置的 Subsystem 模块，可以作为一个起点，用来创建由 If 模块控制执行的子系统。If 模块计算逻辑表达式，然后根据计算结果输出动作信号。子系统的执行由放置在子系统内部的 Action Port 模块控制。
-
-Contents of an If Action Subsystem block.
-
-Simulink® 会忽略对 If Action Subsystem 模块设置的优先级。在这种情况下，请对启动子系统执行的 If 模块设置优先级。
-
-### 合并来自 If Action Subsystem 模块的信号
-
-此示例说明如何合并由 If 模块控制的信号。有关详细信息，请参阅选择子系统执行。
-
-Model ex\_if\_block
-
-If 模块从一组子系统中选择 If Action Subsystem 模块的执行。无论 If 模块选择哪个子系统，您都可以用 Merge 模块创建一个输出信号。
-
-If Action Subsystem 模块中的所有模块必须以与驱动 If 模块相同的速率执行。为满足此要求，请将每个模块的采样时间参数设置为继承 (-1) 或与 If 模块采样时间相同的值。
-
-### 对定点数据类型的支持
-
-If 模块不直接支持定点数据类型。但是，可以使用 Compare To Constant 模块解决此限制。有关详细信息，请参阅Fixed-Point Data Type Support for If Block。
-
 ## 端口
 
 ### 输入
@@ -538,6 +510,10 @@ Action Port 模块在 Simulink 库浏览器中不可用。使用 If Action Subsy
 | **参数:** | `RTWMemSecDataParameters` |
 | **值:** | `'Inherit from model'` (默认) | `'Default'` | model memory section in quotes |
 
+## 所属库
+
+Simulink / Ports & Subsystems
+
 ## 模块特性
 
 |  |  |
@@ -615,6 +591,30 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 实际数据类型支持取决于模块实现。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+由 If 模块使能执行的子系统。
+
+If Action Subsystem 模块是经过预先配置的 Subsystem 模块，可以作为一个起点，用来创建由 If 模块控制执行的子系统。If 模块计算逻辑表达式，然后根据计算结果输出动作信号。子系统的执行由放置在子系统内部的 Action Port 模块控制。
+
+Contents of an If Action Subsystem block.
+
+Simulink® 会忽略对 If Action Subsystem 模块设置的优先级。在这种情况下，请对启动子系统执行的 If 模块设置优先级。
+
+### 合并来自 If Action Subsystem 模块的信号
+
+此示例说明如何合并由 If 模块控制的信号。有关详细信息，请参阅选择子系统执行。
+
+Model ex\_if\_block
+
+If 模块从一组子系统中选择 If Action Subsystem 模块的执行。无论 If 模块选择哪个子系统，您都可以用 Merge 模块创建一个输出信号。
+
+If Action Subsystem 模块中的所有模块必须以与驱动 If 模块相同的速率执行。为满足此要求，请将每个模块的采样时间参数设置为继承 (-1) 或与 If 模块采样时间相同的值。
+
+### 对定点数据类型的支持
+
+If 模块不直接支持定点数据类型。但是，可以使用 Compare To Constant 模块解决此限制。有关详细信息，请参阅Fixed-Point Data Type Support for If Block。

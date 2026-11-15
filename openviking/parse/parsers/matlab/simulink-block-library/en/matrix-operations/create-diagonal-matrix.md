@@ -10,25 +10,6 @@ language: en
 
 # Create Diagonal Matrix
 
-Create square diagonal matrix from diagonal elements
-
-## Libraries
-
-Simulink / Matrix Operations
-
-## Description
-
-The Create Diagonal Matrix block populates the diagonal of the
-*M*-by-*M* matrix output with the elements
-contained in the length-*M* vector input `D`. The
-elements off the diagonal are zero.
-
-Equivalent MATLAB® code is given by:
-
-```
-A = diag(D)
-```
-
 ## Ports
 
 ### Input
@@ -57,6 +38,14 @@ A = diag(D)		% Equivalent MATLAB code
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 **Complex Number Support:** Yes
 
+## Parameters
+
+Not documented in R2025b.
+
+## Libraries
+
+Simulink / Matrix Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -84,3 +73,18 @@ conditions.
 ### R2021b: Create Diagonal Matrix Block Moved to Simulink Matrix Operations Library
 
 The Create Diagonal Matrix block has been moved from the **DSP System Toolbox** > **Math Functions** > **Matrices and Linear Algebra** > **Matrix Operations** library to the **Simulink** > **Matrix Operations**library. All existing models continue to work.
+
+## Description
+
+Create square diagonal matrix from diagonal elements
+
+The Create Diagonal Matrix block populates the diagonal of the
+*M*-by-*M* matrix output with the elements
+contained in the length-*M* vector input `D`. The
+elements off the diagonal are zero.
+
+Equivalent MATLAB® code is given by:
+
+```
+A = diag(D)
+```

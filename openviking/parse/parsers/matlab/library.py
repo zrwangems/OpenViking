@@ -36,6 +36,69 @@ def front_matter(document: str, name: str) -> str:
     return match.group(1) if match else ""
 
 
+_STRUCTURED_SECTIONS = {
+    "en": (
+        "Ports",
+        "Parameters",
+        "Libraries",
+        "Block Characteristics",
+        "Extended Capabilities",
+        "Version History",
+        "Description",
+    ),
+    "zh": ("端口", "参数", "所属库", "模块特性", "扩展功能", "版本历史", "描述"),
+}
+_SECTION_ALIASES = {
+    "Ports": "Ports",
+    "Parameters": "Parameters",
+    "Libraries": "Libraries",
+    "Block Characteristics": "Block Characteristics",
+    "Extended Capabilities": "Extended Capabilities",
+    "Version History": "Version History",
+    "Description": "Description",
+    "端口": "Ports",
+    "参数": "Parameters",
+    "所属库": "Libraries",
+    "库": "Libraries",
+    "模块特性": "Block Characteristics",
+    "扩展功能": "Extended Capabilities",
+    "版本历史": "Version History",
+    "版本历史记录": "Version History",
+    "描述": "Description",
+    "说明": "Description",
+}
+
+
+def normalize_block_document(document: str, language: str = "en") -> str:
+    """Use one section order and move the block description to the end."""
+    localized = "zh" if str(language).lower().startswith("zh") else "en"
+    title_match = re.search(r"^# (.+)$", document, re.MULTILINE)
+    if not title_match:
+        raise ValueError("Simulink block document has no block-name heading")
+    title = title_match.group(1).strip()
+    header = document[: title_match.start()].rstrip()
+    summary = document[title_match.end() :].split("## ", 1)[0].strip()
+    sections: dict[str, str] = {}
+    for match in re.finditer(r"^## ([^\n]+)\n(.*?)(?=^## |\Z)", document, re.MULTILINE | re.DOTALL):
+        canonical = _SECTION_ALIASES.get(match.group(1).strip())
+        if canonical:
+            content = match.group(2).strip()
+            if content:
+                sections[canonical] = "\n\n".join(
+                    filter(None, (sections.get(canonical, ""), content))
+                )
+    description = "\n\n".join(filter(None, (summary, sections.get("Description", ""))))
+    sections["Description"] = description
+    missing = "R2025b 官方文档未提供。" if localized == "zh" else "Not documented in R2025b."
+    lines = [header, "", f"# {title}", ""]
+    english_names = _STRUCTURED_SECTIONS["en"]
+    for english_name, display_name in zip(
+        english_names, _STRUCTURED_SECTIONS[localized], strict=True
+    ):
+        lines.extend([f"## {display_name}", "", sections.get(english_name) or missing, ""])
+    return "\n".join(lines).rstrip() + "\n"
+
+
 @lru_cache(maxsize=1)
 def catalog_entries() -> tuple[tuple[str, str, str, str], ...]:
     """Build ``(family, category, block name, summary)`` from Markdown files."""
@@ -54,7 +117,7 @@ def catalog_entries() -> tuple[tuple[str, str, str, str], ...]:
             category = front_matter(document, "official_category")
             if not title or not category:
                 raise ValueError(f"Incomplete Simulink block metadata: {document_path}")
-            summary = document.split(f"# {title}\n", 1)[1].split("## ", 1)[0].strip()
+            summary = section(document, "Description").split("\n\n", 1)[0].strip()
             entries.append((family_directory.name, category, title, summary))
     if not entries:
         raise ValueError(f"Packaged Simulink block library is empty: {root}")

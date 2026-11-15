@@ -10,19 +10,6 @@ language: en
 
 # Send
 
-Create and send message
-
-## Libraries
-
-Simulink / Messages & Events SimEvents
-
-## Description
-
-The Send block reads the value of an input signal, and sends a message
-that carries this value. In message-based communication, a message is a discrete-item of
-interest that carry data of any type that Simulink supports. Send and
-Message Send blocks are identical blocks.
-
 ## Ports
 
 ### Input
@@ -72,6 +59,10 @@ or equal to `0`, the send is disabled.
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
 
+## Libraries
+
+Simulink / Messages & Events SimEvents
+
 ## Block Characteristics
 
 |  |  |
@@ -93,3 +84,12 @@ Send blocks do not support row-major code generation.
 ## Version History
 
 **Introduced in R2016a**
+
+## Description
+
+Create and send message
+
+The Send block reads the value of an input signal, and sends a message
+that carries this value. In message-based communication, a message is a discrete-item of
+interest that carry data of any type that Simulink supports. Send and
+Message Send blocks are identical blocks.

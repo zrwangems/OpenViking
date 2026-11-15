@@ -11,25 +11,6 @@ chinese_source: official
 
 # Function-Call Subsystem
 
-由外部函数调用输入控制执行的子系统
-
-## 所属库
-
-Simulink / Ports & Subsystems
-
-## 描述
-
-Function-Call Subsystem 模块是一个预先配置的 Subsystem 模块，可以作为一个起点，用于创建在函数调用输入端口收到函数调用事件时执行的子系统。Stateflow® 图、Function-Call Generator 模块、S-Function 模块或 Hit Crossing 模块可以提供函数调用事件。请参阅使用函数调用子系统。
-
-Contents of an Function-Call Subsystem block.
-
-使用 Function-Call Subsystem 模块可以：
-
-- 调度模型组件的执行顺序。
-- 控制模型组件的执行速度。
-
-Simulink® 会忽略对 Function-Call Subsystem 模块设置的任何优先级，但您可以对连接到子系统的函数调用端口的模块设置优先级。函数调用端口可以从 Stateflow 图、MATLAB Function 模块、Function-Call Generator 模块、S-Function 模块或 Hit Crossing 模块接收函数调用事件。
-
 ## 端口
 
 ### 输入
@@ -543,6 +524,10 @@ Subsystem 模块中的 Trigger 模块会为该模块添加一个外部输入端�
 | **值:** | `''` (默认) | subsystem filename in quotes |
 | **数据类型:** | `char` | `string` |
 
+## 所属库
+
+Simulink / Ports & Subsystems
+
 ## 模块特性
 
 |  |  |
@@ -568,6 +553,21 @@ Subsystem 模块中的 Trigger 模块会为该模块添加一个外部输入端�
 
 实际数据类型支持取决于模块实现。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+由外部函数调用输入控制执行的子系统
+
+Function-Call Subsystem 模块是一个预先配置的 Subsystem 模块，可以作为一个起点，用于创建在函数调用输入端口收到函数调用事件时执行的子系统。Stateflow® 图、Function-Call Generator 模块、S-Function 模块或 Hit Crossing 模块可以提供函数调用事件。请参阅使用函数调用子系统。
+
+Contents of an Function-Call Subsystem block.
+
+使用 Function-Call Subsystem 模块可以：
+
+- 调度模型组件的执行顺序。
+- 控制模型组件的执行速度。
+
+Simulink® 会忽略对 Function-Call Subsystem 模块设置的任何优先级，但您可以对连接到子系统的函数调用端口的模块设置优先级。函数调用端口可以从 Stateflow 图、MATLAB Function 模块、Function-Call Generator 模块、S-Function 模块或 Hit Crossing 模块接收函数调用事件。

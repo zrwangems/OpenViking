@@ -10,13 +10,81 @@ language: en
 
 # Goto Tag Visibility
 
-Define scope of Goto block tag
+## Ports
+
+Not documented in R2025b.
+
+## Parameters
+
+### **Goto tag** — Goto block tag whose visibility is defined by the location of this block `A` (default) | ...
+
+The Goto block tag whose visibility is defined by the
+location of this block. From and Goto blocks
+using the specified tag must be in the same subsystem or at any level in the
+model hierarchy below the Goto Tag Visibility block that does
+not entail crossing a nonvirtual subsystem boundary, in other words, the
+boundary of an atomic, conditionally executed, or function-call subsystem or
+a model reference. A scoped tag name is enclosed in braces
+(`{}`).
+
+#### Tips
+
+If you use multiple From and Goto Tag
+Visibility blocks to refer to the same Goto tag, you can
+simultaneously rename the tag in all of the blocks. Use the
+**Rename All** button in the Goto block dialog box.
+Alternatively, when you change the tag on the Goto block icon,
+propagate the new name to all corresponding From and
+Goto Tag Visibility blocks by pressing
+**Shift+Enter**.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `GotoTag` |
+| **Type:** character vector |
+| **Values:** `'A'` | `...` |
+| **Default:** `'A'` |
 
 ## Libraries
 
 Simulink / Signal Routing
 
+## Block Characteristics
+
+|  |  |
+| --- | --- |
+| **Data Types** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `integer` | `single` |
+| **Direct Feedthrough** | `no` |
+| **Multidimensional Signals** | `no` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
+
+## Extended Capabilities
+
+### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
+
+### HDL Code Generation Generate VHDL, Verilog and SystemVerilog code for FPGA and ASIC designs using HDL Coder™.
+
+HDL Coder™ provides additional configuration options that affect HDL
+implementation and synthesized logic.
+
+**HDL Architecture**
+
+This block has one default HDL architecture.
+
+### PLC Code Generation Generate Structured Text code using Simulink® PLC Coder™.
+
+### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
+
+## Version History
+
+**Introduced before R2006a**
+
 ## Description
+
+Define scope of Goto block tag
 
 The Goto Tag Visibility block defines the accessibility of
 Goto block tags that have `scoped` visibility. The
@@ -52,67 +120,3 @@ to the selected block, a list of related blocks opens. You can filter the list o
 related blocks by entering a search term in the text box. After you select a related
 block from the list, window focus goes to the open diagram or new tab that shows the
 related block.
-
-## Parameters
-
-### **Goto tag** — Goto block tag whose visibility is defined by the location of this block `A` (default) | ...
-
-The Goto block tag whose visibility is defined by the
-location of this block. From and Goto blocks
-using the specified tag must be in the same subsystem or at any level in the
-model hierarchy below the Goto Tag Visibility block that does
-not entail crossing a nonvirtual subsystem boundary, in other words, the
-boundary of an atomic, conditionally executed, or function-call subsystem or
-a model reference. A scoped tag name is enclosed in braces
-(`{}`).
-
-#### Tips
-
-If you use multiple From and Goto Tag
-Visibility blocks to refer to the same Goto tag, you can
-simultaneously rename the tag in all of the blocks. Use the
-**Rename All** button in the Goto block dialog box.
-Alternatively, when you change the tag on the Goto block icon,
-propagate the new name to all corresponding From and
-Goto Tag Visibility blocks by pressing
-**Shift+Enter**.
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter:** `GotoTag` |
-| **Type:** character vector |
-| **Values:** `'A'` | `...` |
-| **Default:** `'A'` |
-
-## Block Characteristics
-
-|  |  |
-| --- | --- |
-| **Data Types** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `integer` | `single` |
-| **Direct Feedthrough** | `no` |
-| **Multidimensional Signals** | `no` |
-| **Variable-Size Signals** | `no` |
-| **Zero-Crossing Detection** | `no` |
-
-## Extended Capabilities
-
-### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
-
-### HDL Code Generation Generate VHDL, Verilog and SystemVerilog code for FPGA and ASIC designs using HDL Coder™.
-
-HDL Coder™ provides additional configuration options that affect HDL
-implementation and synthesized logic.
-
-**HDL Architecture**
-
-This block has one default HDL architecture.
-
-### PLC Code Generation Generate Structured Text code using Simulink® PLC Coder™.
-
-### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
-
-## Version History
-
-**Introduced before R2006a**

@@ -10,28 +10,6 @@ language: en
 
 # Quantizer
 
-Discretize input at given interval
-
-## Libraries
-
-Simulink / Discontinuities
-
-## Description
-
-The Quantizer block discretizes the input signal using a quantization
-algorithm. The block uses a round-to-nearest method to map signal values to quantized
-values at the output that are defined by the **Quantization interval**.
-A smooth input signal can take on a stair-step shape after quantization.
-
-This equation mathematically describes the round-to-nearest method:
-
-```
-y = q * round(u/q)
-```
-
-where `y` is the quantized output, `u` is the input, and
-`q` is the **Quantization interval**.
-
 ## Ports
 
 ### Input
@@ -112,6 +90,10 @@ the `set_param` function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
 
+## Libraries
+
+Simulink / Discontinuities
+
 ## Block Characteristics
 
 |  |  |
@@ -129,3 +111,21 @@ the `set_param` function.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Discretize input at given interval
+
+The Quantizer block discretizes the input signal using a quantization
+algorithm. The block uses a round-to-nearest method to map signal values to quantized
+values at the output that are defined by the **Quantization interval**.
+A smooth input signal can take on a stair-step shape after quantization.
+
+This equation mathematically describes the round-to-nearest method:
+
+```
+y = q * round(u/q)
+```
+
+where `y` is the quantized output, `u` is the input, and
+`q` is the **Quantization interval**.

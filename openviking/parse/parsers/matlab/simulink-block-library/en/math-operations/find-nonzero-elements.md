@@ -10,26 +10,6 @@ language: en
 
 # Find Nonzero Elements
 
-Find nonzero elements in array
-
-## Libraries
-
-Simulink / Math Operations
-
-## Description
-
-The Find Nonzero Elements block locates all nonzero elements of the input
-signal and returns the linear indices of those elements. If the input is a
-multidimensional signal, the Find Nonzero Elements block can also return
-the subscripts of the nonzero input elements. In both cases, you can show an output port
-with the nonzero input values.
-
-The Find Nonzero Elements block outputs a variable-size signal. The sample
-time for any variable-size signal must be discrete. If your model does not already use a
-fixed-step solver, you may need to select a fixed-step solver in the Configuration
-Parameters dialog. For more information, see Compare Solvers
-and Choose a Solver.
-
 ## Ports
 
 ### Input
@@ -293,6 +273,10 @@ for fixed-point data and sets the fraction length to
 To enable this parameter, set **Mode** to
 `Fixed point`.
 
+## Libraries
+
+Simulink / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -312,3 +296,19 @@ To enable this parameter, set **Mode** to
 ## Version History
 
 **Introduced in R2010a**
+
+## Description
+
+Find nonzero elements in array
+
+The Find Nonzero Elements block locates all nonzero elements of the input
+signal and returns the linear indices of those elements. If the input is a
+multidimensional signal, the Find Nonzero Elements block can also return
+the subscripts of the nonzero input elements. In both cases, you can show an output port
+with the nonzero input values.
+
+The Find Nonzero Elements block outputs a variable-size signal. The sample
+time for any variable-size signal must be discrete. If your model does not already use a
+fixed-step solver, you may need to select a fixed-step solver in the Configuration
+Parameters dialog. For more information, see Compare Solvers
+and Choose a Solver.

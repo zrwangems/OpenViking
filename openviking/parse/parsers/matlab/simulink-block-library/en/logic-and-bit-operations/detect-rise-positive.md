@@ -10,25 +10,6 @@ language: en
 
 # Detect Rise Positive
 
-Detect rising edge when signal value increases to strictly positive value, and its previous value was nonpositive
-
-## Libraries
-
-Simulink / Logic and Bit Operations
-
-## Description
-
-The Detect Rise Positive block detects a rising edge by determining if
-the input is strictly positive, and its previous value was nonpositive.
-
-- The output is true (equal to `1`) when the input signal is
-  greater than zero, and the previous value was less than or equal to zero.
-- The output is false (equal to `0`) when the input is negative
-  or zero, or if the input is positive, the previous value was also
-  positive.
-
-This block supports only discrete sample times.
-
 ## Ports
 
 ### Input
@@ -114,6 +95,10 @@ Specify the output data type as `boolean` or
 | **Values:** `'boolean' | 'uint8'` |
 | **Default:** `'boolean'` |
 
+## Libraries
+
+Simulink / Logic and Bit Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -156,3 +141,18 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Detect rising edge when signal value increases to strictly positive value, and its previous value was nonpositive
+
+The Detect Rise Positive block detects a rising edge by determining if
+the input is strictly positive, and its previous value was nonpositive.
+
+- The output is true (equal to `1`) when the input signal is
+  greater than zero, and the previous value was less than or equal to zero.
+- The output is false (equal to `0`) when the input is negative
+  or zero, or if the input is positive, the previous value was also
+  positive.
+
+This block supports only discrete sample times.

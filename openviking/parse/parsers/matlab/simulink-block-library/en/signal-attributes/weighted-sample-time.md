@@ -10,56 +10,6 @@ language: en
 
 # Weighted Sample Time
 
-Support calculations involving sample time
-
-## Libraries
-
-Simulink / Signal Attributes
-
-## Description
-
-The Weighted Sample Time block outputs a weighted sample time, weighted
-sample rate, or mathematically adjusted weighted sample time, depending on settings of
-the **Operation** and **Weight value** parameters and
-the execution context of the function outputs.
-
-You specify the block operation by using the **Operation**
-parameter.
-
-The sample time used to derive the output depends on whether the block is used within a
-periodic or aperiodic (or triggered) execution context. For a periodic execution context,
-the block uses the sample time of the model. For an aperiodic or triggered execution
-context, the block uses the sample time of the discrete signal.
-
-Use the **Weight value** parameter to specify the sample time weight
-factor. If the weight value, `w`, is `1`, that value does
-not appear in the equation on the block icon.
-
-**Tip**
-
-You can use the
-Weighted Sample Time and Weighted Sample Time Math
-blocks to extract the sample time from a Simulink® signal. Set the **Operation** parameter to
-`Ts Only` and the **Weight value**
-parameter to `1.0`. With this configuration, the block outputs the
-sample time of the input signal.
-
-The block computes its output by using the precedence rules for MATLAB® operators. For example, if the **Operation** parameter is set
-to `+`, the block calculates the output by using this expression:
-
-```
-u + (Ts * w)
-```
-
-If the **Operation** parameter is set to `/`, the block
-calculates the output by using this expression:
-
-```
-(u / Ts) / w)
-```
-
-For more information, see Operator Precedence.
-
 ## Ports
 
 ### Input
@@ -317,6 +267,10 @@ Select the data type override mode for this signal. You can select:
 
 To enable this parameter, set **Mode** to `Built in` or `Fixed point`. For more information, see Specify Data Types Using Data Type Assistant.
 
+## Libraries
+
+Simulink / Signal Attributes
+
 ## Block Characteristics
 
 |  |  |
@@ -365,3 +319,49 @@ The Weighted Sample Time block now supports:
   - **Slope**
   - **Bias**
   - **Data type override**
+
+## Description
+
+Support calculations involving sample time
+
+The Weighted Sample Time block outputs a weighted sample time, weighted
+sample rate, or mathematically adjusted weighted sample time, depending on settings of
+the **Operation** and **Weight value** parameters and
+the execution context of the function outputs.
+
+You specify the block operation by using the **Operation**
+parameter.
+
+The sample time used to derive the output depends on whether the block is used within a
+periodic or aperiodic (or triggered) execution context. For a periodic execution context,
+the block uses the sample time of the model. For an aperiodic or triggered execution
+context, the block uses the sample time of the discrete signal.
+
+Use the **Weight value** parameter to specify the sample time weight
+factor. If the weight value, `w`, is `1`, that value does
+not appear in the equation on the block icon.
+
+**Tip**
+
+You can use the
+Weighted Sample Time and Weighted Sample Time Math
+blocks to extract the sample time from a Simulink® signal. Set the **Operation** parameter to
+`Ts Only` and the **Weight value**
+parameter to `1.0`. With this configuration, the block outputs the
+sample time of the input signal.
+
+The block computes its output by using the precedence rules for MATLAB® operators. For example, if the **Operation** parameter is set
+to `+`, the block calculates the output by using this expression:
+
+```
+u + (Ts * w)
+```
+
+If the **Operation** parameter is set to `/`, the block
+calculates the output by using this expression:
+
+```
+(u / Ts) / w)
+```
+
+For more information, see Operator Precedence.

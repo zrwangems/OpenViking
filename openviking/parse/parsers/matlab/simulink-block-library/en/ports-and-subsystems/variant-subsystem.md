@@ -10,127 +10,6 @@ language: en
 
 # Variant Subsystem
 
-Template subsystem containing Subsystem blocks as variant choices
-
-## Libraries
-
-Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
-
-## Description
-
-The Variant Subsystem block enables you to include multiple
-implementations of a component in a separate hierarchy.
-
-For example, suppose you want to simulate a model that represents a vehicle with three
-possible engine configurations: 2-cylinder gas, 4-cylinder gas, and 8-cylinder gas. You
-could implement each engine model as a separate subsystem inside the Variant
-Subsystem block and then switch between the subsystems based on the Types of Variant Control Modes in Variant Blocks you select. For
-more information, see Introduction to Variant Controls.
-
-**Note**
-
-Only one implementation of a Variant Subsystem block is active
-during simulation.
-
-Multiple models of an engine inside a Variant Subsystem block
-
-The Variant Subsystem block is a template preconfigured to contain two
-or more blocks to use as variant choices. These choices represent multiple
-implementations of a system. Only one child block is active during model execution. The
-active child block is referred to as the *active variant*.
-
-Each variant choice inside the Variant Subsystem block is associated
-with a **Variant
-control mode** and a **Variant
-activation time**. The variant control mode determines how to select the
-active variant. The variant activation time determines a time to activate the choices
-and to decide whether to include only the active choice or both active and inactive
-choices in the generated code.
-
-A Variant Subsystem block can contain a mixture of Subsystem blocks, Model blocks, or Subsystem
-Reference blocks as variant choices. A Variant Subsystem
-block with only Model blocks as choices is called a Variant
-Model block. For more information, see Implement Variations in Separate Hierarchy Using Variant Subsystems. A Variant Subsystem block with Model or
-Subsystem Reference blocks as choices that can be added or removed
-only from external files and not within the block is called a Variant Assembly
-Subsystem block.
-
-Apart from the variant choices, you can include Inport, control port (Enable, Trigger, Reset, and Function-Call Subsystem), Outport, or Connection Port (Simscape) blocks inside a
-Variant Subsystem block. There are no drawn connections between the
-blocks that are inside the Variant Subsystem blocks. The software
-automatically wires the active variant to the Inport and
-Outport blocks of the Variant Subsystem during model
-compilation. The blocks representing variant choices can have input and output ports
-that differ in number from the input and output ports in the parent Variant
-Subsystem block. For more information, see Map Input and Output Ports of Variant Choices in Variant Subsystem.
-
-When you load a model with a Variant Subsystem block that has variant
-choices stored in subsystem files, by default, only the active choice is loaded to
-optimize the loading time for models. However, if you initialize a model
-programmatically using the `find_system`,
-`get_param`, or `set_param` function, inactive
-choices might get loaded.
-
-Using Variant Subsystem block allows you to:
-
-- Mix Subsystem, Model, and Subsystem
-  Reference blocks as variant choices.
-- Model components that do not have similar interface. You can have
-  different numbers of inports and outports for multiple variant choices
-  inside a Variant Subsystem. However, the conditions listed in
-  Map Input and Output Ports of Variant Choices in Variant Subsystem must be met.
-- Establish a hierarchical block diagram, where the Variant
-  Subsystem block is on one layer and the variant choices are on
-  another layer.
-- Keeps functionally related blocks together.
-- Reduce the complexity of your model.
-- During model compilation, the software eliminates inactive blocks
-  throughout the model, depending on the variant activation time you
-  select.
-
-The color and icon of the variant badge on the block icon changes depending on the
-values of the **Variant activation time**, **Variant control
-mode**, and **Propagate conditions outside of variant
-subsystem** parameters set on the block. For more information, see Variant Badges.
-
-### Open the Block
-
-You can open the Variant Subsystem block from the Simulink® interface or programmatically. These methods enable you to access the
-active variant choice or the entire variant layer of the Variant
-Subsystem block, depending on your requirements.
-
-**Open from Simulink Interface**
-
-Use any of these actions in the Simulink interface to open the Variant Subsystem
-block.
-
-| Keyboard and mouse action | Result |
-| --- | --- |
-| Double-click | Opens the active variant choice inside the block in a new tab  **Note**  If the variant choice is a Model block and the model it references is not loaded, then double-clicking the block opens the variant layer containing the variant choices instead of opening the underlying layer of the active variant choice. |
-| Hold **Ctrl** and double-click | Opens the block in a new tab, shows the variant layer |
-| Hold **Shift** and double-click | Opens the block in a new window, shows the variant layer |
-| Right-click, select **Open** > **Open in New Tab** | Opens the block in the current window, shows the variant layer |
-| Right-click, select **Open** > **Open in New Window** | Opens the block in a new window, shows the variant layer |
-| Right-click the variant badge, select **Open** >**(active variant)** | Opens the active variant choice in a new tab |
-| Right-click the variant badge, select **Open** > **variant control (variant choice name)**, where *`variant control`* is the variant control `expression`, `label`, or `(sim)` or `(codegen)` for the variant choice specified by the *variant choice name.* | Opens the selected variant choice in a new tab |
-
-**Open Programmatically**
-
-Use either of these commands to open the Variant Subsystem
-block, where *`variantSubsystemBlockName`* is the name of
-the block:
-
-- `open_system("variantSubsystemBlockName")`
-  command — Open the Variant Subsystem block and view its
-  variant layers.
-- `open_system("variantSubsystemBlockName","ActiveChoice")`
-  — Open the active variant choice within the Variant
-  Subsystem block.
-
-For information on additional options to open the Variant
-Subsystem block using the `open_system` command,
-such as opening in a new tab or window, see `open_system`.
-
 ## Ports
 
 ### Input
@@ -802,6 +681,10 @@ Specify whether to make the interface of a variant subsystem flexible.
 | **Value:** `'off'` | `'on'` |
 | **Default:** `'on'` |
 
+## Libraries
+
+Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
+
 ## Block Characteristics
 
 |  |  |
@@ -1007,3 +890,120 @@ Simulink automatically displays the mask icon of the active variant block on
 the parent Variant Subsystem. Prior to R2021a, you had to provide
 icon drawing commands on the mask of the Variant Subsystem to display
 the mask icon of the underlying active variant block.
+
+## Description
+
+Template subsystem containing Subsystem blocks as variant choices
+
+The Variant Subsystem block enables you to include multiple
+implementations of a component in a separate hierarchy.
+
+For example, suppose you want to simulate a model that represents a vehicle with three
+possible engine configurations: 2-cylinder gas, 4-cylinder gas, and 8-cylinder gas. You
+could implement each engine model as a separate subsystem inside the Variant
+Subsystem block and then switch between the subsystems based on the Types of Variant Control Modes in Variant Blocks you select. For
+more information, see Introduction to Variant Controls.
+
+**Note**
+
+Only one implementation of a Variant Subsystem block is active
+during simulation.
+
+Multiple models of an engine inside a Variant Subsystem block
+
+The Variant Subsystem block is a template preconfigured to contain two
+or more blocks to use as variant choices. These choices represent multiple
+implementations of a system. Only one child block is active during model execution. The
+active child block is referred to as the *active variant*.
+
+Each variant choice inside the Variant Subsystem block is associated
+with a **Variant
+control mode** and a **Variant
+activation time**. The variant control mode determines how to select the
+active variant. The variant activation time determines a time to activate the choices
+and to decide whether to include only the active choice or both active and inactive
+choices in the generated code.
+
+A Variant Subsystem block can contain a mixture of Subsystem blocks, Model blocks, or Subsystem
+Reference blocks as variant choices. A Variant Subsystem
+block with only Model blocks as choices is called a Variant
+Model block. For more information, see Implement Variations in Separate Hierarchy Using Variant Subsystems. A Variant Subsystem block with Model or
+Subsystem Reference blocks as choices that can be added or removed
+only from external files and not within the block is called a Variant Assembly
+Subsystem block.
+
+Apart from the variant choices, you can include Inport, control port (Enable, Trigger, Reset, and Function-Call Subsystem), Outport, or Connection Port (Simscape) blocks inside a
+Variant Subsystem block. There are no drawn connections between the
+blocks that are inside the Variant Subsystem blocks. The software
+automatically wires the active variant to the Inport and
+Outport blocks of the Variant Subsystem during model
+compilation. The blocks representing variant choices can have input and output ports
+that differ in number from the input and output ports in the parent Variant
+Subsystem block. For more information, see Map Input and Output Ports of Variant Choices in Variant Subsystem.
+
+When you load a model with a Variant Subsystem block that has variant
+choices stored in subsystem files, by default, only the active choice is loaded to
+optimize the loading time for models. However, if you initialize a model
+programmatically using the `find_system`,
+`get_param`, or `set_param` function, inactive
+choices might get loaded.
+
+Using Variant Subsystem block allows you to:
+
+- Mix Subsystem, Model, and Subsystem
+  Reference blocks as variant choices.
+- Model components that do not have similar interface. You can have
+  different numbers of inports and outports for multiple variant choices
+  inside a Variant Subsystem. However, the conditions listed in
+  Map Input and Output Ports of Variant Choices in Variant Subsystem must be met.
+- Establish a hierarchical block diagram, where the Variant
+  Subsystem block is on one layer and the variant choices are on
+  another layer.
+- Keeps functionally related blocks together.
+- Reduce the complexity of your model.
+- During model compilation, the software eliminates inactive blocks
+  throughout the model, depending on the variant activation time you
+  select.
+
+The color and icon of the variant badge on the block icon changes depending on the
+values of the **Variant activation time**, **Variant control
+mode**, and **Propagate conditions outside of variant
+subsystem** parameters set on the block. For more information, see Variant Badges.
+
+### Open the Block
+
+You can open the Variant Subsystem block from the Simulink® interface or programmatically. These methods enable you to access the
+active variant choice or the entire variant layer of the Variant
+Subsystem block, depending on your requirements.
+
+**Open from Simulink Interface**
+
+Use any of these actions in the Simulink interface to open the Variant Subsystem
+block.
+
+| Keyboard and mouse action | Result |
+| --- | --- |
+| Double-click | Opens the active variant choice inside the block in a new tab  **Note**  If the variant choice is a Model block and the model it references is not loaded, then double-clicking the block opens the variant layer containing the variant choices instead of opening the underlying layer of the active variant choice. |
+| Hold **Ctrl** and double-click | Opens the block in a new tab, shows the variant layer |
+| Hold **Shift** and double-click | Opens the block in a new window, shows the variant layer |
+| Right-click, select **Open** > **Open in New Tab** | Opens the block in the current window, shows the variant layer |
+| Right-click, select **Open** > **Open in New Window** | Opens the block in a new window, shows the variant layer |
+| Right-click the variant badge, select **Open** >**(active variant)** | Opens the active variant choice in a new tab |
+| Right-click the variant badge, select **Open** > **variant control (variant choice name)**, where *`variant control`* is the variant control `expression`, `label`, or `(sim)` or `(codegen)` for the variant choice specified by the *variant choice name.* | Opens the selected variant choice in a new tab |
+
+**Open Programmatically**
+
+Use either of these commands to open the Variant Subsystem
+block, where *`variantSubsystemBlockName`* is the name of
+the block:
+
+- `open_system("variantSubsystemBlockName")`
+  command — Open the Variant Subsystem block and view its
+  variant layers.
+- `open_system("variantSubsystemBlockName","ActiveChoice")`
+  — Open the active variant choice within the Variant
+  Subsystem block.
+
+For information on additional options to open the Variant
+Subsystem block using the `open_system` command,
+such as opening in a new tab or window, see `open_system`.

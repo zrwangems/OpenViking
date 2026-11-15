@@ -11,22 +11,6 @@ chinese_source: worker-translation
 
 # Pixel Processing Subsystem
 
-
-
-创建将多通道图像数据转换为单通道的算法
-
-## 库
-
-Simulink / Matrix Operations
-
-## 描述
-
-Pixel Processing Subsystem 模块是一个 Neighborhood Processing Subsystem 模块，它接受三维输入矩阵。Pixel Processing Subsystem 模块通过处理输入矩阵元素周围的 1-by-1-by-*`n`* 邻域矩阵，将邻域模式应用于输入矩阵，其中 *`n`* 是输入矩阵第三维的大小。Pixel Processing Subsystem 模块的行为等效于将 **Neighborhood size** 参数设置为 `[1,1,n]` 且将 **Padding option** 参数设置为 `Valid` 的 Neighborhood Processing Subsystem 模块。
-
-Pixel Processing Subsystem 模块生成一个二维输出矩阵，其第一维和第二维与输入矩阵相同。使用 Pixel Processing Subsystem 将多通道图像数据转换为单通道图像数据。在每个迭代步骤中，子系统处理一个 1-by-1-by*`n`* 邻域，该邻域表示输入图像中一个像素的通道值，并推导出一个单值以放置在输出矩阵的对应像素中。
-
-Pixel Processing Subsystem 包含一个 Pixel Processing 模块，它充当该子系统的控制模块。
-
 ## 端口
 
 ### 输入
@@ -511,6 +495,10 @@ Code Generation 选项卡上的参数需要 Simulink Coder™ 或 Embedded Coder
 | **参数：** | `RTWMemSecDataParameters` |
 | **值：** | `'Inherit from model'` (默认) | `'Default'` | 带引号的 model memory section |
 
+## 所属库
+
+Simulink / Matrix Operations
+
 ## 模块特性
 
 |  |  |
@@ -532,3 +520,13 @@ Code Generation 选项卡上的参数需要 Simulink Coder™ 或 Embedded Coder
 ### R2025a：MATLAB Function 模块支持
 
 您可以在 Pixel Processing Subsystem 模块内使用 MATLAB Function 模块。
+
+## 描述
+
+创建将多通道图像数据转换为单通道的算法
+
+Pixel Processing Subsystem 模块是一个 Neighborhood Processing Subsystem 模块，它接受三维输入矩阵。Pixel Processing Subsystem 模块通过处理输入矩阵元素周围的 1-by-1-by-*`n`* 邻域矩阵，将邻域模式应用于输入矩阵，其中 *`n`* 是输入矩阵第三维的大小。Pixel Processing Subsystem 模块的行为等效于将 **Neighborhood size** 参数设置为 `[1,1,n]` 且将 **Padding option** 参数设置为 `Valid` 的 Neighborhood Processing Subsystem 模块。
+
+Pixel Processing Subsystem 模块生成一个二维输出矩阵，其第一维和第二维与输入矩阵相同。使用 Pixel Processing Subsystem 将多通道图像数据转换为单通道图像数据。在每个迭代步骤中，子系统处理一个 1-by-1-by*`n`* 邻域，该邻域表示输入图像中一个像素的通道值，并推导出一个单值以放置在输出矩阵的对应像素中。
+
+Pixel Processing Subsystem 包含一个 Pixel Processing 模块，它充当该子系统的控制模块。

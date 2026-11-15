@@ -10,19 +10,6 @@ language: en
 
 # Real-Imag to Complex
 
-Convert real and/or imaginary inputs to complex signal
-
-## Libraries
-
-Simulink / Math Operations HDL Coder / Math Operations
-
-## Description
-
-The Real-Imag to Complex block converts real and/or imaginary inputs to a
-complex-valued output signal.
-
-The inputs can both be arrays (vectors or matrices) of equal dimensions, or one input can be an array and the other a scalar. If the block has an array input, the output is a complex array of the same dimensions. The elements of the real input map to the real parts of the corresponding complex output elements. The imaginary input similarly maps to the imaginary parts of the complex output signals. If one input is a scalar, it maps to the corresponding component (real or imaginary) of all the complex output signals.
-
 ## Ports
 
 ### Input
@@ -128,6 +115,10 @@ the `set_param` function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
 
+## Libraries
+
+Simulink / Math Operations HDL Coder / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -168,3 +159,12 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Convert real and/or imaginary inputs to complex signal
+
+The Real-Imag to Complex block converts real and/or imaginary inputs to a
+complex-valued output signal.
+
+The inputs can both be arrays (vectors or matrices) of equal dimensions, or one input can be an array and the other a scalar. If the block has an array input, the output is a complex array of the same dimensions. The elements of the real input map to the real parts of the corresponding complex output elements. The imaginary input similarly maps to the imaginary parts of the complex output signals. If one input is a scalar, it maps to the corresponding component (real or imaginary) of all the complex output signals.

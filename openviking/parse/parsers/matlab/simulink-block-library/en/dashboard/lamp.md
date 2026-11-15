@@ -10,60 +10,9 @@ language: en
 
 # Lamp
 
-Display color that reflects signal value on lamp
+## Ports
 
-## Libraries
-
-Simulink / Dashboard
-
-## Description
-
-The Lamp block displays a color that indicates the value of the
-connected signal. To configure the Lamp block to provide the information
-you need during simulation, specify one or more states, which pair a signal value with a
-color for the Lamp block to display. You can use the Lamp
-block with other Dashboard blocks to build an interactive dashboard of controls and
-indicators for your model.
-
-### Lamp Icons
-
-You can change the appearance of the Lamp block by selecting one of
-the built-in icons or uploading your own custom icon. The built-in icons include
-basic shapes, automotive indicator lamps, and wireless icons. You can change the
-icon for a Lamp block by using the **Icon**
-parameter or by using the block tab in the toolstrip. The Dashboard library also
-includes libraries that have a preconfigured version of the Lamp
-block for each icon. For complete details, see Icon.
-
-Lamp Icon drop-down menu showing basic shape icons, automotive indicator lamps, wireless icons, and the option to choose a custom icon
-
-If you want to customize the appearance of the Lamp block beyond
-the ability to select an icon, consider designing your own indicator lamp using the
-Lamp
-block in the Customizable Blocks library.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
-use connect mode. To enter connect mode on an unconnected block, pause on the block you want
-to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a display block to a signal in your model or change the connection of a display
-block, enter connect mode. Select the signal line to which you want to connect. From the
-list that appears, select the signal to which you want to connect. Then, pause on the
-dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
-connected block, run the simulation.
-
-For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-This animation shows how to connect the Lamp block to your
-model.
-
-An unconnected Lamp block connects to the signal that a Ramp block sends to a Terminator block.
+Not documented in R2025b.
 
 ## Parameters
 
@@ -303,6 +252,10 @@ Block opacity, specified as a scalar value between 0 and 1.
 | **Type:** scalar |
 | **Default:** `1` |
 
+## Libraries
+
+Simulink / Dashboard
+
 ## Block Characteristics
 
 |  |  |
@@ -322,3 +275,54 @@ Dashboard blocks are ignored for code generation.
 ## Version History
 
 **Introduced in R2015a**
+
+## Description
+
+Display color that reflects signal value on lamp
+
+The Lamp block displays a color that indicates the value of the
+connected signal. To configure the Lamp block to provide the information
+you need during simulation, specify one or more states, which pair a signal value with a
+color for the Lamp block to display. You can use the Lamp
+block with other Dashboard blocks to build an interactive dashboard of controls and
+indicators for your model.
+
+### Lamp Icons
+
+You can change the appearance of the Lamp block by selecting one of
+the built-in icons or uploading your own custom icon. The built-in icons include
+basic shapes, automotive indicator lamps, and wireless icons. You can change the
+icon for a Lamp block by using the **Icon**
+parameter or by using the block tab in the toolstrip. The Dashboard library also
+includes libraries that have a preconfigured version of the Lamp
+block for each icon. For complete details, see Icon.
+
+Lamp Icon drop-down menu showing basic shape icons, automotive indicator lamps, wireless icons, and the option to choose a custom icon
+
+If you want to customize the appearance of the Lamp block beyond
+the ability to select an icon, consider designing your own indicator lamp using the
+Lamp
+block in the Customizable Blocks library.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
+use connect mode. To enter connect mode on an unconnected block, pause on the block you want
+to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a display block to a signal in your model or change the connection of a display
+block, enter connect mode. Select the signal line to which you want to connect. From the
+list that appears, select the signal to which you want to connect. Then, pause on the
+dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
+connected block, run the simulation.
+
+For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+This animation shows how to connect the Lamp block to your
+model.
+
+An unconnected Lamp block connects to the signal that a Ramp block sends to a Terminator block.

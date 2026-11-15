@@ -10,179 +10,9 @@ language: en
 
 # Push Button
 
-Change parameter or variable value using button with customizable appearance
+## Ports
 
-## Libraries
-
-Simulink / Dashboard / Customizable Blocks
-
-## Description
-
-The Push Button block changes the value of the connected variable or
-parameter and executes MATLAB® code in response to a click (immediate release of the pointer) or a press
-(delayed release of the pointer). You can specify different code for the click than the press.
-When you press the button, the code either executes after a time span you specify or at time
-intervals you specify. When you use the Push Button block in the Customizable
-Blocks library, you can modify the appearance of the block so it looks like a button in a real
-system. Use the Push Button block with other dashboard blocks to create an
-interactive dashboard to control your model.
-
-To push the virtual button during simulation, click the Push Button block.
-To push the virtual button when the simulation is not running, click the Push
-Button to select the block, and then click the Push Button block
-again to push the button. While you press down your pointer for the click, the button is
-pushed. When you release your pointer, you release the button.
-
-You can use callback functions to specify what you want the button to do:
-
-- `PressFcn` functions run while the button is pushed. You can
-  configure the button to run the `PressFcn` function only once while the
-  button is pushed, or you can specify a repeat interval. To run the function only once,
-  specify a repeat interval of `0`.
-- `ClickFcn` functions run when you release the button.
-
-You can configure the button to stay pushed when you release your pointer by setting the
-**Button Type** to `Latched`. When you choose the latched
-button type:
-
-- To latch the button, click the button.
-- To unlatch the button, click the button again.
-
-The `PressFcn` function runs while the button is latched. The
-`ClickFcn` function runs once when you latch the button and once when you
-unlatch the button.
-
-You can use states to specify how the appearance of the Push Button block
-changes when you interact with the button:
-
-- While you push the button, the block is in the `Pressed`
-  state.
-- When the button is latched and you are not pushing it, the block is in the
-  `Latched` state.
-- When the button is latched and you are pushing it, the block is in the
-  `Latched and Pressed` state.
-- When the block is not in any of these three states, it is in the
-  `Default` state.
-
-A state pairs pointer actions with:
-
-- A state label
-- A state icon
-- A state image
-
-The `Pressed`, `Latched`, and
-`Latched and Pressed` states also pair pointer actions with the
-**On Value** of the Push Button block. When you enter one of
-these states from the default state, the **On Value** is assigned to the
-Simulink® component to which the Push Button block connects and stays
-assigned until the button returns to the `Default` state. If you
-release the button before a full time step elapses, the **On Value** is
-assigned to the component for the duration of the subsequent time step.
-
-**Note**
-
-- Double-clicking a connected Push Button block during simulation or
-  after clicking the block does not open the Block Parameters dialog box. To open the
-  Block Parameters dialog box, press **Shift**, then double-click the
-  block.
-- Clicking a connected Push Button block during simulation both selects
-  the block and pushes the button. To select the block without pushing the button, press
-  **Shift**, then click the block.
-
-### Customize Push Button Blocks
-
-When you add a Push Button block to your model, the block is
-preconfigured with a default design. You can use the block with the default design or
-customize the appearance of the block.
-
-To customize the appearance of the block, use design mode.
-After selecting the block, you can enter design mode in one of three ways:
-
-- In the Simulink Toolstrip, on the block-specific tab, under
-  **Design**, click **Edit**.
-- In the Property Inspector, on the **Design** tab, click
-  **Edit**.
-- Pause on the ellipsis that appears over the block and click the Edit Custom Block
-  button .
-
-In design mode, you can use the toolbar above the block to customize the push button. To
-access additional customization options or to enter exact values for design settings, use
-the **Design** tab in the Property Inspector.
-
-Customizable Push Button block in design mode with the toolbar and the Design tab in the Property Inspector visible.
-
-When you customize a Push Button block, you configure the block
-appearance for each state. When you configure the **Block Type** as
-`Momentary`, the block has two states. When you configure the
-**Block Type** as `Latch`, the block has four.
-To select a state to customize, use the drop-down list in the toolbar. Alternatively, on the
-**Design** tab, select the **States** component and then
-select from the **Select State** list.
-
-**Design Mode Actions that Customize the Selected State**
-
-| Action | Available in Toolbar | Available in **Design** Tab |
-| --- | --- | --- |
-| Specify the **On Value** for the `Pressed`, `Latched`, and `Latched and Pressed` states. | No | Yes |
-| Specify the state label text. | No | Yes |
-| Specify the color and opacity of the state label text. | Yes | Yes |
-| Upload a state image. | Yes | Yes |
-| Upload a state icon. | Yes | Yes |
-| Change the size of the state image and state icon. | No | Yes |
-| Change the position of the state label, state image, and state icon. | No | Yes |
-
-In addition to customizing the block design using the toolbar and
-**Design** tab, you can also resize and reposition components
-interactively in the canvas. To resize a component specific to a state, such as the state
-image, select the state in the toolbar, and then resize or reposition the component.
-
-**Design Mode Actions that Apply to All States**
-
-| Action | Available in Toolbar | Available in **Design** Tab |
-| --- | --- | --- |
-| Upload a background image. | No | Yes |
-| Set a solid background color. | No | Yes |
-| Upload a foreground image. | No | Yes |
-
-When you finish editing the design, to exit design mode, click the
-**X** in the upper right of the canvas.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard
-block, use connect mode. To enter connect mode on an unconnected block, pause on the block
-you want to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a control block to a parameter in your model or to change the connection of a
-control block, enter connect mode. Select the block to whose parameter you want to connect.
-From the list that appears, select the parameter to which you want to connect. Then, pause
-on the dashboard block and click the Done Connecting button .
-
-The control block cannot connect to a parameter defined by a variable until you update the
-model diagram. To connect to a parameter defined by a variable or to modify the value of a
-variable that defines the value of a connected parameter when the simulation is not running,
-update the model diagram by pressing **Ctrl+D**.
-
-You can connect to a parameter with a scalar value or to an element of a matrix or structure.
-For more information, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-This animation shows how to connect the Push block to your model.
-
-An unconnected Push Button block connects to a Constant block.
-
-### Parameter Logging
-
-Tunable parameters connected to dashboard blocks are logged to the Simulation Data
-Inspector, where you can view the parameter values along with logged signal data. You can
-access logged parameter data in the MATLAB workspace by exporting the parameter data from the Simulation Data Inspector
-by using the UI or the `Simulink.sdi.exportRun` function. For more information about exporting
-data using the Simulation Data Inspector UI, see Export Data to Workspace or File. The
-parameter data is stored in a `Simulink.SimulationData.Parameter` object, accessible as an element in the
-exported `Simulink.SimulationData.Dataset`.
+Not documented in R2025b.
 
 ## Parameters
 
@@ -768,6 +598,10 @@ Specify the height of the foreground image as a ratio of the block height.
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
 
+## Libraries
+
+Simulink / Dashboard / Customizable Blocks
+
 ## Block Characteristics
 
 |  |  |
@@ -945,3 +779,173 @@ your Android device as well as on your web browser.
 The blocks in the Customizable Blocks library have an option to add a foreground image
 as part of the design for a block. Starting in R2022a, you can rotate, resize, and
 reposition the foreground image within the block design.
+
+## Description
+
+Change parameter or variable value using button with customizable appearance
+
+The Push Button block changes the value of the connected variable or
+parameter and executes MATLAB® code in response to a click (immediate release of the pointer) or a press
+(delayed release of the pointer). You can specify different code for the click than the press.
+When you press the button, the code either executes after a time span you specify or at time
+intervals you specify. When you use the Push Button block in the Customizable
+Blocks library, you can modify the appearance of the block so it looks like a button in a real
+system. Use the Push Button block with other dashboard blocks to create an
+interactive dashboard to control your model.
+
+To push the virtual button during simulation, click the Push Button block.
+To push the virtual button when the simulation is not running, click the Push
+Button to select the block, and then click the Push Button block
+again to push the button. While you press down your pointer for the click, the button is
+pushed. When you release your pointer, you release the button.
+
+You can use callback functions to specify what you want the button to do:
+
+- `PressFcn` functions run while the button is pushed. You can
+  configure the button to run the `PressFcn` function only once while the
+  button is pushed, or you can specify a repeat interval. To run the function only once,
+  specify a repeat interval of `0`.
+- `ClickFcn` functions run when you release the button.
+
+You can configure the button to stay pushed when you release your pointer by setting the
+**Button Type** to `Latched`. When you choose the latched
+button type:
+
+- To latch the button, click the button.
+- To unlatch the button, click the button again.
+
+The `PressFcn` function runs while the button is latched. The
+`ClickFcn` function runs once when you latch the button and once when you
+unlatch the button.
+
+You can use states to specify how the appearance of the Push Button block
+changes when you interact with the button:
+
+- While you push the button, the block is in the `Pressed`
+  state.
+- When the button is latched and you are not pushing it, the block is in the
+  `Latched` state.
+- When the button is latched and you are pushing it, the block is in the
+  `Latched and Pressed` state.
+- When the block is not in any of these three states, it is in the
+  `Default` state.
+
+A state pairs pointer actions with:
+
+- A state label
+- A state icon
+- A state image
+
+The `Pressed`, `Latched`, and
+`Latched and Pressed` states also pair pointer actions with the
+**On Value** of the Push Button block. When you enter one of
+these states from the default state, the **On Value** is assigned to the
+Simulink® component to which the Push Button block connects and stays
+assigned until the button returns to the `Default` state. If you
+release the button before a full time step elapses, the **On Value** is
+assigned to the component for the duration of the subsequent time step.
+
+**Note**
+
+- Double-clicking a connected Push Button block during simulation or
+  after clicking the block does not open the Block Parameters dialog box. To open the
+  Block Parameters dialog box, press **Shift**, then double-click the
+  block.
+- Clicking a connected Push Button block during simulation both selects
+  the block and pushes the button. To select the block without pushing the button, press
+  **Shift**, then click the block.
+
+### Customize Push Button Blocks
+
+When you add a Push Button block to your model, the block is
+preconfigured with a default design. You can use the block with the default design or
+customize the appearance of the block.
+
+To customize the appearance of the block, use design mode.
+After selecting the block, you can enter design mode in one of three ways:
+
+- In the Simulink Toolstrip, on the block-specific tab, under
+  **Design**, click **Edit**.
+- In the Property Inspector, on the **Design** tab, click
+  **Edit**.
+- Pause on the ellipsis that appears over the block and click the Edit Custom Block
+  button .
+
+In design mode, you can use the toolbar above the block to customize the push button. To
+access additional customization options or to enter exact values for design settings, use
+the **Design** tab in the Property Inspector.
+
+Customizable Push Button block in design mode with the toolbar and the Design tab in the Property Inspector visible.
+
+When you customize a Push Button block, you configure the block
+appearance for each state. When you configure the **Block Type** as
+`Momentary`, the block has two states. When you configure the
+**Block Type** as `Latch`, the block has four.
+To select a state to customize, use the drop-down list in the toolbar. Alternatively, on the
+**Design** tab, select the **States** component and then
+select from the **Select State** list.
+
+**Design Mode Actions that Customize the Selected State**
+
+| Action | Available in Toolbar | Available in **Design** Tab |
+| --- | --- | --- |
+| Specify the **On Value** for the `Pressed`, `Latched`, and `Latched and Pressed` states. | No | Yes |
+| Specify the state label text. | No | Yes |
+| Specify the color and opacity of the state label text. | Yes | Yes |
+| Upload a state image. | Yes | Yes |
+| Upload a state icon. | Yes | Yes |
+| Change the size of the state image and state icon. | No | Yes |
+| Change the position of the state label, state image, and state icon. | No | Yes |
+
+In addition to customizing the block design using the toolbar and
+**Design** tab, you can also resize and reposition components
+interactively in the canvas. To resize a component specific to a state, such as the state
+image, select the state in the toolbar, and then resize or reposition the component.
+
+**Design Mode Actions that Apply to All States**
+
+| Action | Available in Toolbar | Available in **Design** Tab |
+| --- | --- | --- |
+| Upload a background image. | No | Yes |
+| Set a solid background color. | No | Yes |
+| Upload a foreground image. | No | Yes |
+
+When you finish editing the design, to exit design mode, click the
+**X** in the upper right of the canvas.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard
+block, use connect mode. To enter connect mode on an unconnected block, pause on the block
+you want to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a control block to a parameter in your model or to change the connection of a
+control block, enter connect mode. Select the block to whose parameter you want to connect.
+From the list that appears, select the parameter to which you want to connect. Then, pause
+on the dashboard block and click the Done Connecting button .
+
+The control block cannot connect to a parameter defined by a variable until you update the
+model diagram. To connect to a parameter defined by a variable or to modify the value of a
+variable that defines the value of a connected parameter when the simulation is not running,
+update the model diagram by pressing **Ctrl+D**.
+
+You can connect to a parameter with a scalar value or to an element of a matrix or structure.
+For more information, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+This animation shows how to connect the Push block to your model.
+
+An unconnected Push Button block connects to a Constant block.
+
+### Parameter Logging
+
+Tunable parameters connected to dashboard blocks are logged to the Simulation Data
+Inspector, where you can view the parameter values along with logged signal data. You can
+access logged parameter data in the MATLAB workspace by exporting the parameter data from the Simulation Data Inspector
+by using the UI or the `Simulink.sdi.exportRun` function. For more information about exporting
+data using the Simulation Data Inspector UI, see Export Data to Workspace or File. The
+parameter data is stored in a `Simulink.SimulationData.Parameter` object, accessible as an element in the
+exported `Simulink.SimulationData.Dataset`.

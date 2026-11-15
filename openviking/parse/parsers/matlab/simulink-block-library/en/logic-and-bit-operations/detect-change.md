@@ -10,20 +10,6 @@ language: en
 
 # Detect Change
 
-Detect change in signal value
-
-## Libraries
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
-## Description
-
-The Detect Change block determines if an input signal does not equal
-its previous value. The initial condition determines the initial value of the previous
-input U/z.
-
-This block supports only fixed-step discrete sample times.
-
 ## Ports
 
 ### Input
@@ -101,6 +87,10 @@ Set the output data type to `boolean` or
 | **Values**: `'boolean'` | `'uint8'` |
 | **Default**: `'boolean'` |
 
+## Libraries
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -142,3 +132,13 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Detect change in signal value
+
+The Detect Change block determines if an input signal does not equal
+its previous value. The initial condition determines the initial value of the previous
+input U/z.
+
+This block supports only fixed-step discrete sample times.

@@ -10,122 +10,9 @@ language: en
 
 # Horizontal Slider
 
-Change parameter or variable value using horizontal slider with customizable appearance
+## Ports
 
-## Libraries
-
-Simulink / Dashboard / Customizable Blocks
-
-## Description
-
-Use the Horizontal Slider block to tune the value of a variable or block
-parameter during simulation. You can customize the appearance of the Horizontal
-Slider block to look like a control in a real system. You can adjust the scale range
-and tick values to fit the desired range for the value you want to tune. Use the
-Horizontal Slider block with other dashboard blocks to create an interactive
-dashboard to control your model.
-
-To tune a value when the simulation is running, use your pointer to drag the handle to the
-scale value to which you want to set the connected variable or block parameter. To tune a
-value when the simulation is not running, click the Horizontal Slider block to
-select the block, and then drag the handle to the scale value to which you want to set the
-connected variable or block parameter.
-
-**Note**
-
-- Double-clicking a connected Horizontal Slider block during simulation
-  or after clicking the block does not open the Block Parameters dialog box. To open the
-  Block Parameters dialog box, press **Shift**, then double-click the
-  block.
-- Clicking a connected Horizontal Slider block during simulation both
-  selects the block and moves the slider handle. To select the block without moving the
-  slider handle, press **Shift**, then click the block.
-
-### Customize Horizontal Slider Blocks
-
-When you add a Horizontal Slider block to your model, the block is
-preconfigured with a default design. You can use the block with the default design or
-customize the appearance of the block.
-
-To customize the appearance of the block, use design mode.
-After selecting the block, you can enter design mode in one of three ways:
-
-- In the Simulink® Toolstrip, on the block-specific tab, under
-  **Design**, click **Edit**.
-- In the Property Inspector, on the **Design** tab, click
-  **Edit**.
-- Pause on the ellipsis that appears over the block and click the Edit Custom Block
-  button .
-
-In design mode, you can use the toolbar above the block to customize the circular gauge.
-To access additional customization options or to enter exact values for design settings, use
-the **Design** tab in the Property Inspector.
-
-Horizontal Slider block in design mode with the toolbar and the Design tab in the Property Inspector visible.
-
-**Design Mode Actions**
-
-| Action | Available in Toolbar | Available in **Design** Tab |
-| --- | --- | --- |
-| Upload a handle image. | Yes | Yes |
-| Upload a background image. | Yes | Yes |
-| Set a solid background color. | No | Yes |
-| Upload a foreground image. | No | Yes |
-| Specify the location of the origin from which the value bar grows. | No | Yes |
-| Change the color and opacity of the scale tick marks, scale labels, or value bar. | Yes | Yes |
-| Specify the scale direction as left to right or right to left. | No | Yes |
-| Change the size of the scale and handle. | No | Yes |
-| Change the position the scale and handle. | No | Yes |
-
-To change the color and opacity of the scale tick marks, scale labels, or value bar
-using the toolbar, in the second section of the toolbar from the left, select the component
-whose color you want to change. To change the color, click the color wheel. To change the
-opacity, move the slider.
-
-In addition to customizing the block design using the toolbar and
-**Design** tab, you can also resize and reposition components
-interactively in the canvas.
-
-When you finish editing the design, to exit design mode, click the
-**X** in the upper right of the canvas.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard
-block, use connect mode. To enter connect mode on an unconnected block, pause on the block
-you want to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a control block to a parameter in your model or to change the connection of a
-control block, enter connect mode. Select the block to whose parameter you want to connect.
-From the list that appears, select the parameter to which you want to connect. Then, pause
-on the dashboard block and click the Done Connecting button .
-
-The control block cannot connect to a parameter defined by a variable until you update the
-model diagram. To connect to a parameter defined by a variable or to modify the value of a
-variable that defines the value of a connected parameter when the simulation is not running,
-update the model diagram by pressing **Ctrl+D**.
-
-You can connect to a parameter with a scalar value or to an element of a matrix or structure.
-For more information, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-This animation shows how to connect the Horizontal Gauge block to your
-model.
-
-An unconnected Horizontal Slider block connects to a Constant block.
-
-### Parameter Logging
-
-Tunable parameters connected to dashboard blocks are logged to the Simulation Data
-Inspector, where you can view the parameter values along with logged signal data. You can
-access logged parameter data in the MATLAB® workspace by exporting the parameter data from the Simulation Data Inspector
-by using the UI or the `Simulink.sdi.exportRun` function. For more information about exporting
-data using the Simulation Data Inspector UI, see Export Data to Workspace or File. The
-parameter data is stored in a `Simulink.SimulationData.Parameter` object, accessible as an element in the
-exported `Simulink.SimulationData.Dataset`.
+Not documented in R2025b.
 
 ## Parameters
 
@@ -659,6 +546,10 @@ Specify the height of the foreground image as a ratio of the block height.
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
 
+## Libraries
+
+Simulink / Dashboard / Customizable Blocks
+
 ## Block Characteristics
 
 |  |  |
@@ -861,3 +752,116 @@ blocks from the **Customizable Blocks** library:
 The blocks in the Customizable Blocks library have an option to add a foreground image
 as part of the design for a block. Starting in R2022a, you can rotate, resize, and
 reposition the foreground image within the block design.
+
+## Description
+
+Change parameter or variable value using horizontal slider with customizable appearance
+
+Use the Horizontal Slider block to tune the value of a variable or block
+parameter during simulation. You can customize the appearance of the Horizontal
+Slider block to look like a control in a real system. You can adjust the scale range
+and tick values to fit the desired range for the value you want to tune. Use the
+Horizontal Slider block with other dashboard blocks to create an interactive
+dashboard to control your model.
+
+To tune a value when the simulation is running, use your pointer to drag the handle to the
+scale value to which you want to set the connected variable or block parameter. To tune a
+value when the simulation is not running, click the Horizontal Slider block to
+select the block, and then drag the handle to the scale value to which you want to set the
+connected variable or block parameter.
+
+**Note**
+
+- Double-clicking a connected Horizontal Slider block during simulation
+  or after clicking the block does not open the Block Parameters dialog box. To open the
+  Block Parameters dialog box, press **Shift**, then double-click the
+  block.
+- Clicking a connected Horizontal Slider block during simulation both
+  selects the block and moves the slider handle. To select the block without moving the
+  slider handle, press **Shift**, then click the block.
+
+### Customize Horizontal Slider Blocks
+
+When you add a Horizontal Slider block to your model, the block is
+preconfigured with a default design. You can use the block with the default design or
+customize the appearance of the block.
+
+To customize the appearance of the block, use design mode.
+After selecting the block, you can enter design mode in one of three ways:
+
+- In the Simulink® Toolstrip, on the block-specific tab, under
+  **Design**, click **Edit**.
+- In the Property Inspector, on the **Design** tab, click
+  **Edit**.
+- Pause on the ellipsis that appears over the block and click the Edit Custom Block
+  button .
+
+In design mode, you can use the toolbar above the block to customize the circular gauge.
+To access additional customization options or to enter exact values for design settings, use
+the **Design** tab in the Property Inspector.
+
+Horizontal Slider block in design mode with the toolbar and the Design tab in the Property Inspector visible.
+
+**Design Mode Actions**
+
+| Action | Available in Toolbar | Available in **Design** Tab |
+| --- | --- | --- |
+| Upload a handle image. | Yes | Yes |
+| Upload a background image. | Yes | Yes |
+| Set a solid background color. | No | Yes |
+| Upload a foreground image. | No | Yes |
+| Specify the location of the origin from which the value bar grows. | No | Yes |
+| Change the color and opacity of the scale tick marks, scale labels, or value bar. | Yes | Yes |
+| Specify the scale direction as left to right or right to left. | No | Yes |
+| Change the size of the scale and handle. | No | Yes |
+| Change the position the scale and handle. | No | Yes |
+
+To change the color and opacity of the scale tick marks, scale labels, or value bar
+using the toolbar, in the second section of the toolbar from the left, select the component
+whose color you want to change. To change the color, click the color wheel. To change the
+opacity, move the slider.
+
+In addition to customizing the block design using the toolbar and
+**Design** tab, you can also resize and reposition components
+interactively in the canvas.
+
+When you finish editing the design, to exit design mode, click the
+**X** in the upper right of the canvas.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard
+block, use connect mode. To enter connect mode on an unconnected block, pause on the block
+you want to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a control block to a parameter in your model or to change the connection of a
+control block, enter connect mode. Select the block to whose parameter you want to connect.
+From the list that appears, select the parameter to which you want to connect. Then, pause
+on the dashboard block and click the Done Connecting button .
+
+The control block cannot connect to a parameter defined by a variable until you update the
+model diagram. To connect to a parameter defined by a variable or to modify the value of a
+variable that defines the value of a connected parameter when the simulation is not running,
+update the model diagram by pressing **Ctrl+D**.
+
+You can connect to a parameter with a scalar value or to an element of a matrix or structure.
+For more information, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+This animation shows how to connect the Horizontal Gauge block to your
+model.
+
+An unconnected Horizontal Slider block connects to a Constant block.
+
+### Parameter Logging
+
+Tunable parameters connected to dashboard blocks are logged to the Simulation Data
+Inspector, where you can view the parameter values along with logged signal data. You can
+access logged parameter data in the MATLAB® workspace by exporting the parameter data from the Simulation Data Inspector
+by using the UI or the `Simulink.sdi.exportRun` function. For more information about exporting
+data using the Simulation Data Inspector UI, see Export Data to Workspace or File. The
+parameter data is stored in a `Simulink.SimulationData.Parameter` object, accessible as an element in the
+exported `Simulink.SimulationData.Dataset`.

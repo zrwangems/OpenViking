@@ -10,45 +10,6 @@ language: en
 
 # From Workspace
 
-Load signal data from workspace into Simulink model
-
-## Libraries
-
-Simulink / Sources
-
-## Description
-
-The From Workspace block reads data into a Simulink® model from a workspace and provides the data as a signal or a nonvirtual
-bus at the block's output. You can load data from the base workspace, model workspace,
-or mask workspace. You can use the From Workspace block to load signal
-data into any model or subsystem in a model hierarchy from a workspace accessible to the
-referenced model or subsystem.
-
-You can specify how the block constructs the output from the workspace data, including the
-output sample period, interpolation and extrapolation behavior, and whether to use
-zero-crossing detection.
-
-The From Workspace block icon shows the value of the
-**Data** parameter. For example, if you use the From
-Workspace block to load data in the variable *x*, you
-specify `x` as the value for the **Data** parameter,
-and the block displays `x`.
-
-### Specify Data to Load
-
-Specify data for the From Workspace block to load using the
-**Data** parameter. You can specify the value of the
-**Data** parameter as a MATLAB® expression, such as a variable name. The expression in the
-**Data** parameter must evaluate to data in a format that the
-From Workspace block supports. For details about how the
-expression is evaluated, see Symbol Resolution.
-
-The From Workspace block does not load data from a data dictionary. Use a
-data dictionary to store only design data for a model, not simulation input data.
-You can store design data related to the From Workspace block, such
-as the value for the **Sample time** parameter, in a data
-dictionary.
-
 ## Ports
 
 ### Output
@@ -384,6 +345,10 @@ in the model `myModel` to use the final input data
 value as the output value for time steps that occur after the last
 time value in the input data.
 
+## Libraries
+
+Simulink / Sources
+
 ## Block Characteristics
 
 |  |  |
@@ -474,3 +439,38 @@ the From Workspace block to load string data:
 - Use a format other than array, such as `timeseries` or
   structure. Array format does not support any data type other than
   `double`.
+
+## Description
+
+Load signal data from workspace into Simulink model
+
+The From Workspace block reads data into a Simulink® model from a workspace and provides the data as a signal or a nonvirtual
+bus at the block's output. You can load data from the base workspace, model workspace,
+or mask workspace. You can use the From Workspace block to load signal
+data into any model or subsystem in a model hierarchy from a workspace accessible to the
+referenced model or subsystem.
+
+You can specify how the block constructs the output from the workspace data, including the
+output sample period, interpolation and extrapolation behavior, and whether to use
+zero-crossing detection.
+
+The From Workspace block icon shows the value of the
+**Data** parameter. For example, if you use the From
+Workspace block to load data in the variable *x*, you
+specify `x` as the value for the **Data** parameter,
+and the block displays `x`.
+
+### Specify Data to Load
+
+Specify data for the From Workspace block to load using the
+**Data** parameter. You can specify the value of the
+**Data** parameter as a MATLAB® expression, such as a variable name. The expression in the
+**Data** parameter must evaluate to data in a format that the
+From Workspace block supports. For details about how the
+expression is evaluated, see Symbol Resolution.
+
+The From Workspace block does not load data from a data dictionary. Use a
+data dictionary to store only design data for a model, not simulation input data.
+You can store design data related to the From Workspace block, such
+as the value for the **Sample time** parameter, in a data
+dictionary.

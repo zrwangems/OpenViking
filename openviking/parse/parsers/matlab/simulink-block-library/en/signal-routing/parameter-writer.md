@@ -10,118 +10,6 @@ language: en
 
 # Parameter Writer
 
-Write to block parameter or variable
-
-## Libraries
-
-Simulink / Signal Routing
-
-## Description
-
-The Parameter Writer block changes block parameter values by writing to
-one of the following:
-
-- A parameter of a block that is tunable during simulation
-- An instance parameter that belongs to a Model block that references a
-  model
-- A masked subsystem parameter
-- A model workspace variable
-- A base workspace variable
-- A variable created in `Simulink.data.Dictionary`
-
-A block with a parameter that can be written by a Parameter Writer block is
-called a *parameter owner block*. For the Parameter
-Writer block to find the supported parameters of a parameter owner block,
-the supported parameters must be enabled.
-
-Use the Parameter Writer block with the Initialize
-Function, Reinitialize Function, and Reset
-Function blocks to respond to events. For example, an event could be reading
-the value from a hardware sensor and then updating a block parameter based on the sensor
-value. For more information about using the Parameter Writer block, see
-Initialize and Reset Parameter
-Values.
-
-For a Parameter Writer block in a masked subsystem, the
-Parameter Writer block and corresponding parameter owner block must
-have the same immediate parent masked subsystem.
-
-Otherwise, a Parameter Writer block must be in the same mask as either:
-
-- The block whose parameter is directly written by the Parameter
-  Writer block, which could be a built-in block such as a
-  Gain block, a Model block, a masked
-  subsystem block, or a User-Defined Functions block such as an
-  S-Function block
-- The block whose parameter is indirectly written through a workspace
-  variable
-
-It is recommended to use the Parameter Writer block inside a conditionally
-executed subsystem to improve the simulation performance. For more information about
-using conditionally executed subsystems, see Conditionally Executed Subsystems and Models.
-
-To write to a base or model workspace variable, a variable created in
-`Simulink.data.Dictionary`, mask parameter, or Model
-block instance parameter with a Parameter Writer block, the variables and
-the parameters must be used by a parameter owner block or C MEX S-function with run-time
-tunable parameters.
-
-When a Parameter Writer block writes values with data type other than
-`double` (the default data type) to a mask parameter, you must
-initialize the mask parameter with a value of the same data type as the value written by
-the Parameter Writer block. To initialize the mask parameter,
-double-click the block to open the mask dialog box, specify the data type and value of
-the mask parameter. Alternatively, to initialize mask parameter programmatically, use
-**MaskValues** parameter with `set_param`
-function. For more information, see Control Masks Programmatically.
-
-In this example shown, a Parameter Writer block writes a value with data type
-`single` to a Gain  block parameter inside a masked
-subsystem. The mask parameter is initialized to 1 with data type
-`single`.
-
-Mask parameter value setting when Parameter Writer block writes data with datatype other then double to a parameter inside a masked subsystem
-
-When a Parameter Writer block writes to an instance parameter with storage
-class set to `Model default`, the code generator uses the
-default configuration for **Model parameter arguments** when generating
-code for the parameter. See Specify Instance-Specific Parameter Values for Reusable Referenced Model (Simulink Coder).
-
-**Note**
-
-When you create a library block with a Parameter Writer block, you
-must also include the corresponding parameter owner block in the library block. In
-addition to custom library blocks created using the workflow mentioned in Create Custom Library, Simulink® treats model components created using Subsystem Reference block as a one-block library.
-
-### Identify Parameter Owner Blocks
-
-You can determine whether a block is a supported parameter owner block by the value of
-the `IsParamOwnerBlock` block parameter. Use the
-`get_param` function with the block name or handle,
-`blk`, and the `IsParamOwnerBlock` block
-parameter.
-
-```
-get_param(blk,'IsParamOwnerBlock')
-```
-
-The function returns `'on'` if the block is a supported parameter owner
-block and `'off'` otherwise.
-
-A Parameter Writer block and the parameter owner block of the value that
-the block writes constitute a set of related blocks. You can select a Parameter
-Writer block to highlight the related parameter owner block or vice versa. When a
-related block is highlighted, blocks in the current model that contain the related block are
-also highlighted. For example, an Initialize Function block is highlighted
-when it contains a Parameter Writer block that is related to the selected
-block. The blocks that are highlighted in the model canvas are also highlighted in the
-miniature map.
-
-To show a related block in an open diagram or new tab, pause on the ellipsis that appears
-after selection. Then, select the **Related Blocks** button
- from the action bar. Window focus goes to the
-open diagram or new tab that shows the related block.
-
 ## Ports
 
 ### Input
@@ -293,6 +181,10 @@ parameter.
 
 **Example:** `set_param(gcb,'ParameterName','Gain')`
 
+## Libraries
+
+Simulink / Signal Routing
+
 ## Block Characteristics
 
 |  |  |
@@ -334,3 +226,111 @@ block, use the **Validate parameter** block parameter.
 To globally enable or disable parameter validation for Parameter Writer
 blocks, use the **Parameter Writer block
 validation** configuration parameter.
+
+## Description
+
+Write to block parameter or variable
+
+The Parameter Writer block changes block parameter values by writing to
+one of the following:
+
+- A parameter of a block that is tunable during simulation
+- An instance parameter that belongs to a Model block that references a
+  model
+- A masked subsystem parameter
+- A model workspace variable
+- A base workspace variable
+- A variable created in `Simulink.data.Dictionary`
+
+A block with a parameter that can be written by a Parameter Writer block is
+called a *parameter owner block*. For the Parameter
+Writer block to find the supported parameters of a parameter owner block,
+the supported parameters must be enabled.
+
+Use the Parameter Writer block with the Initialize
+Function, Reinitialize Function, and Reset
+Function blocks to respond to events. For example, an event could be reading
+the value from a hardware sensor and then updating a block parameter based on the sensor
+value. For more information about using the Parameter Writer block, see
+Initialize and Reset Parameter
+Values.
+
+For a Parameter Writer block in a masked subsystem, the
+Parameter Writer block and corresponding parameter owner block must
+have the same immediate parent masked subsystem.
+
+Otherwise, a Parameter Writer block must be in the same mask as either:
+
+- The block whose parameter is directly written by the Parameter
+  Writer block, which could be a built-in block such as a
+  Gain block, a Model block, a masked
+  subsystem block, or a User-Defined Functions block such as an
+  S-Function block
+- The block whose parameter is indirectly written through a workspace
+  variable
+
+It is recommended to use the Parameter Writer block inside a conditionally
+executed subsystem to improve the simulation performance. For more information about
+using conditionally executed subsystems, see Conditionally Executed Subsystems and Models.
+
+To write to a base or model workspace variable, a variable created in
+`Simulink.data.Dictionary`, mask parameter, or Model
+block instance parameter with a Parameter Writer block, the variables and
+the parameters must be used by a parameter owner block or C MEX S-function with run-time
+tunable parameters.
+
+When a Parameter Writer block writes values with data type other than
+`double` (the default data type) to a mask parameter, you must
+initialize the mask parameter with a value of the same data type as the value written by
+the Parameter Writer block. To initialize the mask parameter,
+double-click the block to open the mask dialog box, specify the data type and value of
+the mask parameter. Alternatively, to initialize mask parameter programmatically, use
+**MaskValues** parameter with `set_param`
+function. For more information, see Control Masks Programmatically.
+
+In this example shown, a Parameter Writer block writes a value with data type
+`single` to a Gain  block parameter inside a masked
+subsystem. The mask parameter is initialized to 1 with data type
+`single`.
+
+Mask parameter value setting when Parameter Writer block writes data with datatype other then double to a parameter inside a masked subsystem
+
+When a Parameter Writer block writes to an instance parameter with storage
+class set to `Model default`, the code generator uses the
+default configuration for **Model parameter arguments** when generating
+code for the parameter. See Specify Instance-Specific Parameter Values for Reusable Referenced Model (Simulink Coder).
+
+**Note**
+
+When you create a library block with a Parameter Writer block, you
+must also include the corresponding parameter owner block in the library block. In
+addition to custom library blocks created using the workflow mentioned in Create Custom Library, Simulink® treats model components created using Subsystem Reference block as a one-block library.
+
+### Identify Parameter Owner Blocks
+
+You can determine whether a block is a supported parameter owner block by the value of
+the `IsParamOwnerBlock` block parameter. Use the
+`get_param` function with the block name or handle,
+`blk`, and the `IsParamOwnerBlock` block
+parameter.
+
+```
+get_param(blk,'IsParamOwnerBlock')
+```
+
+The function returns `'on'` if the block is a supported parameter owner
+block and `'off'` otherwise.
+
+A Parameter Writer block and the parameter owner block of the value that
+the block writes constitute a set of related blocks. You can select a Parameter
+Writer block to highlight the related parameter owner block or vice versa. When a
+related block is highlighted, blocks in the current model that contain the related block are
+also highlighted. For example, an Initialize Function block is highlighted
+when it contains a Parameter Writer block that is related to the selected
+block. The blocks that are highlighted in the model canvas are also highlighted in the
+miniature map.
+
+To show a related block in an open diagram or new tab, pause on the ellipsis that appears
+after selection. Then, select the **Related Blocks** button
+ from the action bar. Window focus goes to the
+open diagram or new tab that shows the related block.

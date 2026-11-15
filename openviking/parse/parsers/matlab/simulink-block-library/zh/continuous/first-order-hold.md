@@ -11,18 +11,6 @@ chinese_source: official
 
 # First Order Hold
 
-在输入信号上实现线性外插一阶保持
-
-## 所属库
-
-Simulink / Continuous
-
-## 描述
-
-First Order Hold 模块生成输入信号的连续分段线性逼近。使用 First Order Hold 模块将采样的离散信号转换为连续信号，而不触发求解器重置。
-
-您也可以使用 First Order Hold 模块来打破模型中的代数环。
-
 ## 端口
 
 ### 输入
@@ -107,6 +95,10 @@ First Order Hold 模块生成输入信号的连续分段线性逼近。使用 Fi
 | **值：**`'off'` | `'on'` |
 | **默认值：**`'off'` |
 
+## 所属库
+
+Simulink / Continuous
+
 ## 模块特性
 
 |  |  |
@@ -125,6 +117,14 @@ First Order Hold 模块生成输入信号的连续分段线性逼近。使用 Fi
 
 请考虑对模型进行离散化。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2019b 中推出**
+
+## 描述
+
+在输入信号上实现线性外插一阶保持
+
+First Order Hold 模块生成输入信号的连续分段线性逼近。使用 First Order Hold 模块将采样的离散信号转换为连续信号，而不触发求解器重置。
+
+您也可以使用 First Order Hold 模块来打破模型中的代数环。

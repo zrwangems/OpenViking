@@ -10,28 +10,6 @@ language: en
 
 # Resettable Subsystem
 
-Subsystem whose block states reset with external trigger
-
-## Libraries
-
-Simulink / Ports & Subsystems
-
-## Description
-
-Use resettable subsystem when you want to conditionally reset the states of all blocks
-within a subsystem to their initial condition. A resettable subsystem executes at every
-time step but conditionally resets the states of blocks inside it when a trigger event
-occurs at the Reset port. For more information about
-the trigger events supported at the **Reset** port, see Reset trigger type.
-
-The reset behavior is similar to the reset behavior of blocks with **Reset**
-ports, except that a resettable subsystem resets the state of all blocks inside it. For
-more information about reset behavior, see Behavior of Resettable Subsystems.
-
-The Resettable Subsystem block is configured by placing a
-Reset block inside a Subsystem block. The behavior of the resettable subsystem is controlled by
-the **Reset** port of the Resettable Subsystem block.
-
 ## Ports
 
 ### Input
@@ -739,6 +717,10 @@ the `set_param` function.
 | **Parameter:** | `RTWMemSecDataParameters` |
 | **Values:** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
 
+## Libraries
+
+Simulink / Ports & Subsystems
+
 ## Block Characteristics
 
 |  |  |
@@ -795,3 +777,21 @@ Actual data type support depends on block implementation.
 ## Version History
 
 **Introduced in R2015a**
+
+## Description
+
+Subsystem whose block states reset with external trigger
+
+Use resettable subsystem when you want to conditionally reset the states of all blocks
+within a subsystem to their initial condition. A resettable subsystem executes at every
+time step but conditionally resets the states of blocks inside it when a trigger event
+occurs at the Reset port. For more information about
+the trigger events supported at the **Reset** port, see Reset trigger type.
+
+The reset behavior is similar to the reset behavior of blocks with **Reset**
+ports, except that a resettable subsystem resets the state of all blocks inside it. For
+more information about reset behavior, see Behavior of Resettable Subsystems.
+
+The Resettable Subsystem block is configured by placing a
+Reset block inside a Subsystem block. The behavior of the resettable subsystem is controlled by
+the **Reset** port of the Resettable Subsystem block.

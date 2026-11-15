@@ -10,19 +10,6 @@ language: en
 
 # Polynomial
 
-Perform evaluation of polynomial coefficients on input values
-
-## Libraries
-
-Simulink / Math Operations
-
-## Description
-
-The Polynomial block evaluates *`P(u)`* at each time
-step for the input *u*. You define a set of polynomial coefficients in the
-form that the MATLAB®
-`polyval` command accepts.
-
 ## Ports
 
 ### Input
@@ -59,6 +46,10 @@ the constant for the polynomial.
 | **Type:** real array |
 | **Default:** `[ +2.081618890e-019, -1.441693666e-014, +4.719686976e-010, -8.536869453e-006, +1.621573104e-001, -8.087801117e+001 ]` |
 
+## Libraries
+
+Simulink / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -78,3 +69,12 @@ the constant for the polynomial.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Perform evaluation of polynomial coefficients on input values
+
+The Polynomial block evaluates *`P(u)`* at each time
+step for the input *u*. You define a set of polynomial coefficients in the
+form that the MATLAB®
+`polyval` command accepts.

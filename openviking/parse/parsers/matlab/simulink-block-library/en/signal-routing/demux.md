@@ -10,17 +10,6 @@ language: en
 
 # Demux
 
-Extract and output elements of virtual vector signal
-
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Commonly Used Blocks HDL Coder / Signal Routing
-
-## Description
-
-The Demux block extracts the components of an input vector signal and
-outputs separate signals. The output signal ports are ordered from top to bottom.
-
 ## Ports
 
 ### Input
@@ -109,6 +98,10 @@ the `set_param` function.
 
 **Example:** `set_param(gcb,'DisplayOption','none')`
 
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Commonly Used Blocks HDL Coder / Signal Routing
+
 ## Block Characteristics
 
 |  |  |
@@ -155,3 +148,10 @@ Actual data type or capability support depends on block implementation.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Extract and output elements of virtual vector signal
+
+The Demux block extracts the components of an input vector signal and
+outputs separate signals. The output signal ports are ordered from top to bottom.

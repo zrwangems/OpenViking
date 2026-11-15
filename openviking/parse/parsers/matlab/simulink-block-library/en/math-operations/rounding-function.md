@@ -10,25 +10,6 @@ language: en
 
 # Rounding Function
 
-Apply rounding function to signal
-
-## Libraries
-
-Simulink / Math Operations
-
-## Description
-
-The Rounding Function block rounds each element of the input signal to
-produce the output signal.
-
-You select the type of rounding from the **Function** parameter list.
-The name of the selected function appears on the block.
-
-**Tip**
-
-Use the Rounding Function block when you want vector or matrix
-output.
-
 ## Ports
 
 ### Input
@@ -92,6 +73,10 @@ the `set_param` function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
 
+## Libraries
+
+Simulink / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -145,3 +130,18 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Apply rounding function to signal
+
+The Rounding Function block rounds each element of the input signal to
+produce the output signal.
+
+You select the type of rounding from the **Function** parameter list.
+The name of the selected function appears on the block.
+
+**Tip**
+
+Use the Rounding Function block when you want vector or matrix
+output.

@@ -10,34 +10,6 @@ language: en
 
 # Discrete Derivative
 
-Compute discrete-time derivative
-
-## Libraries
-
-Simulink / Discrete
-
-## Description
-
-The Discrete Derivative block computes an optionally scaled discrete time
-derivative as follows
-
-y(tn)=K(u(tn)−u(tn−1)Ts)
-
-where
-
-- u(tn) and y(tn) are the block input and output at the current time step,
-  respectively.
-- u(tn−1) is the block input at the previous time step.
-- K is an optional scaling factor, specified using the
-  **Gain value** parameter.
-- Ts is the simulation's discrete step size, which must be fixed.
-
-**Note**
-
-Do not use this block in subsystems with a nonperiodic trigger, for example,
-nonperiodic function-call subsystems. This configuration produces inaccurate
-results.
-
 ## Ports
 
 ### Input
@@ -262,6 +234,10 @@ saturation code.
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Discrete
+
 ## Block Characteristics
 
 |  |  |
@@ -289,3 +265,27 @@ saturation code.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Compute discrete-time derivative
+
+The Discrete Derivative block computes an optionally scaled discrete time
+derivative as follows
+
+y(tn)=K(u(tn)−u(tn−1)Ts)
+
+where
+
+- u(tn) and y(tn) are the block input and output at the current time step,
+  respectively.
+- u(tn−1) is the block input at the previous time step.
+- K is an optional scaling factor, specified using the
+  **Gain value** parameter.
+- Ts is the simulation's discrete step size, which must be fixed.
+
+**Note**
+
+Do not use this block in subsystems with a nonperiodic trigger, for example,
+nonperiodic function-call subsystems. This configuration produces inaccurate
+results.

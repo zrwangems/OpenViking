@@ -20,6 +20,7 @@ from bs4 import BeautifulSoup
 from markdownify import markdownify
 
 from openviking.parse.parsers.matlab.catalog import export_catalog
+from openviking.parse.parsers.matlab.library import normalize_block_document
 
 RELEASE = "R2025b"
 SECTIONS = {
@@ -185,15 +186,25 @@ def html_to_markdown(
         for title, content in chinese_sections:
             chinese_lines.extend([f"## {title}", "", content, ""])
     else:
-        top_level = {"所属库", "库", "描述", "说明", "端口", "参数", "模块特性", "扩展功能", "版本历史"}
+        top_level = {
+            "所属库",
+            "库",
+            "描述",
+            "说明",
+            "端口",
+            "参数",
+            "模块特性",
+            "扩展功能",
+            "版本历史",
+        }
         for line in translated_chinese.strip().splitlines():
             if line.startswith("### ") and line[4:].strip() in top_level:
                 line = line[1:]
             chinese_lines.append(line)
         chinese_lines.append("")
     return (
-        "\n".join(english_lines).strip() + "\n",
-        "\n".join(chinese_lines).strip() + "\n",
+        normalize_block_document("\n".join(english_lines), language="en"),
+        normalize_block_document("\n".join(chinese_lines), language="zh-CN"),
     )
 
 
@@ -271,9 +282,7 @@ def main() -> None:
     export_catalog(args.output / "en")
     export_catalog(args.output / "zh")
     (args.output / "index.md").write_text(
-        "# Simulink Block Library\n\n"
-        "- [English](en/index.md)\n"
-        "- [中文](zh/index.md)\n",
+        "# Simulink Block Library\n\n- [English](en/index.md)\n- [中文](zh/index.md)\n",
         encoding="utf-8",
     )
     if failures:

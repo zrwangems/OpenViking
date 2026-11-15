@@ -10,39 +10,6 @@ language: en
 
 # Manual Switch
 
-Switch between two inputs
-
-## Libraries
-
-Simulink / Signal Routing
-
-## Description
-
-The Manual Switch block is a toggle switch that selects one of its two
-inputs to pass through to the output. To toggle between inputs, double-click the block.
-You control the signal flow by setting the switch before you start the simulation or by
-changing the switch while the simulation is executing. The Manual Switch
-block retains its current state when you save the model.
-
-To programmatically toggle the switch, set the `set_param`
-`sw` property to `'0'` or `'1'`. For
-example, to connect the second input to the output:
-
-```
-set_param(gcb,'sw','0')
-```
-
-To connect the first input to the output:
-
-```
-set_param(gcb,'sw','1')
-```
-
-**Note**
-
-Double-clicking the Manual Switch block does not open the block
-dialog box. Instead, it toggles the input choice.
-
 ## Ports
 
 ### Input
@@ -111,6 +78,10 @@ the `set_param` function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
 
+## Libraries
+
+Simulink / Signal Routing
+
 ## Block Characteristics
 
 |  |  |
@@ -132,3 +103,32 @@ Not recommended for production code.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Switch between two inputs
+
+The Manual Switch block is a toggle switch that selects one of its two
+inputs to pass through to the output. To toggle between inputs, double-click the block.
+You control the signal flow by setting the switch before you start the simulation or by
+changing the switch while the simulation is executing. The Manual Switch
+block retains its current state when you save the model.
+
+To programmatically toggle the switch, set the `set_param`
+`sw` property to `'0'` or `'1'`. For
+example, to connect the second input to the output:
+
+```
+set_param(gcb,'sw','0')
+```
+
+To connect the first input to the output:
+
+```
+set_param(gcb,'sw','1')
+```
+
+**Note**
+
+Double-clicking the Manual Switch block does not open the block
+dialog box. Instead, it toggles the input choice.

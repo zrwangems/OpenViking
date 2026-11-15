@@ -10,61 +10,9 @@ language: en
 
 # Check Box
 
-Select parameter or variable value
+## Ports
 
-## Libraries
-
-Simulink / Dashboard
-
-## Description
-
-The Check Box block allows you to set the value of a parameter or
-variable during simulation by checking or clearing the box. Use the Check
-Box block with other Dashboard blocks to create an interactive dashboard for
-your model.
-
-Double-clicking the Check Box block does not open its dialog box during
-simulation and when the block is selected. To edit the block's parameters, you can use
-the **Property Inspector**, or you can right-click the block and select
-**Block Parameters** from the context menu.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard
-block, use connect mode. To enter connect mode on an unconnected block, pause on the block
-you want to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a control block to a parameter in your model or to change the connection of a
-control block, enter connect mode. Select the block to whose parameter you want to connect.
-From the list that appears, select the parameter to which you want to connect. Then, pause
-on the dashboard block and click the Done Connecting button .
-
-The control block cannot connect to a parameter defined by a variable until you update the
-model diagram. To connect to a parameter defined by a variable or to modify the value of a
-variable that defines the value of a connected parameter when the simulation is not running,
-update the model diagram by pressing **Ctrl+D**.
-
-You can connect to a parameter with a scalar value or to an element of a matrix or structure.
-For more information, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-This animation shows how to connect the Check Box block to your
-model.
-
-An unconnected Check Box block connects to the Gain parameter of a Gain block.
-
-### Parameter Logging
-
-Tunable parameters connected to dashboard blocks are logged to the Simulation Data
-Inspector, where you can view the parameter values along with logged signal data. You can
-access logged parameter data in the MATLAB® workspace by exporting the parameter data from the Simulation Data Inspector
-by using the UI or the `Simulink.sdi.exportRun` function. For more information about exporting
-data using the Simulation Data Inspector UI, see Export Data to Workspace or File. The
-parameter data is stored in a `Simulink.SimulationData.Parameter` object, accessible as an element in the
-exported `Simulink.SimulationData.Dataset`.
+Not documented in R2025b.
 
 ## Parameters
 
@@ -227,6 +175,10 @@ character vector that defines a `1`-by-`3`
 | **Type:** character vector | string |
 | **Values:** `[r g b]` vector |
 
+## Libraries
+
+Simulink / Dashboard
+
 ## Block Characteristics
 
 |  |  |
@@ -348,3 +300,55 @@ panel.
 Starting in R2019a, you can use functions such as `add_block`
 and `set_param` to create and configure blocks from the Dashboard
 library in your model.
+
+## Description
+
+Select parameter or variable value
+
+The Check Box block allows you to set the value of a parameter or
+variable during simulation by checking or clearing the box. Use the Check
+Box block with other Dashboard blocks to create an interactive dashboard for
+your model.
+
+Double-clicking the Check Box block does not open its dialog box during
+simulation and when the block is selected. To edit the block's parameters, you can use
+the **Property Inspector**, or you can right-click the block and select
+**Block Parameters** from the context menu.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard
+block, use connect mode. To enter connect mode on an unconnected block, pause on the block
+you want to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a control block to a parameter in your model or to change the connection of a
+control block, enter connect mode. Select the block to whose parameter you want to connect.
+From the list that appears, select the parameter to which you want to connect. Then, pause
+on the dashboard block and click the Done Connecting button .
+
+The control block cannot connect to a parameter defined by a variable until you update the
+model diagram. To connect to a parameter defined by a variable or to modify the value of a
+variable that defines the value of a connected parameter when the simulation is not running,
+update the model diagram by pressing **Ctrl+D**.
+
+You can connect to a parameter with a scalar value or to an element of a matrix or structure.
+For more information, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+This animation shows how to connect the Check Box block to your
+model.
+
+An unconnected Check Box block connects to the Gain parameter of a Gain block.
+
+### Parameter Logging
+
+Tunable parameters connected to dashboard blocks are logged to the Simulation Data
+Inspector, where you can view the parameter values along with logged signal data. You can
+access logged parameter data in the MATLAB® workspace by exporting the parameter data from the Simulation Data Inspector
+by using the UI or the `Simulink.sdi.exportRun` function. For more information about exporting
+data using the Simulation Data Inspector UI, see Export Data to Workspace or File. The
+parameter data is stored in a `Simulink.SimulationData.Parameter` object, accessible as an element in the
+exported `Simulink.SimulationData.Dataset`.

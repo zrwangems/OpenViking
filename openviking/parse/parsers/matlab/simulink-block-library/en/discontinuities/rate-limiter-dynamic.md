@@ -10,36 +10,6 @@ language: en
 
 # Rate Limiter Dynamic
 
-Limit rate of change of signal
-
-## Libraries
-
-Simulink / Discontinuities
-
-## Description
-
-The Rate Limiter Dynamic block limits the rising and falling rates of
-the signal.
-
-- The external signal `up` sets the upper limit on the rising
-  rate of the signal.
-- The external signal `lo` sets the lower limit on the falling
-  rate of the signal.
-
-Follow these guidelines when using the Rate Limiter Dynamic
-block:
-
-- Ensure that the data types of `up` and `lo`
-  are the same as the data type of the input signal `u`.
-
-  When the lower limit uses a signed type and the input signal uses an unsigned
-  type, the output signal keeps increasing regardless of the input and the
-  limits.
-- Use a fixed-step solver to simulate models that contain this block.
-
-  Because the Rate Limiter Dynamic block supports only discrete
-  sample time.
-
 ## Ports
 
 ### Input
@@ -73,6 +43,14 @@ Output signal from the rate limiter algorithm.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point` | `enumerated` | `bus`
 
+## Parameters
+
+Not documented in R2025b.
+
+## Libraries
+
+Simulink / Discontinuities
+
 ## Block Characteristics
 
 |  |  |
@@ -100,3 +78,29 @@ configuring the masked subsystem block to execute as an atomic unit by selecting
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Limit rate of change of signal
+
+The Rate Limiter Dynamic block limits the rising and falling rates of
+the signal.
+
+- The external signal `up` sets the upper limit on the rising
+  rate of the signal.
+- The external signal `lo` sets the lower limit on the falling
+  rate of the signal.
+
+Follow these guidelines when using the Rate Limiter Dynamic
+block:
+
+- Ensure that the data types of `up` and `lo`
+  are the same as the data type of the input signal `u`.
+
+  When the lower limit uses a signed type and the input signal uses an unsigned
+  type, the output signal keeps increasing regardless of the input and the
+  limits.
+- Use a fixed-step solver to simulate models that contain this block.
+
+  Because the Rate Limiter Dynamic block supports only discrete
+  sample time.

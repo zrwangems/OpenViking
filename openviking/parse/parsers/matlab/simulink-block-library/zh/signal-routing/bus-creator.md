@@ -11,29 +11,6 @@ chinese_source: official
 
 # Bus Creator
 
-将输入信号、总线或消息组合到总线中
-
-## 所属库
-
-Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Signal Routing
-
-## 描述
-
-Bus Creator 模块将输入信号、总线或消息合并到总线中，该总线保留信号、嵌套总线和消息的各自的身份。默认情况下，Bus Creator 模块创建一个*虚拟总线*，它类似于用束线带绑在一起的一捆电线。或者，该模块可以创建*非虚拟总线*，这类似于 C 代码中的结构体。
-
-总线元素必须具有唯一名称。默认情况下，总线的每个元素都继承连接到 Bus Creator 模块的元素的名称。如果存在重复名称，Bus Creator 模块会将端口号追加到所有输入元素名称。对于没有名称的元素，Bus Creator 模块会生成 `signaln` 形式的名称，其中 `n` 是连接到元素的端口号。当您搜索元素源或选择元素以连接到其他模块时，您可以按名称引用元素。有关元素命名规范，请参阅信号名称和标签。
-
-要按名称从总线中提取元素，请使用 Bus Selector 模块。
-
-要创建包含其他总线的总线，请将其他总线连接到 Bus Creator 模块输入端口。
-
-**提示**
-
-对于位于子系统和模型接口上的总线，使用 Out Bus Element 模块，而不是 Bus Creator 模块和 Outport 模块。Out Bus Element 模块能够：
-
-- 减少模块图中线的复杂度和杂乱无章。
-- 允许您更轻松地逐步更改接口。
-
 ## 端口
 
 ### 输入
@@ -215,6 +192,10 @@ A line is dragged near a Bus Creator block with two connected ports and a third 
 
 **示例:** `set_param(gcb, NonVirtualBus="on")`
 
+## 所属库
+
+Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Signal Routing
+
 ## 模块特性
 
 |  |  |
@@ -291,7 +272,7 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 实际数据类型或功能支持取决于模块实现。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
 
@@ -336,3 +317,22 @@ Bus Creator 模块现在为模块参数值提供更直观和简化的编辑功�
 从 R2023a 开始，Bus Creator  模块支持可变大小输入信号，其上界小于对应的 Bus Creator 模块输入端口可接受的可变大小信号的上界。
 
 当输入信号的上界不等于对应的 Bus Creator 模块输入端口可以接受的可变大小信号的上界时，此增强功能允许您使用可变大小输入信号。
+
+## 描述
+
+将输入信号、总线或消息组合到总线中
+
+Bus Creator 模块将输入信号、总线或消息合并到总线中，该总线保留信号、嵌套总线和消息的各自的身份。默认情况下，Bus Creator 模块创建一个*虚拟总线*，它类似于用束线带绑在一起的一捆电线。或者，该模块可以创建*非虚拟总线*，这类似于 C 代码中的结构体。
+
+总线元素必须具有唯一名称。默认情况下，总线的每个元素都继承连接到 Bus Creator 模块的元素的名称。如果存在重复名称，Bus Creator 模块会将端口号追加到所有输入元素名称。对于没有名称的元素，Bus Creator 模块会生成 `signaln` 形式的名称，其中 `n` 是连接到元素的端口号。当您搜索元素源或选择元素以连接到其他模块时，您可以按名称引用元素。有关元素命名规范，请参阅信号名称和标签。
+
+要按名称从总线中提取元素，请使用 Bus Selector 模块。
+
+要创建包含其他总线的总线，请将其他总线连接到 Bus Creator 模块输入端口。
+
+**提示**
+
+对于位于子系统和模型接口上的总线，使用 Out Bus Element 模块，而不是 Bus Creator 模块和 Outport 模块。Out Bus Element 模块能够：
+
+- 减少模块图中线的复杂度和杂乱无章。
+- 允许您更轻松地逐步更改接口。

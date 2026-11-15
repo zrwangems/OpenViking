@@ -10,41 +10,6 @@ language: en
 
 # Data Store Read
 
-Read data from data store
-
-## Libraries
-
-Simulink / Signal Routing
-
-## Description
-
-The Data Store Read block copies data from the named data store or a
-selected portion thereof to its output. More than one Data Store Read
-block can read from the same data store.
-
-The data store from which the data is read is determined by the location of the
-Data Store Memory block or signal object that defines the data store.
-For more information, see Data Stores and Data Store Memory.
-
-Obtaining correct results from data stores requires ensuring that data store reads and
-writes occur in the expected order. See Order Data Store Access and Data Store Diagnostics for
-details.
-
-You can select a Data Store Read, Data Store Write, or
-Data Store Memory block to highlight blocks related to it. To show a
-related block in an open diagram or new tab, pause on the ellipsis that appears after
-selection. Then, select Related Blocks  from the action bar. When multiple blocks correspond
-to the selected block, a list of related blocks opens. You can filter the list of
-related blocks by entering a search term in the text box. After you select a related
-block from the list, window focus goes to the open diagram or new tab that shows the
-related block.
-
-**Element Selection** tab is not supported when the Data Store
-Read block reads from a Data Store Memory block with the
-**Dimensions** parameter value set to `Inf`. In
-other words, the Data Store Read block reads unbounded variable-size
-signals from the data store.
-
 ## Ports
 
 ### Input
@@ -409,6 +374,10 @@ for the dimension to `Starting index
 | **Values:** cell array |
 | **Default:** `'{ }'` |
 
+## Libraries
+
+Simulink / Signal Routing
+
 ## Block Characteristics
 
 |  |  |
@@ -433,3 +402,34 @@ for the dimension to `Starting index
 
 The Data Store Read block now supports indexing when the Data Store Memory block uses
 symbolic dimensions.
+
+## Description
+
+Read data from data store
+
+The Data Store Read block copies data from the named data store or a
+selected portion thereof to its output. More than one Data Store Read
+block can read from the same data store.
+
+The data store from which the data is read is determined by the location of the
+Data Store Memory block or signal object that defines the data store.
+For more information, see Data Stores and Data Store Memory.
+
+Obtaining correct results from data stores requires ensuring that data store reads and
+writes occur in the expected order. See Order Data Store Access and Data Store Diagnostics for
+details.
+
+You can select a Data Store Read, Data Store Write, or
+Data Store Memory block to highlight blocks related to it. To show a
+related block in an open diagram or new tab, pause on the ellipsis that appears after
+selection. Then, select Related Blocks  from the action bar. When multiple blocks correspond
+to the selected block, a list of related blocks opens. You can filter the list of
+related blocks by entering a search term in the text box. After you select a related
+block from the list, window focus goes to the open diagram or new tab that shows the
+related block.
+
+**Element Selection** tab is not supported when the Data Store
+Read block reads from a Data Store Memory block with the
+**Dimensions** parameter value set to `Inf`. In
+other words, the Data Store Read block reads unbounded variable-size
+signals from the data store.

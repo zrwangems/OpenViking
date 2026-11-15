@@ -11,100 +11,13 @@ chinese_source: worker-translation
 
 # Rotary Switch
 
+## 端口
 
-
-使用具有可自定义外观的旋转开关更改参数或变量值
-
-## 所属库
-
-Simulink / Dashboard / Customizable Blocks
-
-## 描述
-
-使用 Rotary Switch 模块在仿真前或仿真期间更改所连接变量或参数的值。在 Customizable Blocks 库中使用 Rotary Switch 模块时，可以自定义模块外观，使其看起来像系统中的真实旋转开关。将 Rotary Switch 模块与其他 dashboard 模块一起使用，为模型创建交互式 dashboard。
-
-真实旋转开关具有多个设置。Rotary Switch 模块将这些设置视为不同状态。一个状态将状态值与手柄方向、点击区域以及显示在点击区域上的状态标签配对。
-
-要在仿真期间激活某个状态，请点击该状态的点击区域，或将手柄拖动到指向该点击区域。要在仿真未运行时激活某个状态，请点击 Rotary Switch 模块以选择该模块，然后点击点击区域或将手柄拖动到指向该点击区域。激活状态时，状态值将赋给 Rotary Switch 模块所连接的 Simulink® 模块图元素。
-
-所有状态点击区域合起来覆盖手柄从第一个状态移动到最后一个状态时所经过角度范围内的模块区域。状态标签在该范围内均匀分布，第一个标签位于范围起点，最后一个标签位于范围终点。该范围被细分为点击区域，使相邻点击区域的边界平分标签之间的角距离。
-
-下图显示一个具有四个状态的自定义旋转开关。第一个状态和最后一个状态的标签相距 150 degrees。状态标签（顺时针读取）为 A、B、C 和 D。点击区域以四种不同颜色显示。第一个和第四个状态的点击区域跨过的角距离是其他每个状态跨过的角距离的一半。
-
-**注意**
-
-- 在仿真期间双击已连接的 Rotary Switch 模块，或在点击该模块后双击，不会打开 Block Parameters 对话框。要打开 Block Parameters 对话框，请按 **Shift**，然后双击该模块。
-- 在仿真期间点击已连接的 Rotary Switch 模块会同时选择该模块并移动开关手柄。要选择该模块而不移动开关手柄，请按 **Shift**，然后点击该模块。
-
-### Customize Rotary Switch Blocks
-
-将 Rotary Switch 模块添加到模型时，该模块预配置有默认设计。可以使用默认设计使用该模块，也可以自定义模块外观。
-
-要自定义模块外观，请使用 design mode。选择模块后，可以通过以下三种方式之一进入 design mode：
-
-- 在 Simulink Toolstrip 中，在模块特定的选项卡上，于 **Design** 下，点击 **Edit**。
-- 在 Property Inspector 中，在 **Design** 选项卡上，点击 **Edit**。
-- 暂停在模块上方出现的省略号上，然后点击 Edit Custom Block 按钮 。
-
-在 design mode 中，可以使用模块上方的工具栏自定义旋转开关。要访问其他自定义选项或输入设计设置的精确值，请使用 Property Inspector 中的 **Design** 选项卡。
-
-处于 design mode 的 Customizable Rotary Switch 模块，其中工具栏和 Property Inspector 中的 Design 选项卡可见。
-
-自定义 Rotary Switch 模块时，需要为每个状态配置模块外观。要选择要自定义的状态，请使用工具栏中的下拉列表。或者，在 **Design** 选项卡上，选择 **States** 组件，然后从 **Select State** 列表中选择。要添加状态，请在工具栏中点击 Add State 按钮 。要删除状态，请点击 Remove State 按钮 。
-
-**自定义所选状态的 Design Mode 操作**
-
-| Action | Available in Toolbar | Available in **Design** Tab |
-| --- | --- | --- |
-| Specify the state value. | No | Yes |
-| Specify the state label text. | No | Yes |
-| Add or remove states. | Yes | Yes |
-| Upload a handle image. | Yes | Yes |
-| Change the size of the handle. | No | Yes |
-| Change the position the handle. | No | Yes |
-
-除了使用工具栏和 **Design** 选项卡自定义模块设计外，还可以在画布中以交互方式调整组件大小和位置。手柄的移动限制在穿过模块中心且沿 **Start Angle** 的直线上。
-
-要更改状态标签的颜色，请在 **Format** 选项卡上，于 **Style** 下，点击 **Foreground** 按钮上的箭头并选择颜色。可以从标准色调色板中选择，或点击 Custom Colors 按钮 指定自定义颜色。
-
-**适用于所有状态的 Design Mode 操作**
-
-| Action | Available in Toolbar | Available in **Design** Tab |
-| --- | --- | --- |
-| Change the arc length spanned by the state labels. | No | Yes, in the **Rotary Switch** component |
-| Change the start angle of the arc. | No | Yes, in the **Rotary Switch** component |
-| Change the label radius. | No | Yes, in the **Rotary Switch** component |
-| Upload a background image. | Yes | Yes |
-| Set a solid background color. | No | Yes |
-| Upload a foreground image. | No | Yes |
-
-完成设计编辑后，要退出 design mode，请点击画布右上角的 **X**。
-
-### Connect Dashboard Blocks
-
-Dashboard 模块不使用端口连接到模型元素。要连接 dashboard 模块，请使用 connect mode。要在未连接的模块上进入 connect mode，请暂停在要连接的模块上并点击 Connect 按钮 。要在已连接的模块上进入 connect mode，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
-
-要将控制模块连接到模型中的参数或更改控制模块的连接，请进入 connect mode。选择要连接其参数的模块。在出现的列表中，选择要连接到的参数。然后，暂停在 dashboard 模块上并点击 Done Connecting 按钮 。
-
-在更新模块图之前，控制模块无法连接到由变量定义的参数。要连接到由变量定义的参数，或在仿真未运行时修改定义所连接参数值的变量值，请按 **Ctrl+D** 更新模块图。
-
-可以连接到具有标量值的参数，也可以连接到矩阵或结构的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
-
-还可以将 dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画显示如何将 Rotary Switch 模块连接到模型。
-
-未连接的 Rotary Switch 模块连接到 Constant 模块。
-
-### Parameter Logging
-
-连接到 dashboard 模块的可调参数会记录到 Simulation Data Inspector，可以在其中查看参数值以及记录的信号数据。可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB® 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素访问。
+R2025b 官方文档未提供。
 
 ## 参数
 
 使用 Property Inspector 和 Block Parameters 对话框指定模块参数的值。要设置 dashboard 模块的核心参数，请使用 Block Parameters 对话框或 Property Inspector 中的 **Parameters** 选项卡。要自定义模块，请使用 Property Inspector 中的 **Design** 选项卡。要打开模块的 Block Parameters 对话框，请双击该模块。要打开 Property Inspector，请在 **Modeling** 选项卡上，于 **Design** 下，选择 **Property Inspector**。
-
-## 参数
 
 要设置 dashboard 模块的核心参数，请打开 Property Inspector 并点击 **Parameters** 选项卡。
 
@@ -448,6 +361,10 @@ switchStates = [firstState secondState];
 
 选择此参数可在使用 Property Inspector 调整图像大小时保持纵横比。
 
+## 所属库
+
+Simulink / Dashboard / Customizable Blocks
+
 ## 模块特性
 
 |  |  |
@@ -579,3 +496,86 @@ Dashboard 模块在代码生成时会被忽略。
 ### R2022a: Resize and reposition foreground image
 
 Customizable Blocks 库中的模块具有添加前景图像作为模块设计一部分的选项。从 R2022a 开始，可以在模块设计内旋转、调整大小并重新定位前景图像。
+
+## 描述
+
+使用具有可自定义外观的旋转开关更改参数或变量值
+
+使用 Rotary Switch 模块在仿真前或仿真期间更改所连接变量或参数的值。在 Customizable Blocks 库中使用 Rotary Switch 模块时，可以自定义模块外观，使其看起来像系统中的真实旋转开关。将 Rotary Switch 模块与其他 dashboard 模块一起使用，为模型创建交互式 dashboard。
+
+真实旋转开关具有多个设置。Rotary Switch 模块将这些设置视为不同状态。一个状态将状态值与手柄方向、点击区域以及显示在点击区域上的状态标签配对。
+
+要在仿真期间激活某个状态，请点击该状态的点击区域，或将手柄拖动到指向该点击区域。要在仿真未运行时激活某个状态，请点击 Rotary Switch 模块以选择该模块，然后点击点击区域或将手柄拖动到指向该点击区域。激活状态时，状态值将赋给 Rotary Switch 模块所连接的 Simulink® 模块图元素。
+
+所有状态点击区域合起来覆盖手柄从第一个状态移动到最后一个状态时所经过角度范围内的模块区域。状态标签在该范围内均匀分布，第一个标签位于范围起点，最后一个标签位于范围终点。该范围被细分为点击区域，使相邻点击区域的边界平分标签之间的角距离。
+
+下图显示一个具有四个状态的自定义旋转开关。第一个状态和最后一个状态的标签相距 150 degrees。状态标签（顺时针读取）为 A、B、C 和 D。点击区域以四种不同颜色显示。第一个和第四个状态的点击区域跨过的角距离是其他每个状态跨过的角距离的一半。
+
+**注意**
+
+- 在仿真期间双击已连接的 Rotary Switch 模块，或在点击该模块后双击，不会打开 Block Parameters 对话框。要打开 Block Parameters 对话框，请按 **Shift**，然后双击该模块。
+- 在仿真期间点击已连接的 Rotary Switch 模块会同时选择该模块并移动开关手柄。要选择该模块而不移动开关手柄，请按 **Shift**，然后点击该模块。
+
+### Customize Rotary Switch Blocks
+
+将 Rotary Switch 模块添加到模型时，该模块预配置有默认设计。可以使用默认设计使用该模块，也可以自定义模块外观。
+
+要自定义模块外观，请使用 design mode。选择模块后，可以通过以下三种方式之一进入 design mode：
+
+- 在 Simulink Toolstrip 中，在模块特定的选项卡上，于 **Design** 下，点击 **Edit**。
+- 在 Property Inspector 中，在 **Design** 选项卡上，点击 **Edit**。
+- 暂停在模块上方出现的省略号上，然后点击 Edit Custom Block 按钮 。
+
+在 design mode 中，可以使用模块上方的工具栏自定义旋转开关。要访问其他自定义选项或输入设计设置的精确值，请使用 Property Inspector 中的 **Design** 选项卡。
+
+处于 design mode 的 Customizable Rotary Switch 模块，其中工具栏和 Property Inspector 中的 Design 选项卡可见。
+
+自定义 Rotary Switch 模块时，需要为每个状态配置模块外观。要选择要自定义的状态，请使用工具栏中的下拉列表。或者，在 **Design** 选项卡上，选择 **States** 组件，然后从 **Select State** 列表中选择。要添加状态，请在工具栏中点击 Add State 按钮 。要删除状态，请点击 Remove State 按钮 。
+
+**自定义所选状态的 Design Mode 操作**
+
+| Action | Available in Toolbar | Available in **Design** Tab |
+| --- | --- | --- |
+| Specify the state value. | No | Yes |
+| Specify the state label text. | No | Yes |
+| Add or remove states. | Yes | Yes |
+| Upload a handle image. | Yes | Yes |
+| Change the size of the handle. | No | Yes |
+| Change the position the handle. | No | Yes |
+
+除了使用工具栏和 **Design** 选项卡自定义模块设计外，还可以在画布中以交互方式调整组件大小和位置。手柄的移动限制在穿过模块中心且沿 **Start Angle** 的直线上。
+
+要更改状态标签的颜色，请在 **Format** 选项卡上，于 **Style** 下，点击 **Foreground** 按钮上的箭头并选择颜色。可以从标准色调色板中选择，或点击 Custom Colors 按钮 指定自定义颜色。
+
+**适用于所有状态的 Design Mode 操作**
+
+| Action | Available in Toolbar | Available in **Design** Tab |
+| --- | --- | --- |
+| Change the arc length spanned by the state labels. | No | Yes, in the **Rotary Switch** component |
+| Change the start angle of the arc. | No | Yes, in the **Rotary Switch** component |
+| Change the label radius. | No | Yes, in the **Rotary Switch** component |
+| Upload a background image. | Yes | Yes |
+| Set a solid background color. | No | Yes |
+| Upload a foreground image. | No | Yes |
+
+完成设计编辑后，要退出 design mode，请点击画布右上角的 **X**。
+
+### Connect Dashboard Blocks
+
+Dashboard 模块不使用端口连接到模型元素。要连接 dashboard 模块，请使用 connect mode。要在未连接的模块上进入 connect mode，请暂停在要连接的模块上并点击 Connect 按钮 。要在已连接的模块上进入 connect mode，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
+
+要将控制模块连接到模型中的参数或更改控制模块的连接，请进入 connect mode。选择要连接其参数的模块。在出现的列表中，选择要连接到的参数。然后，暂停在 dashboard 模块上并点击 Done Connecting 按钮 。
+
+在更新模块图之前，控制模块无法连接到由变量定义的参数。要连接到由变量定义的参数，或在仿真未运行时修改定义所连接参数值的变量值，请按 **Ctrl+D** 更新模块图。
+
+可以连接到具有标量值的参数，也可以连接到矩阵或结构的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
+
+还可以将 dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画显示如何将 Rotary Switch 模块连接到模型。
+
+未连接的 Rotary Switch 模块连接到 Constant 模块。
+
+### Parameter Logging
+
+连接到 dashboard 模块的可调参数会记录到 Simulation Data Inspector，可以在其中查看参数值以及记录的信号数据。可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB® 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素访问。

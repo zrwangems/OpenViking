@@ -10,41 +10,6 @@ language: en
 
 # Signal Specification
 
-Specify desired dimensions, sample time, data type, numeric type, and other attributes of signal
-
-## Libraries
-
-Simulink / Signal Attributes HDL Coder / Signal Attributes
-
-## Description
-
-The Signal Specification block allows you to specify the attributes of the
-signal connected to its input and output ports. If the specified attributes conflict with the
-attributes specified by the blocks connected to its ports, the software displays an error when
-it compiles the model. For example, at the beginning of a simulation, if no conflict exists,
-the software eliminates the Signal Specification block from the compiled model.
-In other words, the Signal Specification block is a virtual block. It exists
-only to specify the attributes of a signal and plays no role in the simulation of the
-model.
-
-You can use the Signal Specification block to ensure that the actual
-attributes of a signal meet desired attributes. For example, suppose that you and a
-colleague are working on different parts of the same model. You use Signal
-Specification blocks to connect your part of the model with your
-colleague's. If your colleague changes the attributes of a signal without informing you,
-the attributes entering the corresponding Signal Specification block do
-not match. When you try to simulate the model, you get an error.
-
-You can also use the Signal Specification block to ensure correct propagation
-of signal attributes throughout a model. However, if some blocks have unspecified attributes
-for the signals they accept or output, the model does not have enough information to propagate
-attributes correctly. In these cases, the Signal Specification block can
-provide the information the software needs. Using the Signal Specification
-block also helps speed up model compilation when blocks are missing signal attributes.
-
-The Signal Specification block supports signal label propagation. For more
-information, see Signal Label Propagation.
-
 ## Ports
 
 ### Input
@@ -517,6 +482,10 @@ information, see Specifying a Fixed-Point Data Type.
 To enable this parameter, set **Scaling** to
 `Slope and bias`.
 
+## Libraries
+
+Simulink / Signal Attributes HDL Coder / Signal Attributes
+
 ## Block Characteristics
 
 |  |  |
@@ -562,3 +531,34 @@ more information about value types, see Specify Common Set of Signal Properties 
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Specify desired dimensions, sample time, data type, numeric type, and other attributes of signal
+
+The Signal Specification block allows you to specify the attributes of the
+signal connected to its input and output ports. If the specified attributes conflict with the
+attributes specified by the blocks connected to its ports, the software displays an error when
+it compiles the model. For example, at the beginning of a simulation, if no conflict exists,
+the software eliminates the Signal Specification block from the compiled model.
+In other words, the Signal Specification block is a virtual block. It exists
+only to specify the attributes of a signal and plays no role in the simulation of the
+model.
+
+You can use the Signal Specification block to ensure that the actual
+attributes of a signal meet desired attributes. For example, suppose that you and a
+colleague are working on different parts of the same model. You use Signal
+Specification blocks to connect your part of the model with your
+colleague's. If your colleague changes the attributes of a signal without informing you,
+the attributes entering the corresponding Signal Specification block do
+not match. When you try to simulate the model, you get an error.
+
+You can also use the Signal Specification block to ensure correct propagation
+of signal attributes throughout a model. However, if some blocks have unspecified attributes
+for the signals they accept or output, the model does not have enough information to propagate
+attributes correctly. In these cases, the Signal Specification block can
+provide the information the software needs. Using the Signal Specification
+block also helps speed up model compilation when blocks are missing signal attributes.
+
+The Signal Specification block supports signal label propagation. For more
+information, see Signal Label Propagation.

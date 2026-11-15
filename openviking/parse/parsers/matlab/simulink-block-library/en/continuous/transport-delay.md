@@ -10,44 +10,6 @@ language: en
 
 # Transport Delay
 
-Delay input by given amount of time
-
-## Libraries
-
-Simulink / Continuous
-
-## Description
-
-The Transport Delay block delays the input by a specified amount of time. You
-can use this block to simulate a time delay. The input to this block should be a
-continuous signal.
-
-At the start of simulation, the block outputs the **Initial output**
-parameter until the simulation time exceeds the **Time delay**
-parameter. Then, the block begins generating the delayed input. During simulation, the
-block stores input points and simulation times in a buffer. You specify this size with
-the **Initial buffer size** parameter.
-
-When you want output at a time that does not correspond to times of the stored input
-values, the block interpolates linearly between points. When the delay is smaller than
-the step size, the block extrapolates from the last output point, which can produce
-inaccurate results. Because the block does not have direct feedthrough, it cannot use
-the current input to calculate an output value. For example, consider a fixed-step
-simulation with a step size of 1 and the current time at t = 5. If the delay is 0.5, the
-block must generate a point at t = 4.5. Because the most recent stored time value is at
-t = 4, the block performs forward extrapolation.
-
-The Transport Delay block does not interpolate discrete signals. Instead, the
-block returns the discrete value at the required time.
-
-This block differs from the Unit Delay block, which delays and holds
-the output on sample hits only.
-
-**Tip**
-
-Avoid using `linmod` to linearize a model that contains a Transport
-Delay block. For more information, see Linearizing Models.
-
 ## Ports
 
 ### Input
@@ -233,6 +195,10 @@ scalar, vector, or matrix of nonnegative integers.
 | **Values:** scalar | vector | matrix |
 | **Default:** `'0'` |
 
+## Libraries
+
+Simulink / Continuous
+
 ## Block Characteristics
 
 |  |  |
@@ -265,3 +231,37 @@ an approximate discretization.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Delay input by given amount of time
+
+The Transport Delay block delays the input by a specified amount of time. You
+can use this block to simulate a time delay. The input to this block should be a
+continuous signal.
+
+At the start of simulation, the block outputs the **Initial output**
+parameter until the simulation time exceeds the **Time delay**
+parameter. Then, the block begins generating the delayed input. During simulation, the
+block stores input points and simulation times in a buffer. You specify this size with
+the **Initial buffer size** parameter.
+
+When you want output at a time that does not correspond to times of the stored input
+values, the block interpolates linearly between points. When the delay is smaller than
+the step size, the block extrapolates from the last output point, which can produce
+inaccurate results. Because the block does not have direct feedthrough, it cannot use
+the current input to calculate an output value. For example, consider a fixed-step
+simulation with a step size of 1 and the current time at t = 5. If the delay is 0.5, the
+block must generate a point at t = 4.5. Because the most recent stored time value is at
+t = 4, the block performs forward extrapolation.
+
+The Transport Delay block does not interpolate discrete signals. Instead, the
+block returns the discrete value at the required time.
+
+This block differs from the Unit Delay block, which delays and holds
+the output on sample hits only.
+
+**Tip**
+
+Avoid using `linmod` to linearize a model that contains a Transport
+Delay block. For more information, see Linearizing Models.

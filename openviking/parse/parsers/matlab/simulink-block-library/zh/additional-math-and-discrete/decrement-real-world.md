@@ -11,18 +11,6 @@ chinese_source: worker-translation
 
 # Decrement Real World
 
-
-
-将信号的实际值减一
-
-## 库
-
-Simulink / Additional Math & Discrete / Additional Math: Increment - Decrement HDL Coder / Math Operations
-
-## 描述
-
-Decrement Real World 模块将信号的实际值减一。溢出总是回绕。
-
 ## 端口
 
 ### 输入
@@ -40,6 +28,14 @@ Decrement Real World 模块将信号的实际值减一。溢出总是回绕。
 溢出总是回绕。输出的数据类型和维度与输入相同。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+
+## 参数
+
+R2025b 官方文档未提供。
+
+## 所属库
+
+Simulink / Additional Math & Discrete / Additional Math: Increment - Decrement HDL Coder / Math Operations
 
 ## 模块特性
 
@@ -78,3 +74,9 @@ HDL Coder™ 提供了影响 HDL 实现和综合逻辑的附加配置选项。
 ## 版本历史
 
 **R2006a 之前引入**
+
+## 描述
+
+将信号的实际值减一
+
+Decrement Real World 模块将信号的实际值减一。溢出总是回绕。

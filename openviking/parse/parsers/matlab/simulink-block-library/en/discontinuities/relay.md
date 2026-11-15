@@ -10,24 +10,6 @@ language: en
 
 # Relay
 
-Switch output between two constants
-
-## Libraries
-
-Simulink / Discontinuities HDL Coder / Discontinuities
-
-## Description
-
-The output for the Relay block switches between two specified values. When the relay is on,
-it remains on until the input drops below the value of the **Switch off
-point** parameter. When the relay is off, it remains off until the input
-exceeds the value of the **Switch on point** parameter. The block
-accepts one input and generates one output.
-
-**Note**
-
-When the initial input falls *between* the **Switch off point** and **Switch on point** values, the initial output is the value when the relay is off.
-
 ## Ports
 
 ### Input
@@ -280,6 +262,10 @@ Select this parameter to prevent the fixed-point tools from overriding the data 
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Discontinuities HDL Coder / Discontinuities
+
 ## Block Characteristics
 
 |  |  |
@@ -323,3 +309,17 @@ generation.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Switch output between two constants
+
+The output for the Relay block switches between two specified values. When the relay is on,
+it remains on until the input drops below the value of the **Switch off
+point** parameter. When the relay is off, it remains off until the input
+exceeds the value of the **Switch on point** parameter. The block
+accepts one input and generates one output.
+
+**Note**
+
+When the initial input falls *between* the **Switch off point** and **Switch on point** values, the initial output is the value when the relay is off.

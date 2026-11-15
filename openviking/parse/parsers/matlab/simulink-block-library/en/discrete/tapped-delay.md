@@ -10,39 +10,6 @@ language: en
 
 # Tapped Delay
 
-Delay scalar signal multiple sample periods and output all delayed versions
-
-## Libraries
-
-Simulink / Discrete HDL Coder / Discrete
-
-## Description
-
-The Tapped Delay block delays an input by the specified number of sample
-periods and provides an output signal for each delay. For example, when you specify
-`4` for **Number of delays** and **Order
-output starting with** is `Oldest`, the block
-provides four outputs — the first delayed by four sample periods, the second delayed by
-three, and so on. Use this block to discretize a signal in time or resample a signal at
-a different rate.
-
-The block accepts one scalar input and generates an output vector that contains data for
-each incremental delay. Specify the order of the delayed signals in the output vector
-with the **Order output vector starting with** parameter:
-
-- `Oldest` orders the output vector starting with the oldest delay version and ending with the newest delay version.
-- `Newest` orders the output vector starting with the newest delay version and ending with the oldest delay version.
-
-Specify the output vector for the first sampling period with the **Initial
-condition** parameter. Careful selection of this parameter can mitigate
-unwanted output behavior.
-
-Specify the time between samples with the **Sample time** parameter.
-Specify the number of delays with the **Number of delays** parameter. A
-value of `-1` instructs the block to inherit the number of delays by
-backpropagation. Each delay is equivalent to the z-1
-discrete-time operator, which the Unit Delay block represents.
-
 ## Ports
 
 ### Input
@@ -141,6 +108,10 @@ vector.
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Discrete HDL Coder / Discrete
+
 ## Block Characteristics
 
 |  |  |
@@ -184,3 +155,32 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Delay scalar signal multiple sample periods and output all delayed versions
+
+The Tapped Delay block delays an input by the specified number of sample
+periods and provides an output signal for each delay. For example, when you specify
+`4` for **Number of delays** and **Order
+output starting with** is `Oldest`, the block
+provides four outputs — the first delayed by four sample periods, the second delayed by
+three, and so on. Use this block to discretize a signal in time or resample a signal at
+a different rate.
+
+The block accepts one scalar input and generates an output vector that contains data for
+each incremental delay. Specify the order of the delayed signals in the output vector
+with the **Order output vector starting with** parameter:
+
+- `Oldest` orders the output vector starting with the oldest delay version and ending with the newest delay version.
+- `Newest` orders the output vector starting with the newest delay version and ending with the oldest delay version.
+
+Specify the output vector for the first sampling period with the **Initial
+condition** parameter. Careful selection of this parameter can mitigate
+unwanted output behavior.
+
+Specify the time between samples with the **Sample time** parameter.
+Specify the number of delays with the **Number of delays** parameter. A
+value of `-1` instructs the block to inherit the number of delays by
+backpropagation. Each delay is equivalent to the z-1
+discrete-time operator, which the Unit Delay block represents.

@@ -11,30 +11,6 @@ chinese_source: worker-translation
 
 # In Bus Element
 
-
-
-从外部端口选择输入
-
-## 库
-
-Simulink / Ports & Subsystems Simulink / Sources HDL Coder / Ports & Subsystems HDL Coder / Sources
-
-## 描述
-
-In Bus Element 模块从接收总线、信号或消息的外部端口选择输入。
-
-当端口接收总线时，In Bus Element 模块结合了 Inport 模块和 Bus Selector 模块的功能。要从总线中选择多个元素，请使用多个 In Bus Element 模块。所有与同一端口对应的 In Bus Element 模块共享一个对话框。
-
-对于包含由许多总线元素组成的总线的接口，In Bus Element 模块可以：
-
-- 减少框图中信号线的复杂度和杂乱。
-- 使您更容易对接口进行增量更改。
-- 允许在使用点附近访问总线元素，避免使用 Bus Selector 和 Goto 模块配置。
-
-要将接口转换为使用 In Bus Element 模块，请参阅 Simplify Subsystem and Model Interfaces with Bus Element Ports。
-
-In Bus Element 模块不支持将消息元素和信号元素混合作为输出。
-
 ## 端口
 
 ### 输出
@@ -571,6 +547,10 @@ In Bus Element 模块必须选择具有一个或多个事件触发器的每个�
 
 **示例：** `set_param("mymodel/InBus.message1",MessageQueueOverwriting="off")`
 
+## 所属库
+
+Simulink / Ports & Subsystems Simulink / Sources HDL Coder / Ports & Subsystems HDL Coder / Sources
+
 ## 模块特性
 
 |  |  |
@@ -659,3 +639,21 @@ Property Inspector 支持 In Bus Element 和 Out Bus Element 模块。
 ### R2023a：诊断消息链接到相关的 In Bus Element 模块
 
 In Bus Element 和 Out Bus Element 模块的警告和错误消息现在链接到框图中的对应模块，帮助您快速找到警告或错误的来源。在以前的版本中，警告和错误消息引用隐藏模块，且不提供链接。
+
+## 描述
+
+从外部端口选择输入
+
+In Bus Element 模块从接收总线、信号或消息的外部端口选择输入。
+
+当端口接收总线时，In Bus Element 模块结合了 Inport 模块和 Bus Selector 模块的功能。要从总线中选择多个元素，请使用多个 In Bus Element 模块。所有与同一端口对应的 In Bus Element 模块共享一个对话框。
+
+对于包含由许多总线元素组成的总线的接口，In Bus Element 模块可以：
+
+- 减少框图中信号线的复杂度和杂乱。
+- 使您更容易对接口进行增量更改。
+- 允许在使用点附近访问总线元素，避免使用 Bus Selector 和 Goto 模块配置。
+
+要将接口转换为使用 In Bus Element 模块，请参阅 Simplify Subsystem and Model Interfaces with Bus Element Ports。
+
+In Bus Element 模块不支持将消息元素和信号元素混合作为输出。

@@ -10,81 +10,6 @@ language: en
 
 # Direct Lookup Table (n-D)
 
-Index into n-dimensional table to retrieve element, vector, or 2-D matrix
-
-## Libraries
-
-Simulink / Lookup Tables HDL Coder / Lookup Tables
-
-## Description
-
-The Direct Lookup Table (n-D) block indexes into an n-dimensional table to retrieve an
-element, vector, or 2-D matrix. The first selection index corresponds to the top (or
-left) input port. You can choose to provide the table data as an input to the block, or
-define the table data on the block dialog box. The number of input ports and the size of
-the output depend on the number of table dimensions and the output slice you
-select.
-
-If you select a vector from a 2-D table, the output vector can be a column or a row,
-depending on the model configuration parameter setting **Math and Data Types** > **Use algorithms optimized for row-major array layout**. The block inputs are zero-based indices (for more information, see the
-**Inputs select this object from table** parameter.
-
-The Direct Lookup Table block supports symbolic dimensions.
-
-### Block Inputs and Outputs
-
-The Direct Lookup Table (n-D) block uses inputs as zero-based indices into an
-*n*-dimensional table. The number of inputs varies with the
-shape of the output: an element, vector, or 2-D matrix.
-
-You define a set of output values as the **Table data** parameter. For the
-default column-major algorithm behavior, the first input specifies the zero-based
-index to the table dimension that is one higher than the output dimensionality. The
-next input specifies the zero-based index to the next table dimension, and so
-on.
-
-| Output Shape | Output Dimensionality | Table Dimension that Maps to the First Input |
-| --- | --- | --- |
-| Element | 0 | 1 |
-| Vector | 1 | 2 |
-| Matrix | 2 | 3 |
-
-Suppose that you want to select a vector of values from a 4-D table.
-
-The following mapping of block input port to table dimension applies.
-
-| This input port... | Is the index for this table dimension... |
-| --- | --- |
-| 1 | 2 |
-| 2 | 3 |
-| 3 | 4 |
-
-### Changes in Block Icon Appearance
-
-Depending on parameters you set, the block icon changes appearance. For table dimensions
-higher than 4, the icon matches the 4-D version but shows the exact number of
-dimensions at the top.
-
-When you use the **Table data** parameter, you see these icons for the
-default column-major behavior. Some icons are different when you select the
-configuration parameter **Math and Data Types** > **Use algorithms optimized for row-major array layout**.
-
-| Object that Inputs Select from the Table | Number of Table Dimensions | | | |
-| --- | --- | --- | --- | --- |
-| 1 | 2 | 3 | 4 |
-| Element |  |  |  |  |
-| Vector |  |  |  |  |
-| 2-D Matrix | Not applicable |  |  |  |
-
-When you use the table input port, you see these icons.
-
-| Object that Inputs Select from the Table | Number of Table Dimensions | | | |
-| --- | --- | --- | --- | --- |
-| 1 | 2 | 3 | 4 |
-| Element |  |  |  |  |
-| Vector |  |  |  |  |
-| 2-D Matrix | Not applicable |  |  |  |
-
 ## Ports
 
 ### Input
@@ -459,6 +384,10 @@ Select this parameter to prevent the fixed-point tools from overriding the data 
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Lookup Tables HDL Coder / Lookup Tables
+
 ## Block Characteristics
 
 |  |  |
@@ -539,3 +468,74 @@ length less than or equal to 65,535.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Index into n-dimensional table to retrieve element, vector, or 2-D matrix
+
+The Direct Lookup Table (n-D) block indexes into an n-dimensional table to retrieve an
+element, vector, or 2-D matrix. The first selection index corresponds to the top (or
+left) input port. You can choose to provide the table data as an input to the block, or
+define the table data on the block dialog box. The number of input ports and the size of
+the output depend on the number of table dimensions and the output slice you
+select.
+
+If you select a vector from a 2-D table, the output vector can be a column or a row,
+depending on the model configuration parameter setting **Math and Data Types** > **Use algorithms optimized for row-major array layout**. The block inputs are zero-based indices (for more information, see the
+**Inputs select this object from table** parameter.
+
+The Direct Lookup Table block supports symbolic dimensions.
+
+### Block Inputs and Outputs
+
+The Direct Lookup Table (n-D) block uses inputs as zero-based indices into an
+*n*-dimensional table. The number of inputs varies with the
+shape of the output: an element, vector, or 2-D matrix.
+
+You define a set of output values as the **Table data** parameter. For the
+default column-major algorithm behavior, the first input specifies the zero-based
+index to the table dimension that is one higher than the output dimensionality. The
+next input specifies the zero-based index to the next table dimension, and so
+on.
+
+| Output Shape | Output Dimensionality | Table Dimension that Maps to the First Input |
+| --- | --- | --- |
+| Element | 0 | 1 |
+| Vector | 1 | 2 |
+| Matrix | 2 | 3 |
+
+Suppose that you want to select a vector of values from a 4-D table.
+
+The following mapping of block input port to table dimension applies.
+
+| This input port... | Is the index for this table dimension... |
+| --- | --- |
+| 1 | 2 |
+| 2 | 3 |
+| 3 | 4 |
+
+### Changes in Block Icon Appearance
+
+Depending on parameters you set, the block icon changes appearance. For table dimensions
+higher than 4, the icon matches the 4-D version but shows the exact number of
+dimensions at the top.
+
+When you use the **Table data** parameter, you see these icons for the
+default column-major behavior. Some icons are different when you select the
+configuration parameter **Math and Data Types** > **Use algorithms optimized for row-major array layout**.
+
+| Object that Inputs Select from the Table | Number of Table Dimensions | | | |
+| --- | --- | --- | --- | --- |
+| 1 | 2 | 3 | 4 |
+| Element |  |  |  |  |
+| Vector |  |  |  |  |
+| 2-D Matrix | Not applicable |  |  |  |
+
+When you use the table input port, you see these icons.
+
+| Object that Inputs Select from the Table | Number of Table Dimensions | | | |
+| --- | --- | --- | --- | --- |
+| 1 | 2 | 3 | 4 |
+| Element |  |  |  |  |
+| Vector |  |  |  |  |
+| 2-D Matrix | Not applicable |  |  |  |

@@ -11,26 +11,6 @@ chinese_source: official
 
 # Descriptor State-Space
 
-模型线性隐式系统
-
-## 所属库
-
-Simulink / Continuous
-
-## 描述
-
-Descriptor State-Space 模块允许您对隐式形式 Ex˙=Ax+Bu 描述的线性隐式系统进行建模，其中 *E* 是系统的质量矩阵。当 *E* 非奇异且因此可逆时，您可以用显式形式 x˙=E−1Ax+E−1Bu 描述系统，并使用 State-Space 模块对系统进行建模。
-
-当质量矩阵 *E* 为奇异矩阵时，方程不包含系统中一个或多个因变量的导数。系统中的因变量也称为*代数变量*，含有代数变量的微分方程称为*微分代数方程*。由微分代数方程描述的系统的状态空间表示具有以下形式：
-
-Ex˙=Ax+Buy=Cx+Du
-
-其中：
-
-- *x* 是状态向量。
-- *u* 是输入向量。
-- *y* 是输出向量。
-
 ## 端口
 
 ### 输入
@@ -257,6 +237,10 @@ Ex˙=Ax+Buy=Cx+Du
 
 **示例:** `set_param("MyModel/Descriptor State-Space",ContinuousStateAttributes={'position','velocity'})`
 
+## 所属库
+
+Simulink / Continuous
+
 ## 模块特性
 
 |  |  |
@@ -280,10 +264,26 @@ Ex˙=Ax+Buy=Cx+Du
 
 考虑使用模型离散化器将连续模块（例如 Descriptor State-Space 模块）映射到支持代码生成的离散等效块。要打开模型离散化器，请在 **App** 选项卡中的**控制系统**下点击**模型离散化器**。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2018b 中推出**
 
 ### R2024b: C++ 代码生成支持
 
 您可以为具有质量矩阵的隐式系统生成 C++ 代码，例如使用 Descriptor State-Space 模块实现的系统。使用 **Language (Simulink Coder)** 参数指定代码生成的语言。
+
+## 描述
+
+模型线性隐式系统
+
+Descriptor State-Space 模块允许您对隐式形式 Ex˙=Ax+Bu 描述的线性隐式系统进行建模，其中 *E* 是系统的质量矩阵。当 *E* 非奇异且因此可逆时，您可以用显式形式 x˙=E−1Ax+E−1Bu 描述系统，并使用 State-Space 模块对系统进行建模。
+
+当质量矩阵 *E* 为奇异矩阵时，方程不包含系统中一个或多个因变量的导数。系统中的因变量也称为*代数变量*，含有代数变量的微分方程称为*微分代数方程*。由微分代数方程描述的系统的状态空间表示具有以下形式：
+
+Ex˙=Ax+Buy=Cx+Du
+
+其中：
+
+- *x* 是状态向量。
+- *u* 是输入向量。
+- *y* 是输出向量。

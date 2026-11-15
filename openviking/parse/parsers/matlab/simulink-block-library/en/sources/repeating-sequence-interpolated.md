@@ -10,20 +10,6 @@ language: en
 
 # Repeating Sequence Interpolated
 
-Output discrete-time sequence and repeat, interpolating between data points
-
-## Libraries
-
-Simulink / Sources
-
-## Description
-
-The Repeating Sequence Interpolated block outputs a periodic discrete-time
-sequence based on the values in **Vector of time values** and
-**Vector of output values** parameters. Between data points, the
-block uses the method you specify for the **Lookup Method** parameter
-to determine the output.
-
 ## Ports
 
 ### Output
@@ -193,6 +179,10 @@ information, see Use Lock Output Data Type Setting (Fixed-Point Designer).
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'off'` |
 
+## Libraries
+
+Simulink / Sources
+
 ## Block Characteristics
 
 |  |  |
@@ -216,3 +206,13 @@ Cannot be used inside a triggered subsystem hierarchy.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Output discrete-time sequence and repeat, interpolating between data points
+
+The Repeating Sequence Interpolated block outputs a periodic discrete-time
+sequence based on the values in **Vector of time values** and
+**Vector of output values** parameters. Between data points, the
+block uses the method you specify for the **Lookup Method** parameter
+to determine the output.

@@ -11,18 +11,6 @@ chinese_source: worker-translation
 
 # Data Type Scaling Strip
 
-
-
-移除定标并映射到内置整数
-
-## 库
-
-Simulink / Signal Attributes
-
-## 描述
-
-Data Type Scaling Strip 模块去除定点信号的定标。它将输入数据类型映射为具有足够数据位以容纳输入的最小内置数据类型。输入的存储整数值就是输出的值。输出始终具有标称定标（slope = 1.0 和 bias = 0.0），因此输出不区分实际值和存储整数值。
-
 ## 端口
 
 ### 输入
@@ -39,6 +27,14 @@ Data Type Scaling Strip 模块去除定点信号的定标。它将输入数据�
 输入信号的存储整数值，采用尽可能小的内置数据类型，并与输入具有相同的维度。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
+
+## 参数
+
+R2025b 官方文档未提供。
+
+## 所属库
+
+Simulink / Signal Attributes
 
 ## 模块特性
 
@@ -59,3 +55,9 @@ Data Type Scaling Strip 模块去除定点信号的定标。它将输入数据�
 ## 版本历史
 
 **在 R2006a 之前引入**
+
+## 描述
+
+移除定标并映射到内置整数
+
+Data Type Scaling Strip 模块去除定点信号的定标。它将输入数据类型映射为具有足够数据位以容纳输入的最小内置数据类型。输入的存储整数值就是输出的值。输出始终具有标称定标（slope = 1.0 和 bias = 0.0），因此输出不区分实际值和存储整数值。

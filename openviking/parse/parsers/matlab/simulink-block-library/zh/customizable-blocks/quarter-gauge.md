@@ -11,74 +11,13 @@ chinese_source: worker-translation
 
 # Quarter Gauge
 
+## 端口
 
-
-在仿真期间在形状为四分之一圆、外观可自定义的仪表上显示信号值
-
-## 库
-
-Simulink / Dashboard / Customizable Blocks
-
-## 描述
-
-Quarter Gauge 模块在四分之一圆形状的仪表上显示所连接信号的值。您可以将该模块设计为看起来像真实系统中的仪表。
-
-Quarter Gauge 模块在整个仿真过程中显示所连接信号的瞬时值。您可以修改 Quarter Gauge 模块上的范围和刻度值以适合您的数据。将 Quarter Gauge 模块与其他 Dashboard 模块一起使用，为您的模型构建由控件和指示器组成的交互式 Dashboard。
-
-### 自定义 Quarter Gauge 模块
-
-当您将 Quarter Gauge 模块添加到模型时，该模块预配置有默认设计。您可以将该模块与默认设计一起使用，也可以自定义该模块的外观。
-
-要自定义模块的外观，请使用设计模式。选择该模块后，可以通过以下三种方式之一进入设计模式：
-
-- 在 Simulink® Toolstrip 中，在该模块特定的选项卡上，在 **Design** 下，点击 **Edit**。
-- 在 Property Inspector 中，在 **Design** 选项卡上，点击 **Edit**。
-- 暂停在模块上方出现的省略号上，然后点击 Edit Custom Block 按钮 。
-
-在设计模式中，您可以使用模块上方的工具栏自定义 Quarter Gauge。要访问其他自定义选项或为设计设置输入精确值，请使用 Property Inspector 中的 **Design** 选项卡。
-
-处于设计模式的 Quarter Gauge 模块，其中可见工具栏和 Property Inspector 中的 Design 选项卡。
-
-**设计模式操作**
-
-| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
-| --- | --- | --- |
-| 上传指针图像。 | 是 | 是 |
-| 上传背景图像。 | 是 | 是 |
-| 设置纯色背景颜色。 | 否 | 是 |
-| 上传前景图像。 | 否 | 是 |
-| 更改刻度的弧长。 | 否 | 是 |
-| 指定值条增长所依据的原点的位置。 | 否 | 是 |
-| 更改刻度线、刻度标签或值条的颜色和不透明度。 | 是 | 是 |
-| 将刻度方向指定为 Clockwise 或 Counterclockwise。 | 否 | 是 |
-| 更改刻度和指针的大小。 | 否 | 是 |
-| 更改刻度和指针的位置。 | 否 | 是 |
-
-要使用工具栏更改刻度线、刻度标签或值条的颜色和不透明度，请在工具栏从左数第二部分中，选择要更改颜色的组件。要更改颜色，请点击色轮。要更改不透明度，请移动滑块。
-
-除了使用工具栏和 **Design** 选项卡自定义模块设计外，您还可以在画布中以交互方式调整组件大小和重新定位组件。指针的移动限制在穿过模块中心和刻度最小值的线上。
-
-完成设计编辑后，要退出设计模式，请点击画布右上角的 **X**。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后点击 Connect 按钮 。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
-
-要将显示模块连接到模型中的信号或更改显示模块的连接，请进入连接模式。选择要连接的信号线。在出现的列表中，选择要连接的信号。然后，暂停在 Dashboard 模块上，并点击 Done Connecting 按钮 。要查看 Dashboard 模块显示所连接模块的值，请运行仿真。
-
-有关连接 Dashboard 模块的详细信息，请参阅将 Dashboard 模块连接到 Simulink 模型。
-
-您还可以将 Dashboard 模块连接到 Stateflow® chart。有关详细信息，请参阅将 Dashboard 模块连接到 Stateflow (Stateflow)。
-
-此动画展示如何将 Quarter Gauge 模块连接到您的模型。
-
-未连接的 Quarter Gauge 模块连接到 Sine Wave 模块发送到 Outport 模块的信号。
+R2025b 官方文档未提供。
 
 ## 参数
 
 使用 Property Inspector 和 Block Parameters 对话框指定模块参数的值。要设置 Dashboard 模块的核心参数，请使用 Block Parameters 对话框或 Property Inspector 中的 **Parameters** 选项卡。要自定义模块，请使用 Property Inspector 中的 **Design** 选项卡。要打开模块的 Block Parameters 对话框，请双击该模块。要打开 Property Inspector，请在 **Modeling** 选项卡上的 **Design** 下，选择 **Property Inspector**。
-
-## 参数
 
 要设置 Dashboard 模块的核心参数，请打开 Property Inspector，然后点击 **Parameters** 选项卡。
 
@@ -493,6 +432,10 @@ Dashboard 模块不使用端口连接到模型元素。要将 Dashboard 模块�
 
 选择此参数可在使用 Property Inspector 调整图像大小时保持纵横比。
 
+## 所属库
+
+Simulink / Dashboard / Customizable Blocks
+
 ## 模块特性
 
 |  |  |
@@ -530,3 +473,60 @@ Dashboard 模块不使用端口连接到模型元素。要将 Dashboard 模块�
 从 R2024a 开始，您可以将 dashboard 面板停靠到 Simulink Editor 窗口。您可以使用停靠的面板在仿真期间监视信号和控制参数，而不会在画布中覆盖模型图。
 
 有关详细信息，请参阅停靠面板。
+
+## 描述
+
+在仿真期间在形状为四分之一圆、外观可自定义的仪表上显示信号值
+
+Quarter Gauge 模块在四分之一圆形状的仪表上显示所连接信号的值。您可以将该模块设计为看起来像真实系统中的仪表。
+
+Quarter Gauge 模块在整个仿真过程中显示所连接信号的瞬时值。您可以修改 Quarter Gauge 模块上的范围和刻度值以适合您的数据。将 Quarter Gauge 模块与其他 Dashboard 模块一起使用，为您的模型构建由控件和指示器组成的交互式 Dashboard。
+
+### 自定义 Quarter Gauge 模块
+
+当您将 Quarter Gauge 模块添加到模型时，该模块预配置有默认设计。您可以将该模块与默认设计一起使用，也可以自定义该模块的外观。
+
+要自定义模块的外观，请使用设计模式。选择该模块后，可以通过以下三种方式之一进入设计模式：
+
+- 在 Simulink® Toolstrip 中，在该模块特定的选项卡上，在 **Design** 下，点击 **Edit**。
+- 在 Property Inspector 中，在 **Design** 选项卡上，点击 **Edit**。
+- 暂停在模块上方出现的省略号上，然后点击 Edit Custom Block 按钮 。
+
+在设计模式中，您可以使用模块上方的工具栏自定义 Quarter Gauge。要访问其他自定义选项或为设计设置输入精确值，请使用 Property Inspector 中的 **Design** 选项卡。
+
+处于设计模式的 Quarter Gauge 模块，其中可见工具栏和 Property Inspector 中的 Design 选项卡。
+
+**设计模式操作**
+
+| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
+| --- | --- | --- |
+| 上传指针图像。 | 是 | 是 |
+| 上传背景图像。 | 是 | 是 |
+| 设置纯色背景颜色。 | 否 | 是 |
+| 上传前景图像。 | 否 | 是 |
+| 更改刻度的弧长。 | 否 | 是 |
+| 指定值条增长所依据的原点的位置。 | 否 | 是 |
+| 更改刻度线、刻度标签或值条的颜色和不透明度。 | 是 | 是 |
+| 将刻度方向指定为 Clockwise 或 Counterclockwise。 | 否 | 是 |
+| 更改刻度和指针的大小。 | 否 | 是 |
+| 更改刻度和指针的位置。 | 否 | 是 |
+
+要使用工具栏更改刻度线、刻度标签或值条的颜色和不透明度，请在工具栏从左数第二部分中，选择要更改颜色的组件。要更改颜色，请点击色轮。要更改不透明度，请移动滑块。
+
+除了使用工具栏和 **Design** 选项卡自定义模块设计外，您还可以在画布中以交互方式调整组件大小和重新定位组件。指针的移动限制在穿过模块中心和刻度最小值的线上。
+
+完成设计编辑后，要退出设计模式，请点击画布右上角的 **X**。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后点击 Connect 按钮 。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
+
+要将显示模块连接到模型中的信号或更改显示模块的连接，请进入连接模式。选择要连接的信号线。在出现的列表中，选择要连接的信号。然后，暂停在 Dashboard 模块上，并点击 Done Connecting 按钮 。要查看 Dashboard 模块显示所连接模块的值，请运行仿真。
+
+有关连接 Dashboard 模块的详细信息，请参阅将 Dashboard 模块连接到 Simulink 模型。
+
+您还可以将 Dashboard 模块连接到 Stateflow® chart。有关详细信息，请参阅将 Dashboard 模块连接到 Stateflow (Stateflow)。
+
+此动画展示如何将 Quarter Gauge 模块连接到您的模型。
+
+未连接的 Quarter Gauge 模块连接到 Sine Wave 模块发送到 Outport 模块的信号。

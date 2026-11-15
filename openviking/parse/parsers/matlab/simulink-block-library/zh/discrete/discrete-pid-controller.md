@@ -11,39 +11,6 @@ chinese_source: official
 
 # Discrete PID Controller
 
-离散时间或连续时间 PID 控制器
-
-## 所属库
-
-Simulink / Discrete HDL Coder / Discrete HDL Coder / HDL Floating Point Operations
-
-## 描述
-
-Discrete PID Controller 模块实现一个 PID 控制器（PID、PI、PD、仅 P 或仅 I）。该模块与**时域**参数设置为**离散时间**的 PID Controller 模块相同。
-
-此模块的输出是输入信号、输入信号积分和输入信号导数的加权和。权重为比例、积分和导数增益参数。通过一阶极点过滤导数作用。
-
-该模块支持多种控制器类型和结构体。此模块中可配置的选项包括：
-
-- 控制器类型（PID、PI、PD、仅 P 或仅 I）- 请参阅**控制器**参数。
-- 控制器形式（Parallel 或 Ideal）- 请参阅**形式**参数。
-- 时域（连续或离散）- 请参阅**时域**参数。
-- 初始条件和重置触发器 - 请参阅**源**和**外部重置**参数。
-- 输出饱和界限和内置抗积分饱和机制 - 请参阅**限制输出**参数。
-- 无扰动切换和多环控制的信号跟踪 - 请参阅**启用跟踪模式**参数。
-
-当您更改这些选项时，模块的内部结构体会通过激活不同的可变子系统而发生更改。（有关详细信息，请参阅Implement Variations in Separate Hierarchy Using Variant Subsystems。）要检查模块及其可变子系统的内部结构体，请右键点击该模块，然后选择**封装** > **查看封装内部**。
-
-### 控制配置
-
-在一个常见的实现中，PID Controller 模块在反馈环的前馈路径中运行。
-
-模块的输入通常是一个误差信号，这是参考信号与系统输出之间的误差。有关允许设定点加权的双输入模块，请参阅 Discrete PID Controller (2DOF)。
-
-### PID 增益调整
-
-可手动或自动调整 PID 控制器增益。自动调整需要 Simulink® Control Design™ 软件。有关自动调整的详细信息，请参阅**选择调节方法**参数。
-
 ## 端口
 
 ### 输入
@@ -1283,6 +1250,10 @@ Inner Loop 子系统包含下图所示的模块。
 | **值：**`"off"`、`"on"` |
 | **默认值**：`"off"` |
 
+## 所属库
+
+Simulink / Discrete HDL Coder / Discrete HDL Coder / HDL Floating Point Operations
+
 ## 模块特性
 
 |  |  |
@@ -1346,7 +1317,7 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 仅对离散时间 PID 控制器支持定点代码生成（**时域**设置为**离散时间**）。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2009b 中推出**
 
@@ -1377,3 +1348,32 @@ PID Controller 模块现在允许您将被控对象信号 *y* 的导数直接作
 从 R2020b 开始，`get_param` 函数为 `ReferenceBlock` 参数返回不同值。`ReferenceBlock` 参数是所有 Simulink 模块共有的属性，它给出模块链接到的库模块的路径。PID Controller 和 Discrete PID Controller 模块现在链接到 `'pid_lib/PID Controller'`。以前，这些模块链接到 `'simulink/Continuous/PID Controller'`。
 
 此更改不会影响任何其他功能或工作流。您仍可以将先前的路径与 `set_param` 函数结合使用。
+
+## 描述
+
+离散时间或连续时间 PID 控制器
+
+Discrete PID Controller 模块实现一个 PID 控制器（PID、PI、PD、仅 P 或仅 I）。该模块与**时域**参数设置为**离散时间**的 PID Controller 模块相同。
+
+此模块的输出是输入信号、输入信号积分和输入信号导数的加权和。权重为比例、积分和导数增益参数。通过一阶极点过滤导数作用。
+
+该模块支持多种控制器类型和结构体。此模块中可配置的选项包括：
+
+- 控制器类型（PID、PI、PD、仅 P 或仅 I）- 请参阅**控制器**参数。
+- 控制器形式（Parallel 或 Ideal）- 请参阅**形式**参数。
+- 时域（连续或离散）- 请参阅**时域**参数。
+- 初始条件和重置触发器 - 请参阅**源**和**外部重置**参数。
+- 输出饱和界限和内置抗积分饱和机制 - 请参阅**限制输出**参数。
+- 无扰动切换和多环控制的信号跟踪 - 请参阅**启用跟踪模式**参数。
+
+当您更改这些选项时，模块的内部结构体会通过激活不同的可变子系统而发生更改。（有关详细信息，请参阅Implement Variations in Separate Hierarchy Using Variant Subsystems。）要检查模块及其可变子系统的内部结构体，请右键点击该模块，然后选择**封装** > **查看封装内部**。
+
+### 控制配置
+
+在一个常见的实现中，PID Controller 模块在反馈环的前馈路径中运行。
+
+模块的输入通常是一个误差信号，这是参考信号与系统输出之间的误差。有关允许设定点加权的双输入模块，请参阅 Discrete PID Controller (2DOF)。
+
+### PID 增益调整
+
+可手动或自动调整 PID 控制器增益。自动调整需要 Simulink® Control Design™ 软件。有关自动调整的详细信息，请参阅**选择调节方法**参数。

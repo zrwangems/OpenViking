@@ -10,18 +10,6 @@ language: en
 
 # Permute Matrix
 
-Reorder matrix rows or columns
-
-## Libraries
-
-Simulink / Matrix Operations
-
-## Description
-
-The Permute Matrix block reorders the rows or columns of an
-*M*-by-*N* input matrix `A` as
-specified by indexing input `P`.
-
 ## Ports
 
 ### Input
@@ -161,6 +149,10 @@ setting this parameter to `on`.
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'off'` |
 
+## Libraries
+
+Simulink / Matrix Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -193,3 +185,11 @@ generation for row-major array layout.
 ### R2021b: Create Permute Matrix Block Moved to Simulink Matrix Operations Library
 
 The Permute Matrix block has been moved from the **DSP System Toolbox** > **Math Functions** > **Matrices and Linear Algebra** > **Matrix Operations** library to the **Simulink** > **Matrix Operations**library. All existing models continue to work.
+
+## Description
+
+Reorder matrix rows or columns
+
+The Permute Matrix block reorders the rows or columns of an
+*M*-by-*N* input matrix `A` as
+specified by indexing input `P`.

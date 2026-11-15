@@ -10,91 +10,6 @@ language: en
 
 # Discrete Transfer Fcn
 
-Implement discrete transfer function
-
-## Libraries
-
-Simulink / Discrete HDL Coder / Discrete HDL Coder / HDL Floating Point Operations
-
-## Description
-
-The Discrete Transfer Fcn block implements the *z*-transform
-transfer function as follows:
-
-H(z)=num(z)den(z)=num0zm+num1zm−1+...+nummden0zn+den1zn−1+...+denn
-
-where m+1 and n+1 are the number of numerator and denominator coefficients,
-respectively. *num* and *den* contain the coefficients
-of the numerator and denominator in descending powers of *z*.
-*num* can be a vector or matrix, while *den* must
-be a vector. The order of the denominator must be greater than or equal to the order of
-the numerator.
-
-Specify the coefficients of the numerator and denominator polynomials in descending powers
-of *z*. This block lets you use polynomials in *z* to
-represent a discrete system, a method that control engineers typically use. Conversely,
-the Discrete Filter block lets you use polynomials in
-*z-1* (the delay operator) to
-represent a discrete system, a method that signal processing engineers typically use.
-The two methods are identical when the numerator and denominator polynomials have the
-same length.
-
-The Discrete Transfer Fcn block applies the *z*-transform
-transfer function to each independent channel of the input. The **Input
-processing** parameter allows you to specify whether the block treats each
-column of the input as an individual channel (frame-based processing) or each element of
-the input as an individual channel (sample-based processing). To perform frame-based
-processing, you must have a DSP System Toolbox™ license.
-
-### Specifying Initial States
-
-Use the **Initial states** parameter to specify the initial filter states.
-The initial states you specify are the initial conditions of the unit delay blocks
-that are used in the filter digram implementing the discrete transfer
-function.
-
-To determine the number of initial states you must specify and how to specify
-them, use the following tables.
-
-**Frame-Based Processing**
-
-| Input | Number of Channels | Valid Initial States (Dialog Box) | Valid Initial States (Input Port) |
-| --- | --- | --- | --- |
-| - Column vector (*K*-by-1) - Unoriented vector (*K*) | 1 | - Scalar - Column vector (*M*-by-1) - Row vector (1-by-*M*) | - Scalar - Column vector (*M*-by-1) |
-| - Row vector (1-by-*N*) - Matrix (*K*-by-*N*) | *N* | - Scalar - Column vector (*M*-by-1) - Row vector (1-by-*M*) - Matrix (*M*-by-*N*) | - Scalar - Matrix (*M*-by-*N*) |
-
-**Sample-Based Processing**
-
-| Input | Number of Channels | Valid Initial States (Dialog Box) | Valid Initial States (Input Port) |
-| --- | --- | --- | --- |
-| - Scalar | 1 | - Scalar - Column vector (*M*-by-1) - Row vector (1-by-*M*) | - Scalar - Column vector (*M*-by-1) - Row vector (1-by-*M*) |
-| - Row vector (1-by-*N*) - Column vector (*N*-by-1) - Unoriented vector (*N*) | *N* | - Scalar - Column vector (*M*-by-1) - Row vector (1-by-*M*) - Matrix (*M*-by-*N*) | - Scalar |
-| - Matrix (*K*-by-*N*) | *K* × *N* | - Scalar - Column vector (*M*-by-1) - Row vector (1-by-*M*) - Matrix (*M*-by-(*K*×*N*)) | - Scalar |
-
-When the **Initial states** is a scalar, the block initializes all filter
-states to the same scalar value. To initialize all states to zero, enter
-`0`. When the **Initial states** is a vector
-or a matrix, each vector or matrix element specifies a unique initial state for a
-corresponding delay element in a corresponding channel:
-
-- The vector length must equal the number of delay elements in the
-  filter, `M = max(number of zeros, number of
-  poles)`.
-- The matrix must have the same number of rows as the number of delay
-  elements in the filter, `M = max(number of zeros, number of
-  poles)`. The matrix must also have one column for each
-  channel of the input signal.
-
-The following example shows the relationship between the initial filter output and the
-initial input and state. Given an initial input
-*u1*, the first output
-*y1* is related to the initial state
-[*x1*,
-*x2*] and initial input by as
-follows:
-
-y1=4x1x2=1/2(u1−3x1)
-
 ## Ports
 
 ### Input
@@ -878,6 +793,10 @@ To enable this parameter, specify a value for **State name**. This parameter app
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Discrete HDL Coder / Discrete HDL Coder / HDL Floating Point Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -966,3 +885,84 @@ time** parameter in the block parameters dialog box by default. The
 parameter is visible only if you set the sample time to a value other the default
 value (`-1`) at the command line or in an existing model. For more
 information, see Blocks for Which Sample Time Is Not Recommended.
+
+## Description
+
+Implement discrete transfer function
+
+The Discrete Transfer Fcn block implements the *z*-transform
+transfer function as follows:
+
+H(z)=num(z)den(z)=num0zm+num1zm−1+...+nummden0zn+den1zn−1+...+denn
+
+where m+1 and n+1 are the number of numerator and denominator coefficients,
+respectively. *num* and *den* contain the coefficients
+of the numerator and denominator in descending powers of *z*.
+*num* can be a vector or matrix, while *den* must
+be a vector. The order of the denominator must be greater than or equal to the order of
+the numerator.
+
+Specify the coefficients of the numerator and denominator polynomials in descending powers
+of *z*. This block lets you use polynomials in *z* to
+represent a discrete system, a method that control engineers typically use. Conversely,
+the Discrete Filter block lets you use polynomials in
+*z-1* (the delay operator) to
+represent a discrete system, a method that signal processing engineers typically use.
+The two methods are identical when the numerator and denominator polynomials have the
+same length.
+
+The Discrete Transfer Fcn block applies the *z*-transform
+transfer function to each independent channel of the input. The **Input
+processing** parameter allows you to specify whether the block treats each
+column of the input as an individual channel (frame-based processing) or each element of
+the input as an individual channel (sample-based processing). To perform frame-based
+processing, you must have a DSP System Toolbox™ license.
+
+### Specifying Initial States
+
+Use the **Initial states** parameter to specify the initial filter states.
+The initial states you specify are the initial conditions of the unit delay blocks
+that are used in the filter digram implementing the discrete transfer
+function.
+
+To determine the number of initial states you must specify and how to specify
+them, use the following tables.
+
+**Frame-Based Processing**
+
+| Input | Number of Channels | Valid Initial States (Dialog Box) | Valid Initial States (Input Port) |
+| --- | --- | --- | --- |
+| - Column vector (*K*-by-1) - Unoriented vector (*K*) | 1 | - Scalar - Column vector (*M*-by-1) - Row vector (1-by-*M*) | - Scalar - Column vector (*M*-by-1) |
+| - Row vector (1-by-*N*) - Matrix (*K*-by-*N*) | *N* | - Scalar - Column vector (*M*-by-1) - Row vector (1-by-*M*) - Matrix (*M*-by-*N*) | - Scalar - Matrix (*M*-by-*N*) |
+
+**Sample-Based Processing**
+
+| Input | Number of Channels | Valid Initial States (Dialog Box) | Valid Initial States (Input Port) |
+| --- | --- | --- | --- |
+| - Scalar | 1 | - Scalar - Column vector (*M*-by-1) - Row vector (1-by-*M*) | - Scalar - Column vector (*M*-by-1) - Row vector (1-by-*M*) |
+| - Row vector (1-by-*N*) - Column vector (*N*-by-1) - Unoriented vector (*N*) | *N* | - Scalar - Column vector (*M*-by-1) - Row vector (1-by-*M*) - Matrix (*M*-by-*N*) | - Scalar |
+| - Matrix (*K*-by-*N*) | *K* × *N* | - Scalar - Column vector (*M*-by-1) - Row vector (1-by-*M*) - Matrix (*M*-by-(*K*×*N*)) | - Scalar |
+
+When the **Initial states** is a scalar, the block initializes all filter
+states to the same scalar value. To initialize all states to zero, enter
+`0`. When the **Initial states** is a vector
+or a matrix, each vector or matrix element specifies a unique initial state for a
+corresponding delay element in a corresponding channel:
+
+- The vector length must equal the number of delay elements in the
+  filter, `M = max(number of zeros, number of
+  poles)`.
+- The matrix must have the same number of rows as the number of delay
+  elements in the filter, `M = max(number of zeros, number of
+  poles)`. The matrix must also have one column for each
+  channel of the input signal.
+
+The following example shows the relationship between the initial filter output and the
+initial input and state. Given an initial input
+*u1*, the first output
+*y1* is related to the initial state
+[*x1*,
+*x2*] and initial input by as
+follows:
+
+y1=4x1x2=1/2(u1−3x1)

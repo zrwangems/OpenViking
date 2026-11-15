@@ -10,34 +10,6 @@ language: en
 
 # Check Dynamic Gap
 
-Check that gap of possibly varying width occurs in range of signal's amplitudes
-
-## Libraries
-
-Simulink / Model Verification HDL Coder / Model Verification
-
-## Description
-
-The Check Dynamic Gap block checks that a signal falls outside a range of
-values at each time step and executes an assertion after comparison. The width of the
-gap can vary from time step to time step. The **u** port is the tested
-input signal. The inputs **min** and **max** specify
-the lower and upper bounds of the gap, respectively. If **u** falls
-outside of the gap defined by **min** and **max**, the
-assertion is `true (1)` and the block does nothing. If not, the block
-halts the simulation and returns an error message by default.
-
-The input signals can be scalars, vectors, or matrices. All three input signals must
-be the same data type. The block compares the value of **u** to the
-bounds differently depending on the signal.
-
-- When comparing scalars to vectors or matrices, the block compares the
-  scalar signal to each element of the non-scalar signal.
-- When comparing vectors or matrix signals to other vectors or matrices, the
-  block compares the input to the bounds element-by-element.
-- For models with more than one vector or matrix input signal, the vectors
-  or matrices must have the same dimensions.
-
 ## Ports
 
 ### Input
@@ -160,6 +132,10 @@ the assertion condition.
 | **Values:** `"graphic"` | `"text"` |
 | **Default:** `"graphic"` |
 
+## Libraries
+
+Simulink / Model Verification HDL Coder / Model Verification
+
 ## Block Characteristics
 
 |  |  |
@@ -203,3 +179,27 @@ implementation and synthesized logic.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Check that gap of possibly varying width occurs in range of signal's amplitudes
+
+The Check Dynamic Gap block checks that a signal falls outside a range of
+values at each time step and executes an assertion after comparison. The width of the
+gap can vary from time step to time step. The **u** port is the tested
+input signal. The inputs **min** and **max** specify
+the lower and upper bounds of the gap, respectively. If **u** falls
+outside of the gap defined by **min** and **max**, the
+assertion is `true (1)` and the block does nothing. If not, the block
+halts the simulation and returns an error message by default.
+
+The input signals can be scalars, vectors, or matrices. All three input signals must
+be the same data type. The block compares the value of **u** to the
+bounds differently depending on the signal.
+
+- When comparing scalars to vectors or matrices, the block compares the
+  scalar signal to each element of the non-scalar signal.
+- When comparing vectors or matrix signals to other vectors or matrices, the
+  block compares the input to the bounds element-by-element.
+- For models with more than one vector or matrix input signal, the vectors
+  or matrices must have the same dimensions.

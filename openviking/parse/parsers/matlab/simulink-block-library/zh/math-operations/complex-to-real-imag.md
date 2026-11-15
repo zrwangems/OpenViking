@@ -11,16 +11,6 @@ chinese_source: official
 
 # Complex to Real-Imag
 
-输出复输入信号的实部和虚部
-
-## 所属库
-
-Simulink / Math Operations HDL Coder / Math Operations
-
-## 描述
-
-Complex to Real-Imag 模块输出输入信号的实部和/或虚部，具体取决于**输出**参数的设置。实数输出与复数输入具有相同的数据类型。输入可以是复信号数组（向量或矩阵），这种情况下，输出信号也是具有相同维度的数组。实数数组包含对应的复数输入元素的实部。同样，虚数输出包含输入元素的虚部。
-
 ## 端口
 
 ### 输入
@@ -70,6 +60,10 @@ Complex to Real-Imag 模块输出输入信号的实部和/或虚部，具体取�
 | **参数:** | `SampleTime` |
 | **值:** | `"-1"` (默认) | scalar or vector in quotes |
 
+## 所属库
+
+Simulink / Math Operations HDL Coder / Math Operations
+
 ## 模块特性
 
 |  |  |
@@ -106,6 +100,12 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+输出复输入信号的实部和虚部
+
+Complex to Real-Imag 模块输出输入信号的实部和/或虚部，具体取决于**输出**参数的设置。实数输出与复数输入具有相同的数据类型。输入可以是复信号数组（向量或矩阵），这种情况下，输出信号也是具有相同维度的数组。实数数组包含对应的复数输入元素的实部。同样，虚数输出包含输入元素的虚部。

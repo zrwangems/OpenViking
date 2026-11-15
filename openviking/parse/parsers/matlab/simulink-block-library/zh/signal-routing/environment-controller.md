@@ -11,41 +11,6 @@ chinese_source: worker-translation
 
 # Environment Controller
 
-
-
-（已移除）创建仅适用于仿真或仅适用于代码生成的框图分支
-
-## 库
-
-Simulink / Signal Routing
-
-## 描述
-
-Environment Controller 模块仅当包含它的模型正在仿真时，才在其 **Sim** 端口输出信号。仅当从该模型生成代码时，才在其 **Coder** 端口输出信号。此选项使您能够创建仅适用于仿真或代码生成的框图分支。下表描述了 **Sim** 或 **Coder** 端口适用的各种场景。
-
-| 场景 | 输出 |
-| --- | --- |
-| 正常模式仿真 | **Sim** |
-| 加速模式仿真 | **Sim** |
-| 快速加速模式仿真 | **Sim** |
-| 在正常或加速模式下仿真被引用模型 | **Sim** |
-| 在 processor-in-the-loop (PIL) 模式下仿真被引用模型 | **Coder**（使用为被引用模型生成的相同代码） |
-| 外部模式仿真 | **Coder** |
-| 标准代码生成 | **Coder** |
-| 被引用模型的代码生成 | **Coder** |
-
-Simulink® Coder™ 软件在满足以下条件时，不会为连接到 **Sim** 端口的模块生成代码：
-
-- 在 Configuration Parameters 对话框的 **Code Generation > Optimization** 窗格中，将 **Default parameter behavior** 设置为 `Inlined`。
-- 连接到 **Sim** 端口的模块没有外部信号。
-- **Sim** 端口输入路径不包含 S-function 或 Interpreted MATLAB Function 模块。
-
-如果启用 Block reduction 优化，Simulink 在为仿真编译模型时会消除连接到 **Coder** 端口的分支中的模块。有关详细信息，请参阅 Block reduction。
-
-**注意**
-
-Simulink Coder 代码生成仅当仿真分支与代码生成分支具有相同的信号维度时，才会消除连接到仿真分支的模块。无论是否消除仿真分支，Simulink Coder 都会使用仿真分支以及代码生成分支上的采样时间来确定生成代码的基本采样时间，并且在某些情况下，可能会生成仅适用于仿真分支上指定的采样时间的采样时间处理代码。
-
 ## 端口
 
 ### 输入
@@ -69,6 +34,14 @@ Simulink Coder 代码生成仅当仿真分支与代码生成分支具有相同�
 来自 **Sim** 或 **Coder** 输入端口的值，具体取决于当前环境。有关该模块在各种仿真和代码生成模式下输出的详细信息，请参阅描述。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+
+## 参数
+
+R2025b 官方文档未提供。
+
+## 所属库
+
+Simulink / Signal Routing
 
 ## 模块特性
 
@@ -118,3 +91,32 @@ Variant 模块相比 Environment Controller 模块具有以下优势：
   - 使用 Variant Configuration Analysis 工具比较 variant 配置。
 
   有关详细信息，请参阅 Variant Manager for Simulink。
+
+## 描述
+
+（已移除）创建仅适用于仿真或仅适用于代码生成的框图分支
+
+Environment Controller 模块仅当包含它的模型正在仿真时，才在其 **Sim** 端口输出信号。仅当从该模型生成代码时，才在其 **Coder** 端口输出信号。此选项使您能够创建仅适用于仿真或代码生成的框图分支。下表描述了 **Sim** 或 **Coder** 端口适用的各种场景。
+
+| 场景 | 输出 |
+| --- | --- |
+| 正常模式仿真 | **Sim** |
+| 加速模式仿真 | **Sim** |
+| 快速加速模式仿真 | **Sim** |
+| 在正常或加速模式下仿真被引用模型 | **Sim** |
+| 在 processor-in-the-loop (PIL) 模式下仿真被引用模型 | **Coder**（使用为被引用模型生成的相同代码） |
+| 外部模式仿真 | **Coder** |
+| 标准代码生成 | **Coder** |
+| 被引用模型的代码生成 | **Coder** |
+
+Simulink® Coder™ 软件在满足以下条件时，不会为连接到 **Sim** 端口的模块生成代码：
+
+- 在 Configuration Parameters 对话框的 **Code Generation > Optimization** 窗格中，将 **Default parameter behavior** 设置为 `Inlined`。
+- 连接到 **Sim** 端口的模块没有外部信号。
+- **Sim** 端口输入路径不包含 S-function 或 Interpreted MATLAB Function 模块。
+
+如果启用 Block reduction 优化，Simulink 在为仿真编译模型时会消除连接到 **Coder** 端口的分支中的模块。有关详细信息，请参阅 Block reduction。
+
+**注意**
+
+Simulink Coder 代码生成仅当仿真分支与代码生成分支具有相同的信号维度时，才会消除连接到仿真分支的模块。无论是否消除仿真分支，Simulink Coder 都会使用仿真分支以及代码生成分支上的采样时间来确定生成代码的基本采样时间，并且在某些情况下，可能会生成仅适用于仿真分支上指定的采样时间的采样时间处理代码。

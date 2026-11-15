@@ -10,22 +10,6 @@ language: en
 
 # Hit Crossing
 
-Detect crossing point
-
-## Libraries
-
-Simulink / Discontinuities Simulink / Messages & Events HDL Coder / Discontinuities SimEvents
-
-## Description
-
-The Hit Crossing block detects when the input reaches the **Hit
-crossing offset** parameter value in the direction specified by the
-**Hit crossing direction** property.
-
-You can configure the block to output a `1` or `0` signal,
-a message, or a function-call event. See Output
-for more information.
-
 ## Ports
 
 ### Input
@@ -269,6 +253,10 @@ Select to enable zero-crossing detection. For more information, see Zero-Crossin
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'on'` |
 
+## Libraries
+
+Simulink / Discontinuities Simulink / Messages & Events HDL Coder / Discontinuities SimEvents
+
 ## Block Characteristics
 
 |  |  |
@@ -315,3 +303,15 @@ HDL code generation is not supported when the `Output Type` is set to
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Detect crossing point
+
+The Hit Crossing block detects when the input reaches the **Hit
+crossing offset** parameter value in the direction specified by the
+**Hit crossing direction** property.
+
+You can configure the block to output a `1` or `0` signal,
+a message, or a function-call event. See Output
+for more information.

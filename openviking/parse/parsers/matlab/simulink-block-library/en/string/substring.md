@@ -10,24 +10,6 @@ language: en
 
 # Substring
 
-Extract substring from input string signal
-
-## Libraries
-
-Simulink / String
-
-## Description
-
-The Substring block extracts a substring from the input string signal. The
-block extracts the substring starting from the letter corresponding to
-**idx** and includes a **len** number of
-characters starting at **idx**. For example, if the input string is
-`"hello 123"`, input **idx** is
-`1`, and input **len** is `5`,
-the output is `"hello"`. The block extracts a substring starting at
-`1` and the next 4 characters for a total of 5 characters
-(`hello`).
-
 ## Ports
 
 ### Input
@@ -141,6 +123,10 @@ Selecting this parameter removes the third input port.
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / String
+
 ## Block Characteristics
 
 |  |  |
@@ -175,3 +161,17 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced in R2018a**
+
+## Description
+
+Extract substring from input string signal
+
+The Substring block extracts a substring from the input string signal. The
+block extracts the substring starting from the letter corresponding to
+**idx** and includes a **len** number of
+characters starting at **idx**. For example, if the input string is
+`"hello 123"`, input **idx** is
+`1`, and input **len** is `5`,
+the output is `"hello"`. The block extracts a substring starting at
+`1` and the next 4 characters for a total of 5 characters
+(`hello`).

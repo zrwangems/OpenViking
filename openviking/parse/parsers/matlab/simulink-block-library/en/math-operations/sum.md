@@ -10,51 +10,6 @@ language: en
 
 # Sum
 
-Add or subtract inputs
-
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Math Operations HDL Coder / Commonly Used Blocks HDL Coder / Math Operations
-
-## Description
-
-The Sum block performs addition or subtraction on its inputs. The
-Add, Subtract, Sum of Elements, and
-Sum blocks are alternative configurations of the same block. This
-block can add or subtract scalar, vector, or matrix inputs. It can also collapse the
-elements of a signal and perform a summation.
-
-You specify the operations of the block with the **List of signs**
-parameter with plus signs (`+`), minus signs (`-`),
-and spacers (`|`).
-
-- The number of `+` and `-` characters equals
-  the number of inputs. For example, `+-+` requires three inputs.
-  The block subtracts the second (middle) input from the first (top) input, and
-  then adds the third (bottom) input.
-- A spacer character creates extra space between ports on the block icon.
-- If performing only addition, you can use a numerical value equal to the number
-  of inputs.
-- If there is only one input port, one `+` or
-  `-` adds or subtracts the elements over all dimensions or
-  in the specified dimension.
-
-The Sum block first converts the input data type to its accumulator
-data type, then performs the specified operations. The block converts the result to its
-output data type using the specified rounding and overflow modes.
-
-### Calculation of Block Output
-
-Output calculation for the Sum block depends on the number of block
-inputs and the sign of input ports.
-
-| Number of Sum Block Input Ports | Input Port Signs | Block Output Calculation Formula | Output Formula Variables |
-| --- | --- | --- | --- |
-| One input port | The input port sign is + | y = e[0] + e[1] + e[2] ... + e[m] | `e[i]` is the *i*th element of input u |
-| The input port sign is – | y = 0.0 – e[0] – e[1] – e[2] ... – e[m] |
-| Two or more input ports | All input port signs are – | y = 0.0 – u[0] – u[1] – u[2] ... – u[n] | `u[i]` is the input to the *i*th input port |
-| The *k*th input port is the first port where the sign is + | y = u[k] – u[0] – u[1] – u[2] – u[k–1] (+/–) u[k+1] ... (+/–) u[n] |
-
 ## Ports
 
 ### Inputs
@@ -542,6 +497,10 @@ the `set_param` function.
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **Values:** | `'off'` (default) | `'on'` |
 
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Math Operations HDL Coder / Commonly Used Blocks HDL Coder / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -640,3 +599,44 @@ all dimensions or in the specified dimension.
 
 To better reflect the supported behavior, the **Sum over**
 parameter is now called **Apply over**.
+
+## Description
+
+Add or subtract inputs
+
+The Sum block performs addition or subtraction on its inputs. The
+Add, Subtract, Sum of Elements, and
+Sum blocks are alternative configurations of the same block. This
+block can add or subtract scalar, vector, or matrix inputs. It can also collapse the
+elements of a signal and perform a summation.
+
+You specify the operations of the block with the **List of signs**
+parameter with plus signs (`+`), minus signs (`-`),
+and spacers (`|`).
+
+- The number of `+` and `-` characters equals
+  the number of inputs. For example, `+-+` requires three inputs.
+  The block subtracts the second (middle) input from the first (top) input, and
+  then adds the third (bottom) input.
+- A spacer character creates extra space between ports on the block icon.
+- If performing only addition, you can use a numerical value equal to the number
+  of inputs.
+- If there is only one input port, one `+` or
+  `-` adds or subtracts the elements over all dimensions or
+  in the specified dimension.
+
+The Sum block first converts the input data type to its accumulator
+data type, then performs the specified operations. The block converts the result to its
+output data type using the specified rounding and overflow modes.
+
+### Calculation of Block Output
+
+Output calculation for the Sum block depends on the number of block
+inputs and the sign of input ports.
+
+| Number of Sum Block Input Ports | Input Port Signs | Block Output Calculation Formula | Output Formula Variables |
+| --- | --- | --- | --- |
+| One input port | The input port sign is + | y = e[0] + e[1] + e[2] ... + e[m] | `e[i]` is the *i*th element of input u |
+| The input port sign is – | y = 0.0 – e[0] – e[1] – e[2] ... – e[m] |
+| Two or more input ports | All input port signs are – | y = 0.0 – u[0] – u[1] – u[2] ... – u[n] | `u[i]` is the input to the *i*th input port |
+| The *k*th input port is the first port where the sign is + | y = u[k] – u[0] – u[1] – u[2] – u[k–1] (+/–) u[k+1] ... (+/–) u[n] |

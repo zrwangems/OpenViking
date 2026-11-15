@@ -31,7 +31,7 @@ def render_block_template(
     page = front_matter(document, "documentation_page")
     release = front_matter(document, "documentation_release")
     if chinese:
-        summary = document.split(f"# {name}\n", 1)[1].split("## ", 1)[0].strip()
+        summary = section(document, "描述").split("\n\n", 1)[0].strip()
         lines = [
             f"官方目录：`{category}`；文档页标识：`{page}`；基线：`{release}`。",
             "",
@@ -45,7 +45,7 @@ def render_block_template(
                 lines.extend([f"#### {display_title}", "", content, ""])
         return name, "\n".join(lines).strip()
 
-    summary = document.split(f"# {name}\n", 1)[1].split("## ", 1)[0].strip()
+    summary = section(document, "Description").split("\n\n", 1)[0].strip()
     lines = [
         f"Official category: `{category}`; documentation page: `{page}`; release: `{release}`.",
         "",

@@ -10,23 +10,6 @@ language: en
 
 # MinMax
 
-Output minimum or maximum input value
-
-## Libraries
-
-Simulink / Math Operations HDL Coder / Math Operations
-
-## Description
-
-The MinMax block outputs either the minimum or the maximum element or
-elements of the inputs. You choose whether the block outputs the minimum or maximum
-values by setting the **Function** parameter.
-
-The MinMax block ignores any input value that is `NaN`,
-except when every input value is `NaN`. When all input values are
-`NaN`, the output is `NaN`, either as a scalar or
-the value of each output vector element.
-
 ## Ports
 
 ### Input
@@ -397,6 +380,10 @@ the `set_param` function.
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **Values:** | `'off'` (default) | `'on'` |
 
+## Libraries
+
+Simulink / Math Operations HDL Coder / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -452,3 +439,16 @@ a specified dimension using these new parameters:
   dimensions.
 - **Dimension** — Dimension over which to apply the
   function.
+
+## Description
+
+Output minimum or maximum input value
+
+The MinMax block outputs either the minimum or the maximum element or
+elements of the inputs. You choose whether the block outputs the minimum or maximum
+values by setting the **Function** parameter.
+
+The MinMax block ignores any input value that is `NaN`,
+except when every input value is `NaN`. When all input values are
+`NaN`, the output is `NaN`, either as a scalar or
+the value of each output vector element.

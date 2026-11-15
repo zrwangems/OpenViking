@@ -11,25 +11,9 @@ chinese_source: official
 
 # Goto Tag Visibility
 
-定义 Goto 模块标记的作用域
+## 端口
 
-## 所属库
-
-Simulink / Signal Routing
-
-## 描述
-
-Goto Tag Visibility 模块定义具有 `scoped` 可见性的 Goto 模块标记的可访问性。您为 **Goto 标记**模块参数指定的值可由模型层次结构中包含 Goto Tag Visibility 模块的同一子系统中及其下层的子系统中的 From 模块进行访问。
-
-对于**标记可见性**参数值为 `scoped` 的 Goto 模块，Goto Tag Visibility 模块是必需的。如果标记可见性为 `local` 或 `global`，则不需要 Goto Tag Visibility 模块。模块显示的标记名称括在花括号 (`{}`) 内。
-
-**注意**
-
-封装系统中的**限定作用域** Goto 模块仅在该子系统以及它包含的非虚拟子系统中是可见的。如果您运行或更新模块图，而有一个 Goto Tag Visibility 模块在模块图中的级别低于封装子系统中对应的**限定作用域** Goto 模块，Simulink® 将生成错误。
-
-在 Simulink 编辑器中，选择 Goto Tag Visibility 模块以突出显示对应的 Goto 和 From 模块。当对应的 From 或 Goto 模块不在当前图中时，包含该模块的 Subsystem 模块会突出显示。
-
-要在打开的图或新选项卡中显示对应的模块，请选择 Goto Tag Visibility 模块并在省略号上暂停。然后，从操作栏中选择**相关模块** Related Blocks button。当多个模块对应于所选模块时，将打开一个相关模块列表。您可以通过在文本框中输入搜索词来过滤相关模块列表。从列表中选择相关模块后，窗口焦点转至显示该相关模块的打开的图或新选项卡。
+R2025b 官方文档未提供。
 
 ## 参数
 
@@ -49,6 +33,10 @@ Goto Tag Visibility 模块定义具有 `scoped` 可见性的 Goto 模块标记�
 | **类型：**字符向量 |
 | **值：**`'A'` | `...` |
 | **默认值：**`'A'` |
+
+## 所属库
+
+Simulink / Signal Routing
 
 ## 模块特性
 
@@ -76,6 +64,22 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+定义 Goto 模块标记的作用域
+
+Goto Tag Visibility 模块定义具有 `scoped` 可见性的 Goto 模块标记的可访问性。您为 **Goto 标记**模块参数指定的值可由模型层次结构中包含 Goto Tag Visibility 模块的同一子系统中及其下层的子系统中的 From 模块进行访问。
+
+对于**标记可见性**参数值为 `scoped` 的 Goto 模块，Goto Tag Visibility 模块是必需的。如果标记可见性为 `local` 或 `global`，则不需要 Goto Tag Visibility 模块。模块显示的标记名称括在花括号 (`{}`) 内。
+
+**注意**
+
+封装系统中的**限定作用域** Goto 模块仅在该子系统以及它包含的非虚拟子系统中是可见的。如果您运行或更新模块图，而有一个 Goto Tag Visibility 模块在模块图中的级别低于封装子系统中对应的**限定作用域** Goto 模块，Simulink® 将生成错误。
+
+在 Simulink 编辑器中，选择 Goto Tag Visibility 模块以突出显示对应的 Goto 和 From 模块。当对应的 From 或 Goto 模块不在当前图中时，包含该模块的 Subsystem 模块会突出显示。
+
+要在打开的图或新选项卡中显示对应的模块，请选择 Goto Tag Visibility 模块并在省略号上暂停。然后，从操作栏中选择**相关模块** Related Blocks button。当多个模块对应于所选模块时，将打开一个相关模块列表。您可以通过在文本框中输入搜索词来过滤相关模块列表。从列表中选择相关模块后，窗口焦点转至显示该相关模块的打开的图或新选项卡。

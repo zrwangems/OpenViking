@@ -11,18 +11,6 @@ chinese_source: official
 
 # If
 
-使用类似于 if-else 语句的逻辑选择子系统执行
-
-## 所属库
-
-Simulink / Ports & Subsystems
-
-## 描述
-
-If 模块以及包含 Action Port 模块的 If Action Subsystem 模块实现 if-else 逻辑来控制子系统的执行。有关使用 If 模块的示例，请参阅选择子系统执行。
-
-Model ex\_if\_block
-
 ## 端口
 
 ### 输入
@@ -174,6 +162,10 @@ off
 | **值**：`''` | 用引号引起来的以逗号分隔的逻辑表达式列表 |
 | **默认值**：`''` |
 
+## 所属库
+
+Simulink / Ports & Subsystems
+
 ## 模块特性
 
 |  |  |
@@ -204,7 +196,7 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 | **InputPipeline** | 要在生成的代码中插入的输入流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅InputPipeline (HDL Coder)。 |
 | **OutputPipeline** | 要在生成的代码中插入的输出流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅OutputPipeline (HDL Coder)。 |
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
 
@@ -212,3 +204,11 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 - 更新后的模块对话框允许您在表中指定逻辑表达式。您不再需要以逗号分隔的列表形式指定 elseif 表达式。此更改使整体逻辑流更易于可视化和解析。该表还包含新的操作按钮，允许您添加、删除和上下移动 if-else 表达式。这些按钮帮助您根据建模需求组织表达式。此外，新表达式编辑器框允许您编辑复杂表达式。
 - 生成的代码包含 if-else 表达式。此更改可防止包含 switch-case 语句并增强生成代码的可读性。
+
+## 描述
+
+使用类似于 if-else 语句的逻辑选择子系统执行
+
+If 模块以及包含 Action Port 模块的 If Action Subsystem 模块实现 if-else 逻辑来控制子系统的执行。有关使用 If 模块的示例，请参阅选择子系统执行。
+
+Model ex\_if\_block

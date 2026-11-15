@@ -10,17 +10,6 @@ language: en
 
 # Expand Scalar
 
-Create matrix from scalar using scalar expansion
-
-## Libraries
-
-Simulink / Matrix Operations
-
-## Description
-
-The Expand Scalar block outputs a scalar-expanded matrix where each element
-in the matrix has the same value.
-
 ## Ports
 
 ### Output
@@ -206,6 +195,10 @@ programmatically, use the `get_param` function.
 | **Values:** | `'1'` (default) | scalar |
 | **Data Types:** | `char` |
 
+## Libraries
+
+Simulink / Matrix Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -228,3 +221,10 @@ programmatically, use the `get_param` function.
 
 The Expand Scalar block now supports MATLAB®
 `struct` expansion with a Simulink bus data type.
+
+## Description
+
+Create matrix from scalar using scalar expansion
+
+The Expand Scalar block outputs a scalar-expanded matrix where each element
+in the matrix has the same value.

@@ -10,37 +10,6 @@ language: en
 
 # Product of Elements
 
-Copy or invert one scalar input, or collapse one nonscalar input
-
-## Libraries
-
-Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
-
-## Description
-
-The Product of Elements block inputs one scalar, vector, or matrix. You
-can use the block to:
-
-- Copy a scalar input unchanged
-- Invert a scalar input (divide 1 by it)
-- Collapse a vector or matrix to a scalar by multiplying together all elements
-  or taking successive inverses of the elements
-- Collapse a matrix to a vector using one of these options:
-
-  - Multiply together the elements of each row or column
-  - Take successive inverses of the elements of each row or
-    column
-
-The Product of Elements block is functionally a Product block that has two preset
-parameter values:
-
-- **Multiplication**:
-  `Element-wise(.*)`
-- **Number of inputs**: `*`
-
-Setting nondefault values for either of those parameters can change a Product
-of Elements block to be functionally equivalent to a Product block or a Divide block.
-
 ## Ports
 
 ### Input
@@ -651,6 +620,10 @@ information, see Specifying a Fixed-Point Data Type.
 To enable this parameter, set **Scaling** to
 `Slope and bias`.
 
+## Libraries
+
+Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -729,3 +702,30 @@ Divide block reference page.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Copy or invert one scalar input, or collapse one nonscalar input
+
+The Product of Elements block inputs one scalar, vector, or matrix. You
+can use the block to:
+
+- Copy a scalar input unchanged
+- Invert a scalar input (divide 1 by it)
+- Collapse a vector or matrix to a scalar by multiplying together all elements
+  or taking successive inverses of the elements
+- Collapse a matrix to a vector using one of these options:
+
+  - Multiply together the elements of each row or column
+  - Take successive inverses of the elements of each row or
+    column
+
+The Product of Elements block is functionally a Product block that has two preset
+parameter values:
+
+- **Multiplication**:
+  `Element-wise(.*)`
+- **Number of inputs**: `*`
+
+Setting nondefault values for either of those parameters can change a Product
+of Elements block to be functionally equivalent to a Product block or a Divide block.

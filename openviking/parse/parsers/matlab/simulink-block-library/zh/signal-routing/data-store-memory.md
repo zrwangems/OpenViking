@@ -11,42 +11,9 @@ chinese_source: official
 
 # Data Store Memory
 
-定义数据存储
+## 端口
 
-## 所属库
-
-Simulink / Signal Routing
-
-## 描述
-
-Data Store Memory 模块定义并初始化一个命名的共享数据存储，即一个内存区域，供指定相同数据存储名称的 Data Store Read 和 Data Store Write 模块使用。
-
-定义数据存储的 Data Store Memory 模块的位置确定了哪些 Data Store Read 和 Data Store Write 模块可以访问该数据存储：
-
-- 如果 Data Store Memory 模块在*顶层系统*中，则模型中任意位置的 Data Store Read 和 Data Store Write 模块都可以访问该数据存储。
-- 如果 Data Store Memory 模块在*子系统*中，则位于同一子系统或模型层次结构中该子系统下面的任何子系统中的 Data Store Read 和 Data Store Write 模块都可以访问该数据存储。
-- 在引用模型中定义的 Data Store Read  或 Data Store Write 模块可以访问存储在模型层次结构中更高级别的数据。
-
-要允许 Data Store Read  或 Data Store Write 模块从引用模型内部访问存储在模型层次结构中更高级别上的数据，请执行以下操作：
-
-- 在引用模型中放置 Data Store Memory 模块。
-- 在 Data Store Memory 模块对话框中，选择**数据存储引用**。
-
-不要在 For Each 子系统中包含 Data Store Memory 模块。
-
-要从数据存储获取正确的结果，必须确保数据存储按照预期的顺序进行读取和写入。有关详细信息，请参阅：
-
-- 对数据存储访问进行排序
-- 数据存储诊断
-- Log Data Stores
-
-您可以使用 Data Store Memory 模块结合 `Simulink.Signal` 对象来定义数据存储，也可以不使用前者而只使用后者来定义数据存储。在*基础*工作区中定义的具有一个信号对象的数据存储是一个*全局*数据存储。每个模型都可以访问全局数据存储，包括所有引用的模型。有关详细信息，请参阅数据存储。
-
-您可以选择 Data Store Read、Data Store Write 或 Data Store Memory 模块来突出显示与其相关的模块。要在打开的图或新选项卡中显示相关模块，请在选择后出现的省略号上暂停。然后，从操作栏中选择**相关模块** Related Blocks button。当多个模块对应于所选模块时，将打开一个相关模块列表。您可以通过在文本框中输入搜索词来过滤相关模块列表。从列表中选择相关模块后，窗口焦点转至显示该相关模块的打开的图或新选项卡。
-
-### 字符串支持
-
-仅当 Data Store Memory 模块配置为**初始值**参数采用默认值 (`0`) 时，该模块才接受和输出字符串数据类型。
+R2025b 官方文档未提供。
 
 ## 参数
 
@@ -411,6 +378,10 @@ Simulink 使用最大值执行下列操作：
 | **值：**非零整数 |
 | **默认值：**`'2'` |
 
+## 所属库
+
+Simulink / Signal Routing
+
 ## 模块特性
 
 |  |  |
@@ -431,7 +402,7 @@ Simulink 使用最大值执行下列操作：
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
 
@@ -442,3 +413,36 @@ Simulink 使用最大值执行下列操作：
 ### R2023b: 访问在模型层次结构中较高级别定义的 Data Store Memory 模块元素
 
 从 R2023b 开始，Data Store Read 模块、Data Store Write 模块、S-Function 模块、MATLAB Function 模块、MATLAB System 模块和 Chart 模块可以访问在模型层次结构中较高级别定义的 Data Store Memory 模块中的数据存储。
+
+## 描述
+
+定义数据存储
+
+Data Store Memory 模块定义并初始化一个命名的共享数据存储，即一个内存区域，供指定相同数据存储名称的 Data Store Read 和 Data Store Write 模块使用。
+
+定义数据存储的 Data Store Memory 模块的位置确定了哪些 Data Store Read 和 Data Store Write 模块可以访问该数据存储：
+
+- 如果 Data Store Memory 模块在*顶层系统*中，则模型中任意位置的 Data Store Read 和 Data Store Write 模块都可以访问该数据存储。
+- 如果 Data Store Memory 模块在*子系统*中，则位于同一子系统或模型层次结构中该子系统下面的任何子系统中的 Data Store Read 和 Data Store Write 模块都可以访问该数据存储。
+- 在引用模型中定义的 Data Store Read  或 Data Store Write 模块可以访问存储在模型层次结构中更高级别的数据。
+
+要允许 Data Store Read  或 Data Store Write 模块从引用模型内部访问存储在模型层次结构中更高级别上的数据，请执行以下操作：
+
+- 在引用模型中放置 Data Store Memory 模块。
+- 在 Data Store Memory 模块对话框中，选择**数据存储引用**。
+
+不要在 For Each 子系统中包含 Data Store Memory 模块。
+
+要从数据存储获取正确的结果，必须确保数据存储按照预期的顺序进行读取和写入。有关详细信息，请参阅：
+
+- 对数据存储访问进行排序
+- 数据存储诊断
+- Log Data Stores
+
+您可以使用 Data Store Memory 模块结合 `Simulink.Signal` 对象来定义数据存储，也可以不使用前者而只使用后者来定义数据存储。在*基础*工作区中定义的具有一个信号对象的数据存储是一个*全局*数据存储。每个模型都可以访问全局数据存储，包括所有引用的模型。有关详细信息，请参阅数据存储。
+
+您可以选择 Data Store Read、Data Store Write 或 Data Store Memory 模块来突出显示与其相关的模块。要在打开的图或新选项卡中显示相关模块，请在选择后出现的省略号上暂停。然后，从操作栏中选择**相关模块** Related Blocks button。当多个模块对应于所选模块时，将打开一个相关模块列表。您可以通过在文本框中输入搜索词来过滤相关模块列表。从列表中选择相关模块后，窗口焦点转至显示该相关模块的打开的图或新选项卡。
+
+### 字符串支持
+
+仅当 Data Store Memory 模块配置为**初始值**参数采用默认值 (`0`) 时，该模块才接受和输出字符串数据类型。

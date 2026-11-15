@@ -10,47 +10,6 @@ language: en
 
 # If Action Subsystem
 
-Subsystem whose execution is enabled by If block
-
-## Libraries
-
-Simulink / Ports & Subsystems
-
-## Description
-
-The If Action Subsystem block is a Subsystem block preconfigured as a starting point for creating a subsystem whose
-execution is controlled by an If block. The If block evaluates
-a logical expression and then, depending on the result of the evaluation, outputs an action
-signal. Execution of the subsystem is controlled by an Action
-Port block placed inside the subsystem.
-
-Contents of an If Action Subsystem block.
-
-Simulink® ignores a priority set on an If Action Subsystem block. Instead,
-set the priority on the If block that initiates execution of the
-subsystem.
-
-### Merge Signals from If Action Subsystem Blocks
-
-This example shows how to merge signals controlled by an If block. For more
-information, see Select Subsystem Execution.
-
-Model ex\_if\_block
-
-The If block selects the execution of an If Action
-Subsystem block from a set of subsystems. Regardless of which subsystem the
-If block selects, you can create one output signal with a Merge block.
-
-All blocks in an If Action Subsystem block must execute at the same rate
-as the driving If block. To satisfy this requirement, set the sample time parameter for each
-block to either inherited (-1) or the same value as the If block sample time.
-
-### Support for Fixed-Point Data Type
-
-The If block does not directly support fixed-point data types.
-However, you can use the Compare To Constant block to work around
-this limitation. For more information, Fixed-Point Data Type Support for If Block.
-
 ## Ports
 
 ### Input
@@ -787,6 +746,10 @@ the `set_param` function.
 | **Parameter:** | `RTWMemSecDataParameters` |
 | **Values:** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
 
+## Libraries
+
+Simulink / Ports & Subsystems
+
 ## Block Characteristics
 
 |  |  |
@@ -879,3 +842,40 @@ Actual data type support depends on block implementation.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Subsystem whose execution is enabled by If block
+
+The If Action Subsystem block is a Subsystem block preconfigured as a starting point for creating a subsystem whose
+execution is controlled by an If block. The If block evaluates
+a logical expression and then, depending on the result of the evaluation, outputs an action
+signal. Execution of the subsystem is controlled by an Action
+Port block placed inside the subsystem.
+
+Contents of an If Action Subsystem block.
+
+Simulink® ignores a priority set on an If Action Subsystem block. Instead,
+set the priority on the If block that initiates execution of the
+subsystem.
+
+### Merge Signals from If Action Subsystem Blocks
+
+This example shows how to merge signals controlled by an If block. For more
+information, see Select Subsystem Execution.
+
+Model ex\_if\_block
+
+The If block selects the execution of an If Action
+Subsystem block from a set of subsystems. Regardless of which subsystem the
+If block selects, you can create one output signal with a Merge block.
+
+All blocks in an If Action Subsystem block must execute at the same rate
+as the driving If block. To satisfy this requirement, set the sample time parameter for each
+block to either inherited (-1) or the same value as the If block sample time.
+
+### Support for Fixed-Point Data Type
+
+The If block does not directly support fixed-point data types.
+However, you can use the Compare To Constant block to work around
+this limitation. For more information, Fixed-Point Data Type Support for If Block.

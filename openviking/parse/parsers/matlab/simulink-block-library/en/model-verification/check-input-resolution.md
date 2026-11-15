@@ -10,39 +10,6 @@ language: en
 
 # Check Input Resolution
 
-Check that input signal has specified resolution
-
-## Libraries
-
-Simulink / Model Verification HDL Coder / Model Verification
-
-## Description
-
-The Check Input Resolution block checks whether the input signal has a
-specified resolution. The block input and resolution can be either a scalar or vector.
-The input and resolution must be the same data type.
-
-If the **Resolution** parameter is a scalar, the block calculates the
-modulus of the input signal over the provided scalar resolution. The calculated modulus
-is then compared to a tolerance of `10e-3`, and executes an assertion
-after comparison. If the modulus is less than the tolerance, the assertion is
-`true (1)` and the block does nothing. If not, the block halts the
-simulation and returns an error message by default. If the
-**Resolution** parameter is a vector, it asserts `true
-(1)` if the value of the input signal is equal to any of the resolution
-vector elements.
-
-The block compares the input to the resolution in several additional ways depending on
-the dimensions of the signal and resolution.
-
-- When comparing a scalar input signal or resolution to a vector input
-  signal or resolution, the block compares the scalar to each element of the
-  vector.
-- When comparing a vector input signal to a vector resolution, the block
-  compares the input signal to the resolution element-by-element.
-- For models with an input signal and resolution that are both vectors, the
-  input signal and resolution must have the same dimensions.
-
 ## Ports
 
 ### Input
@@ -148,6 +115,10 @@ Select this parameter to enable the output port.
 | **Values:** `"on"` | `"off"` |
 | **Default:** `"off"` |
 
+## Libraries
+
+Simulink / Model Verification HDL Coder / Model Verification
+
 ## Block Characteristics
 
 |  |  |
@@ -182,3 +153,32 @@ simulation, but it is not included in the generated code.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Check that input signal has specified resolution
+
+The Check Input Resolution block checks whether the input signal has a
+specified resolution. The block input and resolution can be either a scalar or vector.
+The input and resolution must be the same data type.
+
+If the **Resolution** parameter is a scalar, the block calculates the
+modulus of the input signal over the provided scalar resolution. The calculated modulus
+is then compared to a tolerance of `10e-3`, and executes an assertion
+after comparison. If the modulus is less than the tolerance, the assertion is
+`true (1)` and the block does nothing. If not, the block halts the
+simulation and returns an error message by default. If the
+**Resolution** parameter is a vector, it asserts `true
+(1)` if the value of the input signal is equal to any of the resolution
+vector elements.
+
+The block compares the input to the resolution in several additional ways depending on
+the dimensions of the signal and resolution.
+
+- When comparing a scalar input signal or resolution to a vector input
+  signal or resolution, the block compares the scalar to each element of the
+  vector.
+- When comparing a vector input signal to a vector resolution, the block
+  compares the input signal to the resolution element-by-element.
+- For models with an input signal and resolution that are both vectors, the
+  input signal and resolution must have the same dimensions.

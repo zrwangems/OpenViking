@@ -11,27 +11,6 @@ chinese_source: official
 
 # Prelookup
 
-计算 Interpolation Using Prelookup 模块的索引和区间比
-
-## 所属库
-
-Simulink / Lookup Tables HDL Coder / Lookup Tables
-
-## 描述
-
-Prelookup 模块计算索引和区间比，这些数据说明输入值 `u` 与断点数据集的相对关系。Prelookup 模块最适合与 Interpolation Using Prelookup 模块结合使用。将生成的索引和区间比值馈送给 Interpolation Using Prelookup 模块，以便对 *n* 维表进行插值。这两个模块采用分布式算法。二者结合使用时，执行的运算与 n-D Lookup Table 模块中的积分算法相同。但是，相比 n-D Lookup Table 模块，Prelookup 和 Interpolation Using Prelookup 模块提供了更大的灵活性以及更高效的仿真和代码生成。有关详细信息，请参阅 执行效率。
-
-### 支持的模块运算
-
-要使用 Prelookup 模块，您必须指定一组断点值。您可以选择是直接在对话框中指定断点值，还是通过将**源**参数设置为**对话框**或**输入端口**来向 `bp` 输入端口馈送值。通常情况下，此断点数据集对应于 Interpolation Using Prelookup 模块中一个维度的表数据。Prelookup 模块通过计算以下项为每个输入值 `u` 生成一对输出：
-
-- 小于或等于 `u` 且构成包含 `u` 的区间的断点集元素的索引
-- 区间比（0 ≤ f < 1），表示 `u` 在其所在断点区间前后索引值间的归一化位置
-
-例如，如果断点数据集是 `[0 5 10 20 50 100]` 且输入值 `u` 是 55，则索引为 4 且区间比值为 0.1。索引和区间比的标签在 Prelookup 模块图标上显示为 **k** 和 **f**。索引值从零开始。
-
-对于超出范围的输入，区间比可以为负或大于 `1`。请参阅**外插方法**模块参数以了解详细信息。
-
 ## 端口
 
 ### 输入
@@ -682,6 +661,10 @@ myBus.Elements(1).DataType = 'fixdt(''int32'',''DataTypeOverride'',''Off'')'
 | **参数:** | `RndMeth` |
 | **值:** | `'Floor'` (默认) | `'Ceiling'` | `'Convergent'` | `'Nearest'` | `'Round'` | `'Simplest'` | `'Zero'` |
 
+## 所属库
+
+Simulink / Lookup Tables HDL Coder / Lookup Tables
+
 ## 模块特性
 
 |  |  |
@@ -740,7 +723,7 @@ Simulink PLC Coder 对查找表模块的支持有限。代码生成器不支持�
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006b 中推出**
 
@@ -751,3 +734,20 @@ Simulink PLC Coder 对查找表模块的支持有限。代码生成器不支持�
 如果模型仿真因将超出范围的输入馈送到选中**假设输入在范围内**的模块而生成错误，则当生成的代码在执行期间出现相同的超出范围的输入时，该模型生成的代码具有未定义的行为。这种未定义的行为可能导致严重问题。对于安全性至关重要的应用，请不要选择**删除生成代码中防止超范围输入的代码**。
 
 在 R2025a 之前的版本中，**删除生成代码中防止超范围输入的代码**仅会删除生成代码中对超出范围值的代码检查。模块无法检测到这些问题。作为解决方法，如果您有 R2025a 之前版本的模型且无法迁移到更高版本，请将**输入超出范围的诊断**参数设置为**错误**。下次运行模型时，当输入超出范围时将生成错误。
+
+## 描述
+
+计算 Interpolation Using Prelookup 模块的索引和区间比
+
+Prelookup 模块计算索引和区间比，这些数据说明输入值 `u` 与断点数据集的相对关系。Prelookup 模块最适合与 Interpolation Using Prelookup 模块结合使用。将生成的索引和区间比值馈送给 Interpolation Using Prelookup 模块，以便对 *n* 维表进行插值。这两个模块采用分布式算法。二者结合使用时，执行的运算与 n-D Lookup Table 模块中的积分算法相同。但是，相比 n-D Lookup Table 模块，Prelookup 和 Interpolation Using Prelookup 模块提供了更大的灵活性以及更高效的仿真和代码生成。有关详细信息，请参阅 执行效率。
+
+### 支持的模块运算
+
+要使用 Prelookup 模块，您必须指定一组断点值。您可以选择是直接在对话框中指定断点值，还是通过将**源**参数设置为**对话框**或**输入端口**来向 `bp` 输入端口馈送值。通常情况下，此断点数据集对应于 Interpolation Using Prelookup 模块中一个维度的表数据。Prelookup 模块通过计算以下项为每个输入值 `u` 生成一对输出：
+
+- 小于或等于 `u` 且构成包含 `u` 的区间的断点集元素的索引
+- 区间比（0 ≤ f < 1），表示 `u` 在其所在断点区间前后索引值间的归一化位置
+
+例如，如果断点数据集是 `[0 5 10 20 50 100]` 且输入值 `u` 是 55，则索引为 4 且区间比值为 0.1。索引和区间比的标签在 Prelookup 模块图标上显示为 **k** 和 **f**。索引值从零开始。
+
+对于超出范围的输入，区间比可以为负或大于 `1`。请参阅**外插方法**模块参数以了解详细信息。

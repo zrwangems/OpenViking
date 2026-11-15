@@ -11,24 +11,6 @@ chinese_source: official
 
 # MATLAB Function
 
-在 Simulink 模型中包含 MATLAB 代码
-
-## 所属库
-
-Simulink / User-Defined Functions HDL Coder / User-Defined Functions
-
-## 描述
-
-MATLAB Function 模块使您能够编写在 Simulink® 模型中执行的 MATLAB® 函数。MATLAB 函数在仿真期间的每个时间步执行。有关将 MATLAB 代码集成到 Simulink 模型中的详细信息，请参阅使用 MATLAB Function 模块在 Simulink 中实现 MATLAB 函数。如果您有 Simulink Coder™ 许可证，您还可以从 MATLAB Function 模块为 Simulink Coder 目标生成 C/C++ 代码。
-
-双击 MATLAB Function 模块可打开 MATLAB Function 模块编辑器，您可以在其中编写 MATLAB 函数。您还可以使用模型资源管理器或**符号**窗格来定义变量、添加输入触发器以及创建函数调用输出。有关详细信息，请参阅Create and Define MATLAB Function Block Variables、Manage the Input Trigger of a MATLAB Function Block和Manage Function Call Outputs of a MATLAB Function Block。
-
-在**符号**窗格中，您可以将模块输入声明为 Simulink 参数，而不是端口。MATLAB Function 模块还支持继承输入、输出和参数的类型及大小。您可以显式指定这些属性。请参阅定义和修改变量数据类型、指定 MATLAB Function 模块变量的大小和通过定义参数变量在多个 MATLAB Function 模块中使用数据。
-
-当您仿真包含 MATLAB Function 模块的模型时，软件会从该模块生成二进制代码或 C/C++ 语言的 MATLAB 可执行文件 (MEX) 代码，并将此代码与模型集成。MATLAB Function 模块使用与 MATLAB Coder 相同的基础架构，您可使用该基础架构从 Simulink 之外的 MATLAB 代码生成 C/C++ 代码。因此，MATLAB Function 模块代码必须使用代码生成支持的 MATLAB 约定。请参阅Code and Integration Limitations for MATLAB Function Blocks。
-
-为支持数据可视化，MATLAB Function 模块仅支持调用 MATLAB 函数进行仿真。请参阅使用 MATLAB 引擎在 MATLAB Function 模块中执行函数调用。如果使用 Simulink Coder 生成代码，并且函数调用不直接影响 Simulink 输入或输出，则调用不会出现在生成的代码中。
-
 ## 端口
 
 ### 输入
@@ -276,6 +258,10 @@ MATLAB Function 模块也有 Subsystem 模块参数，您可以通过右键点�
 | **参数:** | `EmlDefaultFimath` |
 | **值:** | `"Same as MATLAB Default"` (默认) | `"Other:UserSpecified"` |
 
+## 所属库
+
+Simulink / User-Defined Functions HDL Coder / User-Defined Functions
+
 ## 模块特性
 
 |  |  |
@@ -411,7 +397,7 @@ HDL Coder 支持以下数据类型的可调和不可调参数：
 
 实际数据类型或功能支持取决于模块实现。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2011a 中推出**
 
@@ -434,3 +420,17 @@ MATLAB Function 模块现在支持 64 位整数数据。该模块将 `int64` 和
 ### R2019b: 对 MATLAB Function 模块的字符串支持
 
 现在，MATLAB Function 模块支持 Simulink 字符串。
+
+## 描述
+
+在 Simulink 模型中包含 MATLAB 代码
+
+MATLAB Function 模块使您能够编写在 Simulink® 模型中执行的 MATLAB® 函数。MATLAB 函数在仿真期间的每个时间步执行。有关将 MATLAB 代码集成到 Simulink 模型中的详细信息，请参阅使用 MATLAB Function 模块在 Simulink 中实现 MATLAB 函数。如果您有 Simulink Coder™ 许可证，您还可以从 MATLAB Function 模块为 Simulink Coder 目标生成 C/C++ 代码。
+
+双击 MATLAB Function 模块可打开 MATLAB Function 模块编辑器，您可以在其中编写 MATLAB 函数。您还可以使用模型资源管理器或**符号**窗格来定义变量、添加输入触发器以及创建函数调用输出。有关详细信息，请参阅Create and Define MATLAB Function Block Variables、Manage the Input Trigger of a MATLAB Function Block和Manage Function Call Outputs of a MATLAB Function Block。
+
+在**符号**窗格中，您可以将模块输入声明为 Simulink 参数，而不是端口。MATLAB Function 模块还支持继承输入、输出和参数的类型及大小。您可以显式指定这些属性。请参阅定义和修改变量数据类型、指定 MATLAB Function 模块变量的大小和通过定义参数变量在多个 MATLAB Function 模块中使用数据。
+
+当您仿真包含 MATLAB Function 模块的模型时，软件会从该模块生成二进制代码或 C/C++ 语言的 MATLAB 可执行文件 (MEX) 代码，并将此代码与模型集成。MATLAB Function 模块使用与 MATLAB Coder 相同的基础架构，您可使用该基础架构从 Simulink 之外的 MATLAB 代码生成 C/C++ 代码。因此，MATLAB Function 模块代码必须使用代码生成支持的 MATLAB 约定。请参阅Code and Integration Limitations for MATLAB Function Blocks。
+
+为支持数据可视化，MATLAB Function 模块仅支持调用 MATLAB 函数进行仿真。请参阅使用 MATLAB 引擎在 MATLAB Function 模块中执行函数调用。如果使用 Simulink Coder 生成代码，并且函数调用不直接影响 Simulink 输入或输出，则调用不会出现在生成的代码中。

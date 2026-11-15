@@ -10,24 +10,6 @@ language: en
 
 # Detect Increase
 
-Detect increase in signal value
-
-## Libraries
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
-## Description
-
-The Detect Increase block determines if an input is strictly greater
-than its previous value.
-
-- The output is true (equal to `1`) when the input signal is
-  greater than its previous value.
-- The output is false (equal to `0`) when the input signal is
-  less than or equal to its previous value.
-
-This block supports only discrete sample times.
-
 ## Ports
 
 ### Input
@@ -111,6 +93,10 @@ Specify the output data type as `boolean` or
 | **Values:** `'boolean' | 'uint8'` |
 | **Default:** `'boolean'` |
 
+## Libraries
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -153,3 +139,17 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Detect increase in signal value
+
+The Detect Increase block determines if an input is strictly greater
+than its previous value.
+
+- The output is true (equal to `1`) when the input signal is
+  greater than its previous value.
+- The output is false (equal to `0`) when the input signal is
+  less than or equal to its previous value.
+
+This block supports only discrete sample times.

@@ -10,18 +10,6 @@ language: en
 
 # Wrap To Zero
 
-Set output to zero if input is above threshold
-
-## Libraries
-
-Simulink / Discontinuities HDL Coder / Discontinuities
-
-## Description
-
-The Wrap To Zero block sets the output to zero when the input is above the
-**Threshold** value. When the input is less than or equal to the
-**Threshold**, then the output is equal to the input.
-
 ## Ports
 
 ### Input
@@ -69,6 +57,10 @@ Threshold value for setting the output value to zero.
 | **Values**: `scalar` |
 | **Default**: `'255'` |
 
+## Libraries
+
+Simulink / Discontinuities HDL Coder / Discontinuities
+
 ## Block Characteristics
 
 |  |  |
@@ -113,3 +105,11 @@ size. For example, if the input is a two-dimensional vector,
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Set output to zero if input is above threshold
+
+The Wrap To Zero block sets the output to zero when the input is above the
+**Threshold** value. When the input is less than or equal to the
+**Threshold**, then the output is equal to the input.

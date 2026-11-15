@@ -11,32 +11,6 @@ chinese_source: worker-translation
 
 # Out Bus Element
 
-
-
-指定外部端口的输出
-
-## 库
-
-Simulink / Ports & Subsystems Simulink / Sinks HDL Coder / Ports & Subsystems HDL Coder / Sinks
-
-## 描述
-
-Out Bus Element 模块提供一个总线、信号或消息作为外部端口的输出。
-
-要将多个总线、信号或消息分组到一个输出总线中，请使用多个与同一端口对应的 Out Bus Element 模块。Out Bus Element 模块组合了 Bus Creator 模块和 Outport 模块的功能。所有与同一端口对应的 Out Bus Element 模块共享一个对话框。
-
-对于包含由许多总线元素组成的总线的接口，Out Bus Element 模块：
-
-- 减少框图中信号线的复杂度和杂乱。
-- 允许您更轻松地对接口进行增量更改。
-- 允许在更接近使用点处访问总线元素，避免使用 Bus Creator 和 From 模块配置。
-
-要将接口转换为使用 Out Bus Element 模块，请参阅 Simplify Subsystem and Model Interfaces with Bus Element Ports。
-
-Out Bus Element 模块不支持将消息元素和信号元素混合作为输入。
-
-当您将输出数据保存到工作区或文件时，由根级 Out Bus Element 模块组定义的总线数据会与根级 Outport 模块数据一起记录。
-
 ## 端口
 
 ### 输入
@@ -533,6 +507,10 @@ used by...")`
 
 **示例：** `set_param("mymodel/Subsystem1/myBus.signal1",SampleTime="0.01")`
 
+## 所属库
+
+Simulink / Ports & Subsystems Simulink / Sinks HDL Coder / Ports & Subsystems HDL Coder / Sinks
+
 ## 模块特性
 
 |  |  |
@@ -630,3 +608,23 @@ Property Inspector 支持 In Bus Element 和 Out Bus Element 模块。
 ### R2023a: 诊断消息链接到相关 Out Bus Element 模块
 
 In Bus Element 和 Out Bus Element 模块的警告和错误消息现在会链接到框图中的对应模块，帮助您快速找到警告或错误的来源。在以前的版本中，警告和错误消息引用隐藏模块，并且不提供链接。
+
+## 描述
+
+指定外部端口的输出
+
+Out Bus Element 模块提供一个总线、信号或消息作为外部端口的输出。
+
+要将多个总线、信号或消息分组到一个输出总线中，请使用多个与同一端口对应的 Out Bus Element 模块。Out Bus Element 模块组合了 Bus Creator 模块和 Outport 模块的功能。所有与同一端口对应的 Out Bus Element 模块共享一个对话框。
+
+对于包含由许多总线元素组成的总线的接口，Out Bus Element 模块：
+
+- 减少框图中信号线的复杂度和杂乱。
+- 允许您更轻松地对接口进行增量更改。
+- 允许在更接近使用点处访问总线元素，避免使用 Bus Creator 和 From 模块配置。
+
+要将接口转换为使用 Out Bus Element 模块，请参阅 Simplify Subsystem and Model Interfaces with Bus Element Ports。
+
+Out Bus Element 模块不支持将消息元素和信号元素混合作为输入。
+
+当您将输出数据保存到工作区或文件时，由根级 Out Bus Element 模块组定义的总线数据会与根级 Outport 模块数据一起记录。

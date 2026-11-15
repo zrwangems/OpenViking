@@ -10,62 +10,6 @@ language: en
 
 # Unit Delay
 
-Delay signal one sample period
-
-## Libraries
-
-Simulink / Discrete HDL Coder / Discrete
-
-## Description
-
-The Unit Delay block holds and delays its input by one sample period. When
-placed in an iterator subsystem, it holds and delays its input by one iteration. This
-block is equivalent to the z-1 discrete-time operator. The
-block accepts one input and generates one output. Each signal can be scalar or vector.
-If the input is a vector, the block holds and delays all elements of the vector by the
-same sample period.
-
-You specify the block output for the first sampling period with the **Initial
-conditions** parameter. Careful selection of this parameter can minimize
-unwanted output behavior. You specify the time between samples with the **Sample
-time** parameter. A setting of `-1` means the block
-inherits the **Sample time**.
-
-**Note**
-
-The Unit Delay block errors out if you use it to create a
-transition between blocks operating at different sample rates. Use the Rate Transition block
-instead.
-
-### Comparison with Similar Blocks
-
-The Memory, Unit Delay, and Zero-Order Hold
-blocks provide similar functionality but have different capabilities. Also, the purpose of
-each block is different.
-
-This table shows recommended usage for each block.
-
-| Block | Purpose of the Block | Reference Examples |
-| --- | --- | --- |
-| Unit Delay | Implement a delay using a discrete sample time that you specify. The block accepts and outputs signals with a discrete sample time. | - Engine Timing Model with Closed Loop Control (Compression subsystem) |
-| Memory | Implement a delay by one major integration time step. Ideally, the block accepts continuous (or fixed in minor time step) signals and outputs a signal that is fixed in minor time step. | - Building a Clutch Lock-Up Model (Friction Mode Logic/Lockup FSM subsystem) - Capture the Velocity of a Bouncing Ball with the Memory Block |
-| Zero-Order Hold | Convert an input signal with a continuous sample time to an output signal with a discrete sample time. | - Developing the Apollo Lunar Module Digital Autopilot - Radar Tracking Using MATLAB Function Blocks |
-
-Each block has the following capabilities.
-
-| Capability | Memory | Unit Delay | Zero-Order Hold |
-| --- | --- | --- | --- |
-| Specification of initial condition | Yes | Yes | No, because the block output at time t = 0 must match the input value. |
-| Specification of sample time | No, because the block can only inherit sample time from the driving block or the solver used for the entire model. | Yes | Yes |
-| Support for frame-based signals | No | Yes | Yes |
-| Support for state logging | No | Yes | No |
-
-### String Support
-
-The Unit Delay block can accept and output string data type only if
-the block is configured for the default value of the **Initial
-condition** parameter (0).
-
 ## Ports
 
 ### Input
@@ -193,6 +137,10 @@ a value other than `None`.
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'off'` |
 
+## Libraries
+
+Simulink / Discrete HDL Coder / Discrete
+
 ## Block Characteristics
 
 |  |  |
@@ -242,3 +190,55 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Delay signal one sample period
+
+The Unit Delay block holds and delays its input by one sample period. When
+placed in an iterator subsystem, it holds and delays its input by one iteration. This
+block is equivalent to the z-1 discrete-time operator. The
+block accepts one input and generates one output. Each signal can be scalar or vector.
+If the input is a vector, the block holds and delays all elements of the vector by the
+same sample period.
+
+You specify the block output for the first sampling period with the **Initial
+conditions** parameter. Careful selection of this parameter can minimize
+unwanted output behavior. You specify the time between samples with the **Sample
+time** parameter. A setting of `-1` means the block
+inherits the **Sample time**.
+
+**Note**
+
+The Unit Delay block errors out if you use it to create a
+transition between blocks operating at different sample rates. Use the Rate Transition block
+instead.
+
+### Comparison with Similar Blocks
+
+The Memory, Unit Delay, and Zero-Order Hold
+blocks provide similar functionality but have different capabilities. Also, the purpose of
+each block is different.
+
+This table shows recommended usage for each block.
+
+| Block | Purpose of the Block | Reference Examples |
+| --- | --- | --- |
+| Unit Delay | Implement a delay using a discrete sample time that you specify. The block accepts and outputs signals with a discrete sample time. | - Engine Timing Model with Closed Loop Control (Compression subsystem) |
+| Memory | Implement a delay by one major integration time step. Ideally, the block accepts continuous (or fixed in minor time step) signals and outputs a signal that is fixed in minor time step. | - Building a Clutch Lock-Up Model (Friction Mode Logic/Lockup FSM subsystem) - Capture the Velocity of a Bouncing Ball with the Memory Block |
+| Zero-Order Hold | Convert an input signal with a continuous sample time to an output signal with a discrete sample time. | - Developing the Apollo Lunar Module Digital Autopilot - Radar Tracking Using MATLAB Function Blocks |
+
+Each block has the following capabilities.
+
+| Capability | Memory | Unit Delay | Zero-Order Hold |
+| --- | --- | --- | --- |
+| Specification of initial condition | Yes | Yes | No, because the block output at time t = 0 must match the input value. |
+| Specification of sample time | No, because the block can only inherit sample time from the driving block or the solver used for the entire model. | Yes | Yes |
+| Support for frame-based signals | No | Yes | Yes |
+| Support for state logging | No | Yes | No |
+
+### String Support
+
+The Unit Delay block can accept and output string data type only if
+the block is configured for the default value of the **Initial
+condition** parameter (0).

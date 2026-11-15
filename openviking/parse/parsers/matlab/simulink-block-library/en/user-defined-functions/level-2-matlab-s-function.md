@@ -10,33 +10,6 @@ language: en
 
 # Level-2 MATLAB S-Function
 
-Use Level-2 MATLAB S-function in model
-
-## Libraries
-
-Simulink / User-Defined Functions
-
-## Description
-
-This block allows you to use a Level-2 MATLAB® S-function (see Write Level-2 MATLAB S-Functions) in a model. To do this, create an
-instance of this block in the model. Then enter the name of the Level-2 MATLAB S-function in the **S-function
-name** field of the block's parameter dialog box.
-
-**Note**
-
-Use the S-Function block to include a Level-1 MATLAB S-function in a block.
-
-If the Level-2 MATLAB S-function defines any
-additional parameters, you can enter them in the **Parameters** field
-of the block's parameter dialog box. Enter the parameters as MATLAB expressions that evaluate to their values in the order defined by the
-MATLAB S-function. Use commas to separate
-each expression.
-
-If a model includes a Level-2 MATLAB S-Function block, and an error
-occurs in the S-function, the Level-2 MATLAB S-Function block displays
-MATLAB stack trace information for the
-error in a dialog box. Click **OK** to close the dialog box.
-
 ## Ports
 
 ### Input
@@ -95,6 +68,10 @@ Specify values of parameters for this block.
 | **Values:** values of block parameters |
 | **Default:** `' '` |
 
+## Libraries
+
+Simulink / User-Defined Functions
+
 ## Block Characteristics
 
 |  |  |
@@ -129,3 +106,26 @@ supports.
 ## Version History
 
 **Introduced in R2010b**
+
+## Description
+
+Use Level-2 MATLAB S-function in model
+
+This block allows you to use a Level-2 MATLAB® S-function (see Write Level-2 MATLAB S-Functions) in a model. To do this, create an
+instance of this block in the model. Then enter the name of the Level-2 MATLAB S-function in the **S-function
+name** field of the block's parameter dialog box.
+
+**Note**
+
+Use the S-Function block to include a Level-1 MATLAB S-function in a block.
+
+If the Level-2 MATLAB S-function defines any
+additional parameters, you can enter them in the **Parameters** field
+of the block's parameter dialog box. Enter the parameters as MATLAB expressions that evaluate to their values in the order defined by the
+MATLAB S-function. Use commas to separate
+each expression.
+
+If a model includes a Level-2 MATLAB S-Function block, and an error
+occurs in the S-function, the Level-2 MATLAB S-Function block displays
+MATLAB stack trace information for the
+error in a dialog box. Click **OK** to close the dialog box.

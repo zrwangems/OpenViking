@@ -10,131 +10,9 @@ language: en
 
 # Check Box
 
-Change parameter or variable value during simulation using check box with customizable appearance
+## Ports
 
-## Libraries
-
-Simulink / Dashboard / Customizable Blocks
-
-## Description
-
-Use the Check Box block to change the value of the connected variable or
-parameter before or during simulation. When you use the Check Box block in the
-Customizable Blocks library, you can customize the appearance of the block, for example to
-make the block look like a check box in a digital user interface you are designing. Use the
-Check Box block with other dashboard blocks to build an interactive dashboard
-of controls and indicators for your model.
-
-You can change the value of a parameter by connecting the Check Box block
-to the parameter and then checking or clearing the check box. By default, checking the check
-box sets the parameter value to `1`, and clearing the check box sets the
-value to `0`. To customize these values, open the
-**Parameters** tab of the Property Inspector or the Block Parameters dialog
-box and change the **Cleared value** and the **Checked
-value**.
-
-To check or clear the check box during simulation, click the check box icon on the
-Check Box block. To check or clear the check box when the simulation is not
-running, click the Check Box block to select the block, then click the check
-box icon.
-
-**Note**
-
-- Double-clicking a connected Check Box block during simulation or
-  after clicking the block does not open the Block Parameters dialog box. To open the
-  Block Parameters dialog box, press **Shift**, then double-click the
-  block.
-- Clicking a connected Check Box block during simulation both selects
-  the block and selects or deselects the check box. To select the block without selecting
-  or deselecting the check box, press **Shift**, then click the block.
-
-### Customize Check Box Blocks
-
-When you add a Check Box block to your model, the block is preconfigured
-with a default design. You can use the block with the default design or customize the
-appearance of the block.
-
-To customize the appearance of the block, use design mode.
-After selecting the block, you can enter design mode in one of three ways:
-
-- In the Simulink® Toolstrip, on the block-specific tab, under
-  **Design**, click **Edit**.
-- In the Property Inspector, on the **Design** tab, click
-  **Edit**.
-- Pause on the ellipsis that appears over the block and click the Edit Custom Block
-  button .
-
-In design mode, you can use the toolbar above the block to customize the check box. To
-access additional customization options or to enter exact values for design settings, use
-the **Design** tab in the Property Inspector.
-
-Customizable Check Box block in design mode with the toolbar and the Design tab in the Property Inspector visible.
-
-**Design Mode Actions**
-
-| Action | Available in Toolbar | Available in **Design** Tab |
-| --- | --- | --- |
-| Change the label text. | No | Yes |
-| Change the label font color. | Yes | Yes |
-| Upload an icon that represents a checked check box. | Yes | Yes |
-| Upload an icon that represents a cleared check box. | Yes | Yes |
-| Change the position of the icons and label within the block. | No | Yes |
-| Upload a background image. | Yes | Yes |
-| Set a solid background color. | No | Yes |
-| Upload a foreground image. | No | Yes |
-
-**Note**
-
-All changes you make in the **Design** tab— including changes you
-make in the **Label and Icon** component— apply to both, the cleared
-check box and the checked check box. For example, when you change the icon width, you
-change the width of the of the icon that represents the cleared check box and the width of
-the icon that represents the checked check box.
-
-In addition to customizing the block design using the toolbar and
-**Design** tab, you can also reposition the label and icon interactively
-in the canvas.
-
-When you finish editing the design, to exit design mode, click the
-**X** in the upper right of the canvas.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard
-block, use connect mode. To enter connect mode on an unconnected block, pause on the block
-you want to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a control block to a parameter in your model or to change the connection of a
-control block, enter connect mode. Select the block to whose parameter you want to connect.
-From the list that appears, select the parameter to which you want to connect. Then, pause
-on the dashboard block and click the Done Connecting button .
-
-The control block cannot connect to a parameter defined by a variable until you update the
-model diagram. To connect to a parameter defined by a variable or to modify the value of a
-variable that defines the value of a connected parameter when the simulation is not running,
-update the model diagram by pressing **Ctrl+D**.
-
-You can connect to a parameter with a scalar value or to an element of a matrix or structure.
-For more information, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-This animation shows how to connect the Check Box block to your
-model.
-
-An unconnected Check Box block connects to a Constant block.
-
-### Parameter Logging
-
-Tunable parameters connected to dashboard blocks are logged to the Simulation Data
-Inspector, where you can view the parameter values along with logged signal data. You can
-access logged parameter data in the MATLAB® workspace by exporting the parameter data from the Simulation Data Inspector
-by using the UI or the `Simulink.sdi.exportRun` function. For more information about exporting
-data using the Simulation Data Inspector UI, see Export Data to Workspace or File. The
-parameter data is stored in a `Simulink.SimulationData.Parameter` object, accessible as an element in the
-exported `Simulink.SimulationData.Dataset`.
+Not documented in R2025b.
 
 ## Parameters
 
@@ -475,6 +353,10 @@ Specify the height of the foreground image as a ratio of the block height.
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
 
+## Libraries
+
+Simulink / Dashboard / Customizable Blocks
+
 ## Block Characteristics
 
 |  |  |
@@ -527,3 +409,125 @@ unlock the aspect ratio by pressing **Shift**. When you release the
 If the aspect ratio is unlocked, pressing **Shift** temporarily locks the
 aspect ratio. When you release the **Shift** key, the aspect ratio
 unlocks.
+
+## Description
+
+Change parameter or variable value during simulation using check box with customizable appearance
+
+Use the Check Box block to change the value of the connected variable or
+parameter before or during simulation. When you use the Check Box block in the
+Customizable Blocks library, you can customize the appearance of the block, for example to
+make the block look like a check box in a digital user interface you are designing. Use the
+Check Box block with other dashboard blocks to build an interactive dashboard
+of controls and indicators for your model.
+
+You can change the value of a parameter by connecting the Check Box block
+to the parameter and then checking or clearing the check box. By default, checking the check
+box sets the parameter value to `1`, and clearing the check box sets the
+value to `0`. To customize these values, open the
+**Parameters** tab of the Property Inspector or the Block Parameters dialog
+box and change the **Cleared value** and the **Checked
+value**.
+
+To check or clear the check box during simulation, click the check box icon on the
+Check Box block. To check or clear the check box when the simulation is not
+running, click the Check Box block to select the block, then click the check
+box icon.
+
+**Note**
+
+- Double-clicking a connected Check Box block during simulation or
+  after clicking the block does not open the Block Parameters dialog box. To open the
+  Block Parameters dialog box, press **Shift**, then double-click the
+  block.
+- Clicking a connected Check Box block during simulation both selects
+  the block and selects or deselects the check box. To select the block without selecting
+  or deselecting the check box, press **Shift**, then click the block.
+
+### Customize Check Box Blocks
+
+When you add a Check Box block to your model, the block is preconfigured
+with a default design. You can use the block with the default design or customize the
+appearance of the block.
+
+To customize the appearance of the block, use design mode.
+After selecting the block, you can enter design mode in one of three ways:
+
+- In the Simulink® Toolstrip, on the block-specific tab, under
+  **Design**, click **Edit**.
+- In the Property Inspector, on the **Design** tab, click
+  **Edit**.
+- Pause on the ellipsis that appears over the block and click the Edit Custom Block
+  button .
+
+In design mode, you can use the toolbar above the block to customize the check box. To
+access additional customization options or to enter exact values for design settings, use
+the **Design** tab in the Property Inspector.
+
+Customizable Check Box block in design mode with the toolbar and the Design tab in the Property Inspector visible.
+
+**Design Mode Actions**
+
+| Action | Available in Toolbar | Available in **Design** Tab |
+| --- | --- | --- |
+| Change the label text. | No | Yes |
+| Change the label font color. | Yes | Yes |
+| Upload an icon that represents a checked check box. | Yes | Yes |
+| Upload an icon that represents a cleared check box. | Yes | Yes |
+| Change the position of the icons and label within the block. | No | Yes |
+| Upload a background image. | Yes | Yes |
+| Set a solid background color. | No | Yes |
+| Upload a foreground image. | No | Yes |
+
+**Note**
+
+All changes you make in the **Design** tab— including changes you
+make in the **Label and Icon** component— apply to both, the cleared
+check box and the checked check box. For example, when you change the icon width, you
+change the width of the of the icon that represents the cleared check box and the width of
+the icon that represents the checked check box.
+
+In addition to customizing the block design using the toolbar and
+**Design** tab, you can also reposition the label and icon interactively
+in the canvas.
+
+When you finish editing the design, to exit design mode, click the
+**X** in the upper right of the canvas.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard
+block, use connect mode. To enter connect mode on an unconnected block, pause on the block
+you want to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a control block to a parameter in your model or to change the connection of a
+control block, enter connect mode. Select the block to whose parameter you want to connect.
+From the list that appears, select the parameter to which you want to connect. Then, pause
+on the dashboard block and click the Done Connecting button .
+
+The control block cannot connect to a parameter defined by a variable until you update the
+model diagram. To connect to a parameter defined by a variable or to modify the value of a
+variable that defines the value of a connected parameter when the simulation is not running,
+update the model diagram by pressing **Ctrl+D**.
+
+You can connect to a parameter with a scalar value or to an element of a matrix or structure.
+For more information, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+This animation shows how to connect the Check Box block to your
+model.
+
+An unconnected Check Box block connects to a Constant block.
+
+### Parameter Logging
+
+Tunable parameters connected to dashboard blocks are logged to the Simulation Data
+Inspector, where you can view the parameter values along with logged signal data. You can
+access logged parameter data in the MATLAB® workspace by exporting the parameter data from the Simulation Data Inspector
+by using the UI or the `Simulink.sdi.exportRun` function. For more information about exporting
+data using the Simulation Data Inspector UI, see Export Data to Workspace or File. The
+parameter data is stored in a `Simulink.SimulationData.Parameter` object, accessible as an element in the
+exported `Simulink.SimulationData.Dataset`.

@@ -11,22 +11,6 @@ chinese_source: official
 
 # Unit Conversion
 
-转换单位
-
-## 所属库
-
-Simulink / Signal Attributes
-
-## 描述
-
-Unit Conversion 模块将输入信号的单位转换为输出信号的单位。如果单位之间成倍数关系或存在一个偏移量，或是互为倒数，则模块可以执行转换，例如：
-
-- *y* = *a*\**U*
-- *y* = *a*\**U*+*b*，其中 *a* 是尺度，*b* 是偏移量
-- *y* = *a*/*U*
-
-此模块支持普通、快速和快速加速模式以及快速重启。
-
 ## 端口
 
 ### 输入
@@ -62,6 +46,10 @@ Unit Conversion 模块将输入信号的单位转换为输出信号的单位。�
 | **值：**`'Inherit via internal rule' | 'Inherit via back propagation'` |
 | **默认值：**`'Inherit via internal rule'` |
 
+## 所属库
+
+Simulink / Signal Attributes
+
 ## 模块特性
 
 |  |  |
@@ -78,6 +66,18 @@ Unit Conversion 模块将输入信号的单位转换为输出信号的单位。�
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2016a 中推出**
+
+## 描述
+
+转换单位
+
+Unit Conversion 模块将输入信号的单位转换为输出信号的单位。如果单位之间成倍数关系或存在一个偏移量，或是互为倒数，则模块可以执行转换，例如：
+
+- *y* = *a*\**U*
+- *y* = *a*\**U*+*b*，其中 *a* 是尺度，*b* 是偏移量
+- *y* = *a*/*U*
+
+此模块支持普通、快速和快速加速模式以及快速重启。

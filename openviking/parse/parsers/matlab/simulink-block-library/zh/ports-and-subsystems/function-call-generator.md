@@ -11,28 +11,6 @@ chinese_source: official
 
 # Function-Call Generator
 
-提供函数调用事件来控制子系统或模型的执行
-
-## 所属库
-
-Simulink / Ports & Subsystems
-
-## 描述
-
-Function-Call Generator 模块提供函数调用事件，用于以您在**采样时间**参数中指定的速率执行函数调用子系统或函数调用模型。函数调用子系统或函数调用模型是包含 Trigger 模块的子系统或模型，其**触发器类型**参数设置为**函数调用**。
-
-要以迭代方式在每个时间步中多次执行每个函数调用子系统或函数调用模型，请使用**迭代次数**参数。
-
-要以指定的顺序执行多个函数调用子系统或函数调用模型，请结合使用 Function-Call Split 模块和 Function-Call Generator 模块。有关示例，请参阅 Function-Call Split。
-
-要间歇地（意味着不是在每个时间步）执行函数调用子系统或函数调用模型，请选择**显示使能端口**参数。然后，您可以使用使能端口的输入来控制模块何时输出函数调用事件。实际上，您可以根据需要打开和关闭模块。
-
-**注意**
-
-从 R2025a 开始，Function-Call Generator 模块不再作为封装链接模块运行。要以编程方式在模型中定位此模块，请使用命令 `find_system('BlockType','FunctionCallGenerator')`。当从其他版本更新到 R2025a 时，建议修复任何与 Simulink® 库的链接已断开的 Function-Call Generator 模块。否则，该模块将不会更新，并会在更新后的模型中继续作为封装模块运行。此模块的封装行为将在以后的版本中删除。有关识别模型中断开的库链接的详细信息，请参阅显示库链接。
-
-对于 R2025a 之前的版本，要以编程方式在模型中定位此模块，请使用命令 `find_system('MaskType','Function-Call Generator')`。
-
 ## 端口
 
 ### 输入
@@ -128,6 +106,10 @@ Function-Call Generator 模块提供函数调用事件，用于以您在**采样
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
 
+## 所属库
+
+Simulink / Ports & Subsystems
+
 ## 模块特性
 
 |  |  |
@@ -142,10 +124,28 @@ Function-Call Generator 模块提供函数调用事件，用于以您在**采样
 
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
 
 ### R2025a: Function-Call Generator 模块不再作为链接封装模块运行
 
 Function-Call Generator 模块现在作为内置模块运行。对于 R2025a 之前的版本，该模块作为封装链接模块运行。此模块行为的更改使模块在仿真期间执行速度更快。
+
+## 描述
+
+提供函数调用事件来控制子系统或模型的执行
+
+Function-Call Generator 模块提供函数调用事件，用于以您在**采样时间**参数中指定的速率执行函数调用子系统或函数调用模型。函数调用子系统或函数调用模型是包含 Trigger 模块的子系统或模型，其**触发器类型**参数设置为**函数调用**。
+
+要以迭代方式在每个时间步中多次执行每个函数调用子系统或函数调用模型，请使用**迭代次数**参数。
+
+要以指定的顺序执行多个函数调用子系统或函数调用模型，请结合使用 Function-Call Split 模块和 Function-Call Generator 模块。有关示例，请参阅 Function-Call Split。
+
+要间歇地（意味着不是在每个时间步）执行函数调用子系统或函数调用模型，请选择**显示使能端口**参数。然后，您可以使用使能端口的输入来控制模块何时输出函数调用事件。实际上，您可以根据需要打开和关闭模块。
+
+**注意**
+
+从 R2025a 开始，Function-Call Generator 模块不再作为封装链接模块运行。要以编程方式在模型中定位此模块，请使用命令 `find_system('BlockType','FunctionCallGenerator')`。当从其他版本更新到 R2025a 时，建议修复任何与 Simulink® 库的链接已断开的 Function-Call Generator 模块。否则，该模块将不会更新，并会在更新后的模型中继续作为封装模块运行。此模块的封装行为将在以后的版本中删除。有关识别模型中断开的库链接的详细信息，请参阅显示库链接。
+
+对于 R2025a 之前的版本，要以编程方式在模型中定位此模块，请使用命令 `find_system('MaskType','Function-Call Generator')`。

@@ -10,27 +10,6 @@ language: en
 
 # Repeating Sequence
 
-Generate arbitrarily shaped periodic signal
-
-## Libraries
-
-Simulink / Sources
-
-## Description
-
-The Repeating Sequence block outputs a periodic scalar signal having a
-waveform that you specify using the **Time values** and
-**Output values** parameters. The **Time values**
-parameter specifies a vector of output times. The **Output values**
-parameter specifies a vector of signal amplitudes at the corresponding output times.
-Together, the two parameters specify a sampling of the output waveform at points
-measured from the beginning of the interval over which the waveform repeats (the period
-of the signal).
-
-By default, both parameters are `[0 2]`. These default settings specify a
-sawtooth waveform that repeats every `2` seconds from the start of the
-simulation and has a maximum amplitude of `2`.
-
 ## Ports
 
 ### Output
@@ -73,6 +52,10 @@ time value in the **Time values**parameter.
 | **Values**: vector |
 | **Default**: `[0 2]` |
 
+## Libraries
+
+Simulink / Sources
+
 ## Block Characteristics
 
 |  |  |
@@ -95,3 +78,20 @@ Sequence Interpolated blocks for code generation.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Generate arbitrarily shaped periodic signal
+
+The Repeating Sequence block outputs a periodic scalar signal having a
+waveform that you specify using the **Time values** and
+**Output values** parameters. The **Time values**
+parameter specifies a vector of output times. The **Output values**
+parameter specifies a vector of signal amplitudes at the corresponding output times.
+Together, the two parameters specify a sampling of the output waveform at points
+measured from the beginning of the interval over which the waveform repeats (the period
+of the signal).
+
+By default, both parameters are `[0 2]`. These default settings specify a
+sawtooth waveform that repeats every `2` seconds from the start of the
+simulation and has a maximum amplitude of `2`.

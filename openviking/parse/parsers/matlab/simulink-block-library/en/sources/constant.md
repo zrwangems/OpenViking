@@ -10,67 +10,6 @@ language: en
 
 # Constant
 
-Constant value
-
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Sources DSP System Toolbox / Sources HDL Coder / Commonly Used Blocks HDL Coder / Sources
-
-## Description
-
-The Constant block generates a real or complex constant value signal. Use
-this block to provide a constant signal input. The block generates scalar, vector, or
-matrix output, depending on:
-
-- The dimensionality of the **Constant value** parameter
-- The setting of the **Interpret vector parameters as 1-D**
-  parameter
-
-The output of the block has the same dimensions and elements as the **Constant
-value** parameter. If you specify for this parameter a vector that you want
-the block to interpret as a vector, select the **Interpret vector parameters as
-1-D** check box. Otherwise, if you specify a vector for the
-**Constant value** parameter, the block treats that vector as a
-matrix.
-
-**Tip**
-
-To output a constant enumerated value, consider using the Enumerated Constant block instead.
-The Constant block provides block parameters that do not apply to
-enumerated types, such as **Output minimum** and **Output
-maximum**.
-
-### Using Bus Objects as the Output Data Type
-
-The Constant block supports nonvirtual buses as the output data type. Using
-a bus object as the output data type can help simplify your model. If you use a bus
-object as the output data type, set the **Constant value** to
-`0` or to a MATLAB® structure that matches the bus object.
-
-### Using Structures for the Constant Value of a Bus
-
-The structure you specify must contain a value for every element of the bus
-represented by the bus object. The block output is a nonvirtual bus signal.
-
-You can use the `Simulink.Bus.createMATLABStruct`
-to create a full structure that corresponds to a bus.
-
-You can use `Simulink.Bus.createObject` to
-create a bus object from a MATLAB structure.
-
-If the signal elements in the output bus use numeric data types other than
-`double`, you can specify the structure fields by using typed
-expressions such as `uint16(37)` or untyped expressions such as
-`37`. To control the field data types, you can use the bus
-object as the data type of a `Simulink.Parameter`
-object. To decide whether to use typed or untyped expressions, see Control Data Types of Initial Condition Structure Fields.
-
-### Setting Configuration Parameters to Support Using a Bus Object Data Type
-
-To enable the use of a bus object as an output data type, before you start a simulation,
-set **Configuration Parameters** > **Diagnostics** > **Data Validity** > **Advanced parameters** > **Underspecified initialization detection** to `Simplified`. For more information, see
-Underspecified initialization detection.
-
 ## Ports
 
 ### Output
@@ -498,6 +437,10 @@ more information, see Specifying a Fixed-Point Data Type.
 To enable this parameter, set **Scaling** to
 `Slope and bias`.
 
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Sources DSP System Toolbox / Sources HDL Coder / Commonly Used Blocks HDL Coder / Sources
+
 ## Block Characteristics
 
 |  |  |
@@ -604,3 +547,60 @@ dimensions. Mismatched complexity also results in an error.
 The Constant block does not use the description of the value type.
 
 For more information about value types, see Specify Common Set of Signal Properties as Value Type.
+
+## Description
+
+Constant value
+
+The Constant block generates a real or complex constant value signal. Use
+this block to provide a constant signal input. The block generates scalar, vector, or
+matrix output, depending on:
+
+- The dimensionality of the **Constant value** parameter
+- The setting of the **Interpret vector parameters as 1-D**
+  parameter
+
+The output of the block has the same dimensions and elements as the **Constant
+value** parameter. If you specify for this parameter a vector that you want
+the block to interpret as a vector, select the **Interpret vector parameters as
+1-D** check box. Otherwise, if you specify a vector for the
+**Constant value** parameter, the block treats that vector as a
+matrix.
+
+**Tip**
+
+To output a constant enumerated value, consider using the Enumerated Constant block instead.
+The Constant block provides block parameters that do not apply to
+enumerated types, such as **Output minimum** and **Output
+maximum**.
+
+### Using Bus Objects as the Output Data Type
+
+The Constant block supports nonvirtual buses as the output data type. Using
+a bus object as the output data type can help simplify your model. If you use a bus
+object as the output data type, set the **Constant value** to
+`0` or to a MATLAB® structure that matches the bus object.
+
+### Using Structures for the Constant Value of a Bus
+
+The structure you specify must contain a value for every element of the bus
+represented by the bus object. The block output is a nonvirtual bus signal.
+
+You can use the `Simulink.Bus.createMATLABStruct`
+to create a full structure that corresponds to a bus.
+
+You can use `Simulink.Bus.createObject` to
+create a bus object from a MATLAB structure.
+
+If the signal elements in the output bus use numeric data types other than
+`double`, you can specify the structure fields by using typed
+expressions such as `uint16(37)` or untyped expressions such as
+`37`. To control the field data types, you can use the bus
+object as the data type of a `Simulink.Parameter`
+object. To decide whether to use typed or untyped expressions, see Control Data Types of Initial Condition Structure Fields.
+
+### Setting Configuration Parameters to Support Using a Bus Object Data Type
+
+To enable the use of a bus object as an output data type, before you start a simulation,
+set **Configuration Parameters** > **Diagnostics** > **Data Validity** > **Advanced parameters** > **Underspecified initialization detection** to `Simplified`. For more information, see
+Underspecified initialization detection.

@@ -10,96 +10,9 @@ language: en
 
 # Quarter Gauge
 
-Display signal value during simulation on gauge shaped as quarter-circle with customizable appearance
+## Ports
 
-## Libraries
-
-Simulink / Dashboard / Customizable Blocks
-
-## Description
-
-The Quarter Gauge block displays the value of the connected signal on a
-gauge with a quarter-circle shape. You can design the block to look like a gauge in a real
-system.
-
-The Quarter Gauge block displays the instantaneous value of the connected
-signal throughout simulation. You can modify the range and tick values on the Quarter
-Gauge block to fit your data. Use the Quarter Gauge block with other
-dashboard blocks to build an interactive dashboard of controls and indicators for your
-model.
-
-### Customize Quarter Gauge Blocks
-
-When you add a Quarter Gauge block to your model, the block is
-preconfigured with a default design. You can use the block with the default design or
-customize the appearance of the block.
-
-To customize the appearance of the block, use design mode.
-After selecting the block, you can enter design mode in one of three ways:
-
-- In the Simulink® Toolstrip, on the block-specific tab, under
-  **Design**, click **Edit**.
-- In the Property Inspector, on the **Design** tab, click
-  **Edit**.
-- Pause on the ellipsis that appears over the block and click the Edit Custom Block
-  button .
-
-In design mode, you can use the toolbar above the block to customize the quarter gauge.
-To access additional customization options or to enter exact values for design settings, use
-the **Design** tab in the Property Inspector.
-
-Quarter Gauge block in design mode with the toolbar and the Design tab in the Property Inspector visible.
-
-**Design Mode Actions**
-
-| Action | Available in Toolbar | Available in **Design** Tab |
-| --- | --- | --- |
-| Upload a needle image. | Yes | Yes |
-| Upload a background image. | Yes | Yes |
-| Set a solid background color. | No | Yes |
-| Upload a foreground image. | No | Yes |
-| Change the arc length of the scale. | No | Yes |
-| Specify the location of the origin from which the value bar grows. | No | Yes |
-| Change the color and opacity of the scale tick marks, scale labels, or value bar. | Yes | Yes |
-| Specify the scale direction as clockwise or counterclockwise. | No | Yes |
-| Change the size of the scale and needle. | No | Yes |
-| Change the position the scale and needle. | No | Yes |
-
-To change the color and opacity of the scale tick marks, scale labels, or value bar
-using the toolbar, in the second section of the toolbar from the left, select the component
-whose color you want to change. To change the color, click the color wheel. To change the
-opacity, move the slider.
-
-In addition to customizing the block design using the toolbar and
-**Design** tab, you can also resize and reposition components
-interactively in the canvas. The movement of the needle is limited to the line that passes
-through the center of the block and the minimum value on the scale.
-
-When you finish editing the design, to exit design mode, click the
-**X** in the upper right of the canvas.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
-use connect mode. To enter connect mode on an unconnected block, pause on the block you want
-to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a display block to a signal in your model or change the connection of a display
-block, enter connect mode. Select the signal line to which you want to connect. From the
-list that appears, select the signal to which you want to connect. Then, pause on the
-dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
-connected block, run the simulation.
-
-For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-This animation shows how to connect the Quarter Gauge block to your
-model.
-
-An unconnected Quarter Gauge block connects to the signal that a Sine Wave block sends to an Outport block.
+Not documented in R2025b.
 
 ## Parameters
 
@@ -676,6 +589,10 @@ Specify the height of the foreground image as a ratio of the block height.
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
 
+## Libraries
+
+Simulink / Dashboard / Customizable Blocks
+
 ## Block Characteristics
 
 |  |  |
@@ -721,3 +638,90 @@ Starting in R2024a, you can dock dashboard panels to the Simulink Editor window.
 parameters during simulation without covering the model diagram in the canvas.
 
 For more information, see Dock Panels.
+
+## Description
+
+Display signal value during simulation on gauge shaped as quarter-circle with customizable appearance
+
+The Quarter Gauge block displays the value of the connected signal on a
+gauge with a quarter-circle shape. You can design the block to look like a gauge in a real
+system.
+
+The Quarter Gauge block displays the instantaneous value of the connected
+signal throughout simulation. You can modify the range and tick values on the Quarter
+Gauge block to fit your data. Use the Quarter Gauge block with other
+dashboard blocks to build an interactive dashboard of controls and indicators for your
+model.
+
+### Customize Quarter Gauge Blocks
+
+When you add a Quarter Gauge block to your model, the block is
+preconfigured with a default design. You can use the block with the default design or
+customize the appearance of the block.
+
+To customize the appearance of the block, use design mode.
+After selecting the block, you can enter design mode in one of three ways:
+
+- In the Simulink® Toolstrip, on the block-specific tab, under
+  **Design**, click **Edit**.
+- In the Property Inspector, on the **Design** tab, click
+  **Edit**.
+- Pause on the ellipsis that appears over the block and click the Edit Custom Block
+  button .
+
+In design mode, you can use the toolbar above the block to customize the quarter gauge.
+To access additional customization options or to enter exact values for design settings, use
+the **Design** tab in the Property Inspector.
+
+Quarter Gauge block in design mode with the toolbar and the Design tab in the Property Inspector visible.
+
+**Design Mode Actions**
+
+| Action | Available in Toolbar | Available in **Design** Tab |
+| --- | --- | --- |
+| Upload a needle image. | Yes | Yes |
+| Upload a background image. | Yes | Yes |
+| Set a solid background color. | No | Yes |
+| Upload a foreground image. | No | Yes |
+| Change the arc length of the scale. | No | Yes |
+| Specify the location of the origin from which the value bar grows. | No | Yes |
+| Change the color and opacity of the scale tick marks, scale labels, or value bar. | Yes | Yes |
+| Specify the scale direction as clockwise or counterclockwise. | No | Yes |
+| Change the size of the scale and needle. | No | Yes |
+| Change the position the scale and needle. | No | Yes |
+
+To change the color and opacity of the scale tick marks, scale labels, or value bar
+using the toolbar, in the second section of the toolbar from the left, select the component
+whose color you want to change. To change the color, click the color wheel. To change the
+opacity, move the slider.
+
+In addition to customizing the block design using the toolbar and
+**Design** tab, you can also resize and reposition components
+interactively in the canvas. The movement of the needle is limited to the line that passes
+through the center of the block and the minimum value on the scale.
+
+When you finish editing the design, to exit design mode, click the
+**X** in the upper right of the canvas.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
+use connect mode. To enter connect mode on an unconnected block, pause on the block you want
+to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a display block to a signal in your model or change the connection of a display
+block, enter connect mode. Select the signal line to which you want to connect. From the
+list that appears, select the signal to which you want to connect. Then, pause on the
+dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
+connected block, run the simulation.
+
+For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+This animation shows how to connect the Quarter Gauge block to your
+model.
+
+An unconnected Quarter Gauge block connects to the signal that a Sine Wave block sends to an Outport block.

@@ -10,19 +10,6 @@ language: en
 
 # Float Extract Bits
 
-Extract bits from floating-point input samples
-
-## Libraries
-
-Simulink / Logic and Bit Operations
-
-## Description
-
-The Float Extract Bits block accepts a signal containing floating-point
-data and outputs a signal containing the binary representation of the data. For more
-information on this binary representation, see the IEEE Standard for Floating Point
-Arithmetic.
-
 ## Ports
 
 ### Input
@@ -76,6 +63,10 @@ Range of bits of the signal to return, specified as a vector.
 | **Values**: `'[0 15]'` | vector |
 | **Default**: `'[0 15]'` |
 
+## Libraries
+
+Simulink / Logic and Bit Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -93,3 +84,12 @@ Range of bits of the signal to return, specified as a vector.
 ## Version History
 
 **Introduced in R2023a**
+
+## Description
+
+Extract bits from floating-point input samples
+
+The Float Extract Bits block accepts a signal containing floating-point
+data and outputs a signal containing the binary representation of the data. For more
+information on this binary representation, see the IEEE Standard for Floating Point
+Arithmetic.

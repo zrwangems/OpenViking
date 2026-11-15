@@ -10,29 +10,6 @@ language: en
 
 # Sign
 
-Indicate sign of input
-
-## Libraries
-
-Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
-
-## Description
-
-For real inputs, the Sign block outputs the sign of the input:
-
-| Input | Output |
-| --- | --- |
-| Greater than zero | 1 |
-| Equal to zero | 0 |
-| Less than zero | –1 |
-
-When the input `u` is a complex scalar, the block output matches the
-MATLAB® result for:
-
-|  |  |
-| --- | --- |
-| `sign(u) = u./ abs(u)` | **(1)** |
-
 ## Ports
 
 ### Input
@@ -90,6 +67,10 @@ the `set_param` function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
 
+## Libraries
+
+Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -132,3 +113,22 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Indicate sign of input
+
+For real inputs, the Sign block outputs the sign of the input:
+
+| Input | Output |
+| --- | --- |
+| Greater than zero | 1 |
+| Equal to zero | 0 |
+| Less than zero | –1 |
+
+When the input `u` is a complex scalar, the block output matches the
+MATLAB® result for:
+
+|  |  |
+| --- | --- |
+| `sign(u) = u./ abs(u)` | **(1)** |

@@ -10,25 +10,6 @@ language: en
 
 # Saturation
 
-Limit input signal to the upper and lower saturation values
-
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Discontinuities HDL Coder / Discontinuities
-
-## Description
-
-The Saturation block produces an output signal that is the value of the input signal bounded
-to the upper and lower saturation values. The upper and lower limits are specified by
-the parameters **Upper limit** and **Lower
-limit**.
-
-| Input | Output |
-| --- | --- |
-| Lower limit ≤ Input value ≤ Upper limit | Input value |
-| Input value < Lower limit | Lower limit |
-| Input value > Upper limit | Upper limit |
-
 ## Ports
 
 ### Input
@@ -295,6 +276,10 @@ Choose one of these rounding modes.
 
 For more information, see Rounding Modes (Fixed-Point Designer).
 
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Discontinuities HDL Coder / Discontinuities
+
 ## Block Characteristics
 
 |  |  |
@@ -333,3 +318,18 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Limit input signal to the upper and lower saturation values
+
+The Saturation block produces an output signal that is the value of the input signal bounded
+to the upper and lower saturation values. The upper and lower limits are specified by
+the parameters **Upper limit** and **Lower
+limit**.
+
+| Input | Output |
+| --- | --- |
+| Lower limit ≤ Input value ≤ Upper limit | Input value |
+| Input value < Lower limit | Lower limit |
+| Input value > Upper limit | Upper limit |

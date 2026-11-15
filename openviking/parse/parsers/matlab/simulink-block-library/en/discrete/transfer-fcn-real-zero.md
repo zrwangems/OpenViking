@@ -10,17 +10,6 @@ language: en
 
 # Transfer Fcn Real Zero
 
-Implement discrete-time transfer function that has real zero and no pole
-
-## Libraries
-
-Simulink / Discrete
-
-## Description
-
-The Transfer Fcn Real Zero block implements a discrete-time transfer function
-that has a real zero and effectively no pole.
-
 ## Ports
 
 ### Input
@@ -132,6 +121,10 @@ saturation code.
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Discrete
+
 ## Block Characteristics
 
 |  |  |
@@ -156,3 +149,10 @@ saturation code.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Implement discrete-time transfer function that has real zero and no pole
+
+The Transfer Fcn Real Zero block implements a discrete-time transfer function
+that has a real zero and effectively no pole.

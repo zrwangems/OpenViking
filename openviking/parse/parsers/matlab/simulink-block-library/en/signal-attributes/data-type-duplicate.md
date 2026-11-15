@@ -10,31 +10,6 @@ language: en
 
 # Data Type Duplicate
 
-Force all inputs to same data type
-
-## Libraries
-
-Simulink / Signal Attributes HDL Coder / Signal Attributes
-
-## Description
-
-The Data Type Duplicate block forces all inputs to have the same data type.
-Other attributes of input signals, such as dimension, complexity, and sample time, are
-independent.
-
-You can use the Data Type Duplicate block to check for consistency of data
-types among blocks. If all signals do not have the same data type, the block returns an
-error message.
-
-The Data Type Duplicate block is typically used such that one signal to the
-block controls the data type for all other blocks. The other blocks are set to inherit
-their data types via backpropagation.
-
-The block can also be useful in a user created library. These library blocks can be placed
-in any model, and the data type for all library blocks are configured according to the
-usage in the model. To create a library block with more complex data type rules than
-duplication, use the Data Type Propagation block.
-
 ## Ports
 
 ### Input
@@ -70,6 +45,10 @@ integer.
 | **Values:** real-valued positive integer |
 | **Default:** `'2'` |
 
+## Libraries
+
+Simulink / Signal Attributes HDL Coder / Signal Attributes
+
 ## Block Characteristics
 
 |  |  |
@@ -102,3 +81,24 @@ implementation.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Force all inputs to same data type
+
+The Data Type Duplicate block forces all inputs to have the same data type.
+Other attributes of input signals, such as dimension, complexity, and sample time, are
+independent.
+
+You can use the Data Type Duplicate block to check for consistency of data
+types among blocks. If all signals do not have the same data type, the block returns an
+error message.
+
+The Data Type Duplicate block is typically used such that one signal to the
+block controls the data type for all other blocks. The other blocks are set to inherit
+their data types via backpropagation.
+
+The block can also be useful in a user created library. These library blocks can be placed
+in any model, and the data type for all library blocks are configured according to the
+usage in the model. To create a library block with more complex data type rules than
+duplication, use the Data Type Propagation block.

@@ -10,42 +10,6 @@ language: en
 
 # IC
 
-Set initial value of signal
-
-## Libraries
-
-Simulink / Signal Attributes
-
-## Description
-
-The IC block sets the initial condition of the signal at its input port, for
-example, the value of the signal at the simulation start time
-(`tstart`). To do so, the block outputs
-the specified initial condition when you start the simulation, regardless of the actual
-value of the input signal. Thereafter, the block outputs the actual value of the input
-signal.
-
-The IC block is useful for providing an initial guess for the algebraic state
-variables in a loop. For more information, see Algebraic Loop Concepts.
-
-### Behavior for Nonzero Sample Time Offset
-
-If an IC block has a nonzero sample time offset
-(`toffset`), the IC
-block outputs its initial value at time `t`,
-
-```
-t = n * tperiod + toffset
-```
-
-where `n` is the smallest integer such that `t ≥
-tstart`.
-
-That is, the IC block outputs its initial value the first-time blocks with
-sample time `[tperiod,
-toffset]` execute, which can be after
-`tstart`.
-
 ## Ports
 
 ### Input
@@ -104,6 +68,10 @@ the `set_param` function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
 
+## Libraries
+
+Simulink / Signal Attributes
+
 ## Block Characteristics
 
 |  |  |
@@ -136,3 +104,35 @@ Thus, blocks suitable for production code remain suitable.
 
 The IC block now supports code generation for row-major array
 layout.
+
+## Description
+
+Set initial value of signal
+
+The IC block sets the initial condition of the signal at its input port, for
+example, the value of the signal at the simulation start time
+(`tstart`). To do so, the block outputs
+the specified initial condition when you start the simulation, regardless of the actual
+value of the input signal. Thereafter, the block outputs the actual value of the input
+signal.
+
+The IC block is useful for providing an initial guess for the algebraic state
+variables in a loop. For more information, see Algebraic Loop Concepts.
+
+### Behavior for Nonzero Sample Time Offset
+
+If an IC block has a nonzero sample time offset
+(`toffset`), the IC
+block outputs its initial value at time `t`,
+
+```
+t = n * tperiod + toffset
+```
+
+where `n` is the smallest integer such that `t ≥
+tstart`.
+
+That is, the IC block outputs its initial value the first-time blocks with
+sample time `[tperiod,
+toffset]` execute, which can be after
+`tstart`.

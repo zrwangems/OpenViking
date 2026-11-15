@@ -10,17 +10,6 @@ language: en
 
 # Decrement To Zero
 
-Decrease real-world value of signal by one, but only to zero
-
-## Libraries
-
-Simulink / Additional Math & Discrete / Additional Math: Increment - Decrement
-
-## Description
-
-The Decrement To Zero block decreases the real-world value of the
-signal by one. The output never goes below zero.
-
 ## Ports
 
 ### Input
@@ -39,6 +28,14 @@ The output never goes below zero. The output has the same data type and
 dimensions as the input.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+
+## Parameters
+
+Not documented in R2025b.
+
+## Libraries
+
+Simulink / Additional Math & Discrete / Additional Math: Increment - Decrement
 
 ## Block Characteristics
 
@@ -82,3 +79,10 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Decrease real-world value of signal by one, but only to zero
+
+The Decrement To Zero block decreases the real-world value of the
+signal by one. The output never goes below zero.

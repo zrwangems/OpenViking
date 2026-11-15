@@ -10,72 +10,6 @@ language: en
 
 # Signal Generator
 
-Generate various waveforms
-
-## Libraries
-
-Simulink / Sources
-
-## Description
-
-### Supported Operations
-
-The Signal Generator block can produce one of four different waveforms:
-
-- sine
-- square
-- sawtooth
-- random
-
-You can express signal parameters in hertz or radians per second.
-Using default parameter values, you get one of the following waveforms:
-
-| Waveform | Scope Output |
-| --- | --- |
-| Sine wave |  |
-| Square wave |  |
-| Sawtooth wave |  |
-| Random wave |  |
-
-A negative **Amplitude** parameter value causes a 180-degree phase shift.
-You can generate a phase-shifted wave at other than 180 degrees in many ways. For
-example, you can connect a Clock block signal to a MATLAB Function block and write the
-equation for the specific wave.
-
-You can vary the output settings of the Signal Generator block while a
-simulation is in progress to determine quickly the response of a system to different
-types of inputs.
-
-The **Amplitude** and **Frequency** parameters determine
-the amplitude and frequency of the output signal. The parameters must be of the same
-dimensions after scalar expansion. If you clear the **Interpret vector
-parameters as 1-D** check box, the block outputs a signal of the same
-dimensions as the **Amplitude** and **Frequency**
-parameters (after scalar expansion). If you select the **Interpret vector
-parameters as 1-D** check box, the block outputs a vector (1-D) signal
-if the **Amplitude** and **Frequency** parameters
-are row or column vectors, that is, single-row or column 2-D arrays. Otherwise, the
-block outputs a signal of the same dimensions as the parameters.
-
-### Solver Considerations
-
-If your model uses a fixed-step solver, Simulink® uses the same step size for the entire simulation. In this case, the
-Signal Generator block output provides a uniformly sampled representation of the
-ideal waveform.
-
-If your model uses a variable-step solver, Simulink might use different step sizes during the simulation. In this case,
-the Signal Generator block output does not always provide a uniformly
-sampled representation of the ideal waveform. To ensure that the block output is a
-uniformly sampled representation, add a Hit Crossing block directly
-downstream of the Signal Generator block. These models show the
-difference in Signal Generator block output with and without the
-Hit Crossing block.
-
-| Model That Uses a Variable-Step Solver | Signal Generator Block Output |
-| --- | --- |
-|  | Signal Generator with sawtooth wave and variable-step solver |
-|  | Signal Generator with sawtooth wave and variable-step solver and Hit Cross |
-
 ## Ports
 
 ### Output
@@ -185,6 +119,10 @@ Select this check box to output a vector of length `N` if the
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
 
+## Libraries
+
+Simulink / Sources
+
 ## Block Characteristics
 
 |  |  |
@@ -215,3 +153,65 @@ subsystem.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Generate various waveforms
+
+### Supported Operations
+
+The Signal Generator block can produce one of four different waveforms:
+
+- sine
+- square
+- sawtooth
+- random
+
+You can express signal parameters in hertz or radians per second.
+Using default parameter values, you get one of the following waveforms:
+
+| Waveform | Scope Output |
+| --- | --- |
+| Sine wave |  |
+| Square wave |  |
+| Sawtooth wave |  |
+| Random wave |  |
+
+A negative **Amplitude** parameter value causes a 180-degree phase shift.
+You can generate a phase-shifted wave at other than 180 degrees in many ways. For
+example, you can connect a Clock block signal to a MATLAB Function block and write the
+equation for the specific wave.
+
+You can vary the output settings of the Signal Generator block while a
+simulation is in progress to determine quickly the response of a system to different
+types of inputs.
+
+The **Amplitude** and **Frequency** parameters determine
+the amplitude and frequency of the output signal. The parameters must be of the same
+dimensions after scalar expansion. If you clear the **Interpret vector
+parameters as 1-D** check box, the block outputs a signal of the same
+dimensions as the **Amplitude** and **Frequency**
+parameters (after scalar expansion). If you select the **Interpret vector
+parameters as 1-D** check box, the block outputs a vector (1-D) signal
+if the **Amplitude** and **Frequency** parameters
+are row or column vectors, that is, single-row or column 2-D arrays. Otherwise, the
+block outputs a signal of the same dimensions as the parameters.
+
+### Solver Considerations
+
+If your model uses a fixed-step solver, Simulink® uses the same step size for the entire simulation. In this case, the
+Signal Generator block output provides a uniformly sampled representation of the
+ideal waveform.
+
+If your model uses a variable-step solver, Simulink might use different step sizes during the simulation. In this case,
+the Signal Generator block output does not always provide a uniformly
+sampled representation of the ideal waveform. To ensure that the block output is a
+uniformly sampled representation, add a Hit Crossing block directly
+downstream of the Signal Generator block. These models show the
+difference in Signal Generator block output with and without the
+Hit Crossing block.
+
+| Model That Uses a Variable-Step Solver | Signal Generator Block Output |
+| --- | --- |
+|  | Signal Generator with sawtooth wave and variable-step solver |
+|  | Signal Generator with sawtooth wave and variable-step solver and Hit Cross |

@@ -10,19 +10,6 @@ language: en
 
 # String Count
 
-Count occurrences of pattern in string
-
-## Libraries
-
-Simulink / String
-
-## Description
-
-The String Count block counts the occurrences of the pattern
-(**sub**) in a string (**str**). If the input at
-**sub** matches part or all of the input at **str**, the
-block counts the occurrence as 1.
-
 ## Ports
 
 ### Input
@@ -104,6 +91,10 @@ parameter, see Specify Data Types Using Data Type Assistant.
 Clicking the **Show data type assistant** button enables this
 parameter.
 
+## Libraries
+
+Simulink / String
+
 ## Block Characteristics
 
 |  |  |
@@ -121,3 +112,12 @@ parameter.
 ## Version History
 
 **Introduced in R2020a**
+
+## Description
+
+Count occurrences of pattern in string
+
+The String Count block counts the occurrences of the pattern
+(**sub**) in a string (**str**). If the input at
+**sub** matches part or all of the input at **str**, the
+block counts the occurrence as 1.

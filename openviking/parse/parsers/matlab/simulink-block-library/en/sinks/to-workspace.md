@@ -10,91 +10,6 @@ language: en
 
 # To Workspace
 
-Log data to workspace from Simulink model
-
-## Libraries
-
-Simulink / Sinks DSP System Toolbox / Sinks HDL Coder / Sinks
-
-## Description
-
-The To Workspace block logs the data connected to its input port to a
-workspace from a Simulink® model. Typically, logged data is returned in the base workspace. When you
-simulate a model programmatically inside a function, logged data is returned in the
-workspace for the function. During simulation, logged data streams to the Simulation
-Data Inspector. Logged data is written to the workspace when the simulation pauses or
-stops.
-
-You can use the To Workspace block to log data for a signal, a bus, or
-an array of buses. The To Workspace block supports logging scalar and
-multidimensional data, including data for variable-size signals.
-
-You can configure the name of the variable that stores the data the To
-Workspace block logs, and you can specify the format for the logged data.
-You can also control which values the To Workspace block logs by
-specifying block or model parameters. For more information, see Specify Signal Values to Log.
-
-### Access Logged Data
-
-How simulation results are returned to the workspace depends on how you simulate
-and configure the model. Simulation results are returned in a single `Simulink.SimulationOutput` object in
-any of these situations:
-
-- You enable the **Single simulation
-  output** parameter.
-
-  By default, the **Single simulation output**
-  parameter is enabled when you create a new model. You can enable the
-  parameter using the Configuration Parameters dialog box. On the
-  **Modeling** tab, under
-  **Settings**, click **Model
-  Settings**. Then, in the Configuration Parameters dialog
-  box, select **Data Import/Export** and select
-  **Single simulation output**.
-- You run a set of simulations using the Multiple Simulations pane.
-- You simulate the model programmatically using one or more `Simulink.SimulationInput`
-  objects.
-
-  You can configure simulations using `SimulationInput`
-  objects when you run simulations using the `sim`, `parsim`, and `batchsim` functions.
-- You simulate the model using a `sim` function
-  syntax that returns results as a single simulation output.
-
-  For more information, see `sim`.
-
-When simulation results are returned in a single output, the
-`SimulationOutput` object contains a variable for each To
-Workspace block in the model. To access the data logged by a To
-Workspace block:
-
-- Use a dot with the variable name specified using the
-  **Variable name** parameter of the block. By
-  default, models are configured to return a single simulation output
-  using the variable name `out`, and the To
-  Workspace block saves data to a variable named
-  `simout`.
-
-  ```
-  toWksData = out.simout;
-  ```
-- Use the `get` function with the
-  name of the variable that contains the logged data.
-
-  ```
-  toWksData = get(out,simout);
-  ```
-
-In the model, the To Workspace block indicates how to access the
-data in the workspace. By default, the block shows `out.simout`.
-The block appearance updates when you:
-
-- Specify a different value for the **Variable name**
-  parameter on the block.
-- Specify a different variable name for the single simulation
-  output.
-- Clear the **Single simulation output** configuration
-  parameter.
-
 ## Ports
 
 ### Input
@@ -347,6 +262,10 @@ the `set_param` function.
 
 **Example:** `set_param(gcb,"SampleTime","0")`
 
+## Libraries
+
+Simulink / Sinks DSP System Toolbox / Sinks HDL Coder / Sinks
+
 ## Block Characteristics
 
 |  |  |
@@ -470,3 +389,84 @@ used to log data in `Timeseries` format.
 
 You can use the `Timeseries` format to log data in a To
 Workspace block inside for-each subsystems.
+
+## Description
+
+Log data to workspace from Simulink model
+
+The To Workspace block logs the data connected to its input port to a
+workspace from a Simulink® model. Typically, logged data is returned in the base workspace. When you
+simulate a model programmatically inside a function, logged data is returned in the
+workspace for the function. During simulation, logged data streams to the Simulation
+Data Inspector. Logged data is written to the workspace when the simulation pauses or
+stops.
+
+You can use the To Workspace block to log data for a signal, a bus, or
+an array of buses. The To Workspace block supports logging scalar and
+multidimensional data, including data for variable-size signals.
+
+You can configure the name of the variable that stores the data the To
+Workspace block logs, and you can specify the format for the logged data.
+You can also control which values the To Workspace block logs by
+specifying block or model parameters. For more information, see Specify Signal Values to Log.
+
+### Access Logged Data
+
+How simulation results are returned to the workspace depends on how you simulate
+and configure the model. Simulation results are returned in a single `Simulink.SimulationOutput` object in
+any of these situations:
+
+- You enable the **Single simulation
+  output** parameter.
+
+  By default, the **Single simulation output**
+  parameter is enabled when you create a new model. You can enable the
+  parameter using the Configuration Parameters dialog box. On the
+  **Modeling** tab, under
+  **Settings**, click **Model
+  Settings**. Then, in the Configuration Parameters dialog
+  box, select **Data Import/Export** and select
+  **Single simulation output**.
+- You run a set of simulations using the Multiple Simulations pane.
+- You simulate the model programmatically using one or more `Simulink.SimulationInput`
+  objects.
+
+  You can configure simulations using `SimulationInput`
+  objects when you run simulations using the `sim`, `parsim`, and `batchsim` functions.
+- You simulate the model using a `sim` function
+  syntax that returns results as a single simulation output.
+
+  For more information, see `sim`.
+
+When simulation results are returned in a single output, the
+`SimulationOutput` object contains a variable for each To
+Workspace block in the model. To access the data logged by a To
+Workspace block:
+
+- Use a dot with the variable name specified using the
+  **Variable name** parameter of the block. By
+  default, models are configured to return a single simulation output
+  using the variable name `out`, and the To
+  Workspace block saves data to a variable named
+  `simout`.
+
+  ```
+  toWksData = out.simout;
+  ```
+- Use the `get` function with the
+  name of the variable that contains the logged data.
+
+  ```
+  toWksData = get(out,simout);
+  ```
+
+In the model, the To Workspace block indicates how to access the
+data in the workspace. By default, the block shows `out.simout`.
+The block appearance updates when you:
+
+- Specify a different value for the **Variable name**
+  parameter on the block.
+- Specify a different variable name for the single simulation
+  output.
+- Clear the **Single simulation output** configuration
+  parameter.

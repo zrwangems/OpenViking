@@ -10,40 +10,6 @@ language: en
 
 # Out Bus Element
 
-Specify output of external port
-
-## Libraries
-
-Simulink / Ports & Subsystems Simulink / Sinks HDL Coder / Ports & Subsystems HDL Coder / Sinks
-
-## Description
-
-The Out Bus Element block provides a bus, signal, or message as the
-output of an external port.
-
-To group multiple buses, signals, or messages into an output bus, use multiple Out
-Bus Element blocks that correspond with the same port. The Out Bus
-Element blocks combine the functionality of a Bus Creator block and
-an Outport block. All Out Bus Element blocks that correspond
-with the same port share a dialog box.
-
-For interfaces that include buses composed of many bus elements, Out Bus
-Element blocks:
-
-- Reduce signal line complexity and clutter in a block diagram.
-- Allow you to more easily make incremental changes to the interface.
-- Allow access to a bus element closer to the point of usage, avoiding the use of a
-  Bus Creator and From block configuration.
-
-To convert an interface to use Out Bus Element blocks, see Simplify Subsystem and Model Interfaces with Bus Element Ports.
-
-The Out Bus Element block does not support mixing message and signal
-elements as inputs.
-
-When you save output data to the workspace or a file, bus data defined by groups of
-root-level Out Bus Element blocks are logged along with root-level
-Outport block data.
-
 ## Ports
 
 ### Input
@@ -759,6 +725,10 @@ separating each name in the hierarchy with a dot.
 
 **Example:** `set_param("mymodel/Subsystem1/myBus.signal1",SampleTime="0.01")`
 
+## Libraries
+
+Simulink / Ports & Subsystems Simulink / Sinks HDL Coder / Ports & Subsystems HDL Coder / Sinks
+
 ## Block Characteristics
 
 |  |  |
@@ -900,3 +870,33 @@ Warning and error messages for In Bus Element and Out Bus
 Element blocks now link to the corresponding block in the block diagram,
 helping you quickly find the source of the warning or error. In previous releases,
 warning and error messages refer to a hidden block and do not provide a link.
+
+## Description
+
+Specify output of external port
+
+The Out Bus Element block provides a bus, signal, or message as the
+output of an external port.
+
+To group multiple buses, signals, or messages into an output bus, use multiple Out
+Bus Element blocks that correspond with the same port. The Out Bus
+Element blocks combine the functionality of a Bus Creator block and
+an Outport block. All Out Bus Element blocks that correspond
+with the same port share a dialog box.
+
+For interfaces that include buses composed of many bus elements, Out Bus
+Element blocks:
+
+- Reduce signal line complexity and clutter in a block diagram.
+- Allow you to more easily make incremental changes to the interface.
+- Allow access to a bus element closer to the point of usage, avoiding the use of a
+  Bus Creator and From block configuration.
+
+To convert an interface to use Out Bus Element blocks, see Simplify Subsystem and Model Interfaces with Bus Element Ports.
+
+The Out Bus Element block does not support mixing message and signal
+elements as inputs.
+
+When you save output data to the workspace or a file, bus data defined by groups of
+root-level Out Bus Element blocks are logged along with root-level
+Outport block data.

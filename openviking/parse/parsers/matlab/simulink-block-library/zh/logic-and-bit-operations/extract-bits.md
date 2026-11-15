@@ -11,32 +11,6 @@ chinese_source: official
 
 # Extract Bits
 
-输出从输入信号选择的连续位
-
-## 所属库
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
-## 描述
-
-Extract Bits 模块允许您从输入信号的存储整数值中输出选择的连续位。使用**提取位**参数定义选择输出位的方法。
-
-- 选择 `Upper half` 输出一半的输入位，其中包含最高有效位。如果输入信号中有奇数数量的位，则按以下方程计算输出位数
-
-  ```
-  number of output bits = ceil(number of input bits/2)
-  ```
-- 选择 `Lower half` 输出一半的输入位，其中包含最低有效位。如果输入信号中有奇数数量的位，则按以下方程计算输出位数
-
-  ```
-  number of output bits = ceil(number of input bits/2)
-  ```
-- 选择 `Range starting with most significant bit` 以输出一定数量的输入信号最高有效位。在**位数**参数中指定要输出的最高有效位数。
-- 选择 `Range ending with least significant bit` 以输出一定数量的输入信号最低有效位。在**位数**参数中指定要输出的最低有效位数。
-- 选择 `Range of bits` 以在**位索引**参数中指定要输出的输入信号的一系列连续位。您需要以 `[start end]` 格式指明范围，而输入位的索引将从 0（最低有效位）开始连续标记。
-
-仿真期间，此模块不会报告溢出绕回警告。要报告这些警告，请参阅 `Simulink.restoreDiagnostic` 参考页。但此模块会报告由于溢出绕回而导致的错误。
-
 ## 端口
 
 ### 输入
@@ -131,6 +105,10 @@ Extract Bits 模块允许您从输入信号的存储整数值中输出选择的�
 | **值：**`'Preserve fixed-point scaling' | 'Treat bit field as an integer'` |
 | **默认值：**`'Preserve fixed-point scaling'` |
 
+## 所属库
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
 ## 模块特性
 
 |  |  |
@@ -165,6 +143,28 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+输出从输入信号选择的连续位
+
+Extract Bits 模块允许您从输入信号的存储整数值中输出选择的连续位。使用**提取位**参数定义选择输出位的方法。
+
+- 选择 `Upper half` 输出一半的输入位，其中包含最高有效位。如果输入信号中有奇数数量的位，则按以下方程计算输出位数
+
+  ```
+  number of output bits = ceil(number of input bits/2)
+  ```
+- 选择 `Lower half` 输出一半的输入位，其中包含最低有效位。如果输入信号中有奇数数量的位，则按以下方程计算输出位数
+
+  ```
+  number of output bits = ceil(number of input bits/2)
+  ```
+- 选择 `Range starting with most significant bit` 以输出一定数量的输入信号最高有效位。在**位数**参数中指定要输出的最高有效位数。
+- 选择 `Range ending with least significant bit` 以输出一定数量的输入信号最低有效位。在**位数**参数中指定要输出的最低有效位数。
+- 选择 `Range of bits` 以在**位索引**参数中指定要输出的输入信号的一系列连续位。您需要以 `[start end]` 格式指明范围，而输入位的索引将从 0（最低有效位）开始连续标记。
+
+仿真期间，此模块不会报告溢出绕回警告。要报告这些警告，请参阅 `Simulink.restoreDiagnostic` 参考页。但此模块会报告由于溢出绕回而导致的错误。

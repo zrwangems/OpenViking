@@ -10,90 +10,9 @@ language: en
 
 # Push Button
 
-Change parameter or variable value using button
+## Ports
 
-## Libraries
-
-Simulink / Dashboard
-
-## Description
-
-Use the Push Button block to change the value of the connected variable
-or parameter before or during simulation. You can configure the button to change the
-value only while you press the button or to latch the value change until you click the
-button again. Use the Push Button block with other Dashboard blocks to
-create an interactive dashboard to control your model.
-
-Double-clicking the Push Button block does not open its dialog box
-during simulation or when the block is selected. To edit the block parameters, you can
-use the **Property Inspector** or open the block dialog box by:
-
-- Double-clicking the block when the block is not selected and the model is
-  not simulating.
-- Right-clicking the block and selecting **Block
-  Parameters** from the context menu.
-
-### Push Button Icons
-
-You can add an icon to the Push Button block that is displayed
-alongside the button text. You can choose an icon from a predefined set that
-includes basic shapes, automotive indicators, and wireless icons, or you can upload
-your own custom icon. For more information, including a complete list of the
-built-in icons, see Icon.
-
-When you add an icon to the Push Button block, you can configure an
-on color and an off color for the icon so its color changes with the state of the
-block and specify the alignment of the icon relative to the button text. For
-example, this Push Button block is configured to use a circle icon
-with the on color specified as bright green, aligned to the left of the button
-text.
-
-Push button block with a green circle icon to the left of the button text.
-
-The icon settings for the Push Button block allow you to configure
-the appearance of the block in your model. When you want to customize the appearance
-of the block further, consider using the Push
-Button block in the Customizable Blocks library. The Push
-Button block in the Customizable Blocks library supports adding a custom
-icon but does not include any built-in icons.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard
-block, use connect mode. To enter connect mode on an unconnected block, pause on the block
-you want to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a control block to a parameter in your model or to change the connection of a
-control block, enter connect mode. Select the block to whose parameter you want to connect.
-From the list that appears, select the parameter to which you want to connect. Then, pause
-on the dashboard block and click the Done Connecting button .
-
-The control block cannot connect to a parameter defined by a variable until you update the
-model diagram. To connect to a parameter defined by a variable or to modify the value of a
-variable that defines the value of a connected parameter when the simulation is not running,
-update the model diagram by pressing **Ctrl+D**.
-
-You can connect to a parameter with a scalar value or to an element of a matrix or structure.
-For more information, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-This animation shows how to connect the Push Button block to your
-model.
-
-An unconnected Push Button block connects to the Value parameter of a constant block.
-
-### Parameter Logging
-
-Tunable parameters connected to dashboard blocks are logged to the Simulation Data
-Inspector, where you can view the parameter values along with logged signal data. You can
-access logged parameter data in the MATLAB® workspace by exporting the parameter data from the Simulation Data Inspector
-by using the UI or the `Simulink.sdi.exportRun` function. For more information about exporting
-data using the Simulation Data Inspector UI, see Export Data to Workspace or File. The
-parameter data is stored in a `Simulink.SimulationData.Parameter` object, accessible as an element in the
-exported `Simulink.SimulationData.Dataset`.
+Not documented in R2025b.
 
 ## Parameters
 
@@ -501,6 +420,10 @@ block as a `1`-by-`3`
 | **Block Parameter:** `IconOffColor` |
 | **Type:** `[r g b]` vector |
 
+## Libraries
+
+Simulink / Dashboard
+
 ## Block Characteristics
 
 |  |  |
@@ -640,3 +563,84 @@ panel.
 Starting in R2019a, you can use functions such as `add_block`
 and `set_param` to create and configure blocks from the Dashboard
 library in your model.
+
+## Description
+
+Change parameter or variable value using button
+
+Use the Push Button block to change the value of the connected variable
+or parameter before or during simulation. You can configure the button to change the
+value only while you press the button or to latch the value change until you click the
+button again. Use the Push Button block with other Dashboard blocks to
+create an interactive dashboard to control your model.
+
+Double-clicking the Push Button block does not open its dialog box
+during simulation or when the block is selected. To edit the block parameters, you can
+use the **Property Inspector** or open the block dialog box by:
+
+- Double-clicking the block when the block is not selected and the model is
+  not simulating.
+- Right-clicking the block and selecting **Block
+  Parameters** from the context menu.
+
+### Push Button Icons
+
+You can add an icon to the Push Button block that is displayed
+alongside the button text. You can choose an icon from a predefined set that
+includes basic shapes, automotive indicators, and wireless icons, or you can upload
+your own custom icon. For more information, including a complete list of the
+built-in icons, see Icon.
+
+When you add an icon to the Push Button block, you can configure an
+on color and an off color for the icon so its color changes with the state of the
+block and specify the alignment of the icon relative to the button text. For
+example, this Push Button block is configured to use a circle icon
+with the on color specified as bright green, aligned to the left of the button
+text.
+
+Push button block with a green circle icon to the left of the button text.
+
+The icon settings for the Push Button block allow you to configure
+the appearance of the block in your model. When you want to customize the appearance
+of the block further, consider using the Push
+Button block in the Customizable Blocks library. The Push
+Button block in the Customizable Blocks library supports adding a custom
+icon but does not include any built-in icons.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard
+block, use connect mode. To enter connect mode on an unconnected block, pause on the block
+you want to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a control block to a parameter in your model or to change the connection of a
+control block, enter connect mode. Select the block to whose parameter you want to connect.
+From the list that appears, select the parameter to which you want to connect. Then, pause
+on the dashboard block and click the Done Connecting button .
+
+The control block cannot connect to a parameter defined by a variable until you update the
+model diagram. To connect to a parameter defined by a variable or to modify the value of a
+variable that defines the value of a connected parameter when the simulation is not running,
+update the model diagram by pressing **Ctrl+D**.
+
+You can connect to a parameter with a scalar value or to an element of a matrix or structure.
+For more information, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+This animation shows how to connect the Push Button block to your
+model.
+
+An unconnected Push Button block connects to the Value parameter of a constant block.
+
+### Parameter Logging
+
+Tunable parameters connected to dashboard blocks are logged to the Simulation Data
+Inspector, where you can view the parameter values along with logged signal data. You can
+access logged parameter data in the MATLAB® workspace by exporting the parameter data from the Simulation Data Inspector
+by using the UI or the `Simulink.sdi.exportRun` function. For more information about exporting
+data using the Simulation Data Inspector UI, see Export Data to Workspace or File. The
+parameter data is stored in a `Simulink.SimulationData.Parameter` object, accessible as an element in the
+exported `Simulink.SimulationData.Dataset`.

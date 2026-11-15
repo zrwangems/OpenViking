@@ -10,43 +10,6 @@ language: en
 
 # Switch Case Action Subsystem
 
-Subsystem whose execution is enabled by Switch Case block
-
-## Libraries
-
-Simulink / Ports & Subsystems
-
-## Description
-
-The Switch Case Action Subsystem block is a Subsystem block preconfigured as a starting point for creating a subsystem whose
-execution is controlled by a Switch Case block. The input port to a
-Switch Case block selects a case defined using the **Case
-conditions** parameter. Depending on input value and case selected, an action
-signal is sent to execute a Switch Case Action Subsystem block. Execution of
-the subsystem is controlled by an Action Port block placed inside the
-subsystem.
-
-Simulink® ignores a priority set on an Switch Case Action Subsystem
-block. Instead, set the priority on the Switch Case block that initiates
-execution of the subsystem.
-
-All blocks in a Switch Case Action Subsystem block must run at the same
-rate as the driving Switch Case block. You can achieve this requirement by
-setting each block sample time parameter to be either inherited (`-1`) or the
-same value as the Switch Case block sample time.
-
-### Merge Signals from Switch Case Action Subsystem Blocks
-
-The example model `ex_switch_case_block` shows how to create one signal
-from multiple subsystem output signals. For more information, see Select Subsystem Execution.
-
-Model ex\_switch\_case\_block
-
-The Switch Case block selects the execution of one If Action
-Subsystem block from a set of subsystems. Regardless of which subsystem the
-Switch Case block selects, you can create one resulting signal with a
-Merge block.
-
 ## Ports
 
 ### Input
@@ -787,6 +750,10 @@ the `set_param` function.
 | **Parameter:** | `RTWMemSecDataParameters` |
 | **Values:** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
 
+## Libraries
+
+Simulink / Ports & Subsystems
+
 ## Block Characteristics
 
 |  |  |
@@ -852,3 +819,36 @@ Actual data type support depends on block implementation.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Subsystem whose execution is enabled by Switch Case block
+
+The Switch Case Action Subsystem block is a Subsystem block preconfigured as a starting point for creating a subsystem whose
+execution is controlled by a Switch Case block. The input port to a
+Switch Case block selects a case defined using the **Case
+conditions** parameter. Depending on input value and case selected, an action
+signal is sent to execute a Switch Case Action Subsystem block. Execution of
+the subsystem is controlled by an Action Port block placed inside the
+subsystem.
+
+Simulink® ignores a priority set on an Switch Case Action Subsystem
+block. Instead, set the priority on the Switch Case block that initiates
+execution of the subsystem.
+
+All blocks in a Switch Case Action Subsystem block must run at the same
+rate as the driving Switch Case block. You can achieve this requirement by
+setting each block sample time parameter to be either inherited (`-1`) or the
+same value as the Switch Case block sample time.
+
+### Merge Signals from Switch Case Action Subsystem Blocks
+
+The example model `ex_switch_case_block` shows how to create one signal
+from multiple subsystem output signals. For more information, see Select Subsystem Execution.
+
+Model ex\_switch\_case\_block
+
+The Switch Case block selects the execution of one If Action
+Subsystem block from a set of subsystems. Regardless of which subsystem the
+Switch Case block selects, you can create one resulting signal with a
+Merge block.

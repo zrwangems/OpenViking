@@ -10,26 +10,6 @@ language: en
 
 # Enabled and Triggered Subsystem
 
-Subsystem whose execution is enabled and triggered by external inputs
-
-## Libraries
-
-Simulink / Ports & Subsystems
-
-## Description
-
-The Enabled and Triggered Subsystem block is a Subsystem block preconfigured as a starting point for creating a subsystem that
-executes when both of these conditions occur:
-
-- Enable control signal has a positive value.
-- Trigger control signal has a trigger value.
-
-Use Enabled and Triggered Subsystem blocks to
-model:
-
-- Optional functionality.
-- Alternative functionality.
-
 ## Ports
 
 ### Input
@@ -805,6 +785,10 @@ the `set_param` function.
 | **Values:** | `''` (default) | subsystem filename in quotes |
 | **Data Types:** | `char` | `string` |
 
+## Libraries
+
+Simulink / Ports & Subsystems
+
 ## Block Characteristics
 
 |  |  |
@@ -831,3 +815,19 @@ Actual data type support depends on block implementation.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Subsystem whose execution is enabled and triggered by external inputs
+
+The Enabled and Triggered Subsystem block is a Subsystem block preconfigured as a starting point for creating a subsystem that
+executes when both of these conditions occur:
+
+- Enable control signal has a positive value.
+- Trigger control signal has a trigger value.
+
+Use Enabled and Triggered Subsystem blocks to
+model:
+
+- Optional functionality.
+- Alternative functionality.

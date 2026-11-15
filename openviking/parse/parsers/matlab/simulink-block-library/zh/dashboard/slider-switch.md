@@ -11,37 +11,9 @@ chinese_source: official
 
 # Slider Switch
 
-将参数在两个值之间切换
+## 端口
 
-## 所属库
-
-Simulink / Dashboard
-
-## 描述
-
-在仿真过程中，Slider Switch 模块将连接的模块参数的值在两个值之间切换。例如，可以将 Slider Switch 模块连接到模型中的 Switch 模块，并在仿真期间更改其状态。将 Slider Switch 模块与其他 Dashboard 模块结合使用，可以为模型创建交互式仪表板。
-
-在仿真期间以及 Slider Switch 模块处于选中状态时，双击该模块不会打开其对话框。要编辑模块的参数，可以使用**属性检查器**，或者右键点击模块并从上下文菜单中选择**模块参数**。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口来连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标在要连接的模块上暂停并点击连接按钮 。要在已连接的模块上进入连接模式，请选择该模块，在显示的省略号 (…) 上暂停，然后在展开的操作菜单中点击连接按钮。
-
-要将控制模块连接到模型中的参数或更改控制模块的连接，请进入连接模式。选择要连接到其参数的模块。从出现的列表中，选择要连接的参数。然后，请在 Dashboard 模块上悬停并点击完成连接按钮 。
-
-在更新模型图之前，控制模块无法连接到由变量定义的参数。要在仿真未运行时连接到由变量定义的参数或修改定义所连接的参数值的变量值，请按 **Ctrl+D** 更新模型图。
-
-您可以连接到具有标量值的参数，或连接到矩阵或结构体的元素。有关详细信息，请参阅Connect Dashboard Blocks to Simulink Model。
-
-您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画说明如何将 Slider Switch 模块连接到您的模型。
-
-An unconnected Slider Switch block connects to the Value parameter of a Constant block.
-
-### 参数记录
-
-连接到 Dashboard 模块的可调参数数据会记录到仿真数据检查器，您可以在其中查看参数值以及记录的信号数据。您可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从仿真数据检查器导出参数数据来访问 MATLAB® 工作区中记录的参数数据。有关使用仿真数据检查器 UI 导出数据的详细信息，请参阅将数据导出到工作区或文件。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素来访问。
+R2025b 官方文档未提供。
 
 ## 参数
 
@@ -118,6 +90,10 @@ switchStates = [leftState rightState];
 | **值**：`'Top'` | `'Bottom'` | `'Hide'` |
 | **默认值**：`'Top'` |
 
+## 所属库
+
+Simulink / Dashboard
+
 ## 模块特性
 
 |  |  |
@@ -134,7 +110,7 @@ switchStates = [leftState rightState];
 
 Dashboard 模块在代码生成中会被忽略。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2015a 中推出**
 
@@ -199,3 +175,31 @@ Dashboard 模块在代码生成中会被忽略。
 ### R2019a: 以编程方式添加和配置 Dashboard 模块
 
 从 R2019a 开始，您可以使用 `add_block` 和 `set_param` 等函数从模型中的 Dashboard 库创建和配置模块。
+
+## 描述
+
+将参数在两个值之间切换
+
+在仿真过程中，Slider Switch 模块将连接的模块参数的值在两个值之间切换。例如，可以将 Slider Switch 模块连接到模型中的 Switch 模块，并在仿真期间更改其状态。将 Slider Switch 模块与其他 Dashboard 模块结合使用，可以为模型创建交互式仪表板。
+
+在仿真期间以及 Slider Switch 模块处于选中状态时，双击该模块不会打开其对话框。要编辑模块的参数，可以使用**属性检查器**，或者右键点击模块并从上下文菜单中选择**模块参数**。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口来连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标在要连接的模块上暂停并点击连接按钮 。要在已连接的模块上进入连接模式，请选择该模块，在显示的省略号 (…) 上暂停，然后在展开的操作菜单中点击连接按钮。
+
+要将控制模块连接到模型中的参数或更改控制模块的连接，请进入连接模式。选择要连接到其参数的模块。从出现的列表中，选择要连接的参数。然后，请在 Dashboard 模块上悬停并点击完成连接按钮 。
+
+在更新模型图之前，控制模块无法连接到由变量定义的参数。要在仿真未运行时连接到由变量定义的参数或修改定义所连接的参数值的变量值，请按 **Ctrl+D** 更新模型图。
+
+您可以连接到具有标量值的参数，或连接到矩阵或结构体的元素。有关详细信息，请参阅Connect Dashboard Blocks to Simulink Model。
+
+您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画说明如何将 Slider Switch 模块连接到您的模型。
+
+An unconnected Slider Switch block connects to the Value parameter of a Constant block.
+
+### 参数记录
+
+连接到 Dashboard 模块的可调参数数据会记录到仿真数据检查器，您可以在其中查看参数值以及记录的信号数据。您可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从仿真数据检查器导出参数数据来访问 MATLAB® 工作区中记录的参数数据。有关使用仿真数据检查器 UI 导出数据的详细信息，请参阅将数据导出到工作区或文件。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素来访问。

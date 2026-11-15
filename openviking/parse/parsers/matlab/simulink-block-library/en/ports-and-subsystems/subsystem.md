@@ -10,47 +10,6 @@ language: en
 
 # Subsystem
 
-Group blocks to create model hierarchy
-
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
-
-## Description
-
-A Subsystem block contains a subset of blocks within a model or system.
-The Subsystem block can represent a virtual subsystem or a nonvirtual
-subsystem.
-
-- *Virtual subsystems* help visually organize a block
-  diagram. When you group blocks in a virtual subsystem or expand a virtual
-  subsystem, you can affect the execution order of blocks because of the changes
-  to the block paths. Virtual subsystems are neither conditionally nor atomically
-  executed. Virtual subsystems do not have checksums.
-- *Nonvirtual subsystems*, also known as *atomic
-  subsystems*, help functionally organize a block diagram. When you
-  group blocks in a nonvirtual subsystem or expand a nonvirtual subsystem, you
-  change the model behavior. Each nonvirtual subsystem executes as a single block,
-  or atomic unit, when the parent model executes. The blocks in a nonvirtual
-  subsystem execute consecutively.
-
-For information on the types of nonvirtual subsystems, see Explore Types of Subsystems.
-
-To determine whether a subsystem is virtual or nonvirtual, use either of these strategies:
-
-- Check the border of the block. A block that represents a virtual subsystem has a
-  thin border. A block that represents a nonvirtual subsystem has a thick border.
-
-  Virtual and nonvirtual subsystem blocks
-- Use the `get_param` function to query the Boolean
-  block parameter `IsSubsystemVirtual`.
-
-The ports on a Subsystem block correspond to blocks inside the subsystem.
-For more information, see Connect Subsystems.
-
-The Subsystem block supports signal label propagation through subsystem
-Inport and Outport blocks. For more information, see Signal Label Propagation.
-
 ## Ports
 
 ### Input
@@ -972,6 +931,10 @@ the `set_param` function.
 | **Values:** | `''` (default) | subsystem filename in quotes |
 | **Data Types:** | `char` | `string` |
 
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
+
 ## Block Characteristics
 
 |  |  |
@@ -1089,3 +1052,40 @@ Actual data type support depends on block implementation.
 ## Version History
 
 **Introduced in R2007a**
+
+## Description
+
+Group blocks to create model hierarchy
+
+A Subsystem block contains a subset of blocks within a model or system.
+The Subsystem block can represent a virtual subsystem or a nonvirtual
+subsystem.
+
+- *Virtual subsystems* help visually organize a block
+  diagram. When you group blocks in a virtual subsystem or expand a virtual
+  subsystem, you can affect the execution order of blocks because of the changes
+  to the block paths. Virtual subsystems are neither conditionally nor atomically
+  executed. Virtual subsystems do not have checksums.
+- *Nonvirtual subsystems*, also known as *atomic
+  subsystems*, help functionally organize a block diagram. When you
+  group blocks in a nonvirtual subsystem or expand a nonvirtual subsystem, you
+  change the model behavior. Each nonvirtual subsystem executes as a single block,
+  or atomic unit, when the parent model executes. The blocks in a nonvirtual
+  subsystem execute consecutively.
+
+For information on the types of nonvirtual subsystems, see Explore Types of Subsystems.
+
+To determine whether a subsystem is virtual or nonvirtual, use either of these strategies:
+
+- Check the border of the block. A block that represents a virtual subsystem has a
+  thin border. A block that represents a nonvirtual subsystem has a thick border.
+
+  Virtual and nonvirtual subsystem blocks
+- Use the `get_param` function to query the Boolean
+  block parameter `IsSubsystemVirtual`.
+
+The ports on a Subsystem block correspond to blocks inside the subsystem.
+For more information, see Connect Subsystems.
+
+The Subsystem block supports signal label propagation through subsystem
+Inport and Outport blocks. For more information, see Signal Label Propagation.

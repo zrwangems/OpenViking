@@ -11,31 +11,9 @@ chinese_source: worker-translation
 
 # Linear Gauge
 
+## 端口
 
-
-在线性刻度上显示输入值
-
-## 库
-
-Simulink / Dashboard
-
-## 说明
-
-Linear Gauge 模块在仿真期间在直线线性刻度上显示连接的信号。将 Linear Gauge 模块与其他 Dashboard 模块一起使用，可为您的模型构建由控件和指示器组成的交互式仪表板。Linear Gauge 模块在整个仿真过程中提供连接信号的瞬时值指示。您可以修改 Linear Gauge 模块的范围以适合您的数据。您还可以自定义 Linear Gauge 模块的外观，以提供有关信号的更多信息。例如，您可以为符合规范和不符合规范的范围进行颜色编码。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标悬停在要连接的模块上，然后单击 Connect 按钮 。要在已连接的模块上进入连接模式，请选择该模块，将鼠标悬停在出现的省略号 (…) 上，然后在展开的操作菜单中单击 Connect 按钮。
-
-要将显示模块连接到模型中的信号，或更改显示模块的连接，请进入连接模式。选择要连接到的信号线。在出现的列表中，选择要连接到的信号。然后，将鼠标悬停在 Dashboard 模块上并单击 Done Connecting 按钮 。要查看 Dashboard 模块显示所连接模块的值，请运行仿真。
-
-有关连接 Dashboard 模块的详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
-
-您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画显示如何将 Linear Gauge 模块连接到您的模型。
-
-未连接的 Linear Gauge 模块连接到 Sine Wave 模块发送到 Display 模块的信号。
+R2025b 官方文档未提供。
 
 ## 参数
 
@@ -215,6 +193,14 @@ Dashboard 模块不使用端口连接到模型元素。要将 Dashboard 模块�
 | **可变大小信号** | `no` |
 | **过零检测** | `no` |
 
+## 所属库
+
+Simulink / Dashboard
+
+## 模块特性
+
+R2025b 官方文档未提供。
+
 ## 扩展功能
 
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
@@ -224,3 +210,23 @@ Dashboard 模块在代码生成时会被忽略。
 ## 版本历史
 
 **R2015a 中引入**
+
+## 描述
+
+在线性刻度上显示输入值
+
+Linear Gauge 模块在仿真期间在直线线性刻度上显示连接的信号。将 Linear Gauge 模块与其他 Dashboard 模块一起使用，可为您的模型构建由控件和指示器组成的交互式仪表板。Linear Gauge 模块在整个仿真过程中提供连接信号的瞬时值指示。您可以修改 Linear Gauge 模块的范围以适合您的数据。您还可以自定义 Linear Gauge 模块的外观，以提供有关信号的更多信息。例如，您可以为符合规范和不符合规范的范围进行颜色编码。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标悬停在要连接的模块上，然后单击 Connect 按钮 。要在已连接的模块上进入连接模式，请选择该模块，将鼠标悬停在出现的省略号 (…) 上，然后在展开的操作菜单中单击 Connect 按钮。
+
+要将显示模块连接到模型中的信号，或更改显示模块的连接，请进入连接模式。选择要连接到的信号线。在出现的列表中，选择要连接到的信号。然后，将鼠标悬停在 Dashboard 模块上并单击 Done Connecting 按钮 。要查看 Dashboard 模块显示所连接模块的值，请运行仿真。
+
+有关连接 Dashboard 模块的详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
+
+您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画显示如何将 Linear Gauge 模块连接到您的模型。
+
+未连接的 Linear Gauge 模块连接到 Sine Wave 模块发送到 Display 模块的信号。

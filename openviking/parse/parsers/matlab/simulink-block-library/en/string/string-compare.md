@@ -10,18 +10,6 @@ language: en
 
 # String Compare
 
-Compare two input strings
-
-## Libraries
-
-Simulink / String
-
-## Description
-
-String Compare compares two strings. To see if two strings are
-identical, use this block. You can specify if the match is case sensitive and how much
-of the string to compare.
-
 ## Ports
 
 ### Input
@@ -112,6 +100,10 @@ characters`.
 | **Values:** scalar |
 | **Default:** `'1'` |
 
+## Libraries
+
+Simulink / String
+
 ## Block Characteristics
 
 |  |  |
@@ -129,3 +121,11 @@ characters`.
 ## Version History
 
 **Introduced in R2018a**
+
+## Description
+
+Compare two input strings
+
+String Compare compares two strings. To see if two strings are
+identical, use this block. You can specify if the match is case sensitive and how much
+of the string to compare.

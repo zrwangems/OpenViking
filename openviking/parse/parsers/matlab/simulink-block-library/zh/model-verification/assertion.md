@@ -11,16 +11,6 @@ chinese_source: official
 
 # Assertion
 
-检查信号是否为零
-
-## 所属库
-
-Simulink / Model Verification HDL Coder / Model Verification
-
-## 描述
-
-Assertion 模块检查输入信号是否有元素为 `0`。如果所有元素均为非零值，则断言为 `true (1)`，该模块不执行任何操作。否则，默认情况下该模块将停止仿真并返回一条错误消息。
-
 ## 端口
 
 ### 输入
@@ -92,6 +82,10 @@ Assertion 模块检查输入信号是否有元素为 `0`。如果所有元素均
 | **参数:** | `SampleTime` |
 | **值:** | `"-1"` (默认) | scalar or vector in quotes |
 
+## 所属库
+
+Simulink / Model Verification HDL Coder / Model Verification
+
 ## 模块特性
 
 |  |  |
@@ -130,6 +124,12 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+检查信号是否为零
+
+Assertion 模块检查输入信号是否有元素为 `0`。如果所有元素均为非零值，则断言为 `true (1)`，该模块不执行任何操作。否则，默认情况下该模块将停止仿真并返回一条错误消息。

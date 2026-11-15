@@ -11,38 +11,6 @@ chinese_source: official
 
 # From
 
-接受来自 Goto 模块的输入
-
-## 所属库
-
-Simulink / Signal Routing HDL Coder / Signal Routing
-
-## 描述
-
-From 模块从对应的 Goto 模块接受信号，然后将其作为输出传递出去。输出的数据类型与来自 Goto 模块的输入的数据类型相同。From 和 Goto 模块允许您将信号从一个模块传递到另一个模块，而无需实际连接它们。
-
-例如，此模型使用 Goto 模块和 From 模块。
-
-A Sine Wave block connects to a Goto block. The corresponding From block connects to a Gain block.
-
-等效模型将 Sine Wave 模块信号直接传递给 Gain 模块。
-
-The Sine Wave block connects directly to the Gain block.
-
-一个 From 模块只能接收来自一个 Goto 模块的信号，尽管 Goto 模块可以将其信号传递给多个 From 模块。
-
-要将 Goto 模块与 From 模块关联，请在 **Goto 标记**参数中输入 Goto 模块标记。
-
-Goto 模块标记的可见性决定了哪些 From 模块能够接收其信号。有关详细信息，请参阅 Goto 和 Goto Tag Visibility。模块通过以下方式指明 Goto 模块标记的可见性：
-
-- 局部标记名称用方括号 (`[]`) 括起。
-- 范围标记名称用花括号 (`{}`) 括起。
-- global 标记名称不带其他任何字符。
-
-From 模块支持信号标签传播。有关详细信息，请参阅信号标签传播。
-
-您可以通过用多组相连的 Goto 和 From 模块替换冗长的信号线来简化模型图。但是，当您要跟踪信号路径时，查看信号线会很有用。您可以将信号线和虚拟总线转换为 Goto 和 From 模块集，并且可以将 Goto 和 From 模块集转换为信号线。有关详细信息，请参阅将信号线转换为 Goto 和 From 模块，反之亦然。
-
 ## 端口
 
 ### 输出
@@ -105,6 +73,10 @@ The Goto block that corresponds to the selected From block is highlighted.
 | **值：**`'Signal name' | 'Tag' | 'Tag and signal name'` |
 | **默认值：**`'Tag'` |
 
+## 所属库
+
+Simulink / Signal Routing HDL Coder / Signal Routing
+
 ## 模块特性
 
 |  |  |
@@ -138,7 +110,7 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。另�
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
 
@@ -147,3 +119,31 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。另�
 您可以将信号线和虚拟总线转换为连接的 Goto 和 From 模块集，并且可以将 Goto 和 From 模块集转换为信号线。
 
 有关详细信息，请参阅将信号线转换为 Goto 和 From 模块，反之亦然。
+
+## 描述
+
+接受来自 Goto 模块的输入
+
+From 模块从对应的 Goto 模块接受信号，然后将其作为输出传递出去。输出的数据类型与来自 Goto 模块的输入的数据类型相同。From 和 Goto 模块允许您将信号从一个模块传递到另一个模块，而无需实际连接它们。
+
+例如，此模型使用 Goto 模块和 From 模块。
+
+A Sine Wave block connects to a Goto block. The corresponding From block connects to a Gain block.
+
+等效模型将 Sine Wave 模块信号直接传递给 Gain 模块。
+
+The Sine Wave block connects directly to the Gain block.
+
+一个 From 模块只能接收来自一个 Goto 模块的信号，尽管 Goto 模块可以将其信号传递给多个 From 模块。
+
+要将 Goto 模块与 From 模块关联，请在 **Goto 标记**参数中输入 Goto 模块标记。
+
+Goto 模块标记的可见性决定了哪些 From 模块能够接收其信号。有关详细信息，请参阅 Goto 和 Goto Tag Visibility。模块通过以下方式指明 Goto 模块标记的可见性：
+
+- 局部标记名称用方括号 (`[]`) 括起。
+- 范围标记名称用花括号 (`{}`) 括起。
+- global 标记名称不带其他任何字符。
+
+From 模块支持信号标签传播。有关详细信息，请参阅信号标签传播。
+
+您可以通过用多组相连的 Goto 和 From 模块替换冗长的信号线来简化模型图。但是，当您要跟踪信号路径时，查看信号线会很有用。您可以将信号线和虚拟总线转换为 Goto 和 From 模块集，并且可以将 Goto 和 From 模块集转换为信号线。有关详细信息，请参阅将信号线转换为 Goto 和 From 模块，反之亦然。

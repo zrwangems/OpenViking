@@ -10,48 +10,6 @@ language: en
 
 # Function Caller
 
-Call a Simulink function
-
-## Libraries
-
-Simulink / User-Defined Functions
-
-## Description
-
-A Function Caller block calls and executes a Simulink® function. Simulink functions specify a function prototype which includes the function name
-and input and output arguments. For example, when a Function Caller block
-calls a function with prototype `y = f(u)`, the input of the
-Function Caller block is the input argument, `u`, of
-the Simulink function and the output argument, `y`, of the Simulink function is the output of the Function Caller block.
-
-In this example, a Function Caller block is configured to call and
-execute the Simulink function, `y = timestwo(x)`, defined in a
-Simulink Function block. To test the function call, a Sine
-Wave block is connected to the input port `x` to provide
-input data and a Scope block is connected to the output port
-`y` to view results from the output.
-
-A Sine Wave block is the input to the Function Caller block which sends output to a Scope block.
-
-You can call a Simulink function defined in a Simulink Function block, Stateflow®
-Chart (Stateflow) as an exported function, or an
-S-Function block. For more information
-on defining a Simulink function, see Define a Simulink Function in a Model.
-
-For more information, see Simulink Functions Overview.
-
-**Tip**
-
-You can use a Function Caller block to call a function outside of
-the model hierarchy.
-
-For more information, see Simulink Function Blocks in Referenced Models.
-
-### Code Generation with Simulink Function and Function Caller Blocks
-
-If you have Simulink
-Coder™ or Embedded Coder®, you can generate code from models containing Simulink functions. For more information, see Simulink Function Blocks and Code Generation (Embedded Coder) and Configure Entry-Point Function Interfaces for Simulink Function and Function Caller Blocks (Embedded Coder).
-
 ## Ports
 
 ### Input
@@ -245,6 +203,10 @@ asynchronously.
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
 
+## Libraries
+
+Simulink / User-Defined Functions
+
 ## Block Characteristics
 
 |  |  |
@@ -299,3 +261,41 @@ Starting in R2022b, you can specify a Simulink function to be executed asynchron
 **Execute function call asynchronously** parameter in the
 Trigger block inside of the Simulink Function
 block and in the Function Caller block.
+
+## Description
+
+Call a Simulink function
+
+A Function Caller block calls and executes a Simulink® function. Simulink functions specify a function prototype which includes the function name
+and input and output arguments. For example, when a Function Caller block
+calls a function with prototype `y = f(u)`, the input of the
+Function Caller block is the input argument, `u`, of
+the Simulink function and the output argument, `y`, of the Simulink function is the output of the Function Caller block.
+
+In this example, a Function Caller block is configured to call and
+execute the Simulink function, `y = timestwo(x)`, defined in a
+Simulink Function block. To test the function call, a Sine
+Wave block is connected to the input port `x` to provide
+input data and a Scope block is connected to the output port
+`y` to view results from the output.
+
+A Sine Wave block is the input to the Function Caller block which sends output to a Scope block.
+
+You can call a Simulink function defined in a Simulink Function block, Stateflow®
+Chart (Stateflow) as an exported function, or an
+S-Function block. For more information
+on defining a Simulink function, see Define a Simulink Function in a Model.
+
+For more information, see Simulink Functions Overview.
+
+**Tip**
+
+You can use a Function Caller block to call a function outside of
+the model hierarchy.
+
+For more information, see Simulink Function Blocks in Referenced Models.
+
+### Code Generation with Simulink Function and Function Caller Blocks
+
+If you have Simulink
+Coder™ or Embedded Coder®, you can generate code from models containing Simulink functions. For more information, see Simulink Function Blocks and Code Generation (Embedded Coder) and Configure Entry-Point Function Interfaces for Simulink Function and Function Caller Blocks (Embedded Coder).

@@ -10,70 +10,6 @@ language: en
 
 # Zero-Pole
 
-Model system using zero-pole-gain transfer function
-
-## Libraries
-
-Simulink / Continuous
-
-## Description
-
-The Zero-Pole block models a system that you define by specifying the zeros,
-poles, and gain of a Laplace-domain transfer function. You can use this block to model
-single-input single-output (SISO) and single-input multiple-output (SIMO)
-systems.
-
-The Zero-Pole block has these requirements:
-
-- The transfer function must have the form
-
-  H(s)=KZ(s)P(s)=K(s−Z(1))(s−Z(2))…(s−Z(m))(s−P(1))(s−P(2))…(s−P(n)),
-
-  where *Z* represents the zeros, *P*
-  represents the poles, and *K* represents the gain of the
-  transfer function.
-- The number of poles must be greater than or equal to the number of
-  zeros.
-- Complex poles and zeros must be complex-conjugate pairs.
-- For a multiple-output system, all transfer functions must have the same
-  poles. The zeros can differ in value, but the number of zeros for each
-  transfer function must be the same.
-
-**Tip**
-
-To model a multiple-output system in which the transfer functions have different
-numbers of zeros or a single zero each, use multiple Zero-Pole
-blocks.
-
-### Model Single-Output Systems
-
-A single-output system has scalar time-domain input and output signals. To model this type
-of system:
-
-1. Enter a vector for the zeros of the transfer function
-   in the **Zeros** field.
-2. Enter a vector for the poles of the transfer function
-   in the **Poles** field.
-3. Enter a scalar for the gain of the transfer function in the
-   **Gain** field.
-
-### Model Multiple-Output Systems
-
-A multiple-output system has a scalar time-domain input signal and a vector time-domain
-output signal. Each element in the vector output is an output of the system. To
-model this type of system:
-
-1. Enter a matrix of zeros in the **Zeros** field.
-
-   Each column of the matrix contains the zeros of a transfer function that relates the
-   system input signal to one of the elements in the output signal.
-2. Enter a vector for the poles common to all transfer
-   functions of the system in the **Poles** field.
-3. Enter a vector of gains in the **Gain** field.
-
-   Each element is the gain of the corresponding transfer function in the zeros
-   matrix.
-
 ## Ports
 
 ### Input
@@ -265,6 +201,10 @@ programmatically, use the `get_param` function.
 **Example:** `set_param("MyModel/Descriptor
 State-Space",ContinuousStateAttributes={'position','velocity'})`
 
+## Libraries
+
+Simulink / Continuous
+
 ## Block Characteristics
 
 |  |  |
@@ -301,3 +241,63 @@ produces an approximate discretization.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Model system using zero-pole-gain transfer function
+
+The Zero-Pole block models a system that you define by specifying the zeros,
+poles, and gain of a Laplace-domain transfer function. You can use this block to model
+single-input single-output (SISO) and single-input multiple-output (SIMO)
+systems.
+
+The Zero-Pole block has these requirements:
+
+- The transfer function must have the form
+
+  H(s)=KZ(s)P(s)=K(s−Z(1))(s−Z(2))…(s−Z(m))(s−P(1))(s−P(2))…(s−P(n)),
+
+  where *Z* represents the zeros, *P*
+  represents the poles, and *K* represents the gain of the
+  transfer function.
+- The number of poles must be greater than or equal to the number of
+  zeros.
+- Complex poles and zeros must be complex-conjugate pairs.
+- For a multiple-output system, all transfer functions must have the same
+  poles. The zeros can differ in value, but the number of zeros for each
+  transfer function must be the same.
+
+**Tip**
+
+To model a multiple-output system in which the transfer functions have different
+numbers of zeros or a single zero each, use multiple Zero-Pole
+blocks.
+
+### Model Single-Output Systems
+
+A single-output system has scalar time-domain input and output signals. To model this type
+of system:
+
+1. Enter a vector for the zeros of the transfer function
+   in the **Zeros** field.
+2. Enter a vector for the poles of the transfer function
+   in the **Poles** field.
+3. Enter a scalar for the gain of the transfer function in the
+   **Gain** field.
+
+### Model Multiple-Output Systems
+
+A multiple-output system has a scalar time-domain input signal and a vector time-domain
+output signal. Each element in the vector output is an output of the system. To
+model this type of system:
+
+1. Enter a matrix of zeros in the **Zeros** field.
+
+   Each column of the matrix contains the zeros of a transfer function that relates the
+   system input signal to one of the elements in the output signal.
+2. Enter a vector for the poles common to all transfer
+   functions of the system in the **Poles** field.
+3. Enter a vector of gains in the **Gain** field.
+
+   Each element is the gain of the corresponding transfer function in the zeros
+   matrix.

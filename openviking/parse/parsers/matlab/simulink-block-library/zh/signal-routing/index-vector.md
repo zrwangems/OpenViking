@@ -11,23 +11,6 @@ chinese_source: official
 
 # Index Vector
 
-基于第一个输入的值在不同输入之间切换输出
-
-## 所属库
-
-Simulink / Signal Routing HDL Coder / Signal Routing
-
-## 描述
-
-Index Vector 模块是特殊配置的 Multiport Switch 模块，需要指定一个数据输入，控制输入从 0 开始。模块输出是其索引与控制输入匹配的输入向量的元素。例如，如果输入向量为 `[18 15 17 10]`，控制输入为 `3`，则与索引 3（从 0 开始）匹配的元素为 10，它将成为输出值。
-
-Index Vector 和 Multiport Switch 模块是同一模块的替代配置。
-
-- Index Vector - 基于第一个输入的值在不同输入之间切换输出。
-- Multiport Switch - 基于控制信号选择输出信号。
-
-要将 Multiport Switch 模块配置为 Index Vector 模块，请将**数据端口数量**设置为 **1** 且**数据端口顺序**设置为**从 0 开始连续**。
-
 ## 端口
 
 ### 输入
@@ -295,6 +278,10 @@ Index Vector 和 Multiport Switch 模块是同一模块的替代配置。
 | **值：**`'on'` | `'off'` |
 | **默认值：**`'off'` |
 
+## 所属库
+
+Simulink / Signal Routing HDL Coder / Signal Routing
+
 ## 模块特性
 
 |  |  |
@@ -319,6 +306,19 @@ Index Vector 模块是一个 Multiport Switch 模块，其**数据端口数量**
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
+
+## 描述
+
+基于第一个输入的值在不同输入之间切换输出
+
+Index Vector 模块是特殊配置的 Multiport Switch 模块，需要指定一个数据输入，控制输入从 0 开始。模块输出是其索引与控制输入匹配的输入向量的元素。例如，如果输入向量为 `[18 15 17 10]`，控制输入为 `3`，则与索引 3（从 0 开始）匹配的元素为 10，它将成为输出值。
+
+Index Vector 和 Multiport Switch 模块是同一模块的替代配置。
+
+- Index Vector - 基于第一个输入的值在不同输入之间切换输出。
+- Multiport Switch - 基于控制信号选择输出信号。
+
+要将 Multiport Switch 模块配置为 Index Vector 模块，请将**数据端口数量**设置为 **1** 且**数据端口顺序**设置为**从 0 开始连续**。

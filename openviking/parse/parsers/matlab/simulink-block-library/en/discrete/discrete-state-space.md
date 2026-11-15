@@ -10,54 +10,6 @@ language: en
 
 # Discrete State-Space
 
-Implement discrete state-space system
-
-## Libraries
-
-Simulink / Discrete Simulink / Quick Insert / Discrete HDL Coder / RCP and HIL
-
-## Description
-
-### Block Behavior for Non-Empty Matrices
-
-The Discrete State-Space block implements the system described by
-
-x(n+1)=Ax(n)+Bu(n)y(n)=Cx(n)+Du(n),
-
-where *u* is the input, *x* is the state, and
-*y* is the output. The matrix coefficients must have these
-characteristics, as illustrated in the following diagram:
-
-- **A** must be an
-  *n*-by-*n* matrix, where
-  *n* is the number of states.
-- **B** must be an
-  *n*-by-*m* matrix, where
-  *m* is the number of inputs.
-- **C** must be an
-  *r*-by-*n* matrix, where
-  *r* is the number of outputs.
-- **D** must be an
-  *r*-by-*m* matrix.
-
-The block accepts one input and generates one output. The width of the input
-vector is the number of columns in the **B** and
-**D** matrices. The width of the output vector is the number of
-rows in the **C** and **D** matrices. To define
-the initial state vector, use the **Initial conditions**
-parameter.
-
-To specify a vector or matrix of zeros for **A**,
-**B**, **C**, **D**, or
-**Initial conditions**, use the `zeros` function.
-
-### Block Behavior for Empty Matrices
-
-When the matrices **A**, **B**,
-and **C** are empty (for example, `[]`),
-the functionality of the block becomes `y(n) = Du(n)`.
-If the **Initial conditions** vector is also empty, the block uses an initial state vector of zeros.
-
 ## Ports
 
 ### Input
@@ -221,6 +173,10 @@ To enable this parameter, specify a value for **State name**. This parameter app
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Discrete Simulink / Quick Insert / Discrete HDL Coder / RCP and HIL
+
 ## Block Characteristics
 
 |  |  |
@@ -260,3 +216,47 @@ By default, the following HDL block property is available.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Implement discrete state-space system
+
+### Block Behavior for Non-Empty Matrices
+
+The Discrete State-Space block implements the system described by
+
+x(n+1)=Ax(n)+Bu(n)y(n)=Cx(n)+Du(n),
+
+where *u* is the input, *x* is the state, and
+*y* is the output. The matrix coefficients must have these
+characteristics, as illustrated in the following diagram:
+
+- **A** must be an
+  *n*-by-*n* matrix, where
+  *n* is the number of states.
+- **B** must be an
+  *n*-by-*m* matrix, where
+  *m* is the number of inputs.
+- **C** must be an
+  *r*-by-*n* matrix, where
+  *r* is the number of outputs.
+- **D** must be an
+  *r*-by-*m* matrix.
+
+The block accepts one input and generates one output. The width of the input
+vector is the number of columns in the **B** and
+**D** matrices. The width of the output vector is the number of
+rows in the **C** and **D** matrices. To define
+the initial state vector, use the **Initial conditions**
+parameter.
+
+To specify a vector or matrix of zeros for **A**,
+**B**, **C**, **D**, or
+**Initial conditions**, use the `zeros` function.
+
+### Block Behavior for Empty Matrices
+
+When the matrices **A**, **B**,
+and **C** are empty (for example, `[]`),
+the functionality of the block becomes `y(n) = Du(n)`.
+If the **Initial conditions** vector is also empty, the block uses an initial state vector of zeros.

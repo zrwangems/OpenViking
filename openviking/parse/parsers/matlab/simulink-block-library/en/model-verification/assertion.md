@@ -10,19 +10,6 @@ language: en
 
 # Assertion
 
-Check whether signal is zero
-
-## Libraries
-
-Simulink / Model Verification HDL Coder / Model Verification
-
-## Description
-
-The Assertion block checks whether any of the elements of the input
-signal are `0`. If all of the elements are nonzero, the assertion is
-`true (1)` and the block does nothing. If not, the block halts the
-simulation and returns an error message by default.
-
 ## Ports
 
 ### Input
@@ -105,6 +92,10 @@ the `set_param` function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
 
+## Libraries
+
+Simulink / Model Verification HDL Coder / Model Verification
+
 ## Block Characteristics
 
 |  |  |
@@ -148,3 +139,12 @@ implementation and synthesized logic.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Check whether signal is zero
+
+The Assertion block checks whether any of the elements of the input
+signal are `0`. If all of the elements are nonzero, the assertion is
+`true (1)` and the block does nothing. If not, the block halts the
+simulation and returns an error message by default.

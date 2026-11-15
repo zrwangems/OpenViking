@@ -10,20 +10,6 @@ language: en
 
 # Data Type Scaling Strip
 
-Remove scaling and map to built in integer
-
-## Libraries
-
-Simulink / Signal Attributes
-
-## Description
-
-The Data Type Scaling Strip block strips the scaling off a fixed-point
-signal. It maps the input data type to the smallest built-in data type that has enough
-data bits to hold the input. The stored integer value of the input is the value of the
-output. The output always has nominal scaling (slope = 1.0 and bias = 0.0), so the
-output does not distinguish between real world value and stored integer value.
-
 ## Ports
 
 ### Input
@@ -45,6 +31,14 @@ built-in data type, and the same dimensions as the input.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
 
+## Parameters
+
+Not documented in R2025b.
+
+## Libraries
+
+Simulink / Signal Attributes
+
 ## Block Characteristics
 
 |  |  |
@@ -64,3 +58,13 @@ built-in data type, and the same dimensions as the input.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Remove scaling and map to built in integer
+
+The Data Type Scaling Strip block strips the scaling off a fixed-point
+signal. It maps the input data type to the smallest built-in data type that has enough
+data bits to hold the input. The stored integer value of the input is the value of the
+output. The output always has nominal scaling (slope = 1.0 and bias = 0.0), so the
+output does not distinguish between real world value and stored integer value.

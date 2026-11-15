@@ -10,36 +10,6 @@ language: en
 
 # Check Dynamic Range
 
-Check that signal falls inside range of amplitudes that varies from time step to time step
-
-## Libraries
-
-Simulink / Model Verification HDL Coder / Model Verification
-
-## Description
-
-The Check Dynamic Range block checks that a signal falls inside a range of
-values at each time step and executes an assertion after comparison. The width of the
-range can vary from time step to time step. The **u** port is the
-tested input signal. The **min** and **max** ports are
-the lower and upper bounds of the range, respectively, where both
-**min** and **max** are exclusive. If
-**u** is between **max** and
-**min**, the assertion is `true (1)` and the block
-does nothing. If not, the block halts the simulation and returns an error message by
-default.
-
-The input signals can be scalars, vectors, or matrices. All three input signals must
-be the same data type. The block compares the value of **u** to the
-bounds differently depending on the signal.
-
-- When comparing scalars to vectors or matrices, the block compares the
-  scalar signal to each element of the non-scalar signal.
-- When comparing vectors or matrix signals to other vectors or matrices, the
-  block checks the inputs element-by-element.
-- For models with more than one vector or matrix input signal, the vectors
-  or matrices must have the same dimensions.
-
 ## Ports
 
 ### Input
@@ -162,6 +132,10 @@ the assertion condition.
 | **Values:** `"graphic"` | `"text"` |
 | **Default:** `"graphic"` |
 
+## Libraries
+
+Simulink / Model Verification HDL Coder / Model Verification
+
 ## Block Characteristics
 
 |  |  |
@@ -203,3 +177,29 @@ implementation and synthesized logic.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Check that signal falls inside range of amplitudes that varies from time step to time step
+
+The Check Dynamic Range block checks that a signal falls inside a range of
+values at each time step and executes an assertion after comparison. The width of the
+range can vary from time step to time step. The **u** port is the
+tested input signal. The **min** and **max** ports are
+the lower and upper bounds of the range, respectively, where both
+**min** and **max** are exclusive. If
+**u** is between **max** and
+**min**, the assertion is `true (1)` and the block
+does nothing. If not, the block halts the simulation and returns an error message by
+default.
+
+The input signals can be scalars, vectors, or matrices. All three input signals must
+be the same data type. The block compares the value of **u** to the
+bounds differently depending on the signal.
+
+- When comparing scalars to vectors or matrices, the block compares the
+  scalar signal to each element of the non-scalar signal.
+- When comparing vectors or matrix signals to other vectors or matrices, the
+  block checks the inputs element-by-element.
+- For models with more than one vector or matrix input signal, the vectors
+  or matrices must have the same dimensions.

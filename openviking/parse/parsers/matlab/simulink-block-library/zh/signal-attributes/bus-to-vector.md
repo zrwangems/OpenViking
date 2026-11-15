@@ -11,18 +11,6 @@ chinese_source: official
 
 # Bus to Vector
 
-将虚拟总线转换为向量
-
-## 所属库
-
-Simulink / Signal Attributes HDL Coder / Signal Attributes
-
-## 描述
-
-Bus to Vector 模块将虚拟总线转换为向量。Bus to Vector 模块仅用于将隐式的总线到向量转换替换为显式转换。
-
-不接受总线的模块可能隐式将总线转换为向量。当总线被视为向量时，总线元素变得不可访问。要识别和更正用作向量的总线，请使用模型顾问检查检查被视为向量的总线信号或函数 `Simulink.BlockDiagram.addBusToVector`。
-
 ## 端口
 
 ### 输入
@@ -41,6 +29,14 @@ Bus to Vector 模块将虚拟总线转换为向量。Bus to Vector 模块仅用�
 
 **数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
 **复数支持:** 是
+
+## 参数
+
+R2025b 官方文档未提供。
+
+## 所属库
+
+Simulink / Signal Attributes HDL Coder / Signal Attributes
 
 ## 模块特性
 
@@ -80,6 +76,14 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 实际数据类型或功能支持取决于模块实现。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2007a 中推出**
+
+## 描述
+
+将虚拟总线转换为向量
+
+Bus to Vector 模块将虚拟总线转换为向量。Bus to Vector 模块仅用于将隐式的总线到向量转换替换为显式转换。
+
+不接受总线的模块可能隐式将总线转换为向量。当总线被视为向量时，总线元素变得不可访问。要识别和更正用作向量的总线，请使用模型顾问检查检查被视为向量的总线信号或函数 `Simulink.BlockDiagram.addBusToVector`。

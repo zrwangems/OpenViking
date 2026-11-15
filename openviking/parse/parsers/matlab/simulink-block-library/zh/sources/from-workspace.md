@@ -11,26 +11,6 @@ chinese_source: official
 
 # From Workspace
 
-将信号数据从工作区加载到 Simulink 模型中
-
-## 所属库
-
-Simulink / Sources
-
-## 描述
-
-From Workspace 模块将数据从工作区读入 Simulink® 模型，并在模块的输出端以信号或非虚拟总线形式提供数据。您可以从基础工作区、模型工作区或封装工作区加载数据。您可以使用 From Workspace 模块将信号数据从引用模型或子系统可访问的工作区加载到模型层次结构中的任何模型或子系统中。
-
-您可以指定模块如何从工作区数据构造输出，包括输出采样周期、内插和外插行为，以及是否使用过零检测。
-
-From Workspace 模块图标显示**数据**参数的值。例如，如果您使用 From Workspace 模块加载变量 *x* 中的数据，并且指定 `x` 作为**数据**参数的值，则该模块将显示 `x`。
-
-### 指定要加载的数据
-
-使用**数据**参数指定要加载的 From Workspace 模块的数据。您可以将**数据**参数的值指定为 MATLAB® 表达式，例如变量名称。**数据**参数中的表达式的计算结果必须为 From Workspace 模块支持的格式的数据。有关如何计算表达式的详细信息，请参阅符号解析。
-
-From Workspace 模块不从数据字典加载数据。使用数据字典仅存储模型的设计数据，不存储仿真输入数据。您可以在数据字典中存储与 From Workspace 模块相关的设计数据，例如**采样时间**参数的值。
-
 ## 端口
 
 ### 输出
@@ -234,6 +214,10 @@ From Workspace 模块使用**数据插值**和**最终数据值之后的输出**
 
 **示例:** `set_param("myModel/From Workspace","OutputAfterFinalValue","Holding final value")` configures the From Workspace block named `From Workspace` in the model `myModel` to use the final input data value as the output value for time steps that occur after the last time value in the input data.
 
+## 所属库
+
+Simulink / Sources
+
 ## 模块特性
 
 |  |  |
@@ -259,7 +243,7 @@ From Workspace 模块使用**数据插值**和**最终数据值之后的输出**
 
 通过使用 Fixed-Point Designer™ 创建的 `fi` (Fixed-Point Designer) 对象支持输入。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2006a 之前推出**
 
@@ -291,3 +275,19 @@ From Workspace 模块支持加载字符串数据。当使用 From Workspace 模�
 
 - 只有信号值可以具有 `string` 数据类型。时间值必须具有 `double` 数据类型。
 - 使用数组以外的格式，如 `timeseries` 或结构体。数组格式不支持除 `double` 以外的任何数据类型。
+
+## 描述
+
+将信号数据从工作区加载到 Simulink 模型中
+
+From Workspace 模块将数据从工作区读入 Simulink® 模型，并在模块的输出端以信号或非虚拟总线形式提供数据。您可以从基础工作区、模型工作区或封装工作区加载数据。您可以使用 From Workspace 模块将信号数据从引用模型或子系统可访问的工作区加载到模型层次结构中的任何模型或子系统中。
+
+您可以指定模块如何从工作区数据构造输出，包括输出采样周期、内插和外插行为，以及是否使用过零检测。
+
+From Workspace 模块图标显示**数据**参数的值。例如，如果您使用 From Workspace 模块加载变量 *x* 中的数据，并且指定 `x` 作为**数据**参数的值，则该模块将显示 `x`。
+
+### 指定要加载的数据
+
+使用**数据**参数指定要加载的 From Workspace 模块的数据。您可以将**数据**参数的值指定为 MATLAB® 表达式，例如变量名称。**数据**参数中的表达式的计算结果必须为 From Workspace 模块支持的格式的数据。有关如何计算表达式的详细信息，请参阅符号解析。
+
+From Workspace 模块不从数据字典加载数据。使用数据字典仅存储模型的设计数据，不存储仿真输入数据。您可以在数据字典中存储与 From Workspace 模块相关的设计数据，例如**采样时间**参数的值。

@@ -10,77 +10,6 @@ language: en
 
 # Waveform Generator
 
-Output waveforms using signal notations
-
-## Libraries
-
-Simulink / Sources
-
-## Description
-
-The Waveform Generator block outputs waveforms based on signal
-notations that you enter in the **Waveform Definition** table.
-
-This block supports these syntaxes for the signal notations:
-
-- Function syntax — Specify all arguments in the specific order for the
-  signal syntax (see Algorithms).
-- Name-value syntax — Specify optional comma-separated pairs of
-  `Name,Value` arguments. `Name` is the
-  argument name and `Value` is the corresponding value.
-  `Name` must appear inside single quotes (`'
-  '`). You can specify several name and value pair arguments in any
-  order as `Name1,Value1,...,NameN,ValueN`. For more information,
-  see Algorithms.
-
-This block supports normal, accelerator, and rapid accelerator modes and fast restart.
-
-### Supported Operators
-
-| Operation | Operator |
-| --- | --- |
-| Absolute value | `abs()` |
-| Addition | `+` |
-| Division | `/` |
-| Multiplication | `*` |
-| Parentheses | `()` |
-| Subtraction | `-` |
-| Unary minus | `-` |
-
-The Waveform block observes the following rules of operator precedence:
-
-1. `( )`
-2. `+ -` (unary)
-3. `* /`
-4. `+ -`
-
-### Supported Operations
-
-The Waveform Generator block outputs one signal at a time. You can change
-this output signal. Express frequency and phase offset parameters in radians. You
-can also:
-
-- Nest signal notations, for example:
-
-  ```
-  sin('Amplitude',sin('Amplitude',1,'Frequency',1,'Phase',0),'Frequency',1,'Phase',1)
-  ```
-- Reference real scalar variables in the base or model workspace, for
-  example:
-
-  ```
-  sin('Amplitude',x,'Frequency',y,'Phase',z)
-  ```
-
-  *x*, *y*, and *z* exist
-  in the base workspace.
-
-For more information on waveforms, see Algorithms.
-
-To quickly determine the response of a system to different types of inputs, you can vary
-the output signal of the Waveform Generator block while a simulation
-is in progress.
-
 ## Ports
 
 ### Output
@@ -333,6 +262,10 @@ for more information.
 | **Values**: scalar |
 | **Default**: `'0.1'` |
 
+## Libraries
+
+Simulink / Sources
+
 ## Block Characteristics
 
 |  |  |
@@ -354,3 +287,70 @@ Not recommended for production code.
 ## Version History
 
 **Introduced in R2015b**
+
+## Description
+
+Output waveforms using signal notations
+
+The Waveform Generator block outputs waveforms based on signal
+notations that you enter in the **Waveform Definition** table.
+
+This block supports these syntaxes for the signal notations:
+
+- Function syntax — Specify all arguments in the specific order for the
+  signal syntax (see Algorithms).
+- Name-value syntax — Specify optional comma-separated pairs of
+  `Name,Value` arguments. `Name` is the
+  argument name and `Value` is the corresponding value.
+  `Name` must appear inside single quotes (`'
+  '`). You can specify several name and value pair arguments in any
+  order as `Name1,Value1,...,NameN,ValueN`. For more information,
+  see Algorithms.
+
+This block supports normal, accelerator, and rapid accelerator modes and fast restart.
+
+### Supported Operators
+
+| Operation | Operator |
+| --- | --- |
+| Absolute value | `abs()` |
+| Addition | `+` |
+| Division | `/` |
+| Multiplication | `*` |
+| Parentheses | `()` |
+| Subtraction | `-` |
+| Unary minus | `-` |
+
+The Waveform block observes the following rules of operator precedence:
+
+1. `( )`
+2. `+ -` (unary)
+3. `* /`
+4. `+ -`
+
+### Supported Operations
+
+The Waveform Generator block outputs one signal at a time. You can change
+this output signal. Express frequency and phase offset parameters in radians. You
+can also:
+
+- Nest signal notations, for example:
+
+  ```
+  sin('Amplitude',sin('Amplitude',1,'Frequency',1,'Phase',0),'Frequency',1,'Phase',1)
+  ```
+- Reference real scalar variables in the base or model workspace, for
+  example:
+
+  ```
+  sin('Amplitude',x,'Frequency',y,'Phase',z)
+  ```
+
+  *x*, *y*, and *z* exist
+  in the base workspace.
+
+For more information on waveforms, see Algorithms.
+
+To quickly determine the response of a system to different types of inputs, you can vary
+the output signal of the Waveform Generator block while a simulation
+is in progress.

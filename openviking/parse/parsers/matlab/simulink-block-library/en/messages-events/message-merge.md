@@ -10,26 +10,6 @@ language: en
 
 # Message Merge
 
-Combine message paths
-
-## Libraries
-
-Simulink / Messages & Events
-
-## Description
-
-The Message Merge block graphically combines multiple message lines into a
-single message line. Merging message lines does not change the messages themselves. You can
-specify the number of message lines to merge.
-
-Use this block when you want to merge multiple incoming messages and output to a single
-destination such as a queue or a message storage block.
-
-**Note**
-
-Message Merge block is not supported for code generation in AUTOSAR
-mode.
-
 ## Ports
 
 ### Input
@@ -68,6 +48,10 @@ Determines the number of message input ports to be combined.
 | **Values**: `'2'` | scalar |
 | **Default**: `'2'` |
 
+## Libraries
+
+Simulink / Messages & Events
+
 ## Block Characteristics
 
 |  |  |
@@ -85,3 +69,19 @@ Determines the number of message input ports to be combined.
 ## Version History
 
 **Introduced in R2021a**
+
+## Description
+
+Combine message paths
+
+The Message Merge block graphically combines multiple message lines into a
+single message line. Merging message lines does not change the messages themselves. You can
+specify the number of message lines to merge.
+
+Use this block when you want to merge multiple incoming messages and output to a single
+destination such as a queue or a message storage block.
+
+**Note**
+
+Message Merge block is not supported for code generation in AUTOSAR
+mode.

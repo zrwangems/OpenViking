@@ -10,36 +10,9 @@ language: en
 
 # Sequence Viewer
 
-Display messages, events, states, transitions, and functions between blocks during simulation
+## Ports
 
-## Libraries
-
-Simulink / Messages & Events Simulink Test SimEvents Stateflow
-
-## Description
-
-The Sequence Viewer block displays messages, events, states,
-transitions, and functions between certain blocks during simulation. The blocks that you
-can display are called *lifeline blocks* and include:
-
-- Subsystems
-- Referenced models
-- Blocks that contain messages, such as Stateflow® charts
-- Blocks that call functions or generate events, such as Function
-  Caller, Function-Call Generator, and MATLAB
-  Function blocks
-- Blocks that contain functions, such as Function-Call Subsystem
-  and Simulink Function blocks
-
-To see states, transitions, and events for lifeline blocks in a referenced model, you
-must have a Sequence Viewer block in the referenced model. Without a
-Sequence Viewer block in the referenced model, you can see only
-messages and functions for lifeline blocks in the referenced model.
-
-**Note**
-
-The Sequence Viewer block does not display function calls generated
-by MATLAB Function blocks and S-functions.
+Not documented in R2025b.
 
 ## Parameters
 
@@ -88,6 +61,10 @@ even if they occur at the same simulation time.
 | **Values**: `"1000"` | scalar |
 | **Default**: `"1000"` |
 
+## Libraries
+
+Simulink / Messages & Events Simulink Test SimEvents Stateflow
+
 ## Block Characteristics
 
 |  |  |
@@ -108,3 +85,30 @@ is not included in the generated code.
 ## Version History
 
 **Introduced in R2015b**
+
+## Description
+
+Display messages, events, states, transitions, and functions between blocks during simulation
+
+The Sequence Viewer block displays messages, events, states,
+transitions, and functions between certain blocks during simulation. The blocks that you
+can display are called *lifeline blocks* and include:
+
+- Subsystems
+- Referenced models
+- Blocks that contain messages, such as Stateflow® charts
+- Blocks that call functions or generate events, such as Function
+  Caller, Function-Call Generator, and MATLAB
+  Function blocks
+- Blocks that contain functions, such as Function-Call Subsystem
+  and Simulink Function blocks
+
+To see states, transitions, and events for lifeline blocks in a referenced model, you
+must have a Sequence Viewer block in the referenced model. Without a
+Sequence Viewer block in the referenced model, you can see only
+messages and functions for lifeline blocks in the referenced model.
+
+**Note**
+
+The Sequence Viewer block does not display function calls generated
+by MATLAB Function blocks and S-functions.

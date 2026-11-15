@@ -10,24 +10,6 @@ language: en
 
 # Extract Diagonal
 
-Extract main diagonal of input matrix
-
-## Libraries
-
-Simulink / Matrix Operations
-
-## Description
-
-The Extract Diagonal block populates the unoriented output vector with
-the elements on the main diagonal of the *M*-by-*N*
-input matrix `A`.
-
-Equivalent MATLAB® code is given by:
-
-```
-D = diag(A)
-```
-
 ## Ports
 
 ### Input
@@ -50,6 +32,14 @@ output vector has length `min(M,N)`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **Complex Number Support:** Yes
+
+## Parameters
+
+Not documented in R2025b.
+
+## Libraries
+
+Simulink / Matrix Operations
 
 ## Block Characteristics
 
@@ -78,3 +68,17 @@ conditions.
 ### R2021b: Extract Diagonal Block Moved to Simulink Matrix Operations Library
 
 The Extract Diagonal block has been moved from the **DSP System Toolbox** > **Math Functions** > **Matrices and Linear Algebra** > **Matrix Operations** library to the **Simulink** > **Matrix Operations**library. All existing models continue to work.
+
+## Description
+
+Extract main diagonal of input matrix
+
+The Extract Diagonal block populates the unoriented output vector with
+the elements on the main diagonal of the *M*-by-*N*
+input matrix `A`.
+
+Equivalent MATLAB® code is given by:
+
+```
+D = diag(A)
+```

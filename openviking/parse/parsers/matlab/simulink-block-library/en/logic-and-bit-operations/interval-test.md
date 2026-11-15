@@ -10,23 +10,6 @@ language: en
 
 # Interval Test
 
-Determine if signal is in specified interval
-
-## Libraries
-
-Simulink / Logic and Bit Operations
-
-## Description
-
-The Interval Test block outputs true (`1`) if the
-input is between the values specified by the **Lower limit** and
-**Upper limit** parameters. The block outputs false
-(`0`) if the input is outside those values. The output of the block
-when the input is equal to the **Lower limit** or the **Upper
-limit** is determined by whether you select the **Interval closed
-on left** and **Interval closed on right** check
-boxes.
-
 ## Ports
 
 ### Input
@@ -128,6 +111,10 @@ Specify the output data type as `boolean` or
 | **Values:** `'boolean' | 'uint8'` |
 | **Default:** `'boolean'` |
 
+## Libraries
+
+Simulink / Logic and Bit Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -205,3 +192,16 @@ the fields are populated with the corresponding values.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Determine if signal is in specified interval
+
+The Interval Test block outputs true (`1`) if the
+input is between the values specified by the **Lower limit** and
+**Upper limit** parameters. The block outputs false
+(`0`) if the input is outside those values. The output of the block
+when the input is equal to the **Lower limit** or the **Upper
+limit** is determined by whether you select the **Interval closed
+on left** and **Interval closed on right** check
+boxes.

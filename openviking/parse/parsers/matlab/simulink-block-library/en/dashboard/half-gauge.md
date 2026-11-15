@@ -10,46 +10,9 @@ language: en
 
 # Half Gauge
 
-Display input value on semicircular scale
+## Ports
 
-## Libraries
-
-Simulink / Dashboard
-
-## Description
-
-The Half Gauge block displays the connected signal on a semicircular
-scale during simulation. You can use the Half Gauge block with other
-Dashboard blocks to build an interactive dashboard of controls and indicators for your
-model. The Half Gauge block provides an indication of the instantaneous
-value of the connected signal throughout simulation. You can modify the range of the
-Half Gauge block to fit your data. You can also customize the
-appearance of the Half Gauge block to provide more information about your
-signal. For example, you can color-code in-specification and out-of-specification
-ranges.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
-use connect mode. To enter connect mode on an unconnected block, pause on the block you want
-to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a display block to a signal in your model or change the connection of a display
-block, enter connect mode. Select the signal line to which you want to connect. From the
-list that appears, select the signal to which you want to connect. Then, pause on the
-dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
-connected block, run the simulation.
-
-For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-This animation shows how to connect the Half Gauge block to your
-model.
-
-An unconnected Half Gauge block connects to the signal that a Sine Wave block sends to a Display block.
+Not documented in R2025b.
 
 ## Parameters
 
@@ -286,6 +249,10 @@ Specify the `FontColor` parameter for the block as a `1`-by-`3` `[r g b]` vector
 | **Block Parameter:** `FontColor` |
 | **Type:** `[r g b]` vector |
 
+## Libraries
+
+Simulink / Dashboard
+
 ## Block Characteristics
 
 |  |  |
@@ -305,3 +272,40 @@ Dashboard blocks are ignored for code generation.
 ## Version History
 
 **Introduced in R2015a**
+
+## Description
+
+Display input value on semicircular scale
+
+The Half Gauge block displays the connected signal on a semicircular
+scale during simulation. You can use the Half Gauge block with other
+Dashboard blocks to build an interactive dashboard of controls and indicators for your
+model. The Half Gauge block provides an indication of the instantaneous
+value of the connected signal throughout simulation. You can modify the range of the
+Half Gauge block to fit your data. You can also customize the
+appearance of the Half Gauge block to provide more information about your
+signal. For example, you can color-code in-specification and out-of-specification
+ranges.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
+use connect mode. To enter connect mode on an unconnected block, pause on the block you want
+to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a display block to a signal in your model or change the connection of a display
+block, enter connect mode. Select the signal line to which you want to connect. From the
+list that appears, select the signal to which you want to connect. Then, pause on the
+dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
+connected block, run the simulation.
+
+For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+This animation shows how to connect the Half Gauge block to your
+model.
+
+An unconnected Half Gauge block connects to the signal that a Sine Wave block sends to a Display block.

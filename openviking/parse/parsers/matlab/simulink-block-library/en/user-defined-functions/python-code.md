@@ -10,33 +10,6 @@ language: en
 
 # Python Code
 
-Integrate native Python code into a Simulink model
-
-## Libraries
-
-Simulink / User-Defined Functions
-
-## Description
-
-The Python Code block integrates native Python® code into a Simulink® model. Use this block to import external code and customize the integration of
-your code by specifying the block interface and writing Python code for block initialization, output, and termination.
-
-The Python Code block supports initializing persistent data. Persistent
-data can include a Python class object. Use persistent variables that store Python objects to preserve state values between time steps.
-
-For steps to integrate your Python code using this block, see Integrate Python Code into Simulink Using Python Code Block.
-
-**Note**
-
-You must have a compatible version of Python installed in your system to use this block. This might involve installing the
-corresponding Python development headers in Linux and Mac. You must set the
-`ExecutionMode` of Python in MATLAB as `InProcess`. For
-more information, see Configure Your System to Use Python.
-
-Python Code is not supported for simulation inside a Dataflow Subsystem. It is also not
-supported for simulation in rapid accelerator mode when placed within a For Each
-Subsystem
-
 ## Ports
 
 ### Input
@@ -182,6 +155,10 @@ Termination code that the block executes one time at the end of simulation.
 | **Value:** `""` | `Python code` |
 | **Default:** `""` |
 
+## Libraries
+
+Simulink / User-Defined Functions
+
 ## Block Characteristics
 
 |  |  |
@@ -205,3 +182,26 @@ built along with the python development headers and link to Python interpreter.
 ## Version History
 
 **Introduced in R2025a**
+
+## Description
+
+Integrate native Python code into a Simulink model
+
+The Python Code block integrates native Python® code into a Simulink® model. Use this block to import external code and customize the integration of
+your code by specifying the block interface and writing Python code for block initialization, output, and termination.
+
+The Python Code block supports initializing persistent data. Persistent
+data can include a Python class object. Use persistent variables that store Python objects to preserve state values between time steps.
+
+For steps to integrate your Python code using this block, see Integrate Python Code into Simulink Using Python Code Block.
+
+**Note**
+
+You must have a compatible version of Python installed in your system to use this block. This might involve installing the
+corresponding Python development headers in Linux and Mac. You must set the
+`ExecutionMode` of Python in MATLAB as `InProcess`. For
+more information, see Configure Your System to Use Python.
+
+Python Code is not supported for simulation inside a Dataflow Subsystem. It is also not
+supported for simulation in rapid accelerator mode when placed within a For Each
+Subsystem

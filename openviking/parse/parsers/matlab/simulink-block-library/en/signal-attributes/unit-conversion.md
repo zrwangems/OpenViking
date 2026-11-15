@@ -10,27 +10,6 @@ language: en
 
 # Unit Conversion
 
-Convert units
-
-## Libraries
-
-Simulink / Signal Attributes
-
-## Description
-
-The Unit Conversion block converts the unit of the input signal to the output
-signal. The block can perform the conversion if the units are separated by a scaling
-factor or offset, or are inverse units, for example:
-
-- *y* = *a*\**U*
-- *y* =
-  *a*\**U*+*b*, where
-  *a* is the scale and *b* is the
-  offset
-- *y* = *a*/*U*
-
-This block supports normal, accelerator, and rapid accelerator modes and fast restart.
-
 ## Ports
 
 ### Input
@@ -74,6 +53,10 @@ Specify the output data type.
 | **Values:** `'Inherit via internal rule' | 'Inherit via back propagation'` |
 | **Default:** `'Inherit via internal rule'` |
 
+## Libraries
+
+Simulink / Signal Attributes
+
 ## Block Characteristics
 
 |  |  |
@@ -93,3 +76,20 @@ Specify the output data type.
 ## Version History
 
 **Introduced in R2016a**
+
+## Description
+
+Convert units
+
+The Unit Conversion block converts the unit of the input signal to the output
+signal. The block can perform the conversion if the units are separated by a scaling
+factor or offset, or are inverse units, for example:
+
+- *y* = *a*\**U*
+- *y* =
+  *a*\**U*+*b*, where
+  *a* is the scale and *b* is the
+  offset
+- *y* = *a*/*U*
+
+This block supports normal, accelerator, and rapid accelerator modes and fast restart.

@@ -10,37 +10,6 @@ language: en
 
 # Dot Product
 
-Generate dot product of two vectors
-
-## Libraries
-
-Simulink / Math Operations HDL Coder / Math Operations
-
-## Description
-
-The Dot Product block generates the dot product of the input vectors. The
-scalar output, `y`, is equal to the MATLAB® operation
-
-```
-y = sum(conj(u1) .* u2 )
-```
-
-where `u1` and `u2` represent the input vectors. The
-inputs can be vectors, column vectors (single-column matrices), or scalars. If both
-inputs are vectors or column vectors, they must be the same length. If
-`u1` and `u2` are both column vectors, the block
-outputs the equivalent of the MATLAB expression `u1'*u2`.
-
-The elements of the input vectors can be real- or complex-valued signals. The signal
-type (complex or real) of the output depends on the signal types of the inputs.
-
-| Input 1 | Input 2 | Output |
-| --- | --- | --- |
-| real | real | real |
-| real | complex | complex |
-| complex | real | complex |
-| complex | complex | complex |
-
 ## Ports
 
 ### Input
@@ -296,6 +265,10 @@ the `set_param` function.
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **Values:** | `'off'` (default) | `'on'` |
 
+## Libraries
+
+Simulink / Math Operations HDL Coder / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -343,3 +316,30 @@ implementation and synthesized logic.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Generate dot product of two vectors
+
+The Dot Product block generates the dot product of the input vectors. The
+scalar output, `y`, is equal to the MATLAB® operation
+
+```
+y = sum(conj(u1) .* u2 )
+```
+
+where `u1` and `u2` represent the input vectors. The
+inputs can be vectors, column vectors (single-column matrices), or scalars. If both
+inputs are vectors or column vectors, they must be the same length. If
+`u1` and `u2` are both column vectors, the block
+outputs the equivalent of the MATLAB expression `u1'*u2`.
+
+The elements of the input vectors can be real- or complex-valued signals. The signal
+type (complex or real) of the output depends on the signal types of the inputs.
+
+| Input 1 | Input 2 | Output |
+| --- | --- | --- |
+| real | real | real |
+| real | complex | complex |
+| complex | real | complex |
+| complex | complex | complex |

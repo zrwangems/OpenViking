@@ -10,43 +10,6 @@ language: en
 
 # MATLAB System
 
-Include System object in model
-
-## Libraries
-
-Simulink / User-Defined Functions HDL Coder / User-Defined Functions
-
-## Description
-
-The MATLAB System block brings existing System objects (based on `matlab.System`) into Simulink®. It also enables you to use System object APIs to develop new blocks for
-Simulink. For more information on this block, see Create Custom Blocks Using MATLAB System Block and System objects.
-
-For interpreted execution, the model simulates the block using the MATLAB® execution engine.
-
-For code generation, the model simulates the block using code generation (using the
-subset of MATLAB code supported for code generation). The MATLAB System
-block supports only a subset of the functions available in MATLAB. See Functions and Objects Supported for C/C++ Code Generation for a complete
-list of functions. These functions include those in common categories, such as:
-
-- Array vs. Matrix Operations,
-  like `plus`, `minus`, and
-  `power`
-- Matrix operations, like `size` and `length`
-- Advanced matrix operations, like `lu`, `inv`, `svd`, and `chol`
-- Trigonometric functions, like `sin`, `cos`, `sinh`, and `cosh`
-
-By default, the block recognizes 1-D input signals and propagates 1-D output signals
-as 2-D. Use the `supports1DVectorsImpl` method to enable the block to recognize and
-propagate 1-D inputs and outputs as 1-D signals.
-
-Starting in R2025a, the block supports unbounded variable-size signals at its input
-and output ports. For more information about unbounded variable-size signals, see Unbounded Variable-Size Signals.
-
-### System Objects
-
-To use the MATLAB System block, you must first have a new
-System object™ or use an existing one. For more information, see Author Blocks Using MATLAB System Objects.
-
 ## Ports
 
 ### Input
@@ -229,6 +192,10 @@ Select which fixed-point math settings to use.
 This check box appears when you use the `showFiSettingsImpl`
 method in the System object.
 
+## Libraries
+
+Simulink / User-Defined Functions HDL Coder / User-Defined Functions
+
 ## Block Characteristics
 
 |  |  |
@@ -337,3 +304,36 @@ unbounded variable-size signals, see Unbounded Variable-Size Signals.
 Report runtime errors for MATLAB System blocks when simulating in
 rapid accelerator mode by setting the **Enable memory integrity checks**
 configuration parameter to `Always on`.
+
+## Description
+
+Include System object in model
+
+The MATLAB System block brings existing System objects (based on `matlab.System`) into Simulink®. It also enables you to use System object APIs to develop new blocks for
+Simulink. For more information on this block, see Create Custom Blocks Using MATLAB System Block and System objects.
+
+For interpreted execution, the model simulates the block using the MATLAB® execution engine.
+
+For code generation, the model simulates the block using code generation (using the
+subset of MATLAB code supported for code generation). The MATLAB System
+block supports only a subset of the functions available in MATLAB. See Functions and Objects Supported for C/C++ Code Generation for a complete
+list of functions. These functions include those in common categories, such as:
+
+- Array vs. Matrix Operations,
+  like `plus`, `minus`, and
+  `power`
+- Matrix operations, like `size` and `length`
+- Advanced matrix operations, like `lu`, `inv`, `svd`, and `chol`
+- Trigonometric functions, like `sin`, `cos`, `sinh`, and `cosh`
+
+By default, the block recognizes 1-D input signals and propagates 1-D output signals
+as 2-D. Use the `supports1DVectorsImpl` method to enable the block to recognize and
+propagate 1-D inputs and outputs as 1-D signals.
+
+Starting in R2025a, the block supports unbounded variable-size signals at its input
+and output ports. For more information about unbounded variable-size signals, see Unbounded Variable-Size Signals.
+
+### System Objects
+
+To use the MATLAB System block, you must first have a new
+System object™ or use an existing one. For more information, see Author Blocks Using MATLAB System Objects.

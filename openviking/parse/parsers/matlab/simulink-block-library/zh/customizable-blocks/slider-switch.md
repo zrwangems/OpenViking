@@ -11,91 +11,13 @@ chinese_source: worker-translation
 
 # Slider Switch
 
+## 端口
 
-
-使用具有可自定义外观的开关更改参数或变量值
-
-## 库
-
-Simulink / Dashboard / Customizable Blocks
-
-## 说明
-
-使用 Slider Switch 模块在仿真前或仿真期间更改所连接变量或参数的值。当您在 Customizable Blocks 库中使用 Slider Switch 模块时，可以自定义模块外观，使其看起来像系统中的真实开关。您可以将开关配置为具有任意数量的状态以自定义行为。例如，可以设计三向拨动开关或变速箱。将 Slider Switch 模块与其他仪表板模块一起使用，为模型创建交互式仪表板。
-
-真实滑动开关具有多个设置。Slider Switch 模块将这些设置视为不同状态。一个状态将状态值与图像、点击区域以及显示在点击区域上的状态标签配对。
-
-要在仿真期间激活某个状态，请点击该状态的点击区域。要在仿真未运行时激活某个状态，请点击 Slider Switch 模块以选择该模块，然后点击该状态的点击区域。当您激活该状态时，状态值将分配给 Slider Switch 模块所连接的 Simulink® 框图元素。
-
-**注意**
-
-- 在仿真期间双击已连接的 Slider Switch 模块，或在点击该模块后双击，不会打开 Block Parameters 对话框。要打开 Block Parameters 对话框，请按 **Shift**，然后双击该模块。
-- 在仿真期间点击已连接的 Slider Switch 模块既会选中模块，也会移动开关。要在不移动开关的情况下选中模块，请按 **Shift**，然后点击该模块。
-
-### 自定义 Slider Switch 模块
-
-将 Slider Switch 模块添加到模型时，该模块预配置了默认设计。您可以使用默认设计的模块，也可以自定义模块外观。
-
-要自定义模块外观，请使用设计模式。选择模块后，可以通过以下三种方式之一进入设计模式：
-
-- 在 Simulink Toolstrip 中，在模块特定选项卡上的 **Design** 下，点击 **Edit**。
-- 在 Property Inspector 中，在 **Design** 选项卡上，点击 **Edit**。
-- 暂停在模块上出现的省略号上，然后点击 Edit Custom Block 按钮。
-
-在设计模式下，可以使用模块上方的工具栏自定义滑动开关。要访问其他自定义选项或为设计设置输入精确值，请使用 Property Inspector 中的 **Design** 选项卡。
-
-设计模式下的可自定义 Slider Switch 模块，其中工具栏和 Property Inspector 中的 Design 选项卡可见。
-
-自定义 Slider Switch 模块时，需要为每个状态配置模块外观。要选择要自定义的状态，请使用工具栏中的下拉列表。或者，在 **Design** 选项卡上，选择 **States** 组件，然后从 **Select State** 列表中选择。要添加状态，请在工具栏中点击 Add State 按钮。要删除状态，请点击 Remove State 按钮。
-
-**用于自定义所选状态的设计模式操作**
-
-| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
-| --- | --- | --- |
-| 指定状态值。 | No | Yes |
-| 指定状态标签文本和颜色。 | No | Yes |
-| 添加或删除状态。 | Yes | Yes |
-| 上传定义模块在该状态下外观的状态图像。 | Yes | Yes |
-| 更改状态图像和点击区域的大小。 | No | Yes |
-| 更改状态标签、状态图像和点击区域的位置。 | No | Yes |
-
-除了使用工具栏和 **Design** 选项卡自定义模块设计外，还可以在画布中以交互方式调整组件大小和重新定位组件。要调整特定于某个状态的组件（如状态图像）的大小，请在工具栏中选择该状态，然后调整组件大小或重新定位组件。
-
-**适用于所有状态的设计模式操作**
-
-| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
-| --- | --- | --- |
-| 上传背景图像。 | No | Yes |
-| 设置纯色背景色。 | No | Yes |
-| 上传前景图像。 | No | Yes |
-
-完成设计编辑后，要退出设计模式，请点击画布右上角的 **X**。
-
-### 连接仪表板模块
-
-仪表板模块不使用端口连接到模型元素。要连接仪表板模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后点击 Connect 按钮。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
-
-要将控制模块连接到模型中的参数或更改控制模块的连接，请进入连接模式。选择要连接其参数的模块。从出现的列表中，选择要连接到的参数。然后，暂停在仪表板模块上，并点击 Done Connecting 按钮。
-
-在更新模型图之前，控制模块无法连接到由变量定义的参数。要在仿真未运行时连接到由变量定义的参数，或修改定义已连接参数值的变量值，请按 **Ctrl+D** 更新模型图。
-
-可以连接到具有标量值的参数，也可以连接到矩阵或结构体的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
-
-还可以将仪表板模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画显示如何将 Slider Switch 模块连接到模型。
-
-未连接的 Slider Switch 模块连接到 Constant 模块。
-
-### 参数记录
-
-连接到仪表板模块的可调参数会记录到 Simulation Data Inspector，您可以在其中查看参数值以及记录的信号数据。可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB® 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出 `Simulink.SimulationData.Dataset` 中的元素访问。
+R2025b 官方文档未提供。
 
 ## 参数
 
 使用 Property Inspector 和 Block Parameters 对话框指定模块参数的值。要设置仪表板模块的核心参数，请使用 Block Parameters 对话框或 Property Inspector 中的 **Parameters** 选项卡。要自定义模块，请使用 Property Inspector 中的 **Design** 选项卡。要打开模块的 Block Parameters 对话框，请双击该模块。要打开 Property Inspector，请在 **Modeling** 选项卡上的 **Design** 下，选择 **Property Inspector**。
-
-## 参数
 
 要设置仪表板模块的核心参数，请打开 Property Inspector，然后点击 **Parameters** 选项卡。
 
@@ -400,6 +322,10 @@ switchStates = [leftState rightState];
 
 选择此参数可在使用 Property Inspector 调整图像大小时保持纵横比。
 
+## 所属库
+
+Simulink / Dashboard / Customizable Blocks
+
 ## 模块特性
 
 |  |  |
@@ -533,3 +459,77 @@ switchStates = [leftState rightState];
 ### R2022a: 调整前景图像大小并重新定位
 
 Customizable Blocks 库中的模块具有添加前景图像作为模块设计一部分的选项。从 R2022a 开始，您可以在模块设计中旋转、调整大小和重新定位前景图像。
+
+## 描述
+
+使用具有可自定义外观的开关更改参数或变量值
+
+使用 Slider Switch 模块在仿真前或仿真期间更改所连接变量或参数的值。当您在 Customizable Blocks 库中使用 Slider Switch 模块时，可以自定义模块外观，使其看起来像系统中的真实开关。您可以将开关配置为具有任意数量的状态以自定义行为。例如，可以设计三向拨动开关或变速箱。将 Slider Switch 模块与其他仪表板模块一起使用，为模型创建交互式仪表板。
+
+真实滑动开关具有多个设置。Slider Switch 模块将这些设置视为不同状态。一个状态将状态值与图像、点击区域以及显示在点击区域上的状态标签配对。
+
+要在仿真期间激活某个状态，请点击该状态的点击区域。要在仿真未运行时激活某个状态，请点击 Slider Switch 模块以选择该模块，然后点击该状态的点击区域。当您激活该状态时，状态值将分配给 Slider Switch 模块所连接的 Simulink® 框图元素。
+
+**注意**
+
+- 在仿真期间双击已连接的 Slider Switch 模块，或在点击该模块后双击，不会打开 Block Parameters 对话框。要打开 Block Parameters 对话框，请按 **Shift**，然后双击该模块。
+- 在仿真期间点击已连接的 Slider Switch 模块既会选中模块，也会移动开关。要在不移动开关的情况下选中模块，请按 **Shift**，然后点击该模块。
+
+### 自定义 Slider Switch 模块
+
+将 Slider Switch 模块添加到模型时，该模块预配置了默认设计。您可以使用默认设计的模块，也可以自定义模块外观。
+
+要自定义模块外观，请使用设计模式。选择模块后，可以通过以下三种方式之一进入设计模式：
+
+- 在 Simulink Toolstrip 中，在模块特定选项卡上的 **Design** 下，点击 **Edit**。
+- 在 Property Inspector 中，在 **Design** 选项卡上，点击 **Edit**。
+- 暂停在模块上出现的省略号上，然后点击 Edit Custom Block 按钮。
+
+在设计模式下，可以使用模块上方的工具栏自定义滑动开关。要访问其他自定义选项或为设计设置输入精确值，请使用 Property Inspector 中的 **Design** 选项卡。
+
+设计模式下的可自定义 Slider Switch 模块，其中工具栏和 Property Inspector 中的 Design 选项卡可见。
+
+自定义 Slider Switch 模块时，需要为每个状态配置模块外观。要选择要自定义的状态，请使用工具栏中的下拉列表。或者，在 **Design** 选项卡上，选择 **States** 组件，然后从 **Select State** 列表中选择。要添加状态，请在工具栏中点击 Add State 按钮。要删除状态，请点击 Remove State 按钮。
+
+**用于自定义所选状态的设计模式操作**
+
+| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
+| --- | --- | --- |
+| 指定状态值。 | No | Yes |
+| 指定状态标签文本和颜色。 | No | Yes |
+| 添加或删除状态。 | Yes | Yes |
+| 上传定义模块在该状态下外观的状态图像。 | Yes | Yes |
+| 更改状态图像和点击区域的大小。 | No | Yes |
+| 更改状态标签、状态图像和点击区域的位置。 | No | Yes |
+
+除了使用工具栏和 **Design** 选项卡自定义模块设计外，还可以在画布中以交互方式调整组件大小和重新定位组件。要调整特定于某个状态的组件（如状态图像）的大小，请在工具栏中选择该状态，然后调整组件大小或重新定位组件。
+
+**适用于所有状态的设计模式操作**
+
+| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
+| --- | --- | --- |
+| 上传背景图像。 | No | Yes |
+| 设置纯色背景色。 | No | Yes |
+| 上传前景图像。 | No | Yes |
+
+完成设计编辑后，要退出设计模式，请点击画布右上角的 **X**。
+
+### 连接仪表板模块
+
+仪表板模块不使用端口连接到模型元素。要连接仪表板模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后点击 Connect 按钮。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
+
+要将控制模块连接到模型中的参数或更改控制模块的连接，请进入连接模式。选择要连接其参数的模块。从出现的列表中，选择要连接到的参数。然后，暂停在仪表板模块上，并点击 Done Connecting 按钮。
+
+在更新模型图之前，控制模块无法连接到由变量定义的参数。要在仿真未运行时连接到由变量定义的参数，或修改定义已连接参数值的变量值，请按 **Ctrl+D** 更新模型图。
+
+可以连接到具有标量值的参数，也可以连接到矩阵或结构体的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
+
+还可以将仪表板模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画显示如何将 Slider Switch 模块连接到模型。
+
+未连接的 Slider Switch 模块连接到 Constant 模块。
+
+### 参数记录
+
+连接到仪表板模块的可调参数会记录到 Simulation Data Inspector，您可以在其中查看参数值以及记录的信号数据。可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB® 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出 `Simulink.SimulationData.Dataset` 中的元素访问。

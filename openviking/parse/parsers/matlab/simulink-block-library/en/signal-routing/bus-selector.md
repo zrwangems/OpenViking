@@ -10,39 +10,6 @@ language: en
 
 # Bus Selector
 
-Select elements from input bus
-
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Signal Routing
-
-## Description
-
-The Bus Selector block extracts the elements you select by name from the
-input bus hierarchy. The block can output the selected elements separately or in a new virtual
-bus. When the block outputs the selected elements separately, each selected element
-corresponds to an output port. When the block outputs a new virtual bus, the block has one
-output port for the virtual bus that contains each selected element.
-
-While multiple elements can have the same name in different locations in the bus
-hierarchy, each element has a unique fully qualified name that the Bus Selector
-block uses. For example, the top-level bus and a nested bus can both have an element named
-`chirp`. The fully qualified name for the element in the top-level bus is
-`chirp`. The fully qualified name for the element in the nested bus is
-`nestedbus.chirp`, where `nestedbus` is the name of the
-nested bus.
-
-**Tip**
-
-For buses at subsystem and model interfaces, use In
-Bus Element blocks instead of an Inport block with a Bus
-Selector block. In Bus Element blocks:
-
-- Reduce line complexity and clutter in a block diagram.
-- Allow you to more easily change the interface incrementally.
-- Allow access to a bus element closer to the point of usage, avoiding the use of a
-  Bus Selector and Goto block configuration.
-
 ## Ports
 
 ### Input
@@ -234,6 +201,10 @@ the `set_param` function.
 
 **Example:** `set_param(gcb,'OutputAsBus','on')`
 
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Signal Routing
+
 ## Block Characteristics
 
 |  |  |
@@ -392,3 +363,32 @@ selected output elements side by side, click Change layout.
 
 The horizontal layout more closely mimics the previous Bus Selector
 block dialog box design.
+
+## Description
+
+Select elements from input bus
+
+The Bus Selector block extracts the elements you select by name from the
+input bus hierarchy. The block can output the selected elements separately or in a new virtual
+bus. When the block outputs the selected elements separately, each selected element
+corresponds to an output port. When the block outputs a new virtual bus, the block has one
+output port for the virtual bus that contains each selected element.
+
+While multiple elements can have the same name in different locations in the bus
+hierarchy, each element has a unique fully qualified name that the Bus Selector
+block uses. For example, the top-level bus and a nested bus can both have an element named
+`chirp`. The fully qualified name for the element in the top-level bus is
+`chirp`. The fully qualified name for the element in the nested bus is
+`nestedbus.chirp`, where `nestedbus` is the name of the
+nested bus.
+
+**Tip**
+
+For buses at subsystem and model interfaces, use In
+Bus Element blocks instead of an Inport block with a Bus
+Selector block. In Bus Element blocks:
+
+- Reduce line complexity and clutter in a block diagram.
+- Allow you to more easily change the interface incrementally.
+- Allow access to a bus element closer to the point of usage, avoiding the use of a
+  Bus Selector and Goto block configuration.

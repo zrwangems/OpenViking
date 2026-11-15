@@ -10,49 +10,6 @@ language: en
 
 # Function-Call Generator
 
-Provide function-call events to control execution of subsystem or model
-
-## Libraries
-
-Simulink / Ports & Subsystems
-
-## Description
-
-The Function-Call Generator block provides function-call events that
-execute a function-call subsystem or function-call model at the rate you specify with
-the **Sample time** parameter. A function-call subsystem or
-function-call model is a subsystem or model containing a Trigger block
-with its **Trigger type** parameter set to
-`function-call`.
-
-To iteratively execute each function-call subsystem or function-call model multiple
-times at each time step, use the **Number of iterations**
-parameter.
-
-To execute multiple function-call subsystems or function-call models in a specified
-order, use the Function-Call Generator block with a Function-Call
-Split block. For an example, see Function-Call Split.
-
-To execute a function-call subsystem or function-call model intermittently, meaning
-not at every time step, select the **Show enable port** parameter. You
-can then use the input at the enable port to control when the block outputs
-function-call events. In effect, you can turn the block on and off as needed.
-
-**Note**
-
-Starting in R2025a, the Function-Call Generator block no longer
-behaves as a masked, linked block. To locate this block in a model programmatically,
-use the command `find_system('BlockType','FunctionCallGenerator')`.
-When you update from another release to R2025a, it is recommended that you fix any
-Function-Call Generator block whose link to a Simulink® library is broken. Otherwise, the block will not be updated, and it
-will continue to behave as a masked block in the updated model. The mask behavior of
-this block will be removed in a future release. For more information about
-identifying broken library links in a model, see Display Library Links.
-
-For versions prior to R2025a, to locate this block in a model programmatically,
-use the command `find_system('MaskType','Function-Call
-Generator')`.
-
 ## Ports
 
 ### Input
@@ -195,6 +152,10 @@ outputs function-call events at every time step.
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'off'` |
 
+## Libraries
+
+Simulink / Ports & Subsystems
+
 ## Block Characteristics
 
 |  |  |
@@ -219,3 +180,42 @@ The Function-Call Generator block now behaves as a built-in block.
 For versions prior to R2025a, the block behaves as a masked, linked block. This
 change in block behavior enables the block to execute faster during
 simulation.
+
+## Description
+
+Provide function-call events to control execution of subsystem or model
+
+The Function-Call Generator block provides function-call events that
+execute a function-call subsystem or function-call model at the rate you specify with
+the **Sample time** parameter. A function-call subsystem or
+function-call model is a subsystem or model containing a Trigger block
+with its **Trigger type** parameter set to
+`function-call`.
+
+To iteratively execute each function-call subsystem or function-call model multiple
+times at each time step, use the **Number of iterations**
+parameter.
+
+To execute multiple function-call subsystems or function-call models in a specified
+order, use the Function-Call Generator block with a Function-Call
+Split block. For an example, see Function-Call Split.
+
+To execute a function-call subsystem or function-call model intermittently, meaning
+not at every time step, select the **Show enable port** parameter. You
+can then use the input at the enable port to control when the block outputs
+function-call events. In effect, you can turn the block on and off as needed.
+
+**Note**
+
+Starting in R2025a, the Function-Call Generator block no longer
+behaves as a masked, linked block. To locate this block in a model programmatically,
+use the command `find_system('BlockType','FunctionCallGenerator')`.
+When you update from another release to R2025a, it is recommended that you fix any
+Function-Call Generator block whose link to a Simulink® library is broken. Otherwise, the block will not be updated, and it
+will continue to behave as a masked block in the updated model. The mask behavior of
+this block will be removed in a future release. For more information about
+identifying broken library links in a model, see Display Library Links.
+
+For versions prior to R2025a, to locate this block in a model programmatically,
+use the command `find_system('MaskType','Function-Call
+Generator')`.

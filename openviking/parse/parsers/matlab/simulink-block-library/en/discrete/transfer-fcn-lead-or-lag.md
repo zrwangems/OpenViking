@@ -10,22 +10,6 @@ language: en
 
 # Transfer Fcn Lead or Lag
 
-Implement discrete-time lead or lag compensator
-
-## Libraries
-
-Simulink / Discrete
-
-## Description
-
-The Transfer Fcn Lead or Lag block implements a discrete-time lead or lag
-compensator of the input. The instantaneous gain of the compensator is 1, and the DC
-gain is equal to `(1-z)/(1-p)`, where `z` is the zero
-and `p` is the pole of the compensator.
-
-The block implements a lead compensator when `0<z<p<1`, and
-implements a lag compensator when `0<p<z<1`.
-
 ## Ports
 
 ### Input
@@ -134,6 +118,10 @@ saturation code.
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Discrete
+
 ## Block Characteristics
 
 |  |  |
@@ -158,3 +146,15 @@ saturation code.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Implement discrete-time lead or lag compensator
+
+The Transfer Fcn Lead or Lag block implements a discrete-time lead or lag
+compensator of the input. The instantaneous gain of the compensator is 1, and the DC
+gain is equal to `(1-z)/(1-p)`, where `z` is the zero
+and `p` is the pole of the compensator.
+
+The block implements a lead compensator when `0<z<p<1`, and
+implements a lag compensator when `0<p<z<1`.

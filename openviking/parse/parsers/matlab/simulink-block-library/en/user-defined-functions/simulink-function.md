@@ -10,100 +10,6 @@ language: en
 
 # Simulink Function
 
-Define a function using Simulink blocks
-
-## Libraries
-
-Simulink / User-Defined Functions
-
-## Description
-
-A Simulink Function block is a Subsystem block preconfigured to enable implementation of a function using
-Simulink® blocks. To define and call a function using a Simulink
-Function block:
-
-- Specify the function prototype, which includes the function name and input
-  and output arguments, for example, `y = f(u)`.
-- Implement function behavior using blocks from the Simulink library.
-- Configure your Simulink Function block to be called and
-  reused anywhere in the model hierarchy.
-
-Simulink Function block with view of inside the subsystem.
-
-When a function is called, the caller sends data through input arguments to the
-function, executes the function based on the implemented behavior, and then receives
-data back from the function through output arguments.
-
-For more information, see Simulink Functions Overview.
-
-### Specify Function Prototype
-
-The function prototype is separate from the implementation of the function. It
-specifies the input and output arguments and how the function should be called from
-other blocks in the model hierarchy. Each input or output argument specified in the
-function prototype is represented by an Argument Inport block or Argument Outport block,
-respectively. You can edit the function prototype by double-clicking the text
-displayed on the block.
-
-### Implement Function Behavior
-
-To implement the desired behavior of your function, add any necessary Simulink blocks inside the subsystem. In addition to Argument
-Inport and Argument Outport blocks, a Simulink
-Function block can use Inport and Outport blocks to input and output data.
-
-For an example, see Monitor Ink Status on Shared Printer Using Simulink Functions.
-
-### Configure Simulink Function Block
-
-To configure a Simulink Function block, open the block parameters
-of the Trigger block located inside of the
-Simulink Function block.
-
-- **Function name** –
-  Specify the function name for the Simulink Function
-  block.
-- **Function visibility** – Select the scope visibility of
-  the function.
-
-  If **Function visibility** is set to
-  `port`, you can also specify these
-  parameters:
-
-  - **Execute function call asynchronously** – Specify
-    whether the function executes synchronously or
-    asynchronously.
-  - **Scope to port** – Specify the name of the
-    exporting function port.
-
-### Call a Simulink Function
-
-You can use a function caller and the function prototype to call and execute your
-function. A function defined in a Simulink Function block can be
-called from a Function
-Caller block, a Chart (Stateflow), a MATLAB Function block, a MATLAB System block, or an S-Function block.
-
-For more information, see Call a Simulink Function from a Model.
-
-### Model Considerations
-
-When using a Simulink Function block, consider whether your model
-requires persistence of states between functions calls or a continuous sample
-time.
-
-- Persistence of state between function calls – If a Simulink
-  Function block contains any blocks with state (for example,
-  Unit Delay or Memory blocks), then their
-  state values are persistent between calls to the function. If there are
-  multiple calls to that function, the state values are also persistent
-  between the calls originating from different callers.
-- Unable to inherit continuous sample time – A Simulink
-  Function block cannot inherit a continuous sample time.
-
-### Code Generation with Simulink Function Blocks
-
-If you have Simulink
-Coder™ or Embedded Coder®, you can generate code from models containing Simulink functions. For more information, see Simulink Function Blocks and Code Generation (Embedded Coder) and Configure Entry-Point Function Interfaces for Simulink Function and Function Caller Blocks (Embedded Coder).
-
 ## Ports
 
 ### Input
@@ -238,6 +144,10 @@ To configure the scope visibility and synchronicity of a Simulink
 Function block, open the block parameters of the Trigger block located inside of
 the Simulink Function block.
 
+## Libraries
+
+Simulink / User-Defined Functions
+
 ## Block Characteristics
 
 |  |  |
@@ -300,3 +210,93 @@ enter the port name in the **Scope to port** field. Use
 port-scoped Simulink Function blocks to implement functions called
 through exporting function ports created by Function Element blocks.
 See Model Client and Server Components Using Function Ports.
+
+## Description
+
+Define a function using Simulink blocks
+
+A Simulink Function block is a Subsystem block preconfigured to enable implementation of a function using
+Simulink® blocks. To define and call a function using a Simulink
+Function block:
+
+- Specify the function prototype, which includes the function name and input
+  and output arguments, for example, `y = f(u)`.
+- Implement function behavior using blocks from the Simulink library.
+- Configure your Simulink Function block to be called and
+  reused anywhere in the model hierarchy.
+
+Simulink Function block with view of inside the subsystem.
+
+When a function is called, the caller sends data through input arguments to the
+function, executes the function based on the implemented behavior, and then receives
+data back from the function through output arguments.
+
+For more information, see Simulink Functions Overview.
+
+### Specify Function Prototype
+
+The function prototype is separate from the implementation of the function. It
+specifies the input and output arguments and how the function should be called from
+other blocks in the model hierarchy. Each input or output argument specified in the
+function prototype is represented by an Argument Inport block or Argument Outport block,
+respectively. You can edit the function prototype by double-clicking the text
+displayed on the block.
+
+### Implement Function Behavior
+
+To implement the desired behavior of your function, add any necessary Simulink blocks inside the subsystem. In addition to Argument
+Inport and Argument Outport blocks, a Simulink
+Function block can use Inport and Outport blocks to input and output data.
+
+For an example, see Monitor Ink Status on Shared Printer Using Simulink Functions.
+
+### Configure Simulink Function Block
+
+To configure a Simulink Function block, open the block parameters
+of the Trigger block located inside of the
+Simulink Function block.
+
+- **Function name** –
+  Specify the function name for the Simulink Function
+  block.
+- **Function visibility** – Select the scope visibility of
+  the function.
+
+  If **Function visibility** is set to
+  `port`, you can also specify these
+  parameters:
+
+  - **Execute function call asynchronously** – Specify
+    whether the function executes synchronously or
+    asynchronously.
+  - **Scope to port** – Specify the name of the
+    exporting function port.
+
+### Call a Simulink Function
+
+You can use a function caller and the function prototype to call and execute your
+function. A function defined in a Simulink Function block can be
+called from a Function
+Caller block, a Chart (Stateflow), a MATLAB Function block, a MATLAB System block, or an S-Function block.
+
+For more information, see Call a Simulink Function from a Model.
+
+### Model Considerations
+
+When using a Simulink Function block, consider whether your model
+requires persistence of states between functions calls or a continuous sample
+time.
+
+- Persistence of state between function calls – If a Simulink
+  Function block contains any blocks with state (for example,
+  Unit Delay or Memory blocks), then their
+  state values are persistent between calls to the function. If there are
+  multiple calls to that function, the state values are also persistent
+  between the calls originating from different callers.
+- Unable to inherit continuous sample time – A Simulink
+  Function block cannot inherit a continuous sample time.
+
+### Code Generation with Simulink Function Blocks
+
+If you have Simulink
+Coder™ or Embedded Coder®, you can generate code from models containing Simulink functions. For more information, see Simulink Function Blocks and Code Generation (Embedded Coder) and Configure Entry-Point Function Interfaces for Simulink Function and Function Caller Blocks (Embedded Coder).

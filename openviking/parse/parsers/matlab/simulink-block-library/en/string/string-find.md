@@ -10,17 +10,6 @@ language: en
 
 # String Find
 
-Return index of first occurrence of pattern string
-
-## Libraries
-
-Simulink / String
-
-## Description
-
-The String Find block returns the index of the first occurrence of the
-pattern string **sub** in the text string **str**.
-
 ## Ports
 
 ### Input
@@ -96,6 +85,10 @@ information on using this parameter, see Specify Data Types Using Data Type Assi
 Clicking the **Show data type assistant** button
 enables this parameter.
 
+## Libraries
+
+Simulink / String
+
 ## Block Characteristics
 
 |  |  |
@@ -113,3 +106,10 @@ enables this parameter.
 ## Version History
 
 **Introduced in R2018a**
+
+## Description
+
+Return index of first occurrence of pattern string
+
+The String Find block returns the index of the first occurrence of the
+pattern string **sub** in the text string **str**.

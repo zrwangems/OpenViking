@@ -10,36 +10,6 @@ language: en
 
 # Compose String
 
-Compose output string signal based on specified format and input signals
-
-## Libraries
-
-Simulink / String
-
-## Description
-
-The Compose String block composes output string signal based on the
-format specifier listed in the **Format** parameter. The
-**Format** parameter determines the number of input signals. If
-there are multiple inputs, the block constructs the string by combining these multiple
-inputs in order, and applying the associated format specifier, one format specifier for
-each input. Each format specifier starts with a percent sign, `%`,
-followed by the conversion character. For example, `%f` formats the
-input as a floating point output. To supplement the string output, you can also add a
-character to the format specification. Use this block to compose and format an output
-string signal from a multiple inputs.
-
-For example, if the **Format** parameter contains `"%s is
-%f"`, the block expects two inputs, a string signal and a single or double
-signal. If the first input is the string `"Pi"` and the second input is
-a double value `3.14`, the output is `"Pi is
-3.14"`.
-
-When a MinGW® compiler compiles code generated from the block, running the compiled code
-may produce nonstandard results for floating-point inputs. For example, a numeric input
-of `501.987` returns the string `"5.019870e+002"`
-instead of the expected string `"5.019870e+02"`.
-
 ## Ports
 
 ### Input
@@ -144,6 +114,10 @@ Use the `stringtype` function, for example,
 Clicking the **Show data type assistant** button
 enables this parameter.
 
+## Libraries
+
+Simulink / String
+
 ## Block Characteristics
 
 |  |  |
@@ -161,3 +135,29 @@ enables this parameter.
 ## Version History
 
 **Introduced in R2018a**
+
+## Description
+
+Compose output string signal based on specified format and input signals
+
+The Compose String block composes output string signal based on the
+format specifier listed in the **Format** parameter. The
+**Format** parameter determines the number of input signals. If
+there are multiple inputs, the block constructs the string by combining these multiple
+inputs in order, and applying the associated format specifier, one format specifier for
+each input. Each format specifier starts with a percent sign, `%`,
+followed by the conversion character. For example, `%f` formats the
+input as a floating point output. To supplement the string output, you can also add a
+character to the format specification. Use this block to compose and format an output
+string signal from a multiple inputs.
+
+For example, if the **Format** parameter contains `"%s is
+%f"`, the block expects two inputs, a string signal and a single or double
+signal. If the first input is the string `"Pi"` and the second input is
+a double value `3.14`, the output is `"Pi is
+3.14"`.
+
+When a MinGW® compiler compiles code generated from the block, running the compiled code
+may produce nonstandard results for floating-point inputs. For example, a numeric input
+of `501.987` returns the string `"5.019870e+002"`
+instead of the expected string `"5.019870e+02"`.

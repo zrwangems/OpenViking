@@ -10,19 +10,6 @@ language: en
 
 # Identity Matrix
 
-Generate matrix with ones on main diagonal and ground values elsewhere
-
-## Libraries
-
-Simulink / Matrix Operations
-
-## Description
-
-The Identity Matrix block outputs an identity matrix, similar to the
-MATLAB®
-`eye` function. The block generates a square or rectangular matrix with ones on
-the main diagonal and zeros elsewhere.
-
 ## Ports
 
 ### Input
@@ -205,6 +192,10 @@ input port** check box.
 | **Values:** scalar or vector |
 | **Default:** `'1'` |
 
+## Libraries
+
+Simulink / Matrix Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -227,3 +218,12 @@ input port** check box.
 
 The Identity Matrix block has been removed from the **DSP System Toolbox** > **Math Functions** > **Matrices and Linear**  > **Matrix Operations** library. For equivalent functionality, use the Identity Matrix
 block in the **Simulink** > **Matrix Operations** library. All existing models continue to work.
+
+## Description
+
+Generate matrix with ones on main diagonal and ground values elsewhere
+
+The Identity Matrix block outputs an identity matrix, similar to the
+MATLAB®
+`eye` function. The block generates a square or rectangular matrix with ones on
+the main diagonal and zeros elsewhere.

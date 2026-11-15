@@ -10,45 +10,6 @@ language: en
 
 # Matrix Square
 
-Compute square of input matrix
-
-## Libraries
-
-Simulink / Matrix Operations
-
-## Description
-
-The Matrix Square block computes the square of an
-*M*-by-*N* input matrix, *u*, by
-premultiplying with the Hermitian transpose. The equivalent MATLAB® code is:
-
-```
-y = u' * u
-```
-
-The block treats length-*M*
-unoriented vector inputs as an
-*M*-by-1 matrix. When the input
-is an *M*-by-*N*
-matrix, the output of the block is an
-*N*-by-*N* matrix.
-
-### Applications
-
-The Matrix Square block can be used in a variety of applications:
-
-- General matrix squares — The Matrix
-  Square block computes the output matrix,
-  *y*, without explicitly forming
-  *u'*. It is therefore more efficient than other methods for computing the matrix square.
-- Sum of squares — When the input is a column vector
-  (*N*=1), the operation of the block is equivalent to a
-  multiply-accumulate (MAC) process, or inner product. The output is the sum
-  of the squares of the input, and is always a real scalar.
-- Correlation matrix — When the input
-  is a row vector (*M*=1), the
-  output, *y*, is the symmetric autocorrelation matrix, or outer product.
-
 ## Ports
 
 ### Input
@@ -273,6 +234,10 @@ To enable this parameter, set:
 - **Scaling** to `Binary
   point`
 
+## Libraries
+
+Simulink / Matrix Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -296,3 +261,38 @@ To enable this parameter, set:
 ### R2021b: Matrix Square Block Moved to Simulink Matrix Operations Library
 
 The Matrix Square block has been moved from the **DSP System Toolbox** > **Math Functions** > **Matrices and Linear Algebra** > **Matrix Operations** to the **Simulink** > **Matrix Operations**. All existing models continue to work.
+
+## Description
+
+Compute square of input matrix
+
+The Matrix Square block computes the square of an
+*M*-by-*N* input matrix, *u*, by
+premultiplying with the Hermitian transpose. The equivalent MATLAB® code is:
+
+```
+y = u' * u
+```
+
+The block treats length-*M*
+unoriented vector inputs as an
+*M*-by-1 matrix. When the input
+is an *M*-by-*N*
+matrix, the output of the block is an
+*N*-by-*N* matrix.
+
+### Applications
+
+The Matrix Square block can be used in a variety of applications:
+
+- General matrix squares — The Matrix
+  Square block computes the output matrix,
+  *y*, without explicitly forming
+  *u'*. It is therefore more efficient than other methods for computing the matrix square.
+- Sum of squares — When the input is a column vector
+  (*N*=1), the operation of the block is equivalent to a
+  multiply-accumulate (MAC) process, or inner product. The output is the sum
+  of the squares of the input, and is always a real scalar.
+- Correlation matrix — When the input
+  is a row vector (*M*=1), the
+  output, *y*, is the symmetric autocorrelation matrix, or outer product.

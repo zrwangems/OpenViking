@@ -10,51 +10,6 @@ language: en
 
 # Record
 
-View and log data to the workspace, a file, or both
-
-## Libraries
-
-Simulink / Sinks
-
-## Description
-
-Use the Record block or the XY Graph block to record data to
-the workspace, a file, or to both the workspace and a file. When you log data to a file, you
-can choose to log to a MAT file, an MLDATX file, an Excel® file, or a Parquet file *(since R2025a)*. Signals connected
-to a Record block always log to the Simulation Data Inspector. If you decide
-that you need to save data after simulation, you can export data from the
-Record block to the workspace or to any supported file type except a Parquet
-file.
-
-You can also use the Record block to visualize connected signals. To view
-data for signals connected to the Record block, double-click the block. You
-have access to simulation controls, such as the **Run** button, while viewing
-data in the Record block.
-
-By default, the Record block displays all connected signals on a sparklines
-plot. A sparkline is added for each connected signal. After sparklines fill the visible space,
-a scrollbar allows you to continue plotting signals.
-
-A model opened to view data logged by a Record block with the block parameters visible in the Property Inspector
-
-### Build Visualizations
-
-The Record block supports most visualizations available in the Simulation
-Data Inspector. When a different visualization makes sense for your data, you can modify the
-plot layout and plot types using the **Layouts** option and the plot types
-selector, labeled **Sparklines** by default. Use the
-**Layouts** list to select a layout of subplots. To change the plot type
-of a subplot, select the subplot then select the desired plot type from the plot types
-selector.
-
-For more information, see Log Data to the Workspace and a File Using the Record Block. For examples that show
-how to use each visualization type, see:
-
-- Sparklines — View Many Signals Together Using Sparklines
-- XY — Visualize Simulation Data on XY Plot and Analyze Data Using XY Plot
-- Map — View and Replay Map Data
-- Time plot and text editor — Create Plots Using the Simulation Data Inspector
-
 ## Ports
 
 ### Input
@@ -629,6 +584,10 @@ the `set_param` function.
 
 **Example:** `set_param("myModel/Record","ParquetRowGroupPolicy","sizeinmb","ParquetRowGroupsize","450")`
 
+## Libraries
+
+Simulink / Sinks
+
 ## Block Characteristics
 
 |  |  |
@@ -770,3 +729,44 @@ The **Logging intervals** parameter does not affect data logged to a
 file using the Record block or how signals are displayed in the
 Record block. You can also access complete signal data for signals
 connected to the Record block in the Simulation Data Inspector.
+
+## Description
+
+View and log data to the workspace, a file, or both
+
+Use the Record block or the XY Graph block to record data to
+the workspace, a file, or to both the workspace and a file. When you log data to a file, you
+can choose to log to a MAT file, an MLDATX file, an Excel® file, or a Parquet file *(since R2025a)*. Signals connected
+to a Record block always log to the Simulation Data Inspector. If you decide
+that you need to save data after simulation, you can export data from the
+Record block to the workspace or to any supported file type except a Parquet
+file.
+
+You can also use the Record block to visualize connected signals. To view
+data for signals connected to the Record block, double-click the block. You
+have access to simulation controls, such as the **Run** button, while viewing
+data in the Record block.
+
+By default, the Record block displays all connected signals on a sparklines
+plot. A sparkline is added for each connected signal. After sparklines fill the visible space,
+a scrollbar allows you to continue plotting signals.
+
+A model opened to view data logged by a Record block with the block parameters visible in the Property Inspector
+
+### Build Visualizations
+
+The Record block supports most visualizations available in the Simulation
+Data Inspector. When a different visualization makes sense for your data, you can modify the
+plot layout and plot types using the **Layouts** option and the plot types
+selector, labeled **Sparklines** by default. Use the
+**Layouts** list to select a layout of subplots. To change the plot type
+of a subplot, select the subplot then select the desired plot type from the plot types
+selector.
+
+For more information, see Log Data to the Workspace and a File Using the Record Block. For examples that show
+how to use each visualization type, see:
+
+- Sparklines — View Many Signals Together Using Sparklines
+- XY — Visualize Simulation Data on XY Plot and Analyze Data Using XY Plot
+- Map — View and Replay Map Data
+- Time plot and text editor — Create Plots Using the Simulation Data Inspector

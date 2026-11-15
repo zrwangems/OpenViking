@@ -10,27 +10,6 @@ language: en
 
 # Gain
 
-Multiply input by constant
-
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Math Operations HDL Coder / Commonly Used Blocks HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
-
-## Description
-
-The Gain block multiplies the input by a constant value, or gain. The input
-and the gain can each be a scalar, vector, or matrix.
-
-You specify the value of gain in the **Gain** parameter. The
-**Multiplication** parameter lets you specify element-wise or
-matrix multiplication. For matrix multiplication, this parameter also lets you indicate
-the order of the multiplicands.
-
-The gain is converted from doubles to the data type specified in the block mask offline
-using round-to-nearest and saturation. The input and gain are then multiplied, and the
-result is converted to the output data type using the specified rounding and overflow
-modes.
-
 ## Ports
 
 ### Input
@@ -570,6 +549,10 @@ the `set_param` function.
 | **Parameter:** | `ParamDataTypeStr` |
 | **Values:** | `'Inherit: Inherit via internal rule'` (default) | `'Inherit: Same as input'` | `'Inherit: Inherit from 'Gain''` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'fixdt(1,16)'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
 
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Math Operations HDL Coder / Commonly Used Blocks HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
+
 ## Block Characteristics
 
 |  |  |
@@ -643,3 +626,20 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Multiply input by constant
+
+The Gain block multiplies the input by a constant value, or gain. The input
+and the gain can each be a scalar, vector, or matrix.
+
+You specify the value of gain in the **Gain** parameter. The
+**Multiplication** parameter lets you specify element-wise or
+matrix multiplication. For matrix multiplication, this parameter also lets you indicate
+the order of the multiplicands.
+
+The gain is converted from doubles to the data type specified in the block mask offline
+using round-to-nearest and saturation. The input and gain are then multiplied, and the
+result is converted to the output data type using the specified rounding and overflow
+modes.

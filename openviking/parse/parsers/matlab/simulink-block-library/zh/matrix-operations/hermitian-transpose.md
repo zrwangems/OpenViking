@@ -11,16 +11,6 @@ chinese_source: official
 
 # Hermitian Transpose
 
-计算矩阵的埃尔米特转置
-
-## 所属库
-
-Simulink / Matrix Operations
-
-## 描述
-
-Hermitian Transpose 模块计算 *M*×*N* 矩阵的埃尔米特转置。
-
 ## 端口
 
 ### 输入
@@ -38,6 +28,14 @@ Hermitian Transpose 模块计算 *M*×*N* 矩阵的埃尔米特转置。
 
 **数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
+## 参数
+
+R2025b 官方文档未提供。
+
+## 所属库
+
+Simulink / Matrix Operations
+
 ## 模块特性
 
 |  |  |
@@ -52,6 +50,12 @@ Hermitian Transpose 模块计算 *M*×*N* 矩阵的埃尔米特转置。
 
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
-## 版本历史记录
+## 版本历史
 
 **在 R2021b 中推出**
+
+## 描述
+
+计算矩阵的埃尔米特转置
+
+Hermitian Transpose 模块计算 *M*×*N* 矩阵的埃尔米特转置。

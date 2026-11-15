@@ -10,138 +10,6 @@ language: en
 
 # Delay
 
-Delay input signal by fixed or variable sample periods
-
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Discrete DSP System Toolbox / Signal Operations HDL Coder / Commonly Used Blocks HDL Coder / Discrete
-
-## Description
-
-The Delay block outputs the input of the block after a delay. The block
-determines the delay time based on the value of the **Delay length**
-parameter. The block supports:
-
-- Variable delay length
-- Specification of the initial condition from an input port
-- State storage
-- Using a circular buffer instead of an array buffer for state storage
-- Resetting the state to the initial condition with an external reset
-  signal
-- Controlling execution of the block at every time step with an external enable
-  signal
-
-The initial block output depends on several factors such as the **Initial
-condition** parameter and the simulation start time. For more information,
-see Initial Block Output. The **External reset** parameter
-determines if the block output resets to the initial condition on triggering. The
-**Show enable port** parameter determines if the block execution is
-controlled in every time step by an external enable signal.
-
-### Initial Block Output
-
-The output in the first few time steps of the simulation depends on the block
-sample time, the delay length, and the simulation start time. The block supports
-specifying or inheriting discrete sample times to determine the time interval
-between samples. For more information, see Specify Sample Time.
-
-The table shows the Delay block output for the first few time steps with these
-settings. The block inherits a discrete sample time as
-`[Tsampling,Toffset]`,
-where `Tsampling` is the sampling period
-and `Toffset` is the initial time
-offset. *`n`* is the value of the **Delay
-length** parameter and
-`Tstart` is the simulation start
-time for the model
-
-| Simulation Time Range | Block Output |
-| --- | --- |
-| `(Tstart)` to `(Tstart + Toffset)` | Zero |
-| `(Tstart + Toffset)` to `(Tstart + Toffset + n * Tsampling)` | **Initial condition** parameter |
-| After `(Tstart + Toffset + n * Tsampling)` | Input signal |
-
-### Behavior with External Enable Signal
-
-Selecting the **Show enable port** check box enables the Enable
-port. If the enable port is enabled, the block operates in this order
-
-1. Checks if the enable condition is satisfied.
-2. If the reset port is enabled, checks the reset condition.
-3. Performs the Delay block functionality.
-
-The block has this operation with the Enable port:
-
-- At the first block enable, the block output is the initial condition value
-  (`x0`).
-- For consecutive enable signals, the block takes the last state of the
-  input signal u.
-- If the port is not enabled at the start of simulation, the
-  Delay block outputs `0`.
-- During simulation, if the port becomes disabled after having been enabled,
-  the block does not execute and holds its last value.
-
-### Variable-Size Support
-
-The Delay block provides the following support for variable-size
-signals:
-
-- The data input port `u` accepts variable-size signals.
-  The other input ports do not accept variable-size signals.
-- The output port has the same signal dimensions as the data input port
-  `u` for variable-size inputs.
-
-The rules that apply to variable-size signals depend on the input processing mode
-of the Delay block.
-
-| Input Processing Mode | Rules for Variable-Size Signal Support |
-| --- | --- |
-| `Elements as channels (sample based)` | - The signal dimensions change only during state reset   when the block is enabled. - The initial condition must be scalar. |
-| `Columns as channels (frame based)` | - No support |
-
-### Bus Support
-
-The Delay block provides the following support for bus
-signals:
-
-- The data input `u` accepts virtual and nonvirtual bus
-  signals. Other than input port `x0`, the other input ports
-  do not accept bus signals.
-- The initial condition `x0` port accepts nonvirtual bus
-  signals.
-- The output port has the same bus type as the data input port
-  `u` for bus inputs.
-- Buses work with:
-
-  - Sample-based and frame-based processing
-  - Fixed and variable delay length
-  - Array and circular buffers
-
-To use a bus signal as the input to a Delay block, specify the
-initial condition on the dialog box or through the `x0` port.
-Support for virtual and nonvirtual buses depends on the initial condition that you
-specify and whether the **State name** parameter is empty or not.
-For the `x0` input port, only nonvirtual buses are
-supported.
-
-| Initial Condition | State Name | |
-| --- | --- | --- |
-| Empty | Not Empty |
-| Zero | Virtual and nonvirtual bus support | Nonvirtual bus support only |
-| Nonzero scalar | Virtual and nonvirtual bus support | No bus support |
-| Nonscalar | No bus support | No bus support |
-| Structure | Virtual and nonvirtual bus support | Nonvirtual bus support only |
-| Partial structure | Virtual and nonvirtual bus support | Nonvirtual bus support only |
-
-### String Support
-
-The Delay block can accept and output string data type only
-if:
-
-- The block is configured for the default value of the **Initial
-  condition** parameter (0).
-- The **Delay length** value is 1 or less.
-
 ## Ports
 
 ### Input
@@ -552,6 +420,10 @@ To enable this parameter, specify a value for **State name**. This parameter app
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Discrete DSP System Toolbox / Signal Operations HDL Coder / Commonly Used Blocks HDL Coder / Discrete
+
 ## Block Characteristics
 
 |  |  |
@@ -678,3 +550,131 @@ You also use structures as the initial values in other delay blocks, including t
 ## Version History
 
 **Introduced before R2006a**
+
+## Description
+
+Delay input signal by fixed or variable sample periods
+
+The Delay block outputs the input of the block after a delay. The block
+determines the delay time based on the value of the **Delay length**
+parameter. The block supports:
+
+- Variable delay length
+- Specification of the initial condition from an input port
+- State storage
+- Using a circular buffer instead of an array buffer for state storage
+- Resetting the state to the initial condition with an external reset
+  signal
+- Controlling execution of the block at every time step with an external enable
+  signal
+
+The initial block output depends on several factors such as the **Initial
+condition** parameter and the simulation start time. For more information,
+see Initial Block Output. The **External reset** parameter
+determines if the block output resets to the initial condition on triggering. The
+**Show enable port** parameter determines if the block execution is
+controlled in every time step by an external enable signal.
+
+### Initial Block Output
+
+The output in the first few time steps of the simulation depends on the block
+sample time, the delay length, and the simulation start time. The block supports
+specifying or inheriting discrete sample times to determine the time interval
+between samples. For more information, see Specify Sample Time.
+
+The table shows the Delay block output for the first few time steps with these
+settings. The block inherits a discrete sample time as
+`[Tsampling,Toffset]`,
+where `Tsampling` is the sampling period
+and `Toffset` is the initial time
+offset. *`n`* is the value of the **Delay
+length** parameter and
+`Tstart` is the simulation start
+time for the model
+
+| Simulation Time Range | Block Output |
+| --- | --- |
+| `(Tstart)` to `(Tstart + Toffset)` | Zero |
+| `(Tstart + Toffset)` to `(Tstart + Toffset + n * Tsampling)` | **Initial condition** parameter |
+| After `(Tstart + Toffset + n * Tsampling)` | Input signal |
+
+### Behavior with External Enable Signal
+
+Selecting the **Show enable port** check box enables the Enable
+port. If the enable port is enabled, the block operates in this order
+
+1. Checks if the enable condition is satisfied.
+2. If the reset port is enabled, checks the reset condition.
+3. Performs the Delay block functionality.
+
+The block has this operation with the Enable port:
+
+- At the first block enable, the block output is the initial condition value
+  (`x0`).
+- For consecutive enable signals, the block takes the last state of the
+  input signal u.
+- If the port is not enabled at the start of simulation, the
+  Delay block outputs `0`.
+- During simulation, if the port becomes disabled after having been enabled,
+  the block does not execute and holds its last value.
+
+### Variable-Size Support
+
+The Delay block provides the following support for variable-size
+signals:
+
+- The data input port `u` accepts variable-size signals.
+  The other input ports do not accept variable-size signals.
+- The output port has the same signal dimensions as the data input port
+  `u` for variable-size inputs.
+
+The rules that apply to variable-size signals depend on the input processing mode
+of the Delay block.
+
+| Input Processing Mode | Rules for Variable-Size Signal Support |
+| --- | --- |
+| `Elements as channels (sample based)` | - The signal dimensions change only during state reset   when the block is enabled. - The initial condition must be scalar. |
+| `Columns as channels (frame based)` | - No support |
+
+### Bus Support
+
+The Delay block provides the following support for bus
+signals:
+
+- The data input `u` accepts virtual and nonvirtual bus
+  signals. Other than input port `x0`, the other input ports
+  do not accept bus signals.
+- The initial condition `x0` port accepts nonvirtual bus
+  signals.
+- The output port has the same bus type as the data input port
+  `u` for bus inputs.
+- Buses work with:
+
+  - Sample-based and frame-based processing
+  - Fixed and variable delay length
+  - Array and circular buffers
+
+To use a bus signal as the input to a Delay block, specify the
+initial condition on the dialog box or through the `x0` port.
+Support for virtual and nonvirtual buses depends on the initial condition that you
+specify and whether the **State name** parameter is empty or not.
+For the `x0` input port, only nonvirtual buses are
+supported.
+
+| Initial Condition | State Name | |
+| --- | --- | --- |
+| Empty | Not Empty |
+| Zero | Virtual and nonvirtual bus support | Nonvirtual bus support only |
+| Nonzero scalar | Virtual and nonvirtual bus support | No bus support |
+| Nonscalar | No bus support | No bus support |
+| Structure | Virtual and nonvirtual bus support | Nonvirtual bus support only |
+| Partial structure | Virtual and nonvirtual bus support | Nonvirtual bus support only |
+
+### String Support
+
+The Delay block can accept and output string data type only
+if:
+
+- The block is configured for the default value of the **Initial
+  condition** parameter (0).
+- The **Delay length** value is 1 or less.
