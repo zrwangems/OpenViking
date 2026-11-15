@@ -271,6 +271,7 @@ openviking_gateway = ["client-rules.json", "lua/*.lua"]
 "openviking.parse.parsers.code.ast" = ["assets/parsers.ghproxy.json"]
 openviking = [
     "parse/parsers/matlab/simulink-block-library/**/*.md",
+    "parse/parsers/matlab/simulink-block-library/*.json",
     "prompts/templates/**/*.yaml",
     "system_assets/**/*",
     "server/static/**/*",

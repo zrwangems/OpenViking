@@ -4,10 +4,13 @@
 
 from __future__ import annotations
 
-from openviking.parse.parsers.matlab.catalog import find_block
+from pathlib import Path
+
+from openviking.parse.parsers.matlab.catalog import find_block_reference
 from openviking.parse.parsers.matlab.library import (
     front_matter,
     read_block_document,
+    read_reference_document,
     section,
 )
 
@@ -21,12 +24,35 @@ def render_block_template(
     external library blocks return None and retain SourceBlock/parameters in SLX.
     Model identifiers and parameter values never pass through localization.
     """
-    match = find_block(block_type, source_block)
-    if not match:
+    reference = find_block_reference(block_type, source_block)
+    if not reference:
         return None
-    family, name = match
     chinese = str(language).lower().startswith("zh")
-    document = read_block_document(family, name, language=language)
+    name = reference.name
+    if not reference.full_document:
+        location = " / ".join(reference.library_path)
+        if chinese:
+            return name, (
+                f"官方产品：`{reference.product_name}`；原始目录：`{location}`；"
+                f"文档页标识：`{Path(reference.documentation_path).stem}`；基线：`R2025b`。\n\n"
+                f"官方英文摘要：{reference.summary}\n\n"
+                "完整中英文正文尚未抓取，此模板只包含官方清单元数据，不补写端口或参数。"
+            )
+        return name, (
+            f"Official product: `{reference.product_name}`; original category: `{location}`; "
+            f"documentation page: `{Path(reference.documentation_path).stem}`; release: `R2025b`.\n\n"
+            f"{reference.summary}\n\n"
+            "Full English and Chinese documentation is pending. This template contains "
+            "official catalog metadata only and does not invent ports or parameters."
+        )
+    if not reference.resource_path("en"):
+        return None
+    if reference.product_id == "simulink" and "Commonly Used Blocks" in source_block.split("/"):
+        document = read_block_document(
+            "browser/simulink/commonly-used-blocks", name, language=language
+        )
+    else:
+        document = read_reference_document(reference, language=language)
     category = front_matter(document, "official_category")
     page = front_matter(document, "documentation_page")
     release = front_matter(document, "documentation_release")

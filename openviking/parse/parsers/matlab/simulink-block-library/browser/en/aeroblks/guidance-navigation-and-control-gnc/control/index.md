@@ -1,0 +1,18 @@
+# Control
+
+- [1D Controller [A(v),B(v),C(v),D(v)]](1d-controller-a-v-b-v-c-v-d-v.md)
+- [1D Controller Blend u=(1-L).K1.y+L.K2.y](1d-controller-blend-u-1-l-k1-y-l-k2-y.md)
+- [1D Observer Form [A(v),B(v),C(v),F(v),H(v)]](1d-observer-form-a-v-b-v-c-v-f-v-h-v.md)
+- [1D Self-Conditioned [A(v),B(v),C(v),D(v)]](1d-self-conditioned-a-v-b-v-c-v-d-v.md)
+- [2D Controller [A(v),B(v),C(v),D(v)]](2d-controller-a-v-b-v-c-v-d-v.md)
+- [2D Controller Blend](2d-controller-blend.md)
+- [2D Observer Form [A(v),B(v),C(v),F(v),H(v)]](2d-observer-form-a-v-b-v-c-v-f-v-h-v.md)
+- [2D Self-Conditioned [A(v),B(v),C(v),D(v)]](2d-self-conditioned-a-v-b-v-c-v-d-v.md)
+- [3D Controller [A(v),B(v),C(v),D(v)]](3d-controller-a-v-b-v-c-v-d-v.md)
+- [3D Observer Form [A(v),B(v),C(v),F(v),H(v)]](3d-observer-form-a-v-b-v-c-v-f-v-h-v.md)
+- [3D Self-Conditioned [A(v),B(v),C(v),D(v)]](3d-self-conditioned-a-v-b-v-c-v-d-v.md)
+- [Gain Scheduled Lead-Lag](gain-scheduled-lead-lag.md)
+- [Interpolate Matrix(x)](interpolate-matrix-x.md)
+- [Interpolate Matrix(x,y)](interpolate-matrix-x-y.md)
+- [Interpolate Matrix(x,y,z)](interpolate-matrix-x-y-z.md)
+- [Self-Conditioned [A,B,C,D]](self-conditioned-a-b-c-d.md)

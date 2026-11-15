@@ -1,0 +1,15 @@
+# Multirate and Multistage Filters
+
+- [CIC Compensation Decimator](cic-compensation-decimator.md)
+- [CIC Compensation Interpolator](cic-compensation-interpolator.md)
+- [CIC Decimation](cic-decimation.md)
+- [CIC Interpolation](cic-interpolation.md)
+- [Digital Down-Converter](digital-down-converter.md)
+- [Digital Up-Converter](digital-up-converter.md)
+- [Farrow Rate Converter](farrow-rate-converter.md)
+- [FIR Decimation](fir-decimation.md)
+- [FIR Halfband Decimator](fir-halfband-decimator.md)
+- [FIR Halfband Interpolator](fir-halfband-interpolator.md)
+- [FIR Interpolation](fir-interpolation.md)
+- [FIR Rate Conversion](fir-rate-conversion.md)
+- [Two-Channel Analysis Subband Filter](two-channel-analysis-subband-filter.md)

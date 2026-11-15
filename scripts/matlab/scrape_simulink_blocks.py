@@ -110,8 +110,21 @@ def localized_content(html: bytes, entry: dict[str, str], language: str) -> tupl
         sections.append(("所属库" if language == "zh-CN" else "Libraries", library_text))
 
     allowed = ZH_SECTIONS if language == "zh-CN" else SECTIONS
-    for section in main.select("div.refsect1.description, div.ref_sect"):
+    candidates = main.select("div.refsect1.description, div.ref_sect, div.block_ref, div.refsect1")
+    for section in candidates:
+        # Some hardware-block pages wrap Description in block_ref and put
+        # Parameters in plain refsect1 containers. Do not render nested
+        # candidates twice when both an ancestor and child match.
         section_heading = section.find("h2", recursive=False)
+        if section_heading is not None and any(
+            parent in candidates
+            and parent.find("h2", recursive=False) is not None
+            and parent.find("h2", recursive=False).get_text(" ", strip=True)
+            == section_heading.get_text(" ", strip=True)
+            for parent in section.parents
+            if parent is not main
+        ):
+            continue
         if section_heading is None:
             continue
         title = section_heading.get_text(" ", strip=True)

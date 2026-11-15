@@ -7,7 +7,7 @@ from __future__ import annotations
 import zipfile
 from pathlib import Path
 
-from openviking.parse.parsers.matlab.catalog import find_block
+from openviking.parse.parsers.matlab.catalog import find_block, find_block_reference
 from openviking.parse.parsers.matlab.slx import System
 
 
@@ -21,12 +21,20 @@ def render_coverage(path: str | Path, model: System) -> str:
     path = Path(path)
     systems = list(_flatten(model))
     source_blocks = {
-        block.source_block: (block.block_type, find_block(block.block_type, block.source_block))
+        block.source_block: (
+            block.block_type,
+            find_block_reference(block.block_type, block.source_block),
+        )
         for system in systems
         for block in system.blocks
         if block.source_block
     }
-    standard = sorted(name for name, (_, match) in source_blocks.items() if match)
+    standard = sorted(
+        name for name, (_, match) in source_blocks.items() if match and match.full_document
+    )
+    metadata_only = sorted(
+        name for name, (_, match) in source_blocks.items() if match and not match.full_document
+    )
     external = sorted(name for name, (_, match) in source_blocks.items() if not match)
     with zipfile.ZipFile(path) as archive:
         names = archive.namelist()
@@ -52,11 +60,19 @@ def render_coverage(path: str | Path, model: System) -> str:
         "",
     ]
     lines.extend(
-        f"- `{name}`：已匹配本地 R2025b 块文档 `{match[0]}/{match[1]}`；实例参数保留在子系统页。"
-        for name, (_, match) in sorted(source_blocks.items())
-        if match
+        f"- `{name}`：已匹配本地 R2025b 完整块文档 `{find_block(block_type, name)}`；实例参数保留在子系统页。"
+        for name, (block_type, match) in sorted(source_blocks.items())
+        if match and match.full_document
     )
     if not standard:
+        lines.append("无。")
+    lines.extend(["", "## 仅匹配官方目录元数据", ""])
+    lines.extend(
+        f"- `{name}`：产品 `{match.product_name}`，目录 `{' / '.join(match.library_path)}`；完整中英文正文待补，未伪造端口和参数。"
+        for name, (_, match) in sorted(source_blocks.items())
+        if match and not match.full_document
+    )
+    if not metadata_only:
         lines.append("无。")
     lines.extend(["", "## 未展开的外部库引用", ""])
     lines.extend(f"- `{name}`：保留库路径和实例参数，本地无其实现 XML。" for name in external)

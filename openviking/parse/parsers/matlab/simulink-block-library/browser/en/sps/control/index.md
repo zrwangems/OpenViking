@@ -1,0 +1,18 @@
+# Control
+
+- [BLDC Control​](bldc-control/index.md)
+- [Converter Control​](converter-control/index.md)
+- [General Control​](general-control/index.md)
+- [General Machine Control​](general-machine-control/index.md)
+- [Induction Machine Control](induction-machine-control/index.md)
+- [Linearization Techniques](linearization-techniques/index.md)
+- [Mathematical Transforms](mathematical-transforms/index.md)
+- [Measurements](measurements/index.md)
+- [Observers​](observers/index.md)
+- [PMSM Control​](pmsm-control/index.md)
+- [Protection​](protection/index.md)
+- [Pulse Width Modulation](pulse-width-modulation/index.md)
+- [Renewables Control](renewables-control/index.md)
+- [SM Control](sm-control/index.md)
+- [SRM Control​](srm-control/index.md)
+- [Turbine-Governors​](turbine-governors/index.md)

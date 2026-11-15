@@ -1,0 +1,337 @@
+---
+type: simulink-block
+title: 'RegressionSVM Predict'
+family: 'stats'
+product_id: 'stats'
+product_name: 'Statistics and Machine Learning Toolbox'
+documentation_release: R2025b
+official_category: 'Regression / Support Vector Machine Regression'
+documentation_page: 'regressionsvmpredict'
+documentation_source_path: 'regressionsvmpredict.html'
+language: en
+---
+
+# RegressionSVM Predict
+
+## Ports
+
+### Input
+
+### **x** — Predictor data row vector | column vector
+
+Predictor data, specified as a column vector or row vector of one
+observation.
+
+The variables in **x** must have the same order as
+the predictor variables that trained the SVM model specified by
+**Select
+trained machine learning model**.
+
+If you set `'Standardize',true` in `fitrsvm` when training the
+SVM model, then the RegressionSVM Predict block
+standardizes the values of **x** using the means and
+standard deviations in the `Mu` and
+`Sigma` properties (respectively) of the SVM
+model.
+
+**Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
+### Output
+
+### **yfit** — Predicted response scalar
+
+Predicted response, returned as a scalar.
+
+**Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
+
+## Parameters
+
+### Main
+
+### **Select trained machine learning model** — SVM regression model `svmMdl` (default) | `RegressionSVM` object | `CompactRegressionSVM` object
+
+Specify the name of a workspace variable that contains a `RegressionSVM` object or
+`CompactRegressionSVM`
+object.
+
+When you train the SVM model by using `fitrsvm`, the following
+restrictions apply:
+
+- The predictor data cannot include categorical predictors
+  (`logical`, `categorical`, `char`,
+  `string`, or `cell`). If you supply training data in a
+  table, the predictors must be numeric (`double` or `single`).
+  Also, you cannot use the `CategoricalPredictors` name-value argument. To
+  include categorical predictors in a model, preprocess them by using `dummyvar` before fitting the model.
+- The value of the `ResponseTransform` name-value argument must
+  be `'none'` (default).
+- The value of the `KernelFunction` name-value argument must be
+  `'gaussian'`,
+  `'linear'` (default), or
+  `'polynomial'`.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `TrainedLearner` |
+| **Type:** workspace variable |
+| **Values:** `RegressionSVM` object | `CompactRegressionSVM` object |
+| **Default:** `'svmMdl'` |
+
+### Data Types
+
+#### Fixed-Point Operational Parameters
+
+### **Integer rounding mode** — Rounding mode for fixed-point operations `Floor` (default) | `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
+
+Specify the rounding mode for fixed-point operations. For more information, see Rounding Modes (Fixed-Point Designer).
+
+Block parameters always round to the nearest representable value. To control the
+rounding of a block parameter, enter an expression into the mask field using a
+MATLAB® rounding function.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `RndMeth` |
+| **Type:** character vector |
+| **Values:** `"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"` |
+| **Default:** `"Floor"` |
+
+### **Saturate on integer overflow** — Method of overflow action `off` (default) | `on`
+
+Specify whether overflows saturate or wrap.
+
+| Action | Rationale | Impact on Overflows | Example |
+| --- | --- | --- | --- |
+| Select this check box (`on`). | Your model has possible overflow, and you want explicit saturation protection in the generated code. | Overflows saturate to either the minimum or maximum value that the data type can represent. | The maximum value that the `int8` (signed 8-bit integer) data type can represent is 127. Any block operation result greater than this maximum value causes overflow of the 8-bit integer. With the check box selected, the block output saturates at 127. Similarly, the block output saturates at a minimum output value of –128. |
+| Clear this check box (`off`). | You want to optimize the efficiency of your generated code.  You want to avoid overspecifying how a block handles out-of-range signals. For more information, see Troubleshoot Signal Range Errors (Simulink). | Overflows wrap to the appropriate value that the data type can represent. | The maximum value that the `int8` (signed 8-bit integer) data type can represent is 127. Any block operation result greater than this maximum value causes overflow of the 8-bit integer. With the check box cleared, the software interprets the value causing the overflow as `int8`, which can produce an unintended result. For example, a block result of 130 (binary 1000 0010) expressed as `int8` is –126. |
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `SaturateOnIntegerOverflow` |
+| **Type:** character vector |
+| **Values:** `"off" | "on"` |
+| **Default:** `"off"` |
+
+### **Lock output data type setting against changes by the fixed-point tools** — Prevention of fixed-point tools from overriding data type `off` (default) | `on`
+
+Select this parameter to prevent the fixed-point tools from overriding the data type
+you specify for the block. For more information, see Use Lock Output Data Type Setting (Fixed-Point Designer).
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `LockScale` |
+| **Type:** character vector |
+| **Values:** `"off" | "on"` |
+| **Default:** `"off"` |
+
+#### Data Type
+
+### **Output data type** — Data type of yfit output `Inherit: auto` (default) | `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
+
+Specify the data type for the **yfit** output. The type can be inherited,
+specified directly, or expressed as a data type object such as
+`Simulink.NumericType`.
+
+When you select `Inherit: auto`, the block uses a rule that inherits a data type.
+
+For more information about data types, see Control Data Types of Signals (Simulink).
+
+Click the **Show data type assistant**
+button  to display the **Data Type Assistant**,
+which helps you set the data type attributes. For more information, see Specify Data Types Using Data Type Assistant (Simulink).
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `OutDataTypeStr` |
+| **Type**: character vector |
+| **Values**: `"Inherit: auto"` | `"double"` | `"single"` | `"half"` | `"int8"` | `"uint8"` | `"int16"` | `"uint16"` | `"int32"` | `"uint32"` | `"int64"` | `"uint64"` | `"boolean"` | `"fixdt(1,16,0)"` | `"fixdt(1,16,2^0,0)"` | `"<data type expression>"` |
+| **Default**: `"Inherit: auto"` |
+
+### **Output data type Minimum** — Minimum value of yfit output for range checking `[]` (default) | scalar
+
+Specify the lower value of the **yfit** output range that Simulink® checks.
+
+Simulink uses the minimum value to perform:
+
+- Parameter range checking for some blocks (see Specify Minimum and Maximum Values for Block Parameters (Simulink)).
+- Simulation range checking (see Specify Signal Ranges (Simulink) and Enable Simulation Range Checking (Simulink)).
+- Optimization of the code that you generate from the model. This optimization can
+  remove algorithmic code and affect the results of some simulation modes, such as
+  software-in-the-loop (SIL) mode or external mode. For more information, see Optimize using the specified minimum and maximum values (Embedded Coder).
+
+**Note**
+
+The **Output data type Minimum** parameter does not saturate
+or clip the actual **yfit** signal. To do so, use the Saturation (Simulink) block instead.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `OutMin` |
+| **Type**: character vector |
+| **Values**: `'[]'` | scalar |
+| **Default**: `'[]'` |
+
+### **Output data type Maximum** — Maximum value of yfit output for range checking `[]` (default) | scalar
+
+Specify the upper value of the **yfit** output range that Simulink checks.
+
+Simulink uses the maximum value to perform:
+
+- Parameter range checking for some blocks (see Specify Minimum and Maximum Values for Block Parameters (Simulink)).
+- Simulation range checking (see Specify Signal Ranges (Simulink) and Enable Simulation Range Checking (Simulink)).
+- Optimization of the code that you generate from the model. This optimization can
+  remove algorithmic code and affect the results of some simulation modes, such as SIL
+  or external mode. For more information, see Optimize using the specified minimum and maximum values (Embedded Coder).
+
+**Note**
+
+The **Output data type Maximum** parameter does not saturate
+or clip the actual **yfit** signal. To do so, use the Saturation (Simulink) block instead.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `OutMax` |
+| **Type**: character vector |
+| **Values**: `'[]'` | scalar |
+| **Default**: `'[]'` |
+
+### **Kernel data type** — Kernel computation data type `double` (default) | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `int64` | `uint64` | `uint32` | `boolean` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
+
+Specify the data type of a parameter for kernel computation. The type can be specified
+directly or expressed as a data type object such as
+`Simulink.NumericType`.
+
+The **Kernel data type** parameter specifies the data type of a
+different parameter depending on the type of kernel function of the specified SVM model.
+You specify the `KernelFunction` name-value argument when training the
+SVM model.
+
+| `'KernelFunction'` value | Data Type |
+| --- | --- |
+| `'gaussian'` or `'rbf'` | **Kernel data type** specifies the data type of the squared distance D2=‖x−s‖2 for the Gaussian kernel G(x,s)=exp(−D2), where *x* is the predictor data for an observation and *s* is a support vector. |
+| `'linear'` | **Kernel data type** specifies the data type for the output of the linear kernel function G(x,s)=xs', where *x* is the predictor data for an observation and *s* is a support vector. |
+| `'polynomial'` | **Kernel data type** specifies the data type for the output of the polynomial kernel function G(x,s)=(1+xs')p, where *x* is the predictor data for an observation, *s* is a support vector, and *p* is a polynomial kernel function order. |
+
+For more information about data types, see Control Data Types of Signals (Simulink).
+
+Click the **Show data type assistant**
+button  to display the **Data Type Assistant**,
+which helps you set the data type attributes. For more information, see Specify Data Types Using Data Type Assistant (Simulink).
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `KernelDataTypeStr` |
+| **Type**: character vector |
+| **Values**: `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'uint64'` | `'int64'` | `'boolean'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
+| **Default**: `'double'` |
+
+### **Kernel data type Minimum** — Minimum kernel computation value for range checking `[]` (default) | scalar
+
+Specify the lower value of the kernel computation internal variable range that
+Simulink checks.
+
+Simulink uses the minimum value to perform:
+
+- Parameter range checking for some blocks (see Specify Minimum and Maximum Values for Block Parameters (Simulink)).
+- Simulation range checking (see Specify Signal Ranges (Simulink) and Enable Simulation Range Checking (Simulink)).
+- Optimization of the code that you generate from the model. This optimization can
+  remove algorithmic code and affect the results of some simulation modes, such as
+  software-in-the-loop (SIL) mode or external mode. For more information, see Optimize using the specified minimum and maximum values (Embedded Coder).
+
+**Note**
+
+The **Kernel data type Minimum** parameter does not saturate
+or clip the actual kernel computation value.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `KernelOutMin` |
+| **Type**: character vector |
+| **Values**: `'[]'` | scalar |
+| **Default**: `'[]'` |
+
+### **Kernel data type Maximum** — Maximum kernel computation value for range checking `[]` (default) | scalar
+
+Specify the upper value of the kernel computation internal variable range that
+Simulink checks.
+
+Simulink uses the maximum value to perform:
+
+- Parameter range checking for some blocks (see Specify Minimum and Maximum Values for Block Parameters (Simulink)).
+- Simulation range checking (see Specify Signal Ranges (Simulink) and Enable Simulation Range Checking (Simulink)).
+- Optimization of the code that you generate from the model. This optimization can
+  remove algorithmic code and affect the results of some simulation modes, such as SIL
+  or external mode. For more information, see Optimize using the specified minimum and maximum values (Embedded Coder).
+
+**Note**
+
+The **Kernel data type Maximum** parameter does not saturate
+or clip the actual kernel computation value.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `KernelOutMax` |
+| **Type**: character vector |
+| **Values**: `'[]'` | scalar |
+| **Default**: `'[]'` |
+
+## Libraries
+
+Statistics and Machine Learning Toolbox / Regression
+
+## Block Characteristics
+
+|  |  |
+| --- | --- |
+| **Data Types** | `Boolean` | `double` | `fixed point` | `half` | `integer` | `single` |
+| **Direct Feedthrough** | `yes` |
+| **Multidimensional Signals** | `no` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
+
+## Extended Capabilities
+
+### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
+
+### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
+
+## Version History
+
+**Introduced in R2020b**
+
+### R2021a: Specify **Kernel data type** as a data type name or data type object
+
+Starting in R2021a, the **Kernel data type** parameter does not support
+inherited options. You can specify **Kernel data type** as a
+supported data type name or data type object.
+
+## Description
+
+Predict responses using support vector machine (SVM) regression model
+
+The RegressionSVM Predict block predicts responses using an SVM regression
+object (`RegressionSVM` or `CompactRegressionSVM`).
+
+Import a trained SVM regression object into the block by specifying the name of a workspace
+variable that contains the object. The input port **x** receives an
+observation (predictor data), and the output port **yfit** returns a
+predicted response for the observation.

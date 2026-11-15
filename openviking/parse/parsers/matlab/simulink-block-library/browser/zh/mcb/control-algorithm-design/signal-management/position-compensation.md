@@ -1,0 +1,168 @@
+---
+type: simulink-block
+title: 'Position Compensation'
+family: 'mcb'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
+documentation_release: R2025b
+official_category: 'Control Algorithm Design / Signal Management'
+documentation_page: 'positioncompensation'
+documentation_source_path: 'ref/positioncompensation.html'
+language: zh-CN
+chinese_source: worker-translation
+---
+
+# Position Compensation
+
+## 端口
+
+### 输入
+
+### **θin** — 位置输入值标量
+
+需要进行偏移校正的位置输入值。此端口支持以下取值范围：
+
+- -2π 到 +2π radians
+- 0 到 1 per-unit
+- -360 到 +360 degrees
+
+**数据类型：** `single` | `double` | `fixed point`
+
+### **ϕ** — 位置偏移标量
+
+外部计算的位置偏移值。此值必须与 *θin* 输入具有相同单位。此端口支持以下取值范围：
+
+- -2π 到 +2π radians
+- 0 到 1 per-unit
+- -360 到 +360 degrees
+
+#### 依赖项
+
+要启用此端口，请将 **Nature of offset** 参数设置为 `External delay`。
+
+**数据类型：** `single` | `double` | `fixed point`
+
+### **ω** — 角速度标量
+
+外部计算的角速度。此值表示 *θin* 输入的变化。
+
+#### 依赖项
+
+要启用此端口，请将 **Nature of offset** 参数设置为 `Sample delay`、`High-pass filter delay` 或 `Low-pass filter delay`。
+
+**数据类型：** `single` | `double` | `fixed point`
+
+### 输出
+
+### **θout** — 位置输出值标量
+
+已针对偏移进行校正的位置输出值。
+
+**数据类型：** `single` | `double` | `fixed point`
+
+## 参数
+
+### **Nature of offset** — 偏移类型 `Sample delay` (默认) | `Constant delay` | `External delay` | `High-pass filter delay` | `Low-pass filter delay`
+
+系统中要补偿的延迟或偏移的类型。请选择以下值之一：
+
+- Constant delay — 补偿固定延迟或偏移。
+- External delay — 使用外部计算的位置偏移值补偿恒定延迟。
+- Sample delay — 基于离散步长或模块执行时间补偿延迟。
+- High-pass filter delay — 使用截止频率值补偿一阶 Butterworth 高通滤波器产生的延迟。
+- Low-pass filter delay — 使用截止频率值补偿一阶 Butterworth 低通滤波器产生的延迟。
+
+### **Offset value** — 位置偏移值 `0.1` (默认) | scalar
+
+系统中 constant delay 的位置偏移。
+
+#### 依赖项
+
+要启用此参数，请将 **Nature of offset** 设置为 `Constant delay`。
+
+### **Number of sample delay** — 模块执行时间采样数 `1` (默认) | scalar
+
+模块用于位置偏移补偿的模块执行时间采样数。
+
+#### 依赖项
+
+要启用此参数，请将 **Nature of offset** 设置为 `Sample delay`。
+
+### **Discrete step size (s)** — 模块再次执行后的采样时间 `50e-6` (默认) | scalar
+
+连续模块执行实例之间的固定时间间隔（以 seconds 为单位）。
+
+#### 依赖项
+
+要启用此参数，请将 **Nature of offset** 设置为 `Sample delay`。
+
+### **Cut-off frequency (Hz)** — 滤波器截止频率 `9.578` (默认) | scalar
+
+一阶 Butterworth 高通或低通滤波器的截止频率。
+
+#### 依赖项
+
+要启用此参数，请将 **Nature of offset** 设置为 `High-pass filter delay` 或 `Low-pass filter delay`。
+
+### **Position unit** — 位置输入单位 `Radians` (默认) | `Degrees` | `Per unit`
+
+位置输入 *θin* 的单位。
+
+### **Speed unit** — 角速度输入单位 `RPM` (默认) | `Degrees/Sec` | `Radians/Sec` | `Per unit`
+
+角速度输入 *ω* 的单位。
+
+#### 依赖项
+
+要启用此参数，请将 **Nature of offset** 设置为 `Sample delay`、`High-pass filter delay` 或 `Low-pass filter delay`。
+
+### **Maximum application speed (RPM)** — 角速度上限 `4000` (默认) | scalar
+
+角速度输入 *ω* 的上限或最大可能值，以 RPM 为单位。
+
+#### 依赖项
+
+要启用此参数，请将 **Nature of offset** 设置为 `Sample delay`、`High-pass filter delay` 或 `Low-pass filter delay`。
+
+## 所属库
+
+Motor Control Blockset / Signal Management
+
+## 模块特性
+
+在 R2025b 中未记录。
+
+## 扩展功能
+
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+
+### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
+
+## 版本历史
+
+**在 R2022b 中引入**
+
+## 描述
+
+补偿由于不同类型延迟引起的位置偏移
+
+Position Compensation 模块补偿系统中由于不同类型延迟引起的位置偏移。
+
+电机控制算法可能由于不同的算法实体（例如延迟和滤波器）在计算的位置中引入偏移。这些偏移会影响诸如磁场定向控制 (FOC) 和直接转矩控制 (DTC) 等电机控制算法的精度。您可以使用此模块补偿电机控制算法中的偏移。
+
+该模块使用以下计算进行采样延迟补偿。
+
+由延迟引入的偏移量 = 应用补偿量 =(− Sample time) × (Number of delay) × (angular velocity) radians
+
+该模块使用以下计算进行一阶 Butterworth 高通和低通滤波器补偿。
+
+- 对于高通滤波器：
+
+  Phase offset=π2−arctan(ωspeedωcutoff)=arctan(ωcutoffωspeed)
+
+  Phase compensation=−arctan(ωcutoffωspeed)
+- 对于低通滤波器：
+
+  Phase offset=−arctan(ωspeedωcutoff)
+
+  Phase compensation=arctan(ωspeedωcutoff)

@@ -595,6 +595,7 @@ setup(
         "openviking.scheduling.expiry": ["lua/*.lua"],
         "openviking": [
             "parse/parsers/matlab/simulink-block-library/**/*.md",
+            "parse/parsers/matlab/simulink-block-library/*.json",
             "lib/ragfs_python*.so",
             "lib/ragfs_python*.pyd",
             "bin/ov",

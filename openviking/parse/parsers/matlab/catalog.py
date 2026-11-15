@@ -8,7 +8,25 @@ import argparse
 import re
 from pathlib import Path
 
-from openviking.parse.parsers.matlab.library import catalog_entries, slug
+from openviking.parse.parsers.matlab.library import (
+    BlockReference,
+    block_references,
+    catalog_entries,
+    slug,
+)
+
+# Actual SourceBlock roots do not always equal documentation product IDs.
+# Unknown roots remain external even when a third-party block has an official-
+# sounding name. Add aliases only from observed MathWorks library metadata.
+_SOURCE_PRODUCT_ALIASES = {
+    "simscapefoundationlibrary": "simscape",
+    "fllib": "hydro",
+    "powerlib": "sps",
+    "powersys": "sps",
+    "eelib": "sps",
+    "smlib": "sm",
+}
+
 
 _ALIASES = {
     "Add": "Sum",
@@ -48,30 +66,70 @@ def _normalize(value: str) -> str:
     return re.sub(r"[^a-z0-9]", "", value.lower())
 
 
-def find_block(block_type: str, source_block: str = "") -> tuple[str, str] | None:
-    """Resolve an SLX BlockType or library basename to a local Markdown page."""
+def find_block_reference(block_type: str, source_block: str = "") -> BlockReference | None:
+    """Resolve by original library path before falling back to a unique name.
+
+    Matching a metadata-only entry is useful during ingestion, but does not
+    imply that its full document has been scraped; callers must inspect
+    ``full_document``. Product and category components disambiguate duplicate
+    names such as Sinks/Display and Dashboard/Display.
+    """
     candidates = [source_block.rsplit("/", 1)[-1], _ALIASES.get(block_type, ""), block_type]
-    entries = catalog_entries()
-    category_by_name = {_normalize(category): family for family, category, _, _ in entries}
-    source_families = {
-        category_by_name[_normalize(part)]
-        for part in source_block.split("/")[:-1]
-        if _normalize(part) in category_by_name
+    source_parts = [_normalize(part) for part in source_block.split("/")[:-1]]
+    source_parts = [part for part in source_parts if part]
+    known_products = {_normalize(ref.product_id) for ref in block_references()} | {
+        _normalize(ref.product_name) for ref in block_references()
     }
-    # The original library path distinguishes duplicate names such as
-    # Sinks/Display from Dashboard/Display. Fall back for renamed libraries.
-    ordered_entries = sorted(
-        entries,
-        key=lambda entry: (
-            bool(source_families) and entry[0] not in source_families,
-            entry[0] == "commonly-used-blocks",
-        ),
-    )
+    if source_parts:
+        source_root = source_parts[0]
+        product_alias = _SOURCE_PRODUCT_ALIASES.get(source_root)
+        if source_root not in known_products and not product_alias:
+            return None
+
+    def score(reference: BlockReference) -> tuple[int, int, int, int]:
+        product_tokens = {_normalize(reference.product_id), _normalize(reference.product_name)}
+        product_match = bool(product_tokens.intersection(source_parts)) or (
+            bool(source_parts)
+            and _SOURCE_PRODUCT_ALIASES.get(source_parts[0]) == reference.product_id
+        )
+        library_parts = {_normalize(part) for part in reference.library_path}
+        path_matches = len(library_parts.intersection(source_parts))
+        common = "Commonly Used Blocks" in reference.library_path
+        # Path evidence outranks document availability. Otherwise a duplicate
+        # name can silently select a template from the wrong product.
+        return (product_match, path_matches, not common, reference.full_document)
+
     for candidate in candidates:
         normalized = _normalize(candidate)
-        for family, _, name, _ in ordered_entries:
-            if normalized and normalized == _normalize(name):
-                return family, name
+        if not normalized:
+            continue
+        matches = [ref for ref in block_references() if _normalize(ref.name) == normalized]
+        if matches:
+            return max(matches, key=score)
+    return None
+
+
+def find_block(block_type: str, source_block: str = "") -> tuple[str, str] | None:
+    """Resolve only blocks with a packaged full English/Chinese document."""
+    reference = find_block_reference(block_type, source_block)
+    if not reference or not reference.full_document:
+        return None
+    if reference.product_id == "simulink" and "commonlyusedblocks" in {
+        _normalize(part) for part in source_block.split("/")
+    }:
+        return "browser/simulink/commonly-used-blocks", reference.name
+    relative = reference.resource_path("en")
+    if not relative:
+        return None
+    if relative.startswith("browser/en/"):
+        family = "browser/" + relative.removeprefix("browser/en/").rsplit("/", 1)[0]
+        return family, reference.name
+    family, filename = relative.removeprefix("en/").rsplit("/", 1)
+    if family.startswith("products/"):
+        return family, reference.name
+    for entry_family, _, name, _ in catalog_entries():
+        if entry_family == family and slug(name) == filename.removesuffix(".md"):
+            return entry_family, name
     return None
 
 
