@@ -134,7 +134,7 @@ def html_to_markdown(html: bytes, entry: dict[str, str]) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=Path("resources/simulink-block-library"))
+    parser.add_argument("--output", type=Path, default=Path("openviking/simulink-block-library"))
     parser.add_argument("--cache", type=Path, default=Path("/tmp/simulink-block-knowledge-cache"))
     parser.add_argument(
         "--manifest", type=Path, default=Path(__file__).with_name("simulink-block-manifest.json")
@@ -167,7 +167,6 @@ def main() -> None:
     if failures and not args.offline:
         raise SystemExit(f"Refusing to write an incomplete catalog: {len(failures)} failures")
 
-    subtitles = {}
     written = 0
     render_failures = []
     for entry in entries:
@@ -177,7 +176,6 @@ def main() -> None:
             target = args.output / family / f"{slug(entry['name'])}.md"
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(markdown, encoding="utf-8")
-            subtitles[(family, entry["name"])] = entry["summary"]
             written += 1
         except Exception as exc:
             render_failures.append((entry, str(exc)))
@@ -187,7 +185,7 @@ def main() -> None:
             f"Refusing to write an incomplete catalog: {len(render_failures)} render failures"
         )
 
-    export_catalog(args.output, subtitles=subtitles)
+    export_catalog(args.output)
     if failures:
         report = ["# 未完成抓取", ""] + [f"- {path}: {error}" for path, error in failures]
         (args.output / "scrape-failures.md").write_text("\n".join(report) + "\n", encoding="utf-8")

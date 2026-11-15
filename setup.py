@@ -594,6 +594,7 @@ setup(
         "openviking_gateway": ["client-rules.json"],
         "openviking.scheduling.expiry": ["lua/*.lua"],
         "openviking": [
+            "simulink-block-library/**/*.md",
             "lib/ragfs_python*.so",
             "lib/ragfs_python*.pyd",
             "bin/ov",

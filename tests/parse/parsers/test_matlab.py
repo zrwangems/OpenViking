@@ -56,7 +56,7 @@ def test_slx_nested_systems_ports_parameters_and_branches():
     assert "464#out:1" in {edge.source for edge in battery.edges}
 
 
-def test_resource_add_inlines_offline_block_templates():
+def test_resource_add_inlines_block_library_markdown_directly():
     documents = system_documents(parse_slx(SAMPLE / "DRLHevIps.slx"))
     power = next(
         content
@@ -285,7 +285,15 @@ def test_standard_library_and_external_library_matching():
 
 
 def test_scraped_block_knowledge_is_local_and_complete():
-    root = Path(__file__).parents[3] / "resources" / "simulink-block-library"
+    root = Path(__file__).parents[3] / "openviking" / "simulink-block-library"
+    assert not (
+        Path(__file__).parents[3]
+        / "openviking"
+        / "parse"
+        / "parsers"
+        / "matlab"
+        / "block_templates.json"
+    ).exists()
     documents = [path for path in root.glob("*/*.md") if path.name != "index.md"]
     assert len(documents) == 341
     assert len({path.parent.name for path in documents}) == 20
