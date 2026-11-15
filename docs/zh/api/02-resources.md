@@ -35,6 +35,28 @@ OpenViking 支持多种资源类型，按照功能分类如下：
 | Git 代码托管平台 | `https://github.com/{org}/{repo}` | GitHub, GitLab, Bitbucket 等代码托管平台的 URL |
 | Git 代码托管平台上的 raw 文件 | `https://github.com/{org}/{repo}/raw/{branch}/{path}` | GitHub, GitLab, Bitbucket 等代码托管平台的 raw 文件下载 URL |
 
+**MATLAB / Simulink 联合工程**
+
+| 类型 | 扩展名 | 说明 |
+|------|--------|------|
+| Simulink 模型 | `.slx`, `.mdl` | SLX 直接读取 ZIP 内系统 XML，MDL 读取旧版文本结构。每个子系统生成一个 `index.md`，按实际 XML 标注普通、使能、触发、函数调用、可变、动作、迭代、复位、消息和事件函数类型；子系统按目录嵌套 |
+| Simulink 数据字典 | `.sldd` | 提取条目名称、对象类型、维度、数据类型、值/条件和字典引用 |
+| MATLAB 数据 | `.mat` | 通过 SciPy 读取 v5/v7 数组元数据和有界预览，v7.3 通过 HDF5/h5py 读取；不执行对象 |
+| Live Script / 代码 | `.mlx`, `.m` | MLX 提取正文、标题和代码，M 文件保留完整源码并识别函数声明 |
+| 物理建模 | Simscape `.ssc`, `.sscp` | SSC 保留组件、守恒节点、物理信号和方程原文；受保护的 SSCP 只保留原文件与边界说明。SLX 中 `ConnectionPort`、`PMIOPort` / `lconn` / `rconn` 作为无向守恒网络节点，不混入普通输入输出；有向物理信号由 SSC 的 `inputs` / `outputs` 表达 |
+| App、图形与部署包 | `.mlapp`, `.fig`, `.mlappinstall`, `.mltbx` | MLAPP 提取 Live Code 文档或容器元数据，FIG 按 MAT 读取句柄结构，安装包提取 ZIP/XML 清单；均保留原文件，不执行应用 |
+| 工程、需求与测试 | `.prj`, `.mlproj`, `.slreqx`, `.slmx`, `.mldatx` | 提取容器清单与 XML 文本，保留完整原文件；不执行工程任务、需求链接或测试 |
+| 独立 Stateflow / FMU / TLC | `.sfx`, `.fmu`, `.tlc` | SFX 与 FMU 提取 XML/清单，FMU 的 `modelDescription.xml` 用于接口检索；TLC 保留文本源码，不运行测试、协同仿真或代码生成 |
+| 受保护模型、缓存与备份 | `.slxp`, `.mdlp`, `.slxc`, `.autosave` | 保存原文件、可验证元数据和明确的不可读边界；SLXP 另提取可见容器清单，不伪造模型结构 |
+| MEX 与编辑器备份 | `.mexa64`, `.mexw64`, `.mexmaci64`, `.mexmaca64`, `.asv` | MEX 按平台二进制保存，不反汇编或执行；ASV 按 M 文本读取 |
+| MATLAB P-code | `.p` | 原始文件与带 SHA-256 的边界说明一起保存；可参与依赖编译，但不伪造内部逻辑 |
+
+MATLAB 本体的结构也不只按后缀处理：M 文件会区分脚本、函数和 `classdef`，识别 `+package` 命名空间、`@Class` 方法目录、继承声明和 `%%` 代码节；Live Script、App、FIG、MAT、P-code 与 MEX 分别走上述格式路径。Simulink 侧保留 Model Reference、库链接、Mask、Variant Subsystem 与 Variant Source/Sink 实例参数，Stateflow 单独生成状态/转移页，Simscape 使用守恒网络语义。
+
+安装 `openviking[matlab]` 后用普通目录导入即可，例如 `ov add-resource ./tests/matlab_repos/DRLHevIps5_4 --to viking://resources/DRLHevIps5_4 --wait`。所有受支持格式都会同时保留原始文件；生成的 Markdown 文件名包含源扩展名，避免同名 `.m`、`.mat` 等文件互相覆盖。仓库的 `resources/simulink-block-library/` 是可直接另行导入的本地标准 Simulink 块知识库，R2025b 官方 20 个目录中的 341 个条目对应 341 份分类文档（333 个独立文档路径），保存官方用途、库、端口、参数、特性和版本信息，不含外部网址。这里的“完整”仅指 MathWorks 官方 **基础 Simulink Blocks** 分类清单，不包括 Simscape、Stateflow 和各 Toolbox/Blockset 的独立块库；完整性脚本会逐条比对官方 XML，不能只核对文档总数。SLX 资源添加会按原始 `BlockType` / `SourceBlock` 查找本地模板，并把用途、所属库、端口和参数说明直接内联到对应子系统 `index.md`；泛型模板不会覆盖实例参数。库不是仅供独立检索的版本知识展示，而是解析管线的一部分。安装 `openviking[matlab-docs]` 后可用 `python scripts/matlab/scrape_simulink_blocks.py` 重新抓取；目录名与 MathWorks R2025b Blocks 分类一致，改名或合并的块通过 `documentation_page` 标记真实文档关系。外部 Toolbox 的 `SourceBlock` 保留原路径，不会伪装成本地已实现子系统。Stateflow 的状态层级、动作和转移会生成对应子系统的 `stateflow_<chart-id>.md`；MATLAB Function 代码和 P-code 仍需专门解析器，当前不声称已理解。
+
+添加 `matlab-simulink` 示例 Skill 后，可运行 `ov compile --from viking://resources/DRLHevIps5_4 --to viking://resources/DRLHevIps5_4-patterns --skill viking://agent/skills/matlab-simulink`，按滤波、故障编码、模式控制和能量管理等有证据的模式编译。动态仿真结果不在确定性解析的范围内。
+
 **媒体类**
 
 | 类型 | 资源名 | 说明 |

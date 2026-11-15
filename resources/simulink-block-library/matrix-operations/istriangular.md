@@ -1,0 +1,73 @@
+---
+type: simulink-block
+title: 'IsTriangular'
+family: matrix-operations
+documentation_release: R2025b
+official_category: 'Matrix Operations'
+documentation_page: 'istriangular'
+---
+
+# IsTriangular
+
+Check if matrix is upper or lower triangular
+
+## Libraries
+
+Simulink / Matrix Operations
+
+## Description
+
+The IsTriangular block determines if the input is an upper triangular or
+lower triangular matrix.
+
+## Ports
+
+### Input
+
+### **Port\_1** — Input matrix matrix
+
+Input matrix, specified as a matrix.
+
+**Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
+### Output
+
+### **Port\_2** — Upper triangular or lower triangular matrix real scalar boolean
+
+Upper triangular or lower triangular matrix, specified scalar, returned as a real
+scalar boolean.
+
+**Data Types:** `Boolean`
+
+## Parameters
+
+### **Mode** — Whether matrix is upper triangular or lower triangular `Upper` (default) | `Lower`
+
+Identify the matrix as `Upper` or
+`Lower`.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `Mode` |
+| **Type:** character vector |
+| **Values:** `'Upper'` | `'Lower'` |
+| **Default:** `'Upper'` |
+
+## Block Characteristics
+
+|  |  |
+| --- | --- |
+| **Data Types** | `Boolean` | `double` | `fixed point` | `half` | `integer` | `single` |
+| **Direct Feedthrough** | `yes` |
+| **Multidimensional Signals** | `no` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
+
+## Extended Capabilities
+
+### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
+
+## Version History
+
+**Introduced in R2021b**

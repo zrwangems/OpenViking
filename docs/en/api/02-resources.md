@@ -35,6 +35,28 @@ OpenViking supports various resource types, categorized by functionality:
 | Git Code Hosting Platform | `https://github.com/{org}/{repo}` | URLs from GitHub, GitLab, Bitbucket and other code hosting platforms |
 | Raw Files from Git Hosting | `https://github.com/{org}/{repo}/raw/{branch}/{path}` | Raw file download URLs from GitHub, GitLab, Bitbucket and other platforms |
 
+**MATLAB / Simulink joint projects**
+
+| Type | Extensions | Description |
+|------|------------|-------------|
+| Simulink model | `.slx`, `.mdl` | Reads SLX system XML from the ZIP container and legacy MDL text. Each subsystem becomes a nested `index.md` whose actual XML controls classify ordinary, enabled, triggered, function-call, variant, action, iterator, resettable, message, and event-function semantics |
+| Simulink data dictionary | `.sldd` | Extracts entry names, object types, dimensions, data types, values/conditions, and dictionary references |
+| MATLAB data | `.mat` | Reads v5/v7 array metadata and bounded previews through SciPy, and v7.3 through HDF5/h5py; never executes stored objects |
+| Live Script / code | `.mlx`, `.m` | Extracts MLX prose, headings, and code; preserves complete M source and identifies function declarations |
+| Physical modeling | Simscape `.ssc`, `.sscp` | Preserves SSC components, conserving nodes, physical signals, and equations; protected SSCP gets an explicit opaque boundary. SLX `ConnectionPort`, `PMIOPort` / `lconn` / `rconn` become undirected conserving-network nodes, separate from ordinary inputs and outputs; directed physical signals are represented by SSC `inputs` / `outputs` |
+| Apps, figures, and installers | `.mlapp`, `.fig`, `.mlappinstall`, `.mltbx` | Extracts MLAPP Live Code or container metadata, FIG handle data as MAT, and installer ZIP/XML inventories; preserves originals without executing apps |
+| Projects, requirements, and tests | `.prj`, `.mlproj`, `.slreqx`, `.slmx`, `.mldatx` | Extracts container inventories and XML text while retaining complete originals; does not run project tasks, requirement links, or tests |
+| Standalone Stateflow / FMU / TLC | `.sfx`, `.fmu`, `.tlc` | Extracts SFX and FMU XML/inventory, including searchable `modelDescription.xml` interfaces; preserves TLC source without running tests, co-simulation, or code generation |
+| Protected models, caches, and backups | `.slxp`, `.mdlp`, `.slxc`, `.autosave` | Preserves originals, verifiable metadata, and explicit unreadable boundaries; SLXP also exposes its visible container inventory without inventing model structure |
+| MEX and editor backups | `.mexa64`, `.mexw64`, `.mexmaci64`, `.mexmaca64`, `.asv` | Preserves platform MEX binaries without disassembly or execution; reads ASV as M text |
+| MATLAB P-code | `.p` | Preserves the original with a SHA-256 boundary page; visible to dependency compilation without inventing internal logic |
+
+MATLAB structure is not reduced to suffix routing: M files distinguish scripts, functions, and `classdef`, and retain `+package` namespaces, `@Class` method folders, inheritance declarations, and `%%` sections. Live Scripts, Apps, FIG, MAT, P-code, and MEX follow their respective format paths above. Simulink ingestion retains Model References, library links, Masks, Variant Subsystem and Variant Source/Sink instance parameters, emits Stateflow state/transition pages, and uses conserving-network semantics for Simscape.
+
+Install `openviking[matlab]` and import a project directory normally, for example `ov add-resource ./tests/matlab_repos/DRLHevIps5_4 --to viking://resources/DRLHevIps5_4 --wait`. Every supported import also preserves the original file. Generated Markdown names include the source extension so same-stem `.m`, `.mat`, and other files cannot overwrite each other. The repository's `resources/simulink-block-library/` can be imported separately as a local standard Simulink block knowledge base: 341 entries in the official R2025b 20 categories and 341 family-specific documents backed by 333 distinct documentation paths containing official purposes, libraries, ports, parameters, characteristics, and version history, with no external URLs. “Complete” here means the official **base Simulink Blocks** category list only, not Simscape, Stateflow, or separate Toolbox/Blockset libraries. The completeness script compares every entry with the official XML rather than merely checking document counts. Install `openviking[matlab-docs]` and run `python scripts/matlab/scrape_simulink_blocks.py` to refresh it. Directory names match the MathWorks R2025b Blocks category list, and renamed or merged blocks record their actual documentation relationship in `documentation_page`. During SLX ingestion, original `BlockType` / `SourceBlock` values select local templates whose purpose, library, ports, and parameter documentation are inlined into the owning subsystem `index.md`; generic templates never overwrite instance parameters. The catalog is part of the ingestion pipeline, not merely a standalone versioned knowledge display. External Toolbox `SourceBlock` paths are retained and are not presented as locally implemented subsystems. Stateflow state hierarchy, actions, and transitions are emitted as `stateflow_<chart-id>.md` beside the owning subsystem. MATLAB Function internals and P-code still require dedicated parsers.
+
+After adding the `matlab-simulink` example Skill, run `ov compile --from viking://resources/DRLHevIps5_4 --to viking://resources/DRLHevIps5_4-patterns --skill viking://agent/skills/matlab-simulink` to compile evidence-backed filtering, fault-encoding, mode-control, and energy-management patterns. Deterministic parsing does not claim to reproduce dynamic simulation.
+
 **Media**
 
 | Type | Resource Name | Description |

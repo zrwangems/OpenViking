@@ -1,0 +1,248 @@
+# Copyright (c) 2026 Beijing Volcano Engine Technology Co., Ltd.
+# SPDX-License-Identifier: AGPL-3.0
+"""Stateflow chart XML to hierarchical Markdown and Mermaid state diagrams."""
+
+from __future__ import annotations
+
+import re
+import zipfile
+from dataclasses import dataclass, field
+from pathlib import Path
+
+from defusedxml import ElementTree as ET
+
+from openviking.parse.parsers.matlab._zip import read_xml_member
+
+
+@dataclass
+class State:
+    ssid: str
+    label: str
+    state_type: str
+    parent: str = ""
+
+    @property
+    def name(self) -> str:
+        return next((line.strip() for line in self.label.splitlines() if line.strip()), self.ssid)
+
+    @property
+    def actions(self) -> str:
+        lines = self.label.splitlines()
+        return "\n".join(lines[1:]).strip() if len(lines) > 1 else ""
+
+
+@dataclass
+class Transition:
+    ssid: str
+    source: str
+    destination: str
+    label: str
+    order: str
+
+
+@dataclass
+class Data:
+    ssid: str
+    name: str
+    scope: str
+    data_type: str
+    size: str
+
+
+@dataclass
+class Chart:
+    chart_id: str
+    name: str
+    action_language: str
+    states: list[State] = field(default_factory=list)
+    transitions: list[Transition] = field(default_factory=list)
+    data: list[Data] = field(default_factory=list)
+
+
+def _props(element) -> dict[str, str]:
+    return {p.get("Name"): p.text or "" for p in element.findall("./P") if p.get("Name")}
+
+
+def parse_stateflow(path: str | Path) -> list[Chart]:
+    path = Path(path)
+    charts = []
+    with zipfile.ZipFile(path) as archive:
+        names = sorted(
+            n
+            for n in archive.namelist()
+            if n.startswith("simulink/stateflow/chart_") and n.endswith(".xml")
+        )
+        for name in names:
+            root = ET.fromstring(read_xml_member(archive, name))
+            props = _props(root)
+            chart = Chart(
+                chart_id=root.get("id", Path(name).stem.removeprefix("chart_")),
+                name=props.get("name", Path(name).stem),
+                action_language=props.get("actionLanguage", "未声明"),
+            )
+            for element in root.findall(".//state"):
+                state_props = _props(element)
+                chart.states.append(
+                    State(
+                        ssid=element.get("SSID", ""),
+                        label=state_props.get("labelString", ""),
+                        state_type=state_props.get("type", "未知"),
+                        parent=state_props.get("subviewer", chart.chart_id),
+                    )
+                )
+            for element in root.findall(".//transition"):
+                transition_props = _props(element)
+                source = element.find("./src/P[@Name='SSID']")
+                destination = element.find("./dst/P[@Name='SSID']")
+                chart.transitions.append(
+                    Transition(
+                        ssid=element.get("SSID", ""),
+                        source=source.text if source is not None and source.text else "",
+                        destination=destination.text
+                        if destination is not None and destination.text
+                        else "",
+                        label=transition_props.get("labelString", ""),
+                        order=transition_props.get("executionOrder", "未声明"),
+                    )
+                )
+            # Chart-level data defines the external interface. Data nested below
+            # Simulink Function states belongs to those functions, not this chart.
+            for element in root.findall("./Children/data"):
+                data_props = _props(element)
+                size = element.find("./props/array/P[@Name='size']")
+                chart.data.append(
+                    Data(
+                        ssid=element.get("SSID", ""),
+                        name=element.get("name", ""),
+                        scope=data_props.get("scope", "未声明"),
+                        data_type=data_props.get("dataType", "未声明"),
+                        size=size.text if size is not None and size.text else "未声明",
+                    )
+                )
+            charts.append(chart)
+    return charts
+
+
+def _mermaid(value: str) -> str:
+    return value.replace('"', "'").replace("\r", "").replace("\n", " ").strip()
+
+
+def _cell(value: str) -> str:
+    return (value or "-").replace("|", "\\|").replace("\r", "").replace("\n", "<br>")
+
+
+def render_stateflow(chart: Chart) -> str:
+    states = {state.ssid: state for state in chart.states}
+    lines = [
+        "---",
+        "type: stateflow-chart",
+        f"chart_id: {chart.chart_id}",
+        "---",
+        "",
+        f"# Stateflow：{chart.name.rsplit('/', 1)[-1]}",
+        "",
+        f"Chart 路径：`{chart.name}`；Chart ID：`{chart.chart_id}`；ActionLanguage 字段：`{chart.action_language}`。",
+        "",
+        "状态、转移和动作来自 Stateflow XML。动作原文保留，不执行动作，也不推断定时器或事件调度结果。",
+        "",
+        "## 数据接口",
+        "",
+        "| 名称 | Scope | 维度 | 数据类型 | SSID |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for data in chart.data:
+        lines.append(
+            f"| {_cell(data.name)} | {data.scope} | {_cell(data.size)} | {_cell(data.data_type)} | {data.ssid} |"
+        )
+    if not chart.data:
+        lines.append("| - | 无 Chart 级数据 | - | - | - |")
+
+    lines.extend(["", "## 状态层级与动作", ""])
+    for state in chart.states:
+        parent = states.get(state.parent)
+        parent_name = parent.name if parent else "Chart"
+        lines.extend(
+            [
+                f"### {state.name}",
+                "",
+                f"- SSID：`{state.ssid}`",
+                f"- 父级：`{parent_name}`",
+                f"- 类型：`{state.state_type}`",
+                "",
+            ]
+        )
+        if state.actions:
+            lines.extend(["```matlab", state.actions, "```", ""])
+        else:
+            lines.extend(["无 entry/during/exit 等动作原文。", ""])
+
+    lines.extend(
+        [
+            "## 转移表",
+            "",
+            "空来源表示默认转移。执行顺序按 XML 原值记录，不在此处重排。",
+            "",
+            "| 来源 | 条件 / 事件 / 动作 | 去向 | 执行顺序 | SSID |",
+            "| --- | --- | --- | --- | --- |",
+        ]
+    )
+    for transition in chart.transitions:
+        source = states.get(transition.source)
+        destination = states.get(transition.destination)
+        lines.append(
+            f"| {_cell(source.name if source else transition.source or '[*]')} "
+            f"| {_cell(transition.label)} "
+            f"| {_cell(destination.name if destination else transition.destination)} "
+            f"| {transition.order} | {transition.ssid} |"
+        )
+    if not chart.transitions:
+        lines.append("| - | 无转移 | - | - | - |")
+
+    lines.extend(["", "## 状态转移图", "", "```mermaid", "stateDiagram-v2"])
+    children: dict[str, list[State]] = {}
+    for state in chart.states:
+        children.setdefault(state.parent, []).append(state)
+
+    declared: set[str] = set()
+
+    def declare(state: State, indent: int) -> None:
+        declared.add(state.ssid)
+        prefix = " " * indent
+        nested = children.get(state.ssid, [])
+        if nested:
+            lines.append(f'{prefix}state "{_mermaid(state.name)}" as s{state.ssid} {{')
+            for child in nested:
+                declare(child, indent + 2)
+            lines.append(prefix + "}")
+        else:
+            lines.append(f'{prefix}state "{_mermaid(state.name)}" as s{state.ssid}')
+
+    for state in children.get(chart.chart_id, []):
+        declare(state, 2)
+    # Malformed or externally owned states still remain visible.
+    for state in chart.states:
+        if state.ssid not in declared and state.parent not in states:
+            declare(state, 2)
+    for transition in chart.transitions:
+        source = f"s{transition.source}" if transition.source in states else "[*]"
+        destination = (
+            f"s{transition.destination}"
+            if transition.destination in states
+            else transition.destination
+        )
+        if not destination:
+            continue
+        suffix = f" : {_mermaid(transition.label)}" if transition.label else ""
+        lines.append(f"  {source} --> {destination}{suffix}")
+    lines.extend(["```", ""])
+    return "\n".join(lines)
+
+
+def chart_system_path(chart: Chart) -> str:
+    """Return the Simulink subsystem names used to place this chart."""
+    return "/".join(_slug(part) for part in chart.name.split("/") if part)
+
+
+def _slug(value: str) -> str:
+    value = re.sub(r"[^\w.-]+", "_", value, flags=re.UNICODE).strip("._")
+    return value or "stateflow"

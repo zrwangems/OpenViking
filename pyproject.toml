@@ -96,6 +96,14 @@ dependencies = [
 
 
 [project.optional-dependencies]
+matlab = [
+  "scipy>=1.10",
+  "h5py>=3.8",
+]
+matlab-docs = [
+  "beautifulsoup4>=4.12",
+  "markdownify>=1.0",
+]
 reporting = [
     "kafka-python>=3.0.12,<4",
 ]

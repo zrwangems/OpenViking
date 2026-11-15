@@ -18,6 +18,7 @@ from openviking.parse.parsers.directory import DirectoryParser
 # Import will be handled dynamically to avoid dependency issues
 from openviking.parse.parsers.html import HTMLParser
 from openviking.parse.parsers.markdown import MarkdownParser
+from openviking.parse.parsers.matlab import MatlabParser
 from openviking.parse.parsers.media import AudioParser, ImageParser, VideoParser
 from openviking.parse.parsers.media.utils import is_mpeg_ts, read_mpeg_ts_probe
 from openviking.parse.parsers.pdf import PDFParser
@@ -62,6 +63,7 @@ class ParserRegistry:
             ),
         )
         self._register("zip", ZipParser())
+        self._register("matlab", MatlabParser())
         self._register("directory", DirectoryParser())
 
         self._register("image", ImageParser(config=self._parser_configs.get("image")))

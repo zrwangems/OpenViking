@@ -1,0 +1,2048 @@
+[
+  {
+    "category": "Continuous",
+    "name": "Derivative",
+    "path": "slref/derivative.html",
+    "summary": "Compute approximate continuous derivative of continuous input signal with respect to time"
+  },
+  {
+    "category": "Continuous",
+    "name": "Descriptor State-Space",
+    "path": "slref/descriptorstatespace.html",
+    "summary": "Model linear implicit system"
+  },
+  {
+    "category": "Continuous",
+    "name": "Entity Transport Delay",
+    "path": "slref/entitytransportdelay.html",
+    "summary": "Introduce a delay in propagation of a SimEvents message"
+  },
+  {
+    "category": "Continuous",
+    "name": "First Order Hold",
+    "path": "slref/firstorderhold.html",
+    "summary": "Implement linearly extrapolated first order hold on input signal"
+  },
+  {
+    "category": "Continuous",
+    "name": "Integrator",
+    "path": "slref/integrator.html",
+    "summary": "Integrate signal"
+  },
+  {
+    "category": "Continuous",
+    "name": "Integrator Limited",
+    "path": "slref/integratorlimited.html",
+    "summary": "Integrate signal"
+  },
+  {
+    "category": "Continuous",
+    "name": "PID Controller",
+    "path": "slref/pidcontroller.html",
+    "summary": "Continuous-time or discrete-time PID controller"
+  },
+  {
+    "category": "Continuous",
+    "name": "PID Controller (2DOF)",
+    "path": "slref/pidcontroller2dof.html",
+    "summary": "Continuous-time or discrete-time two-degree-of-freedom PID controller"
+  },
+  {
+    "category": "Continuous",
+    "name": "Second-Order Integrator",
+    "path": "slref/secondorderintegrator.html",
+    "summary": "Second-order integration of input signal"
+  },
+  {
+    "category": "Continuous",
+    "name": "Second-Order Integrator Limited",
+    "path": "slref/secondorderintegratorlimited.html",
+    "summary": "Second-order integration of input signal"
+  },
+  {
+    "category": "Continuous",
+    "name": "State-Space",
+    "path": "slref/statespace.html",
+    "summary": "Implement linear state-space system"
+  },
+  {
+    "category": "Continuous",
+    "name": "Transfer Fcn",
+    "path": "slref/transferfcn.html",
+    "summary": "Model linear system as transfer function"
+  },
+  {
+    "category": "Continuous",
+    "name": "Transport Delay",
+    "path": "slref/transportdelay.html",
+    "summary": "Delay input by given amount of time"
+  },
+  {
+    "category": "Continuous",
+    "name": "Variable Time Delay",
+    "path": "slref/variabletimedelay.html",
+    "summary": "Delay input by variable amount of time"
+  },
+  {
+    "category": "Continuous",
+    "name": "Variable Transport Delay",
+    "path": "slref/variabletransportdelay.html",
+    "summary": "Delay input by variable amount of time"
+  },
+  {
+    "category": "Continuous",
+    "name": "Zero-Pole",
+    "path": "slref/zeropole.html",
+    "summary": "Model system using zero-pole-gain transfer function"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Callback Button",
+    "path": "slref/callbackbutton.html",
+    "summary": "Execute MATLAB code using button"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Check Box",
+    "path": "slref/checkbox.html",
+    "summary": "Select parameter or variable value"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Combo Box",
+    "path": "slref/combobox.html",
+    "summary": "Select parameter value from drop-down menu"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Dashboard Scope",
+    "path": "slref/dashboardscope.html",
+    "summary": "Trace signals on scope display during simulation"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Display",
+    "path": "slref/dashboarddisplay.html",
+    "summary": "Display signal value during simulation"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Edit",
+    "path": "slref/edit.html",
+    "summary": "Enter new value for parameter"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Gauge",
+    "path": "slref/gauge.html",
+    "summary": "Display signal value on circular scale"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Half Gauge",
+    "path": "slref/halfgauge.html",
+    "summary": "Display input value on semicircular scale"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Knob",
+    "path": "slref/knob.html",
+    "summary": "Tune parameter value with dial"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Lamp",
+    "path": "slref/lamp.html",
+    "summary": "Display color that reflects signal value on lamp"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Linear Gauge",
+    "path": "slref/lineargauge.html",
+    "summary": "Display input value on linear scale"
+  },
+  {
+    "category": "Dashboard",
+    "name": "MultiStateImage",
+    "path": "slref/multistateimage.html",
+    "summary": "Display image reflecting input value"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Push Button",
+    "path": "slref/pushbutton.html",
+    "summary": "Change parameter or variable value using button"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Quarter Gauge",
+    "path": "slref/quartergauge.html",
+    "summary": "Display input value on quadrant scale"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Radio Button",
+    "path": "slref/radiobutton.html",
+    "summary": "Select parameter value"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Rocker Switch",
+    "path": "slref/rockerswitch.html",
+    "summary": "Toggle parameter between two values"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Rotary Switch",
+    "path": "slref/rotaryswitch.html",
+    "summary": "Switch parameter to set values on dial"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Slider",
+    "path": "slref/slider.html",
+    "summary": "Tune parameter value with sliding scale"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Slider Switch",
+    "path": "slref/sliderswitch.html",
+    "summary": "Toggle parameter between two values"
+  },
+  {
+    "category": "Dashboard",
+    "name": "Toggle Switch",
+    "path": "slref/toggleswitch.html",
+    "summary": "Toggle parameter between two values"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Callback Button",
+    "path": "slref/customcallbackbutton.html",
+    "summary": "Execute MATLAB code using button with customizable appearance (Since R2021b)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Check Box",
+    "path": "slref/customcheckbox.html",
+    "summary": "Change parameter or variable value during simulation using check box with customizable appearance (Since R2024b)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Circular Gauge",
+    "path": "slref/circulargauge.html",
+    "summary": "Display signal value during simulation on circular gauge with customizable appearance"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Combo Box",
+    "path": "slref/customcombobox.html",
+    "summary": "Change parameter or variable value during simulation using combo box with customizable appearance (Since R2025a)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Display",
+    "path": "slref/customdisplay.html",
+    "summary": "Display signal value during simulation with customizable appearance (Since R2023b)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Half Gauge",
+    "path": "slref/customhalfgauge.html",
+    "summary": "Display signal value during simulation on gauge shaped as half-circle with customizable appearance (Since R2024a)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Horizontal Gauge",
+    "path": "slref/horizontalgauge.html",
+    "summary": "Display signal value during simulation on horizontal gauge with customizable appearance"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Horizontal Slider",
+    "path": "slref/horizontalslider.html",
+    "summary": "Change parameter or variable value using horizontal slider with customizable appearance (Since R2021a)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Knob",
+    "path": "slref/customknob.html",
+    "summary": "Change parameter or variable value using knob with customizable appearance (Since R2021a)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Lamp",
+    "path": "slref/customlamp.html",
+    "summary": "Display color that reflects signal value on lamp with customizable appearance (Since R2021b)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Push Button",
+    "path": "slref/custompushbutton.html",
+    "summary": "Change parameter or variable value using button with customizable appearance (Since R2021b)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Quarter Gauge",
+    "path": "slref/customquartergauge.html",
+    "summary": "Display signal value during simulation on gauge shaped as quarter-circle with customizable appearance (Since R2024a)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Radio Button",
+    "path": "slref/customradiobutton.html",
+    "summary": "Change parameter or variable value during simulation using radio button with customizable appearance (Since R2025a)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Rocker Switch",
+    "path": "slref/customrockerswitch.html",
+    "summary": "Change parameter or variable value using switch with customizable appearance (Since R2021b)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Rotary Switch",
+    "path": "slref/customrotaryswitch.html",
+    "summary": "Change parameter or variable value using rotary switch with customizable appearance (Since R2021b)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Slider Switch",
+    "path": "slref/customsliderswitch.html",
+    "summary": "Change parameter or variable value using switch with customizable appearance (Since R2021b)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Toggle Switch",
+    "path": "slref/customtoggleswitch.html",
+    "summary": "Change parameter or variable value using switch with customizable appearance (Since R2021b)"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Vertical Gauge",
+    "path": "slref/verticalgauge.html",
+    "summary": "Display signal value during simulation on vertical gauge with customizable appearance"
+  },
+  {
+    "category": "Customizable Blocks",
+    "name": "Vertical Slider",
+    "path": "slref/verticalslider.html",
+    "summary": "Change parameter or variable value using vertical slider with customizable appearance (Since R2021a)"
+  },
+  {
+    "category": "Discontinuities",
+    "name": "Backlash",
+    "path": "slref/backlash.html",
+    "summary": "Model behavior of system with play"
+  },
+  {
+    "category": "Discontinuities",
+    "name": "Coulomb and Viscous Friction",
+    "path": "slref/coulombandviscousfriction.html",
+    "summary": "Model discontinuity at zero, with linear gain elsewhere"
+  },
+  {
+    "category": "Discontinuities",
+    "name": "Dead Zone",
+    "path": "slref/deadzone.html",
+    "summary": "Provide region of zero output"
+  },
+  {
+    "category": "Discontinuities",
+    "name": "Dead Zone Dynamic",
+    "path": "slref/deadzonedynamic.html",
+    "summary": "Provide dynamic region of zero output"
+  },
+  {
+    "category": "Discontinuities",
+    "name": "Hit Crossing",
+    "path": "slref/hitcrossing.html",
+    "summary": "Detect crossing point"
+  },
+  {
+    "category": "Discontinuities",
+    "name": "PWM",
+    "path": "slref/pwm.html",
+    "summary": "Generate ideal pulse width modulated signal corresponding to input duty cycle"
+  },
+  {
+    "category": "Discontinuities",
+    "name": "Quantizer",
+    "path": "slref/quantizer.html",
+    "summary": "Discretize input at given interval"
+  },
+  {
+    "category": "Discontinuities",
+    "name": "Rate Limiter",
+    "path": "slref/ratelimiter.html",
+    "summary": "Limit rate of change of signal"
+  },
+  {
+    "category": "Discontinuities",
+    "name": "Rate Limiter Dynamic",
+    "path": "slref/ratelimiterdynamic.html",
+    "summary": "Limit rate of change of signal"
+  },
+  {
+    "category": "Discontinuities",
+    "name": "Relay",
+    "path": "slref/relay.html",
+    "summary": "Switch output between two constants"
+  },
+  {
+    "category": "Discontinuities",
+    "name": "Saturation",
+    "path": "slref/saturation.html",
+    "summary": "Limit input signal to the upper and lower saturation values"
+  },
+  {
+    "category": "Discontinuities",
+    "name": "Saturation Dynamic",
+    "path": "slref/saturationdynamic.html",
+    "summary": "Limit input signal to dynamic upper and lower saturation values"
+  },
+  {
+    "category": "Discontinuities",
+    "name": "Variable Pulse Generator",
+    "path": "slref/variablepulsegenerator.html",
+    "summary": "Generate ideal, time varying pulse signal"
+  },
+  {
+    "category": "Discontinuities",
+    "name": "Wrap To Zero",
+    "path": "slref/wraptozero.html",
+    "summary": "Set output to zero if input is above threshold"
+  },
+  {
+    "category": "Discrete",
+    "name": "Delay",
+    "path": "slref/delay.html",
+    "summary": "Delay input signal by fixed or variable sample periods"
+  },
+  {
+    "category": "Discrete",
+    "name": "Difference",
+    "path": "slref/difference.html",
+    "summary": "Calculate change in signal over one time step"
+  },
+  {
+    "category": "Discrete",
+    "name": "Discrete Derivative",
+    "path": "slref/discretederivative.html",
+    "summary": "Compute discrete-time derivative"
+  },
+  {
+    "category": "Discrete",
+    "name": "Discrete Filter",
+    "path": "slref/discretefilter.html",
+    "summary": "Model Infinite Impulse Response (IIR) filters"
+  },
+  {
+    "category": "Discrete",
+    "name": "Discrete FIR Filter",
+    "path": "slref/discretefirfilter.html",
+    "summary": "Model FIR filters"
+  },
+  {
+    "category": "Discrete",
+    "name": "Discrete PID Controller",
+    "path": "slref/discretepidcontroller.html",
+    "summary": "Discrete-time or continuous-time PID controller"
+  },
+  {
+    "category": "Discrete",
+    "name": "Discrete PID Controller (2DOF)",
+    "path": "slref/discretepidcontroller2dof.html",
+    "summary": "Discrete-time or continuous-time two-degree-of-freedom PID controller"
+  },
+  {
+    "category": "Discrete",
+    "name": "Discrete State-Space",
+    "path": "slref/discretestatespace.html",
+    "summary": "Implement discrete state-space system"
+  },
+  {
+    "category": "Discrete",
+    "name": "Discrete Transfer Fcn",
+    "path": "slref/discretetransferfcn.html",
+    "summary": "Implement discrete transfer function"
+  },
+  {
+    "category": "Discrete",
+    "name": "Discrete Zero-Pole",
+    "path": "slref/discretezeropole.html",
+    "summary": "Model system defined by zeros and poles of discrete transfer function"
+  },
+  {
+    "category": "Discrete",
+    "name": "Discrete-Time Integrator",
+    "path": "slref/discretetimeintegrator.html",
+    "summary": "Perform discrete-time integration or accumulation of signal"
+  },
+  {
+    "category": "Discrete",
+    "name": "Memory",
+    "path": "slref/memory.html",
+    "summary": "Output input from previous time step"
+  },
+  {
+    "category": "Discrete",
+    "name": "Propagation Delay",
+    "path": "slref/propagationdelay.html",
+    "summary": "Model loop delay, latency, pulse delay (Since R2022b)"
+  },
+  {
+    "category": "Discrete",
+    "name": "Resettable Delay",
+    "path": "slref/resettabledelay.html",
+    "summary": "Delay input signal by variable sample period and reset with external signal"
+  },
+  {
+    "category": "Discrete",
+    "name": "Tapped Delay",
+    "path": "slref/tappeddelay.html",
+    "summary": "Delay scalar signal multiple sample periods and output all delayed versions"
+  },
+  {
+    "category": "Discrete",
+    "name": "Transfer Fcn First Order",
+    "path": "slref/transferfcnfirstorder.html",
+    "summary": "Implement discrete-time first order transfer function"
+  },
+  {
+    "category": "Discrete",
+    "name": "Transfer Fcn Lead or Lag",
+    "path": "slref/transferfcnleadorlag.html",
+    "summary": "Implement discrete-time lead or lag compensator"
+  },
+  {
+    "category": "Discrete",
+    "name": "Transfer Fcn Real Zero",
+    "path": "slref/transferfcnrealzero.html",
+    "summary": "Implement discrete-time transfer function that has real zero and no pole"
+  },
+  {
+    "category": "Discrete",
+    "name": "Unit Delay",
+    "path": "slref/unitdelay.html",
+    "summary": "Delay signal one sample period"
+  },
+  {
+    "category": "Discrete",
+    "name": "Variable Integer Delay",
+    "path": "slref/variableintegerdelay.html",
+    "summary": "Delay input signal by variable sample period"
+  },
+  {
+    "category": "Discrete",
+    "name": "Zero-Order Hold",
+    "path": "slref/zeroorderhold.html",
+    "summary": "Implement zero-order hold sample period"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Bit Clear",
+    "path": "slref/bitclear.html",
+    "summary": "Set specified bit of stored integer to zero"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Bit Set",
+    "path": "slref/bitset.html",
+    "summary": "Set specified bit of stored integer to one"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Bit to Integer Converter",
+    "path": "slref/bittointegerconverter.html",
+    "summary": "Map vector of bits to corresponding vector of integers"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Bitwise Operator",
+    "path": "slref/bitwiseoperator.html",
+    "summary": "Specified bitwise operation on inputs"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Combinatorial Logic",
+    "path": "slref/combinatoriallogic.html",
+    "summary": "Implement truth table"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Compare To Constant",
+    "path": "slref/comparetoconstant.html",
+    "summary": "Determine how signal compares to specified constant"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Compare To Zero",
+    "path": "slref/comparetozero.html",
+    "summary": "Determine how signal compares to zero"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Detect Change",
+    "path": "slref/detectchange.html",
+    "summary": "Detect change in signal value"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Detect Decrease",
+    "path": "slref/detectdecrease.html",
+    "summary": "Detect decrease in signal value"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Detect Fall Negative",
+    "path": "slref/detectfallnegative.html",
+    "summary": "Detect falling edge when signal value decreases to strictly negative value, and its previous value was nonnegative"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Detect Fall Nonpositive",
+    "path": "slref/detectfallnonpositive.html",
+    "summary": "Detect falling edge when signal value decreases to nonpositive value, and its previous value was strictly positive"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Detect Increase",
+    "path": "slref/detectincrease.html",
+    "summary": "Detect increase in signal value"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Detect Rise Nonnegative",
+    "path": "slref/detectrisenonnegative.html",
+    "summary": "Detect rising edge when signal value increases to nonnegative value, and its previous value was strictly negative"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Detect Rise Positive",
+    "path": "slref/detectrisepositive.html",
+    "summary": "Detect rising edge when signal value increases to strictly positive value, and its previous value was nonpositive"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Extract Bits",
+    "path": "slref/extractbits.html",
+    "summary": "Output selection of contiguous bits from input signal"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Float Extract Bits",
+    "path": "slref/floatextractbits.html",
+    "summary": "Extract bits from floating-point input samples (Since R2023a)"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Integer to Bit Converter",
+    "path": "slref/integertobitconverter.html",
+    "summary": "Map vector of integers to vector of bits"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Interval Test",
+    "path": "slref/intervaltest.html",
+    "summary": "Determine if signal is in specified interval"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Interval Test Dynamic",
+    "path": "slref/intervaltestdynamic.html",
+    "summary": "Determine if signal is in specified interval"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Logical Operator",
+    "path": "slref/logicaloperator.html",
+    "summary": "Perform specified logical operation on input"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Relational Operator",
+    "path": "slref/relationaloperator.html",
+    "summary": "Perform specified relational operation on inputs"
+  },
+  {
+    "category": "Logic and Bit Operations",
+    "name": "Shift Arithmetic",
+    "path": "slref/shiftarithmetic.html",
+    "summary": "Shift bits or binary point of signal"
+  },
+  {
+    "category": "Lookup Tables",
+    "name": "1-D Lookup Table",
+    "path": "slref/1dlookuptable.html",
+    "summary": "Approximate one-dimensional function"
+  },
+  {
+    "category": "Lookup Tables",
+    "name": "2-D Lookup Table",
+    "path": "slref/2dlookuptable.html",
+    "summary": "Approximate two-dimensional function"
+  },
+  {
+    "category": "Lookup Tables",
+    "name": "Direct Lookup Table (n-D)",
+    "path": "slref/directlookuptablend.html",
+    "summary": "Index into n-dimensional table to retrieve element, vector, or 2-D matrix"
+  },
+  {
+    "category": "Lookup Tables",
+    "name": "Interpolation Using Prelookup",
+    "path": "slref/interpolationusingprelookup.html",
+    "summary": "Use precalculated index and fraction values to accelerate approximation of N-dimensional function"
+  },
+  {
+    "category": "Lookup Tables",
+    "name": "Lookup Table Dynamic",
+    "path": "slref/lookuptabledynamic.html",
+    "summary": "Approximate a one-dimensional function using dynamic table"
+  },
+  {
+    "category": "Lookup Tables",
+    "name": "n-D Lookup Table",
+    "path": "slref/ndlookuptable.html",
+    "summary": "Approximate n-dimensional function"
+  },
+  {
+    "category": "Lookup Tables",
+    "name": "Prelookup",
+    "path": "slref/prelookup.html",
+    "summary": "Compute index and fraction for Interpolation Using Prelookup block"
+  },
+  {
+    "category": "Lookup Tables",
+    "name": "Sine",
+    "path": "slref/sine.html",
+    "summary": "Implement fixed-point sine or cosine wave using lookup table approach that exploits quarter wave symmetry"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Abs",
+    "path": "slref/abs.html",
+    "summary": "Output absolute value of input"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Algebraic Constraint",
+    "path": "slref/algebraicconstraint.html",
+    "summary": "Constrain input signal"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Assignment",
+    "path": "slref/assignment.html",
+    "summary": "Assign values to specified elements of signal"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Bias",
+    "path": "slref/bias.html",
+    "summary": "Add bias to input"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Complex to Magnitude-Angle",
+    "path": "slref/complextomagnitudeangle.html",
+    "summary": "Compute magnitude and/or phase angle of complex signal"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Complex to Real-Imag",
+    "path": "slref/complextorealimag.html",
+    "summary": "Output real and imaginary parts of complex input signal"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Divide",
+    "path": "slref/divide.html",
+    "summary": "Divide one input by another"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Dot Product",
+    "path": "slref/dotproduct.html",
+    "summary": "Generate dot product of two vectors"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Find Nonzero Elements",
+    "path": "slref/findnonzeroelements.html",
+    "summary": "Find nonzero elements in array"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Gain",
+    "path": "slref/gain.html",
+    "summary": "Multiply input by constant"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Magnitude-Angle to Complex",
+    "path": "slref/magnitudeangletocomplex.html",
+    "summary": "Convert magnitude and/or a phase angle signal to complex signal"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Math Function",
+    "path": "slref/mathfunction.html",
+    "summary": "Perform mathematical function"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Matrix Concatenate",
+    "path": "slref/matrixconcatenate.html",
+    "summary": "Concatenate input matrices of same data type for iterative processing"
+  },
+  {
+    "category": "Math Operations",
+    "name": "MinMax",
+    "path": "slref/minmax.html",
+    "summary": "Output minimum or maximum input value"
+  },
+  {
+    "category": "Math Operations",
+    "name": "MinMax Running Resettable",
+    "path": "slref/minmaxrunningresettable.html",
+    "summary": "Determine minimum or maximum of signal over time"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Permute Dimensions",
+    "path": "slref/permutedimensions.html",
+    "summary": "Rearrange dimensions of multidimensional array dimensions"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Polynomial",
+    "path": "slref/polynomial.html",
+    "summary": "Perform evaluation of polynomial coefficients on input values"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Product of Elements",
+    "path": "slref/productofelements.html",
+    "summary": "Copy or invert one scalar input, or collapse one nonscalar input"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Product, Matrix Multiply",
+    "path": "slref/product.html",
+    "summary": "Multiply and divide scalars and nonscalars or multiply and invert matrices"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Real-Imag to Complex",
+    "path": "slref/realimagtocomplex.html",
+    "summary": "Convert real and/or imaginary inputs to complex signal"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Reshape",
+    "path": "slref/reshape.html",
+    "summary": "Change dimensionality of signal"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Rounding Function",
+    "path": "slref/roundingfunction.html",
+    "summary": "Apply rounding function to signal"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Sign",
+    "path": "slref/sign.html",
+    "summary": "Indicate sign of input"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Sine Wave Function",
+    "path": "slref/sinewavefunction.html",
+    "summary": "Generate sine wave, using external signal as time source"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Slider Gain",
+    "path": "slref/slidergain.html",
+    "summary": "Vary scalar gain using slider"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Sqrt",
+    "path": "slref/sqrt.html",
+    "summary": "Calculate square root, signed square root, or reciprocal of square root"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Squeeze",
+    "path": "slref/squeeze.html",
+    "summary": "Remove singleton dimensions from multidimensional signal"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Sum",
+    "path": "slref/sum.html",
+    "summary": "Add or subtract inputs"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Trigonometric Function",
+    "path": "slref/trigonometricfunction.html",
+    "summary": "Specified trigonometric function on input"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Unary Minus",
+    "path": "slref/unaryminus.html",
+    "summary": "Negate input"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Vector Concatenate",
+    "path": "slref/vectorconcatenate.html",
+    "summary": "Concatenate input vectors of same data type for iterative processing"
+  },
+  {
+    "category": "Math Operations",
+    "name": "Weighted Sample Time Math",
+    "path": "slref/weightedsampletimemath.html",
+    "summary": "Support calculations involving sample time"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Array Processing Subsystem",
+    "path": "slref/arrayprocessingsubsystem.html",
+    "summary": "Apply algorithm to each element of a matrix (Since R2024a)"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Create Diagonal Matrix",
+    "path": "slref/creatediagonalmatrix.html",
+    "summary": "Create square diagonal matrix from diagonal elements"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Cross Product",
+    "path": "slref/crossproduct.html",
+    "summary": "Cross product of two vectors (Since R2021b)"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Expand Scalar",
+    "path": "slref/expandscalar.html",
+    "summary": "Create matrix from scalar using scalar expansion (Since R2024a)"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Extract Diagonal",
+    "path": "slref/extractdiagonal.html",
+    "summary": "Extract main diagonal of input matrix"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Hermitian Transpose",
+    "path": "slref/hermitiantranspose.html",
+    "summary": "Compute hermitian transpose of matrix (Since R2021b)"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Identity Matrix",
+    "path": "slref/identitymatrix.html",
+    "summary": "Generate matrix with ones on main diagonal and ground values elsewhere (Since R2021b)"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "IsHermitian",
+    "path": "slref/ishermitian.html",
+    "summary": "Check if matrix is Hermitian or skew-Hermitian (Since R2022a)"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "IsSymmetric",
+    "path": "slref/issymmetric.html",
+    "summary": "Check if matrix is symmetric or skew-symmetric (Since R2021b)"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "IsTriangular",
+    "path": "slref/istriangular.html",
+    "summary": "Check if matrix is upper or lower triangular (Since R2021b)"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Matrix Concatenate",
+    "path": "slref/matrixconcatenate.html",
+    "summary": "Concatenate input matrices of same data type for iterative processing"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Matrix Square",
+    "path": "slref/matrixsquare.html",
+    "summary": "Compute square of input matrix"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Neighborhood Processing Subsystem",
+    "path": "slref/neighborhoodprocessingsubsystem.html",
+    "summary": "Create algorithm that follows the neighborhood pattern (Since R2022b)"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Permute Matrix",
+    "path": "slref/permutematrix.html",
+    "summary": "Reorder matrix rows or columns"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Pixel Processing Subsystem",
+    "path": "slref/pixelprocessingsubsystem.html",
+    "summary": "Create algorithm that converts multichannel image data to single-channel (Since R2024a)"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Product, Matrix Multiply",
+    "path": "slref/product.html",
+    "summary": "Multiply and divide scalars and nonscalars or multiply and invert matrices"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Submatrix",
+    "path": "slref/submatrix.html",
+    "summary": "Select subset of elements (submatrix) from matrix input"
+  },
+  {
+    "category": "Matrix Operations",
+    "name": "Transpose",
+    "path": "slref/transpose.html",
+    "summary": "Compute transpose of matrix (Since R2021b)"
+  },
+  {
+    "category": "Messages & Events",
+    "name": "Hit Crossing",
+    "path": "slref/hitcrossing.html",
+    "summary": "Detect crossing point"
+  },
+  {
+    "category": "Messages & Events",
+    "name": "Hit Scheduler",
+    "path": "slref/hitscheduler.html",
+    "summary": "Schedule major time steps for variable-step solver (Since R2022b)"
+  },
+  {
+    "category": "Messages & Events",
+    "name": "Message Merge",
+    "path": "slref/messagemerge.html",
+    "summary": "Combine message paths (Since R2021a)"
+  },
+  {
+    "category": "Messages & Events",
+    "name": "Message Triggered Subsystem",
+    "path": "slref/messagetriggeredsubsystem.html",
+    "summary": "Subsystem whose execution is controlled by message input (Since R2022a)"
+  },
+  {
+    "category": "Messages & Events",
+    "name": "Queue",
+    "path": "slref/queue.html",
+    "summary": "Enqueue messages and entities"
+  },
+  {
+    "category": "Messages & Events",
+    "name": "Receive",
+    "path": "slref/receive.html",
+    "summary": "Receive messages"
+  },
+  {
+    "category": "Messages & Events",
+    "name": "Send",
+    "path": "slref/send.html",
+    "summary": "Create and send message"
+  },
+  {
+    "category": "Messages & Events",
+    "name": "Sequence Viewer",
+    "path": "slref/sequenceviewer.html",
+    "summary": "Display messages, events, states, transitions, and functions between blocks during simulation"
+  },
+  {
+    "category": "Model Verification",
+    "name": "Assertion",
+    "path": "slref/assertion.html",
+    "summary": "Check whether signal is zero"
+  },
+  {
+    "category": "Model Verification",
+    "name": "Check Discrete Gradient",
+    "path": "slref/checkdiscretegradient.html",
+    "summary": "Check that absolute value of difference between successive samples of discrete signal is less than specified value"
+  },
+  {
+    "category": "Model Verification",
+    "name": "Check Dynamic Gap",
+    "path": "slref/checkdynamicgap.html",
+    "summary": "Check that gap of possibly varying width occurs in range of signal's amplitudes"
+  },
+  {
+    "category": "Model Verification",
+    "name": "Check Dynamic Lower Bound",
+    "path": "slref/checkdynamiclowerbound.html",
+    "summary": "Check that one signal is always less than another signal"
+  },
+  {
+    "category": "Model Verification",
+    "name": "Check Dynamic Range",
+    "path": "slref/checkdynamicrange.html",
+    "summary": "Check that signal falls inside range of amplitudes that varies from time step to time step"
+  },
+  {
+    "category": "Model Verification",
+    "name": "Check Dynamic Upper Bound",
+    "path": "slref/checkdynamicupperbound.html",
+    "summary": "Check that one signal is always greater than another signal"
+  },
+  {
+    "category": "Model Verification",
+    "name": "Check Input Resolution",
+    "path": "slref/checkinputresolution.html",
+    "summary": "Check that input signal has specified resolution"
+  },
+  {
+    "category": "Model Verification",
+    "name": "Check Static Gap",
+    "path": "slref/checkstaticgap.html",
+    "summary": "Check that gap exists in signal's range of amplitudes"
+  },
+  {
+    "category": "Model Verification",
+    "name": "Check Static Lower Bound",
+    "path": "slref/checkstaticlowerbound.html",
+    "summary": "Check that signal is greater than (or optionally equal to) static lower bound"
+  },
+  {
+    "category": "Model Verification",
+    "name": "Check Static Range",
+    "path": "slref/checkstaticrange.html",
+    "summary": "Check that signal falls inside fixed range of amplitudes"
+  },
+  {
+    "category": "Model Verification",
+    "name": "Check Static Upper Bound",
+    "path": "slref/checkstaticupperbound.html",
+    "summary": "Check that signal is less than (or optionally equal to) static upper bound"
+  },
+  {
+    "category": "Model-Wide Utilities",
+    "name": "Block Support Table",
+    "path": "slref/blocksupporttable.html",
+    "summary": "View data type support for Simulink blocks"
+  },
+  {
+    "category": "Model-Wide Utilities",
+    "name": "DocBlock",
+    "path": "slref/docblock.html",
+    "summary": "Create text that documents model and save text with model"
+  },
+  {
+    "category": "Model-Wide Utilities",
+    "name": "Model Info",
+    "path": "slref/modelinfo.html",
+    "summary": "Display model properties and text in model"
+  },
+  {
+    "category": "Model-Wide Utilities",
+    "name": "Timed-Based Linearization",
+    "path": "slref/timedbasedlinearization.html",
+    "summary": "Generate linear models in base workspace at specific times"
+  },
+  {
+    "category": "Model-Wide Utilities",
+    "name": "Trigger-Based Linearization",
+    "path": "slref/triggerbasedlinearization.html",
+    "summary": "Generate linear models in base workspace when triggered"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Enable",
+    "path": "slref/enable.html",
+    "summary": "Add enable port to subsystem or model"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Enabled and Triggered Subsystem",
+    "path": "slref/enabledandtriggeredsubsystem.html",
+    "summary": "Subsystem whose execution is enabled and triggered by external inputs"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Enabled Subsystem",
+    "path": "slref/enabledsubsystem.html",
+    "summary": "Subsystem whose execution is enabled by external input"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "For Each Subsystem",
+    "path": "slref/foreachsubsystem.html",
+    "summary": "Apply algorithm to individual elements or subarrays of input signals or mask parameters"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "For Iterator Subsystem",
+    "path": "slref/foriteratorsubsystem.html",
+    "summary": "Repeat subsystem execution during simulation time step for specified number of iterations"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Function Element",
+    "path": "slref/functionelement.html",
+    "summary": "Specify function to be called via exporting function port (Since R2022a)"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Function Element Call",
+    "path": "slref/functionelementcall.html",
+    "summary": "Specify function call to be issued via invoking function port (Since R2022a)"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Function-Call Feedback Latch",
+    "path": "slref/functioncallfeedbacklatch.html",
+    "summary": "Break feedback loop involving data signals between function-call blocks"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Function-Call Generator",
+    "path": "slref/functioncallgenerator.html",
+    "summary": "Provide function-call events to control execution of subsystem or model"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Function-Call Split",
+    "path": "slref/functioncallsplit.html",
+    "summary": "Provide junction for splitting function-call line"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Function-Call Subsystem",
+    "path": "slref/functioncallsubsystem.html",
+    "summary": "Subsystem whose execution is controlled by external function-call input"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "If",
+    "path": "slref/if.html",
+    "summary": "Select subsystem execution using logic similar to if-else statement"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "If Action Subsystem",
+    "path": "slref/ifactionsubsystem.html",
+    "summary": "Subsystem whose execution is enabled by If block"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "In Bus Element",
+    "path": "slref/inbuselement.html",
+    "summary": "Select input from external port"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Inport",
+    "path": "slref/inport.html",
+    "summary": "Create input port for subsystem or external input"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Model",
+    "path": "slref/model.html",
+    "summary": "Reference another model to create model hierarchy"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Out Bus Element",
+    "path": "slref/outbuselement.html",
+    "summary": "Specify output of external port"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Outport",
+    "path": "slref/outport.html",
+    "summary": "Create output port for subsystem or external output"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Resettable Subsystem",
+    "path": "slref/resettablesubsystem.html",
+    "summary": "Subsystem whose block states reset with external trigger"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Subsystem",
+    "path": "slref/subsystem.html",
+    "summary": "Group blocks to create model hierarchy"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Switch Case",
+    "path": "slref/switchcase.html",
+    "summary": "Select subsystem execution using logic similar to switch statement"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Switch Case Action Subsystem",
+    "path": "slref/switchcaseactionsubsystem.html",
+    "summary": "Subsystem whose execution is enabled by Switch Case block"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Trigger",
+    "path": "slref/trigger.html",
+    "summary": "Add trigger or function port to subsystem or model"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Triggered Subsystem",
+    "path": "slref/triggeredsubsystem.html",
+    "summary": "Subsystem whose execution is triggered by external input"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Unit System Configuration",
+    "path": "slref/unitsystemconfiguration.html",
+    "summary": "Restrict units to specified allowed unit systems"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "Variant Subsystem",
+    "path": "slref/variantsubsystem.html",
+    "summary": "Template subsystem containing Subsystem blocks as variant choices"
+  },
+  {
+    "category": "Ports and Subsystems",
+    "name": "While Iterator Subsystem",
+    "path": "slref/whileiteratorsubsystem.html",
+    "summary": "Repeat subsystem execution during simulation time step while logical expression is true"
+  },
+  {
+    "category": "Signal Attributes",
+    "name": "Bus to Vector",
+    "path": "slref/bustovector.html",
+    "summary": "Convert virtual bus to vector"
+  },
+  {
+    "category": "Signal Attributes",
+    "name": "Data Type Conversion",
+    "path": "slref/datatypeconversion.html",
+    "summary": "Convert input signal to specified data type"
+  },
+  {
+    "category": "Signal Attributes",
+    "name": "Data Type Conversion Inherited",
+    "path": "slref/datatypeconversioninherited.html",
+    "summary": "Convert from one data type to another using inherited data type and scaling"
+  },
+  {
+    "category": "Signal Attributes",
+    "name": "Data Type Duplicate",
+    "path": "slref/datatypeduplicate.html",
+    "summary": "Force all inputs to same data type"
+  },
+  {
+    "category": "Signal Attributes",
+    "name": "Data Type Propagation",
+    "path": "slref/datatypepropagation.html",
+    "summary": "Set data type and scaling of propagated signal based on information from reference signals"
+  },
+  {
+    "category": "Signal Attributes",
+    "name": "Data Type Scaling Strip",
+    "path": "slref/datatypescalingstrip.html",
+    "summary": "Remove scaling and map to built in integer"
+  },
+  {
+    "category": "Signal Attributes",
+    "name": "IC",
+    "path": "slref/ic.html",
+    "summary": "Set initial value of signal"
+  },
+  {
+    "category": "Signal Attributes",
+    "name": "Probe",
+    "path": "slref/probe.html",
+    "summary": "Output signal attributes, including width, dimensionality, sample time, and complex signal flag"
+  },
+  {
+    "category": "Signal Attributes",
+    "name": "Rate Transition",
+    "path": "slref/ratetransition.html",
+    "summary": "Handle transfer of data between blocks operating at different rates"
+  },
+  {
+    "category": "Signal Attributes",
+    "name": "Signal Conversion",
+    "path": "slref/signalconversion.html",
+    "summary": "Convert signal to new type without altering signal values"
+  },
+  {
+    "category": "Signal Attributes",
+    "name": "Signal Specification",
+    "path": "slref/signalspecification.html",
+    "summary": "Specify desired dimensions, sample time, data type, numeric type, and other attributes of signal"
+  },
+  {
+    "category": "Signal Attributes",
+    "name": "Unit Conversion",
+    "path": "slref/unitconversion.html",
+    "summary": "Convert units"
+  },
+  {
+    "category": "Signal Attributes",
+    "name": "Weighted Sample Time",
+    "path": "slref/weightedsampletime.html",
+    "summary": "Support calculations involving sample time"
+  },
+  {
+    "category": "Signal Attributes",
+    "name": "Width",
+    "path": "slref/width.html",
+    "summary": "Output width of input vector"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Bus Assignment",
+    "path": "slref/busassignment.html",
+    "summary": "Assign new values to specified bus elements"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Bus Creator",
+    "path": "slref/buscreator.html",
+    "summary": "Group input signals, buses, or messages into bus"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Bus Selector",
+    "path": "slref/busselector.html",
+    "summary": "Select elements from input bus"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Data Store Memory",
+    "path": "slref/datastorememory.html",
+    "summary": "Define data store"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Data Store Read",
+    "path": "slref/datastoreread.html",
+    "summary": "Read data from data store"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Data Store Write",
+    "path": "slref/datastorewrite.html",
+    "summary": "Write data to data store"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Demux",
+    "path": "slref/demux.html",
+    "summary": "Extract and output elements of virtual vector signal"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Environment Controller",
+    "path": "slref/environmentcontroller.html",
+    "summary": "(Removed) Create branches of block diagram that apply only to simulation or only to code generation"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "From",
+    "path": "slref/from.html",
+    "summary": "Accept input from Goto block"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Goto",
+    "path": "slref/goto.html",
+    "summary": "Pass block input to From blocks"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Goto Tag Visibility",
+    "path": "slref/gototagvisibility.html",
+    "summary": "Define scope of Goto block tag"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Index Vector",
+    "path": "slref/indexvector.html",
+    "summary": "Switch output between different inputs based on value of first input"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Manual Switch",
+    "path": "slref/manualswitch.html",
+    "summary": "Switch between two inputs"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Manual Variant Sink",
+    "path": "slref/manualvariantsink.html",
+    "summary": "Switch between multiple variant choices at output"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Manual Variant Source",
+    "path": "slref/manualvariantsource.html",
+    "summary": "Switch between multiple variant choices at input"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Merge",
+    "path": "slref/merge.html",
+    "summary": "Combine multiple signals into single signal"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Multiport Switch",
+    "path": "slref/multiportswitch.html",
+    "summary": "Select output signal based on control signal"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Mux",
+    "path": "slref/mux.html",
+    "summary": "Combine input signals of same data type and complexity into virtual vector"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Parameter Writer",
+    "path": "slref/parameterwriter.html",
+    "summary": "Write to block parameter or variable"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Selector",
+    "path": "slref/selector.html",
+    "summary": "Select input elements from vector, matrix, or multidimensional signal"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "State Reader",
+    "path": "slref/statereader.html",
+    "summary": "Read a block state"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "State Writer",
+    "path": "slref/statewriter.html",
+    "summary": "Write to a block state"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Switch",
+    "path": "slref/switch.html",
+    "summary": "Switch output between first input and third input based on value of second input"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Variant End",
+    "path": "slref/variantend.html",
+    "summary": "Define end of bounded region (Since R2024a)"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Variant Sink",
+    "path": "slref/variantsink.html",
+    "summary": "Route amongst multiple outputs using variants"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Variant Source",
+    "path": "slref/variantsource.html",
+    "summary": "Route among multiple inputs using variants"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Variant Start",
+    "path": "slref/variantstart.html",
+    "summary": "Define start of bounded region (Since R2024a)"
+  },
+  {
+    "category": "Signal Routing",
+    "name": "Vector Concatenate",
+    "path": "slref/vectorconcatenate.html",
+    "summary": "Concatenate input vectors of same data type for iterative processing"
+  },
+  {
+    "category": "Sinks",
+    "name": "Display",
+    "path": "slref/display.html",
+    "summary": "Show value of input"
+  },
+  {
+    "category": "Sinks",
+    "name": "Floating Scope and Scope Viewer",
+    "path": "slref/scopeviewer.html",
+    "summary": "Display signals generated during simulation without signal lines"
+  },
+  {
+    "category": "Sinks",
+    "name": "Out Bus Element",
+    "path": "slref/outbuselement.html",
+    "summary": "Specify output of external port"
+  },
+  {
+    "category": "Sinks",
+    "name": "Outport",
+    "path": "slref/outport.html",
+    "summary": "Create output port for subsystem or external output"
+  },
+  {
+    "category": "Sinks",
+    "name": "Record",
+    "path": "slref/record.html",
+    "summary": "View and log data to the workspace, a file, or both (Since R2021a)"
+  },
+  {
+    "category": "Sinks",
+    "name": "Scope",
+    "path": "slref/scope.html",
+    "summary": "Display signals generated during simulation"
+  },
+  {
+    "category": "Sinks",
+    "name": "Stop Simulation",
+    "path": "slref/stopsimulation.html",
+    "summary": "Stop simulation when input is nonzero"
+  },
+  {
+    "category": "Sinks",
+    "name": "Terminator",
+    "path": "slref/terminator.html",
+    "summary": "Terminate unconnected output port"
+  },
+  {
+    "category": "Sinks",
+    "name": "To File",
+    "path": "slref/tofile.html",
+    "summary": "Write data to file"
+  },
+  {
+    "category": "Sinks",
+    "name": "To Workspace",
+    "path": "slref/toworkspace.html",
+    "summary": "Log data to workspace from Simulink model"
+  },
+  {
+    "category": "Sources",
+    "name": "Band-Limited White Noise",
+    "path": "slref/bandlimitedwhitenoise.html",
+    "summary": "Introduce white noise into continuous system"
+  },
+  {
+    "category": "Sources",
+    "name": "Chirp Signal",
+    "path": "slref/chirpsignal.html",
+    "summary": "Generate sine wave with increasing frequency"
+  },
+  {
+    "category": "Sources",
+    "name": "Clock",
+    "path": "slref/clock.html",
+    "summary": "Display and provide simulation time"
+  },
+  {
+    "category": "Sources",
+    "name": "Constant",
+    "path": "slref/constant.html",
+    "summary": "Constant value"
+  },
+  {
+    "category": "Sources",
+    "name": "Counter Free-Running",
+    "path": "slref/counterfreerunning.html",
+    "summary": "Count up and overflow back to zero after reaching maximum value for specified number of bits"
+  },
+  {
+    "category": "Sources",
+    "name": "Counter Limited",
+    "path": "slref/counterlimited.html",
+    "summary": "Count up and wrap to zero after specified upper limit"
+  },
+  {
+    "category": "Sources",
+    "name": "Digital Clock",
+    "path": "slref/digitalclock.html",
+    "summary": "Output simulation time at specified sampling interval"
+  },
+  {
+    "category": "Sources",
+    "name": "Enumerated Constant",
+    "path": "slref/enumeratedconstant.html",
+    "summary": "Generate enumerated constant value"
+  },
+  {
+    "category": "Sources",
+    "name": "From File",
+    "path": "slref/fromfile.html",
+    "summary": "Load data from MAT file into Simulink model"
+  },
+  {
+    "category": "Sources",
+    "name": "From Spreadsheet",
+    "path": "slref/fromspreadsheet.html",
+    "summary": "Read data from spreadsheet"
+  },
+  {
+    "category": "Sources",
+    "name": "From Workspace",
+    "path": "slref/fromworkspace.html",
+    "summary": "Load signal data from workspace into Simulink model"
+  },
+  {
+    "category": "Sources",
+    "name": "Ground",
+    "path": "slref/ground.html",
+    "summary": "Ground unconnected input port"
+  },
+  {
+    "category": "Sources",
+    "name": "In Bus Element",
+    "path": "slref/inbuselement.html",
+    "summary": "Select input from external port"
+  },
+  {
+    "category": "Sources",
+    "name": "Inport",
+    "path": "slref/inport.html",
+    "summary": "Create input port for subsystem or external input"
+  },
+  {
+    "category": "Sources",
+    "name": "Playback",
+    "path": "slref/playback.html",
+    "summary": "Load data from workspace, file, or Simulation Data Inspector (Since R2022b)"
+  },
+  {
+    "category": "Sources",
+    "name": "Pulse Generator",
+    "path": "slref/pulsegenerator.html",
+    "summary": "Generate square wave pulses at regular intervals"
+  },
+  {
+    "category": "Sources",
+    "name": "Ramp",
+    "path": "slref/ramp.html",
+    "summary": "Generate constantly increasing or decreasing signal"
+  },
+  {
+    "category": "Sources",
+    "name": "Random Number",
+    "path": "slref/randomnumber.html",
+    "summary": "Generate normally distributed random numbers"
+  },
+  {
+    "category": "Sources",
+    "name": "Repeating Sequence",
+    "path": "slref/repeatingsequence.html",
+    "summary": "Generate arbitrarily shaped periodic signal"
+  },
+  {
+    "category": "Sources",
+    "name": "Repeating Sequence Interpolated",
+    "path": "slref/repeatingsequenceinterpolated.html",
+    "summary": "Output discrete-time sequence and repeat, interpolating between data points"
+  },
+  {
+    "category": "Sources",
+    "name": "Repeating Sequence Stair",
+    "path": "slref/repeatingsequencestair.html",
+    "summary": "Output and repeat discrete time sequence"
+  },
+  {
+    "category": "Sources",
+    "name": "Signal Editor",
+    "path": "slref/signaleditorblock.html",
+    "summary": "Display, create, edit, and switch interchangeable scenarios"
+  },
+  {
+    "category": "Sources",
+    "name": "Signal Generator",
+    "path": "slref/signalgenerator.html",
+    "summary": "Generate various waveforms"
+  },
+  {
+    "category": "Sources",
+    "name": "Sine Wave",
+    "path": "slref/sinewave.html",
+    "summary": "Generate sine wave, using simulation time as time source"
+  },
+  {
+    "category": "Sources",
+    "name": "Step",
+    "path": "slref/step.html",
+    "summary": "Generate step function"
+  },
+  {
+    "category": "Sources",
+    "name": "Uniform Random Number",
+    "path": "slref/uniformrandomnumber.html",
+    "summary": "Generate uniformly distributed random numbers"
+  },
+  {
+    "category": "Sources",
+    "name": "Waveform Generator",
+    "path": "slref/waveformgenerator.html",
+    "summary": "Output waveforms using signal notations"
+  },
+  {
+    "category": "String",
+    "name": "ASCII to String",
+    "path": "slref/asciitostring.html",
+    "summary": "Uint8 vector signal to string signal"
+  },
+  {
+    "category": "String",
+    "name": "Compose String",
+    "path": "slref/composestring.html",
+    "summary": "Compose output string signal based on specified format and input signals"
+  },
+  {
+    "category": "String",
+    "name": "Scan String",
+    "path": "slref/scanstring.html",
+    "summary": "Scan input string and convert to signals per specified format"
+  },
+  {
+    "category": "String",
+    "name": "String Compare",
+    "path": "slref/stringcompare.html",
+    "summary": "Compare two input strings"
+  },
+  {
+    "category": "String",
+    "name": "String Concatenate",
+    "path": "slref/stringconcatenate.html",
+    "summary": "Concatenate input strings to form one output string"
+  },
+  {
+    "category": "String",
+    "name": "String Constant",
+    "path": "slref/stringconstant.html",
+    "summary": "Output specified string"
+  },
+  {
+    "category": "String",
+    "name": "String Contains",
+    "path": "slref/stringcontains.html",
+    "summary": "Determine if string contains, starts with, or ends with pattern"
+  },
+  {
+    "category": "String",
+    "name": "String Count",
+    "path": "slref/stringcount.html",
+    "summary": "Count occurrences of pattern in string"
+  },
+  {
+    "category": "String",
+    "name": "String Find",
+    "path": "slref/stringfind.html",
+    "summary": "Return index of first occurrence of pattern string"
+  },
+  {
+    "category": "String",
+    "name": "String Length",
+    "path": "slref/stringlength.html",
+    "summary": "Output number of characters in input string"
+  },
+  {
+    "category": "String",
+    "name": "String to ASCII",
+    "path": "slref/stringtoascii.html",
+    "summary": "Convert string signal to uint8 vector"
+  },
+  {
+    "category": "String",
+    "name": "String to Double",
+    "path": "slref/stringtodouble.html",
+    "summary": "Convert string signal to double signal"
+  },
+  {
+    "category": "String",
+    "name": "String to Enum",
+    "path": "slref/stringtoenum.html",
+    "summary": "Input string signal to enumerated signal"
+  },
+  {
+    "category": "String",
+    "name": "String to Single",
+    "path": "slref/stringtosingle.html",
+    "summary": "Convert string signal to single signal"
+  },
+  {
+    "category": "String",
+    "name": "Substring",
+    "path": "slref/substring.html",
+    "summary": "Extract substring from input string signal"
+  },
+  {
+    "category": "String",
+    "name": "To String",
+    "path": "slref/tostring.html",
+    "summary": "Convert input signal to string signal"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "C Caller",
+    "path": "slref/ccaller.html",
+    "summary": "Integrate C code in Simulink"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "C Function",
+    "path": "slref/cfunction.html",
+    "summary": "Integrate and call external C/C++ code from a Simulink model"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "Fcn",
+    "path": "slref/fcn.html",
+    "summary": "Apply specified expression to input"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "Function Caller",
+    "path": "slref/functioncaller.html",
+    "summary": "Call a Simulink function"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "Initialize Function",
+    "path": "slref/initializefunction.html",
+    "summary": "Execute subsystem on model initialize event"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "Interpreted MATLAB Function",
+    "path": "slref/interpretedmatlabfunction.html",
+    "summary": "(To be removed) Apply MATLAB function or expression to input"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "Level-2 MATLAB S-Function",
+    "path": "slref/level2matlabsfunction.html",
+    "summary": "Use Level-2 MATLAB S-function in model"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "MATLAB Function",
+    "path": "slref/matlabfunction.html",
+    "summary": "Include MATLAB code in Simulink models"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "MATLAB System",
+    "path": "slref/matlabsystem.html",
+    "summary": "Include System object in model"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "Python Code",
+    "path": "ref_extras/pythoncode.html",
+    "summary": "Integrate native Python code into a Simulink model (Since R2025a)"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "Reinitialize Function",
+    "path": "slref/reinitializefunction.html",
+    "summary": "Execute subsystem on model or subsystem reinitialize event (Since R2022a)"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "Reset Function",
+    "path": "slref/resetfunction.html",
+    "summary": "Execute subsystem on model reset event"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "S-Function",
+    "path": "slref/sfunction.html",
+    "summary": "Include S-function in model"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "S-Function Builder",
+    "path": "slref/sfunctionbuilder.html",
+    "summary": "Integrate C or C++ code to create S-functions"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "Simulink Function",
+    "path": "slref/simulinkfunction.html",
+    "summary": "Define a function using Simulink blocks"
+  },
+  {
+    "category": "User-Defined Functions",
+    "name": "Terminate Function",
+    "path": "slref/terminatefunction.html",
+    "summary": "Execute subsystem on model terminate event"
+  },
+  {
+    "category": "Additional Math and Discrete",
+    "name": "Decrement Real World",
+    "path": "slref/decrementrealworld.html",
+    "summary": "Decrease real-world value of signal by one"
+  },
+  {
+    "category": "Additional Math and Discrete",
+    "name": "Decrement Stored Integer",
+    "path": "slref/decrementstoredinteger.html",
+    "summary": "Decrease stored integer value of signal by one"
+  },
+  {
+    "category": "Additional Math and Discrete",
+    "name": "Decrement Time To Zero",
+    "path": "slref/decrementtimetozero.html",
+    "summary": "Decrease real-world value of signal by sample time, but only to zero"
+  },
+  {
+    "category": "Additional Math and Discrete",
+    "name": "Decrement To Zero",
+    "path": "slref/decrementtozero.html",
+    "summary": "Decrease real-world value of signal by one, but only to zero"
+  },
+  {
+    "category": "Additional Math and Discrete",
+    "name": "Fixed-Point State-Space",
+    "path": "slref/fixedpointstatespace.html",
+    "summary": "Implement discrete-time state space"
+  },
+  {
+    "category": "Additional Math and Discrete",
+    "name": "Increment Real World",
+    "path": "slref/incrementrealworld.html",
+    "summary": "Increase real-world value of signal by one"
+  },
+  {
+    "category": "Additional Math and Discrete",
+    "name": "Increment Stored Integer",
+    "path": "slref/incrementstoredinteger.html",
+    "summary": "Increase stored integer value of signal by one"
+  },
+  {
+    "category": "Additional Math and Discrete",
+    "name": "Transfer Fcn Direct Form II",
+    "path": "slref/transferfcndirectformii.html",
+    "summary": "Implement Direct Form II realization of transfer function"
+  },
+  {
+    "category": "Additional Math and Discrete",
+    "name": "Transfer Fcn Direct Form II Time Varying",
+    "path": "slref/transferfcndirectformiitimevarying.html",
+    "summary": "Implement time varying Direct Form II realization of transfer function"
+  }
+]
