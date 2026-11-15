@@ -4,7 +4,9 @@
 
 from __future__ import annotations
 
+import json
 import re
+from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 
@@ -12,6 +14,47 @@ from pathlib import Path
 def library_root() -> Path:
     """Return the single source of Simulink block knowledge shipped with OV."""
     return Path(__file__).resolve().parent / "simulink-block-library"
+
+
+@dataclass(frozen=True)
+class BlockReference:
+    """One official product/library/block occurrence and its document status."""
+
+    product_id: str
+    product_name: str
+    library_path: tuple[str, ...]
+    name: str
+    documentation_path: str
+    summary: str
+    documents: dict[str, dict[str, str | None]]
+
+    @property
+    def full_document(self) -> bool:
+        return self.documents["en"]["status"] == "available"
+
+
+@lru_cache(maxsize=1)
+def manifest() -> dict:
+    return json.loads((library_root() / "manifest.json").read_text(encoding="utf-8"))
+
+
+@lru_cache(maxsize=1)
+def block_references() -> tuple[BlockReference, ...]:
+    """Read all 5,431 official R2025b library occurrences, including gaps."""
+    return tuple(
+        BlockReference(
+            product_id=product["id"],
+            product_name=product["name"],
+            library_path=tuple(library["path"]),
+            name=block["name"],
+            documentation_path=block["documentation_path"],
+            summary=block["summary"],
+            documents=block["documents"],
+        )
+        for product in manifest()["products"]
+        for library in product["libraries"]
+        for block in library["blocks"]
+    )
 
 
 def slug(value: str) -> str:

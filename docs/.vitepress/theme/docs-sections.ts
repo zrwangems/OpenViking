@@ -267,6 +267,7 @@ export const sections: DocSection[] = [
       ]),
       g('Resources and retrieval APIs', '资源与检索 API', [
         p('api/02-resources'),
+        p('reference/matlab-block-library-coverage'),
         p('api/12-content'),
         p('api/03-filesystem'),
         p('api/06-retrieval'),

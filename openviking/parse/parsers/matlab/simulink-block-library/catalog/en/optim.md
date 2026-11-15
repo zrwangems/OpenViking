@@ -1,0 +1,10 @@
+---
+type: simulink-product-block-catalog
+product: 'optim'
+release: R2025b
+language: en
+---
+
+# Optimization Toolbox
+
+This product has no official block-library XML; this does not imply that it has no MATLAB functionality.

@@ -13,7 +13,7 @@ import pytest
 from openviking.parse.output import LocalParseOutputStore
 from openviking.parse.parsers.directory import DirectoryParser
 from openviking.parse.parsers.matlab._zip import read_xml_member
-from openviking.parse.parsers.matlab.catalog import find_block
+from openviking.parse.parsers.matlab.catalog import find_block, find_block_reference
 from openviking.parse.parsers.matlab.formats import parse_additional
 from openviking.parse.parsers.matlab.library import normalize_block_document, read_block_document
 from openviking.parse.parsers.matlab.mat import parse_mat, parse_mat_documents
@@ -327,12 +327,71 @@ def test_block_templates_follow_resource_language():
 def test_standard_library_and_external_library_matching():
     assert find_block("Logic") == ("logic-and-bit-operations", "Logical Operator")
     assert find_block("Reference", "autolibdcdc/Bidirectional DC-DC") is None
+    assert find_block_reference("Reference", "autolibdcdc/Bidirectional DC-DC") is None
     assert find_block("Display", "simulink/Sinks/Display") == ("sinks", "Display")
     assert find_block("Inport", "simulink/Sources/Inport") == ("sources", "Inport")
     assert find_block("MatrixConcatenate", "simulink/Matrix Operations/Matrix Concatenate") == (
         "matrix-operations",
         "Matrix Concatenate",
     )
+
+
+def test_all_product_manifest_counts_and_explicit_document_gaps():
+    root = Path(__file__).parents[3] / "openviking/parse/parsers/matlab/simulink-block-library"
+    manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["release"] == "R2025b"
+    assert manifest["totals"] == {
+        "products": 133,
+        "products_with_blocks": 74,
+        "products_without_block_library": 59,
+        "block_occurrences": 5431,
+        "unique_product_document_paths": 4603,
+        "full_document_occurrences": {"en": 583, "zh": 583},
+        "full_documents": {"en": 333, "zh": 333},
+        "pending_documents": {"en": 4270, "zh": 4270},
+    }
+    products = {product["id"]: product for product in manifest["products"]}
+    assert products["simulink"]["block_occurrences"] == 839
+    assert products["stateflow"]["block_occurrences"] == 10
+    assert products["simscape"]["block_occurrences"] == 276
+    assert products["matlab"]["status"] == "no_block_library"
+    for language in ("en", "zh"):
+        catalog = root / "catalog" / language
+        assert len(list(catalog.glob("*.md"))) == 134  # 133 products plus index
+    chinese_stateflow = (root / "catalog/zh/stateflow.md").read_text(encoding="utf-8")
+    assert "Chart" in chinese_stateflow
+    assert "仅元数据，中英文正文待补" in chinese_stateflow
+    assert (
+        sum(
+            len(library["blocks"])
+            for product in products.values()
+            for library in product["libraries"]
+        )
+        == 5431
+    )
+
+
+def test_toolbox_matching_uses_original_product_and_library_path():
+    chart = find_block_reference("Chart", "stateflow/Chart")
+    assert chart.product_id == "stateflow"
+    assert chart.name == "Chart"
+    assert not chart.full_document
+
+    resistor = find_block_reference(
+        "Resistor", "simscape/Foundation Library/Electrical/Electrical Elements/Resistor"
+    )
+    assert resistor.product_id == "simscape"
+    assert resistor.library_path[-2:] == ("Electrical Elements", "Elements") or (
+        "Electrical Elements" in resistor.library_path
+    )
+    assert "Linear resistor" in resistor.summary
+
+    spectrum = find_block_reference("Spectrum Analyzer", "dsp/Sinks/Spectrum Analyzer")
+    assert spectrum.product_id == "dsp"
+    assert find_block("Chart", "stateflow/Chart") is None
+    pending = render_block_template("Chart", "stateflow/Chart", language="zh-CN")[1]
+    assert "完整中英文正文尚未抓取" in pending
+    assert "不补写端口或参数" in pending
 
 
 def test_scraped_block_knowledge_is_local_and_complete():

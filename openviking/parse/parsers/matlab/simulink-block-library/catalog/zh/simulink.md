@@ -1,0 +1,2031 @@
+---
+type: simulink-product-block-catalog
+product: 'simulink'
+release: R2025b
+language: zh-CN
+---
+
+# Simulink
+
+## Get Started with Simulink
+
+无直接块条目。
+
+
+## Applications
+
+无直接块条目。
+
+
+## Applications / General Applications
+
+无直接块条目。
+
+
+## Applications / Automotive Applications
+
+无直接块条目。
+
+
+## Applications / Aerospace Applications
+
+无直接块条目。
+
+
+## Applications / Industrial Automation Applications
+
+无直接块条目。
+
+
+## Applications / Collaborative Modeling
+
+无直接块条目。
+
+
+## Applications / Signal Processing
+
+无直接块条目。
+
+
+## Applications / RF and Mixed Signal
+
+无直接块条目。
+
+
+## Applications / Control Design
+
+无直接块条目。
+
+
+## Applications / Physical Modeling
+
+无直接块条目。
+
+
+## Applications / Decision Logic
+
+无直接块条目。
+
+
+## Applications / Discrete-Event Simulation
+
+无直接块条目。
+
+
+## Applications / Systems Engineering
+
+无直接块条目。
+
+
+## Simulink Environment Fundamentals
+
+无直接块条目。
+
+
+## Simulink Environment Fundamentals / Simulink Concepts
+
+无直接块条目。
+
+
+## Simulink Environment Fundamentals / Interactive Model Editing
+
+无直接块条目。
+
+
+## Simulink Environment Fundamentals / Collaborative Model Editing
+
+无直接块条目。
+
+
+## Simulink Environment Fundamentals / Programmatic Model Editing
+
+无直接块条目。
+
+
+## Simulink Environment Fundamentals / Simulink Environment Customization
+
+无直接块条目。
+
+
+## Simulink Environment Fundamentals / Model Upgrades
+
+无直接块条目。
+
+
+## Simulink Environment Fundamentals / Block Libraries
+
+无直接块条目。
+
+
+## Simulink Environment Fundamentals / Block Libraries / Continuous
+
+- [Derivative](../../zh/continuous/derivative.md) — 官方英文摘要: Compute approximate continuous derivative of continuous input signal with respect to time **完整正文**
+- [Descriptor State-Space](../../zh/continuous/descriptor-state-space.md) — 官方英文摘要: Model linear implicit system **完整正文**
+- [Entity Transport Delay](../../zh/continuous/entity-transport-delay.md) — 官方英文摘要: Introduce a delay in propagation of a SimEvents message **完整正文**
+- [First Order Hold](../../zh/continuous/first-order-hold.md) — 官方英文摘要: Implement linearly extrapolated first order hold on input signal **完整正文**
+- [Integrator](../../zh/continuous/integrator.md) — 官方英文摘要: Integrate signal **完整正文**
+- [Integrator Limited](../../zh/continuous/integrator-limited.md) — 官方英文摘要: Integrate signal **完整正文**
+- [PID Controller](../../zh/continuous/pid-controller.md) — 官方英文摘要: Continuous-time or discrete-time PID controller **完整正文**
+- [PID Controller (2DOF)](../../zh/continuous/pid-controller-2dof.md) — 官方英文摘要: Continuous-time or discrete-time two-degree-of-freedom PID controller **完整正文**
+- [Second-Order Integrator](../../zh/continuous/second-order-integrator.md) — 官方英文摘要: Second-order integration of input signal **完整正文**
+- [Second-Order Integrator Limited](../../zh/continuous/second-order-integrator-limited.md) — 官方英文摘要: Second-order integration of input signal **完整正文**
+- [State-Space](../../zh/continuous/state-space.md) — 官方英文摘要: Implement linear state-space system **完整正文**
+- [Transfer Fcn](../../zh/continuous/transfer-fcn.md) — 官方英文摘要: Model linear system as transfer function **完整正文**
+- [Transport Delay](../../zh/continuous/transport-delay.md) — 官方英文摘要: Delay input by given amount of time **完整正文**
+- [Variable Time Delay](../../zh/continuous/variable-time-delay.md) — 官方英文摘要: Delay input by variable amount of time **完整正文**
+- [Variable Transport Delay](../../zh/continuous/variable-transport-delay.md) — 官方英文摘要: Delay input by variable amount of time **完整正文**
+- [Zero-Pole](../../zh/continuous/zero-pole.md) — 官方英文摘要: Model system using zero-pole-gain transfer function **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Dashboard
+
+- [Callback Button](../../zh/dashboard/callback-button.md) — 官方英文摘要: Execute MATLAB code using button **完整正文**
+- [Check Box](../../zh/dashboard/check-box.md) — 官方英文摘要: Select parameter or variable value **完整正文**
+- [Combo Box](../../zh/dashboard/combo-box.md) — 官方英文摘要: Select parameter value from drop-down menu **完整正文**
+- [Dashboard Scope](../../zh/dashboard/dashboard-scope.md) — 官方英文摘要: Trace signals on scope display during simulation **完整正文**
+- [Display](../../zh/dashboard/display.md) — 官方英文摘要: Display signal value during simulation **完整正文**
+- [Edit](../../zh/dashboard/edit.md) — 官方英文摘要: Enter new value for parameter **完整正文**
+- [Gauge](../../zh/dashboard/gauge.md) — 官方英文摘要: Display signal value on circular scale **完整正文**
+- [Half Gauge](../../zh/dashboard/half-gauge.md) — 官方英文摘要: Display input value on semicircular scale **完整正文**
+- [Knob](../../zh/dashboard/knob.md) — 官方英文摘要: Tune parameter value with dial **完整正文**
+- [Lamp](../../zh/dashboard/lamp.md) — 官方英文摘要: Display color that reflects signal value on lamp **完整正文**
+- [Linear Gauge](../../zh/dashboard/linear-gauge.md) — 官方英文摘要: Display input value on linear scale **完整正文**
+- [MultiStateImage](../../zh/dashboard/multistateimage.md) — 官方英文摘要: Display image reflecting input value **完整正文**
+- [Push Button](../../zh/dashboard/push-button.md) — 官方英文摘要: Change parameter or variable value using button **完整正文**
+- [Quarter Gauge](../../zh/dashboard/quarter-gauge.md) — 官方英文摘要: Display input value on quadrant scale **完整正文**
+- [Radio Button](../../zh/dashboard/radio-button.md) — 官方英文摘要: Select parameter value **完整正文**
+- [Rocker Switch](../../zh/dashboard/rocker-switch.md) — 官方英文摘要: Toggle parameter between two values **完整正文**
+- [Rotary Switch](../../zh/dashboard/rotary-switch.md) — 官方英文摘要: Switch parameter to set values on dial **完整正文**
+- [Slider](../../zh/dashboard/slider.md) — 官方英文摘要: Tune parameter value with sliding scale **完整正文**
+- [Slider Switch](../../zh/dashboard/slider-switch.md) — 官方英文摘要: Toggle parameter between two values **完整正文**
+- [Toggle Switch](../../zh/dashboard/toggle-switch.md) — 官方英文摘要: Toggle parameter between two values **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Customizable Blocks
+
+- [Callback Button](../../zh/customizable-blocks/callback-button.md) — 官方英文摘要: Execute MATLAB code using button with customizable appearance (Since R2021b) **完整正文**
+- [Check Box](../../zh/customizable-blocks/check-box.md) — 官方英文摘要: Change parameter or variable value during simulation using check box with customizable appearance (Since R2024b) **完整正文**
+- [Circular Gauge](../../zh/customizable-blocks/circular-gauge.md) — 官方英文摘要: Display signal value during simulation on circular gauge with customizable appearance **完整正文**
+- [Combo Box](../../zh/customizable-blocks/combo-box.md) — 官方英文摘要: Change parameter or variable value during simulation using combo box with customizable appearance (Since R2025a) **完整正文**
+- [Display](../../zh/customizable-blocks/display.md) — 官方英文摘要: Display signal value during simulation with customizable appearance (Since R2023b) **完整正文**
+- [Half Gauge](../../zh/customizable-blocks/half-gauge.md) — 官方英文摘要: Display signal value during simulation on gauge shaped as half-circle with customizable appearance (Since R2024a) **完整正文**
+- [Horizontal Gauge](../../zh/customizable-blocks/horizontal-gauge.md) — 官方英文摘要: Display signal value during simulation on horizontal gauge with customizable appearance **完整正文**
+- [Horizontal Slider](../../zh/customizable-blocks/horizontal-slider.md) — 官方英文摘要: Change parameter or variable value using horizontal slider with customizable appearance (Since R2021a) **完整正文**
+- [Knob](../../zh/customizable-blocks/knob.md) — 官方英文摘要: Change parameter or variable value using knob with customizable appearance (Since R2021a) **完整正文**
+- [Lamp](../../zh/customizable-blocks/lamp.md) — 官方英文摘要: Display color that reflects signal value on lamp with customizable appearance (Since R2021b) **完整正文**
+- [Push Button](../../zh/customizable-blocks/push-button.md) — 官方英文摘要: Change parameter or variable value using button with customizable appearance (Since R2021b) **完整正文**
+- [Quarter Gauge](../../zh/customizable-blocks/quarter-gauge.md) — 官方英文摘要: Display signal value during simulation on gauge shaped as quarter-circle with customizable appearance (Since R2024a) **完整正文**
+- [Radio Button](../../zh/customizable-blocks/radio-button.md) — 官方英文摘要: Change parameter or variable value during simulation using radio button with customizable appearance (Since R2025a) **完整正文**
+- [Rocker Switch](../../zh/customizable-blocks/rocker-switch.md) — 官方英文摘要: Change parameter or variable value using switch with customizable appearance (Since R2021b) **完整正文**
+- [Rotary Switch](../../zh/customizable-blocks/rotary-switch.md) — 官方英文摘要: Change parameter or variable value using rotary switch with customizable appearance (Since R2021b) **完整正文**
+- [Slider Switch](../../zh/customizable-blocks/slider-switch.md) — 官方英文摘要: Change parameter or variable value using switch with customizable appearance (Since R2021b) **完整正文**
+- [Toggle Switch](../../zh/customizable-blocks/toggle-switch.md) — 官方英文摘要: Change parameter or variable value using switch with customizable appearance (Since R2021b) **完整正文**
+- [Vertical Gauge](../../zh/customizable-blocks/vertical-gauge.md) — 官方英文摘要: Display signal value during simulation on vertical gauge with customizable appearance **完整正文**
+- [Vertical Slider](../../zh/customizable-blocks/vertical-slider.md) — 官方英文摘要: Change parameter or variable value using vertical slider with customizable appearance (Since R2021a) **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Discontinuities
+
+- [Backlash](../../zh/discontinuities/backlash.md) — 官方英文摘要: Model behavior of system with play **完整正文**
+- [Coulomb and Viscous Friction](../../zh/discontinuities/coulomb-and-viscous-friction.md) — 官方英文摘要: Model discontinuity at zero, with linear gain elsewhere **完整正文**
+- [Dead Zone](../../zh/discontinuities/dead-zone.md) — 官方英文摘要: Provide region of zero output **完整正文**
+- [Dead Zone Dynamic](../../zh/discontinuities/dead-zone-dynamic.md) — 官方英文摘要: Provide dynamic region of zero output **完整正文**
+- [Hit Crossing](../../zh/messages-events/hit-crossing.md) — 官方英文摘要: Detect crossing point **完整正文**
+- [PWM](../../zh/discontinuities/pwm.md) — 官方英文摘要: Generate ideal pulse width modulated signal corresponding to input duty cycle **完整正文**
+- [Quantizer](../../zh/discontinuities/quantizer.md) — 官方英文摘要: Discretize input at given interval **完整正文**
+- [Rate Limiter](../../zh/discontinuities/rate-limiter.md) — 官方英文摘要: Limit rate of change of signal **完整正文**
+- [Rate Limiter Dynamic](../../zh/discontinuities/rate-limiter-dynamic.md) — 官方英文摘要: Limit rate of change of signal **完整正文**
+- [Relay](../../zh/discontinuities/relay.md) — 官方英文摘要: Switch output between two constants **完整正文**
+- [Saturation](../../zh/discontinuities/saturation.md) — 官方英文摘要: Limit input signal to the upper and lower saturation values **完整正文**
+- [Saturation Dynamic](../../zh/discontinuities/saturation-dynamic.md) — 官方英文摘要: Limit input signal to dynamic upper and lower saturation values **完整正文**
+- [Variable Pulse Generator](../../zh/discontinuities/variable-pulse-generator.md) — 官方英文摘要: Generate ideal, time varying pulse signal **完整正文**
+- [Wrap To Zero](../../zh/discontinuities/wrap-to-zero.md) — 官方英文摘要: Set output to zero if input is above threshold **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Discrete
+
+- [Delay](../../zh/discrete/delay.md) — 官方英文摘要: Delay input signal by fixed or variable sample periods **完整正文**
+- [Difference](../../zh/discrete/difference.md) — 官方英文摘要: Calculate change in signal over one time step **完整正文**
+- [Discrete Derivative](../../zh/discrete/discrete-derivative.md) — 官方英文摘要: Compute discrete-time derivative **完整正文**
+- [Discrete FIR Filter](../../zh/discrete/discrete-fir-filter.md) — 官方英文摘要: Model FIR filters **完整正文**
+- [Discrete Filter](../../zh/discrete/discrete-filter.md) — 官方英文摘要: Model Infinite Impulse Response (IIR) filters **完整正文**
+- [Discrete PID Controller](../../zh/discrete/discrete-pid-controller.md) — 官方英文摘要: Discrete-time or continuous-time PID controller **完整正文**
+- [Discrete PID Controller (2DOF)](../../zh/discrete/discrete-pid-controller-2dof.md) — 官方英文摘要: Discrete-time or continuous-time two-degree-of-freedom PID controller **完整正文**
+- [Discrete State-Space](../../zh/discrete/discrete-state-space.md) — 官方英文摘要: Implement discrete state-space system **完整正文**
+- [Discrete Transfer Fcn](../../zh/discrete/discrete-transfer-fcn.md) — 官方英文摘要: Implement discrete transfer function **完整正文**
+- [Discrete Zero-Pole](../../zh/discrete/discrete-zero-pole.md) — 官方英文摘要: Model system defined by zeros and poles of discrete transfer function **完整正文**
+- [Discrete-Time Integrator](../../zh/discrete/discrete-time-integrator.md) — 官方英文摘要: Perform discrete-time integration or accumulation of signal **完整正文**
+- [Memory](../../zh/discrete/memory.md) — 官方英文摘要: Output input from previous time step **完整正文**
+- [Propagation Delay](../../zh/discrete/propagation-delay.md) — 官方英文摘要: Model loop delay, latency, pulse delay (Since R2022b) **完整正文**
+- [Resettable Delay](../../zh/discrete/resettable-delay.md) — 官方英文摘要: Delay input signal by variable sample period and reset with external signal **完整正文**
+- [Tapped Delay](../../zh/discrete/tapped-delay.md) — 官方英文摘要: Delay scalar signal multiple sample periods and output all delayed versions **完整正文**
+- [Transfer Fcn First Order](../../zh/discrete/transfer-fcn-first-order.md) — 官方英文摘要: Implement discrete-time first order transfer function **完整正文**
+- [Transfer Fcn Lead or Lag](../../zh/discrete/transfer-fcn-lead-or-lag.md) — 官方英文摘要: Implement discrete-time lead or lag compensator **完整正文**
+- [Transfer Fcn Real Zero](../../zh/discrete/transfer-fcn-real-zero.md) — 官方英文摘要: Implement discrete-time transfer function that has real zero and no pole **完整正文**
+- [Unit Delay](../../zh/discrete/unit-delay.md) — 官方英文摘要: Delay signal one sample period **完整正文**
+- [Variable Integer Delay](../../zh/discrete/variable-integer-delay.md) — 官方英文摘要: Delay input signal by variable sample period **完整正文**
+- [Zero-Order Hold](../../zh/discrete/zero-order-hold.md) — 官方英文摘要: Implement zero-order hold sample period **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Logic and Bit Operations
+
+- [Bit Clear](../../zh/logic-and-bit-operations/bit-clear.md) — 官方英文摘要: Set specified bit of stored integer to zero **完整正文**
+- [Bit Set](../../zh/logic-and-bit-operations/bit-set.md) — 官方英文摘要: Set specified bit of stored integer to one **完整正文**
+- [Bit to Integer Converter](../../zh/logic-and-bit-operations/bit-to-integer-converter.md) — 官方英文摘要: Map vector of bits to corresponding vector of integers **完整正文**
+- [Bitwise Operator](../../zh/logic-and-bit-operations/bitwise-operator.md) — 官方英文摘要: Specified bitwise operation on inputs **完整正文**
+- [Combinatorial Logic](../../zh/logic-and-bit-operations/combinatorial-logic.md) — 官方英文摘要: Implement truth table **完整正文**
+- [Compare To Constant](../../zh/logic-and-bit-operations/compare-to-constant.md) — 官方英文摘要: Determine how signal compares to specified constant **完整正文**
+- [Compare To Zero](../../zh/logic-and-bit-operations/compare-to-zero.md) — 官方英文摘要: Determine how signal compares to zero **完整正文**
+- [Detect Change](../../zh/logic-and-bit-operations/detect-change.md) — 官方英文摘要: Detect change in signal value **完整正文**
+- [Detect Decrease](../../zh/logic-and-bit-operations/detect-decrease.md) — 官方英文摘要: Detect decrease in signal value **完整正文**
+- [Detect Fall Negative](../../zh/logic-and-bit-operations/detect-fall-negative.md) — 官方英文摘要: Detect falling edge when signal value decreases to strictly negative value, and its previous value was nonnegative **完整正文**
+- [Detect Fall Nonpositive](../../zh/logic-and-bit-operations/detect-fall-nonpositive.md) — 官方英文摘要: Detect falling edge when signal value decreases to nonpositive value, and its previous value was strictly positive **完整正文**
+- [Detect Increase](../../zh/logic-and-bit-operations/detect-increase.md) — 官方英文摘要: Detect increase in signal value **完整正文**
+- [Detect Rise Nonnegative](../../zh/logic-and-bit-operations/detect-rise-nonnegative.md) — 官方英文摘要: Detect rising edge when signal value increases to nonnegative value, and its previous value was strictly negative **完整正文**
+- [Detect Rise Positive](../../zh/logic-and-bit-operations/detect-rise-positive.md) — 官方英文摘要: Detect rising edge when signal value increases to strictly positive value, and its previous value was nonpositive **完整正文**
+- [Extract Bits](../../zh/logic-and-bit-operations/extract-bits.md) — 官方英文摘要: Output selection of contiguous bits from input signal **完整正文**
+- [Float Extract Bits](../../zh/logic-and-bit-operations/float-extract-bits.md) — 官方英文摘要: Extract bits from floating-point input samples (Since R2023a) **完整正文**
+- [Integer to Bit Converter](../../zh/logic-and-bit-operations/integer-to-bit-converter.md) — 官方英文摘要: Map vector of integers to vector of bits **完整正文**
+- [Interval Test](../../zh/logic-and-bit-operations/interval-test.md) — 官方英文摘要: Determine if signal is in specified interval **完整正文**
+- [Interval Test Dynamic](../../zh/logic-and-bit-operations/interval-test-dynamic.md) — 官方英文摘要: Determine if signal is in specified interval **完整正文**
+- [Logical Operator](../../zh/logic-and-bit-operations/logical-operator.md) — 官方英文摘要: Perform specified logical operation on input **完整正文**
+- [Relational Operator](../../zh/logic-and-bit-operations/relational-operator.md) — 官方英文摘要: Perform specified relational operation on inputs **完整正文**
+- [Shift Arithmetic](../../zh/logic-and-bit-operations/shift-arithmetic.md) — 官方英文摘要: Shift bits or binary point of signal **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Lookup Tables
+
+- [1-D Lookup Table](../../zh/lookup-tables/1-d-lookup-table.md) — 官方英文摘要: Approximate one-dimensional function **完整正文**
+- [2-D Lookup Table](../../zh/lookup-tables/2-d-lookup-table.md) — 官方英文摘要: Approximate two-dimensional function **完整正文**
+- [Direct Lookup Table (n-D)](../../zh/lookup-tables/direct-lookup-table-n-d.md) — 官方英文摘要: Index into n-dimensional table to retrieve element, vector, or 2-D matrix **完整正文**
+- [Interpolation Using Prelookup](../../zh/lookup-tables/interpolation-using-prelookup.md) — 官方英文摘要: Use precalculated index and fraction values to accelerate approximation of N-dimensional function **完整正文**
+- [Lookup Table Dynamic](../../zh/lookup-tables/lookup-table-dynamic.md) — 官方英文摘要: Approximate a one-dimensional function using dynamic table **完整正文**
+- [Prelookup](../../zh/lookup-tables/prelookup.md) — 官方英文摘要: Compute index and fraction for Interpolation Using Prelookup block **完整正文**
+- [Sine](../../zh/lookup-tables/sine.md) — 官方英文摘要: Implement fixed-point sine or cosine wave using lookup table approach that exploits quarter wave symmetry **完整正文**
+- [n-D Lookup Table](../../zh/lookup-tables/n-d-lookup-table.md) — 官方英文摘要: Approximate n-dimensional function **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Math Operations
+
+- [Abs](../../zh/math-operations/abs.md) — 官方英文摘要: Output absolute value of input **完整正文**
+- [Algebraic Constraint](../../zh/math-operations/algebraic-constraint.md) — 官方英文摘要: Constrain input signal **完整正文**
+- [Assignment](../../zh/math-operations/assignment.md) — 官方英文摘要: Assign values to specified elements of signal **完整正文**
+- [Bias](../../zh/math-operations/bias.md) — 官方英文摘要: Add bias to input **完整正文**
+- [Complex to Magnitude-Angle](../../zh/math-operations/complex-to-magnitude-angle.md) — 官方英文摘要: Compute magnitude and/or phase angle of complex signal **完整正文**
+- [Complex to Real-Imag](../../zh/math-operations/complex-to-real-imag.md) — 官方英文摘要: Output real and imaginary parts of complex input signal **完整正文**
+- [Divide](../../zh/math-operations/divide.md) — 官方英文摘要: Divide one input by another **完整正文**
+- [Dot Product](../../zh/math-operations/dot-product.md) — 官方英文摘要: Generate dot product of two vectors **完整正文**
+- [Find Nonzero Elements](../../zh/math-operations/find-nonzero-elements.md) — 官方英文摘要: Find nonzero elements in array **完整正文**
+- [Gain](../../zh/math-operations/gain.md) — 官方英文摘要: Multiply input by constant **完整正文**
+- [Magnitude-Angle to Complex](../../zh/math-operations/magnitude-angle-to-complex.md) — 官方英文摘要: Convert magnitude and/or a phase angle signal to complex signal **完整正文**
+- [Math Function](../../zh/math-operations/math-function.md) — 官方英文摘要: Perform mathematical function **完整正文**
+- [Matrix Concatenate](../../zh/matrix-operations/matrix-concatenate.md) — 官方英文摘要: Concatenate input matrices of same data type for iterative processing **完整正文**
+- [MinMax](../../zh/math-operations/minmax.md) — 官方英文摘要: Output minimum or maximum input value **完整正文**
+- [MinMax Running Resettable](../../zh/math-operations/minmax-running-resettable.md) — 官方英文摘要: Determine minimum or maximum of signal over time **完整正文**
+- [Permute Dimensions](../../zh/math-operations/permute-dimensions.md) — 官方英文摘要: Rearrange dimensions of multidimensional array dimensions **完整正文**
+- [Polynomial](../../zh/math-operations/polynomial.md) — 官方英文摘要: Perform evaluation of polynomial coefficients on input values **完整正文**
+- [Product of Elements](../../zh/math-operations/product-of-elements.md) — 官方英文摘要: Copy or invert one scalar input, or collapse one nonscalar input **完整正文**
+- [Product, Matrix Multiply](../../zh/matrix-operations/product-matrix-multiply.md) — 官方英文摘要: Multiply and divide scalars and nonscalars or multiply and invert matrices **完整正文**
+- [Real-Imag to Complex](../../zh/math-operations/real-imag-to-complex.md) — 官方英文摘要: Convert real and/or imaginary inputs to complex signal **完整正文**
+- [Reshape](../../zh/math-operations/reshape.md) — 官方英文摘要: Change dimensionality of signal **完整正文**
+- [Rounding Function](../../zh/math-operations/rounding-function.md) — 官方英文摘要: Apply rounding function to signal **完整正文**
+- [Sign](../../zh/math-operations/sign.md) — 官方英文摘要: Indicate sign of input **完整正文**
+- [Sine Wave Function](../../zh/math-operations/sine-wave-function.md) — 官方英文摘要: Generate sine wave, using external signal as time source **完整正文**
+- [Slider Gain](../../zh/math-operations/slider-gain.md) — 官方英文摘要: Vary scalar gain using slider **完整正文**
+- [Sqrt](../../zh/math-operations/sqrt.md) — 官方英文摘要: Calculate square root, signed square root, or reciprocal of square root **完整正文**
+- [Squeeze](../../zh/math-operations/squeeze.md) — 官方英文摘要: Remove singleton dimensions from multidimensional signal **完整正文**
+- [Sum](../../zh/math-operations/sum.md) — 官方英文摘要: Add or subtract inputs **完整正文**
+- [Trigonometric Function](../../zh/math-operations/trigonometric-function.md) — 官方英文摘要: Specified trigonometric function on input **完整正文**
+- [Unary Minus](../../zh/math-operations/unary-minus.md) — 官方英文摘要: Negate input **完整正文**
+- [Vector Concatenate](../../zh/signal-routing/vector-concatenate.md) — 官方英文摘要: Concatenate input vectors of same data type for iterative processing **完整正文**
+- [Weighted Sample Time Math](../../zh/math-operations/weighted-sample-time-math.md) — 官方英文摘要: Support calculations involving sample time **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Matrix Operations
+
+- [Array Processing Subsystem](../../zh/matrix-operations/array-processing-subsystem.md) — 官方英文摘要: Apply algorithm to each element of a matrix (Since R2024a) **完整正文**
+- [Create Diagonal Matrix](../../zh/matrix-operations/create-diagonal-matrix.md) — 官方英文摘要: Create square diagonal matrix from diagonal elements **完整正文**
+- [Cross Product](../../zh/matrix-operations/cross-product.md) — 官方英文摘要: Cross product of two vectors (Since R2021b) **完整正文**
+- [Expand Scalar](../../zh/matrix-operations/expand-scalar.md) — 官方英文摘要: Create matrix from scalar using scalar expansion (Since R2024a) **完整正文**
+- [Extract Diagonal](../../zh/matrix-operations/extract-diagonal.md) — 官方英文摘要: Extract main diagonal of input matrix **完整正文**
+- [Hermitian Transpose](../../zh/matrix-operations/hermitian-transpose.md) — 官方英文摘要: Compute hermitian transpose of matrix (Since R2021b) **完整正文**
+- [Identity Matrix](../../zh/matrix-operations/identity-matrix.md) — 官方英文摘要: Generate matrix with ones on main diagonal and ground values elsewhere (Since R2021b) **完整正文**
+- [IsHermitian](../../zh/matrix-operations/ishermitian.md) — 官方英文摘要: Check if matrix is Hermitian or skew-Hermitian (Since R2022a) **完整正文**
+- [IsSymmetric](../../zh/matrix-operations/issymmetric.md) — 官方英文摘要: Check if matrix is symmetric or skew-symmetric (Since R2021b) **完整正文**
+- [IsTriangular](../../zh/matrix-operations/istriangular.md) — 官方英文摘要: Check if matrix is upper or lower triangular (Since R2021b) **完整正文**
+- [Matrix Concatenate](../../zh/matrix-operations/matrix-concatenate.md) — 官方英文摘要: Concatenate input matrices of same data type for iterative processing **完整正文**
+- [Matrix Square](../../zh/matrix-operations/matrix-square.md) — 官方英文摘要: Compute square of input matrix **完整正文**
+- [Neighborhood Processing Subsystem](../../zh/matrix-operations/neighborhood-processing-subsystem.md) — 官方英文摘要: Create algorithm that follows the neighborhood pattern (Since R2022b) **完整正文**
+- [Permute Matrix](../../zh/matrix-operations/permute-matrix.md) — 官方英文摘要: Reorder matrix rows or columns **完整正文**
+- [Pixel Processing Subsystem](../../zh/matrix-operations/pixel-processing-subsystem.md) — 官方英文摘要: Create algorithm that converts multichannel image data to single-channel (Since R2024a) **完整正文**
+- [Product, Matrix Multiply](../../zh/matrix-operations/product-matrix-multiply.md) — 官方英文摘要: Multiply and divide scalars and nonscalars or multiply and invert matrices **完整正文**
+- [Submatrix](../../zh/matrix-operations/submatrix.md) — 官方英文摘要: Select subset of elements (submatrix) from matrix input **完整正文**
+- [Transpose](../../zh/matrix-operations/transpose.md) — 官方英文摘要: Compute transpose of matrix (Since R2021b) **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Messages & Events
+
+- [Hit Crossing](../../zh/messages-events/hit-crossing.md) — 官方英文摘要: Detect crossing point **完整正文**
+- [Hit Scheduler](../../zh/messages-events/hit-scheduler.md) — 官方英文摘要: Schedule major time steps for variable-step solver (Since R2022b) **完整正文**
+- [Message Merge](../../zh/messages-events/message-merge.md) — 官方英文摘要: Combine message paths (Since R2021a) **完整正文**
+- [Message Triggered Subsystem](../../zh/messages-events/message-triggered-subsystem.md) — 官方英文摘要: Subsystem whose execution is controlled by message input (Since R2022a) **完整正文**
+- [Queue](../../zh/messages-events/queue.md) — 官方英文摘要: Enqueue messages and entities **完整正文**
+- [Receive](../../zh/messages-events/receive.md) — 官方英文摘要: Receive messages **完整正文**
+- [Send](../../zh/messages-events/send.md) — 官方英文摘要: Create and send message **完整正文**
+- [Sequence Viewer](../../zh/messages-events/sequence-viewer.md) — 官方英文摘要: Display messages, events, states, transitions, and functions between blocks during simulation **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Model Verification
+
+- [Assertion](../../zh/model-verification/assertion.md) — 官方英文摘要: Check whether signal is zero **完整正文**
+- [Check Dynamic Gap](../../zh/model-verification/check-dynamic-gap.md) — 官方英文摘要: Check that gap of possibly varying width occurs in range of signal's amplitudes **完整正文**
+- [Check Dynamic Range](../../zh/model-verification/check-dynamic-range.md) — 官方英文摘要: Check that signal falls inside range of amplitudes that varies from time step to time step **完整正文**
+- [Check Static Gap](../../zh/model-verification/check-static-gap.md) — 官方英文摘要: Check that gap exists in signal's range of amplitudes **完整正文**
+- [Check Static Range](../../zh/model-verification/check-static-range.md) — 官方英文摘要: Check that signal falls inside fixed range of amplitudes **完整正文**
+- [Check Discrete Gradient](../../zh/model-verification/check-discrete-gradient.md) — 官方英文摘要: Check that absolute value of difference between successive samples of discrete signal is less than specified value **完整正文**
+- [Check Dynamic Lower Bound](../../zh/model-verification/check-dynamic-lower-bound.md) — 官方英文摘要: Check that one signal is always less than another signal **完整正文**
+- [Check Dynamic Upper Bound](../../zh/model-verification/check-dynamic-upper-bound.md) — 官方英文摘要: Check that one signal is always greater than another signal **完整正文**
+- [Check Input Resolution](../../zh/model-verification/check-input-resolution.md) — 官方英文摘要: Check that input signal has specified resolution **完整正文**
+- [Check Static Lower Bound](../../zh/model-verification/check-static-lower-bound.md) — 官方英文摘要: Check that signal is greater than (or optionally equal to) static lower bound **完整正文**
+- [Check Static Upper Bound](../../zh/model-verification/check-static-upper-bound.md) — 官方英文摘要: Check that signal is less than (or optionally equal to) static upper bound **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Model-Wide Utilities
+
+- [Block Support Table](../../zh/model-wide-utilities/block-support-table.md) — 官方英文摘要: View data type support for Simulink blocks **完整正文**
+- [DocBlock](../../zh/model-wide-utilities/docblock.md) — 官方英文摘要: Create text that documents model and save text with model **完整正文**
+- [Model Info](../../zh/model-wide-utilities/model-info.md) — 官方英文摘要: Display model properties and text in model **完整正文**
+- [Timed-Based Linearization](../../zh/model-wide-utilities/timed-based-linearization.md) — 官方英文摘要: Generate linear models in base workspace at specific times **完整正文**
+- [Trigger-Based Linearization](../../zh/model-wide-utilities/trigger-based-linearization.md) — 官方英文摘要: Generate linear models in base workspace when triggered **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Ports and Subsystems
+
+- [Enable](../../zh/ports-and-subsystems/enable.md) — 官方英文摘要: Add enable port to subsystem or model **完整正文**
+- [Enabled Subsystem](../../zh/ports-and-subsystems/enabled-subsystem.md) — 官方英文摘要: Subsystem whose execution is enabled by external input **完整正文**
+- [Enabled and Triggered Subsystem](../../zh/ports-and-subsystems/enabled-and-triggered-subsystem.md) — 官方英文摘要: Subsystem whose execution is enabled and triggered by external inputs **完整正文**
+- [For Each Subsystem](../../zh/ports-and-subsystems/for-each-subsystem.md) — 官方英文摘要: Apply algorithm to individual elements or subarrays of input signals or mask parameters **完整正文**
+- [For Iterator Subsystem](../../zh/ports-and-subsystems/for-iterator-subsystem.md) — 官方英文摘要: Repeat subsystem execution during simulation time step for specified number of iterations **完整正文**
+- [Function Element](../../zh/ports-and-subsystems/function-element.md) — 官方英文摘要: Specify function to be called via exporting function port (Since R2022a) **完整正文**
+- [Function Element Call](../../zh/ports-and-subsystems/function-element-call.md) — 官方英文摘要: Specify function call to be issued via invoking function port (Since R2022a) **完整正文**
+- [Function-Call Feedback Latch](../../zh/ports-and-subsystems/function-call-feedback-latch.md) — 官方英文摘要: Break feedback loop involving data signals between function-call blocks **完整正文**
+- [Function-Call Generator](../../zh/ports-and-subsystems/function-call-generator.md) — 官方英文摘要: Provide function-call events to control execution of subsystem or model **完整正文**
+- [Function-Call Split](../../zh/ports-and-subsystems/function-call-split.md) — 官方英文摘要: Provide junction for splitting function-call line **完整正文**
+- [Function-Call Subsystem](../../zh/ports-and-subsystems/function-call-subsystem.md) — 官方英文摘要: Subsystem whose execution is controlled by external function-call input **完整正文**
+- [If](../../zh/ports-and-subsystems/if.md) — 官方英文摘要: Select subsystem execution using logic similar to if-else statement **完整正文**
+- [If Action Subsystem](../../zh/ports-and-subsystems/if-action-subsystem.md) — 官方英文摘要: Subsystem whose execution is enabled by If block **完整正文**
+- [In Bus Element](../../zh/sources/in-bus-element.md) — 官方英文摘要: Select input from external port **完整正文**
+- [Inport](../../zh/sources/inport.md) — 官方英文摘要: Create input port for subsystem or external input **完整正文**
+- [Model](../../zh/ports-and-subsystems/model.md) — 官方英文摘要: Reference another model to create model hierarchy **完整正文**
+- [Out Bus Element](../../zh/sinks/out-bus-element.md) — 官方英文摘要: Specify output of external port **完整正文**
+- [Outport](../../zh/sinks/outport.md) — 官方英文摘要: Create output port for subsystem or external output **完整正文**
+- [Resettable Subsystem](../../zh/ports-and-subsystems/resettable-subsystem.md) — 官方英文摘要: Subsystem whose block states reset with external trigger **完整正文**
+- [Subsystem](../../zh/ports-and-subsystems/subsystem.md) — 官方英文摘要: Group blocks to create model hierarchy **完整正文**
+- [Switch Case](../../zh/ports-and-subsystems/switch-case.md) — 官方英文摘要: Select subsystem execution using logic similar to switch statement **完整正文**
+- [Switch Case Action Subsystem](../../zh/ports-and-subsystems/switch-case-action-subsystem.md) — 官方英文摘要: Subsystem whose execution is enabled by Switch Case block **完整正文**
+- [Trigger](../../zh/ports-and-subsystems/trigger.md) — 官方英文摘要: Add trigger or function port to subsystem or model **完整正文**
+- [Triggered Subsystem](../../zh/ports-and-subsystems/triggered-subsystem.md) — 官方英文摘要: Subsystem whose execution is triggered by external input **完整正文**
+- [Unit System Configuration](../../zh/ports-and-subsystems/unit-system-configuration.md) — 官方英文摘要: Restrict units to specified allowed unit systems **完整正文**
+- [Variant Subsystem](../../zh/ports-and-subsystems/variant-subsystem.md) — 官方英文摘要: Template subsystem containing Subsystem blocks as variant choices **完整正文**
+- [While Iterator Subsystem](../../zh/ports-and-subsystems/while-iterator-subsystem.md) — 官方英文摘要: Repeat subsystem execution during simulation time step while logical expression is true **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Signal Attributes
+
+- [Bus to Vector](../../zh/signal-attributes/bus-to-vector.md) — 官方英文摘要: Convert virtual bus to vector **完整正文**
+- [Data Type Conversion](../../zh/signal-attributes/data-type-conversion.md) — 官方英文摘要: Convert input signal to specified data type **完整正文**
+- [Data Type Conversion Inherited](../../zh/signal-attributes/data-type-conversion-inherited.md) — 官方英文摘要: Convert from one data type to another using inherited data type and scaling **完整正文**
+- [Data Type Duplicate](../../zh/signal-attributes/data-type-duplicate.md) — 官方英文摘要: Force all inputs to same data type **完整正文**
+- [Data Type Propagation](../../zh/signal-attributes/data-type-propagation.md) — 官方英文摘要: Set data type and scaling of propagated signal based on information from reference signals **完整正文**
+- [Data Type Scaling Strip](../../zh/signal-attributes/data-type-scaling-strip.md) — 官方英文摘要: Remove scaling and map to built in integer **完整正文**
+- [IC](../../zh/signal-attributes/ic.md) — 官方英文摘要: Set initial value of signal **完整正文**
+- [Probe](../../zh/signal-attributes/probe.md) — 官方英文摘要: Output signal attributes, including width, dimensionality, sample time, and complex signal flag **完整正文**
+- [Rate Transition](../../zh/signal-attributes/rate-transition.md) — 官方英文摘要: Handle transfer of data between blocks operating at different rates **完整正文**
+- [Signal Conversion](../../zh/signal-attributes/signal-conversion.md) — 官方英文摘要: Convert signal to new type without altering signal values **完整正文**
+- [Signal Specification](../../zh/signal-attributes/signal-specification.md) — 官方英文摘要: Specify desired dimensions, sample time, data type, numeric type, and other attributes of signal **完整正文**
+- [Unit Conversion](../../zh/signal-attributes/unit-conversion.md) — 官方英文摘要: Convert units **完整正文**
+- [Weighted Sample Time](../../zh/signal-attributes/weighted-sample-time.md) — 官方英文摘要: Support calculations involving sample time **完整正文**
+- [Width](../../zh/signal-attributes/width.md) — 官方英文摘要: Output width of input vector **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Signal Routing
+
+- [Bus Assignment](../../zh/signal-routing/bus-assignment.md) — 官方英文摘要: Assign new values to specified bus elements **完整正文**
+- [Bus Creator](../../zh/signal-routing/bus-creator.md) — 官方英文摘要: Group input signals, buses, or messages into bus **完整正文**
+- [Bus Selector](../../zh/signal-routing/bus-selector.md) — 官方英文摘要: Select elements from input bus **完整正文**
+- [Data Store Memory](../../zh/signal-routing/data-store-memory.md) — 官方英文摘要: Define data store **完整正文**
+- [Data Store Read](../../zh/signal-routing/data-store-read.md) — 官方英文摘要: Read data from data store **完整正文**
+- [Data Store Write](../../zh/signal-routing/data-store-write.md) — 官方英文摘要: Write data to data store **完整正文**
+- [Demux](../../zh/signal-routing/demux.md) — 官方英文摘要: Extract and output elements of virtual vector signal **完整正文**
+- [Environment Controller](../../zh/signal-routing/environment-controller.md) — 官方英文摘要: (Removed) Create branches of block diagram that apply only to simulation or only to code generation **完整正文**
+- [From](../../zh/signal-routing/from.md) — 官方英文摘要: Accept input from Goto block **完整正文**
+- [Goto](../../zh/signal-routing/goto.md) — 官方英文摘要: Pass block input to From blocks **完整正文**
+- [Goto Tag Visibility](../../zh/signal-routing/goto-tag-visibility.md) — 官方英文摘要: Define scope of Goto block tag **完整正文**
+- [Index Vector](../../zh/signal-routing/index-vector.md) — 官方英文摘要: Switch output between different inputs based on value of first input **完整正文**
+- [Manual Switch](../../zh/signal-routing/manual-switch.md) — 官方英文摘要: Switch between two inputs **完整正文**
+- [Manual Variant Sink](../../zh/signal-routing/manual-variant-sink.md) — 官方英文摘要: Switch between multiple variant choices at output **完整正文**
+- [Manual Variant Source](../../zh/signal-routing/manual-variant-source.md) — 官方英文摘要: Switch between multiple variant choices at input **完整正文**
+- [Merge](../../zh/signal-routing/merge.md) — 官方英文摘要: Combine multiple signals into single signal **完整正文**
+- [Multiport Switch](../../zh/signal-routing/multiport-switch.md) — 官方英文摘要: Select output signal based on control signal **完整正文**
+- [Mux](../../zh/signal-routing/mux.md) — 官方英文摘要: Combine input signals of same data type and complexity into virtual vector **完整正文**
+- [Parameter Writer](../../zh/signal-routing/parameter-writer.md) — 官方英文摘要: Write to block parameter or variable **完整正文**
+- [Selector](../../zh/signal-routing/selector.md) — 官方英文摘要: Select input elements from vector, matrix, or multidimensional signal **完整正文**
+- [State Reader](../../zh/signal-routing/state-reader.md) — 官方英文摘要: Read a block state **完整正文**
+- [State Writer](../../zh/signal-routing/state-writer.md) — 官方英文摘要: Write to a block state **完整正文**
+- [Switch](../../zh/signal-routing/switch.md) — 官方英文摘要: Switch output between first input and third input based on value of second input **完整正文**
+- [Variant End](../../zh/signal-routing/variant-end.md) — 官方英文摘要: Define end of bounded region (Since R2024a) **完整正文**
+- [Variant Sink](../../zh/signal-routing/variant-sink.md) — 官方英文摘要: Route amongst multiple outputs using variants **完整正文**
+- [Variant Source](../../zh/signal-routing/variant-source.md) — 官方英文摘要: Route among multiple inputs using variants **完整正文**
+- [Variant Start](../../zh/signal-routing/variant-start.md) — 官方英文摘要: Define start of bounded region (Since R2024a) **完整正文**
+- [Vector Concatenate](../../zh/signal-routing/vector-concatenate.md) — 官方英文摘要: Concatenate input vectors of same data type for iterative processing **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Sinks
+
+- [Display](../../zh/sinks/display.md) — 官方英文摘要: Show value of input **完整正文**
+- [Floating Scope and Scope Viewer](../../zh/sinks/floating-scope-and-scope-viewer.md) — 官方英文摘要: Display signals generated during simulation without signal lines **完整正文**
+- [Out Bus Element](../../zh/sinks/out-bus-element.md) — 官方英文摘要: Specify output of external port **完整正文**
+- [Outport](../../zh/sinks/outport.md) — 官方英文摘要: Create output port for subsystem or external output **完整正文**
+- [Record](../../zh/sinks/record.md) — 官方英文摘要: View and log data to the workspace, a file, or both (Since R2021a) **完整正文**
+- [Scope](../../zh/sinks/scope.md) — 官方英文摘要: Display signals generated during simulation **完整正文**
+- [Stop Simulation](../../zh/sinks/stop-simulation.md) — 官方英文摘要: Stop simulation when input is nonzero **完整正文**
+- [Terminator](../../zh/sinks/terminator.md) — 官方英文摘要: Terminate unconnected output port **完整正文**
+- [To File](../../zh/sinks/to-file.md) — 官方英文摘要: Write data to file **完整正文**
+- [To Workspace](../../zh/sinks/to-workspace.md) — 官方英文摘要: Log data to workspace from Simulink model **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Sources
+
+- [Band-Limited White Noise](../../zh/sources/band-limited-white-noise.md) — 官方英文摘要: Introduce white noise into continuous system **完整正文**
+- [Chirp Signal](../../zh/sources/chirp-signal.md) — 官方英文摘要: Generate sine wave with increasing frequency **完整正文**
+- [Clock](../../zh/sources/clock.md) — 官方英文摘要: Display and provide simulation time **完整正文**
+- [Constant](../../zh/sources/constant.md) — 官方英文摘要: Constant value **完整正文**
+- [Counter Free-Running](../../zh/sources/counter-free-running.md) — 官方英文摘要: Count up and overflow back to zero after reaching maximum value for specified number of bits **完整正文**
+- [Counter Limited](../../zh/sources/counter-limited.md) — 官方英文摘要: Count up and wrap to zero after specified upper limit **完整正文**
+- [Digital Clock](../../zh/sources/digital-clock.md) — 官方英文摘要: Output simulation time at specified sampling interval **完整正文**
+- [Enumerated Constant](../../zh/sources/enumerated-constant.md) — 官方英文摘要: Generate enumerated constant value **完整正文**
+- [From File](../../zh/sources/from-file.md) — 官方英文摘要: Load data from MAT file into Simulink model **完整正文**
+- [From Spreadsheet](../../zh/sources/from-spreadsheet.md) — 官方英文摘要: Read data from spreadsheet **完整正文**
+- [From Workspace](../../zh/sources/from-workspace.md) — 官方英文摘要: Load signal data from workspace into Simulink model **完整正文**
+- [Ground](../../zh/sources/ground.md) — 官方英文摘要: Ground unconnected input port **完整正文**
+- [In Bus Element](../../zh/sources/in-bus-element.md) — 官方英文摘要: Select input from external port **完整正文**
+- [Inport](../../zh/sources/inport.md) — 官方英文摘要: Create input port for subsystem or external input **完整正文**
+- [Playback](../../zh/sources/playback.md) — 官方英文摘要: Load data from workspace, file, or Simulation Data Inspector (Since R2022b) **完整正文**
+- [Pulse Generator](../../zh/sources/pulse-generator.md) — 官方英文摘要: Generate square wave pulses at regular intervals **完整正文**
+- [Ramp](../../zh/sources/ramp.md) — 官方英文摘要: Generate constantly increasing or decreasing signal **完整正文**
+- [Random Number](../../zh/sources/random-number.md) — 官方英文摘要: Generate normally distributed random numbers **完整正文**
+- [Repeating Sequence](../../zh/sources/repeating-sequence.md) — 官方英文摘要: Generate arbitrarily shaped periodic signal **完整正文**
+- [Repeating Sequence Interpolated](../../zh/sources/repeating-sequence-interpolated.md) — 官方英文摘要: Output discrete-time sequence and repeat, interpolating between data points **完整正文**
+- [Repeating Sequence Stair](../../zh/sources/repeating-sequence-stair.md) — 官方英文摘要: Output and repeat discrete time sequence **完整正文**
+- [Signal Editor](../../zh/sources/signal-editor.md) — 官方英文摘要: Display, create, edit, and switch interchangeable scenarios **完整正文**
+- [Signal Generator](../../zh/sources/signal-generator.md) — 官方英文摘要: Generate various waveforms **完整正文**
+- [Sine Wave](../../zh/sources/sine-wave.md) — 官方英文摘要: Generate sine wave, using simulation time as time source **完整正文**
+- [Step](../../zh/sources/step.md) — 官方英文摘要: Generate step function **完整正文**
+- [Uniform Random Number](../../zh/sources/uniform-random-number.md) — 官方英文摘要: Generate uniformly distributed random numbers **完整正文**
+- [Waveform Generator](../../zh/sources/waveform-generator.md) — 官方英文摘要: Output waveforms using signal notations **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / String
+
+- [ASCII to String](../../zh/string/ascii-to-string.md) — 官方英文摘要: Uint8 vector signal to string signal **完整正文**
+- [Compose String](../../zh/string/compose-string.md) — 官方英文摘要: Compose output string signal based on specified format and input signals **完整正文**
+- [Scan String](../../zh/string/scan-string.md) — 官方英文摘要: Scan input string and convert to signals per specified format **完整正文**
+- [String Compare](../../zh/string/string-compare.md) — 官方英文摘要: Compare two input strings **完整正文**
+- [String Concatenate](../../zh/string/string-concatenate.md) — 官方英文摘要: Concatenate input strings to form one output string **完整正文**
+- [String Constant](../../zh/string/string-constant.md) — 官方英文摘要: Output specified string **完整正文**
+- [String Contains](../../zh/string/string-contains.md) — 官方英文摘要: Determine if string contains, starts with, or ends with pattern **完整正文**
+- [String Count](../../zh/string/string-count.md) — 官方英文摘要: Count occurrences of pattern in string **完整正文**
+- [String Find](../../zh/string/string-find.md) — 官方英文摘要: Return index of first occurrence of pattern string **完整正文**
+- [String Length](../../zh/string/string-length.md) — 官方英文摘要: Output number of characters in input string **完整正文**
+- [String to ASCII](../../zh/string/string-to-ascii.md) — 官方英文摘要: Convert string signal to uint8 vector **完整正文**
+- [String to Double](../../zh/string/string-to-double.md) — 官方英文摘要: Convert string signal to double signal **完整正文**
+- [String to Enum](../../zh/string/string-to-enum.md) — 官方英文摘要: Input string signal to enumerated signal **完整正文**
+- [String to Single](../../zh/string/string-to-single.md) — 官方英文摘要: Convert string signal to single signal **完整正文**
+- [Substring](../../zh/string/substring.md) — 官方英文摘要: Extract substring from input string signal **完整正文**
+- [To String](../../zh/string/to-string.md) — 官方英文摘要: Convert input signal to string signal **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / User-Defined Functions
+
+- [C Caller](../../zh/user-defined-functions/c-caller.md) — 官方英文摘要: Integrate C code in Simulink **完整正文**
+- [C Function](../../zh/user-defined-functions/c-function.md) — 官方英文摘要: Integrate and call external C/C++ code from a Simulink model **完整正文**
+- [Fcn](../../zh/user-defined-functions/fcn.md) — 官方英文摘要: Apply specified expression to input **完整正文**
+- [Function Caller](../../zh/user-defined-functions/function-caller.md) — 官方英文摘要: Call a Simulink function **完整正文**
+- [Initialize Function](../../zh/user-defined-functions/initialize-function.md) — 官方英文摘要: Execute subsystem on model initialize event **完整正文**
+- [Interpreted MATLAB Function](../../zh/user-defined-functions/interpreted-matlab-function.md) — 官方英文摘要: (To be removed) Apply MATLAB function or expression to input **完整正文**
+- [Level-2 MATLAB S-Function](../../zh/user-defined-functions/level-2-matlab-s-function.md) — 官方英文摘要: Use Level-2 MATLAB S-function in model **完整正文**
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+- [MATLAB System](../../zh/user-defined-functions/matlab-system.md) — 官方英文摘要: Include System object in model **完整正文**
+- [Python Code](../../zh/user-defined-functions/python-code.md) — 官方英文摘要: Integrate native Python code into a Simulink model (Since R2025a) **完整正文**
+- [Reinitialize Function](../../zh/user-defined-functions/reinitialize-function.md) — 官方英文摘要: Execute subsystem on model or subsystem reinitialize event (Since R2022a) **完整正文**
+- [Reset Function](../../zh/user-defined-functions/reset-function.md) — 官方英文摘要: Execute subsystem on model reset event **完整正文**
+- [S-Function](../../zh/user-defined-functions/s-function.md) — 官方英文摘要: Include S-function in model **完整正文**
+- [S-Function Builder](../../zh/user-defined-functions/s-function-builder.md) — 官方英文摘要: Integrate C or C++ code to create S-functions **完整正文**
+- [Simulink Function](../../zh/user-defined-functions/simulink-function.md) — 官方英文摘要: Define a function using Simulink blocks **完整正文**
+- [Terminate Function](../../zh/user-defined-functions/terminate-function.md) — 官方英文摘要: Execute subsystem on model terminate event **完整正文**
+
+## Simulink Environment Fundamentals / Block Libraries / Additional Math and Discrete
+
+- [Fixed-Point State-Space](../../zh/additional-math-and-discrete/fixed-point-state-space.md) — 官方英文摘要: Implement discrete-time state space **完整正文**
+- [Transfer Fcn Direct Form II](../../zh/additional-math-and-discrete/transfer-fcn-direct-form-ii.md) — 官方英文摘要: Implement Direct Form II realization of transfer function **完整正文**
+- [Transfer Fcn Direct Form II Time Varying](../../zh/additional-math-and-discrete/transfer-fcn-direct-form-ii-time-varying.md) — 官方英文摘要: Implement time varying Direct Form II realization of transfer function **完整正文**
+- [Decrement Real World](../../zh/additional-math-and-discrete/decrement-real-world.md) — 官方英文摘要: Decrease real-world value of signal by one **完整正文**
+- [Decrement Stored Integer](../../zh/additional-math-and-discrete/decrement-stored-integer.md) — 官方英文摘要: Decrease stored integer value of signal by one **完整正文**
+- [Decrement Time To Zero](../../zh/additional-math-and-discrete/decrement-time-to-zero.md) — 官方英文摘要: Decrease real-world value of signal by sample time, but only to zero **完整正文**
+- [Decrement To Zero](../../zh/additional-math-and-discrete/decrement-to-zero.md) — 官方英文摘要: Decrease real-world value of signal by one, but only to zero **完整正文**
+- [Increment Real World](../../zh/additional-math-and-discrete/increment-real-world.md) — 官方英文摘要: Increase real-world value of signal by one **完整正文**
+- [Increment Stored Integer](../../zh/additional-math-and-discrete/increment-stored-integer.md) — 官方英文摘要: Increase stored integer value of signal by one **完整正文**
+
+## Modeling
+
+无直接块条目。
+
+
+## Modeling / Design Model Architecture
+
+无直接块条目。
+
+
+## Modeling / Design Model Architecture / Component-Based Modeling
+
+- [Subsystem](../../zh/ports-and-subsystems/subsystem.md) — 官方英文摘要: Group blocks to create model hierarchy **完整正文**
+- [Model](../../zh/ports-and-subsystems/model.md) — 官方英文摘要: Reference another model to create model hierarchy **完整正文**
+- [Variant Subsystem](../../zh/ports-and-subsystems/variant-subsystem.md) — 官方英文摘要: Template subsystem containing Subsystem blocks as variant choices **完整正文**
+- [In Bus Element](../../zh/sources/in-bus-element.md) — 官方英文摘要: Select input from external port **完整正文**
+- [Out Bus Element](../../zh/sinks/out-bus-element.md) — 官方英文摘要: Specify output of external port **完整正文**
+
+## Modeling / Design Model Architecture / Subsystems
+
+- [Subsystem](../../zh/ports-and-subsystems/subsystem.md) — 官方英文摘要: Group blocks to create model hierarchy **完整正文**
+
+## Modeling / Design Model Architecture / Libraries and Blocksets
+
+无直接块条目。
+
+
+## Modeling / Design Model Architecture / Model References
+
+- [Model](../../zh/ports-and-subsystems/model.md) — 官方英文摘要: Reference another model to create model hierarchy **完整正文**
+- [Variant Subsystem](../../zh/ports-and-subsystems/variant-subsystem.md) — 官方英文摘要: Template subsystem containing Subsystem blocks as variant choices **完整正文**
+
+## Modeling / Design Model Architecture / Variant Systems
+
+无直接块条目。
+
+
+## Modeling / Design Model Architecture / Variant Systems / Variant Structures
+
+无直接块条目。
+
+
+## Modeling / Design Model Architecture / Variant Systems / Variant Structures / Variant Hierarchical Components
+
+- Variant Subsystem, Variant Model, Variant Assembly Subsystem — 官方英文摘要: Template subsystem containing Subsystem blocks as variant choices **仅元数据，中英文正文待补**
+
+## Modeling / Design Model Architecture / Variant Systems / Variant Structures / Variant Inline Components
+
+- [Variant Source](../../zh/signal-routing/variant-source.md) — 官方英文摘要: Route among multiple inputs using variants **完整正文**
+- [Variant Sink](../../zh/signal-routing/variant-sink.md) — 官方英文摘要: Route amongst multiple outputs using variants **完整正文**
+- [Variant Start](../../zh/signal-routing/variant-start.md) — 官方英文摘要: Define start of bounded region (Since R2024a) **完整正文**
+- [Variant End](../../zh/signal-routing/variant-end.md) — 官方英文摘要: Define end of bounded region (Since R2024a) **完整正文**
+- [Manual Variant Source](../../zh/signal-routing/manual-variant-source.md) — 官方英文摘要: Switch between multiple variant choices at input **完整正文**
+- [Manual Variant Sink](../../zh/signal-routing/manual-variant-sink.md) — 官方英文摘要: Switch between multiple variant choices at output **完整正文**
+
+## Modeling / Design Model Architecture / Variant Systems / Variant Structures / Variant Event-Based Components
+
+- [Initialize Function](../../zh/user-defined-functions/initialize-function.md) — 官方英文摘要: Execute subsystem on model initialize event **完整正文**
+- [Reset Function](../../zh/user-defined-functions/reset-function.md) — 官方英文摘要: Execute subsystem on model reset event **完整正文**
+- [Terminate Function](../../zh/user-defined-functions/terminate-function.md) — 官方英文摘要: Execute subsystem on model terminate event **完整正文**
+- [Simulink Function](../../zh/user-defined-functions/simulink-function.md) — 官方英文摘要: Define a function using Simulink blocks **完整正文**
+
+## Modeling / Design Model Architecture / Variant Systems / Variant Structures / Speed Up Variant Component Simulation
+
+无直接块条目。
+
+
+## Modeling / Design Model Architecture / Variant Systems / Variant Signal Dimensions
+
+无直接块条目。
+
+
+## Modeling / Design Model Architecture / Variant Systems / Variant Parameter Values
+
+无直接块条目。
+
+
+## Modeling / Design Model Architecture / Variant Systems / Manage Variant Modeling Components
+
+无直接块条目。
+
+
+## Modeling / Design Model Architecture / Variant Systems / Variant Code Generation
+
+无直接块条目。
+
+
+## Modeling / Design Model Architecture / Data Stores
+
+- [Data Store Memory](../../zh/signal-routing/data-store-memory.md) — 官方英文摘要: Define data store **完整正文**
+- [Data Store Read](../../zh/signal-routing/data-store-read.md) — 官方英文摘要: Read data from data store **完整正文**
+- [Data Store Write](../../zh/signal-routing/data-store-write.md) — 官方英文摘要: Write data to data store **完整正文**
+
+## Modeling / Design Model Architecture / Composite Interfaces
+
+- [In Bus Element](../../zh/sources/in-bus-element.md) — 官方英文摘要: Select input from external port **完整正文**
+- [Out Bus Element](../../zh/sinks/out-bus-element.md) — 官方英文摘要: Specify output of external port **完整正文**
+- [Bus Assignment](../../zh/signal-routing/bus-assignment.md) — 官方英文摘要: Assign new values to specified bus elements **完整正文**
+- [Bus Creator](../../zh/signal-routing/bus-creator.md) — 官方英文摘要: Group input signals, buses, or messages into bus **完整正文**
+- [Bus Selector](../../zh/signal-routing/bus-selector.md) — 官方英文摘要: Select elements from input bus **完整正文**
+- [Demux](../../zh/signal-routing/demux.md) — 官方英文摘要: Extract and output elements of virtual vector signal **完整正文**
+- [Mux](../../zh/signal-routing/mux.md) — 官方英文摘要: Combine input signals of same data type and complexity into virtual vector **完整正文**
+- [Selector](../../zh/signal-routing/selector.md) — 官方英文摘要: Select input elements from vector, matrix, or multidimensional signal **完整正文**
+- [Vector Concatenate](../../zh/signal-routing/vector-concatenate.md) — 官方英文摘要: Concatenate input vectors of same data type for iterative processing **完整正文**
+- [Matrix Concatenate](../../zh/matrix-operations/matrix-concatenate.md) — 官方英文摘要: Concatenate input matrices of same data type for iterative processing **完整正文**
+- [Bus to Vector](../../zh/signal-attributes/bus-to-vector.md) — 官方英文摘要: Convert virtual bus to vector **完整正文**
+- [Signal Conversion](../../zh/signal-attributes/signal-conversion.md) — 官方英文摘要: Convert signal to new type without altering signal values **完整正文**
+
+## Modeling / Manage Design Data
+
+无直接块条目。
+
+
+## Modeling / Design Model Behavior
+
+无直接块条目。
+
+
+## Modeling / Design Model Behavior / Conditionally Executed Subsystems and Models
+
+无直接块条目。
+
+
+## Modeling / Design Model Behavior / Conditionally Executed Subsystems and Models / Action Subsystems
+
+- [If](../../zh/ports-and-subsystems/if.md) — 官方英文摘要: Select subsystem execution using logic similar to if-else statement **完整正文**
+- [If Action Subsystem](../../zh/ports-and-subsystems/if-action-subsystem.md) — 官方英文摘要: Subsystem whose execution is enabled by If block **完整正文**
+- [Switch Case](../../zh/ports-and-subsystems/switch-case.md) — 官方英文摘要: Select subsystem execution using logic similar to switch statement **完整正文**
+- [Switch Case Action Subsystem](../../zh/ports-and-subsystems/switch-case-action-subsystem.md) — 官方英文摘要: Subsystem whose execution is enabled by Switch Case block **完整正文**
+
+## Modeling / Design Model Behavior / Conditionally Executed Subsystems and Models / Enabled and Triggered Subsystems
+
+- [Enabled Subsystem](../../zh/ports-and-subsystems/enabled-subsystem.md) — 官方英文摘要: Subsystem whose execution is enabled by external input **完整正文**
+- [Triggered Subsystem](../../zh/ports-and-subsystems/triggered-subsystem.md) — 官方英文摘要: Subsystem whose execution is triggered by external input **完整正文**
+- [Enabled and Triggered Subsystem](../../zh/ports-and-subsystems/enabled-and-triggered-subsystem.md) — 官方英文摘要: Subsystem whose execution is enabled and triggered by external inputs **完整正文**
+- [Message Triggered Subsystem](../../zh/messages-events/message-triggered-subsystem.md) — 官方英文摘要: Subsystem whose execution is controlled by message input (Since R2022a) **完整正文**
+- [Enable](../../zh/ports-and-subsystems/enable.md) — 官方英文摘要: Add enable port to subsystem or model **完整正文**
+- [Trigger](../../zh/ports-and-subsystems/trigger.md) — 官方英文摘要: Add trigger or function port to subsystem or model **完整正文**
+
+## Modeling / Design Model Behavior / Conditionally Executed Subsystems and Models / Function-Call Subsystems
+
+- [Function-Call Subsystem](../../zh/ports-and-subsystems/function-call-subsystem.md) — 官方英文摘要: Subsystem whose execution is controlled by external function-call input **完整正文**
+- [Function-Call Generator](../../zh/ports-and-subsystems/function-call-generator.md) — 官方英文摘要: Provide function-call events to control execution of subsystem or model **完整正文**
+- [Function-Call Split](../../zh/ports-and-subsystems/function-call-split.md) — 官方英文摘要: Provide junction for splitting function-call line **完整正文**
+- [Function-Call Feedback Latch](../../zh/ports-and-subsystems/function-call-feedback-latch.md) — 官方英文摘要: Break feedback loop involving data signals between function-call blocks **完整正文**
+- [Trigger](../../zh/ports-and-subsystems/trigger.md) — 官方英文摘要: Add trigger or function port to subsystem or model **完整正文**
+
+## Modeling / Design Model Behavior / Conditionally Executed Subsystems and Models / Resettable Subsystems
+
+- [Resettable Subsystem](../../zh/ports-and-subsystems/resettable-subsystem.md) — 官方英文摘要: Subsystem whose block states reset with external trigger **完整正文**
+
+## Modeling / Design Model Behavior / Conditionally Executed Subsystems and Models / Other
+
+- Action Port — 官方英文摘要: Control port for action signal to If Action Subsystem or Switch Case Action Subsystem block **仅元数据，中英文正文待补**
+- Reset — 官方英文摘要: Control block for resettable subsystem **仅元数据，中英文正文待补**
+
+## Modeling / Design Model Behavior / Iterator Subsystems
+
+- [While Iterator Subsystem](../../zh/ports-and-subsystems/while-iterator-subsystem.md) — 官方英文摘要: Repeat subsystem execution during simulation time step while logical expression is true **完整正文**
+- [For Iterator Subsystem](../../zh/ports-and-subsystems/for-iterator-subsystem.md) — 官方英文摘要: Repeat subsystem execution during simulation time step for specified number of iterations **完整正文**
+- [For Each Subsystem](../../zh/ports-and-subsystems/for-each-subsystem.md) — 官方英文摘要: Apply algorithm to individual elements or subarrays of input signals or mask parameters **完整正文**
+- [Neighborhood Processing Subsystem](../../zh/matrix-operations/neighborhood-processing-subsystem.md) — 官方英文摘要: Create algorithm that follows the neighborhood pattern (Since R2022b) **完整正文**
+- [Pixel Processing Subsystem](../../zh/matrix-operations/pixel-processing-subsystem.md) — 官方英文摘要: Create algorithm that converts multichannel image data to single-channel (Since R2024a) **完整正文**
+- [Array Processing Subsystem](../../zh/matrix-operations/array-processing-subsystem.md) — 官方英文摘要: Apply algorithm to each element of a matrix (Since R2024a) **完整正文**
+- While Iterator — 官方英文摘要: Control block for while-iterator subsystem **仅元数据，中英文正文待补**
+- For Iterator — 官方英文摘要: Control block for for-iterator subsystem **仅元数据，中英文正文待补**
+- For Each — 官方英文摘要: Control block for for-each subsystem **仅元数据，中英文正文待补**
+- Neighborhood — 官方英文摘要: Control block for Neighborhood Processing Subsystem (Since R2022b) **仅元数据，中英文正文待补**
+- Array Processing — 官方英文摘要: Control block for Array Processing Subsystem (Since R2024a) **仅元数据，中英文正文待补**
+- Pixel Processing — 官方英文摘要: Control block for Pixel Processing Subsystem (Since R2024a) **仅元数据，中英文正文待补**
+
+## Modeling / Design Model Behavior / Simulink Functions
+
+- [Simulink Function](../../zh/user-defined-functions/simulink-function.md) — 官方英文摘要: Define a function using Simulink blocks **完整正文**
+- Chart — 官方英文摘要: Implement control logic with finite state machine **仅元数据，中英文正文待补**
+- [Function Caller](../../zh/user-defined-functions/function-caller.md) — 官方英文摘要: Call a Simulink function **完整正文**
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+- [Inport](../../zh/sources/inport.md) — 官方英文摘要: Create input port for subsystem or external input **完整正文**
+- [Outport](../../zh/sinks/outport.md) — 官方英文摘要: Create output port for subsystem or external output **完整正文**
+- [Function Element](../../zh/ports-and-subsystems/function-element.md) — 官方英文摘要: Specify function to be called via exporting function port (Since R2022a) **完整正文**
+- [Function Element Call](../../zh/ports-and-subsystems/function-element-call.md) — 官方英文摘要: Specify function call to be issued via invoking function port (Since R2022a) **完整正文**
+- Argument Inport — 官方英文摘要: Argument input port for Simulink Function block **仅元数据，中英文正文待补**
+- Argument Outport — 官方英文摘要: Argument output port for Simulink Function block **仅元数据，中英文正文待补**
+
+## Modeling / Design Model Behavior / Timing and Scheduling
+
+无直接块条目。
+
+
+## Modeling / Design Model Behavior / Event Functions
+
+- [Initialize Function](../../zh/user-defined-functions/initialize-function.md) — 官方英文摘要: Execute subsystem on model initialize event **完整正文**
+- [Reinitialize Function](../../zh/user-defined-functions/reinitialize-function.md) — 官方英文摘要: Execute subsystem on model or subsystem reinitialize event (Since R2022a) **完整正文**
+- [Reset Function](../../zh/user-defined-functions/reset-function.md) — 官方英文摘要: Execute subsystem on model reset event **完整正文**
+- [Terminate Function](../../zh/user-defined-functions/terminate-function.md) — 官方英文摘要: Execute subsystem on model terminate event **完整正文**
+- [State Reader](../../zh/signal-routing/state-reader.md) — 官方英文摘要: Read a block state **完整正文**
+- [State Writer](../../zh/signal-routing/state-writer.md) — 官方英文摘要: Write to a block state **完整正文**
+- [Parameter Writer](../../zh/signal-routing/parameter-writer.md) — 官方英文摘要: Write to block parameter or variable **完整正文**
+- [Data Store Read](../../zh/signal-routing/data-store-read.md) — 官方英文摘要: Read data from data store **完整正文**
+- [Data Store Write](../../zh/signal-routing/data-store-write.md) — 官方英文摘要: Write data to data store **完整正文**
+- Event Listener — 官方英文摘要: Event port for Initialize Function, Reinitialize Function, Reset Function, and Terminate Function blocks **仅元数据，中英文正文待补**
+
+## Modeling / Design Model Behavior / Messages
+
+- [Send](../../zh/messages-events/send.md) — 官方英文摘要: Create and send message **完整正文**
+- [Receive](../../zh/messages-events/receive.md) — 官方英文摘要: Receive messages **完整正文**
+- Hit Crossing Probe — 官方英文摘要: Detect crossing point **仅元数据，中英文正文待补**
+- Queue, Entity Queue — 官方英文摘要: Enqueue messages and entities **仅元数据，中英文正文待补**
+- [Message Merge](../../zh/messages-events/message-merge.md) — 官方英文摘要: Combine message paths (Since R2021a) **完整正文**
+- [Message Triggered Subsystem](../../zh/messages-events/message-triggered-subsystem.md) — 官方英文摘要: Subsystem whose execution is controlled by message input (Since R2022a) **完整正文**
+- [Sequence Viewer](../../zh/messages-events/sequence-viewer.md) — 官方英文摘要: Display messages, events, states, transitions, and functions between blocks during simulation **完整正文**
+
+## Modeling / Design Model Behavior / Schedule Model Components
+
+- [Function-Call Subsystem](../../zh/ports-and-subsystems/function-call-subsystem.md) — 官方英文摘要: Subsystem whose execution is controlled by external function-call input **完整正文**
+- [Function-Call Generator](../../zh/ports-and-subsystems/function-call-generator.md) — 官方英文摘要: Provide function-call events to control execution of subsystem or model **完整正文**
+- [Function-Call Split](../../zh/ports-and-subsystems/function-call-split.md) — 官方英文摘要: Provide junction for splitting function-call line **完整正文**
+- [Function-Call Feedback Latch](../../zh/ports-and-subsystems/function-call-feedback-latch.md) — 官方英文摘要: Break feedback loop involving data signals between function-call blocks **完整正文**
+- [Trigger](../../zh/ports-and-subsystems/trigger.md) — 官方英文摘要: Add trigger or function port to subsystem or model **完整正文**
+- [Subsystem](../../zh/ports-and-subsystems/subsystem.md) — 官方英文摘要: Group blocks to create model hierarchy **完整正文**
+- [Inport](../../zh/sources/inport.md) — 官方英文摘要: Create input port for subsystem or external input **完整正文**
+
+## Modeling / Design Model Behavior / Nonlinearity
+
+- [1-D Lookup Table](../../zh/lookup-tables/1-d-lookup-table.md) — 官方英文摘要: Approximate one-dimensional function **完整正文**
+- [2-D Lookup Table](../../zh/lookup-tables/2-d-lookup-table.md) — 官方英文摘要: Approximate two-dimensional function **完整正文**
+- [Direct Lookup Table (n-D)](../../zh/lookup-tables/direct-lookup-table-n-d.md) — 官方英文摘要: Index into n-dimensional table to retrieve element, vector, or 2-D matrix **完整正文**
+- [Interpolation Using Prelookup](../../zh/lookup-tables/interpolation-using-prelookup.md) — 官方英文摘要: Use precalculated index and fraction values to accelerate approximation of N-dimensional function **完整正文**
+- [Lookup Table Dynamic](../../zh/lookup-tables/lookup-table-dynamic.md) — 官方英文摘要: Approximate a one-dimensional function using dynamic table **完整正文**
+- [n-D Lookup Table](../../zh/lookup-tables/n-d-lookup-table.md) — 官方英文摘要: Approximate n-dimensional function **完整正文**
+- [Prelookup](../../zh/lookup-tables/prelookup.md) — 官方英文摘要: Compute index and fraction for Interpolation Using Prelookup block **完整正文**
+- Sine, Cosine — 官方英文摘要: Implement fixed-point sine or cosine wave using lookup table approach that exploits quarter wave symmetry **仅元数据，中英文正文待补**
+
+## Modeling / Design Model Behavior / Multicore Processor Targets
+
+无直接块条目。
+
+
+## Modeling / Configure Signals, States, and Parameters
+
+无直接块条目。
+
+
+## Modeling / Configure Signals, States, and Parameters / Blocks
+
+无直接块条目。
+
+
+## Modeling / Configure Signals, States, and Parameters / Signals
+
+- [Signal Specification](../../zh/signal-attributes/signal-specification.md) — 官方英文摘要: Specify desired dimensions, sample time, data type, numeric type, and other attributes of signal **完整正文**
+- [IC](../../zh/signal-attributes/ic.md) — 官方英文摘要: Set initial value of signal **完整正文**
+- [Probe](../../zh/signal-attributes/probe.md) — 官方英文摘要: Output signal attributes, including width, dimensionality, sample time, and complex signal flag **完整正文**
+- [Rate Transition](../../zh/signal-attributes/rate-transition.md) — 官方英文摘要: Handle transfer of data between blocks operating at different rates **完整正文**
+- [Signal Editor](../../zh/sources/signal-editor.md) — 官方英文摘要: Display, create, edit, and switch interchangeable scenarios **完整正文**
+- [Weighted Sample Time](../../zh/signal-attributes/weighted-sample-time.md) — 官方英文摘要: Support calculations involving sample time **完整正文**
+- [Width](../../zh/signal-attributes/width.md) — 官方英文摘要: Output width of input vector **完整正文**
+- [Bus to Vector](../../zh/signal-attributes/bus-to-vector.md) — 官方英文摘要: Convert virtual bus to vector **完整正文**
+- [Signal Conversion](../../zh/signal-attributes/signal-conversion.md) — 官方英文摘要: Convert signal to new type without altering signal values **完整正文**
+
+## Modeling / Configure Signals, States, and Parameters / Units in Simulink
+
+- [Inport](../../zh/sources/inport.md) — 官方英文摘要: Create input port for subsystem or external input **完整正文**
+- [Outport](../../zh/sinks/outport.md) — 官方英文摘要: Create output port for subsystem or external output **完整正文**
+- [Signal Specification](../../zh/signal-attributes/signal-specification.md) — 官方英文摘要: Specify desired dimensions, sample time, data type, numeric type, and other attributes of signal **完整正文**
+- [Unit System Configuration](../../zh/ports-and-subsystems/unit-system-configuration.md) — 官方英文摘要: Restrict units to specified allowed unit systems **完整正文**
+- [Unit Conversion](../../zh/signal-attributes/unit-conversion.md) — 官方英文摘要: Convert units **完整正文**
+
+## Modeling / Configure Signals, States, and Parameters / Sample Time
+
+无直接块条目。
+
+
+## Modeling / Configure Signals, States, and Parameters / Data Types
+
+无直接块条目。
+
+
+## Modeling / Configure Signals, States, and Parameters / Data Types / Data Types
+
+- [Block Support Table](../../zh/model-wide-utilities/block-support-table.md) — 官方英文摘要: View data type support for Simulink blocks **完整正文**
+- [Data Type Conversion](../../zh/signal-attributes/data-type-conversion.md) — 官方英文摘要: Convert input signal to specified data type **完整正文**
+- [Data Type Conversion Inherited](../../zh/signal-attributes/data-type-conversion-inherited.md) — 官方英文摘要: Convert from one data type to another using inherited data type and scaling **完整正文**
+- [Data Type Duplicate](../../zh/signal-attributes/data-type-duplicate.md) — 官方英文摘要: Force all inputs to same data type **完整正文**
+- [Data Type Propagation](../../zh/signal-attributes/data-type-propagation.md) — 官方英文摘要: Set data type and scaling of propagated signal based on information from reference signals **完整正文**
+- [Data Type Scaling Strip](../../zh/signal-attributes/data-type-scaling-strip.md) — 官方英文摘要: Remove scaling and map to built in integer **完整正文**
+
+## Modeling / Configure Signals, States, and Parameters / Data Types / Strings
+
+- [ASCII to String](../../zh/string/ascii-to-string.md) — 官方英文摘要: Uint8 vector signal to string signal **完整正文**
+- [Compose String](../../zh/string/compose-string.md) — 官方英文摘要: Compose output string signal based on specified format and input signals **完整正文**
+- [Scan String](../../zh/string/scan-string.md) — 官方英文摘要: Scan input string and convert to signals per specified format **完整正文**
+- [String Compare](../../zh/string/string-compare.md) — 官方英文摘要: Compare two input strings **完整正文**
+- [String Concatenate](../../zh/string/string-concatenate.md) — 官方英文摘要: Concatenate input strings to form one output string **完整正文**
+- [String Constant](../../zh/string/string-constant.md) — 官方英文摘要: Output specified string **完整正文**
+- [String Contains](../../zh/string/string-contains.md) — 官方英文摘要: Determine if string contains, starts with, or ends with pattern **完整正文**
+- [String Count](../../zh/string/string-count.md) — 官方英文摘要: Count occurrences of pattern in string **完整正文**
+- [String Find](../../zh/string/string-find.md) — 官方英文摘要: Return index of first occurrence of pattern string **完整正文**
+- [String Length](../../zh/string/string-length.md) — 官方英文摘要: Output number of characters in input string **完整正文**
+- [String to ASCII](../../zh/string/string-to-ascii.md) — 官方英文摘要: Convert string signal to uint8 vector **完整正文**
+- [String to Double](../../zh/string/string-to-double.md) — 官方英文摘要: Convert string signal to double signal **完整正文**
+- [String to Enum](../../zh/string/string-to-enum.md) — 官方英文摘要: Input string signal to enumerated signal **完整正文**
+- [String to Single](../../zh/string/string-to-single.md) — 官方英文摘要: Convert string signal to single signal **完整正文**
+- [Substring](../../zh/string/substring.md) — 官方英文摘要: Extract substring from input string signal **完整正文**
+- [To String](../../zh/string/to-string.md) — 官方英文摘要: Convert input signal to string signal **完整正文**
+
+## Modeling / Configure Signals, States, and Parameters / Model, Block, and Port Callbacks
+
+- [Callback Button](../../zh/dashboard/callback-button.md) — 官方英文摘要: Execute MATLAB code using button **完整正文**
+
+## Modeling / Configure Signals, States, and Parameters / Model Configuration Sets
+
+无直接块条目。
+
+
+## Modeling / Configure Inputs and Visualizations
+
+无直接块条目。
+
+
+## Modeling / Analyze and Remodel Design
+
+无直接块条目。
+
+
+## Modeling / Analyze and Remodel Design / Run Model Advisor Checks
+
+无直接块条目。
+
+
+## Modeling / Analyze and Remodel Design / Configure and View Diagnostics
+
+无直接块条目。
+
+
+## Modeling / Analyze and Remodel Design / Transform Models
+
+无直接块条目。
+
+
+## Modeling / Analyze and Remodel Design / Transform Models / Discretization
+
+无直接块条目。
+
+
+## Modeling / Analyze and Remodel Design / Transform Models / Trimming and Linearization
+
+- [Timed-Based Linearization](../../zh/model-wide-utilities/timed-based-linearization.md) — 官方英文摘要: Generate linear models in base workspace at specific times **完整正文**
+- [Trigger-Based Linearization](../../zh/model-wide-utilities/trigger-based-linearization.md) — 官方英文摘要: Generate linear models in base workspace when triggered **完整正文**
+- Trigger-Based Operating Point Snapshot — 官方英文摘要: Generate operating points at triggered events **仅元数据，中英文正文待补**
+
+## Modeling / Analyze and Remodel Design / Transform Models / Reduced Order Modeling
+
+无直接块条目。
+
+
+## Modeling / Analyze and Remodel Design / Transform Models / Fixed Point
+
+无直接块条目。
+
+
+## Modeling / Test Model Components
+
+- [Assertion](../../zh/model-verification/assertion.md) — 官方英文摘要: Check whether signal is zero **完整正文**
+- [Check Discrete Gradient](../../zh/model-verification/check-discrete-gradient.md) — 官方英文摘要: Check that absolute value of difference between successive samples of discrete signal is less than specified value **完整正文**
+- [Check Dynamic Gap](../../zh/model-verification/check-dynamic-gap.md) — 官方英文摘要: Check that gap of possibly varying width occurs in range of signal's amplitudes **完整正文**
+- [Check Dynamic Lower Bound](../../zh/model-verification/check-dynamic-lower-bound.md) — 官方英文摘要: Check that one signal is always less than another signal **完整正文**
+- [Check Dynamic Range](../../zh/model-verification/check-dynamic-range.md) — 官方英文摘要: Check that signal falls inside range of amplitudes that varies from time step to time step **完整正文**
+- [Check Dynamic Upper Bound](../../zh/model-verification/check-dynamic-upper-bound.md) — 官方英文摘要: Check that one signal is always greater than another signal **完整正文**
+- [Check Input Resolution](../../zh/model-verification/check-input-resolution.md) — 官方英文摘要: Check that input signal has specified resolution **完整正文**
+- [Check Static Gap](../../zh/model-verification/check-static-gap.md) — 官方英文摘要: Check that gap exists in signal's range of amplitudes **完整正文**
+- [Check Static Lower Bound](../../zh/model-verification/check-static-lower-bound.md) — 官方英文摘要: Check that signal is greater than (or optionally equal to) static lower bound **完整正文**
+- [Check Static Range](../../zh/model-verification/check-static-range.md) — 官方英文摘要: Check that signal falls inside fixed range of amplitudes **完整正文**
+- [Check Static Upper Bound](../../zh/model-verification/check-static-upper-bound.md) — 官方英文摘要: Check that signal is less than (or optionally equal to) static upper bound **完整正文**
+
+## Modeling / Modeling Guidelines
+
+无直接块条目。
+
+
+## Modeling / Modeling Guidelines / MAB Modeling Guidelines
+
+无直接块条目。
+
+
+## Modeling / Modeling Guidelines / MAB Modeling Guidelines / Naming Conventions
+
+无直接块条目。
+
+
+## Modeling / Modeling Guidelines / MAB Modeling Guidelines / Simulink
+
+无直接块条目。
+
+
+## Modeling / Modeling Guidelines / MAB Modeling Guidelines / Stateflow
+
+无直接块条目。
+
+
+## Modeling / Modeling Guidelines / MAB Modeling Guidelines / MATLAB
+
+无直接块条目。
+
+
+## Modeling / Modeling Guidelines / High-Integrity System Modeling
+
+无直接块条目。
+
+
+## Modeling / Modeling Guidelines / High-Integrity System Modeling / Simulink Block Considerations
+
+无直接块条目。
+
+
+## Modeling / Modeling Guidelines / High-Integrity System Modeling / Stateflow Chart Considerations
+
+无直接块条目。
+
+
+## Modeling / Modeling Guidelines / High-Integrity System Modeling / MATLAB Function and MATLAB Code Considerations
+
+无直接块条目。
+
+
+## Modeling / Modeling Guidelines / High-Integrity System Modeling / Configuration Parameter Considerations
+
+无直接块条目。
+
+
+## Modeling / Modeling Guidelines / High-Integrity System Modeling / Requirements Considerations
+
+无直接块条目。
+
+
+## Modeling / Modeling Guidelines / High-Integrity System Modeling / MISRA C:2012 Compliance Considerations
+
+无直接块条目。
+
+
+## Modeling / Modeling Guidelines / Code Generation
+
+无直接块条目。
+
+
+## Modeling / Tool Qualification and Certification
+
+无直接块条目。
+
+
+## Simulation
+
+无直接块条目。
+
+
+## Simulation / Prepare Model Inputs and Outputs
+
+无直接块条目。
+
+
+## Simulation / Prepare Model Inputs and Outputs / Create Signal Data for Simulation
+
+- [Signal Editor](../../zh/sources/signal-editor.md) — 官方英文摘要: Display, create, edit, and switch interchangeable scenarios **完整正文**
+
+## Simulation / Prepare Model Inputs and Outputs / Load Signal Data for Simulation
+
+- [Inport](../../zh/sources/inport.md) — 官方英文摘要: Create input port for subsystem or external input **完整正文**
+- In Bus Element, Bus Element In — 官方英文摘要: Select input from external port **仅元数据，中英文正文待补**
+- [Enable](../../zh/ports-and-subsystems/enable.md) — 官方英文摘要: Add enable port to subsystem or model **完整正文**
+- [Trigger](../../zh/ports-and-subsystems/trigger.md) — 官方英文摘要: Add trigger or function port to subsystem or model **完整正文**
+- [From File](../../zh/sources/from-file.md) — 官方英文摘要: Load data from MAT file into Simulink model **完整正文**
+- [From Spreadsheet](../../zh/sources/from-spreadsheet.md) — 官方英文摘要: Read data from spreadsheet **完整正文**
+- [From Workspace](../../zh/sources/from-workspace.md) — 官方英文摘要: Load signal data from workspace into Simulink model **完整正文**
+- [Playback](../../zh/sources/playback.md) — 官方英文摘要: Load data from workspace, file, or Simulation Data Inspector (Since R2022b) **完整正文**
+- [Signal Editor](../../zh/sources/signal-editor.md) — 官方英文摘要: Display, create, edit, and switch interchangeable scenarios **完整正文**
+
+## Simulation / Prepare Model Inputs and Outputs / Save Run-Time Data from Simulation
+
+- [Outport](../../zh/sinks/outport.md) — 官方英文摘要: Create output port for subsystem or external output **完整正文**
+- [Record](../../zh/sinks/record.md) — 官方英文摘要: View and log data to the workspace, a file, or both (Since R2021a) **完整正文**
+- [To File](../../zh/sinks/to-file.md) — 官方英文摘要: Write data to file **完整正文**
+- [To Workspace](../../zh/sinks/to-workspace.md) — 官方英文摘要: Log data to workspace from Simulink model **完整正文**
+
+## Simulation / Configure Simulation Conditions
+
+无直接块条目。
+
+
+## Simulation / Run Simulations
+
+无直接块条目。
+
+
+## Simulation / Run Simulations / Run Individual Simulations
+
+无直接块条目。
+
+
+## Simulation / Run Simulations / Run Multiple Simulations
+
+无直接块条目。
+
+
+## Simulation / View and Analyze Simulation Results
+
+无直接块条目。
+
+
+## Simulation / View and Analyze Simulation Results / Control Simulations with Interactive Dashboards
+
+无直接块条目。
+
+
+## Simulation / View and Analyze Simulation Results / Control Simulations with Interactive Dashboards / Displays
+
+- [Dashboard Scope](../../zh/dashboard/dashboard-scope.md) — 官方英文摘要: Trace signals on scope display during simulation **完整正文**
+- [Display](../../zh/dashboard/display.md) — 官方英文摘要: Display signal value during simulation **完整正文**
+- [Gauge](../../zh/dashboard/gauge.md) — 官方英文摘要: Display signal value on circular scale **完整正文**
+- [Half Gauge](../../zh/dashboard/half-gauge.md) — 官方英文摘要: Display input value on semicircular scale **完整正文**
+- [Quarter Gauge](../../zh/dashboard/quarter-gauge.md) — 官方英文摘要: Display input value on quadrant scale **完整正文**
+- [Linear Gauge](../../zh/dashboard/linear-gauge.md) — 官方英文摘要: Display input value on linear scale **完整正文**
+- [Lamp](../../zh/dashboard/lamp.md) — 官方英文摘要: Display color that reflects signal value on lamp **完整正文**
+- [MultiStateImage](../../zh/dashboard/multistateimage.md) — 官方英文摘要: Display image reflecting input value **完整正文**
+
+## Simulation / View and Analyze Simulation Results / Control Simulations with Interactive Dashboards / Customizable Displays
+
+- [Circular Gauge](../../zh/customizable-blocks/circular-gauge.md) — 官方英文摘要: Display signal value during simulation on circular gauge with customizable appearance **完整正文**
+- [Half Gauge](../../zh/customizable-blocks/half-gauge.md) — 官方英文摘要: Display signal value during simulation on gauge shaped as half-circle with customizable appearance (Since R2024a) **完整正文**
+- [Quarter Gauge](../../zh/customizable-blocks/quarter-gauge.md) — 官方英文摘要: Display signal value during simulation on gauge shaped as quarter-circle with customizable appearance (Since R2024a) **完整正文**
+- [Display](../../zh/customizable-blocks/display.md) — 官方英文摘要: Display signal value during simulation with customizable appearance (Since R2023b) **完整正文**
+- [Horizontal Gauge](../../zh/customizable-blocks/horizontal-gauge.md) — 官方英文摘要: Display signal value during simulation on horizontal gauge with customizable appearance **完整正文**
+- [Vertical Gauge](../../zh/customizable-blocks/vertical-gauge.md) — 官方英文摘要: Display signal value during simulation on vertical gauge with customizable appearance **完整正文**
+- [Lamp](../../zh/customizable-blocks/lamp.md) — 官方英文摘要: Display color that reflects signal value on lamp with customizable appearance (Since R2021b) **完整正文**
+
+## Simulation / View and Analyze Simulation Results / Control Simulations with Interactive Dashboards / Controls
+
+- [Edit](../../zh/dashboard/edit.md) — 官方英文摘要: Enter new value for parameter **完整正文**
+- [Knob](../../zh/dashboard/knob.md) — 官方英文摘要: Tune parameter value with dial **完整正文**
+- [Slider](../../zh/dashboard/slider.md) — 官方英文摘要: Tune parameter value with sliding scale **完整正文**
+- [Push Button](../../zh/dashboard/push-button.md) — 官方英文摘要: Change parameter or variable value using button **完整正文**
+- [Rotary Switch](../../zh/dashboard/rotary-switch.md) — 官方英文摘要: Switch parameter to set values on dial **完整正文**
+- [Radio Button](../../zh/dashboard/radio-button.md) — 官方英文摘要: Select parameter value **完整正文**
+- [Combo Box](../../zh/dashboard/combo-box.md) — 官方英文摘要: Select parameter value from drop-down menu **完整正文**
+- [Check Box](../../zh/dashboard/check-box.md) — 官方英文摘要: Select parameter or variable value **完整正文**
+- [Rocker Switch](../../zh/dashboard/rocker-switch.md) — 官方英文摘要: Toggle parameter between two values **完整正文**
+- [Slider Switch](../../zh/dashboard/slider-switch.md) — 官方英文摘要: Toggle parameter between two values **完整正文**
+- [Toggle Switch](../../zh/dashboard/toggle-switch.md) — 官方英文摘要: Toggle parameter between two values **完整正文**
+- [Callback Button](../../zh/dashboard/callback-button.md) — 官方英文摘要: Execute MATLAB code using button **完整正文**
+
+## Simulation / View and Analyze Simulation Results / Control Simulations with Interactive Dashboards / Customizable Controls
+
+- [Knob](../../zh/customizable-blocks/knob.md) — 官方英文摘要: Change parameter or variable value using knob with customizable appearance (Since R2021a) **完整正文**
+- [Horizontal Slider](../../zh/customizable-blocks/horizontal-slider.md) — 官方英文摘要: Change parameter or variable value using horizontal slider with customizable appearance (Since R2021a) **完整正文**
+- [Vertical Slider](../../zh/customizable-blocks/vertical-slider.md) — 官方英文摘要: Change parameter or variable value using vertical slider with customizable appearance (Since R2021a) **完整正文**
+- [Push Button](../../zh/customizable-blocks/push-button.md) — 官方英文摘要: Change parameter or variable value using button with customizable appearance (Since R2021b) **完整正文**
+- [Callback Button](../../zh/customizable-blocks/callback-button.md) — 官方英文摘要: Execute MATLAB code using button with customizable appearance (Since R2021b) **完整正文**
+- [Rotary Switch](../../zh/customizable-blocks/rotary-switch.md) — 官方英文摘要: Change parameter or variable value using rotary switch with customizable appearance (Since R2021b) **完整正文**
+- [Radio Button](../../zh/customizable-blocks/radio-button.md) — 官方英文摘要: Change parameter or variable value during simulation using radio button with customizable appearance (Since R2025a) **完整正文**
+- [Combo Box](../../zh/customizable-blocks/combo-box.md) — 官方英文摘要: Change parameter or variable value during simulation using combo box with customizable appearance (Since R2025a) **完整正文**
+- [Check Box](../../zh/customizable-blocks/check-box.md) — 官方英文摘要: Change parameter or variable value during simulation using check box with customizable appearance (Since R2024b) **完整正文**
+- [Rocker Switch](../../zh/customizable-blocks/rocker-switch.md) — 官方英文摘要: Change parameter or variable value using switch with customizable appearance (Since R2021b) **完整正文**
+- [Slider Switch](../../zh/customizable-blocks/slider-switch.md) — 官方英文摘要: Change parameter or variable value using switch with customizable appearance (Since R2021b) **完整正文**
+- [Toggle Switch](../../zh/customizable-blocks/toggle-switch.md) — 官方英文摘要: Change parameter or variable value using switch with customizable appearance (Since R2021b) **完整正文**
+
+## Simulation / View and Analyze Simulation Results / View Data During Simulation
+
+- [Scope](../../zh/sinks/scope.md) — 官方英文摘要: Display signals generated during simulation **完整正文**
+- [Floating Scope and Scope Viewer](../../zh/sinks/floating-scope-and-scope-viewer.md) — 官方英文摘要: Display signals generated during simulation without signal lines **完整正文**
+- [Record](../../zh/sinks/record.md) — 官方英文摘要: View and log data to the workspace, a file, or both (Since R2021a) **完整正文**
+
+## Simulation / View and Analyze Simulation Results / Create Apps to Control Simulations
+
+无直接块条目。
+
+
+## Simulation / View and Analyze Simulation Results / Analyze Simulation Results
+
+无直接块条目。
+
+
+## Simulation / View and Analyze Simulation Results / Save Simulation and Analysis Results
+
+无直接块条目。
+
+
+## Simulation / Test and Debug Simulations
+
+无直接块条目。
+
+
+## Simulation / Test and Debug Simulations / Debug Simulations in the Simulink Editor
+
+无直接块条目。
+
+
+## Simulation / Test and Debug Simulations / Debug Simulations Programmatically
+
+无直接块条目。
+
+
+## Simulation / Test and Debug Simulations / Diagnostics
+
+无直接块条目。
+
+
+## Simulation / Optimize Performance
+
+无直接块条目。
+
+
+## Simulation / Optimize Performance / Automated Performance Optimization
+
+无直接块条目。
+
+
+## Simulation / Optimize Performance / Acceleration
+
+无直接块条目。
+
+
+## Simulation / Optimize Performance / Manual Performance Optimization
+
+无直接块条目。
+
+
+## Project Management
+
+无直接块条目。
+
+
+## Project Management / Using MATLAB Projects in Simulink
+
+无直接块条目。
+
+
+## Project Management / Model Comparison
+
+无直接块条目。
+
+
+## Project Management / Continuous Integration and Continuous Delivery
+
+无直接块条目。
+
+
+## Project Management / Design Evolution Management
+
+无直接块条目。
+
+
+## Project Management / Requirements Traceability
+
+无直接块条目。
+
+
+## Block and Blockset Authoring
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Block Authoring Basics
+
+- [Function Caller](../../zh/user-defined-functions/function-caller.md) — 官方英文摘要: Call a Simulink function **完整正文**
+- [Level-2 MATLAB S-Function](../../zh/user-defined-functions/level-2-matlab-s-function.md) — 官方英文摘要: Use Level-2 MATLAB S-function in model **完整正文**
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+- [MATLAB System](../../zh/user-defined-functions/matlab-system.md) — 官方英文摘要: Include System object in model **完整正文**
+- [S-Function](../../zh/user-defined-functions/s-function.md) — 官方英文摘要: Include S-function in model **完整正文**
+- [S-Function Builder](../../zh/user-defined-functions/s-function-builder.md) — 官方英文摘要: Integrate C or C++ code to create S-functions **完整正文**
+- [Simulink Function](../../zh/user-defined-functions/simulink-function.md) — 官方英文摘要: Define a function using Simulink blocks **完整正文**
+- [Fcn](../../zh/user-defined-functions/fcn.md) — 官方英文摘要: Apply specified expression to input **完整正文**
+- [Interpreted MATLAB Function](../../zh/user-defined-functions/interpreted-matlab-function.md) — 官方英文摘要: (To be removed) Apply MATLAB function or expression to input **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB S-Functions
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB S-Functions / MATLAB S-Function Basics
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB S-Functions / Create MATLAB S-Functions
+
+- [S-Function](../../zh/user-defined-functions/s-function.md) — 官方英文摘要: Include S-function in model **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB S-Functions / Configure Block Features for MATLAB S-Functions
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB System Objects
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB System Objects / Customize System Objects for Simulink
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB System Objects / Implement Blocks with System Objects
+
+- [MATLAB System](../../zh/user-defined-functions/matlab-system.md) — 官方英文摘要: Include System object in model **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / MATLAB Function Block Basics
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Arguments and Units in MATLAB Function Blocks
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / MATLAB Function Block Editor
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Algorithm Design Basics
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Language, Function, and Object Support
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+- [MATLAB System](../../zh/user-defined-functions/matlab-system.md) — 官方英文摘要: Include System object in model **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / Numeric Types
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / Array Layout
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / Characters and Strings
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / Variable-Size Data
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+- [MATLAB System](../../zh/user-defined-functions/matlab-system.md) — 官方英文摘要: Include System object in model **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / Structures
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+- [MATLAB System](../../zh/user-defined-functions/matlab-system.md) — 官方英文摘要: Include System object in model **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / Cell Arrays
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / Tables
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / Categorical Arrays
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / Datetime Arrays
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / Duration Arrays
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / Timetables
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / Enumerations
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / MATLAB Classes
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+- [MATLAB System](../../zh/user-defined-functions/matlab-system.md) — 官方英文摘要: Include System object in model **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / Function Handles
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+- [MATLAB System](../../zh/user-defined-functions/matlab-system.md) — 官方英文摘要: Include System object in model **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Data Definition / Dictionaries
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Programming for Code Generation / Function Definition
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+- [MATLAB System](../../zh/user-defined-functions/matlab-system.md) — 官方英文摘要: Include System object in model **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using MATLAB / Author Blocks Using MATLAB Functions / Performance
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using C/C++
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using C/C++ / Author Blocks Using C MEX S-Functions
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using C/C++ / Author Blocks Using C MEX S-Functions / C/C++ S-Function Basics
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using C/C++ / Author Blocks Using C MEX S-Functions / Create C/C++ S-Functions
+
+- [S-Function](../../zh/user-defined-functions/s-function.md) — 官方英文摘要: Include S-function in model **完整正文**
+- [S-Function Builder](../../zh/user-defined-functions/s-function-builder.md) — 官方英文摘要: Integrate C or C++ code to create S-functions **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using C/C++ / Author Blocks Using C MEX S-Functions / Configure C/C++ S-Function Features
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using C/C++ / Author Blocks Using C MEX S-Functions / Debug and Analyze Quality of S-Functions
+
+- [S-Function](../../zh/user-defined-functions/s-function.md) — 官方英文摘要: Include S-function in model **完整正文**
+- [S-Function Builder](../../zh/user-defined-functions/s-function-builder.md) — 官方英文摘要: Integrate C or C++ code to create S-functions **完整正文**
+
+## Block and Blockset Authoring / Author Block Algorithms / Author Blocks Using C/C++ / Author Blocks Using S-Function Builder
+
+- [S-Function Builder](../../zh/user-defined-functions/s-function-builder.md) — 官方英文摘要: Integrate C or C++ code to create S-functions **完整正文**
+
+## Block and Blockset Authoring / Author Blocksets Using Blockset Designer
+
+无直接块条目。
+
+
+## Block and Blockset Authoring / Author Block Masks
+
+无直接块条目。
+
+
+## Simulation Integration
+
+无直接块条目。
+
+
+## Simulation Integration / Create Large-Scale Model Components
+
+无直接块条目。
+
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate Native Simulink Components
+
+无直接块条目。
+
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate Components from External Tools
+
+无直接块条目。
+
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate Components from External Tools / FMU Importing
+
+- FMU — 官方英文摘要: Include Functional Mockup Unit (FMU) in model **仅元数据，中英文正文待补**
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate Components from External Tools / Co-Simulation
+
+- FMU — 官方英文摘要: Include Functional Mockup Unit (FMU) in model **仅元数据，中英文正文待补**
+- [S-Function](../../zh/user-defined-functions/s-function.md) — 官方英文摘要: Include S-function in model **完整正文**
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate Components from External Tools / Third-Party Functionality Integration
+
+无直接块条目。
+
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate External Code into Simulink
+
+无直接块条目。
+
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate External Code into Simulink / Integrate MATLAB Code into Simulink
+
+- [MATLAB Function](../../zh/user-defined-functions/matlab-function.md) — 官方英文摘要: Include MATLAB code in Simulink models **完整正文**
+- [MATLAB System](../../zh/user-defined-functions/matlab-system.md) — 官方英文摘要: Include System object in model **完整正文**
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate External Code into Simulink / Integrate C/C++ Code into Simulink
+
+无直接块条目。
+
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate External Code into Simulink / Integrate C/C++ Code into Simulink / Integrate C/C++ Code Using Code Importers
+
+无直接块条目。
+
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate External Code into Simulink / Integrate C/C++ Code into Simulink / Integrate C/C++ Code Using Code Importers / Integrate C Code Using C Caller Blocks
+
+- [C Caller](../../zh/user-defined-functions/c-caller.md) — 官方英文摘要: Integrate C code in Simulink **完整正文**
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate External Code into Simulink / Integrate C/C++ Code into Simulink / Integrate C/C++ Code Using Code Importers / Integrate C/C++ Code Using C Function Blocks
+
+- [C Function](../../zh/user-defined-functions/c-function.md) — 官方英文摘要: Integrate and call external C/C++ code from a Simulink model **完整正文**
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate External Code into Simulink / Integrate C/C++ Code into Simulink / Integrate C/C++ Code Using Code Importers / Create Block Library from C/C++ Code
+
+- [C Caller](../../zh/user-defined-functions/c-caller.md) — 官方英文摘要: Integrate C code in Simulink **完整正文**
+- [C Function](../../zh/user-defined-functions/c-function.md) — 官方英文摘要: Integrate and call external C/C++ code from a Simulink model **完整正文**
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate External Code into Simulink / Integrate C/C++ Code into Simulink / Integrate C/C++ Code Using C MEX S-Functions
+
+无直接块条目。
+
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate External Code into Simulink / Integrate C/C++ Code into Simulink / Integrate C/C++ Code Using S-Function Builder
+
+- [S-Function Builder](../../zh/user-defined-functions/s-function-builder.md) — 官方英文摘要: Integrate C or C++ code to create S-functions **完整正文**
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate External Code into Simulink / Integrate C/C++ Code into Simulink / Integrate C/C++ Code Using Legacy Code Tool
+
+无直接块条目。
+
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate External Code into Simulink / Integrate Python Code into Simulink
+
+- [Python Code](../../zh/user-defined-functions/python-code.md) — 官方英文摘要: Integrate native Python code into a Simulink model (Since R2025a) **完整正文**
+
+## Simulation Integration / Create Large-Scale Model Components / Integrate External Code into Simulink / Integrate Fortran Code into Simulink
+
+- [S-Function](../../zh/user-defined-functions/s-function.md) — 官方英文摘要: Include S-function in model **完整正文**
+- [S-Function Builder](../../zh/user-defined-functions/s-function-builder.md) — 官方英文摘要: Integrate C or C++ code to create S-functions **完整正文**
+
+## Simulation Integration / Assemble Large-Scale Model Components
+
+无直接块条目。
+
+
+## Simulation Integration / Perform Large-Scale Simulation
+
+无直接块条目。
+
+
+## Simulink Supported Hardware
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Android Devices
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Android Devices / Setup and Configuration
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Android Devices / Modeling
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Android Devices / Modeling / Sensors
+
+- Accelerometer — 官方英文摘要: Measure linear acceleration along X, Y, and Z axes in m/s2 **仅元数据，中英文正文待补**
+- Ambient Temperature Sensor — 官方英文摘要: Measure ambient temperature in degree Celsius **仅元数据，中英文正文待补**
+- Gyroscope — 官方英文摘要: Measure rotational speed around X, Y, and Z axes in rad/s **仅元数据，中英文正文待补**
+- Humidity Sensor — 官方英文摘要: Measure relative air humidity as percentage **仅元数据，中英文正文待补**
+- Light Sensor — 官方英文摘要: Measure ambient light level in lux (lx) **仅元数据，中英文正文待补**
+- Location Sensor — 官方英文摘要: Measure global positioning system data **仅元数据，中英文正文待补**
+- Pressure Sensor — 官方英文摘要: Measure ambient air pressure in hectopascals (hPa) **仅元数据，中英文正文待补**
+- Magnetometer — 官方英文摘要: Measure magnetic field along X, Y, and Z axes **仅元数据，中英文正文待补**
+- Orientation — 官方英文摘要: Measure device rotation along X, Y, and Z axes **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Android Devices / Modeling / Communications
+
+- BLE Send — 官方英文摘要: Send data using Bluetooth Low Energy (BLE) protocol **仅元数据，中英文正文待补**
+- BLE Receive — 官方英文摘要: Receive data using Bluetooth Low Energy (BLE) protocol **仅元数据，中英文正文待补**
+- UDP Send — 官方英文摘要: Send data over UDP network to remote host **仅元数据，中英文正文待补**
+- UDP Receive — 官方英文摘要: Receive data over UDP network from remote host **仅元数据，中英文正文待补**
+- ThingSpeak Write — 官方英文摘要: Publish data to Internet of Things using ThingSpeak **仅元数据，中英文正文待补**
+- ThingSpeak Read — 官方英文摘要: Read data stored in ThingSpeak channel **仅元数据，中英文正文待补**
+- TCP/IP Send — 官方英文摘要: Send data over TCP/IP network to another remote host **仅元数据，中英文正文待补**
+- TCP/IP Receive — 官方英文摘要: Receive data over TCP/IP network from remote host **仅元数据，中英文正文待补**
+- Serial Transmit — 官方英文摘要: Send buffered data to the serial port **仅元数据，中英文正文待补**
+- Serial Receive — 官方英文摘要: Receive an [Nx1] array of data on the serial port and write it to the data block output. When data is not available, write 0 to the data block output **仅元数据，中英文正文待补**
+- TalkBack Read — 官方英文摘要: Read command(s) from TalkBack ID on ThingSpeak TalkBack server (Since R2021b) **仅元数据，中英文正文待补**
+- TalkBack Write — 官方英文摘要: Write command(s) to TalkBack ID on ThingSpeak TalkBack server (Since R2021b) **仅元数据，中英文正文待补**
+- MQTT Subscribe — 官方英文摘要: Subscribe to an MQTT topic and receive message from the broker (Since R2023a) **仅元数据，中英文正文待补**
+- MQTT Publish — 官方英文摘要: Publish message to an MQTT broker with the specified Topic (Since R2023a) **仅元数据，中英文正文待补**
+- HTTP Client — 官方英文摘要: Send and receive data from HTTP server over URL connection (Since R2023a) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Android Devices / Modeling / Audio and Video
+
+- Audio Capture — 官方英文摘要: Capture audio stream from device microphone **仅元数据，中英文正文待补**
+- Audio File Read — 官方英文摘要: Add audio file from computer into mobile application **仅元数据，中英文正文待补**
+- Audio File Write — 官方英文摘要: Write audio frames to an audio file **仅元数据，中英文正文待补**
+- Audio Playback — 官方英文摘要: Play audio on device speaker **仅元数据，中英文正文待补**
+- Video Display — 官方英文摘要: Display video on device screen **仅元数据，中英文正文待补**
+- Camera — 官方英文摘要: Capture video using front or rear camera **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Android Devices / Modeling / User Interface
+
+- Slider — 官方英文摘要: Display slider widget **仅元数据，中英文正文待补**
+- Data Display — 官方英文摘要: Display numerical data on device screen **仅元数据，中英文正文待补**
+- Button — 官方英文摘要: Display button widget on device screen **仅元数据，中英文正文待补**
+- Data Input — 官方英文摘要: Generate data input field on device screen **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Android Devices / Modeling / Advanced
+
+- FromApp — 官方英文摘要: Receive data from method of app **仅元数据，中英文正文待补**
+- ToApp — 官方英文摘要: Send data to method of app **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Android Devices / Run on Android Device
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Installation and Setup
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / System Peripherals
+
+- Analog Input — 官方英文摘要: Measure voltage of analog input pin **仅元数据，中英文正文待补**
+- Analog Output — 官方英文摘要: Generate voltage on the specified DAC pin **仅元数据，中英文正文待补**
+- Analog Input SAMD — 官方英文摘要: Read ADC register value after ADC conversion at the analog pin of Arduino SAMD21 core (Since R2023b) **仅元数据，中英文正文待补**
+- Analog Input AVR — 官方英文摘要: Read ADC register value after ADC conversion at analog pin of Arduino AVR core (Since R2024a) **仅元数据，中英文正文待补**
+- Digital Input — 官方英文摘要: Get logical state of digital input pin on Arduino **仅元数据，中英文正文待补**
+- Digital Output — 官方英文摘要: Set logical state of digital output pin on Arduino **仅元数据，中英文正文待补**
+- PWM Common — 官方英文摘要: Generate pulse width modulated signal on analog output pin **仅元数据，中英文正文待补**
+- PWM SAMD — 官方英文摘要: Generate pulse width modulated signal on analog output pin of Arduino SAMD21 core (Since R2023b) **仅元数据，中英文正文待补**
+- PWM AVR — 官方英文摘要: Generate pulse width modulated signal on analog output pin of Arduino AVR core (Since R2024a) **仅元数据，中英文正文待补**
+- Input Capture — 官方英文摘要: Measure frequency and duty cycle of external input signal **仅元数据，中英文正文待补**
+- NeoPixel — 官方英文摘要: Control color and brightness of RGB and RGBW Adafruit NeoPixel LED strip (Since R2024a) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Sensors
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Sensors / Acceleration Sensors
+
+- ADIS16505 IMU Sensor — 官方英文摘要: Measure acceleration, angular rate, and temperature along axes of ADIS16505 sensor (Since R2024a) **仅元数据，中英文正文待补**
+- ADXL34x Accelerometer — 官方英文摘要: Measure linear acceleration along axes of ADXL34x family of accelerometers (Since R2022a) **仅元数据，中英文正文待补**
+- BNO055 IMU Sensor — 官方英文摘要: Measure acceleration, angular rate, and magnetic field, and calculate fusion values such as Euler angles, quaternion, linear acceleration, and gravity vector along the axes of BNO055 sensor **仅元数据，中英文正文待补**
+- ICM20948 IMU Sensor — 官方英文摘要: Measure linear acceleration, angular velocity, magnetic field, and temperature from ICM20948 IMU sensor (Since R2022a) **仅元数据，中英文正文待补**
+- LIS3DH Accelerometer Sensor — 官方英文摘要: Measure linear acceleration, voltage, and temperature from LIS3DH sensor (Since R2022b) **仅元数据，中英文正文待补**
+- LSM303C IMU Sensor — 官方英文摘要: Measure linear acceleration, magnetic field strength, and temperature from LSM303C sensor (Since R2021a) **仅元数据，中英文正文待补**
+- LSM6DS3 IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from LSM6DS3 sensor (Since R2021a) **仅元数据，中英文正文待补**
+- LSM6DS3H IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from LSM6DS3H sensor (Since R2021a) **仅元数据，中英文正文待补**
+- LSM6DSM IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from LSM6DSM sensor (Since R2021a) **仅元数据，中英文正文待补**
+- LSM6DSR IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from LSM6DSR sensor (Since R2021a) **仅元数据，中英文正文待补**
+- LSM6DSO IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from LSM6DSO sensor (Since R2021a) **仅元数据，中英文正文待补**
+- LSM6DSL IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from LSM6DSL sensor (Since R2021a) **仅元数据，中英文正文待补**
+- LSM9DS1 IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and magnetic field along X, Y, and Z axis **仅元数据，中英文正文待补**
+- MPU6050 IMU Sensor — 官方英文摘要: Measure acceleration, angular rate, and temperature along axes of MPU-6050 sensor **仅元数据，中英文正文待补**
+- MPU9250 IMU Sensor — 官方英文摘要: Measure acceleration, angular rate, magnetic field, and temperature along axes of MPU-9250 sensor **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Sensors / Proximity Sensors
+
+- APDS9960 Sensor — 官方英文摘要: Read proximity, gesture, ambient light, and RGB color data from APDS9960 I2C sensor (Since R2021a) **仅元数据，中英文正文待补**
+- Ultrasonic Sensor — 官方英文摘要: Measure distance between ultrasonic sensor and object **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Sensors / Environmental Sensors
+
+- BME68x Gas Sensor — 官方英文摘要: Measure barometric air pressure, relative humidity, ambient temperature, IAQ, eCO2, and bVOC from BME68x sensor (Since R2022b) **仅元数据，中英文正文待补**
+- BMP280 Pressure Sensor — 官方英文摘要: Measure barometric air pressure and ambient temperature from BMP280 sensor (Since R2022b) **仅元数据，中英文正文待补**
+- CCS811 Air Quality Sensor — 官方英文摘要: Measure equivalent CO2 (eCO2) and the equivalent total volatile organic compound concentration (eTVOC) (Since R2022a) **仅元数据，中英文正文待补**
+- HTS221 Humidity Sensor — 官方英文摘要: Measure relative humidity and temperature from HTS221 sensor (Since R2021a) **仅元数据，中英文正文待补**
+- LPS22HB Pressure Sensor — 官方英文摘要: Measure barometric air pressure and temperature from LPS22HB sensor (Since R2021a) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Sensors / Vision Sensors
+
+- Pixy2 Vision Sensor — 官方英文摘要: Represent connected CMUcam5 Pixy2 vision sensor and tracks object (color blob) (Since R2023a) **仅元数据，中英文正文待补**
+- OV2640 Camera Sensor — 官方英文摘要: Capture JPEG images using ArduCam 2MP Mini Plus camera module with OV2640 sensor (Since R2023b) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Sensors / Motor and Vehicle Sensors
+
+- Encoder — 官方英文摘要: Measure incremental position and direction of rotating motor (Since R2021b) **仅元数据，中英文正文待补**
+- Tachometer — 官方英文摘要: Read rotational speed of shaft **仅元数据，中英文正文待补**
+- VL53L0X Time of Flight Sensor — 官方英文摘要: Measure distance to a target object (Since R2022a) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Communication Protocols
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Communication Protocols / Modbus
+
+- Modbus RS485 Client Read — 官方英文摘要: Client device reads data from server device register(s) over RS485 network **仅元数据，中英文正文待补**
+- Modbus RS485 Client Write — 官方英文摘要: Client device writes data to server device register(s) over RS485 network **仅元数据，中英文正文待补**
+- Modbus RS485 Server Read — 官方英文摘要: Server device reads data from the server device register over RS485 network **仅元数据，中英文正文待补**
+- Modbus RS485 Server Write — 官方英文摘要: Server device writes data to server device register over RS485 network **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Communication Protocols / CAN
+
+- CAN Transmit — 官方英文摘要: Transmit message to CAN network **仅元数据，中英文正文待补**
+- CAN Receive — 官方英文摘要: Receive message from CAN network **仅元数据，中英文正文待补**
+- On-board CAN Receive — 官方英文摘要: Receive messages using on-board Arduino CAN controller (Since R2024b) **仅元数据，中英文正文待补**
+- On-board CAN Transmit — 官方英文摘要: Transmit messages to CAN network using on-board Arduino CAN controller (Since R2024b) **仅元数据，中英文正文待补**
+- Hardware Interrupt SAM — 官方英文摘要: Trigger downstream function-call subsystems from interrupt service routine for Arduino SAM core (Since R2024b) **仅元数据，中英文正文待补**
+- Hardware Interrupt Teensy4 — 官方英文摘要: Trigger downstream function-call subsystems from interrupt service routine for Teensy 4.0 and 4.1 Arduino compatible boards (Since R2024b) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Communication Protocols / Wi-Fi
+
+- WiFi TCP/IP Receive — 官方英文摘要: Receive data over TCP/IP network from remote host on wireless network **仅元数据，中英文正文待补**
+- WiFi TCP/IP Send — 官方英文摘要: Send data over TCP/IP network to remote host over wireless network **仅元数据，中英文正文待补**
+- WiFi UDP Receive — 官方英文摘要: Receive data from UDP host on wireless network **仅元数据，中英文正文待补**
+- WiFi UDP Send — 官方英文摘要: Send data to UDP host on wireless network **仅元数据，中英文正文待补**
+- WiFi ThingSpeak Read — 官方英文摘要: Read data stored in a ThingSpeak channel on wireless network **仅元数据，中英文正文待补**
+- WiFi ThingSpeak Write — 官方英文摘要: Publish data to Internet of Things using ThingSpeak on wireless network **仅元数据，中英文正文待补**
+- WebSocket Subscribe — 官方英文摘要: Subscribe to the JSON data received by a WebSocket server **仅元数据，中英文正文待补**
+- WebSocket Publish — 官方英文摘要: Publish data to WebSocket server in JSON format **仅元数据，中英文正文待补**
+- WiFi MQTT Publish — 官方英文摘要: Publish messages to message queuing telemetry transport (MQTT) broker (Since R2022b) **仅元数据，中英文正文待补**
+- WiFi MQTT Subscribe — 官方英文摘要: Receive messages from message queuing telemetry transport (MQTT) broker (Since R2022b) **仅元数据，中英文正文待补**
+- WiFi HTTP Client — 官方英文摘要: Send and receive data from HTTP server over URL connection (Since R2023a) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Communication Protocols / SPI
+
+- SPI WriteRead — 官方英文摘要: Write data to and read data from an SPI device **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Communication Protocols / I2C
+
+- I2C Write — 官方英文摘要: Write data to an I2C peripheral device or an I2C peripheral device register **仅元数据，中英文正文待补**
+- I2C Read — 官方英文摘要: Read data from I2C peripheral device or I2C peripheral device register **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Communication Protocols / BLE
+
+- BLE Send — 官方英文摘要: Send data using Bluetooth Low Energy (BLE) protocol (Since R2021b) **仅元数据，中英文正文待补**
+- BLE Receive — 官方英文摘要: Receive data using Bluetooth Low Energy (BLE) protocol (Since R2021b) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Communication Protocols / Internet
+
+- TCP/IP Receive — 官方英文摘要: Receive data over TCP/IP network from remote host **仅元数据，中英文正文待补**
+- TCP/IP Send — 官方英文摘要: Send data over TCP/IP network to another remote host **仅元数据，中英文正文待补**
+- UDP Receive — 官方英文摘要: Receive data over UDP network from remote host **仅元数据，中英文正文待补**
+- UDP Send — 官方英文摘要: Send data over UDP network to remote host **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Communication Protocols / ThingSpeak
+
+- ThingSpeak Read — 官方英文摘要: Read data stored in ThingSpeak channel **仅元数据，中英文正文待补**
+- ThingSpeak Write — 官方英文摘要: Publish data to Internet of Things using ThingSpeak **仅元数据，中英文正文待补**
+- WiFi ThingSpeak Read — 官方英文摘要: Read data stored in a ThingSpeak channel on wireless network **仅元数据，中英文正文待补**
+- WiFi ThingSpeak Write — 官方英文摘要: Publish data to Internet of Things using ThingSpeak on wireless network **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Communication Protocols / Serial
+
+- Serial Receive — 官方英文摘要: Receive data over Arduino serial port **仅元数据，中英文正文待补**
+- Serial Transmit — 官方英文摘要: Transmit data over Arduino serial port **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Communication Protocols / Target Communication
+
+- Protocol Encoder — 官方英文摘要: Encode input data into a uint8 byte stream by specifying the packet structure (Since R2021b) **仅元数据，中英文正文待补**
+- Protocol Decoder — 官方英文摘要: Decode a uint8 byte stream by specifying the packet structure (Since R2021b) **仅元数据，中英文正文待补**
+- Byte Pack — 官方英文摘要: Convert input signals to 8-, 16-, or 32-bit vector **仅元数据，中英文正文待补**
+- Byte Unpack — 官方英文摘要: Unpack 8-, 16-, or 32-bit input vector to multiple output vectors **仅元数据，中英文正文待补**
+- Byte Reversal — 官方英文摘要: Reverse little-endian data for big-endian processor **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Motors, Servo Motors, and Motor Drivers
+
+- Servo Write — 官方英文摘要: Set servo motor to specified angle **仅元数据，中英文正文待补**
+- M1M2DCMotors — 官方英文摘要: Control power and direction of DC motor on port M1 or M2 **仅元数据，中英文正文待补**
+- M3M4DCMotors — 官方英文摘要: Control power and direction of DC motor on port M3 or M4 **仅元数据，中英文正文待补**
+- Encoder — 官方英文摘要: Measure rotation of motor in ticks **仅元数据，中英文正文待补**
+- Battery Read — 官方英文摘要: Read voltage of battery **仅元数据，中英文正文待补**
+- L293D DC Motor — 官方英文摘要: Control power and direction of a DC motor (Since R2023a) **仅元数据，中英文正文待补**
+- PCA9685 DC Motor — 官方英文摘要: Control power and direction of a DC motor (Since R2023a) **仅元数据，中英文正文待补**
+- Continuous Servo Write — 官方英文摘要: Set direction and speed of continuous rotation servo motor **仅元数据，中英文正文待补**
+- Standard Servo Read — 官方英文摘要: Measure shaft position of standard servo motor in degrees **仅元数据，中英文正文待补**
+- Standard Servo Write — 官方英文摘要: Set shaft position of standard servo motor to angle specified in degrees **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Peripherals / Memory Operations
+
+- On-board EEPROM Read — 官方英文摘要: Read data from on-board Arduino EEPROM (Since R2024a) **仅元数据，中英文正文待补**
+- On-board EEPROM Write — 官方英文摘要: Write data to on-board Arduino EEPROM (Since R2024a) **仅元数据，中英文正文待补**
+- Memory Copy — 官方英文摘要: Copy to and from memory section **仅元数据，中英文正文待补**
+- SD Card File Read — 官方英文摘要: Read data from an SD card **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Event Scheduling and Interrupt Handling
+
+- External Interrupt — 官方英文摘要: Trigger the downstream function-call subsystem from an Interrupt Service Routine **仅元数据，中英文正文待补**
+- Hardware Interrupt SAMD — 官方英文摘要: Trigger downstream function-call subsystems from interrupt service routine for Arduino SAMD21 core (Since R2023b) **仅元数据，中英文正文待补**
+- Hardware Interrupt AVR — 官方英文摘要: Trigger downstream function-call subsystems from interrupt service routine for Arduino AVR core (Since R2024a) **仅元数据，中英文正文待补**
+- Hardware Interrupt SAM — 官方英文摘要: Trigger downstream function-call subsystems from interrupt service routine for Arduino SAM core (Since R2024b) **仅元数据，中英文正文待补**
+- Hardware Interrupt Teensy4 — 官方英文摘要: Trigger downstream function-call subsystems from interrupt service routine for Teensy 4.0 and 4.1 Arduino compatible boards (Since R2024b) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Arduino Hardware / Custom Sensor and Device Driver Blocks
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Custom Sensor and Device Driver Blocks / IO Device Builder
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Custom Sensor and Device Driver Blocks / Device Driver Blocks
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Data Monitoring and Rapid Prototyping
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Data Monitoring and Rapid Prototyping / Connected IO Simulation
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Data Monitoring and Rapid Prototyping / Signal Monitoring and Parameter Tuning
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Data Logging and Deployment
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Applications
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Applications / Deep Learning, Machine Learning, and IoT
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Applications / Robotics and Motor Control
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Applications / Arduino Engineering Kit Rev 2
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Applications / Dashboard
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Applications / Audio Processing
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Arduino Hardware / Troubleshooting
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / LEGO MINDSTORMS EV3 Hardware
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / LEGO MINDSTORMS EV3 Hardware / Setup and Configuration
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / LEGO MINDSTORMS EV3 Hardware / Modeling
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / LEGO MINDSTORMS EV3 Hardware / Modeling / Control Blocks
+
+- Battery — 官方英文摘要: Measure voltage level of battery in EV3 brick **仅元数据，中英文正文待补**
+- Display — 官方英文摘要: Display label and integer on EV3 display **仅元数据，中英文正文待补**
+- Motor — 官方英文摘要: Control power and direction of EV3 motor **仅元数据，中英文正文待补**
+- Speaker — 官方英文摘要: Play tune from EV3 speaker **仅元数据，中英文正文待补**
+- Status Light — 官方英文摘要: Control status light on EV3 brick **仅元数据，中英文正文待补**
+- Timer — 官方英文摘要: Measure elapsed time from timer in EV3 brick **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / LEGO MINDSTORMS EV3 Hardware / Modeling / Sensor Blocks
+
+- Button — 官方英文摘要: Detect status of EV3 brick button **仅元数据，中英文正文待补**
+- Color Sensor — 官方英文摘要: Detect color, reflected light, or ambient light using EV3 brick **仅元数据，中英文正文待补**
+- Encoder — 官方英文摘要: Measure incremental position and direction of motor connected to EV3 brick **仅元数据，中英文正文待补**
+- Gyro Sensor — 官方英文摘要: Measure rate of rotation of gyro sensor connected to EV3 brick **仅元数据，中英文正文待补**
+- Infrared Sensor — 官方英文摘要: Detect button status on LEGO remote infrared beacon, measure beacon proximity and heading, and measure object proximity using infrared sensor connected to EV3 brick **仅元数据，中英文正文待补**
+- NXT Touch Sensor — 官方英文摘要: Detect status of EV3 brick NXT touch sensor **仅元数据，中英文正文待补**
+- NXT Ultrasonic Sensor — 官方英文摘要: Measure distance between NXT ultrasonic sensor connected to EV3 brick and nearest object **仅元数据，中英文正文待补**
+- NXT Gyro Sensor — 官方英文摘要: Measure rate of rotation of NXT gyro sensor connected to EV3 brick **仅元数据，中英文正文待补**
+- NXT Sound Sensor — 官方英文摘要: Measure surrounding sound levels using NXT sound sensor connected to EV3 brick **仅元数据，中英文正文待补**
+- Pixy2 Vision Sensor — 官方英文摘要: Represent connected CMUcam5 Pixy2 vision sensor and tracks object (color blob) **仅元数据，中英文正文待补**
+- Touch Sensor — 官方英文摘要: Detect status of EV3 brick touch sensor **仅元数据，中英文正文待补**
+- Ultrasonic Sensor — 官方英文摘要: Measure distance between ultrasonic sensor connected to EV3 brick and nearest object **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / LEGO MINDSTORMS EV3 Hardware / Modeling / Communication Protocol Blocks
+
+- I2C Register Read — 官方英文摘要: Controller device reads data from the I2C peripheral device or I2C peripheral device register(s) **仅元数据，中英文正文待补**
+- TCP/IP Receive — 官方英文摘要: Receive data over TCP/IP network from remote host **仅元数据，中英文正文待补**
+- TCP/IP Send — 官方英文摘要: Send data over TCP/IP network to another remote host **仅元数据，中英文正文待补**
+- UDP Receive — 官方英文摘要: Receive UDP packets from another UDP host on an Internet network **仅元数据，中英文正文待补**
+- UDP Send — 官方英文摘要: Send UDP packets to another UDP host on Internet network **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / LEGO MINDSTORMS EV3 Hardware / Run on EV3 Hardware
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Parrot Minidrones
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Parrot Minidrones / Setup and Configuration
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Parrot Minidrones / Modeling
+
+- TCP/IP Receive — 官方英文摘要: Receive data over TCP/IP network from remote host **仅元数据，中英文正文待补**
+- TCP/IP Send — 官方英文摘要: Send data over TCP/IP network to remote host **仅元数据，中英文正文待补**
+- UDP Receive — 官方英文摘要: Receive UDP message from UDP host **仅元数据，中英文正文待补**
+- UDP Send — 官方英文摘要: Send UDP message to UDP host **仅元数据，中英文正文待补**
+- PARROT Image Conversion — 官方英文摘要: Convert the encoded Y1UY2V image format to YUV or RGB format **仅元数据，中英文正文待补**
+- Keyboard Read — 官方英文摘要: Receive key presses from keyboard of host computer and output ASCII code **仅元数据，中英文正文待补**
+- Grabber — 官方英文摘要: Control the Grabber module connected to a Parrot Mambo minidrone **仅元数据，中英文正文待补**
+- Cannon — 官方英文摘要: Control the Cannon module connected to a Parrot Mambo minidrone **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Parrot Minidrones / Run on Target Hardware
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Raspberry Pi Hardware
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Installation Setup and Configuration
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Modeling
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Modeling / Audio and Video
+
+- V4L2 Video Capture — 官方英文摘要: Capture video from USB camera using V4L2 framework **仅元数据，中英文正文待补**
+- SDL Video Display — 官方英文摘要: Display video using SDL **仅元数据，中英文正文待补**
+- eSpeak Text to Speech — 官方英文摘要: Convert text into speech on default audio device **仅元数据，中英文正文待补**
+- ALSA Audio Capture — 官方英文摘要: Capture audio from sound card using ALSA **仅元数据，中英文正文待补**
+- Audio File Read — 官方英文摘要: Read audio frames from an audio file **仅元数据，中英文正文待补**
+- ALSA Audio Playback — 官方英文摘要: Send audio to sound card for playback using ALSA **仅元数据，中英文正文待补**
+- RTSP Video Stream Transmit — 官方英文摘要: Stream video to network over real-time streaming protocol (Since R2024a) **仅元数据，中英文正文待补**
+- RTSP Video Stream Receive — 官方英文摘要: Receive video from network over real-time streaming protocol (Since R2024b) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Modeling / Basic
+
+- GPIO Read — 官方英文摘要: Read GPIO pin status **仅元数据，中英文正文待补**
+- GPIO Write — 官方英文摘要: Set GPIO pin status **仅元数据，中英文正文待补**
+- Standard Servo Write — 官方英文摘要: Set shaft position of standard servo motor to angle specified in degrees **仅元数据，中英文正文待补**
+- LED — 官方英文摘要: Illuminate built-in LED on Raspberry Pi board **仅元数据，中英文正文待补**
+- PWM — 官方英文摘要: Generate pulse width modulated signal of digital output pin **仅元数据，中英文正文待补**
+- External Interrupt — 官方英文摘要: Trigger downstream function-call subsystem from interrupt service routine (Since R2021a) **仅元数据，中英文正文待补**
+- Encoder — 官方英文摘要: Measure incremental position and direction of rotating motor (Since R2021a) **仅元数据，中英文正文待补**
+- Pan Tilt Hat — 官方英文摘要: Control pan and tilt motions using PCA9685-based PWM driver (Since R2022a) **仅元数据，中英文正文待补**
+- ADS1x15 — 官方英文摘要: Read digital output data from ADS1015 and ADS1115 ADCs (Since R2023a) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Modeling / Communication
+
+- CAN Receive — 官方英文摘要: Receive message from CAN network **仅元数据，中英文正文待补**
+- CAN Transmit — 官方英文摘要: Transmit message to CAN network **仅元数据，中英文正文待补**
+- SPI Controller Transfer — 官方英文摘要: Write data to and read data from SPI peripheral device **仅元数据，中英文正文待补**
+- SPI Register Write — 官方英文摘要: Write data to registers of an SPI peripheral device **仅元数据，中英文正文待补**
+- SPI Register Read — 官方英文摘要: Read data from SPI peripheral device register **仅元数据，中英文正文待补**
+- I2C Controller Read — 官方英文摘要: Read data from I2C peripheral device or I2C peripheral device register **仅元数据，中英文正文待补**
+- I2C Controller Write — 官方英文摘要: Write data to I2C peripheral device or I2C peripheral device register **仅元数据，中英文正文待补**
+- Serial Write — 官方英文摘要: Write data to the serial device **仅元数据，中英文正文待补**
+- Serial Read — 官方英文摘要: Read data from serial device **仅元数据，中英文正文待补**
+- NNG Send — 官方英文摘要: Send data through nanomsg next gen (NNG) using publish/subscribe protocol (Since R2023a) **仅元数据，中英文正文待补**
+- NNG Receive — 官方英文摘要: Receive data through nanomsg next gen (NNG) using publish/subscribe protocol (Since R2023a) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Modeling / Internet of Things
+
+- ThingSpeak Read — 官方英文摘要: Read data stored in ThingSpeak channel **仅元数据，中英文正文待补**
+- ThingSpeak Write — 官方英文摘要: Publish data to Internet of Things using ThingSpeak **仅元数据，中英文正文待补**
+- MQTT Subscribe — 官方英文摘要: Receive messages from MQTT broker for specified topic **仅元数据，中英文正文待补**
+- MQTT Publish — 官方英文摘要: Publish messages to MQTT broker on specified topic **仅元数据，中英文正文待补**
+- TalkBack Read — 官方英文摘要: Read command(s) from TalkBack ID on ThingSpeak TalkBack server (Since R2021b) **仅元数据，中英文正文待补**
+- TalkBack Write — 官方英文摘要: Write command(s) to TalkBack ID on ThingSpeak TalkBack server (Since R2021b) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Modeling / Network
+
+- UDP Receive — 官方英文摘要: Receive UDP packets over IP network **仅元数据，中英文正文待补**
+- UDP Send — 官方英文摘要: Send UDP packets over IP network **仅元数据，中英文正文待补**
+- TCP/IP Receive — 官方英文摘要: Receive data over TCP/IP network from remote host **仅元数据，中英文正文待补**
+- TCP/IP Send — 官方英文摘要: Send data over TCP/IP network to another remote host **仅元数据，中英文正文待补**
+- Websocket Publish — 官方英文摘要: Publish data to WebSocket server in JSON format **仅元数据，中英文正文待补**
+- Websocket Subscribe — 官方英文摘要: Subscribe to the JSON data received by a WebSocket server **仅元数据，中英文正文待补**
+- Modbus TCP/IP Client Read — 官方英文摘要: Client device reads data from server device register(s) over TCP/IP network (Since R2021a) **仅元数据，中英文正文待补**
+- Modbus TCP/IP Client Write — 官方英文摘要: Client device writes data to server device register(s) over TCP/IP network (Since R2021a) **仅元数据，中英文正文待补**
+- Modbus TCP/IP Server Read — 官方英文摘要: Server device reads data from server device register over TCP/IP network (Since R2021a) **仅元数据，中英文正文待补**
+- Modbus TCP/IP Server Write — 官方英文摘要: Server device writes data to server device register over TCP/IP network (Since R2021a) **仅元数据，中英文正文待补**
+- HTTP Client — 官方英文摘要: Send and receive data from HTTP server over URL connection (Since R2023b) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Modeling / Sense HAT
+
+- HTS221 Humidity Sensor — 官方英文摘要: Measure relative humidity and ambient temperature from Humidity sensor **仅元数据，中英文正文待补**
+- LPS25h Pressure Sensor — 官方英文摘要: Measure barometric air pressure and ambient temperature **仅元数据，中英文正文待补**
+- LSM9DS1 IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate and magnetic field along X, Y, and Z axes **仅元数据，中英文正文待补**
+- Joystick — 官方英文摘要: Read the state of five-position Joystick **仅元数据，中英文正文待补**
+- 8x8 RGB LED Matrix — 官方英文摘要: Control pixel(s) color of 8x8 RGB LED Matrix **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Modeling / Sensors
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Modeling / Sensors / Environmental Sensors
+
+- BME280 Pressure Sensor — 官方英文摘要: Measure barometric air pressure, relative humidity, and temperature from BME280 sensor (Since R2022b) **仅元数据，中英文正文待补**
+- BMP280 Pressure Sensor — 官方英文摘要: Measure barometric air pressure and ambient temperature from BMP280 sensor (Since R2022b) **仅元数据，中英文正文待补**
+- CCS811 Air Quality Sensor — 官方英文摘要: Measure equivalent CO2 (eCO2) and the equivalent total volatile organic compound concentration (eTVOC) (Since R2022b) **仅元数据，中英文正文待补**
+- LPS22HB Pressure Sensor — 官方英文摘要: Measure barometric air pressure and temperature from LPS22HB sensor (Since R2022b) **仅元数据，中英文正文待补**
+- TMP102 Temperature Sensor — 官方英文摘要: Read ambient temperature in degree Celsius using TMP102 temperature sensor (Since R2024b) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Modeling / Sensors / IMU Sensors
+
+- ADXL34x Accelerometer — 官方英文摘要: Measure linear acceleration along axes of ADXL34x family of accelerometers (Since R2022b) **仅元数据，中英文正文待补**
+- BMI160 IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from BMI160 sensor (Since R2021b) **仅元数据，中英文正文待补**
+- BMM150 Magnetometer — 官方英文摘要: Measure magnetic field from BMM150 sensor (Since R2022b) **仅元数据，中英文正文待补**
+- ICM20948 IMU Sensor — 官方英文摘要: Measure linear acceleration, angular velocity, magnetic field, and temperature from ICM20948 IMU sensor (Since R2022b) **仅元数据，中英文正文待补**
+- LIS3MDL Magnetometer Sensor — 官方英文摘要: Measure magnetic field strength and temperature from LIS3MDL Magnetometer sensor (Since R2022b) **仅元数据，中英文正文待补**
+- LSM303C IMU Sensor — 官方英文摘要: Measure linear acceleration, magnetic field strength, and temperature from LSM303C sensor (Since R2022b) **仅元数据，中英文正文待补**
+- LSM6DS3 IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from LSM6DS3 sensor (Since R2022b) **仅元数据，中英文正文待补**
+- LSM6DS3H IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from LSM6DS3H sensor (Since R2022b) **仅元数据，中英文正文待补**
+- LSM6DSL IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from LSM6DSL sensor (Since R2022b) **仅元数据，中英文正文待补**
+- LSM6DSM IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from LSM6DSM sensor (Since R2022b) **仅元数据，中英文正文待补**
+- LSM6DSO IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from LSM6DSO sensor (Since R2022b) **仅元数据，中英文正文待补**
+- LSM6DSR IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from LSM6DSR sensor (Since R2022b) **仅元数据，中英文正文待补**
+- Ultrasonic Sensor — 官方英文摘要: Measure distance between ultrasonic sensor and object (Since R2022b) **仅元数据，中英文正文待补**
+- VL53L0X Time of Flight Sensor — 官方英文摘要: Measure distance to a target object (Since R2022b) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Modeling / Utilities
+
+- Protocol Encoder — 官方英文摘要: Encode input data into a uint8 byte stream by specifying the packet structure (Since R2021b) **仅元数据，中英文正文待补**
+- Protocol Decoder — 官方英文摘要: Decode a uint8 byte stream by specifying the packet structure (Since R2021b) **仅元数据，中英文正文待补**
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Run on Target Hardware
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Device Driver Blocks
+
+无直接块条目。
+
+
+## Simulink Supported Hardware / Raspberry Pi Hardware / Troubleshooting
+
+无直接块条目。
