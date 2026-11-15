@@ -560,7 +560,7 @@ class _SingleAccountBackend:
         except Exception as e:
             logger.error("Error creating collection %s: %s", name, e)
             _record_handled_vikingdb_error(e)
-            return False
+            raise
 
     @_backend_operation
     async def drop_collection(self) -> bool:

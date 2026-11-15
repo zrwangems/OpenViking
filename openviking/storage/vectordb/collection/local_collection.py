@@ -1221,7 +1221,8 @@ class LocalCollection(ICollection):
         index = self.indexes.get(index_name)
         if not index:
             logger.warning(f"Index '{index_name}' does not exist")
-            return AggregateResult(agg={}, op=op, field=field)
+            agg = {} if field else {AggregateKeys.TOTAL_COUNT_EXTERNAL.value: 0}
+            return AggregateResult(agg=agg, op=op, field=field)
 
         # 2. Call index.aggregate to execute aggregation
         try:

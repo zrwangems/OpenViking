@@ -70,6 +70,15 @@ def _collection(store, labels=(11, 12), scores=(0.9, 0.8)):
     return collection
 
 
+def test_count_missing_index_returns_zero():
+    collection = object.__new__(LocalCollection)
+    collection.indexes = {}
+
+    result = collection.aggregate_data("default", op="count")
+
+    assert result.agg == {"_total": 0}
+
+
 def test_search_by_vector_projects_only_final_decayed_results(tmp_path, monkeypatch):
     adapter = LocalCollectionAdapter("context", str(tmp_path), "default")
     try:

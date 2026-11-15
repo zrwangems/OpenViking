@@ -2137,6 +2137,26 @@ async def test_single_account_backend_update_runs_adapter_in_threadpool():
 
 
 @pytest.mark.asyncio
+async def test_single_account_backend_create_collection_propagates_index_failure():
+    class _Adapter:
+        mode = "local"
+
+        def create_collection(self, **_kwargs):
+            raise RuntimeError("create default index failed")
+
+    backend = _SingleAccountBackend(
+        config=VectorDBBackendConfig(backend="local", name="context", dimension=2),
+        bound_account_id="acc1",
+        shared_adapter=_Adapter(),
+    )
+
+    with pytest.raises(RuntimeError, match="create default index failed"):
+        await backend.create_collection(
+            "context", CollectionSchemas.context_collection("context", 2)
+        )
+
+
+@pytest.mark.asyncio
 async def test_single_account_backend_partial_update_does_not_fill_omitted_text_or_vector_fields():
     calls = []
 
