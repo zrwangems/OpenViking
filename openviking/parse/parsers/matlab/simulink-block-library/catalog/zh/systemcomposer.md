@@ -19,13 +19,13 @@ language: zh-CN
 
 ## Architectures, Requirements, and Allocations / Author Architecture Models
 
-- Component — 官方英文摘要: Add components to architecture model **仅元数据，中英文正文待补**
-- Reference Component — 官方英文摘要: Link to architectural definition or Simulink behavior **仅元数据，中英文正文待补**
-- Adapter — 官方英文摘要: Connect components with different interfaces **仅元数据，中英文正文待补**
+- [Component](../../zh/products/systemcomposer/ref/component.md) — 官方英文摘要: Add components to architecture model **完整正文**
+- [Reference Component](../../zh/products/systemcomposer/ref/referencecomponent.md) — 官方英文摘要: Link to architectural definition or Simulink behavior **完整正文**
+- [Adapter](../../zh/products/systemcomposer/ref/adapter.md) — 官方英文摘要: Connect components with different interfaces **完整正文**
 
 ## Architectures, Requirements, and Allocations / Variant Components in Architecture Models
 
-- Variant Component — 官方英文摘要: Add components with alternative designs **仅元数据，中英文正文待补**
+- [Variant Component](../../zh/products/systemcomposer/ref/variantcomponent.md) — 官方英文摘要: Add components with alternative designs **完整正文**
 
 ## Architectures, Requirements, and Allocations / Extend Architectural Elements
 
@@ -54,14 +54,14 @@ language: zh-CN
 
 ## Describe System Behaviors / Describe Activity Diagrams
 
-- Initial Node — 官方英文摘要: Dispatch control token at beginning of activity (Since R2024a) **仅元数据，中英文正文待补**
-- Action Node — 官方英文摘要: Process object tokens through MATLAB function or nested activity diagram (Since R2024a) **仅元数据，中英文正文待补**
-- Pin — 官方英文摘要: Direct tokens into or out of an action node (Since R2024a) **仅元数据，中英文正文待补**
-- Parameter Node — 官方英文摘要: Process tokens through a nested activity diagram (Since R2024a) **仅元数据，中英文正文待补**
-- Decision or Merge Node — 官方英文摘要: Route input tokens based on evaluation of MATLAB expressions, or merge multiple input tokens onto one output flow (Since R2024a) **仅元数据，中英文正文待补**
-- Join or Fork Node — 官方英文摘要: Synchronize multiple input tokens into one output, or replicate one input token on all output flows (Since R2024a) **仅元数据，中英文正文待补**
-- Flow Final Node — 官方英文摘要: Terminate one object or control flow (Since R2024a) **仅元数据，中英文正文待补**
-- Activity Final Node — 官方英文摘要: Terminate entire activity (Since R2024a) **仅元数据，中英文正文待补**
+- [Initial Node](../../zh/products/systemcomposer/ref/initialnode.md) — 官方英文摘要: Dispatch control token at beginning of activity (Since R2024a) **完整正文**
+- [Action Node](../../zh/products/systemcomposer/ref/actionnode.md) — 官方英文摘要: Process object tokens through MATLAB function or nested activity diagram (Since R2024a) **完整正文**
+- [Pin](../../zh/products/systemcomposer/ref/pin.md) — 官方英文摘要: Direct tokens into or out of an action node (Since R2024a) **完整正文**
+- [Parameter Node](../../zh/products/systemcomposer/ref/parameternode.md) — 官方英文摘要: Process tokens through a nested activity diagram (Since R2024a) **完整正文**
+- [Decision or Merge Node](../../zh/products/systemcomposer/ref/decisionormergenode.md) — 官方英文摘要: Route input tokens based on evaluation of MATLAB expressions, or merge multiple input tokens onto one output flow (Since R2024a) **完整正文**
+- [Join or Fork Node](../../zh/products/systemcomposer/ref/joinorforknode.md) — 官方英文摘要: Synchronize multiple input tokens into one output, or replicate one input token on all output flows (Since R2024a) **完整正文**
+- [Flow Final Node](../../zh/products/systemcomposer/ref/flowfinalnode.md) — 官方英文摘要: Terminate one object or control flow (Since R2024a) **完整正文**
+- [Activity Final Node](../../zh/products/systemcomposer/ref/activityfinalnode.md) — 官方英文摘要: Terminate entire activity (Since R2024a) **完整正文**
 
 ## Describe System Behaviors / Describe Sequence Diagrams
 
@@ -70,8 +70,8 @@ language: zh-CN
 
 ## Describe System Behaviors / Describe Component Behaviors
 
-- Component — 官方英文摘要: Add components to architecture model **仅元数据，中英文正文待补**
-- Reference Component — 官方英文摘要: Link to architectural definition or Simulink behavior **仅元数据，中英文正文待补**
+- [Component](../../zh/products/systemcomposer/ref/component.md) — 官方英文摘要: Add components to architecture model **完整正文**
+- [Reference Component](../../zh/products/systemcomposer/ref/referencecomponent.md) — 官方英文摘要: Link to architectural definition or Simulink behavior **完整正文**
 
 ## Analyze Architecture Models
 

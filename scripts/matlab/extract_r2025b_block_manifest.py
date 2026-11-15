@@ -17,6 +17,7 @@ import concurrent.futures
 import hashlib
 import json
 import re
+import shutil
 import time
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -111,7 +112,9 @@ def fetch_product(product: dict[str, str], cache: Path, offline: bool) -> str:
     return "no_block_library"
 
 
-def parse_product(product: dict[str, str], cache: Path, old_documents: dict) -> dict:
+def parse_product(
+    product: dict[str, str], cache: Path, old_documents: dict, document_root: Path
+) -> dict:
     path = cache / f"{product['id']}.xml"
     result = {
         **product,
@@ -144,6 +147,13 @@ def parse_product(product: dict[str, str], cache: Path, old_documents: dict) -> 
                 document_path = ref.get("target", "")
                 name = ref.get("name", "")
                 old = old_documents.get((document_path, name))
+                if not old:
+                    generated = {
+                        language: f"{language}/products/{product['id']}/{Path(document_path).with_suffix('.md')}"
+                        for language in ("en", "zh")
+                    }
+                    if all((document_root / path).is_file() for path in generated.values()):
+                        old = generated
                 blocks.append(
                     {
                         "name": name,
@@ -193,6 +203,76 @@ def old_document_index(path: Path) -> dict:
         }
         for entry in entries
     }
+
+
+def refresh_totals(manifest: dict) -> None:
+    products = manifest["products"]
+    totals = {
+        "products": len(products),
+        "products_with_blocks": sum(p["status"] == "enumerated" for p in products),
+        "products_without_block_library": sum(p["status"] == "no_block_library" for p in products),
+        "block_occurrences": sum(p["block_occurrences"] for p in products),
+        "unique_product_document_paths": sum(p["unique_document_paths"] for p in products),
+    }
+    occurrences = [
+        block
+        for product in products
+        for library in product["libraries"]
+        for block in library["blocks"]
+    ]
+    all_paths = {
+        (product["id"], block["documentation_path"], language)
+        for product in products
+        for library in product["libraries"]
+        for block in library["blocks"]
+        for language in ("en", "zh")
+    }
+    available_paths = {
+        (product["id"], block["documentation_path"], language)
+        for product in products
+        for library in product["libraries"]
+        for block in library["blocks"]
+        for language in ("en", "zh")
+        if block["documents"][language]["status"] == "available"
+    }
+    totals["full_document_occurrences"] = {
+        language: sum(
+            block["documents"][language]["status"] == "available" for block in occurrences
+        )
+        for language in ("en", "zh")
+    }
+    totals["full_documents"] = {
+        language: sum(key[2] == language for key in available_paths) for language in ("en", "zh")
+    }
+    totals["pending_documents"] = {
+        language: sum(key[2] == language for key in all_paths - available_paths)
+        for language in ("en", "zh")
+    }
+    manifest["totals"] = totals
+
+
+def manifest_failures(manifest: dict) -> list[dict]:
+    failures = []
+    seen = set()
+    for product in manifest["products"]:
+        for library in product["libraries"]:
+            for block in library["blocks"]:
+                for language in ("en", "zh"):
+                    document = block["documents"][language]
+                    key = (product["id"], block["documentation_path"], language)
+                    if document["status"] == "available" or key in seen:
+                        continue
+                    seen.add(key)
+                    failures.append(
+                        {
+                            "product": product["id"],
+                            "path": block["documentation_path"],
+                            "language": language,
+                            "status": document["status"],
+                            "error": f"{document['status']}: see scraper or translation log",
+                        }
+                    )
+    return failures
 
 
 def report(manifest: dict) -> tuple[str, str]:
@@ -315,6 +395,183 @@ def write_catalog(manifest: dict, root: Path) -> None:
         (target / "index.md").write_text("\n".join(index) + "\n", encoding="utf-8")
 
 
+BROWSER_ALIASES = {
+    "Communications Toolbox HDL Support": ("communications-toolbox-hdl-support", "wireless-hdl"),
+    "DSP System Toolbox HDL Support": ("dsp-system-toolbox-hdl-support", "dsphdl"),
+    "Fixed-Point Designer HDL Support": ("fixed-point-designer-hdl-support", "hdlcoder"),
+}
+
+
+COMMON_BLOCKS = [
+    "Bus Creator",
+    "Bus Selector",
+    "Constant",
+    "Data Type Conversion",
+    "Delay",
+    "Demux",
+    "Discrete-Time Integrator",
+    "Gain",
+    "Ground",
+    "Inport",
+    "Integrator",
+    "Logical Operator",
+    "Mux",
+    "Outport",
+    "Product, Matrix Multiply",
+    "Relational Operator",
+    "Saturation",
+    "Scope",
+    "Subsystem",
+    "Sum",
+    "Switch",
+    "Terminator",
+    "Vector Concatenate",
+]
+
+
+def write_browser_tree(manifest: dict, root: Path) -> None:
+    """Materialize the Simulink Library Browser hierarchy with full block pages."""
+    products = sorted(
+        (p for p in manifest["products"] if p["status"] == "enumerated"),
+        key=lambda p: (p["id"] != "simulink", p["name"].lower()),
+    )
+    for language in ("en", "zh"):
+        browser_root = root / "browser" / language
+        shutil.rmtree(browser_root, ignore_errors=True)
+        browser_root.mkdir(parents=True, exist_ok=True)
+        root_index = [
+            "# Simulink Library Browser" if language == "en" else "# Simulink 库浏览器",
+            "",
+        ]
+        root_entries = [(product["name"], product["id"]) for product in products]
+        for product in products:
+            libraries = product["libraries"]
+            if product["id"] == "simulink":
+                prefix = ("Simulink Environment Fundamentals", "Block Libraries")
+                libraries = [
+                    library for library in libraries if tuple(library["path"][:2]) == prefix
+                ]
+            nodes = {}
+            for library in libraries:
+                relative_parts = (
+                    library["path"][2:] if product["id"] == "simulink" else library["path"]
+                )
+                if not relative_parts:
+                    continue
+                parts = [product["id"], *(slug(part) for part in relative_parts)]
+                for depth in range(1, len(parts) + 1):
+                    key = tuple(parts[:depth])
+                    display = product["name"] if depth == 1 else relative_parts[depth - 2]
+                    nodes.setdefault(key, {"name": display, "blocks": []})
+                nodes[tuple(parts)]["blocks"].extend(library["blocks"])
+                name_counts = {}
+                for block in library["blocks"]:
+                    key = slug(block["name"])
+                    name_counts[key] = name_counts.get(key, 0) + 1
+                for block in library["blocks"]:
+                    filename = slug(block["name"])
+                    if name_counts[filename] > 1:
+                        filename += "-" + slug(Path(block["documentation_path"]).stem)
+                    filename += ".md"
+                    block["resource_name"] = filename
+                    target = browser_root.joinpath(*parts, filename)
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    document = block["documents"][language]
+                    if document["status"] == "available" and document["path"]:
+                        content = (root / document["path"]).read_text(encoding="utf-8")
+                    else:
+                        content = f"# {block['name']}\n\n{block['summary']}\n\n" + (
+                            "完整中英文正文待补。\n"
+                            if language == "zh"
+                            else "Full English and Chinese documentation is pending.\n"
+                        )
+                    target.write_text(content, encoding="utf-8")
+                    relative = target.relative_to(root).as_posix()
+                    block.setdefault("resource_paths", {})[language] = relative
+            if product["id"] == "simulink":
+                common_key = ("simulink", "commonly-used-blocks")
+                nodes.setdefault(("simulink",), {"name": "Simulink", "blocks": []})
+                nodes[common_key] = {"name": "Commonly Used Blocks", "blocks": []}
+                by_name = {}
+                for library in product["libraries"]:
+                    for block in library["blocks"]:
+                        by_name.setdefault(block["name"], block)
+                for name in COMMON_BLOCKS:
+                    block = by_name[name]
+                    nodes[common_key]["blocks"].append(block)
+                    source = root / block["documents"][language]["path"]
+                    target = browser_root / "simulink/commonly-used-blocks" / f"{slug(name)}.md"
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
+                quick = browser_root / "simulink/quick-insert/index.md"
+                quick.parent.mkdir(parents=True, exist_ok=True)
+                quick.write_text(
+                    "# Quick Insert\n\n"
+                    + (
+                        "Quick Insert 是依赖模型上下文的动态插入入口，没有固定块清单。\n"
+                        if language == "zh"
+                        else "Quick Insert is a model-context-dependent dynamic insertion surface and has no fixed block list.\n"
+                    ),
+                    encoding="utf-8",
+                )
+                nodes[("simulink", "quick-insert")] = {"name": "Quick Insert", "blocks": []}
+            for key, node in nodes.items():
+                directory = browser_root.joinpath(*key)
+                directory.mkdir(parents=True, exist_ok=True)
+                children = sorted(
+                    (
+                        candidate
+                        for candidate in nodes
+                        if len(candidate) == len(key) + 1 and candidate[:-1] == key
+                    ),
+                    key=lambda candidate: nodes[candidate]["name"].lower(),
+                )
+                lines = [f"# {node['name']}", ""]
+                lines.extend(
+                    f"- [{nodes[child]['name']}]({child[-1]}/index.md)" for child in children
+                )
+                for block in sorted(node["blocks"], key=lambda block: block["name"].lower()):
+                    filename = block.get("resource_name", slug(block["name"]) + ".md")
+                    lines.append(f"- [{block['name']}]({filename})")
+                if len(lines) == 2:
+                    lines.append(
+                        "No fixed block entries." if language == "en" else "无固定块条目。"
+                    )
+                (directory / "index.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+        for name, (directory, target_product) in BROWSER_ALIASES.items():
+            root_entries.append((name, directory))
+            alias = browser_root / directory
+            alias.mkdir(parents=True, exist_ok=True)
+            (alias / "index.md").write_text(
+                f"# {name}\n\n"
+                + (
+                    "这是 Library Browser 支持库入口，块文档复用对应产品库，不重复生成不一致的副本。\n\n"
+                    if language == "zh"
+                    else "This Library Browser support-library entry reuses the owning product's block documentation instead of creating inconsistent copies.\n\n"
+                )
+                + f"[{'打开对应产品库' if language == 'zh' else 'Open the owning product library'}](../{target_product}/index.md)\n",
+                encoding="utf-8",
+            )
+        root_entries.sort(key=lambda item: (item[0] != "Simulink", item[0].lower()))
+        root_index.extend(f"- [{name}]({directory}/index.md)" for name, directory in root_entries)
+        (browser_root / "index.md").write_text("\n".join(root_index) + "\n", encoding="utf-8")
+    totals = manifest["totals"]
+    (root / "index.md").write_text(
+        "# Simulink Block Library\n\n"
+        "- [English Library Browser](browser/en/index.md)\n"
+        "- [中文 Library Browser](browser/zh/index.md)\n"
+        "- [English product catalog](catalog/en/index.md)\n"
+        "- [中文产品目录](catalog/zh/index.md)\n"
+        "- [R2025b manifest](manifest.json)\n\n"
+        f"Official catalog: {totals['products']} products, {totals['products_with_blocks']} with block libraries, "
+        f"{totals['block_occurrences']} occurrences and {totals['unique_product_document_paths']} unique document paths. "
+        f"Full English pages: {totals['full_documents']['en']}; full Chinese pages: {totals['full_documents']['zh']}. "
+        "Browser pages follow the Library Browser hierarchy; product/ref pages are deduplicated document storage. "
+        "Third-party and machine-local support packages require separate enumeration.\n",
+        encoding="utf-8",
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--cache", type=Path, default=Path("/tmp/r2025b-products"))
@@ -356,54 +613,12 @@ def main() -> None:
                 "support_package": "not assumed complete from the public product catalog; enumerate from the user's installation",
             },
         },
-        "products": [parse_product(product, args.cache, old) for product in products],
+        "products": [
+            parse_product(product, args.cache, old, args.output.parent) for product in products
+        ],
     }
-    totals = {
-        "products": len(products),
-        "products_with_blocks": sum(p["status"] == "enumerated" for p in manifest["products"]),
-        "products_without_block_library": sum(
-            p["status"] == "no_block_library" for p in manifest["products"]
-        ),
-        "block_occurrences": sum(p["block_occurrences"] for p in manifest["products"]),
-        "unique_product_document_paths": sum(
-            p["unique_document_paths"] for p in manifest["products"]
-        ),
-    }
-    occurrences = [
-        block
-        for product in manifest["products"]
-        for library in product["libraries"]
-        for block in library["blocks"]
-    ]
-    all_paths = {
-        (product["id"], block["documentation_path"], language)
-        for product in manifest["products"]
-        for library in product["libraries"]
-        for block in library["blocks"]
-        for language in ("en", "zh")
-    }
-    available_paths = {
-        (product["id"], block["documentation_path"], language)
-        for product in manifest["products"]
-        for library in product["libraries"]
-        for block in library["blocks"]
-        for language in ("en", "zh")
-        if block["documents"][language]["status"] == "available"
-    }
-    totals["full_document_occurrences"] = {
-        language: sum(
-            block["documents"][language]["status"] == "available" for block in occurrences
-        )
-        for language in ("en", "zh")
-    }
-    totals["full_documents"] = {
-        language: sum(key[2] == language for key in available_paths) for language in ("en", "zh")
-    }
-    totals["pending_documents"] = {
-        language: sum(key[2] == language for key in all_paths - available_paths)
-        for language in ("en", "zh")
-    }
-    manifest["totals"] = totals
+    refresh_totals(manifest)
+    totals = manifest["totals"]
     if not args.no_count_check:
         differences = {
             key: (value, totals[key]) for key, value in EXPECTED.items() if totals[key] != value
@@ -416,6 +631,7 @@ def main() -> None:
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     write_catalog(manifest, args.output.parent)
+    write_browser_tree(manifest, args.output.parent)
     args.coverage_directory.mkdir(parents=True, exist_ok=True)
     en, zh = report(manifest)
     (args.coverage_directory / "index.md").write_text(en, encoding="utf-8")

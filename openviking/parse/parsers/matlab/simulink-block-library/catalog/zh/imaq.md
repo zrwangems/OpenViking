@@ -59,7 +59,7 @@ language: zh-CN
 
 ## Image Acquisition in Simulink
 
-- From Video Device — 官方英文摘要: Capture live image data from image acquisition device **仅元数据，中英文正文待补**
+- [From Video Device](../../zh/products/imaq/fromvideodevice.md) — 官方英文摘要: Capture live image data from image acquisition device **完整正文**
 
 ## Creating Custom Adaptors
 

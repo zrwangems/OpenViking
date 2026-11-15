@@ -124,61 +124,61 @@ language: zh-CN
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Model Design / Basic HDL Algorithms / Logic and Bit Operations
 
-- Bit Concat — 官方英文摘要: Concatenates up to 128 input words into single output **仅元数据，中英文正文待补**
-- Bit Reduce — 官方英文摘要: AND, OR, or XOR bit reduction on all input signal bits to single bit **仅元数据，中英文正文待补**
-- Bit Rotate — 官方英文摘要: Rotate input signal by bit positions **仅元数据，中英文正文待补**
-- Bit Shift — 官方英文摘要: Logical or arithmetic shift of input signal **仅元数据，中英文正文待补**
-- Bit Slice — 官方英文摘要: Return field of consecutive bits from input signal **仅元数据，中英文正文待补**
-- Bits to Word — 官方英文摘要: Convert vector of bits to integer (Since R2023a) **仅元数据，中英文正文待补**
-- Word to Bits — 官方英文摘要: Converts real numbers to vector of bits (Since R2023a) **仅元数据，中英文正文待补**
+- [Bit Concat](../../zh/products/hdlcoder/ref/bitconcat.md) — 官方英文摘要: Concatenates up to 128 input words into single output **完整正文**
+- [Bit Reduce](../../zh/products/hdlcoder/ref/bitreduce.md) — 官方英文摘要: AND, OR, or XOR bit reduction on all input signal bits to single bit **完整正文**
+- [Bit Rotate](../../zh/products/hdlcoder/ref/bitrotate.md) — 官方英文摘要: Rotate input signal by bit positions **完整正文**
+- [Bit Shift](../../zh/products/hdlcoder/ref/bitshift.md) — 官方英文摘要: Logical or arithmetic shift of input signal **完整正文**
+- [Bit Slice](../../zh/products/hdlcoder/ref/bitslice.md) — 官方英文摘要: Return field of consecutive bits from input signal **完整正文**
+- [Bits to Word](../../zh/products/hdlcoder/ref/bitstoword.md) — 官方英文摘要: Convert vector of bits to integer (Since R2023a) **完整正文**
+- [Word to Bits](../../zh/products/hdlcoder/ref/wordtobits.md) — 官方英文摘要: Converts real numbers to vector of bits (Since R2023a) **完整正文**
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Model Design / Basic HDL Algorithms / Lookup Tables
 
-- Sine HDL Optimized and Cosine HDL Optimized — 官方英文摘要: Implement fixed-point sine and cosine wave by using lookup table approach optimized for HDL code generation **仅元数据，中英文正文待补**
+- [Sine HDL Optimized and Cosine HDL Optimized](../../zh/products/hdlcoder/ref/sinehdloptimizedandcosinehdloptimized.md) — 官方英文摘要: Implement fixed-point sine and cosine wave by using lookup table approach optimized for HDL code generation **完整正文**
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Model Design / Basic HDL Algorithms / Sources
 
-- HDL Counter — 官方英文摘要: Free-running or count-limited hardware counter **仅元数据，中英文正文待补**
+- [HDL Counter](../../zh/products/hdlcoder/ref/hdlcounter.md) — 官方英文摘要: Free-running or count-limited hardware counter **完整正文**
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Model Design / Basic HDL Algorithms / HDL Math Library
 
-- Atan2 — 官方英文摘要: Compute Atan2 operation using CORDIC approximation method and simulate with latency **仅元数据，中英文正文待补**
-- Sin — 官方英文摘要: Compute sine operation using CORDIC approximation method and simulate with latency **仅元数据，中英文正文待补**
-- Cos — 官方英文摘要: Compute cosine operation using CORDIC approximation method and simulate with latency **仅元数据，中英文正文待补**
-- Cos+jSin — 官方英文摘要: Compute Cos+jSin operation using CORDIC approximation method and simulate with latency **仅元数据，中英文正文待补**
-- SinCos — 官方英文摘要: Compute SinCos operation using CORDIC approximation method and simulate with latency **仅元数据，中英文正文待补**
-- rSqrt — 官方英文摘要: Compute reciprocal square-root operation and simulate with latency **仅元数据，中英文正文待补**
-- Sqrt — 官方英文摘要: Compute Sqrt operation and simulate with latency **仅元数据，中英文正文待补**
-- Divide — 官方英文摘要: Compute division operation and simulate with latency **仅元数据，中英文正文待补**
-- Reciprocal — 官方英文摘要: Compute reciprocal operation and simulate with latency **仅元数据，中英文正文待补**
+- [Atan2](../../zh/products/hdlcoder/ref/atan2.md) — 官方英文摘要: Compute Atan2 operation using CORDIC approximation method and simulate with latency **完整正文**
+- [Sin](../../zh/products/hdlcoder/ref/sin.md) — 官方英文摘要: Compute sine operation using CORDIC approximation method and simulate with latency **完整正文**
+- [Cos](../../zh/products/hdlcoder/ref/cos.md) — 官方英文摘要: Compute cosine operation using CORDIC approximation method and simulate with latency **完整正文**
+- [Cos+jSin](../../zh/products/hdlcoder/ref/cosjsin.md) — 官方英文摘要: Compute Cos+jSin operation using CORDIC approximation method and simulate with latency **完整正文**
+- [SinCos](../../zh/products/hdlcoder/ref/sincos.md) — 官方英文摘要: Compute SinCos operation using CORDIC approximation method and simulate with latency **完整正文**
+- [rSqrt](../../zh/products/hdlcoder/ref/rsqrt.md) — 官方英文摘要: Compute reciprocal square-root operation and simulate with latency **完整正文**
+- [Sqrt](../../zh/products/hdlcoder/ref/sqrt.md) — 官方英文摘要: Compute Sqrt operation and simulate with latency **完整正文**
+- [Divide](../../zh/products/hdlcoder/ref/divide.md) — 官方英文摘要: Compute division operation and simulate with latency **完整正文**
+- [Reciprocal](../../zh/products/hdlcoder/ref/reciprocal.md) — 官方英文摘要: Compute reciprocal operation and simulate with latency **完整正文**
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Model Design / RAM and ROM Blocks
 
-- Dual Port RAM System — 官方英文摘要: Dual-port RAM that supports simultaneous read and write operations **仅元数据，中英文正文待补**
-- Dual Rate Dual Port RAM — 官方英文摘要: Dual Port RAM that supports two rates **仅元数据，中英文正文待补**
-- HDL FIFO — 官方英文摘要: Stores sequence of input samples in first in, first out (FIFO) register **仅元数据，中英文正文待补**
-- Simple Dual Port RAM System — 官方英文摘要: Simple dual-port RAM that supports simultaneous read and write operations **仅元数据，中英文正文待补**
-- Single Port RAM System — 官方英文摘要: Single-port RAM that supports sequential read and write operations **仅元数据，中英文正文待补**
-- True Dual Port RAM System — 官方英文摘要: True dual-port RAM that supports simultaneous read and write operations (Since R2023b) **仅元数据，中英文正文待补**
-- Simple Tri Port RAM System — 官方英文摘要: Simple tri-port RAM that supports simultaneous read and write operations (Since R2023b) **仅元数据，中英文正文待补**
-- Dual Port RAM — 官方英文摘要: (To be removed) Dual port RAM with two output ports **仅元数据，中英文正文待补**
-- Simple Dual Port RAM — 官方英文摘要: (To be removed) Dual port RAM with single output port **仅元数据，中英文正文待补**
-- Single Port RAM — 官方英文摘要: (To be removed) Single port RAM **仅元数据，中英文正文待补**
+- [Dual Port RAM System](../../zh/products/hdlcoder/ref/dualportramsystem.md) — 官方英文摘要: Dual-port RAM that supports simultaneous read and write operations **完整正文**
+- [Dual Rate Dual Port RAM](../../zh/products/hdlcoder/ref/dualratedualportram.md) — 官方英文摘要: Dual Port RAM that supports two rates **完整正文**
+- [HDL FIFO](../../zh/products/hdlcoder/ref/hdlfifo.md) — 官方英文摘要: Stores sequence of input samples in first in, first out (FIFO) register **完整正文**
+- [Simple Dual Port RAM System](../../zh/products/hdlcoder/ref/simpledualportramsystem.md) — 官方英文摘要: Simple dual-port RAM that supports simultaneous read and write operations **完整正文**
+- [Single Port RAM System](../../zh/products/hdlcoder/ref/singleportramsystem.md) — 官方英文摘要: Single-port RAM that supports sequential read and write operations **完整正文**
+- [True Dual Port RAM System](../../zh/products/hdlcoder/ref/truedualportramsystem.md) — 官方英文摘要: True dual-port RAM that supports simultaneous read and write operations (Since R2023b) **完整正文**
+- [Simple Tri Port RAM System](../../zh/products/hdlcoder/ref/simpletriportramsystem.md) — 官方英文摘要: Simple tri-port RAM that supports simultaneous read and write operations (Since R2023b) **完整正文**
+- [Dual Port RAM](../../zh/products/hdlcoder/ref/dualportram.md) — 官方英文摘要: (To be removed) Dual port RAM with two output ports **完整正文**
+- [Simple Dual Port RAM](../../zh/products/hdlcoder/ref/simpledualportram.md) — 官方英文摘要: (To be removed) Dual port RAM with single output port **完整正文**
+- [Single Port RAM](../../zh/products/hdlcoder/ref/singleportram.md) — 官方英文摘要: (To be removed) Single port RAM **完整正文**
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Model Design / Hierarchical Designs and Synchronous Hardware Behavior
 
-- Unit Delay Enabled Synchronous — 官方英文摘要: Delay input signal by one sample period when external Enable signal is true **仅元数据，中英文正文待补**
-- Unit Delay Resettable Synchronous — 官方英文摘要: Delay input signal by one sample period when external Reset signal is false **仅元数据，中英文正文待补**
-- Unit Delay Enabled Resettable Synchronous — 官方英文摘要: Delay input signal by one sample period when external Enable signal is true and external Reset signal is false **仅元数据，中英文正文待补**
-- Tapped Delay Enabled Synchronous — 官方英文摘要: Delay scalar signal multiple sample periods and output all delayed versions when external Enable signal is true (Since R2023a) **仅元数据，中英文正文待补**
-- Tapped Delay Resettable Synchronous — 官方英文摘要: Delay scalar signal multiple sample periods and output all delayed versions when external Reset signal is false (Since R2023a) **仅元数据，中英文正文待补**
-- Tapped Delay Enabled Resettable Synchronous — 官方英文摘要: Delay scalar signal multiple sample periods and output all delayed versions when external Enable signal is true and external Reset signal is false (Since R2023a) **仅元数据，中英文正文待补**
-- Enabled Delay — 官方英文摘要: Delay input signal by fixed or variable sample periods when external enable signal is true (Since R2024b) **仅元数据，中英文正文待补**
-- Enabled Resettable Delay — 官方英文摘要: Delay input signal by fixed or variable sample periods when external Enable signal is true and external Reset signal is false (Since R2024b) **仅元数据，中英文正文待补**
-- State Control — 官方英文摘要: Specify synchronous reset and enable behavior for blocks with state **仅元数据，中英文正文待补**
-- Synchronous Subsystem — 官方英文摘要: Represent subsystem that has synchronous reset and enable behavior **仅元数据，中英文正文待补**
-- Enabled Synchronous Subsystem — 官方英文摘要: Represent enabled subsystem that has synchronous reset and enable behavior **仅元数据，中英文正文待补**
-- Resettable Synchronous Subsystem — 官方英文摘要: Represent resettable subsystem that has synchronous reset and enable behavior **仅元数据，中英文正文待补**
+- [Unit Delay Enabled Synchronous](../../zh/products/hdlcoder/ref/unitdelayenabledsynchronous.md) — 官方英文摘要: Delay input signal by one sample period when external Enable signal is true **完整正文**
+- [Unit Delay Resettable Synchronous](../../zh/products/hdlcoder/ref/unitdelayresettablesynchronous.md) — 官方英文摘要: Delay input signal by one sample period when external Reset signal is false **完整正文**
+- [Unit Delay Enabled Resettable Synchronous](../../zh/products/hdlcoder/ref/unitdelayenabledresettablesynchronous.md) — 官方英文摘要: Delay input signal by one sample period when external Enable signal is true and external Reset signal is false **完整正文**
+- [Tapped Delay Enabled Synchronous](../../zh/products/hdlcoder/ref/tappeddelayenabledsynchronous.md) — 官方英文摘要: Delay scalar signal multiple sample periods and output all delayed versions when external Enable signal is true (Since R2023a) **完整正文**
+- [Tapped Delay Resettable Synchronous](../../zh/products/hdlcoder/ref/tappeddelayresettablesynchronous.md) — 官方英文摘要: Delay scalar signal multiple sample periods and output all delayed versions when external Reset signal is false (Since R2023a) **完整正文**
+- [Tapped Delay Enabled Resettable Synchronous](../../zh/products/hdlcoder/ref/tappeddelayenabledresettablesynchronous.md) — 官方英文摘要: Delay scalar signal multiple sample periods and output all delayed versions when external Enable signal is true and external Reset signal is false (Since R2023a) **完整正文**
+- [Enabled Delay](../../zh/products/hdlcoder/ref/enableddelay.md) — 官方英文摘要: Delay input signal by fixed or variable sample periods when external enable signal is true (Since R2024b) **完整正文**
+- [Enabled Resettable Delay](../../zh/products/hdlcoder/ref/enabledresettabledelay.md) — 官方英文摘要: Delay input signal by fixed or variable sample periods when external Enable signal is true and external Reset signal is false (Since R2024b) **完整正文**
+- [State Control](../../zh/products/hdlcoder/ref/statecontrol.md) — 官方英文摘要: Specify synchronous reset and enable behavior for blocks with state **完整正文**
+- [Synchronous Subsystem](../../zh/products/hdlcoder/ref/synchronoussubsystem.md) — 官方英文摘要: Represent subsystem that has synchronous reset and enable behavior **完整正文**
+- [Enabled Synchronous Subsystem](../../zh/products/hdlcoder/ref/enabledsynchronoussubsystem.md) — 官方英文摘要: Represent enabled subsystem that has synchronous reset and enable behavior **完整正文**
+- [Resettable Synchronous Subsystem](../../zh/products/hdlcoder/ref/resettablesynchronoussubsystem.md) — 官方英文摘要: Represent resettable subsystem that has synchronous reset and enable behavior **完整正文**
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Model Design / User-Defined MATLAB Functions
 
@@ -232,7 +232,7 @@ language: zh-CN
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Native Floating Point
 
-- Float Typecast — 官方英文摘要: Typecast a floating-point type to an unsigned integer or vice versa **仅元数据，中英文正文待补**
+- [Float Typecast](../../zh/products/hdlcoder/ref/floattypecast.md) — 官方英文摘要: Typecast a floating-point type to an unsigned integer or vice versa **完整正文**
 
 ## HDL Code Generation from Simulink / HDL Modeling Guidelines
 
@@ -341,14 +341,14 @@ language: zh-CN
 
 ## HDL Code Generation from Simulink / Speed and Area Optimization / Speed Optimization
 
-- Deserializer1D — 官方英文摘要: Convert scalar stream or smaller vectors to vector signal **仅元数据，中英文正文待补**
-- Multiply-Accumulate — 官方英文摘要: Perform a multiply-accumulate operation on the inputs **仅元数据，中英文正文待补**
-- Multiply-Add — 官方英文摘要: Multiply-add combined operation **仅元数据，中英文正文待补**
-- Serializer1D — 官方英文摘要: Convert vector signal to scalar or smaller vectors **仅元数据，中英文正文待补**
+- [Deserializer1D](../../zh/products/hdlcoder/ref/deserializer1d.md) — 官方英文摘要: Convert scalar stream or smaller vectors to vector signal **完整正文**
+- [Multiply-Accumulate](../../zh/products/hdlcoder/ref/multiplyaccumulate.md) — 官方英文摘要: Perform a multiply-accumulate operation on the inputs **完整正文**
+- [Multiply-Add](../../zh/products/hdlcoder/ref/multiplyadd.md) — 官方英文摘要: Multiply-add combined operation **完整正文**
+- [Serializer1D](../../zh/products/hdlcoder/ref/serializer1d.md) — 官方英文摘要: Convert vector signal to scalar or smaller vectors **完整正文**
 
 ## HDL Code Generation from Simulink / Speed and Area Optimization / I/O Optimization
 
-- Neighborhood Processing Subsystem — 官方英文摘要: Create algorithm that follows the neighborhood pattern (Since R2022b) **仅元数据，中英文正文待补**
+- [Neighborhood Processing Subsystem](../../zh/products/hdlcoder/../simulink/slref/neighborhoodprocessingsubsystem.md) — 官方英文摘要: Create algorithm that follows the neighborhood pattern (Since R2022b) **完整正文**
 
 ## HDL Code Generation from Simulink / Reports and Scripts
 
@@ -667,11 +667,11 @@ language: zh-CN
 
 ## Real-Time Hardware Deployment / RCP and HIL Blocks
 
-- Sparse Matrix-Vector Product — 官方英文摘要: Multiply sparse matrix with input vector (Since R2024b) **仅元数据，中英文正文待补**
-- HDL Combinatorial Logic — 官方英文摘要: Implement truth table (Since R2024b) **仅元数据，中英文正文待补**
-- PWM — 官方英文摘要: Generate ideal pulse width modulated signal corresponding to input duty cycle **仅元数据，中英文正文待补**
-- Discrete State-Space — 官方英文摘要: Implement discrete state-space system **仅元数据，中英文正文待补**
-- Fixed-Point State-Space — 官方英文摘要: Implement discrete-time state space **仅元数据，中英文正文待补**
+- [Sparse Matrix-Vector Product](../../zh/products/hdlcoder/ref/sparsematrixvectorproduct.md) — 官方英文摘要: Multiply sparse matrix with input vector (Since R2024b) **完整正文**
+- [HDL Combinatorial Logic](../../zh/products/hdlcoder/ref/hdlcombinatoriallogic.md) — 官方英文摘要: Implement truth table (Since R2024b) **完整正文**
+- [PWM](../../zh/products/hdlcoder/../simulink/slref/pwm.md) — 官方英文摘要: Generate ideal pulse width modulated signal corresponding to input duty cycle **完整正文**
+- [Discrete State-Space](../../zh/products/hdlcoder/../simulink/slref/discretestatespace.md) — 官方英文摘要: Implement discrete state-space system **完整正文**
+- [Fixed-Point State-Space](../../zh/products/hdlcoder/../simulink/slref/fixedpointstatespace.md) — 官方英文摘要: Implement discrete-time state space **完整正文**
 
 ## Tool Qualification and Certification
 

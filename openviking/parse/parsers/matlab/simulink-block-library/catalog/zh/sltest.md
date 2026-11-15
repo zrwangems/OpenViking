@@ -29,7 +29,7 @@ language: zh-CN
 
 ## Test Authoring / Inputs
 
-- Test Sequence — 官方英文摘要: Create simulation testing scenarios, function calls, and assessments **仅元数据，中英文正文待补**
+- [Test Sequence](../../zh/products/sltest/ref/testsequence.md) — 官方英文摘要: Create simulation testing scenarios, function calls, and assessments **完整正文**
 
 ## Test Authoring / Outputs
 
@@ -38,12 +38,12 @@ language: zh-CN
 
 ## Test Authoring / Assessments, Criteria, and Verification
 
-- Observer Reference — 官方英文摘要: Create and contain an Observer model **仅元数据，中英文正文待补**
-- Observer Port — 官方英文摘要: Wirelessly link signals to use with verification **仅元数据，中英文正文待补**
-- Test Sequence — 官方英文摘要: Create simulation testing scenarios, function calls, and assessments **仅元数据，中英文正文待补**
-- Test Assessment — 官方英文摘要: Assess and verify behavior of system under test **仅元数据，中英文正文待补**
-- Sequence Viewer — 官方英文摘要: Display messages, events, states, transitions, and functions between blocks during simulation **仅元数据，中英文正文待补**
-- Assertion — 官方英文摘要: Check whether signal is zero **仅元数据，中英文正文待补**
+- [Observer Reference](../../zh/products/sltest/ref/observerreference.md) — 官方英文摘要: Create and contain an Observer model **完整正文**
+- [Observer Port](../../zh/products/sltest/ref/observerport.md) — 官方英文摘要: Wirelessly link signals to use with verification **完整正文**
+- [Test Sequence](../../zh/products/sltest/ref/testsequence.md) — 官方英文摘要: Create simulation testing scenarios, function calls, and assessments **完整正文**
+- [Test Assessment](../../zh/products/sltest/ref/testassessment.md) — 官方英文摘要: Assess and verify behavior of system under test **完整正文**
+- [Sequence Viewer](../../zh/products/sltest/ref/sequenceviewer.md) — 官方英文摘要: Display messages, events, states, transitions, and functions between blocks during simulation **完整正文**
+- [Assertion](../../zh/products/sltest/../simulink/slref/assertion.md) — 官方英文摘要: Check whether signal is zero **完整正文**
 
 ## Test Execution
 

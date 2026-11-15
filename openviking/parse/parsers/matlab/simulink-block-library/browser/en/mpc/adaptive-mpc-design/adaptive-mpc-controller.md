@@ -1,0 +1,1298 @@
+---
+type: simulink-block
+title: 'Adaptive MPC Controller'
+family: 'mpc'
+product_id: 'mpc'
+product_name: 'Model Predictive Control Toolbox'
+documentation_release: R2025b
+official_category: 'Adaptive MPC Design'
+documentation_page: 'adaptivempccontroller'
+documentation_source_path: 'ref/adaptivempccontroller.html'
+language: en
+---
+
+# Adaptive MPC Controller
+
+## Ports
+
+### Input
+
+#### Required Inputs
+
+### **model** — Updated plant model and nominal operating point bus signal
+
+Updated plant model and nominal operating point, specified as a bus signal. a bus
+signal to the `model` inport. At the beginning of each control
+interval, this signal modifies the controller object `Model.Plant`
+and `Model.Nominal` properties.
+
+The Adaptive MPC Controller requires the plant model to be an LTI
+discrete-time state-space object with no delays. The following command extracts the
+state-space matrices comprising such a model.
+
+```
+[A,B,C,D] = ssdata(mpcobj.Model.Plant)
+```
+
+The purpose of the `model` input is to replace these matrices
+with new ones having the same dimensions and representing the same control interval.
+You must also retain the sequence in which the input, output, and state variables
+appear in the `Model.Plant` property of the controller.
+
+When operating in:
+
+- Adaptive MPC mode, the bus you connect to the `model` inport
+  must contain the following signals, each identified by the specified name:
+
+  - `A` —
+    *nx*-by-*nx*
+    matrix signal, where *nx* is the
+    number of plant model states.
+  - `B` —
+    *nx*-by-*nu*
+    matrix signal, where *nu* is the total
+    number of plant model inputs (i.e., manipulated variables, measured
+    disturbances, and unmeasured disturbances).
+  - `C` —
+    *ny*-by-*nx*
+    matrix signal, where *ny* is the
+    number of plant model outputs.
+  - `D` —
+    *ny*-by-*nu*
+    matrix signal.
+  - `X` — Vector signal of length
+    *nx*, replacing the controller
+    `Model.Nominal.X` property.
+  - `Y` — Vector signal of length
+    *ny*, replacing the controller
+    `Model.Nominal.Y` property.
+  - `U` — Vector signal of length
+    *nu*, replacing the controller
+    `Model.Nominal.U` property.
+  - `DX` — Vector signal of length
+    *nx*, replacing the controller
+    `Model.Nominal.DX` property. It must be appropriate for use
+    with a discrete-time model of the assumed control interval. For more
+    information, see Adaptive and Time-Varying MPC.
+
+    To compute `DX` values, use the discrete-time state
+    update function (*f*) for your model. Here,
+    *uk* and
+    *xk* are the respective input and
+    state values for the current time step.
+
+    DX=f(uk,xk)−xk
+- Time-varying MPC mode, the bus you connect to the `model`
+  inport must contain the following 3–dimensional bus signals:
+
+  - `A` —
+    *nx*-by-*nx*-by-(*p*+1)
+    matrix signal
+  - `B` —
+    *nx*-by-*nu*-by-(*p*+1)
+    matrix signal
+  - `C` —
+    *ny*-by-*nx*-by-(*p*+1)
+  - `D` —
+    *ny*-by-*nu*-by-(*p*+1)
+    matrix signal
+  - `X` —
+    *nx*-by-(*p*+1)
+    matrix signal
+  - `Y` —
+    *ny*-by-(*p*+1)
+    matrix signal
+  - `U` —
+    *nu*-by-(*p*+1)
+    matrix signal
+  - `DX` —
+    *nx*-by-(*p*+1)
+    matrix signal
+
+  Here, *p* is the controller prediction horizon. For each
+  signal, specify *p*+1 values representing the model and nominal
+  conditions at each step of the prediction horizon. For more information, see Time-Varying MPC.
+
+One way to form the bus is to use a Bus Creator (Simulink) block.
+
+#### Dependencies
+
+The dimensions of the bus elements in **model** depend on the
+operating mode of the controller. To place the controller in:
+
+- Adaptive MPC mode, clear the **Linear Time-Varying (LTV)
+  plants** parameter
+- Time-varying MPC mode, select the **Linear Time-Varying (LTV)
+  plants** parameter
+
+### **ref** — Model output reference values row vector | matrix
+
+Plant output reference values, specified as a row vector signal or matrix signal.
+
+To use the same reference values across the prediction horizon, connect
+**ref** to a row vector signal with
+*Ny* elements, where
+*Ny* is the number of output variables.
+Each element specifies the reference for an output variable.
+
+To vary the references over the prediction horizon (previewing) from time
+*k*+1 to time *k*+*p*, connect
+**ref** to a matrix signal with
+*Ny* columns and up to *p*
+rows. Here, *k* is the current time and *p* is the
+prediction horizon. Each row contains the references for one prediction horizon step. If
+you specify fewer than *p* rows, the final references are used for the
+remaining steps of the prediction horizon.
+
+### **mo** — Measured outputs vector
+
+Measured outputs, specified as a vector signal. The block uses the measured plant
+outputs to improve its state estimates. If your controller uses default state
+estimation, you must connect the measured plant outputs to the **mo**
+input port. If your controller uses custom state estimation, you must connect the
+estimated plant states to the **x[k|k]** input port.
+
+#### Dependencies
+
+To enable this port, clear the **Use custom state estimation instead of
+using the built-in Kalman filter** parameter.
+
+### **x[k|k]** — Custom state estimate vector
+
+Custom state estimate, specified as a vector signal. The block uses the connected state
+estimates instead of estimating the states using the built-in
+estimator. If your controller uses custom state estimation, you must
+connect the current state estimates to the **x[k|k]**
+input port. If your controller uses default state estimation, you must
+connect the measured output to the **mo** input
+port.
+
+Even though noise model states (if any) are not used
+in MPC optimization, the custom state vector must contain all the
+states defined in the `mpcstate` object of the
+controller, including the plant, disturbance, and noise model
+states.
+
+Use custom state estimates when an alternative estimation technique is considered superior to the built-in estimator or when the states are fully measurable.
+
+#### Dependencies
+
+To enable this port, select the **Use custom state estimation instead of using the
+built-in Kalman filter** parameter.
+
+#### Additional Inputs
+
+### **md** — input row vector | matrix
+
+If your controller prediction model has measured disturbances you must enable this port and
+connect to it a row vector or matrix signal.
+
+To use the same measured disturbance values across the prediction horizon, connect **md** to a row vector signal with *Nmd* elements, where *Nmd* is the number of manipulated variables. Each element specifies the value for a measured disturbance.
+
+To vary the disturbances over the prediction horizon (previewing) from time
+*k* to time *k*+*p*, connect
+**md** to a matrix signal with
+*Nmd* columns and up to
+*p*+1 rows. Here, *k* is the current time and
+*p* is the prediction horizon. Each row contains the disturbances
+for one prediction horizon step. If you specify fewer than *p*+1 rows,
+the final disturbances are used for the remaining steps of the prediction
+horizon.
+
+#### Dependencies
+
+To enable this port, select the **Measured disturbances**
+parameter.
+
+### **ext.mv** — Control signals used in plant at previous control interval vector
+
+Control signals used in the plant at the previous control interval, specified as a
+vector signal of length *Nmv*, where
+*Nmv* is the number of manipulated
+variables. Use this input port to improve state estimation accuracy when:
+
+- You know your controller is not always in control of the plant.
+- The actual MV signals applied to the plant can potentially differ from the
+  values generated by the controller, such as in control signal saturation.
+
+Controller state estimation assumes that the MVs are piecewise constant. Therefore, at
+time *tk*, the **ext.mv** value
+must contain the effective MVs between times
+*tk–1* and
+*tk*. For example, if the MVs are
+actually varying over this interval, you might supply the time-averaged value evaluated
+at time *tk*.
+
+**Note**
+
+- Connect **ext.mv** to the MV signals actually applied to
+  the plant in the previous control interval. Typically, these MV signals are
+  the values generated by the controller, though this is not always the case.
+  For example, if your controller is offline and running in tracking mode
+  (that is, the controller output is not driving the plant), then feeding the
+  actual control signal to **ext.mv** can help achieve
+  bumpless transfer when the controller is switched back online.
+- When the controller is driving the plant, insert a Memory
+  block or Unit Delay block to feed back the MV signal applied
+  to the plant at the previous control interval. This also avoids a direct
+  feedthrough from the **ext.mv** inport to the
+  **mv** outport, therefore preventing algebraic loops in
+  the Simulink® model.
+
+For an example that uses the external manipulated variable input port for bumpless
+transfer, see Switch Controller Online and Offline with Bumpless Transfer.
+
+#### Dependencies
+
+To enable this port, select the **External manipulated variable**
+parameter.
+
+### **switch** — Enable or disable optimization scalar
+
+To turn off the controller optimization calculations, connect
+**switch** to a nonzero signal.
+
+Disabling optimization calculations reduces computational effort when the controller output is
+not needed, such as when the system is operating manually or another controller has
+taken over. However, the controller continues to update its internal state estimates in
+the usual way. Therefore, it is ready to resume optimization calculations whenever the
+**switch** signal returns to zero. While controller optimization is
+off, the block passes the current **ext.mv** signal to the controller
+output. If the **ext.mv** inport is not enabled, the controller output
+is held at the value it had when optimization was disabled.
+
+For an example that uses the external manipulated variable input port for bumpless transfer,
+see Switch Controller Online and Offline with Bumpless Transfer.
+
+#### Dependencies
+
+To enable this port, select the **Use external signal to enable or disable optimization** parameter.
+
+### **mv.target** — Manipulated variable targets vector
+
+To specify manipulated variable targets, enable this input port, and connect a vector signal.
+To make a given manipulated variable track its specified target
+value, you must also specify a nonzero tuning weight for that
+manipulated variable.
+
+The supplied **mv.target** values at run-time apply across the prediction
+horizon.
+
+#### Dependencies
+
+To enable this port, select the **Targets for manipulated variables** parameter.
+
+#### Online Constraints
+
+### **ymin** — Minimum output variable constraints vector | matrix
+
+To specify run-time minimum output variable constraints, enable this input port. If
+this port is disabled, the block uses the lower bounds specified in the
+`OutputVariables.Min` property of its `mpc` controller object. If an output variable has no lower bound specified
+in the controller object, then at run time the block ignores the corresponding connected
+signal.
+
+To change the bounds over the prediction horizon from time *k*+1 to
+time *k*+*p*, connect **ymin** to a
+matrix signal with *Ny* columns and up to
+*p* rows. Here, *Ny* is the
+number of plant outputs, *k* is the current time, and
+*p* is the prediction horizon. Each row contains the bounds for one
+prediction horizon step. If you specify fewer than *p* rows, the bounds
+in the final row apply for the remainder of the prediction horizon. If there is only one
+output variable, and a vector signal with no more than *p* entries is
+connected, then these entries are used across the prediction horizon.
+
+The `i`th column of the **ymin** signal corresponds
+to the `i`th plant output, and replaces the
+`OutputVariables(i).Max` property of the `mpc` object at run time. The replacement behavior depends on the dimensions
+of both variables.
+
+**Scalar `OutputVariables(i).Min` in the `mpc`
+object (a constant bound for the `i`th plant output to be applied
+to all prediction steps)**
+
+| **ymin** Dimension | Replacement Behavior |
+| --- | --- |
+| Scalar **ymin** (single output, constant bound) | **ymin** replaces the constant bound defined in `OutputVariables(i).Min`. |
+| Column vector **ymin** (single output, time-varying bound) | **ymin** replaces the constant bound defined in `OutputVariables(i).Min` with a time-varying bound. |
+| Row vector **ymin** (multiple outputs, constant bounds) | The `i`th element of **ymin** replaces the constant bound defined in `OutputVariables(i).Min`. |
+| Matrix **ymin** (multiple outputs, time-varying bounds) | The `i`th column of **ymin** replaces the constant bound defined in `OutputVariables(i).Min` with a time-varying bound. |
+
+**Vector `OutputVariables(i).Min` in the `mpc`
+object (a time-varying bound for the `i`th plant output with
+different values at different prediction steps)**
+
+| **ymin** Dimension | Replacement Behavior |
+| --- | --- |
+| Scalar **ymin** (single output, constant bound) | **ymin** replaces the first finite entry in `OutputVariables.Min` and the remaining entries in `OutputVariables.Min` shift up or down with the same amount of displacement to retain the profile defined by the original `OutputVariables.Min` vector. |
+| Column vector **ymin** (single output, time-varying bound) | **ymin** replaces the time-varying bound defined in `OutputVariables(i).Min`, and the original bound profile is discarded. |
+| Row vector **ymin** (multiple outputs, constant bounds) | The `i`th element of **ymin** replaces the first finite entry in `OutputVariables(i).Min` and the remaining entries in `OutputVariables(i).Min` shift up or down with the same amount of displacement to retain the profile defined by the original `OutputVariables(i).Min` vector. |
+| Matrix **ymin** (multiple outputs, time-varying bounds). | The `i`th column of **ymin** replaces the time-varying bound defined in `OutputVariables(i).Min`, and the original bound profile is discarded. |
+
+#### Dependencies
+
+To enable this port, select the **Lower OV limits**
+parameter.
+
+### **ymax** — Maximum output variable constraints vector | matrix
+
+To specify run-time maximum output variable constraints, enable this input port. If
+this port is disabled, the block uses the upper bounds specified in the
+`OutputVariables.Max` property of its `mpc` controller object. If an output variable has no upper bound specified
+in the controller object, then at run time the block ignores the corresponding connected
+signal.
+
+To change the bounds over the prediction horizon from time *k*+1 to
+time *k*+*p*, connect **ymax** to a
+matrix signal with *Ny* columns and up to
+*p* rows. Here, *Ny* is the
+number of plant outputs, *k* is the current time, and
+*p* is the prediction horizon. Each row contains the bounds for one
+prediction horizon step. If you specify fewer than *p* rows, the bounds
+in the final row apply for the remainder of the prediction horizon. If there is only one
+output variable, and a vector signal with no more than *p* entries is
+connected, then these entries are used across the prediction horizon.
+
+The `i`th column of the **ymax** signal corresponds
+to the `i`th plant output, and replaces the
+`OutputVariables(i).Max` property of the `mpc` object at run time. The replacement behavior depends on the dimensions
+of both variables.
+
+**Scalar `OutputVariables(i).Max` in the `mpc`
+object (a constant bound for the `i`th plant output to be applied
+to all prediction steps)**
+
+| **ymax** Dimension | Replacement Behavior |
+| --- | --- |
+| Scalar **ymax** (single output, constant bound) | **ymax** replaces the constant bound defined in `OutputVariables(i).Max`. |
+| Column vector **ymax** (single output, time-varying bound) | **ymax** replaces the constant bound defined in `OutputVariables(i).Max` with a time-varying bound. |
+| Row vector **ymax** (multiple outputs, constant bounds) | The `i`th element of **ymax** replaces the constant bound defined in `OutputVariables(i).Max`. |
+| Matrix **ymax** (multiple outputs, time-varying bounds) | The `i`th column of **ymax** replaces the constant bound defined in `OutputVariables(i).Max` with a time-varying bound. |
+
+**Vector `OutputVariables(i).Max` in the `mpc`
+object (a time-varying bound for the `i`th plant output with
+different values at different prediction steps)**
+
+| **ymax** Dimension | Replacement Behavior |
+| --- | --- |
+| Scalar **ymax** (single output, constant bound) | **ymax** replaces the first finite entry in `OutputVariables.Max` and the remaining entries in `OutputVariables.Max` shift up or down with the same amount of displacement to retain the profile defined by the original `OutputVariables.Max` vector. |
+| Column vector **ymax** (single output, time-varying bound) | **ymax** replaces the time-varying bound defined in `OutputVariables(i).Max`, and the original bound profile is discarded. |
+| Row vector **ymax** (multiple outputs, constant bounds) | The `i`th element of **ymax** replaces the first finite entry in `OutputVariables(i).Max` and the remaining entries in `OutputVariables(i).Max` shift up or down with the same amount of displacement to retain the profile defined by the original `OutputVariables(i).Max` vector. |
+| Matrix **ymax** (multiple outputs, time-varying bounds). | The `i`th column of **ymax** replaces the time-varying bound defined in `OutputVariables(i).Max`, and the original bound profile is discarded. |
+
+#### Dependencies
+
+To enable this port, select the **Upper OV limits**
+parameter.
+
+### **umin** — Minimum manipulated variable constraints vector | matrix
+
+To specify run-time minimum manipulated variable constraints, enable this input port.
+If this port is disabled, the block uses the lower bounds specified in the
+`ManipulatedVariables.Min` property of its `mpc` controller object. If a manipulated variable has no lower bound
+specified in the controller object, then at run time the block ignores the corresponding
+connected signal.
+
+To change the bounds over the prediction horizon from time *k* to
+time *k*+*p*-1, connect **umin** to a
+matrix signal with *Nmv* columns and up to
+*p* rows. Here, *Nmv* is
+the number of manipulated variables, *k* is the current time, and
+*p* is the prediction horizon. Each row contains the bounds for one
+prediction horizon step. If you specify fewer than *p* rows, the bounds
+in the final row apply for the remainder of the prediction horizon. If there is only one
+manipulated variable, and a vector signal with no more than *p* entries
+is connected, then these entries are used across the prediction horizon.
+
+The `i`th column of the **umin** signal corresponds
+to the `i`th manipulated variable, and replaces the
+`ManipulatedVariables(i).Max` property of the `mpc` object at run time. The replacement behavior depends on the dimensions
+of both variables.
+
+**Scalar `ManipulatedVariables(i).Min` in the `mpc`
+object (a constant bound for the `i`th manipulated variable to be
+applied to all prediction steps)**
+
+| **umin** Dimension | Replacement Behavior |
+| --- | --- |
+| Scalar **umin** (single output, constant bound) | **umin** replaces the constant bound defined in `ManipulatedVariables(i).Min`. |
+| Column vector **umin** (single output, time-varying bound) | **umin** replaces the constant bound defined in `ManipulatedVariables(i).Min` with a time-varying bound. |
+| Row vector **umin** (multiple outputs, constant bounds) | The `i`th element of **umin** replaces the constant bound defined in `ManipulatedVariables(i).Min`. |
+| Matrix **umin** (multiple outputs, time-varying bounds) | The `i`th column of **umin** replaces the constant bound defined in `ManipulatedVariables(i).Min` with a time-varying bound. |
+
+**Vector `ManipulatedVariables(i).Min` in the `mpc`
+object (a time-varying bound for the `i`th manipulated variable
+with different values at different prediction steps)**
+
+| **umin** Dimension | Replacement Behavior |
+| --- | --- |
+| Scalar **umin** (single output, constant bound) | **umin** replaces the first finite entry in `ManipulatedVariables.Min` and the remaining entries in `ManipulatedVariables.Min` shift up or down with the same amount of displacement to retain the profile defined by the original `ManipulatedVariables.Min` vector. |
+| Column vector **umin** (single output, time-varying bound) | **umin** replaces the time-varying bound defined in `ManipulatedVariables(i).Min`, and the original bound profile is discarded. |
+| Row vector **umin** (multiple outputs, constant bounds) | The `i`th component of **umin** replaces the first finite entry in `ManipulatedVariables(i).Min` and the remaining entries in `ManipulatedVariables(i).Min` shift up or down with the same amount of displacement to retain the profile defined by the original `ManipulatedVariables(i).Min` vector. |
+| Matrix **umin** (multiple outputs, time-varying bounds). | The `i`th column of **umin** replaces the time-varying bound defined in `ManipulatedVariables(i).Min`, and the original bound profile is discarded. |
+
+#### Dependencies
+
+To enable this port, select the **Lower MV limits**
+parameter.
+
+### **umax** — Maximum manipulated variable constraints vector | matrix
+
+To specify run-time maximum manipulated variable constraints, enable this input port.
+If this port is disabled, the block uses the upper bounds specified in the
+`ManipulatedVariables.Max` property of its `mpc` controller object. If a manipulated variable has no upper bound
+specified in the controller object, then at run time the block ignores the corresponding
+connected signal.
+
+To change the bounds over the prediction horizon from time *k* to
+time *k*+*p*-1, connect **umax** to a
+matrix signal with *Nmv* columns and up to
+*p* rows. Here, *Nmv* is
+the number of manipulated variables, *k* is the current time, and
+*p* is the prediction horizon. Each row contains the bounds for one
+prediction horizon step. If you specify fewer than *p* rows, the bounds
+in the final row apply for the remainder of the prediction horizon. If there is only one
+manipulated variable, and a vector signal with no more than *p* entries
+is connected, then these entries are used across the prediction horizon.
+
+The `i`th column of the **umax** signal corresponds
+to the `i`th manipulated variable, and replaces the
+`ManipulatedVariables(i).Max` property of the `mpc` object at run time. The replacement behavior depends on the dimensions
+of both variables.
+
+**Scalar `ManipulatedVariables(i).Max` in the `mpc`
+object (a constant bound for the `i`th manipulated variable to be
+applied to all prediction steps)**
+
+| **umax** Dimension | Replacement Behavior |
+| --- | --- |
+| Scalar **umax** (single output, constant bound) | **umax** replaces the constant bound defined in `ManipulatedVariables(i).Max`. |
+| Column vector **umax** (single output, time-varying bound) | **umax** replaces the constant bound defined in `ManipulatedVariables(i).Max` with a time-varying bound. |
+| Row vector **umax** (multiple outputs, constant bounds) | The `i`th element of **umax** replaces the constant bound defined in `ManipulatedVariables(i).Max`. |
+| Matrix **umax** (multiple outputs, time-varying bounds) | The `i`th column of **umax** replaces the constant bound defined in `ManipulatedVariables(i).Max` with a time-varying bound. |
+
+**Vector `ManipulatedVariables(i).Max` in the `mpc`
+object (a time-varying bound for the `i`th manipulated variable
+with different values at different prediction steps)**
+
+| **umax** Dimension | Replacement Behavior |
+| --- | --- |
+| Scalar **umax** (single output, constant bound) | **umax** replaces the first finite entry in `ManipulatedVariables.Max` and the remaining entries in `ManipulatedVariables.Max` shift up or down with the same amount of displacement to retain the profile defined by the original `ManipulatedVariables.Max` vector. |
+| Column vector **umax** (single output, time-varying bound) | **umax** replaces the time-varying bound defined in `ManipulatedVariables(i).Max`, and the original bound profile is discarded. |
+| Row vector **umax** (multiple outputs, constant bounds) | The `i`th element of **umax** replaces the first finite entry in `ManipulatedVariables(i).Max` and the remaining entries in `ManipulatedVariables(i).Max` shift up or down with the same amount of displacement to retain the profile defined by the original `ManipulatedVariables(i).Max` vector. |
+| Matrix **umax** (multiple outputs, time-varying bounds). | The `i`th column of **umax** replaces the time-varying bound defined in `ManipulatedVariables(i).Max`, and the original bound profile is discarded. |
+
+#### Dependencies
+
+To enable this port, select the **Upper MV limits**
+parameter.
+
+### **E** — Manipulated variable constraint matrix matrix
+
+Manipulated variable constraint matrix, specified as an
+*Nc*-by-*Nmv*
+matrix signal, where *Nc* is the number of mixed
+input/output constraints and *Nmv* is the number
+of manipulated variables.
+
+If you define `E` in the `mpc` object, you must
+connect a signal to the **E** input port. Otherwise, connect a zero
+matrix with the correct size.
+
+To specify run-time mixed input/output constraints, use the **E** input port
+along with the **F**, **G**, and
+**S** ports. These constraints replace the mixed input/output
+constraints previously set using `setconstraint`. For more information on mixed input/output constraints,
+see Constraints on Linear Combinations of Inputs and Outputs.
+
+The number of mixed input/output constraints cannot change at run time. Therefore,
+*Nc* must match the number of rows in
+the `E` matrix you specified using
+`setconstraint`.
+
+#### Dependencies
+
+To enable this port, select the **Custom constraints** parameter.
+
+### **F** — Controlled output constraint matrix matrix
+
+Controlled output constraint matrix, specified as an
+*Nc*-by-*Ny*
+matrix signal, where *Nc* is the number of mixed
+input/output constraints and *Ny* is the number
+of plant outputs. If you define `F` in the `mpc`
+object, you must connect a signal to the **F** input port with same
+number of rows. Otherwise, connect a zero matrix with the correct size.
+
+To specify run-time mixed input/output constraints, use the **F** input port
+along with the **E**, **G**, and
+**S** ports. These constraints replace the mixed input/output
+constraints previously set using `setconstraint`. For more information on mixed input/output constraints,
+see Constraints on Linear Combinations of Inputs and Outputs.
+
+The number of mixed input/output constraints cannot change at run time. Therefore,
+*Nc* must match the number of rows in
+the `F` matrix you specified using
+`setconstraint`.
+
+#### Dependencies
+
+To enable this port, select the **Custom constraints** parameter.
+
+### **G** — Custom constraint vector row vector
+
+Custom constraint vector, specified as a row vector signal of length
+*Nc*, where
+*Nc* is the number of mixed input/output
+constraints. If you define `G` in the `mpc` object,
+you must connect a signal to the **G** input port with same number of
+rows. Otherwise, connect a zero matrix with the correct size.
+
+To specify run-time mixed input/output constraints, use the **G** input port
+along with the **E**, **F**, and
+**S** ports. These constraints replace the mixed input/output
+constraints previously set using `setconstraint`. For more information on mixed input/output constraints,
+see Constraints on Linear Combinations of Inputs and Outputs.
+
+The number of mixed input/output constraints cannot change at run time. Therefore,
+*Nc* must match the number of rows in
+the `G` matrix you specified using
+`setconstraint`.
+
+#### Dependencies
+
+To enable this port, select the **Custom constraints** parameter.
+
+### **S** — Measured disturbance constraint matrix matrix
+
+Measured disturbance constraint matrix, specified as an
+*Nc*-by-*nN*
+matrix signal, where *Nc* is the number of mixed
+input/output constraints, and *Nv* is the number
+of measured disturbances. If you define `S` in the
+`mpc` object, you must connect a signal to the
+**S** input port with same number of rows. Otherwise, connect a
+zero matrix with the correct size.
+
+To specify run-time mixed input/output constraints, use the **S** input port
+along with the **E**, **F**, and
+**G** ports. These constraints replace the mixed input/output
+constraints previously set using `setconstraint`. For more information on mixed input/output constraints,
+see Constraints on Linear Combinations of Inputs and Outputs.
+
+The number of mixed input/output constraints cannot change at run time. Therefore,
+*Nc* must match the number of rows in
+the `G` matrix you specified using
+`setconstraint`.
+
+#### Dependencies
+
+To enable this port, select the **Custom constraints** parameter. This port is added only if the `mpc` object has measured disturbances.
+
+#### Online Tuning Weights
+
+### **y.wt** — Output variable tuning weights row vector | matrix
+
+To specify run-time output variable tuning weights, enable this input port. If this port is disabled, the block uses the tuning weights specified in the `Weights.OutputVariables` property of its controller object. These tuning weights penalize deviations from output references.
+
+If the MPC controller object uses constant output tuning weights over the prediction
+horizon, you can specify only constant output tuning weights at runtime. Similarly, if
+the MPC controller object uses output tuning weights that vary over the prediction
+horizon, you can specify only time-varying output tuning weights at runtime.
+
+To use constant tuning weights over the prediction horizon, connect **y.wt**
+to a row vector signal with *Ny* elements, where
+*Ny* is the number of outputs. Each
+element specifies a nonnegative tuning weight for an output variable. For more
+information on specifying tuning weights, see Tune Weights.
+
+To vary the tuning weights over the prediction horizon from time *k*+1 to time *k*+*p*, connect **y.wt** to a matrix signal with *Ny* columns and up to *p* rows. Here, *k* is the current time and *p* is the prediction horizon. Each row contains the tuning weights for one prediction horizon step. If you specify fewer than *p* rows, the tuning weights in the final row apply for the remainder of the prediction horizon. For more information on varying weights over the prediction horizon, see Setting Time-Varying Weights and Constraints with MPC Designer.
+
+#### Dependencies
+
+To enable this port, select the **OV weights** parameter.
+
+### **u.wt** — Manipulated variable tuning weights row vector | matrix
+
+To specify run-time manipulated variable tuning weights, enable this input port. If
+this port is disabled, the block uses the tuning weights specified in the
+`Weights.ManipulatedVariables` property of its controller object.
+These tuning weights penalize deviations from MV targets.
+
+If the MPC controller object uses constant manipulated variable tuning weights over
+the prediction horizon, you can specify only constant manipulated variable tuning
+weights at runtime. Similarly, if the MPC controller object uses manipulated variable
+tuning weights that vary over the prediction horizon, you can specify only time-varying
+manipulated variable tuning weights at runtime.
+
+To use the same tuning weights over the prediction horizon, connect
+**u.wt** to a row vector signal with
+*Nmv* elements, where
+*Nmv* is the number of manipulated
+variables. Each element specifies a nonnegative tuning weight for a manipulated
+variable. For more information on specifying tuning weights, see Tune Weights.
+
+To vary the tuning weights over the prediction horizon from time *k*
+to time *k*+*p*-1, connect **u.wt**
+to a matrix signal with *Nmv* columns and up to
+*p* rows. Here, *k* is the current time and
+*p* is the prediction horizon. Each row contains the tuning weights
+for one prediction horizon step. If you specify fewer than *p* rows,
+the tuning weights in the final row apply for the remainder of the prediction horizon.
+For more information on varying weights over the prediction horizon, see Setting Time-Varying Weights and Constraints with MPC Designer.
+
+#### Dependencies
+
+To enable this port, select the **MV weights** parameter.
+
+### **du.wt** — Manipulated variable rate tuning weights row vector | matrix
+
+To specify run-time manipulated variable rate tuning weights, enable this input port. If this port is disabled, the block uses the tuning weights specified in the `Weights.ManipulatedVariablesRate` property of its controller object. These tuning weights penalize large changes in control moves.
+
+If the MPC controller object uses constant manipulated variable rate tuning weights
+over the prediction horizon, you can specify only constant manipulated variable tuning
+rate weights at runtime. Similarly, if the MPC controller object uses manipulated
+variable rate tuning weights that vary over the prediction horizon, you can specify only
+time-varying manipulated variable rate tuning weights at runtime.
+
+To use the same tuning weights over the prediction horizon, connect **du.wt** to a row vector signal with *Nmv* elements, where *Nmv* is the number of manipulated variables. Each element specifies a nonnegative tuning weight for a manipulated variable rate. For more information on specifying tuning weights, see Tune Weights.
+
+To vary the tuning weights over the prediction horizon from time *k* to time *k*+*p*-1, connect **du.wt** to a matrix signal with *Nmv* columns and up to *p* rows. Here, *k* is the current time and *p* is the prediction horizon. Each row contains the tuning weights for one prediction horizon step. If you specify fewer than *p* rows, the tuning weights in the final row apply for the remainder of the prediction horizon. For more information on varying weights over the prediction horizon, see Setting Time-Varying Weights and Constraints with MPC Designer.
+
+#### Dependencies
+
+To enable this port, select the **MVRate weights** parameter.
+
+### **ecr.wt** — Slack variable tuning weight scalar
+
+To specify a run-time slack variable tuning weight, enable this input port and connect a scalar signal. If this port is disabled, the block uses the tuning weight specified in the `Weights.ECR` property of its controller object.
+
+The slack variable tuning weight has no effect unless your controller object defines soft constraints whose associated ECR values are nonzero. If there are soft constraints, increasing the **ecr.wt** value makes these constraints relatively harder. The controller then places a higher priority on minimizing the magnitude of the predicted worst-case constraint violation.
+
+#### Dependencies
+
+To enable this port, select the **ECR weight** parameter.
+
+#### Online Horizons
+
+### **p** — Prediction horizon positive integer
+
+Prediction horizon, specified as positive integer signal. The prediction horizon signal value must be less than or equal to the **Maximum prediction horizon** parameter.
+
+At run time, the values of `p` overrides the default prediction horizon specified in the controller object. For more information, see Adjust Horizons at Run Time.
+
+#### Dependencies
+
+To enable this port, select the **Adjust prediction horizon and control horizon at run time** parameter.
+
+### **m** — Control horizon positive integer | vector
+
+Control horizon, specified as one of the following:
+
+- Positive integer signal less than or equal to the prediction horizon.
+- Vector signal of positive integers specifying blocking interval lengths. For more information, see Manipulated Variable Blocking.
+
+At run time, the values of `m` overrides the default control horizon specified in the controller object. For more information, see Adjust Horizons at Run Time.
+
+#### Dependencies
+
+To enable this port, select the **Adjust prediction horizon and control horizon at run time** parameter.
+### Output
+
+#### Required Output
+
+### **mv** — Optimal manipulated variable control action column vector
+
+Optimal manipulated variable control action, output as a column vector signal of length *Nmv*, where *Nmv* is the number of manipulated variables.
+
+If the solver converges to a local optimum solution (**qp.status** is positive), then **mv** contains the optimal solution.
+
+If the solver fails (**qp.status** is negative), then **mv** remains at its most recent successful solution; that is, the controller output freezes.
+
+If the solver reaches the maximum number of iterations without finding an optimal solution
+(**qp.status** is zero) and the
+`Optimization.UseSuboptimalSolution` property of the controller
+is:
+
+- `true`, then **mv** contains the suboptimal solution
+- `false`, then **mv** then **mv** remains at its most recent successful solution
+
+#### Additional Outputs
+
+### **cost** — Objective function cost nonnegative scalar
+
+Objective function cost, output as a nonnegative scalar signal. The cost quantifies the degree
+to which the controller has achieved its objectives. The cost value is calculated using
+the scaled MPC cost function in which every term is offset-free and
+dimensionless.
+
+The cost value is only meaningful when the **qp.status** output is nonnegative.
+
+#### Dependencies
+
+To enable this port, select the **Optimal cost** parameter.
+
+### **qp.status** — Optimization status integer
+
+Optimization status, output as an integer signal.
+
+If the controller solves the QP problem for a given control interval, the
+**qp.status** output returns the number of QP solver iterations
+used in computation. This value is a finite, positive integer and is proportional to the
+time required for the calculations. Therefore, a large value means a relatively slow
+block execution for this time interval.
+
+The QP solver can fail to find an optimal solution for the following reasons:
+
+- **qp.status** = `0` — The QP solver cannot find a solution within the maximum number of iterations specified in the `mpc` object. In this case, if the `Optimizer.UseSuboptimalSolution` property of the controller is `false`, the block holds its **mv** output at the most recent successful solution. Otherwise, it uses the suboptimal solution found during the last solver iteration.
+- **qp.status** = `-1` — The QP solver detects an infeasible QP problem. See Monitoring Optimization Status to Detect Controller Failures for an example where a large, sustained disturbance drives the output variable outside its specified bounds. In this case, the block holds its **mv** output at the most recent successful solution.
+- **qp.status** = `-2` — The QP solver has encountered numerical difficulties in solving a severely ill-conditioned QP problem. In this case, the block holds its **mv** output at the most recent successful solution.
+
+In a real-time application, you can use **qp.status** to set an alarm or take other special action.
+
+#### Dependencies
+
+To enable this port, select the **Optimization status** parameter.
+
+### **est.state** — Estimated controller states vector
+
+Estimated controller states at each control instant, returned as a vector signal. The
+estimated states include the plant, disturbance, and noise model states. If custom state
+estimation is used, this output signal has the same value as the
+**x[k|k]** input signal.
+
+#### Dependencies
+
+To enable this port, select the **Estimated controller states**
+parameter.
+
+#### Optimal Sequences
+
+### **mv.seq** — Optimal manipulated variable sequence matrix
+
+Optimal manipulated variable sequence, returned as a matrix signal with *p*+1 rows and *Nmv* columns, where *p* is the prediction horizon and *Nmv* is the number of manipulated variables.
+
+The first *p* rows of **mv.seq** contain the
+calculated optimal manipulated variable values from current time *k* to
+time *k*+*p*-1. The first row of
+**mv.seq** contains the current manipulated variable values (output
+**mv**). Since the controller does not calculate optimal control
+moves at time *k*+*p*, the final two rows of **mv.seq** are
+identical.
+
+#### Dependencies
+
+To enable this port, select the **Optimal control sequence** parameter.
+
+### **x.seq** — Optimal prediction model state sequence matrix
+
+Optimal prediction model state sequence, returned as a matrix signal with *p*+1 rows and *Nx* columns, where *p* is the prediction horizon and *Nx* is the number of states.
+
+The first row of **x.seq** contains the current estimated state
+values, either from the built-in state estimator or from the custom state estimation
+block input **x[k|k]**. The next *p* rows of
+**x.seq** contain the calculated optimal state values from time
+*k*+1 to time *k*+*p*.
+
+#### Dependencies
+
+To enable this port, select the **Optimal state sequence** parameter.
+
+### **y.seq** — Optimal output variable sequence matrix
+
+Optimal output variable sequence, returned as a matrix signal with *p*+1 rows and *Ny* columns, where *p* is the prediction horizon and *Ny* is the number of output variables.
+
+The first *p* rows of **y.seq** contain the
+calculated optimal output values from current time *k* to time
+*k*+*p*-1. The first row of
+**y.seq** is computed based on the current estimated states and the
+current measured disturbances (first row of input **md**). Since the
+controller does not calculate optimal output values at time *k*+*p*, the final two rows of **y.seq** are
+identical.
+
+#### Dependencies
+
+To enable this port, select the **Optimal output sequence** parameter.
+
+## Parameters
+
+### **Adaptive MPC Controller** — Controller object `mpc` object name
+
+Specify an `mpc` object that defines an MPC controller by
+entering the name of an `mpc` object designed at the nominal
+operating point of the block. At run time, the controller replaces the original
+prediction model (`A`, `B`, `C`, and
+`D`) and nominal values (`U`, `Y`,
+`X`, and `DX`) with the data specified in the
+**model** input port at each control instant.
+
+By default, the block assumes all other controller object properties (for example
+tuning weights, constraints) are constant. You can override this assumption using the
+options in the **Online Features** section.
+
+The following restrictions apply to the `mpc` controller object:
+
+- It must exist in the MATLAB® workspace.
+- Its prediction model must be an LTI discrete-time, state-space object with no
+  delays. Use the `absorbDelay` command to convert
+  delays to discrete states. The dimensions of the `A`,
+  `B`, `C`, and `D` matrices in
+  the prediction determine the dimensions required by the `model`
+  inport signal.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `mpcobj` |
+| **Type:** string, character vector |
+| **Default:** `""` |
+
+### **Initial Controller State** — Initial state `mpcstate` object name
+
+Specify the initial controller state. If you leave this parameter blank, the block uses the
+nominal values defined in the `Model.Nominal` property of the
+`mpc` object. To override the default, create an `mpcstate` object in your workspace, and enter its name in the
+field.
+
+Use this parameter to make sure that the controller state reflects the state of the
+plant at the start of your simulation, to the best of your knowledge. This initial state
+can differ from the nominal state defined in the `mpc` object.
+
+If custom state estimation is enabled, the block ignores the **Initial
+Controller State** parameter.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `x0` |
+| **Type:** string, character vector |
+| **Default:** `""` |
+
+#### General Tab
+
+### **Measured disturbance** — Add measured disturbance input port `on` (default) | `off`
+
+If your controller has measured disturbances, you must select this parameter to add
+the **md** output port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `md_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"on"` |
+
+### **External manipulated variable** — Add external manipulated variable input port `off` (default) | `on`
+
+Select this parameter to add the **ext.mv** input port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `mv_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Targets for manipulated variables** — Add manipulated variable target input port `off` (default) | `on`
+
+Select this parameter to add the **mv.target** input port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `uref_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Optimal cost** — Add optimal cost output port `off` (default) | `on`
+
+Select this parameter to add the **cost** output port to the
+block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `return_cost` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Optimization status** — Add optimization status output port `off` (default) | `on`
+
+Select this parameter to add the **qp.status** output port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `return_qpstatus` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Estimated controller states** — Add estimated states output port `off` (default) | `on`
+
+Select this parameter to add the **est.state** output port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `return_state` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Optimal control sequence** — Add optimal control sequence output port `off` (default) | `on`
+
+Select this parameter to add the **mv.seq** output port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `return_mvseq` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Optimal state sequence** — Add optimal state sequence output port `off` (default) | `on`
+
+Select this parameter to add the **x.seq** output port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `return_xseq` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Optimal output sequence** — Add optimal output sequence output port `off` (default) | `on`
+
+Select this parameter to add the **y.seq** output port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `return_ovseq` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Use custom state estimation instead of using the built-in Kalman filter** — Use custom state estimate input port `off` (default) | `on`
+
+Select this parameter to remove the **mo** input port and add the **x[k|k]** input port.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `state_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+#### Online Features Tab
+
+### **Linear Time-Varying (LTV) plants** — Use custom state estimate input port off (default) | on
+
+To operate your controller in time-varying MPC mode, select this option. When
+operating in this mode, connect a 3–dimensional bus signal to the
+**model** input port.
+
+For an example, see Time-Varying MPC Control of a Time-Varying Plant.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `isltv_plant` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Lower OV limits** — Add minimum OV constraint input port `off` (default) | `on`
+
+Select this parameter to add the **ymin** input port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `ymin_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Upper OV limits** — Add maximum OV constraint input port `off` (default) | `on`
+
+Select this parameter to add the **ymax** input port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `ymax_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Lower MV limits** — Add minimum MV constraint input port `off` (default) | `on`
+
+Select this parameter to add the **umin** input port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `umin_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Upper MV limits** — Add maximum MV constraint input port `off` (default) | `on`
+
+Select this parameter to add the **umax** input port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `umax_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Custom constraints** — Add input ports for mixed input/output linear constraints matrices `off` (default) | `on`
+
+Select this parameter to add the **E**, **F**,
+**G**, and **S** input ports to the block.
+
+For more information, see Constraints on Linear Combinations of Inputs and Outputs and Update Mixed Input/Output Constraints at Run Time.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `cc_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **OV weights** — Add OV tuning weights input port `off` (default) | `on`
+
+Select this parameter to add the **y.wt** input port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `ywt_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **MV weights** — Add MV tuning weights input port `off` (default) | `on`
+
+Select this parameter to add the **u.wt** input port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `uwt_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **MVRate weights** — Add MV rate tuning weights input port `off` (default) | `on`
+
+Select this parameter to add the **du.wt** input port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `duwt_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Slack variable weight** — Add ECR tuning weight input port `off` (default) | `on`
+
+Select this parameter to add the **ecr.wt** input port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `rhoeps_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Adjust prediction horizon and control horizon at run time** — Add horizon input ports off (default) | on
+
+Select this parameter to add the **p** and **m** input port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `pm_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Maximum prediction horizon** — Add horizon input ports `10` (default) | positive integer
+
+Select this parameter to add the **p** and **m** input port to the block.
+
+#### Dependencies
+
+To enable this parameter, select the **Adjust prediction horizon and control horizon at run time** parameter.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `MaximumP` |
+| **Type:** string, character vector |
+| **Default:** `"10"` |
+
+#### Others Tab
+
+### **Inherit sample time** — Inherit block sample time from parent subsystem `off` (default) | `on`
+
+Select this parameter to inherit the sample time of the parent subsystem as the block
+sample time. Doing so allows you to conditionally execute this block inside Function-Call Subsystem (Simulink) or Triggered Subsystem (Simulink) blocks. For an example, see Using MPC Controller Block Inside Function-Call and Triggered Subsystems.
+
+**Note**
+
+You must execute Function-Call Subsystem or Triggered
+Subsystem blocks at the sample rate of the controller. Otherwise, you
+can see unexpected results for two reasons.
+
+- The first element of the MV rate vector (which is the difference
+  between the current and the last value of the manipulated variable) is
+  normally weighted and constrained assuming that the last MV value
+  occurred in the past at the sample time specified in the MPC object, and
+  when the block is executed with a different sample rate, this assumption
+  no longer holds.
+- The built-in Kalman estimator uses the sample time specified in the
+  MPC object to provide an estimation of the current state to the MPC
+  optimization problem, so when the block is executed with a different
+  sample time, the estimated state is no longer correct.
+
+If you clear this parameter (default), the sample time of the block is inherited from
+the controller object.
+
+To view the sample time of a block, in the Simulink model window, on the **Debug** tab, under
+**Information Overlays**, select either
+**colors** or **Text**. For more
+information, see View Sample Time Information (Simulink).
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `SampleTimeInherited` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+### **Use external signal to enable or disable optimization** — Add switch input port `off` (default) | `on`
+
+Select this parameter to add the **switch** input port to the block.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `switch_inport` |
+| **Type:** string, character vector |
+| **Values:** `"off"`, `"on"` |
+| **Default:** `"off"` |
+
+## Libraries
+
+Model Predictive Control Toolbox
+
+## Block Characteristics
+
+Not documented in R2025b.
+
+## Extended Capabilities
+
+### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
+
+### PLC Code Generation Generate Structured Text code using Simulink® PLC Coder™.
+
+## Version History
+
+**Introduced in R2014b**
+
+### R2018b: MPC Simulink block `mv.seq` output port signal dimensions have changed
+
+The signal dimensions of the `mv.seq` output port of the
+Adaptive MPC Controller block have changed. Previously, this signal was a
+*p*-by-*Nmv* matrix, where
+*p* is the prediction horizon and
+*Nmv* is the number of manipulated variables. Now,
+`mv.seq` is a
+(*p*+1)-by-*Nmv* matrix, where
+row *p*+1 duplicates row *p*.
+
+## Description
+
+Simulate adaptive and time-varying model predictive controllers
+
+The Adaptive MPC Controller block uses the following input signals:
+
+- Measured plant outputs (`mo`)
+- Reference or setpoint (`ref`)
+- Measured plant disturbance (`md`), if any
+
+In addition, the required `model` input signal specifies the prediction
+model to use when computing the optimal plant manipulated variables `mv`. The
+linear prediction model can change at each control interval in response to changes in the real
+plant at run time. The prediction model can represent a single LTI plant used for all
+prediction steps (adaptive MPC mode) or an array of LTI plants for different prediction steps
+(time-varying MPC mode). Two common ways to modify this model are as follows:
+
+- Given a nonlinear plant model, linearize it at the current operating point.
+- Use plant data to estimate parameters in an empirical linear-time-varying (LTV)
+  model.
+
+By default, the block estimates its prediction model states. Since the prediction model
+parameters change at run time, the static Kalman filter used in the MPC
+Controller block is inappropriate. Instead, the Adaptive MPC
+Controller block uses a linear-time-varying Kalman filter (LTVKF). For more
+information, see Adaptive and Time-Varying MPC.
+
+In all other ways, the Adaptive MPC Controller block mimics the MPC
+Controller block. Since the adaptive version involves additional overhead, use the
+MPC Controller block unless you need to control a nonlinear plant across a
+wide range of operating conditions where plant dynamics vary significantly.
+
+Both the Adaptive MPC Controller block and the Multiple MPC
+Controllers block enable your control system to adapt to changing operating
+conditions at run time. The following table lists the advantages of using each block.
+
+| Block | Adaptive MPC Controller | Multiple MPC Controllers |
+| --- | --- | --- |
+| **Adaptation approach** | Update prediction model for a single controller as operating conditions change | Switch between multiple controllers designed for different operating regions |
+| **Advantages** | - Only need to design a single controller offline - Less run-time computational effort and smaller memory   footprint - More robust to real-life changes in plant conditions | - No need for online estimation of plant model - Controllers can have different sample time, horizons,   and weights - Prediction models can have different orders or time   domains - Finite set of candidate controllers can be tested   thoroughly |

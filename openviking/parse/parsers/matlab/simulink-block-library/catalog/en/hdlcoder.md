@@ -124,61 +124,61 @@ No direct block entries.
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Model Design / Basic HDL Algorithms / Logic and Bit Operations
 
-- Bit Concat — Official summary: Concatenates up to 128 input words into single output **metadata only; full English and Chinese documents pending**
-- Bit Reduce — Official summary: AND, OR, or XOR bit reduction on all input signal bits to single bit **metadata only; full English and Chinese documents pending**
-- Bit Rotate — Official summary: Rotate input signal by bit positions **metadata only; full English and Chinese documents pending**
-- Bit Shift — Official summary: Logical or arithmetic shift of input signal **metadata only; full English and Chinese documents pending**
-- Bit Slice — Official summary: Return field of consecutive bits from input signal **metadata only; full English and Chinese documents pending**
-- Bits to Word — Official summary: Convert vector of bits to integer (Since R2023a) **metadata only; full English and Chinese documents pending**
-- Word to Bits — Official summary: Converts real numbers to vector of bits (Since R2023a) **metadata only; full English and Chinese documents pending**
+- [Bit Concat](../../en/products/hdlcoder/ref/bitconcat.md) — Official summary: Concatenates up to 128 input words into single output **full document**
+- [Bit Reduce](../../en/products/hdlcoder/ref/bitreduce.md) — Official summary: AND, OR, or XOR bit reduction on all input signal bits to single bit **full document**
+- [Bit Rotate](../../en/products/hdlcoder/ref/bitrotate.md) — Official summary: Rotate input signal by bit positions **full document**
+- [Bit Shift](../../en/products/hdlcoder/ref/bitshift.md) — Official summary: Logical or arithmetic shift of input signal **full document**
+- [Bit Slice](../../en/products/hdlcoder/ref/bitslice.md) — Official summary: Return field of consecutive bits from input signal **full document**
+- [Bits to Word](../../en/products/hdlcoder/ref/bitstoword.md) — Official summary: Convert vector of bits to integer (Since R2023a) **full document**
+- [Word to Bits](../../en/products/hdlcoder/ref/wordtobits.md) — Official summary: Converts real numbers to vector of bits (Since R2023a) **full document**
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Model Design / Basic HDL Algorithms / Lookup Tables
 
-- Sine HDL Optimized and Cosine HDL Optimized — Official summary: Implement fixed-point sine and cosine wave by using lookup table approach optimized for HDL code generation **metadata only; full English and Chinese documents pending**
+- [Sine HDL Optimized and Cosine HDL Optimized](../../en/products/hdlcoder/ref/sinehdloptimizedandcosinehdloptimized.md) — Official summary: Implement fixed-point sine and cosine wave by using lookup table approach optimized for HDL code generation **full document**
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Model Design / Basic HDL Algorithms / Sources
 
-- HDL Counter — Official summary: Free-running or count-limited hardware counter **metadata only; full English and Chinese documents pending**
+- [HDL Counter](../../en/products/hdlcoder/ref/hdlcounter.md) — Official summary: Free-running or count-limited hardware counter **full document**
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Model Design / Basic HDL Algorithms / HDL Math Library
 
-- Atan2 — Official summary: Compute Atan2 operation using CORDIC approximation method and simulate with latency **metadata only; full English and Chinese documents pending**
-- Sin — Official summary: Compute sine operation using CORDIC approximation method and simulate with latency **metadata only; full English and Chinese documents pending**
-- Cos — Official summary: Compute cosine operation using CORDIC approximation method and simulate with latency **metadata only; full English and Chinese documents pending**
-- Cos+jSin — Official summary: Compute Cos+jSin operation using CORDIC approximation method and simulate with latency **metadata only; full English and Chinese documents pending**
-- SinCos — Official summary: Compute SinCos operation using CORDIC approximation method and simulate with latency **metadata only; full English and Chinese documents pending**
-- rSqrt — Official summary: Compute reciprocal square-root operation and simulate with latency **metadata only; full English and Chinese documents pending**
-- Sqrt — Official summary: Compute Sqrt operation and simulate with latency **metadata only; full English and Chinese documents pending**
-- Divide — Official summary: Compute division operation and simulate with latency **metadata only; full English and Chinese documents pending**
-- Reciprocal — Official summary: Compute reciprocal operation and simulate with latency **metadata only; full English and Chinese documents pending**
+- [Atan2](../../en/products/hdlcoder/ref/atan2.md) — Official summary: Compute Atan2 operation using CORDIC approximation method and simulate with latency **full document**
+- [Sin](../../en/products/hdlcoder/ref/sin.md) — Official summary: Compute sine operation using CORDIC approximation method and simulate with latency **full document**
+- [Cos](../../en/products/hdlcoder/ref/cos.md) — Official summary: Compute cosine operation using CORDIC approximation method and simulate with latency **full document**
+- [Cos+jSin](../../en/products/hdlcoder/ref/cosjsin.md) — Official summary: Compute Cos+jSin operation using CORDIC approximation method and simulate with latency **full document**
+- [SinCos](../../en/products/hdlcoder/ref/sincos.md) — Official summary: Compute SinCos operation using CORDIC approximation method and simulate with latency **full document**
+- [rSqrt](../../en/products/hdlcoder/ref/rsqrt.md) — Official summary: Compute reciprocal square-root operation and simulate with latency **full document**
+- [Sqrt](../../en/products/hdlcoder/ref/sqrt.md) — Official summary: Compute Sqrt operation and simulate with latency **full document**
+- [Divide](../../en/products/hdlcoder/ref/divide.md) — Official summary: Compute division operation and simulate with latency **full document**
+- [Reciprocal](../../en/products/hdlcoder/ref/reciprocal.md) — Official summary: Compute reciprocal operation and simulate with latency **full document**
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Model Design / RAM and ROM Blocks
 
-- Dual Port RAM System — Official summary: Dual-port RAM that supports simultaneous read and write operations **metadata only; full English and Chinese documents pending**
-- Dual Rate Dual Port RAM — Official summary: Dual Port RAM that supports two rates **metadata only; full English and Chinese documents pending**
-- HDL FIFO — Official summary: Stores sequence of input samples in first in, first out (FIFO) register **metadata only; full English and Chinese documents pending**
-- Simple Dual Port RAM System — Official summary: Simple dual-port RAM that supports simultaneous read and write operations **metadata only; full English and Chinese documents pending**
-- Single Port RAM System — Official summary: Single-port RAM that supports sequential read and write operations **metadata only; full English and Chinese documents pending**
-- True Dual Port RAM System — Official summary: True dual-port RAM that supports simultaneous read and write operations (Since R2023b) **metadata only; full English and Chinese documents pending**
-- Simple Tri Port RAM System — Official summary: Simple tri-port RAM that supports simultaneous read and write operations (Since R2023b) **metadata only; full English and Chinese documents pending**
-- Dual Port RAM — Official summary: (To be removed) Dual port RAM with two output ports **metadata only; full English and Chinese documents pending**
-- Simple Dual Port RAM — Official summary: (To be removed) Dual port RAM with single output port **metadata only; full English and Chinese documents pending**
-- Single Port RAM — Official summary: (To be removed) Single port RAM **metadata only; full English and Chinese documents pending**
+- [Dual Port RAM System](../../en/products/hdlcoder/ref/dualportramsystem.md) — Official summary: Dual-port RAM that supports simultaneous read and write operations **full document**
+- [Dual Rate Dual Port RAM](../../en/products/hdlcoder/ref/dualratedualportram.md) — Official summary: Dual Port RAM that supports two rates **full document**
+- [HDL FIFO](../../en/products/hdlcoder/ref/hdlfifo.md) — Official summary: Stores sequence of input samples in first in, first out (FIFO) register **full document**
+- [Simple Dual Port RAM System](../../en/products/hdlcoder/ref/simpledualportramsystem.md) — Official summary: Simple dual-port RAM that supports simultaneous read and write operations **full document**
+- [Single Port RAM System](../../en/products/hdlcoder/ref/singleportramsystem.md) — Official summary: Single-port RAM that supports sequential read and write operations **full document**
+- [True Dual Port RAM System](../../en/products/hdlcoder/ref/truedualportramsystem.md) — Official summary: True dual-port RAM that supports simultaneous read and write operations (Since R2023b) **full document**
+- [Simple Tri Port RAM System](../../en/products/hdlcoder/ref/simpletriportramsystem.md) — Official summary: Simple tri-port RAM that supports simultaneous read and write operations (Since R2023b) **full document**
+- [Dual Port RAM](../../en/products/hdlcoder/ref/dualportram.md) — Official summary: (To be removed) Dual port RAM with two output ports **full document**
+- [Simple Dual Port RAM](../../en/products/hdlcoder/ref/simpledualportram.md) — Official summary: (To be removed) Dual port RAM with single output port **full document**
+- [Single Port RAM](../../en/products/hdlcoder/ref/singleportram.md) — Official summary: (To be removed) Single port RAM **full document**
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Model Design / Hierarchical Designs and Synchronous Hardware Behavior
 
-- Unit Delay Enabled Synchronous — Official summary: Delay input signal by one sample period when external Enable signal is true **metadata only; full English and Chinese documents pending**
-- Unit Delay Resettable Synchronous — Official summary: Delay input signal by one sample period when external Reset signal is false **metadata only; full English and Chinese documents pending**
-- Unit Delay Enabled Resettable Synchronous — Official summary: Delay input signal by one sample period when external Enable signal is true and external Reset signal is false **metadata only; full English and Chinese documents pending**
-- Tapped Delay Enabled Synchronous — Official summary: Delay scalar signal multiple sample periods and output all delayed versions when external Enable signal is true (Since R2023a) **metadata only; full English and Chinese documents pending**
-- Tapped Delay Resettable Synchronous — Official summary: Delay scalar signal multiple sample periods and output all delayed versions when external Reset signal is false (Since R2023a) **metadata only; full English and Chinese documents pending**
-- Tapped Delay Enabled Resettable Synchronous — Official summary: Delay scalar signal multiple sample periods and output all delayed versions when external Enable signal is true and external Reset signal is false (Since R2023a) **metadata only; full English and Chinese documents pending**
-- Enabled Delay — Official summary: Delay input signal by fixed or variable sample periods when external enable signal is true (Since R2024b) **metadata only; full English and Chinese documents pending**
-- Enabled Resettable Delay — Official summary: Delay input signal by fixed or variable sample periods when external Enable signal is true and external Reset signal is false (Since R2024b) **metadata only; full English and Chinese documents pending**
-- State Control — Official summary: Specify synchronous reset and enable behavior for blocks with state **metadata only; full English and Chinese documents pending**
-- Synchronous Subsystem — Official summary: Represent subsystem that has synchronous reset and enable behavior **metadata only; full English and Chinese documents pending**
-- Enabled Synchronous Subsystem — Official summary: Represent enabled subsystem that has synchronous reset and enable behavior **metadata only; full English and Chinese documents pending**
-- Resettable Synchronous Subsystem — Official summary: Represent resettable subsystem that has synchronous reset and enable behavior **metadata only; full English and Chinese documents pending**
+- [Unit Delay Enabled Synchronous](../../en/products/hdlcoder/ref/unitdelayenabledsynchronous.md) — Official summary: Delay input signal by one sample period when external Enable signal is true **full document**
+- [Unit Delay Resettable Synchronous](../../en/products/hdlcoder/ref/unitdelayresettablesynchronous.md) — Official summary: Delay input signal by one sample period when external Reset signal is false **full document**
+- [Unit Delay Enabled Resettable Synchronous](../../en/products/hdlcoder/ref/unitdelayenabledresettablesynchronous.md) — Official summary: Delay input signal by one sample period when external Enable signal is true and external Reset signal is false **full document**
+- [Tapped Delay Enabled Synchronous](../../en/products/hdlcoder/ref/tappeddelayenabledsynchronous.md) — Official summary: Delay scalar signal multiple sample periods and output all delayed versions when external Enable signal is true (Since R2023a) **full document**
+- [Tapped Delay Resettable Synchronous](../../en/products/hdlcoder/ref/tappeddelayresettablesynchronous.md) — Official summary: Delay scalar signal multiple sample periods and output all delayed versions when external Reset signal is false (Since R2023a) **full document**
+- [Tapped Delay Enabled Resettable Synchronous](../../en/products/hdlcoder/ref/tappeddelayenabledresettablesynchronous.md) — Official summary: Delay scalar signal multiple sample periods and output all delayed versions when external Enable signal is true and external Reset signal is false (Since R2023a) **full document**
+- [Enabled Delay](../../en/products/hdlcoder/ref/enableddelay.md) — Official summary: Delay input signal by fixed or variable sample periods when external enable signal is true (Since R2024b) **full document**
+- [Enabled Resettable Delay](../../en/products/hdlcoder/ref/enabledresettabledelay.md) — Official summary: Delay input signal by fixed or variable sample periods when external Enable signal is true and external Reset signal is false (Since R2024b) **full document**
+- [State Control](../../en/products/hdlcoder/ref/statecontrol.md) — Official summary: Specify synchronous reset and enable behavior for blocks with state **full document**
+- [Synchronous Subsystem](../../en/products/hdlcoder/ref/synchronoussubsystem.md) — Official summary: Represent subsystem that has synchronous reset and enable behavior **full document**
+- [Enabled Synchronous Subsystem](../../en/products/hdlcoder/ref/enabledsynchronoussubsystem.md) — Official summary: Represent enabled subsystem that has synchronous reset and enable behavior **full document**
+- [Resettable Synchronous Subsystem](../../en/products/hdlcoder/ref/resettablesynchronoussubsystem.md) — Official summary: Represent resettable subsystem that has synchronous reset and enable behavior **full document**
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Model Design / User-Defined MATLAB Functions
 
@@ -232,7 +232,7 @@ No direct block entries.
 
 ## HDL Code Generation from Simulink / Model and Architecture Design / Native Floating Point
 
-- Float Typecast — Official summary: Typecast a floating-point type to an unsigned integer or vice versa **metadata only; full English and Chinese documents pending**
+- [Float Typecast](../../en/products/hdlcoder/ref/floattypecast.md) — Official summary: Typecast a floating-point type to an unsigned integer or vice versa **full document**
 
 ## HDL Code Generation from Simulink / HDL Modeling Guidelines
 
@@ -341,14 +341,14 @@ No direct block entries.
 
 ## HDL Code Generation from Simulink / Speed and Area Optimization / Speed Optimization
 
-- Deserializer1D — Official summary: Convert scalar stream or smaller vectors to vector signal **metadata only; full English and Chinese documents pending**
-- Multiply-Accumulate — Official summary: Perform a multiply-accumulate operation on the inputs **metadata only; full English and Chinese documents pending**
-- Multiply-Add — Official summary: Multiply-add combined operation **metadata only; full English and Chinese documents pending**
-- Serializer1D — Official summary: Convert vector signal to scalar or smaller vectors **metadata only; full English and Chinese documents pending**
+- [Deserializer1D](../../en/products/hdlcoder/ref/deserializer1d.md) — Official summary: Convert scalar stream or smaller vectors to vector signal **full document**
+- [Multiply-Accumulate](../../en/products/hdlcoder/ref/multiplyaccumulate.md) — Official summary: Perform a multiply-accumulate operation on the inputs **full document**
+- [Multiply-Add](../../en/products/hdlcoder/ref/multiplyadd.md) — Official summary: Multiply-add combined operation **full document**
+- [Serializer1D](../../en/products/hdlcoder/ref/serializer1d.md) — Official summary: Convert vector signal to scalar or smaller vectors **full document**
 
 ## HDL Code Generation from Simulink / Speed and Area Optimization / I/O Optimization
 
-- Neighborhood Processing Subsystem — Official summary: Create algorithm that follows the neighborhood pattern (Since R2022b) **metadata only; full English and Chinese documents pending**
+- [Neighborhood Processing Subsystem](../../en/products/hdlcoder/../simulink/slref/neighborhoodprocessingsubsystem.md) — Official summary: Create algorithm that follows the neighborhood pattern (Since R2022b) **full document**
 
 ## HDL Code Generation from Simulink / Reports and Scripts
 
@@ -667,11 +667,11 @@ No direct block entries.
 
 ## Real-Time Hardware Deployment / RCP and HIL Blocks
 
-- Sparse Matrix-Vector Product — Official summary: Multiply sparse matrix with input vector (Since R2024b) **metadata only; full English and Chinese documents pending**
-- HDL Combinatorial Logic — Official summary: Implement truth table (Since R2024b) **metadata only; full English and Chinese documents pending**
-- PWM — Official summary: Generate ideal pulse width modulated signal corresponding to input duty cycle **metadata only; full English and Chinese documents pending**
-- Discrete State-Space — Official summary: Implement discrete state-space system **metadata only; full English and Chinese documents pending**
-- Fixed-Point State-Space — Official summary: Implement discrete-time state space **metadata only; full English and Chinese documents pending**
+- [Sparse Matrix-Vector Product](../../en/products/hdlcoder/ref/sparsematrixvectorproduct.md) — Official summary: Multiply sparse matrix with input vector (Since R2024b) **full document**
+- [HDL Combinatorial Logic](../../en/products/hdlcoder/ref/hdlcombinatoriallogic.md) — Official summary: Implement truth table (Since R2024b) **full document**
+- [PWM](../../en/products/hdlcoder/../simulink/slref/pwm.md) — Official summary: Generate ideal pulse width modulated signal corresponding to input duty cycle **full document**
+- [Discrete State-Space](../../en/products/hdlcoder/../simulink/slref/discretestatespace.md) — Official summary: Implement discrete state-space system **full document**
+- [Fixed-Point State-Space](../../en/products/hdlcoder/../simulink/slref/fixedpointstatespace.md) — Official summary: Implement discrete-time state space **full document**
 
 ## Tool Qualification and Certification
 

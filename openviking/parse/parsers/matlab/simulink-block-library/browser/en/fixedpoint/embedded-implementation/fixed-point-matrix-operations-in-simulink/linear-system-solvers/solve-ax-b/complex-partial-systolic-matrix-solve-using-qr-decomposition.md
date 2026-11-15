@@ -1,0 +1,256 @@
+---
+type: simulink-block
+title: 'Complex Partial-Systolic Matrix Solve Using QR Decomposition'
+family: 'fixedpoint'
+product_id: 'fixedpoint'
+product_name: 'Fixed-Point Designer'
+documentation_release: R2025b
+official_category: 'Embedded Implementation / Fixed-Point Matrix Operations in Simulink / Linear System Solvers / Solve AX = B'
+documentation_page: 'complexpartialsystolicmatrixsolveusingqrdecomposition'
+documentation_source_path: 'ref/complexpartialsystolicmatrixsolveusingqrdecomposition.html'
+language: en
+---
+
+# Complex Partial-Systolic Matrix Solve Using QR Decomposition
+
+## Ports
+
+### Input
+
+### **A(i,:)** — Rows of matrix *A* vector
+
+Rows of matrix *A*, specified as a vector. *A*
+is an *m*-by-*n* matrix where *m* ≥ 2 and *m* ≥ *n*. If *B* is single or double, *A*
+must be the same data type as *B*. If *A* is a
+fixed-point data type, *A* must be signed, use binary-point scaling,
+and have the same word length as *B*. Slope-bias representation is
+not supported for fixed-point data types.
+
+**Data Types:** `single` | `double` | `fixed point`
+**Complex Number Support:** Yes
+
+### **B(i,:)** — Rows of matrix *B* vector
+
+Rows of matrix *B*, specified as a vector. *B*
+is an *m*-by-*p* matrix where *m* ≥ 2. If *A* is single or double, *B*
+must be the same data type as *A*. If *B* is a
+fixed-point data type, *B* must be signed, use binary-point scaling,
+and have the same word length as *A*. Slope-bias representation is
+not supported for fixed-point data types.
+
+**Data Types:** `single` | `double` | `fixed point`
+
+### **validIn** — Whether inputs are valid `Boolean` scalar
+
+Whether inputs are valid, specified as a Boolean scalar. This control signal
+indicates when the data from the `A(i,:)` and
+`B(i,:)` input ports are valid. When this value is
+`1` (`true`) and the `ready`
+value is `1` (`true`), the block captures the values
+at the `A(i,:)` and `B(i,:)` input ports. When
+this value is `0` (`false`), the block ignores the
+input samples.
+
+After sending a `true`
+`validIn` signal, there may be some delay before
+`ready` is set to `false`. To ensure all data is
+processed, you must wait until `ready` is set to
+`false` before sending another `true`
+`validIn` signal.
+
+**Data Types:** `Boolean`
+
+### **restart** — Whether to clear internal states `Boolean` scalar
+
+Whether to clear internal states, specified as a Boolean scalar. When this value
+is 1 (`true`), the block stops the current calculation and clears all
+internal states. When this value is 0 (`false`) and the
+`validIn` value is 1 (`true`), the block begins
+a new subframe.
+
+**Data Types:** `Boolean`
+### Output
+
+### **X(i, :)** — Rows of matrix *X* scalar | vector
+
+Rows of matrix *X*, returned as a scalar or vector.
+
+**Data Types:** `single` | `double` | `fixed point`
+
+### **validOut** — Whether output data is valid `Boolean` scalar
+
+Whether the output data is valid, returned as a Boolean scalar. This control
+signal indicates when the data at the output port `X(i,:)` is
+valid. When this value is 1 (`true`), the block has successfully
+computed a row of matrix *X*. When this value is 0
+(`false`), the output data is not valid.
+
+**Data Types:** `Boolean`
+
+### **ready** — Whether block is ready `Boolean` scalar
+
+Whether the block is ready, returned as a Boolean scalar. This control signal
+indicates when the block is ready for new input data. When this value is
+`1` (`true`) and the `validIn`
+value is `1` (`true`), the block accepts input data
+in the next time step. When this value is `0`
+(`false`), the block ignores input data in the next time
+step.
+
+After sending a `true`
+`validIn` signal, there may be some delay before
+`ready` is set to `false`. To ensure all data is
+processed, you must wait until `ready` is set to
+`false` before sending another `true`
+`validIn` signal.
+
+**Data Types:** `Boolean`
+
+## Parameters
+
+### **Number of rows in matrices A and B** — Number of rows in input matrices *A* and *B* `4` (default) | positive integer-valued scalar
+
+Number of rows in input matrices *A* and *B*,
+specified as a positive integer-valued scalar.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `m` |
+| **Type:** character vector |
+| **Values:** positive integer-valued scalar |
+| **Default:** `4` |
+
+### **Number of columns in matrix A** — Number of columns in input matrix *A* `4` (default) | positive integer-valued scalar
+
+Number of columns in input matrix *A*, specified as a positive
+integer-valued scalar.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `n` |
+| **Type:** character vector |
+| **Values:** positive integer-valued scalar |
+| **Default:** `4` |
+
+### **Number of columns in matrix B** — Number of columns in input matrix *B* `1` (default) | positive integer-valued scalar
+
+Number of columns in input matrix *B*, specified as a positive
+integer-valued scalar.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `p` |
+| **Type:** character vector |
+| **Values:** positive integer-valued scalar |
+| **Default:** `1` |
+
+### **Regularization parameter** — Regularization parameter 0 (default) | nonnegative scalar
+
+Regularization parameter, specified as a nonnegative scalar. Small, positive values
+of the regularization parameter can improve the conditioning of the problem and reduce
+the variance of the estimates. While biased, the reduced variance of the estimate often
+results in a smaller mean squared error when compared to least-squares estimates.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `regularizationParameter` |
+| **Type:** character vector |
+| **Values:** positive integer-valued scalar |
+| **Default:** `0` |
+
+### **Output datatype** — Data type of output matrix *X* `fixdt(1,18,14)` (default) | `double` | `single` | `fixdt(1,16,0)` | `<data type expression>`
+
+Data type of the output matrix *X*, specified as
+`fixdt(1,18,14)`, `double`,
+`single`, `fixdt(1,16,0)`, or as a user-specified
+data type expression. The type can be specified directly, or expressed as a data type
+object such as `Simulink.NumericType`.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `OutputType` |
+| **Type:** character vector |
+| **Values:** `'fixdt(1,18,14)'` | `'double'` | `'single'` | `'fixdt(1,16,0)'` | `'<data type expression>'` |
+| **Default:** `'fixdt(1,18,14)'` |
+
+## Libraries
+
+Fixed-Point Designer HDL Support / Matrices and Linear Algebra / Linear System Solvers
+
+## Block Characteristics
+
+Not documented in R2025b.
+
+## Extended Capabilities
+
+### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
+
+Slope-bias representation is not supported for fixed-point data types.
+
+### HDL Code Generation Generate VHDL, Verilog and SystemVerilog code for FPGA and ASIC designs using HDL Coder™.
+
+HDL Coder™ provides additional configuration options that affect HDL implementation and
+synthesized logic.
+
+**HDL Architecture**
+
+This block has one default HDL architecture.
+
+**HDL Block Properties**
+
+| General | |
+| --- | --- |
+| **ConstrainedOutputPipeline** | Number of registers to place at the outputs by moving existing delays within your design. Distributed pipelining does not redistribute these registers. The default is `0`. For more details, see ConstrainedOutputPipeline (HDL Coder). |
+| **InputPipeline** | Number of input pipeline stages to insert in the generated code. Distributed pipelining and constrained output pipelining can move these registers. The default is `0`. For more details, see InputPipeline (HDL Coder). |
+| **OutputPipeline** | Number of output pipeline stages to insert in the generated code. Distributed pipelining and constrained output pipelining can move these registers. The default is `0`. For more details, see OutputPipeline (HDL Coder). |
+
+**Restrictions**
+
+Supports fixed-point data types only.
+
+## Version History
+
+**Introduced in R2020b**
+
+### R2023a: Smart unrolling for improved resource utilization
+
+This block depends on a partial-systolic QR decomposition block. Since 23a, when you
+update the diagram, the loop which composes the partial-systolic pipeline in the QR
+decomposition block is unrolled. This updated internal architecture removes dead operations
+in simulation and generated code, thus requiring fewer hardware resources. This block
+simulates with clock and bit-true fidelity with respect to library versions of these blocks
+in previous releases.
+
+### R2021a: Reduced HDL resource utilization
+
+This block now has an improved algorithm to reduce resource utilization on
+hardware-constrained target platforms.
+
+## Description
+
+Compute value of x in the equation A x = B for complex-valued matrices using QR decomposition
+
+The Complex Partial-Systolic Matrix Solve Using QR Decomposition block
+solves the system of linear equations *A**x* = *B* using QR decomposition, where *A* and *B*
+are complex-valued matrices. To compute *x* =
+*A*-1, set *B* to be the identity matrix.
+
+When Regularization parameter is nonzero, the
+Complex Partial-Systolic Matrix Solve Using QR Decomposition block computes
+the matrix solution of complex-valued [λInA]X=[0n,pB] where *λ* is the regularization parameter,
+*A* is an *m*-by-*n* matrix,
+*p* is the number of columns in *B*,
+*In* =
+`eye(n)`, and
+*0n,p* =
+`zeros(n,p)`.

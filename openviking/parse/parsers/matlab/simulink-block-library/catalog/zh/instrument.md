@@ -49,19 +49,19 @@ language: zh-CN
 
 ## Interface-Based Instrument Communication / TCP/IP Interface
 
-- TCP/IP Receive — 官方英文摘要: Receive data over TCP/IP network from specified remote machine **仅元数据，中英文正文待补**
-- TCP/IP Send — 官方英文摘要: Send data over TCP/IP network to specified remote machine **仅元数据，中英文正文待补**
+- [TCP/IP Receive](../../zh/products/instrument/tcpipreceive.md) — 官方英文摘要: Receive data over TCP/IP network from specified remote machine **完整正文**
+- [TCP/IP Send](../../zh/products/instrument/tcpipsend.md) — 官方英文摘要: Send data over TCP/IP network to specified remote machine **完整正文**
 
 ## Interface-Based Instrument Communication / UDP Interface
 
-- UDP Receive — 官方英文摘要: Receive data over UDP network from specified remote machine **仅元数据，中英文正文待补**
-- UDP Send — 官方英文摘要: Send data over UDP network to specified remote machine **仅元数据，中英文正文待补**
+- [UDP Receive](../../zh/products/instrument/udpreceive.md) — 官方英文摘要: Receive data over UDP network from specified remote machine **完整正文**
+- [UDP Send](../../zh/products/instrument/udpsend.md) — 官方英文摘要: Send data over UDP network to specified remote machine **完整正文**
 
 ## Interface-Based Instrument Communication / Serial Port Interface
 
-- Serial Configuration — 官方英文摘要: Configure parameters for serial port **仅元数据，中英文正文待补**
-- Serial Receive — 官方英文摘要: Receive binary data over serial port **仅元数据，中英文正文待补**
-- Serial Send — 官方英文摘要: Send binary data over serial port **仅元数据，中英文正文待补**
+- [Serial Configuration](../../zh/products/instrument/serialconfiguration.md) — 官方英文摘要: Configure parameters for serial port **完整正文**
+- [Serial Receive](../../zh/products/instrument/serialreceive.md) — 官方英文摘要: Receive binary data over serial port **完整正文**
+- [Serial Send](../../zh/products/instrument/serialsend.md) — 官方英文摘要: Send binary data over serial port **完整正文**
 
 ## Interface-Based Instrument Communication / GPIB Interface
 
@@ -70,7 +70,7 @@ language: zh-CN
 
 ## Interface-Based Instrument Communication / VISA Interface
 
-- VISA — 官方英文摘要: Communicate with VISA resources (Since R2023b) **仅元数据，中英文正文待补**
+- [VISA](../../zh/products/instrument/visablock.md) — 官方英文摘要: Communicate with VISA resources (Since R2023b) **完整正文**
 
 ## Driver-Based Instrument Communication
 
@@ -104,16 +104,16 @@ language: zh-CN
 
 ## Direct Interface Communication in Simulink
 
-- Serial Configuration — 官方英文摘要: Configure parameters for serial port **仅元数据，中英文正文待补**
-- Serial Receive — 官方英文摘要: Receive binary data over serial port **仅元数据，中英文正文待补**
-- Serial Send — 官方英文摘要: Send binary data over serial port **仅元数据，中英文正文待补**
-- TCP/IP Receive — 官方英文摘要: Receive data over TCP/IP network from specified remote machine **仅元数据，中英文正文待补**
-- TCP/IP Send — 官方英文摘要: Send data over TCP/IP network to specified remote machine **仅元数据，中英文正文待补**
-- UDP Receive — 官方英文摘要: Receive data over UDP network from specified remote machine **仅元数据，中英文正文待补**
-- UDP Send — 官方英文摘要: Send data over UDP network to specified remote machine **仅元数据，中英文正文待补**
-- VISA — 官方英文摘要: Communicate with VISA resources (Since R2023b) **仅元数据，中英文正文待补**
-- Query Instrument — 官方英文摘要: (To be removed) Query or read instrument data **仅元数据，中英文正文待补**
-- To Instrument — 官方英文摘要: (To be removed) Send simulation data to instrument **仅元数据，中英文正文待补**
+- [Serial Configuration](../../zh/products/instrument/serialconfiguration.md) — 官方英文摘要: Configure parameters for serial port **完整正文**
+- [Serial Receive](../../zh/products/instrument/serialreceive.md) — 官方英文摘要: Receive binary data over serial port **完整正文**
+- [Serial Send](../../zh/products/instrument/serialsend.md) — 官方英文摘要: Send binary data over serial port **完整正文**
+- [TCP/IP Receive](../../zh/products/instrument/tcpipreceive.md) — 官方英文摘要: Receive data over TCP/IP network from specified remote machine **完整正文**
+- [TCP/IP Send](../../zh/products/instrument/tcpipsend.md) — 官方英文摘要: Send data over TCP/IP network to specified remote machine **完整正文**
+- [UDP Receive](../../zh/products/instrument/udpreceive.md) — 官方英文摘要: Receive data over UDP network from specified remote machine **完整正文**
+- [UDP Send](../../zh/products/instrument/udpsend.md) — 官方英文摘要: Send data over UDP network to specified remote machine **完整正文**
+- [VISA](../../zh/products/instrument/visablock.md) — 官方英文摘要: Communicate with VISA resources (Since R2023b) **完整正文**
+- [Query Instrument](../../zh/products/instrument/queryinstrument.md) — 官方英文摘要: (To be removed) Query or read instrument data **完整正文**
+- [To Instrument](../../zh/products/instrument/toinstrument.md) — 官方英文摘要: (To be removed) Send simulation data to instrument **完整正文**
 
 ## Instrument Control Toolbox Supported Hardware
 

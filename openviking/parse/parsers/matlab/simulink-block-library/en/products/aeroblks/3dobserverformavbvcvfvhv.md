@@ -1,0 +1,252 @@
+---
+type: simulink-block
+title: '3D Observer Form [A(v),B(v),C(v),F(v),H(v)]'
+family: 'aeroblks'
+product_id: 'aeroblks'
+product_name: 'Aerospace Blockset'
+documentation_release: R2025b
+official_category: 'Guidance, Navigation, and Control (GNC) / Control'
+documentation_page: '3dobserverformavbvcvfvhv'
+documentation_source_path: '3dobserverformavbvcvfvhv.html'
+language: en
+---
+
+# 3D Observer Form [A(v),B(v),C(v),F(v),H(v)]
+
+## Ports
+
+### Input
+
+### **y-y\_dem** — Set-point error vector
+
+Set-point error, specified as a vector.
+
+**Data Types:** `double`
+
+### **v1** — First scheduling variable vector
+
+First scheduling variable, specified as a vector, that conforms to the dimensions of the
+state-space matrices.
+
+**Data Types:** `double`
+
+### **v2** — Second scheduling variable vector
+
+Second scheduling variable, specified as a vector, that conforms to the dimensions of
+the state-space matrices.
+
+**Data Types:** `double`
+
+### **v3** — Third scheduling variable vector
+
+Third scheduling variable, specified as a vector, that conforms to the dimensions of the
+state-space matrices.
+
+**Data Types:** `double`
+
+### **u\_meas** — Measured actuator position vector
+
+Measured actuator position, specified as a vector.
+
+**Data Types:** `double`
+### Output
+
+### **u\_dem** — Actuator demands vector
+
+Actuator demands, specified as a vector.
+
+**Data Types:** `double`
+
+## Parameters
+
+### **A-matrix(v1,v2,v3)** — *A*-matrix of the state-space implementation `A` (default) | array
+
+*A*-matrix of the state-space implementation. In the case of 3-D
+scheduling, the *A*-matrix should have five dimensions, the
+last three corresponding to scheduling variables *v*1,
+*v*2, and *v*3. For example, if the
+*A*-matrix corresponding to the first entry of
+*v*1, the first entry of *v*2, and the
+first entry of *v*3 is the identity matrix, then
+`A(:,:,1,1,1) = [1 0;0 1];`.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `A` |
+| **Type**: character vector |
+| **Values**: vector |
+| **Default**: `'A'` |
+
+### **B-matrix(v1,v2,v3)** — *B*-matrix of the state-space implementation `B` (default) | array
+
+*B*-matrix of the state-space implementation. In the case of 3-D
+scheduling, the *B*-matrix should have five dimensions, the
+last three corresponding to scheduling variables *v*1,
+*v*2, and *v*3. For example, if the
+*B*-matrix corresponding to the first entry of
+*v*1, the first entry of *v*2, and the
+first entry of *v*3 is the identity matrix, then
+`B(:,:,1,1,1) = [1 0;0 1];`.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `B` |
+| **Type**: character vector |
+| **Values**: vector |
+| **Default**: `'B'` |
+
+### **C-matrix(v1,v2,v3)** — *C*-matrix of the state-space implementation `C` (default) | array
+
+*C*-matrix of the state-space implementation. In the case of 3-D
+scheduling, the *C*-matrix should have five dimensions, the
+last three corresponding to scheduling variables *v*1,
+*v*2, and *v*3. For example, if the
+*C*-matrix corresponding to the first entry of
+*v*1, the first entry of *v*2, and the
+first entry of *v*3 is the identity matrix, then
+`C(:,:,1,1,1) = [1 0;0 1];`.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `C` |
+| **Type**: character vector |
+| **Values**: vector |
+| **Default**: `'C'` |
+
+### **F-matrix(v1,v2,v3)** — *F*-matrix of the state-space implementation `F` (default) | array
+
+State-feedback matrix. In the case of 3-D scheduling, the *F*-matrix
+should have five dimensions, the last three corresponding to scheduling
+variables *v*1, *v*2, and
+*v*3. For example, if the *F*-matrix
+corresponding to the first entry of *v*1, the first entry
+of *v*2, and the first entry of *v*3 is
+the identity matrix, then `F(:,:,1,1,1) = [1 0;0
+1];`.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `F` |
+| **Type**: character vector |
+| **Values**: vector |
+| **Default**: `'F'` |
+
+### **H-matrix(v1,v2,v3)** — *H*-matrix of the state-space implementation `H` (default) | array
+
+Observer (output injection) matrix. In the case of 3-D scheduling, the
+*H*-matrix should have five dimensions, the last three
+corresponding to scheduling variables *v*1,
+*v*2, and *v*3. For example, if the
+*H*-matrix corresponding to the first entry of
+*v*1, the first entry of *v*2, and the
+first entry of *v*3 is the identity matrix, then
+`H(:,:,1,1,1) = [1 0;0 1];`.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `H` |
+| **Type**: character vector |
+| **Values**: vector |
+| **Default**: `'H'` |
+
+### **First scheduling variable (v1) breakpoints** — Breakpoints for first scheduling variable `v1_vec` (default)
+
+Vector of the breakpoints for the first scheduling variable. The length of
+*v*1 should be same as the size of the third dimension
+of *A*, *B*, *C*,
+*F*, and *H*.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `AoA_vec` |
+| **Type**: character vector |
+| **Values**: vector |
+| **Default**: `'v1_vec'` |
+
+### **Second scheduling variable (v2) breakpoints** — Breakpoints for second scheduling variable `v2_vec` (default)
+
+Vector of the breakpoints for the second scheduling variable. The length
+of *v*2 should be same as the size of the fourth dimension
+of *A*, *B*, *C*,
+*F*, and *H*.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `AoS_vec` |
+| **Type**: character vector |
+| **Values**: vector |
+| **Default**: `'v2_vec'` |
+
+### **Third scheduling variable (v3) breakpoints** — Breakpoints for third scheduling variable `v3_vec` (default)
+
+Vector of the breakpoints for the third scheduling variable. The length of
+*v*3 should be same as the size of the fifth dimension
+of *A*, *B*, *C*,
+*F*, and *H*.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `Mach_vec` |
+| **Type**: character vector |
+| **Values**: vector |
+| **Default**: `'v3_vec'` |
+
+### **Initial state, x\_initial** — Initial states `0` (default)
+
+Vector of initial states for the controller, that is, initial values for the state
+vector, *x*. It should have length equal to the size of the
+first dimension of *A*.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `x_initial` |
+| **Type**: character vector |
+| **Values**: vector |
+| **Default**: `'0'` |
+
+## Libraries
+
+Aerospace Blockset / GNC / Control
+
+## Block Characteristics
+
+Not documented in R2025b.
+
+## Extended Capabilities
+
+### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
+
+## Version History
+
+**Introduced before R2006a**
+
+## Description
+
+Implement gain-scheduled state-space controller in observer form depending on three scheduling parameters
+
+The 3D Observer Form [A(v),B(v),C(v),F(v),H(v)] block
+implements a gain-scheduled state-space controller defined in Algorithms.
+
+The main application of this block is to implement a controller designed using H-infinity
+loop-shaping. Use this block to implement a controller designed using
+*H*-infinity loop-shaping, one of the design methods supported by
+Robust Control
+Toolbox.

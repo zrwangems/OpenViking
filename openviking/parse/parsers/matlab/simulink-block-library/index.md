@@ -1,9 +1,9 @@
 # Simulink Block Library
 
-- [English base-Simulink documents](en/index.md)
-- [基础 Simulink 中文文档](zh/index.md)
-- [R2025b 全产品清单](manifest.json)
-- [All-product English catalog](catalog/en/index.md)
-- [全产品中文目录](catalog/zh/index.md)
+- [English Library Browser](browser/en/index.md)
+- [中文 Library Browser](browser/zh/index.md)
+- [English product catalog](catalog/en/index.md)
+- [中文产品目录](catalog/zh/index.md)
+- [R2025b manifest](manifest.json)
 
-`manifest.json` enumerates all 133 official R2025b product-catalog entries, including 74 products with 5,431 library/block occurrences and 59 products without block-library XML. Full pages currently exist for 333 unique base-Simulink document paths in each language. The remaining 4,270 paths per language are explicit documentation gaps; metadata-only entries are not full block documentation. Third-party, support-package and machine-local libraries require enumeration from the user's MATLAB installation.
+Official catalog: 133 products, 74 with block libraries, 5431 occurrences and 4603 unique document paths. Full English pages: 4603; full Chinese pages: 4603. Browser pages follow the Library Browser hierarchy; product/ref pages are deduplicated document storage. Third-party and machine-local support packages require separate enumeration.

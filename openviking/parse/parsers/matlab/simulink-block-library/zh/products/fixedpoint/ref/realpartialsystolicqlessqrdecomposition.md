@@ -1,0 +1,226 @@
+---
+type: simulink-block
+title: 'Real Partial-Systolic Q-less QR Decomposition'
+family: 'fixedpoint'
+product_id: 'fixedpoint'
+product_name: 'Fixed-Point Designer'
+documentation_release: R2025b
+official_category: 'Embedded Implementation / Fixed-Point Matrix Operations in Simulink / Matrix Factorizations / Q-less QR Decomposition'
+documentation_page: 'realpartialsystolicqlessqrdecomposition'
+documentation_source_path: 'ref/realpartialsystolicqlessqrdecomposition.html'
+language: zh-CN
+chinese_source: worker-translation
+---
+
+# Real Partial-Systolic Q-less QR Decomposition
+
+## 端口
+
+### 输入
+
+### **A(i,:)** — 实矩阵 *A* 的行向量
+
+实矩阵 *A* 的行，指定为向量。
+*A* 是一个 *m*-by-*n* 矩阵，其中 *m* ≥ 2 且 *n* ≥ 2。如果 *A* 是定点数据类型，
+*A* 必须是有符号的并使用二进制小数点缩放。定点数据类型不支持
+slope-bias 表示。
+
+**数据类型：** `single` | `double` | `fixed point`
+
+### **validIn** — 输入是否有效 `Boolean` 标量
+
+输入是否有效，指定为 Boolean 标量。此控制信号
+指示来自 `A(i,:)` 输入端口的数据何时有效。当
+此值为 1 (`true`) 且 `ready`
+的值为 1 (`true`) 时，模块捕获
+`A(i,:)` 输入端口处的值。当此值为 0
+(`false`) 时，模块忽略输入采样。
+
+在发送 `true`
+`validIn` 信号后，在
+`ready` 被设置为 `false` 之前可能存在一些延迟。为确保所有数据
+都被处理，您必须等到 `ready` 被设置为
+`false` 之后，再发送另一个 `true`
+`validIn` 信号。
+
+**数据类型：** `Boolean`
+
+### **restart** — 是否清除内部状态 `Boolean` 标量
+
+是否清除内部状态，指定为 Boolean 标量。当此值为
+1 (`true`) 时，模块停止当前计算并清除所有
+内部状态。当此值为 0 (`false`) 且
+`validIn` 处的值为 1 (`true`) 时，模块开始新的
+子帧。
+
+**数据类型：** `Boolean`
+### 输出
+
+### **R** — 上三角矩阵 *R*
+
+经济型 QR 分解矩阵 *R*，返回为向量或
+矩阵。*R* 是上三角矩阵。矩阵
+*R* 的大小为 *n*-by-*n*。`R`
+处的输出与
+`A(i,:)` 处的输入具有相同的数据类型。
+
+**数据类型：** `single` | `double` | `fixed point`
+
+### **validOut** — 输出数据是否有效 `Boolean` 标量
+
+输出数据是否有效，指定为 Boolean 标量。此控制
+信号指示输出端口 `R` 处的数据何时有效。当
+此值为 1 (`true`) 时，模块已成功计算
+矩阵 *R*。当此值为 0 (`false`) 时，
+输出数据无效。
+
+**数据类型：** `Boolean`
+
+### **ready** — 模块是否就绪 `Boolean` 标量
+
+模块是否就绪，返回为 Boolean 标量。此控制信号
+指示模块何时准备好接收新的输入数据。当此值为
+`1` (`true`) 且 `validIn` 为
+`1` (`true`) 时，模块在
+下一时间步接受输入数据。当此值为 `0` (`false`) 时，
+模块在下一时间步忽略输入数据。
+
+在发送 `true`
+`validIn` 信号后，在
+`ready` 被设置为 `false` 之前可能存在一些延迟。为确保所有数据
+都被处理，您必须等到 `ready` 被设置为
+`false` 之后，再发送另一个 `true`
+`validIn` 信号。
+
+**数据类型：** `Boolean`
+
+## 参数
+
+### **矩阵 A 中的行数** — 输入矩阵 *A* 的行数 `4`（默认） | 正整数值标量
+
+输入矩阵 *A* 的行数，指定为正
+整数值标量。
+
+#### 程序化用法
+
+|  |
+| --- |
+| **模块参数：** `m` |
+| **类型：** character vector |
+| **值：** 正整数值标量 |
+| **默认值：** `4` |
+
+### **矩阵 A 中的列数** — 输入矩阵 *A* 的列数 `4`（默认） | 正整数值标量
+
+输入矩阵 *A* 的列数，指定为正
+整数值标量。
+
+#### 程序化用法
+
+|  |
+| --- |
+| **模块参数：** `n` |
+| **类型：** character vector |
+| **值：** 正整数值标量 |
+| **默认值：** `4` |
+
+### **正则化参数** — 正则化参数 0（默认） | 实数非负标量
+
+正则化参数，指定为非负标量。较小、正值的正则化参数
+值可以改善问题的条件并减少估计的方差。虽然有偏，但估计方差的减小通常
+与最小二乘估计相比会产生更小的均方误差。
+
+#### 程序化用法
+
+|  |
+| --- |
+| **模块参数：** `regularizationParameter` |
+| **类型：** character vector |
+| **值：** 实数非负标量 |
+| **默认值：** `0` |
+
+## 所属库
+
+Fixed-Point Designer HDL Support / Matrices and Linear Algebra / Matrix Factorizations
+
+## 模块特性
+
+R2025b 中未记录。
+
+## 扩展功能
+
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+
+定点数据类型不支持 slope-bias 表示。
+
+### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
+
+HDL Coder™ 提供影响 HDL 实现和综合逻辑的附加配置选项。
+
+**HDL 架构**
+
+此模块有一个默认 HDL 架构。
+
+**HDL 模块属性**
+
+| 常规 | |
+| --- | --- |
+| **ConstrainedOutputPipeline** | 通过在设计内移动现有延迟来放置在输出端的寄存器数。分布式流水线不会重新分布这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 ConstrainedOutputPipeline (HDL Coder)。 |
+| **InputPipeline** | 要在生成代码中插入的输入流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 InputPipeline (HDL Coder)。 |
+| **OutputPipeline** | 要在生成代码中插入的输出流水线级数。分布式流水线和约束输出流水线可以移动这些寄存器。默认值为 `0`。有关更多详细信息，请参阅 OutputPipeline (HDL Coder)。 |
+
+**限制**
+
+仅支持定点数据类型。
+
+## 版本历史
+
+**在 R2020b 中引入**
+
+### R2023a：智能展开以改进资源利用率
+
+当您更新图时，组成部分脉动流水线的循环
+会展开。此更新后的内部架构会移除仿真和
+生成代码中的死操作，从而显著减少所需的硬件资源
+数量。此模块相对于之前版本中这些模块的库版本，
+以时钟和位真保真度进行仿真。
+
+| 资源 | R2022b | R2023a |
+| --- | --- | --- |
+| LUT | 54305 | 29896 |
+| LUTRAM | 1090 | 994 |
+| 触发器 | 33901 | 18953 |
+
+此示例数据是通过在 Xilinx
+Zynq-7 ZC706 评估板（-2 速度等级）上综合该模块生成的。
+
+综合时使用了以下参数。
+
+- 模块参数：
+
+  - `m = 10`
+  - `n = 10`
+  - `p = 1`
+  - 矩阵 *A* 维度：10-by-10
+  - 矩阵 *B* 维度：10-by-1
+- 输入数据类型：`sfix18_En12`
+
+### R2022a：支持 Tikhonov 正则化参数
+
+RealPartial-Systolic Q-less QR Decomposition 模块现在支持
+Tikhonov 正则化参数。
+
+## 描述
+
+实数矩阵的无 Q QR 分解
+
+Real Partial-Systolic Q-less QR Decomposition 模块使用 QR
+分解来计算 QR 分解 *A* = *Q**R* 的经济型上三角 *R* 因子，其中
+*A* 是实值矩阵，而不计算
+*Q*。方程 *A*'*A**x* =
+*B* 的解为 *x* =
+*R*\*R*'\*b*。
+
+当正则化参数非零时，
+Real Partial-Systolic Q-less QR Decomposition 模块计算
+[λInA] 的经济型 QR 分解的上三角因子 *R*，其中 *λ* 是正则化参数。

@@ -24,12 +24,12 @@ language: zh-CN
 
 ## Algorithm Verification / Simulink Cosimulation
 
-- HDL Cosimulation — 官方英文摘要: Cosimulate HDL design by connecting Simulink with HDL simulator **仅元数据，中英文正文待补**
-- To VCD File — 官方英文摘要: Generate value change dump (VCD) file **仅元数据，中英文正文待补**
+- [HDL Cosimulation](../../zh/products/hdlverifier/ref/hdlcosimulation.md) — 官方英文摘要: Cosimulate HDL design by connecting Simulink with HDL simulator **完整正文**
+- [To VCD File](../../zh/products/hdlverifier/ref/tovcdfile.md) — 官方英文摘要: Generate value change dump (VCD) file **完整正文**
 
 ## Algorithm Verification / FPGA-in-the-Loop
 
-- FIL Simulation — 官方英文摘要: Simulate HDL code on FPGA hardware from Simulink **仅元数据，中英文正文待补**
+- [FIL Simulation](../../zh/products/hdlverifier/ref/filsimulation.md) — 官方英文摘要: Simulate HDL code on FPGA hardware from Simulink **完整正文**
 
 ## Algorithm Verification / Custom FPGA Board Definition
 
@@ -58,11 +58,11 @@ language: zh-CN
 
 ## Export of Verification IP / UVM Generation
 
-- Sequence Feedback — 官方英文摘要: Connect between scoreboard and sequence in UVM testbench model (Since R2023a) **仅元数据，中英文正文待补**
+- [Sequence Feedback](../../zh/products/hdlverifier/ref/sequencefeedback.md) — 官方英文摘要: Connect between scoreboard and sequence in UVM testbench model (Since R2023a) **完整正文**
 
 ## Export of Verification IP / DPI Generation for Simulink Subsystem
 
-- Assertion — 官方英文摘要: Generate SystemVerilog assertions from Simulink assertion **仅元数据，中英文正文待补**
+- [Assertion](../../zh/products/hdlverifier/ref/assertion.md) — 官方英文摘要: Generate SystemVerilog assertions from Simulink assertion **完整正文**
 
 ## Export of Verification IP / DPI Generation for MATLAB Code
 
@@ -101,12 +101,12 @@ language: zh-CN
 
 ## HDL Verifier Supported Hardware / Intel FPGA Boards / FPGA Data Capture
 
-- FPGA Data Reader — 官方英文摘要: Capture data from live FPGA into Simulink model **仅元数据，中英文正文待补**
+- [FPGA Data Reader](../../zh/products/hdlverifier/ref/fpgadatareader.md) — 官方英文摘要: Capture data from live FPGA into Simulink model **完整正文**
 
 ## HDL Verifier Supported Hardware / Intel FPGA Boards / AXI Manager
 
-- AXI Manager Read — 官方英文摘要: Read memory locations on FPGA board from Simulink **仅元数据，中英文正文待补**
-- AXI Manager Write — 官方英文摘要: Write memory locations on FPGA board from Simulink **仅元数据，中英文正文待补**
+- [AXI Manager Read](../../zh/products/hdlverifier/ref/aximanagerread.md) — 官方英文摘要: Read memory locations on FPGA board from Simulink **完整正文**
+- [AXI Manager Write](../../zh/products/hdlverifier/ref/aximanagerwrite.md) — 官方英文摘要: Write memory locations on FPGA board from Simulink **完整正文**
 
 ## HDL Verifier Supported Hardware / Microchip FPGA Boards
 
@@ -140,9 +140,9 @@ language: zh-CN
 
 ## HDL Verifier Supported Hardware / AMD FPGA and SoC Devices / FPGA Data Capture
 
-- FPGA Data Reader — 官方英文摘要: Capture data from live FPGA into Simulink model **仅元数据，中英文正文待补**
+- [FPGA Data Reader](../../zh/products/hdlverifier/ref/fpgadatareader.md) — 官方英文摘要: Capture data from live FPGA into Simulink model **完整正文**
 
 ## HDL Verifier Supported Hardware / AMD FPGA and SoC Devices / AXI Manager
 
-- AXI Manager Read — 官方英文摘要: Read memory locations on FPGA board from Simulink **仅元数据，中英文正文待补**
-- AXI Manager Write — 官方英文摘要: Write memory locations on FPGA board from Simulink **仅元数据，中英文正文待补**
+- [AXI Manager Read](../../zh/products/hdlverifier/ref/aximanagerread.md) — 官方英文摘要: Read memory locations on FPGA board from Simulink **完整正文**
+- [AXI Manager Write](../../zh/products/hdlverifier/ref/aximanagerwrite.md) — 官方英文摘要: Write memory locations on FPGA board from Simulink **完整正文**

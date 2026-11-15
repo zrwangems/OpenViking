@@ -39,9 +39,9 @@ No direct block entries.
 
 ## Software Component Modeling / Component Development / AUTOSAR Communication
 
-- Signal Invalidation — Official summary: Control AUTOSAR root outport data element invalidation **metadata only; full English and Chinese documents pending**
-- Invoke AUTOSAR Server Operation — Official summary: Configure AUTOSAR client port to access Basic Software or application software components **metadata only; full English and Chinese documents pending**
-- Mode Switch for Invoke AUTOSAR Server Operation — Official summary: Toggle AUTOSAR client-server operation subsystem blocks between simulation and code-generation mode **metadata only; full English and Chinese documents pending**
+- [Signal Invalidation](../../en/products/autosar/ref/signalinvalidation.md) — Official summary: Control AUTOSAR root outport data element invalidation **full document**
+- [Invoke AUTOSAR Server Operation](../../en/products/autosar/ref/invokeautosarserveroperation.md) — Official summary: Configure AUTOSAR client port to access Basic Software or application software components **full document**
+- [Mode Switch for Invoke AUTOSAR Server Operation](../../en/products/autosar/ref/modeswitchforinvokeautosarserveroperation.md) — Official summary: Toggle AUTOSAR client-server operation subsystem blocks between simulation and code-generation mode **full document**
 
 ## Software Component Modeling / Component Development / AUTOSAR Component Behavior
 
@@ -60,13 +60,13 @@ No direct block entries.
 
 ## Software Component Modeling / Component Development / AUTOSAR Calibration and Measurement Data
 
-- Curve — Official summary: Approximate one-dimensional function **metadata only; full English and Chinese documents pending**
-- Curve Using Prelookup — Official summary: Use previously calculated index and fraction values to accelerate approximation of one-dimensional function **metadata only; full English and Chinese documents pending**
-- Map — Official summary: Approximate two-dimensional function **metadata only; full English and Chinese documents pending**
-- Map Using Prelookup — Official summary: Use previously calculated index and fraction values to accelerate approximation of two-dimensional function **metadata only; full English and Chinese documents pending**
-- Prelookup — Official summary: Compute index and fraction for a Curve Using Prelookup or Map Using Prelookup block **metadata only; full English and Chinese documents pending**
-- Single Point Interpolation — Official summary: Perform single point interpolation (Since R2023a) **metadata only; full English and Chinese documents pending**
-- Ramp — Official summary: Generate signal that follows input value bound by rising or falling slope (Since R2023b) **metadata only; full English and Chinese documents pending**
+- [Curve](../../en/products/autosar/ref/curve.md) — Official summary: Approximate one-dimensional function **full document**
+- [Curve Using Prelookup](../../en/products/autosar/ref/curveusingprelookup.md) — Official summary: Use previously calculated index and fraction values to accelerate approximation of one-dimensional function **full document**
+- [Map](../../en/products/autosar/ref/map.md) — Official summary: Approximate two-dimensional function **full document**
+- [Map Using Prelookup](../../en/products/autosar/ref/mapusingprelookup.md) — Official summary: Use previously calculated index and fraction values to accelerate approximation of two-dimensional function **full document**
+- [Prelookup](../../en/products/autosar/ref/prelookup.md) — Official summary: Compute index and fraction for a Curve Using Prelookup or Map Using Prelookup block **full document**
+- [Single Point Interpolation](../../en/products/autosar/ref/singlepointinterpolation.md) — Official summary: Perform single point interpolation (Since R2023a) **full document**
+- [Ramp](../../en/products/autosar/ref/ramp.md) — Official summary: Generate signal that follows input value bound by rising or falling slope (Since R2023b) **full document**
 
 ## Software Component Modeling / Code Generation
 
@@ -90,8 +90,8 @@ No direct block entries.
 
 ## Adaptive Software Component Modeling / Component Development
 
-- Event Receive — Official summary: Convert input event to signal **metadata only; full English and Chinese documents pending**
-- Event Send — Official summary: Convert input signal to event **metadata only; full English and Chinese documents pending**
+- [Event Receive](../../en/products/autosar/ref/eventreceive.md) — Official summary: Convert input event to signal **full document**
+- [Event Send](../../en/products/autosar/ref/eventsend.md) — Official summary: Convert input signal to event **full document**
 
 ## Adaptive Software Component Modeling / Code Generation
 
@@ -100,25 +100,25 @@ No direct block entries.
 
 ## Composition and ECU Software Simulation
 
-- Control Function Available Caller — Official summary: Call AUTOSAR Function Inhibition Manager (FiM) service interface ControlFunctionAvailable **metadata only; full English and Chinese documents pending**
-- Dem Status Inject — Official summary: Inject an event failure to test recovery (Since R2022a) **metadata only; full English and Chinese documents pending**
-- Dem Status Override — Official summary: Override an event to simulate and verify behavior (Since R2022a) **metadata only; full English and Chinese documents pending**
-- DiagnosticEventAvailableCaller — Official summary: Call AUTOSAR Diagnostic Event Manager (Dem) service interface EventAvailable **metadata only; full English and Chinese documents pending**
-- DiagnosticInfoCaller — Official summary: Call AUTOSAR Diagnostic Event Manager (Dem) service interface DiagnosticInfo **metadata only; full English and Chinese documents pending**
-- DiagnosticMonitorCaller — Official summary: Call AUTOSAR Diagnostic Event Manager (Dem) service interface DiagnosticMonitor **metadata only; full English and Chinese documents pending**
-- DiagnosticOperationCycleCaller — Official summary: Call AUTOSAR Diagnostic Event Manager (Dem) service interface OperationCycle **metadata only; full English and Chinese documents pending**
-- Diagnostic Service Component — Official summary: Configure AUTOSAR Diagnostic Services and Runtime Environment (RTE) for emulation **metadata only; full English and Chinese documents pending**
-- Function Inhibition Caller — Official summary: Call AUTOSAR Function Inhibition Manager (FiM) service interface FunctionInhibition **metadata only; full English and Chinese documents pending**
-- NvMAdminCaller — Official summary: Call AUTOSAR NVRAM Manager (NvM) service interface NvMadmin **metadata only; full English and Chinese documents pending**
-- NvMServiceCaller — Official summary: Call AUTOSAR NVRAM Manager (NvM) service interface NvMService **metadata only; full English and Chinese documents pending**
-- NVRAM Service Component — Official summary: Configure AUTOSAR NVRAM Services and Runtime Environment (RTE) for emulation **metadata only; full English and Chinese documents pending**
+- [Control Function Available Caller](../../en/products/autosar/ref/controlfunctionavailablecaller.md) — Official summary: Call AUTOSAR Function Inhibition Manager (FiM) service interface ControlFunctionAvailable **full document**
+- [Dem Status Inject](../../en/products/autosar/ref/demstatusinject.md) — Official summary: Inject an event failure to test recovery (Since R2022a) **full document**
+- [Dem Status Override](../../en/products/autosar/ref/demstatusoverride.md) — Official summary: Override an event to simulate and verify behavior (Since R2022a) **full document**
+- [DiagnosticEventAvailableCaller](../../en/products/autosar/ref/diagnosticeventavailablecaller.md) — Official summary: Call AUTOSAR Diagnostic Event Manager (Dem) service interface EventAvailable **full document**
+- [DiagnosticInfoCaller](../../en/products/autosar/ref/diagnosticinfocaller.md) — Official summary: Call AUTOSAR Diagnostic Event Manager (Dem) service interface DiagnosticInfo **full document**
+- [DiagnosticMonitorCaller](../../en/products/autosar/ref/diagnosticmonitorcaller.md) — Official summary: Call AUTOSAR Diagnostic Event Manager (Dem) service interface DiagnosticMonitor **full document**
+- [DiagnosticOperationCycleCaller](../../en/products/autosar/ref/diagnosticoperationcyclecaller.md) — Official summary: Call AUTOSAR Diagnostic Event Manager (Dem) service interface OperationCycle **full document**
+- [Diagnostic Service Component](../../en/products/autosar/ref/diagnosticservicecomponent.md) — Official summary: Configure AUTOSAR Diagnostic Services and Runtime Environment (RTE) for emulation **full document**
+- [Function Inhibition Caller](../../en/products/autosar/ref/functioninhibitioncaller.md) — Official summary: Call AUTOSAR Function Inhibition Manager (FiM) service interface FunctionInhibition **full document**
+- [NvMAdminCaller](../../en/products/autosar/ref/nvmadmincaller.md) — Official summary: Call AUTOSAR NVRAM Manager (NvM) service interface NvMadmin **full document**
+- [NvMServiceCaller](../../en/products/autosar/ref/nvmservicecaller.md) — Official summary: Call AUTOSAR NVRAM Manager (NvM) service interface NvMService **full document**
+- [NVRAM Service Component](../../en/products/autosar/ref/nvramservicecomponent.md) — Official summary: Configure AUTOSAR NVRAM Services and Runtime Environment (RTE) for emulation **full document**
 
 ## Software Architecture Modeling
 
-- Classic Component — Official summary: Model classic software component in AUTOSAR architecture model **metadata only; full English and Chinese documents pending**
-- Adaptive Component — Official summary: Model adaptive software component in AUTOSAR architecture model (Since R2023a) **metadata only; full English and Chinese documents pending**
-- Software Composition — Official summary: Model software composition in AUTOSAR architecture model **metadata only; full English and Chinese documents pending**
-- Diagnostic Service Component — Official summary: Configure AUTOSAR Diagnostic Services and Runtime Environment (RTE) for emulation **metadata only; full English and Chinese documents pending**
-- NVRAM Service Component — Official summary: Configure AUTOSAR NVRAM Services and Runtime Environment (RTE) for emulation **metadata only; full English and Chinese documents pending**
-- Adapter — Official summary: Connect components with different interfaces **metadata only; full English and Chinese documents pending**
-- Variant Component — Official summary: Conditional variations of AUTOSAR architecture models (Since R2025a) **metadata only; full English and Chinese documents pending**
+- [Classic Component](../../en/products/autosar/ref/classiccomponent.md) — Official summary: Model classic software component in AUTOSAR architecture model **full document**
+- [Adaptive Component](../../en/products/autosar/ref/adaptivecomponent.md) — Official summary: Model adaptive software component in AUTOSAR architecture model (Since R2023a) **full document**
+- [Software Composition](../../en/products/autosar/ref/softwarecomposition.md) — Official summary: Model software composition in AUTOSAR architecture model **full document**
+- [Diagnostic Service Component](../../en/products/autosar/ref/diagnosticservicecomponent.md) — Official summary: Configure AUTOSAR Diagnostic Services and Runtime Environment (RTE) for emulation **full document**
+- [NVRAM Service Component](../../en/products/autosar/ref/nvramservicecomponent.md) — Official summary: Configure AUTOSAR NVRAM Services and Runtime Environment (RTE) for emulation **full document**
+- [Adapter](../../en/products/autosar/../systemcomposer/ref/adapter.md) — Official summary: Connect components with different interfaces **full document**
+- [Variant Component](../../en/products/autosar/ref/variantcomponent.md) — Official summary: Conditional variations of AUTOSAR architecture models (Since R2025a) **full document**

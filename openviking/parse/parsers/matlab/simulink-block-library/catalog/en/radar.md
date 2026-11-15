@@ -104,19 +104,19 @@ No direct block entries.
 
 ## Data Synthesis / Measurement-Level Simulations
 
-- Radar Data Generator — Official summary: Generate radar sensor detections and tracks (Since R2021b) **metadata only; full English and Chinese documents pending**
-- Detection Concatenation — Official summary: Combine detection reports from different sensors **metadata only; full English and Chinese documents pending**
+- [Radar Data Generator](../../en/products/radar/ref/radardatagenerator.md) — Official summary: Generate radar sensor detections and tracks (Since R2021b) **full document**
+- [Detection Concatenation](../../en/products/radar/ref/detectionconcatenation.md) — Official summary: Combine detection reports from different sensors **full document**
 
 ## Data Synthesis / Waveform-Level Simulations
 
-- Backscatter Bicyclist — Official summary: Backscatter signals from bicyclist (Since R2021a) **metadata only; full English and Chinese documents pending**
-- Backscatter Pedestrian — Official summary: Backscatter signals from pedestrian (Since R2021a) **metadata only; full English and Chinese documents pending**
-- Barrage Jammer — Official summary: Barrage jammer interference source (Since R2021a) **metadata only; full English and Chinese documents pending**
-- Constant Gamma Clutter — Official summary: Constant gamma clutter simulation (Since R2021a) **metadata only; full English and Chinese documents pending**
-- GPU Constant Gamma Clutter — Official summary: Constant gamma clutter simulation using gpu (Since R2021a) **metadata only; full English and Chinese documents pending**
-- Two-Ray Channel — Official summary: Two-ray channel environment (Since R2021a) **metadata only; full English and Chinese documents pending**
-- Wideband Two-Ray Channel — Official summary: Wideband two-ray channel environment (Since R2021a) **metadata only; full English and Chinese documents pending**
-- Pulse Waveform Library — Official summary: Library of pulse waveforms (Since R2021a) **metadata only; full English and Chinese documents pending**
+- [Backscatter Bicyclist](../../en/products/radar/ref/backscatterbicyclistblock.md) — Official summary: Backscatter signals from bicyclist (Since R2021a) **full document**
+- [Backscatter Pedestrian](../../en/products/radar/ref/backscatterpedestrianblock.md) — Official summary: Backscatter signals from pedestrian (Since R2021a) **full document**
+- [Barrage Jammer](../../en/products/radar/ref/barragejammer.md) — Official summary: Barrage jammer interference source (Since R2021a) **full document**
+- [Constant Gamma Clutter](../../en/products/radar/ref/constantgammaclutter.md) — Official summary: Constant gamma clutter simulation (Since R2021a) **full document**
+- [GPU Constant Gamma Clutter](../../en/products/radar/ref/gpuconstantgammaclutter.md) — Official summary: Constant gamma clutter simulation using gpu (Since R2021a) **full document**
+- [Two-Ray Channel](../../en/products/radar/ref/tworaychannel.md) — Official summary: Two-ray channel environment (Since R2021a) **full document**
+- [Wideband Two-Ray Channel](../../en/products/radar/ref/widebandtworaychannel.md) — Official summary: Wideband two-ray channel environment (Since R2021a) **full document**
+- [Pulse Waveform Library](../../en/products/radar/ref/pulsewaveformlibrary.md) — Official summary: Library of pulse waveforms (Since R2021a) **full document**
 
 ## Signal and Data Processing
 
@@ -125,27 +125,27 @@ No direct block entries.
 
 ## Signal and Data Processing / Detection, Range, Angle, and Doppler Estimation
 
-- Pulse Compression Library — Official summary: Library of pulse compression specifications (Since R2021a) **metadata only; full English and Chinese documents pending**
-- CFAR Detector — Official summary: Constant false alarm rate (CFAR) detector **metadata only; full English and Chinese documents pending**
-- 2-D CFAR Detector — Official summary: Two-dimensional constant false alarm rate (CFAR) detector **metadata only; full English and Chinese documents pending**
-- Stretch Processor — Official summary: Stretch processor for linear FM waveforms **metadata only; full English and Chinese documents pending**
-- Time Varying Gain — Official summary: Time varying gain (TVG) control **metadata only; full English and Chinese documents pending**
-- Pulse Integrator — Official summary: Coherent or noncoherent pulse integration **metadata only; full English and Chinese documents pending**
-- Dechirp Mixer — Official summary: Dechirping operation on input signal **metadata only; full English and Chinese documents pending**
-- Matched Filter — Official summary: Matched filter **metadata only; full English and Chinese documents pending**
-- Doppler Estimator — Official summary: Doppler estimation **metadata only; full English and Chinese documents pending**
-- Range-Angle Response — Official summary: Obtain range-angle response map for array **metadata only; full English and Chinese documents pending**
-- Range Doppler Response — Official summary: Range-Doppler response **metadata only; full English and Chinese documents pending**
-- Range Estimator — Official summary: Range estimation **metadata only; full English and Chinese documents pending**
-- Range Response — Official summary: Range response **metadata only; full English and Chinese documents pending**
-- Beamscan Spectrum — Official summary: Beamscan spatial spectrum estimator **metadata only; full English and Chinese documents pending**
-- Monopulse Estimator — Official summary: Estimate target direction from sum and difference channels **metadata only; full English and Chinese documents pending**
-- MVDR Spectrum — Official summary: Minimum variation distortionless response (MVDR) spatial spectrum estimator **metadata only; full English and Chinese documents pending**
-- MUSIC Spectrum — Official summary: MUSIC 2D spatial spectrum estimator **metadata only; full English and Chinese documents pending**
+- [Pulse Compression Library](../../en/products/radar/ref/pulsecompressionlibrary.md) — Official summary: Library of pulse compression specifications (Since R2021a) **full document**
+- [CFAR Detector](../../en/products/radar/../phased/ref/cfardetector.md) — Official summary: Constant false alarm rate (CFAR) detector **full document**
+- [2-D CFAR Detector](../../en/products/radar/../phased/ref/2dcfardetector.md) — Official summary: Two-dimensional constant false alarm rate (CFAR) detector **full document**
+- [Stretch Processor](../../en/products/radar/../phased/ref/stretchprocessor.md) — Official summary: Stretch processor for linear FM waveforms **full document**
+- [Time Varying Gain](../../en/products/radar/../phased/ref/timevaryinggain.md) — Official summary: Time varying gain (TVG) control **full document**
+- [Pulse Integrator](../../en/products/radar/../phased/ref/pulseintegrator.md) — Official summary: Coherent or noncoherent pulse integration **full document**
+- [Dechirp Mixer](../../en/products/radar/../phased/ref/dechirpmixer.md) — Official summary: Dechirping operation on input signal **full document**
+- [Matched Filter](../../en/products/radar/../phased/ref/matchedfilter.md) — Official summary: Matched filter **full document**
+- [Doppler Estimator](../../en/products/radar/../phased/ref/dopplerestimator.md) — Official summary: Doppler estimation **full document**
+- [Range-Angle Response](../../en/products/radar/../phased/ref/rangeangleresponse.md) — Official summary: Obtain range-angle response map for array **full document**
+- [Range Doppler Response](../../en/products/radar/../phased/ref/rangedopplerresponse.md) — Official summary: Range-Doppler response **full document**
+- [Range Estimator](../../en/products/radar/../phased/ref/rangeestimator.md) — Official summary: Range estimation **full document**
+- [Range Response](../../en/products/radar/../phased/ref/rangeresponse.md) — Official summary: Range response **full document**
+- [Beamscan Spectrum](../../en/products/radar/../phased/ref/beamscanspectrum.md) — Official summary: Beamscan spatial spectrum estimator **full document**
+- [Monopulse Estimator](../../en/products/radar/../phased/ref/monopulseestimator.md) — Official summary: Estimate target direction from sum and difference channels **full document**
+- [MVDR Spectrum](../../en/products/radar/../phased/ref/mvdrspectrum.md) — Official summary: Minimum variation distortionless response (MVDR) spatial spectrum estimator **full document**
+- [MUSIC Spectrum](../../en/products/radar/../phased/ref/musicspectrum.md) — Official summary: MUSIC 2D spatial spectrum estimator **full document**
 
 ## Signal and Data Processing / Clustering
 
-- DBSCAN Clusterer — Official summary: Cluster detections (Since R2021a) **metadata only; full English and Chinese documents pending**
+- [DBSCAN Clusterer](../../en/products/radar/ref/dbscanclusterer.md) — Official summary: Cluster detections (Since R2021a) **full document**
 
 ## Signal and Data Processing / Multi-Object Tracking
 

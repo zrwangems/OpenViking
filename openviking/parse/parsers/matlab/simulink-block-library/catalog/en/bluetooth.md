@@ -29,7 +29,7 @@ No direct block entries.
 
 ## Test and Measurement
 
-- Waveform From Wireless Waveform Generator App — Official summary: Wireless waveform source exported to Simulink (Since R2022a) **metadata only; full English and Chinese documents pending**
+- [Waveform From Wireless Waveform Generator App](../../en/products/bluetooth/ref/waveformfromwirelesswaveformgeneratorapp.md) — Official summary: Wireless waveform source exported to Simulink (Since R2022a) **full document**
 
 ## End-to-End Simulation
 

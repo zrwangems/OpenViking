@@ -54,20 +54,20 @@ language: zh-CN
 
 ## Phased Array Design and Analysis / Array Geometries and Analysis
 
-- Steering Vector — 官方英文摘要: Array steering vector (Since R2023b) **仅元数据，中英文正文待补**
+- [Steering Vector](../../zh/products/phased/ref/steeringvector.md) — 官方英文摘要: Array steering vector (Since R2023b) **完整正文**
 
 ## Phased Array Design and Analysis / Signal Radiation, Collection, and Reflection
 
-- Narrowband Receive Array — 官方英文摘要: Receive narrowband radiation using phased array **仅元数据，中英文正文待补**
-- Narrowband Transmit Array — 官方英文摘要: Narrowband transmit array **仅元数据，中英文正文待补**
-- Wideband Receive Array — 官方英文摘要: Wideband receive array **仅元数据，中英文正文待补**
-- Wideband Transmit Array — 官方英文摘要: Wideband transmit array **仅元数据，中英文正文待补**
+- [Narrowband Receive Array](../../zh/products/phased/ref/narrowbandreceivearray.md) — 官方英文摘要: Receive narrowband radiation using phased array **完整正文**
+- [Narrowband Transmit Array](../../zh/products/phased/ref/narrowbandtransmitarray.md) — 官方英文摘要: Narrowband transmit array **完整正文**
+- [Wideband Receive Array](../../zh/products/phased/ref/widebandreceivearray.md) — 官方英文摘要: Wideband receive array **完整正文**
+- [Wideband Transmit Array](../../zh/products/phased/ref/widebandtransmitarray.md) — 官方英文摘要: Wideband transmit array **完整正文**
 
 ## Phased Array Design and Analysis / Transmitters and Receivers
 
-- Receiver — 官方英文摘要: Receiver (Since R2024a) **仅元数据，中英文正文待补**
-- Receiver Preamp — 官方英文摘要: Receiver preamplifier **仅元数据，中英文正文待补**
-- Transmitter — 官方英文摘要: Amplify and transmit signal **仅元数据，中英文正文待补**
+- [Receiver](../../zh/products/phased/ref/receiverblock.md) — 官方英文摘要: Receiver (Since R2024a) **完整正文**
+- [Receiver Preamp](../../zh/products/phased/ref/receiverpreamp.md) — 官方英文摘要: Receiver preamplifier **完整正文**
+- [Transmitter](../../zh/products/phased/ref/transmitter.md) — 官方英文摘要: Amplify and transmit signal **完整正文**
 
 ## Beamforming and Direction of Arrival Estimation
 
@@ -76,17 +76,17 @@ language: zh-CN
 
 ## Beamforming and Direction of Arrival Estimation / Beamforming
 
-- LCMV Beamformer — 官方英文摘要: Narrowband linear constraint minimum variance (LCMV) beamformer **仅元数据，中英文正文待补**
-- MVDR Beamformer — 官方英文摘要: Narrowband MVDR (Capon) beamformer **仅元数据，中英文正文待补**
-- Phase Shift Beamformer — 官方英文摘要: Narrowband phase-shift beamformer **仅元数据，中英文正文待补**
-- Steering Vector — 官方英文摘要: Array steering vector (Since R2023b) **仅元数据，中英文正文待补**
-- Frost Beamformer — 官方英文摘要: Frost beamformer **仅元数据，中英文正文待补**
-- GSC Beamformer — 官方英文摘要: Generalized sidelobe canceller **仅元数据，中英文正文待补**
-- Subband MVDR Beamformer — 官方英文摘要: Subband MVDR (Capon) beamformer **仅元数据，中英文正文待补**
-- Subband Phase Shift Beamformer — 官方英文摘要: Subband phase shift beamformer **仅元数据，中英文正文待补**
-- Time Delay Beamformer — 官方英文摘要: Time-delay beamformer **仅元数据，中英文正文待补**
-- Time Delay LCMV Beamformer — 官方英文摘要: Time delay LCMV beamformer **仅元数据，中英文正文待补**
-- Azimuth Broadside Converter — 官方英文摘要: Convert azimuth angle to broadside angle or broadside angle to azimuth angle **仅元数据，中英文正文待补**
+- [LCMV Beamformer](../../zh/products/phased/ref/lcmvbeamformer.md) — 官方英文摘要: Narrowband linear constraint minimum variance (LCMV) beamformer **完整正文**
+- [MVDR Beamformer](../../zh/products/phased/ref/mvdrbeamformer.md) — 官方英文摘要: Narrowband MVDR (Capon) beamformer **完整正文**
+- [Phase Shift Beamformer](../../zh/products/phased/ref/phaseshiftbeamformer.md) — 官方英文摘要: Narrowband phase-shift beamformer **完整正文**
+- [Steering Vector](../../zh/products/phased/ref/steeringvector.md) — 官方英文摘要: Array steering vector (Since R2023b) **完整正文**
+- [Frost Beamformer](../../zh/products/phased/ref/frostbeamformer.md) — 官方英文摘要: Frost beamformer **完整正文**
+- [GSC Beamformer](../../zh/products/phased/ref/gscbeamformer.md) — 官方英文摘要: Generalized sidelobe canceller **完整正文**
+- [Subband MVDR Beamformer](../../zh/products/phased/ref/subbandmvdrbeamformer.md) — 官方英文摘要: Subband MVDR (Capon) beamformer **完整正文**
+- [Subband Phase Shift Beamformer](../../zh/products/phased/ref/subbandphaseshiftbeamformer.md) — 官方英文摘要: Subband phase shift beamformer **完整正文**
+- [Time Delay Beamformer](../../zh/products/phased/ref/timedelaybeamformer.md) — 官方英文摘要: Time-delay beamformer **完整正文**
+- [Time Delay LCMV Beamformer](../../zh/products/phased/ref/timedelaylcmvbeamformer.md) — 官方英文摘要: Time delay LCMV beamformer **完整正文**
+- [Azimuth Broadside Converter](../../zh/products/phased/ref/azimuthbroadsideconverter.md) — 官方英文摘要: Convert azimuth angle to broadside angle or broadside angle to azimuth angle **完整正文**
 
 ## Beamforming and Direction of Arrival Estimation / Direction of Arrival Estimation
 
@@ -95,36 +95,36 @@ language: zh-CN
 
 ## Beamforming and Direction of Arrival Estimation / Direction of Arrival Estimation / DOA for Specific Array Geometries
 
-- Beamspace ESPRIT DOA — 官方英文摘要: Beamspace ESPRIT direction of arrival (DOA) estimator for ULA **仅元数据，中英文正文待补**
-- ESPRIT DOA — 官方英文摘要: ESPRIT direction of arrival (DOA) estimator for ULA **仅元数据，中英文正文待补**
-- Root MUSIC DOA — 官方英文摘要: Root multiple signal classification (MUSIC) direction of arrival (DOA) estimator for ULA and UCA **仅元数据，中英文正文待补**
-- Root WSF DOA — 官方英文摘要: Root weighted subspace fitting (WSF) direction of arrival (DOA) estimator for ULA **仅元数据，中英文正文待补**
-- ULA Beamscan Spectrum — 官方英文摘要: Beamscan spatial spectrum estimator for ULA **仅元数据，中英文正文待补**
-- ULA MUSIC Spectrum — 官方英文摘要: MUSIC spatial spectrum estimator for ULA **仅元数据，中英文正文待补**
-- ULA MVDR Spectrum — 官方英文摘要: MVDR spatial spectrum estimator for ULA **仅元数据，中英文正文待补**
-- ULA Sum and Difference Monopulse — 官方英文摘要: Sum-and-difference monopulse tracker for ULA **仅元数据，中英文正文待补**
-- URA Sum and Difference Monopulse — 官方英文摘要: Sum-and-difference monopulse for URA **仅元数据，中英文正文待补**
+- [Beamspace ESPRIT DOA](../../zh/products/phased/ref/beamspaceespritdoa.md) — 官方英文摘要: Beamspace ESPRIT direction of arrival (DOA) estimator for ULA **完整正文**
+- [ESPRIT DOA](../../zh/products/phased/ref/espritdoablock.md) — 官方英文摘要: ESPRIT direction of arrival (DOA) estimator for ULA **完整正文**
+- [Root MUSIC DOA](../../zh/products/phased/ref/rootmusicdoablock.md) — 官方英文摘要: Root multiple signal classification (MUSIC) direction of arrival (DOA) estimator for ULA and UCA **完整正文**
+- [Root WSF DOA](../../zh/products/phased/ref/rootwsfdoa.md) — 官方英文摘要: Root weighted subspace fitting (WSF) direction of arrival (DOA) estimator for ULA **完整正文**
+- [ULA Beamscan Spectrum](../../zh/products/phased/ref/ulabeamscanspectrum.md) — 官方英文摘要: Beamscan spatial spectrum estimator for ULA **完整正文**
+- [ULA MUSIC Spectrum](../../zh/products/phased/ref/ulamusicspectrum.md) — 官方英文摘要: MUSIC spatial spectrum estimator for ULA **完整正文**
+- [ULA MVDR Spectrum](../../zh/products/phased/ref/ulamvdrspectrum.md) — 官方英文摘要: MVDR spatial spectrum estimator for ULA **完整正文**
+- [ULA Sum and Difference Monopulse](../../zh/products/phased/ref/ulasumanddifferencemonopulse.md) — 官方英文摘要: Sum-and-difference monopulse tracker for ULA **完整正文**
+- [URA Sum and Difference Monopulse](../../zh/products/phased/ref/urasumanddifferencemonopulse.md) — 官方英文摘要: Sum-and-difference monopulse for URA **完整正文**
 
 ## Beamforming and Direction of Arrival Estimation / Direction of Arrival Estimation / DOA for Arbitrary Array Geometries
 
-- Beamscan Spectrum — 官方英文摘要: Beamscan spatial spectrum estimator **仅元数据，中英文正文待补**
-- GCC DOA and TOA — 官方英文摘要: Generalized cross-correlator with phase transform **仅元数据，中英文正文待补**
-- Monopulse Feed — 官方英文摘要: Create monopulse sum and difference channels **仅元数据，中英文正文待补**
-- Monopulse Estimator — 官方英文摘要: Estimate target direction from sum and difference channels **仅元数据，中英文正文待补**
-- MUSIC Spectrum — 官方英文摘要: MUSIC 2D spatial spectrum estimator **仅元数据，中英文正文待补**
-- MVDR Spectrum — 官方英文摘要: Minimum variation distortionless response (MVDR) spatial spectrum estimator **仅元数据，中英文正文待补**
+- [Beamscan Spectrum](../../zh/products/phased/ref/beamscanspectrum.md) — 官方英文摘要: Beamscan spatial spectrum estimator **完整正文**
+- [GCC DOA and TOA](../../zh/products/phased/ref/gccdoaandtoa.md) — 官方英文摘要: Generalized cross-correlator with phase transform **完整正文**
+- [Monopulse Feed](../../zh/products/phased/ref/monopulsefeed.md) — 官方英文摘要: Create monopulse sum and difference channels **完整正文**
+- [Monopulse Estimator](../../zh/products/phased/ref/monopulseestimator.md) — 官方英文摘要: Estimate target direction from sum and difference channels **完整正文**
+- [MUSIC Spectrum](../../zh/products/phased/ref/musicspectrum.md) — 官方英文摘要: MUSIC 2D spatial spectrum estimator **完整正文**
+- [MVDR Spectrum](../../zh/products/phased/ref/mvdrspectrum.md) — 官方英文摘要: Minimum variation distortionless response (MVDR) spatial spectrum estimator **完整正文**
 
 ## Beamforming and Direction of Arrival Estimation / Direction of Arrival Estimation / Broadside Angle Conversion
 
-- Azimuth Broadside Converter — 官方英文摘要: Convert azimuth angle to broadside angle or broadside angle to azimuth angle **仅元数据，中英文正文待补**
+- [Azimuth Broadside Converter](../../zh/products/phased/ref/azimuthbroadsideconverter.md) — 官方英文摘要: Convert azimuth angle to broadside angle or broadside angle to azimuth angle **完整正文**
 
 ## Beamforming and Direction of Arrival Estimation / Space-Time Adaptive Processing
 
-- SMI Beamformer — 官方英文摘要: Sample matrix inversion (SMI) beamformer **仅元数据，中英文正文待补**
-- DPCA Canceller — 官方英文摘要: Displaced phase center array (DPCA) pulse canceller for a uniform linear array **仅元数据，中英文正文待补**
-- ADPCA Canceller — 官方英文摘要: Adaptive displaced phase center array (ADPCA) pulse canceller for a uniform linear array **仅元数据，中英文正文待补**
-- Angle Doppler Response — 官方英文摘要: Angle-Doppler response **仅元数据，中英文正文待补**
-- Data Cube Slicer — 官方英文摘要: Slice data cube along specified dimensions **仅元数据，中英文正文待补**
+- [SMI Beamformer](../../zh/products/phased/ref/smibeamformer.md) — 官方英文摘要: Sample matrix inversion (SMI) beamformer **完整正文**
+- [DPCA Canceller](../../zh/products/phased/ref/dpcacanceller.md) — 官方英文摘要: Displaced phase center array (DPCA) pulse canceller for a uniform linear array **完整正文**
+- [ADPCA Canceller](../../zh/products/phased/ref/adpcacanceller.md) — 官方英文摘要: Adaptive displaced phase center array (ADPCA) pulse canceller for a uniform linear array **完整正文**
+- [Angle Doppler Response](../../zh/products/phased/ref/angledopplerresponse.md) — 官方英文摘要: Angle-Doppler response **完整正文**
+- [Data Cube Slicer](../../zh/products/phased/ref/datacubeslicer.md) — 官方英文摘要: Slice data cube along specified dimensions **完整正文**
 
 ## Detection, Range and Doppler Estimation
 
@@ -133,39 +133,39 @@ language: zh-CN
 
 ## Detection, Range and Doppler Estimation / Detection
 
-- 2-D CFAR Detector — 官方英文摘要: Two-dimensional constant false alarm rate (CFAR) detector **仅元数据，中英文正文待补**
-- CFAR Detector — 官方英文摘要: Constant false alarm rate (CFAR) detector **仅元数据，中英文正文待补**
-- Dechirp Mixer — 官方英文摘要: Dechirping operation on input signal **仅元数据，中英文正文待补**
-- GLRT Detector — 官方英文摘要: Perform generalized likelihood ratio test detection (Since R2023b) **仅元数据，中英文正文待补**
-- LRT Detector — 官方英文摘要: Likelihood ratio test detector (Since R2023b) **仅元数据，中英文正文待补**
-- Matched Filter — 官方英文摘要: Matched filter **仅元数据，中英文正文待补**
-- Pulse Integrator — 官方英文摘要: Coherent or noncoherent pulse integration **仅元数据，中英文正文待补**
-- Stretch Processor — 官方英文摘要: Stretch processor for linear FM waveforms **仅元数据，中英文正文待补**
-- Time Varying Gain — 官方英文摘要: Time varying gain (TVG) control **仅元数据，中英文正文待补**
+- [2-D CFAR Detector](../../zh/products/phased/ref/2dcfardetector.md) — 官方英文摘要: Two-dimensional constant false alarm rate (CFAR) detector **完整正文**
+- [CFAR Detector](../../zh/products/phased/ref/cfardetector.md) — 官方英文摘要: Constant false alarm rate (CFAR) detector **完整正文**
+- [Dechirp Mixer](../../zh/products/phased/ref/dechirpmixer.md) — 官方英文摘要: Dechirping operation on input signal **完整正文**
+- [GLRT Detector](../../zh/products/phased/ref/glrtdetector.md) — 官方英文摘要: Perform generalized likelihood ratio test detection (Since R2023b) **完整正文**
+- [LRT Detector](../../zh/products/phased/ref/lrtdetector.md) — 官方英文摘要: Likelihood ratio test detector (Since R2023b) **完整正文**
+- [Matched Filter](../../zh/products/phased/ref/matchedfilter.md) — 官方英文摘要: Matched filter **完整正文**
+- [Pulse Integrator](../../zh/products/phased/ref/pulseintegrator.md) — 官方英文摘要: Coherent or noncoherent pulse integration **完整正文**
+- [Stretch Processor](../../zh/products/phased/ref/stretchprocessor.md) — 官方英文摘要: Stretch processor for linear FM waveforms **完整正文**
+- [Time Varying Gain](../../zh/products/phased/ref/timevaryinggain.md) — 官方英文摘要: Time varying gain (TVG) control **完整正文**
 
 ## Detection, Range and Doppler Estimation / Localization
 
-- Bistatic Position Estimator — 官方英文摘要: Estimate targets positions using bistatic range and angle measurements (Since R2025a) **仅元数据，中英文正文待补**
-- Range-Angle Position Estimator — 官方英文摘要: Estimate target positions using range-angle measurements (Since R2025a) **仅元数据，中英文正文待补**
-- TDOA Estimator — 官方英文摘要: Estimate time-difference of arrival (Since R2024b) **仅元数据，中英文正文待补**
-- TDOA Position Estimator — 官方英文摘要: Estimate target position from time-difference of arrival (Since R2024b) **仅元数据，中英文正文待补**
-- TOA Estimator — 官方英文摘要: Estimate time of arrival, time-difference of arrival, and position (Since R2024a) **仅元数据，中英文正文待补**
-- TOA Position Estimator — 官方英文摘要: Estimate target position from time-of-arrival estimates and anchor positions (Since R2024b) **仅元数据，中英文正文待补**
-- TSOA Position Estimator — 官方英文摘要: Estimate target position from time-sum of arrival (Since R2025a) **仅元数据，中英文正文待补**
+- [Bistatic Position Estimator](../../zh/products/phased/ref/bistaticpositionestimator.md) — 官方英文摘要: Estimate targets positions using bistatic range and angle measurements (Since R2025a) **完整正文**
+- [Range-Angle Position Estimator](../../zh/products/phased/ref/rangeanglepositionestimator.md) — 官方英文摘要: Estimate target positions using range-angle measurements (Since R2025a) **完整正文**
+- [TDOA Estimator](../../zh/products/phased/ref/tdoaestimator.md) — 官方英文摘要: Estimate time-difference of arrival (Since R2024b) **完整正文**
+- [TDOA Position Estimator](../../zh/products/phased/ref/tdoapositionestimator.md) — 官方英文摘要: Estimate target position from time-difference of arrival (Since R2024b) **完整正文**
+- [TOA Estimator](../../zh/products/phased/ref/toaestimator.md) — 官方英文摘要: Estimate time of arrival, time-difference of arrival, and position (Since R2024a) **完整正文**
+- [TOA Position Estimator](../../zh/products/phased/ref/toapositionestimator.md) — 官方英文摘要: Estimate target position from time-of-arrival estimates and anchor positions (Since R2024b) **完整正文**
+- [TSOA Position Estimator](../../zh/products/phased/ref/tsoapositionestimator.md) — 官方英文摘要: Estimate target position from time-sum of arrival (Since R2025a) **完整正文**
 
 ## Detection, Range and Doppler Estimation / Range and Doppler Estimation
 
-- Doppler Estimator — 官方英文摘要: Doppler estimation **仅元数据，中英文正文待补**
-- Range-Angle Response — 官方英文摘要: Obtain range-angle response map for array **仅元数据，中英文正文待补**
-- Range-Doppler Response — 官方英文摘要: Range-Doppler response **仅元数据，中英文正文待补**
-- Range Estimator — 官方英文摘要: Range estimation **仅元数据，中英文正文待补**
-- Range Response — 官方英文摘要: Range response **仅元数据，中英文正文待补**
+- [Doppler Estimator](../../zh/products/phased/ref/dopplerestimator.md) — 官方英文摘要: Doppler estimation **完整正文**
+- [Range-Angle Response](../../zh/products/phased/ref/rangeangleresponse.md) — 官方英文摘要: Obtain range-angle response map for array **完整正文**
+- [Range-Doppler Response](../../zh/products/phased/ref/rangedopplerresponse.md) — 官方英文摘要: Range-Doppler response **完整正文**
+- [Range Estimator](../../zh/products/phased/ref/rangeestimator.md) — 官方英文摘要: Range estimation **完整正文**
+- [Range Response](../../zh/products/phased/ref/rangeresponse.md) — 官方英文摘要: Range response **完整正文**
 
 ## Detection, Range and Doppler Estimation / Visualization
 
-- Angle-Time Intensity Scope — 官方英文摘要: Angle-time intensity scope (Since R2022b) **仅元数据，中英文正文待补**
-- Doppler-Time Intensity Scope — 官方英文摘要: Doppler-time intensity scope (Since R2022a) **仅元数据，中英文正文待补**
-- Range-Time Intensity Scope — 官方英文摘要: Range-time intensity scope (Since R2022a) **仅元数据，中英文正文待补**
+- [Angle-Time Intensity Scope](../../zh/products/phased/ref/angletimeintensityscope.md) — 官方英文摘要: Angle-time intensity scope (Since R2022b) **完整正文**
+- [Doppler-Time Intensity Scope](../../zh/products/phased/ref/dopplertimeintensityscope.md) — 官方英文摘要: Doppler-time intensity scope (Since R2022a) **完整正文**
+- [Range-Time Intensity Scope](../../zh/products/phased/ref/rangetimeintensityscope.md) — 官方英文摘要: Range-time intensity scope (Since R2022a) **完整正文**
 
 ## Waveform Design and Signal Synthesis
 
@@ -174,38 +174,38 @@ language: zh-CN
 
 ## Waveform Design and Signal Synthesis / Pulsed Waveforms
 
-- Custom FM Waveform — 官方英文摘要: Custom FM pulse waveform (Since R2023a) **仅元数据，中英文正文待补**
-- Linear FM Waveform — 官方英文摘要: Linear FM (LFM) pulse waveform **仅元数据，中英文正文待补**
-- Nonlinear FM Waveform — 官方英文摘要: Nonlinear FM pulse waveform (Since R2023a) **仅元数据，中英文正文待补**
-- Phase Coded Waveform — 官方英文摘要: Phase-coded pulse waveform **仅元数据，中英文正文待补**
-- Rectangular Waveform — 官方英文摘要: Rectangular pulse waveform **仅元数据，中英文正文待补**
-- Stepped FM Waveform — 官方英文摘要: Stepped FM pulse waveform **仅元数据，中英文正文待补**
+- [Custom FM Waveform](../../zh/products/phased/ref/customfmwaveform.md) — 官方英文摘要: Custom FM pulse waveform (Since R2023a) **完整正文**
+- [Linear FM Waveform](../../zh/products/phased/ref/linearfmwaveform.md) — 官方英文摘要: Linear FM (LFM) pulse waveform **完整正文**
+- [Nonlinear FM Waveform](../../zh/products/phased/ref/nonlinearfmwaveform.md) — 官方英文摘要: Nonlinear FM pulse waveform (Since R2023a) **完整正文**
+- [Phase Coded Waveform](../../zh/products/phased/ref/phasecodedwaveform.md) — 官方英文摘要: Phase-coded pulse waveform **完整正文**
+- [Rectangular Waveform](../../zh/products/phased/ref/rectangularwaveform.md) — 官方英文摘要: Rectangular pulse waveform **完整正文**
+- [Stepped FM Waveform](../../zh/products/phased/ref/steppedfmwaveform.md) — 官方英文摘要: Stepped FM pulse waveform **完整正文**
 
 ## Waveform Design and Signal Synthesis / Continuous Waveforms
 
-- FMCW Waveform — 官方英文摘要: Frequency-modulated continuous (FMCW) waveform source **仅元数据，中英文正文待补**
-- MFSK Waveform — 官方英文摘要: Multiple frequency shift keying (MFSK) continuous waveform **仅元数据，中英文正文待补**
+- [FMCW Waveform](../../zh/products/phased/ref/fmcwwaveform.md) — 官方英文摘要: Frequency-modulated continuous (FMCW) waveform source **完整正文**
+- [MFSK Waveform](../../zh/products/phased/ref/mfskwaveform.md) — 官方英文摘要: Multiple frequency shift keying (MFSK) continuous waveform **完整正文**
 
 ## Waveform Design and Signal Synthesis / Matched Filter and Ambiguity Function
 
-- Matched Filter — 官方英文摘要: Matched filter **仅元数据，中英文正文待补**
+- [Matched Filter](../../zh/products/phased/ref/matchedfilter.md) — 官方英文摘要: Matched filter **完整正文**
 
 ## Waveform Design and Signal Synthesis / Signal Propagation and Targets
 
-- Radar Target — 官方英文摘要: Radar target **仅元数据，中英文正文待补**
-- Backscatter Radar Target — 官方英文摘要: Backscatter radar target **仅元数据，中英文正文待补**
-- Wideband Backscatter Radar Target — 官方英文摘要: Backscatter wideband signals from radar target **仅元数据，中英文正文待补**
-- Free Space — 官方英文摘要: Free space environment **仅元数据，中英文正文待补**
-- LOS Channel — 官方英文摘要: Narrowband line-of-sight propagation channel **仅元数据，中英文正文待补**
-- Scattering MIMO Channel — 官方英文摘要: Scattering MIMO propagation channel **仅元数据，中英文正文待补**
-- Wideband Free Space — 官方英文摘要: Wideband free space environment **仅元数据，中英文正文待补**
-- Wideband LOS Channel — 官方英文摘要: Wideband line-of-sight propagation channel **仅元数据，中英文正文待补**
-- Range Angle Calculator — 官方英文摘要: Range and angle calculations **仅元数据，中英文正文待补**
-- Azimuth Broadside Converter — 官方英文摘要: Convert azimuth angle to broadside angle or broadside angle to azimuth angle **仅元数据，中英文正文待补**
+- [Radar Target](../../zh/products/phased/ref/radartarget.md) — 官方英文摘要: Radar target **完整正文**
+- [Backscatter Radar Target](../../zh/products/phased/ref/backscatterradartarget.md) — 官方英文摘要: Backscatter radar target **完整正文**
+- [Wideband Backscatter Radar Target](../../zh/products/phased/ref/widebandbackscatterradartarget.md) — 官方英文摘要: Backscatter wideband signals from radar target **完整正文**
+- [Free Space](../../zh/products/phased/ref/freespace.md) — 官方英文摘要: Free space environment **完整正文**
+- [LOS Channel](../../zh/products/phased/ref/loschannel.md) — 官方英文摘要: Narrowband line-of-sight propagation channel **完整正文**
+- [Scattering MIMO Channel](../../zh/products/phased/ref/scatteringmimochannel.md) — 官方英文摘要: Scattering MIMO propagation channel **完整正文**
+- [Wideband Free Space](../../zh/products/phased/ref/widebandfreespace.md) — 官方英文摘要: Wideband free space environment **完整正文**
+- [Wideband LOS Channel](../../zh/products/phased/ref/widebandloschannelblock.md) — 官方英文摘要: Wideband line-of-sight propagation channel **完整正文**
+- [Range Angle Calculator](../../zh/products/phased/ref/rangeanglecalculator.md) — 官方英文摘要: Range and angle calculations **完整正文**
+- [Azimuth Broadside Converter](../../zh/products/phased/ref/azimuthbroadsideconverter.md) — 官方英文摘要: Convert azimuth angle to broadside angle or broadside angle to azimuth angle **完整正文**
 
 ## Waveform Design and Signal Synthesis / Motion Modeling and Coordinate Systems
 
-- Motion Platform — 官方英文摘要: Motion platform **仅元数据，中英文正文待补**
+- [Motion Platform](../../zh/products/phased/ref/motionplatform.md) — 官方英文摘要: Motion platform **完整正文**
 
 ## Algorithm Acceleration and Code Generation
 

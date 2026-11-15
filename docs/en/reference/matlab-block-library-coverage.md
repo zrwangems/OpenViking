@@ -7,8 +7,8 @@ Completeness is measured against every official product `referencelist_block_cat
 - Products without an official block-library XML: **59** (not silently counted as empty third-party libraries)
 - Product/library/block occurrences: **5431**
 - Unique product/documentation paths: **4603**
-- Existing full English pages: **333**; Chinese pages: **333**
-- Pending full English pages: **4270**; Chinese pages: **4270**
+- Existing full English pages: **4603**; Chinese pages: **4603**
+- Pending full English pages: **0**; Chinese pages: **0**
 
 Third-party, support-package and locally licensed libraries are outside this public product catalog. They must be enumerated from the user's MATLAB installation and are not fabricated here. HTTP failures, license-denied pages and fetch failures are represented as gaps, never as successful documents.
 

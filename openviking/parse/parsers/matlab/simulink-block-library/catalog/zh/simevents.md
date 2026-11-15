@@ -19,29 +19,29 @@ language: zh-CN
 
 ## Queue, Service, and Route Modeling / Generate and Destroy Entities and Messages
 
-- Entity Generator — 官方英文摘要: Generate entities **仅元数据，中英文正文待补**
-- Entity Terminator — 官方英文摘要: Terminate entities **仅元数据，中英文正文待补**
-- Entity Replicator — 官方英文摘要: Replicate entities **仅元数据，中英文正文待补**
-- Hit Crossing — 官方英文摘要: Detect crossing point **仅元数据，中英文正文待补**
-- Message Send — 官方英文摘要: Create and send message **仅元数据，中英文正文待补**
-- Message Receive — 官方英文摘要: Receive messages **仅元数据，中英文正文待补**
+- [Entity Generator](../../zh/products/simevents/ref/entitygenerator.md) — 官方英文摘要: Generate entities **完整正文**
+- [Entity Terminator](../../zh/products/simevents/ref/entityterminator.md) — 官方英文摘要: Terminate entities **完整正文**
+- [Entity Replicator](../../zh/products/simevents/ref/entityreplicator.md) — 官方英文摘要: Replicate entities **完整正文**
+- [Hit Crossing](../../zh/products/simevents/ref/hitcrossing.md) — 官方英文摘要: Detect crossing point **完整正文**
+- [Message Send](../../zh/products/simevents/ref/send.md) — 官方英文摘要: Create and send message **完整正文**
+- [Message Receive](../../zh/products/simevents/ref/receive.md) — 官方英文摘要: Receive messages **完整正文**
 
 ## Queue, Service, and Route Modeling / Queue and Service
 
-- Entity Queue — 官方英文摘要: Enqueue messages and entities **仅元数据，中英文正文待补**
-- Entity Store — 官方英文摘要: Store entities **仅元数据，中英文正文待补**
-- Entity Server — 官方英文摘要: Serve entities **仅元数据，中英文正文待补**
-- Entity Transport Delay — 官方英文摘要: Introduce a delay in propagation of a SimEvents message **仅元数据，中英文正文待补**
-- Conveyor System — 官方英文摘要: Transport entities **仅元数据，中英文正文待补**
+- [Entity Queue](../../zh/products/simevents/ref/queue.md) — 官方英文摘要: Enqueue messages and entities **完整正文**
+- [Entity Store](../../zh/products/simevents/ref/entitystore.md) — 官方英文摘要: Store entities **完整正文**
+- [Entity Server](../../zh/products/simevents/ref/entityserver.md) — 官方英文摘要: Serve entities **完整正文**
+- [Entity Transport Delay](../../zh/products/simevents/ref/entitytransportdelay.md) — 官方英文摘要: Introduce a delay in propagation of a SimEvents message **完整正文**
+- [Conveyor System](../../zh/products/simevents/ref/conveyorsystem.md) — 官方英文摘要: Transport entities **完整正文**
 
 ## Queue, Service, and Route Modeling / Route Entities and Simulink Messages
 
-- Entity Gate — 官方英文摘要: Gate entities **仅元数据，中英文正文待补**
-- Entity Input Switch — 官方英文摘要: Switch input entities **仅元数据，中英文正文待补**
-- Entity Multicast — 官方英文摘要: Send multicast entities **仅元数据，中英文正文待补**
-- Entity Output Switch — 官方英文摘要: Output entities **仅元数据，中英文正文待补**
-- Entity Selector — 官方英文摘要: Select entities **仅元数据，中英文正文待补**
-- Multicast Receive Queue — 官方英文摘要: Receive multicast entities **仅元数据，中英文正文待补**
+- [Entity Gate](../../zh/products/simevents/ref/entitygate.md) — 官方英文摘要: Gate entities **完整正文**
+- [Entity Input Switch](../../zh/products/simevents/ref/entityinputswitch.md) — 官方英文摘要: Switch input entities **完整正文**
+- [Entity Multicast](../../zh/products/simevents/ref/entitymulticast.md) — 官方英文摘要: Send multicast entities **完整正文**
+- [Entity Output Switch](../../zh/products/simevents/ref/entityoutputswitch.md) — 官方英文摘要: Output entities **完整正文**
+- [Entity Selector](../../zh/products/simevents/ref/entityselector.md) — 官方英文摘要: Select entities **完整正文**
+- [Multicast Receive Queue](../../zh/products/simevents/ref/multicastreceivequeue.md) — 官方英文摘要: Receive multicast entities **完整正文**
 
 ## Queue, Service, and Route Modeling / Entity Attributes and Entity Priorities
 
@@ -50,13 +50,13 @@ language: zh-CN
 
 ## Queue, Service, and Route Modeling / Events
 
-- Entity Batch Creator — 官方英文摘要: Create batch of entities **仅元数据，中英文正文待补**
-- Entity Generator — 官方英文摘要: Generate entities **仅元数据，中英文正文待补**
-- Entity Queue — 官方英文摘要: Enqueue messages and entities **仅元数据，中英文正文待补**
-- Entity Server — 官方英文摘要: Serve entities **仅元数据，中英文正文待补**
-- Entity Store — 官方英文摘要: Store entities **仅元数据，中英文正文待补**
-- Entity Terminator — 官方英文摘要: Terminate entities **仅元数据，中英文正文待补**
-- Resource Acquirer — 官方英文摘要: Acquire entity resources **仅元数据，中英文正文待补**
+- [Entity Batch Creator](../../zh/products/simevents/ref/entitybatchcreator.md) — 官方英文摘要: Create batch of entities **完整正文**
+- [Entity Generator](../../zh/products/simevents/ref/entitygenerator.md) — 官方英文摘要: Generate entities **完整正文**
+- [Entity Queue](../../zh/products/simevents/ref/queue.md) — 官方英文摘要: Enqueue messages and entities **完整正文**
+- [Entity Server](../../zh/products/simevents/ref/entityserver.md) — 官方英文摘要: Serve entities **完整正文**
+- [Entity Store](../../zh/products/simevents/ref/entitystore.md) — 官方英文摘要: Store entities **完整正文**
+- [Entity Terminator](../../zh/products/simevents/ref/entityterminator.md) — 官方英文摘要: Terminate entities **完整正文**
+- [Resource Acquirer](../../zh/products/simevents/ref/resourceacquirer.md) — 官方英文摘要: Acquire entity resources **完整正文**
 
 ## Queue, Service, and Route Modeling / Migrate Legacy SimEvents Models
 
@@ -65,14 +65,14 @@ language: zh-CN
 
 ## Resource Allocation Modeling
 
-- Composite Entity Creator — 官方英文摘要: Create composite entities **仅元数据，中英文正文待补**
-- Composite Entity Splitter — 官方英文摘要: Split composite entities **仅元数据，中英文正文待补**
-- Entity Batch Creator — 官方英文摘要: Create batch of entities **仅元数据，中英文正文待补**
-- Entity Batch Splitter — 官方英文摘要: Split batch entities **仅元数据，中英文正文待补**
-- Resource Acquirer — 官方英文摘要: Acquire entity resources **仅元数据，中英文正文待补**
-- Resource Pool — 官方英文摘要: Pool entity resources **仅元数据，中英文正文待补**
-- Resource Releaser — 官方英文摘要: Release entity resources **仅元数据，中英文正文待补**
-- Entity Find — 官方英文摘要: Find entities **仅元数据，中英文正文待补**
+- [Composite Entity Creator](../../zh/products/simevents/ref/compositeentitycreator.md) — 官方英文摘要: Create composite entities **完整正文**
+- [Composite Entity Splitter](../../zh/products/simevents/ref/compositeentitysplitter.md) — 官方英文摘要: Split composite entities **完整正文**
+- [Entity Batch Creator](../../zh/products/simevents/ref/entitybatchcreator.md) — 官方英文摘要: Create batch of entities **完整正文**
+- [Entity Batch Splitter](../../zh/products/simevents/ref/entitybatchsplitter.md) — 官方英文摘要: Split batch entities **完整正文**
+- [Resource Acquirer](../../zh/products/simevents/ref/resourceacquirer.md) — 官方英文摘要: Acquire entity resources **完整正文**
+- [Resource Pool](../../zh/products/simevents/ref/resourcepool.md) — 官方英文摘要: Pool entity resources **完整正文**
+- [Resource Releaser](../../zh/products/simevents/ref/resourcereleaser.md) — 官方英文摘要: Release entity resources **完整正文**
+- [Entity Find](../../zh/products/simevents/ref/entityfind.md) — 官方英文摘要: Find entities **完整正文**
 
 ## Simulation, Debugging, and Visualization
 
@@ -81,7 +81,7 @@ language: zh-CN
 
 ## Simulation, Debugging, and Visualization / Debug Simulation
 
-- SimEvents Debugger — 官方英文摘要: Debug SimEvents models **仅元数据，中英文正文待补**
+- [SimEvents Debugger](../../zh/products/simevents/ref/simeventsdebugger.md) — 官方英文摘要: Debug SimEvents models **完整正文**
 
 ## Simulation, Debugging, and Visualization / Create Custom Visualization
 
@@ -90,7 +90,7 @@ language: zh-CN
 
 ## Statistics and Data Analysis
 
-- Sequence Viewer — 官方英文摘要: Display messages, events, states, transitions, and functions between blocks during simulation **仅元数据，中英文正文待补**
+- [Sequence Viewer](../../zh/products/simevents/ref/sequenceviewer.md) — 官方英文摘要: Display messages, events, states, transitions, and functions between blocks during simulation **完整正文**
 
 ## Interface with Simulink
 
@@ -104,11 +104,11 @@ language: zh-CN
 
 ## Block Authoring / Discrete-Event System Objects
 
-- MATLAB Discrete-Event System — 官方英文摘要: MATLAB discrete-event system **仅元数据，中英文正文待补**
+- [MATLAB Discrete-Event System](../../zh/products/simevents/ref/matlabdiscreteeventsystem.md) — 官方英文摘要: MATLAB discrete-event system **完整正文**
 
 ## Block Authoring / Implement Discrete-Event Systems with Charts
 
-- Discrete-Event Chart — 官方英文摘要: Discrete event chart **仅元数据，中英文正文待补**
+- [Discrete-Event Chart](../../zh/products/simevents/ref/discreteeventchart.md) — 官方英文摘要: Discrete event chart **完整正文**
 
 ## Block Authoring / Create Custom Visualization
 

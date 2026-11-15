@@ -74,4 +74,4 @@ No direct block entries.
 
 ## Lidar Data Acquisition and Sensor Simulation / Sensor Simulation
 
-- Lidar Sensor — Official summary: Generate lidar point cloud data for a scene (Since R2023a) **metadata only; full English and Chinese documents pending**
+- [Lidar Sensor](../../en/products/lidar/ref/lidarsensor.md) — Official summary: Generate lidar point cloud data for a scene (Since R2023a) **full document**

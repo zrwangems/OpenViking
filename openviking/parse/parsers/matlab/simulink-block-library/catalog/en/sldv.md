@@ -59,14 +59,14 @@ No direct block entries.
 
 ## Specify and Verify Design Requirements
 
-- Proof Assumption — Official summary: Constrain signal values when proving model properties **metadata only; full English and Chinese documents pending**
-- Proof Objective — Official summary: Define objectives that signals must satisfy when proving model properties **metadata only; full English and Chinese documents pending**
-- Assertion — Official summary: Check whether signal is zero **metadata only; full English and Chinese documents pending**
-- Detector — Official summary: Detect true duration on input and construct output true duration based on output type **metadata only; full English and Chinese documents pending**
-- Extender — Official summary: Extend true duration of input **metadata only; full English and Chinese documents pending**
-- Implies — Official summary: Specify condition that produces a certain response **metadata only; full English and Chinese documents pending**
-- Within Implies — Official summary: Verify response occurs within desired duration **metadata only; full English and Chinese documents pending**
-- Verification Subsystem — Official summary: Specify proof or test objectives without impacting simulation results or generated code **metadata only; full English and Chinese documents pending**
+- [Proof Assumption](../../en/products/sldv/ref/proofassumption.md) — Official summary: Constrain signal values when proving model properties **full document**
+- [Proof Objective](../../en/products/sldv/ref/proofobjective.md) — Official summary: Define objectives that signals must satisfy when proving model properties **full document**
+- [Assertion](../../en/products/sldv/../simulink/slref/assertion.md) — Official summary: Check whether signal is zero **full document**
+- [Detector](../../en/products/sldv/ref/detector.md) — Official summary: Detect true duration on input and construct output true duration based on output type **full document**
+- [Extender](../../en/products/sldv/ref/extender.md) — Official summary: Extend true duration of input **full document**
+- [Implies](../../en/products/sldv/ref/implies.md) — Official summary: Specify condition that produces a certain response **full document**
+- [Within Implies](../../en/products/sldv/ref/withinimplies.md) — Official summary: Verify response occurs within desired duration **full document**
+- [Verification Subsystem](../../en/products/sldv/ref/verificationsubsystem.md) — Official summary: Specify proof or test objectives without impacting simulation results or generated code **full document**
 
 ## Generate Tests
 
@@ -75,13 +75,13 @@ No direct block entries.
 
 ## Generate Tests / Basics of Test Generation
 
-- Test Condition — Official summary: Constrain signal values in test cases **metadata only; full English and Chinese documents pending**
-- Test Objective — Official summary: Define custom objectives that signals must satisfy in test cases **metadata only; full English and Chinese documents pending**
-- Detector — Official summary: Detect true duration on input and construct output true duration based on output type **metadata only; full English and Chinese documents pending**
-- Extender — Official summary: Extend true duration of input **metadata only; full English and Chinese documents pending**
-- Implies — Official summary: Specify condition that produces a certain response **metadata only; full English and Chinese documents pending**
-- Within Implies — Official summary: Verify response occurs within desired duration **metadata only; full English and Chinese documents pending**
-- Verification Subsystem — Official summary: Specify proof or test objectives without impacting simulation results or generated code **metadata only; full English and Chinese documents pending**
+- [Test Condition](../../en/products/sldv/ref/testcondition.md) — Official summary: Constrain signal values in test cases **full document**
+- [Test Objective](../../en/products/sldv/ref/testobjective.md) — Official summary: Define custom objectives that signals must satisfy in test cases **full document**
+- [Detector](../../en/products/sldv/ref/detector.md) — Official summary: Detect true duration on input and construct output true duration based on output type **full document**
+- [Extender](../../en/products/sldv/ref/extender.md) — Official summary: Extend true duration of input **full document**
+- [Implies](../../en/products/sldv/ref/implies.md) — Official summary: Specify condition that produces a certain response **full document**
+- [Within Implies](../../en/products/sldv/ref/withinimplies.md) — Official summary: Verify response occurs within desired duration **full document**
+- [Verification Subsystem](../../en/products/sldv/ref/verificationsubsystem.md) — Official summary: Specify proof or test objectives without impacting simulation results or generated code **full document**
 
 ## Generate Tests / Tests for Functional Requirements
 

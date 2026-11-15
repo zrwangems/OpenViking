@@ -304,33 +304,33 @@ language: zh-CN
 
 ## Embedded Implementation / Fixed-Point Math Operations in MATLAB and Simulink / Activation Functions
 
-- CORDIC Sigmoid HDL Optimized — 官方英文摘要: Compute CORDIC-based sigmoid activation and generate optimized HDL code (Since R2024a) **仅元数据，中英文正文待补**
+- [CORDIC Sigmoid HDL Optimized](../../zh/products/fixedpoint/ref/cordicsigmoidhdloptimized.md) — 官方英文摘要: Compute CORDIC-based sigmoid activation and generate optimized HDL code (Since R2024a) **完整正文**
 
 ## Embedded Implementation / Fixed-Point Math Operations in MATLAB and Simulink / Arithmetic Operations
 
-- Complex Divide HDL Optimized — 官方英文摘要: Divide one input by another using CORDIC algorithm and generate optimized HDL code (Since R2021a) **仅元数据，中英文正文待补**
-- Real Divide HDL Optimized — 官方英文摘要: Divide one real input by another using CORDIC algorithm and generate optimized HDL code (Since R2021a) **仅元数据，中英文正文待补**
-- Divide by Constant HDL Optimized — 官方英文摘要: Divide input by a constant and round to integer and generate optimized HDL code (Since R2021a) **仅元数据，中英文正文待补**
-- Divide by Constant and Round — 官方英文摘要: Divide input by a constant and round to integer (Since R2021a) **仅元数据，中英文正文待补**
-- Modulo by Constant HDL Optimized — 官方英文摘要: Perform mod operation with a constant denominator and generate optimized HDL code (Since R2021a) **仅元数据，中英文正文待补**
-- Modulo by Constant — 官方英文摘要: Perform modulo operation with a constant denominator (Since R2021a) **仅元数据，中英文正文待补**
-- Normalized Reciprocal HDL Optimized — 官方英文摘要: Computes normalized reciprocal using CORDIC algorithm and generates optimized HDL code **仅元数据，中英文正文待补**
-- Real Reciprocal HDL Optimized — 官方英文摘要: Compute reciprocal using CORDIC algorithm and generate optimized HDL code (Since R2021a) **仅元数据，中英文正文待补**
-- CORDIC Square Root HDL Optimized — 官方英文摘要: CORDIC-based approximation of square root (Since R2024a) **仅元数据，中英文正文待补**
+- [Complex Divide HDL Optimized](../../zh/products/fixedpoint/ref/complexdividehdloptimized.md) — 官方英文摘要: Divide one input by another using CORDIC algorithm and generate optimized HDL code (Since R2021a) **完整正文**
+- [Real Divide HDL Optimized](../../zh/products/fixedpoint/ref/realdividehdloptimized.md) — 官方英文摘要: Divide one real input by another using CORDIC algorithm and generate optimized HDL code (Since R2021a) **完整正文**
+- [Divide by Constant HDL Optimized](../../zh/products/fixedpoint/ref/dividebyconstanthdloptimized.md) — 官方英文摘要: Divide input by a constant and round to integer and generate optimized HDL code (Since R2021a) **完整正文**
+- [Divide by Constant and Round](../../zh/products/fixedpoint/ref/dividebyconstantandround.md) — 官方英文摘要: Divide input by a constant and round to integer (Since R2021a) **完整正文**
+- [Modulo by Constant HDL Optimized](../../zh/products/fixedpoint/ref/modulobyconstanthdloptimized.md) — 官方英文摘要: Perform mod operation with a constant denominator and generate optimized HDL code (Since R2021a) **完整正文**
+- [Modulo by Constant](../../zh/products/fixedpoint/ref/modulobyconstant.md) — 官方英文摘要: Perform modulo operation with a constant denominator (Since R2021a) **完整正文**
+- [Normalized Reciprocal HDL Optimized](../../zh/products/fixedpoint/ref/normalizedreciprocalhdloptimized.md) — 官方英文摘要: Computes normalized reciprocal using CORDIC algorithm and generates optimized HDL code **完整正文**
+- [Real Reciprocal HDL Optimized](../../zh/products/fixedpoint/ref/realreciprocalhdloptimized.md) — 官方英文摘要: Compute reciprocal using CORDIC algorithm and generate optimized HDL code (Since R2021a) **完整正文**
+- [CORDIC Square Root HDL Optimized](../../zh/products/fixedpoint/ref/cordicsquareroothdloptimized.md) — 官方英文摘要: CORDIC-based approximation of square root (Since R2024a) **完整正文**
 
 ## Embedded Implementation / Fixed-Point Math Operations in MATLAB and Simulink / Complex Numbers
 
-- Complex to Magnitude-Angle — 官方英文摘要: Compute magnitude and phase angle of complex signal using CORDIC algorithm **仅元数据，中英文正文待补**
-- Magnitude-Angle to Complex — 官方英文摘要: Convert magnitude and/or a phase angle signal to complex signal **仅元数据，中英文正文待补**
+- [Complex to Magnitude-Angle](../../zh/products/fixedpoint/../dsphdl/ref/complextomagnitudeangle.md) — 官方英文摘要: Compute magnitude and phase angle of complex signal using CORDIC algorithm **完整正文**
+- [Magnitude-Angle to Complex](../../zh/products/fixedpoint/../simulink/slref/magnitudeangletocomplex.md) — 官方英文摘要: Convert magnitude and/or a phase angle signal to complex signal **完整正文**
 
 ## Embedded Implementation / Fixed-Point Math Operations in MATLAB and Simulink / Trigonometric Functions
 
-- Hyperbolic Tangent HDL Optimized — 官方英文摘要: Computes CORDIC-based hyperbolic tangent and generates optimized HDL code **仅元数据，中英文正文待补**
-- Trigonometric Function — 官方英文摘要: Specified trigonometric function on input **仅元数据，中英文正文待补**
+- [Hyperbolic Tangent HDL Optimized](../../zh/products/fixedpoint/ref/hyperbolictangenthdloptimized.md) — 官方英文摘要: Computes CORDIC-based hyperbolic tangent and generates optimized HDL code **完整正文**
+- [Trigonometric Function](../../zh/products/fixedpoint/../simulink/slref/trigonometricfunction.md) — 官方英文摘要: Specified trigonometric function on input **完整正文**
 
 ## Embedded Implementation / Fixed-Point Math Operations in MATLAB and Simulink / Coordinate Transformations
 
-- Euler to NED Transformation HDL Optimized — 官方英文摘要: Computes Euler to North-East-Down transformation using pipelined or burst architecture and generates optimized HDL code (Since R2022b) **仅元数据，中英文正文待补**
+- [Euler to NED Transformation HDL Optimized](../../zh/products/fixedpoint/ref/eulertonedtransformationhdloptimized.md) — 官方英文摘要: Computes Euler to North-East-Down transformation using pipelined or burst architecture and generates optimized HDL code (Since R2022b) **完整正文**
 
 ## Embedded Implementation / Fixed-Point Matrix Operations in Simulink
 
@@ -344,27 +344,27 @@ language: zh-CN
 
 ## Embedded Implementation / Fixed-Point Matrix Operations in Simulink / Linear System Solvers / Solve AX = B
 
-- Real Burst Matrix Solve Using QR Decomposition — 官方英文摘要: Compute the value of x in the equation Ax = B for real-valued matrices using QR decomposition **仅元数据，中英文正文待补**
-- Complex Burst Matrix Solve Using QR Decomposition — 官方英文摘要: Compute the value of x in the equation Ax = B for complex-valued matrices using QR decomposition **仅元数据，中英文正文待补**
-- Real Partial-Systolic Matrix Solve Using QR Decomposition — 官方英文摘要: Compute value of x in the equation Ax = B for real-valued matrices using QR decomposition **仅元数据，中英文正文待补**
-- Complex Partial-Systolic Matrix Solve Using QR Decomposition — 官方英文摘要: Compute value of x in the equation Ax = B for complex-valued matrices using QR decomposition **仅元数据，中英文正文待补**
-- Systolic Matrix Solve Using QR Decomposition — 官方英文摘要: Compute value of X in the equation AX = B using QR decomposition (Since R2024a) **仅元数据，中英文正文待补**
+- [Real Burst Matrix Solve Using QR Decomposition](../../zh/products/fixedpoint/ref/realburstmatrixsolveusingqrdecomposition.md) — 官方英文摘要: Compute the value of x in the equation Ax = B for real-valued matrices using QR decomposition **完整正文**
+- [Complex Burst Matrix Solve Using QR Decomposition](../../zh/products/fixedpoint/ref/complexburstmatrixsolveusingqrdecomposition.md) — 官方英文摘要: Compute the value of x in the equation Ax = B for complex-valued matrices using QR decomposition **完整正文**
+- [Real Partial-Systolic Matrix Solve Using QR Decomposition](../../zh/products/fixedpoint/ref/realpartialsystolicmatrixsolveusingqrdecomposition.md) — 官方英文摘要: Compute value of x in the equation Ax = B for real-valued matrices using QR decomposition **完整正文**
+- [Complex Partial-Systolic Matrix Solve Using QR Decomposition](../../zh/products/fixedpoint/ref/complexpartialsystolicmatrixsolveusingqrdecomposition.md) — 官方英文摘要: Compute value of x in the equation Ax = B for complex-valued matrices using QR decomposition **完整正文**
+- [Systolic Matrix Solve Using QR Decomposition](../../zh/products/fixedpoint/ref/systolicmatrixsolveusingqrdecomposition.md) — 官方英文摘要: Compute value of X in the equation AX = B using QR decomposition (Since R2024a) **完整正文**
 
 ## Embedded Implementation / Fixed-Point Matrix Operations in Simulink / Linear System Solvers / Solve A'AX = B
 
-- Real Burst Matrix Solve Using Q-less QR Decomposition — 官方英文摘要: Compute the value of X in the equation A'AX = B for real-valued matrices using Q-less QR decomposition **仅元数据，中英文正文待补**
-- Complex Burst Matrix Solve Using Q-less QR Decomposition — 官方英文摘要: Compute the value of X in the equation A'AX = B for complex-valued matrices using Q-less QR decomposition **仅元数据，中英文正文待补**
-- Real Burst Asynchronous Matrix Solve Using Q-less QR Decomposition — 官方英文摘要: Compute the value of X in the equation A'AX = B for real-valued matrices using asynchronous Q-less QR decomposition (Since R2022b) **仅元数据，中英文正文待补**
-- Complex Burst Asynchronous Matrix Solve Using Q-less QR Decomposition — 官方英文摘要: Compute the value of X in the equation A'AX = B for complex-valued matrices using asynchronous Q-less QR decomposition (Since R2022b) **仅元数据，中英文正文待补**
-- Real Partial-Systolic Matrix Solve Using Q-less QR Decomposition — 官方英文摘要: Compute value of X in the equation A'AX = B for real-valued matrices using Q-less QR decomposition **仅元数据，中英文正文待补**
-- Complex Partial-Systolic Matrix Solve Using Q-less QR Decomposition — 官方英文摘要: Compute the value of X in the equation A'AX = B for complex-valued matrices using Q-less QR decomposition **仅元数据，中英文正文待补**
+- [Real Burst Matrix Solve Using Q-less QR Decomposition](../../zh/products/fixedpoint/ref/realburstmatrixsolveusingqlessqrdecomposition.md) — 官方英文摘要: Compute the value of X in the equation A'AX = B for real-valued matrices using Q-less QR decomposition **完整正文**
+- [Complex Burst Matrix Solve Using Q-less QR Decomposition](../../zh/products/fixedpoint/ref/complexburstmatrixsolveusingqlessqrdecomposition.md) — 官方英文摘要: Compute the value of X in the equation A'AX = B for complex-valued matrices using Q-less QR decomposition **完整正文**
+- [Real Burst Asynchronous Matrix Solve Using Q-less QR Decomposition](../../zh/products/fixedpoint/ref/realburstasynchronousmatrixsolveusingqlessqrdecomposition.md) — 官方英文摘要: Compute the value of X in the equation A'AX = B for real-valued matrices using asynchronous Q-less QR decomposition (Since R2022b) **完整正文**
+- [Complex Burst Asynchronous Matrix Solve Using Q-less QR Decomposition](../../zh/products/fixedpoint/ref/complexburstasynchronousmatrixsolveusingqlessqrdecomposition.md) — 官方英文摘要: Compute the value of X in the equation A'AX = B for complex-valued matrices using asynchronous Q-less QR decomposition (Since R2022b) **完整正文**
+- [Real Partial-Systolic Matrix Solve Using Q-less QR Decomposition](../../zh/products/fixedpoint/ref/realpartialsystolicmatrixsolveusingqlessqrdecomposition.md) — 官方英文摘要: Compute value of X in the equation A'AX = B for real-valued matrices using Q-less QR decomposition **完整正文**
+- [Complex Partial-Systolic Matrix Solve Using Q-less QR Decomposition](../../zh/products/fixedpoint/ref/complexpartialsystolicmatrixsolveusingqlessqrdecomposition.md) — 官方英文摘要: Compute the value of X in the equation A'AX = B for complex-valued matrices using Q-less QR decomposition **完整正文**
 
 ## Embedded Implementation / Fixed-Point Matrix Operations in Simulink / Linear System Solvers / Solve A'AX = B with Infinitely Tall A Matrix
 
-- Real Burst Matrix Solve Using Q-less QR Decomposition with Forgetting Factor — 官方英文摘要: Compute the value of X in the equation A'AX = B for real-valued matrices with infinite number of rows using asynchronous Q-less QR decomposition (Since R2022b) **仅元数据，中英文正文待补**
-- Complex Burst Matrix Solve Using Q-less QR Decomposition with Forgetting Factor — 官方英文摘要: Compute the value of X in the equation A'AX = B for complex-valued matrices with infinite number of rows using asynchronous Q-less QR decomposition (Since R2022b) **仅元数据，中英文正文待补**
-- Real Partial-Systolic Matrix Solve Using Q-less QR Decomposition with Forgetting Factor — 官方英文摘要: Compute value of X in the equation A'AX = B for real-valued matrices with infinite number of rows using Q-less QR decomposition **仅元数据，中英文正文待补**
-- Complex Partial-Systolic Matrix Solve Using Q-less QR Decomposition with Forgetting Factor — 官方英文摘要: Compute the value of X in the equation A'AX = B for complex-valued matrices with infinite number of rows using Q-less QR decomposition **仅元数据，中英文正文待补**
+- [Real Burst Matrix Solve Using Q-less QR Decomposition with Forgetting Factor](../../zh/products/fixedpoint/ref/realburstmatrixsolveusingqlessqrdecompositionwithforgettingfactor.md) — 官方英文摘要: Compute the value of X in the equation A'AX = B for real-valued matrices with infinite number of rows using asynchronous Q-less QR decomposition (Since R2022b) **完整正文**
+- [Complex Burst Matrix Solve Using Q-less QR Decomposition with Forgetting Factor](../../zh/products/fixedpoint/ref/complexburstmatrixsolveusingqlessqrdecompositionwithforgettingfactor.md) — 官方英文摘要: Compute the value of X in the equation A'AX = B for complex-valued matrices with infinite number of rows using asynchronous Q-less QR decomposition (Since R2022b) **完整正文**
+- [Real Partial-Systolic Matrix Solve Using Q-less QR Decomposition with Forgetting Factor](../../zh/products/fixedpoint/ref/realpartialsystolicmatrixsolveusingqlessqrdecompositionwithforgettingfactor.md) — 官方英文摘要: Compute value of X in the equation A'AX = B for real-valued matrices with infinite number of rows using Q-less QR decomposition **完整正文**
+- [Complex Partial-Systolic Matrix Solve Using Q-less QR Decomposition with Forgetting Factor](../../zh/products/fixedpoint/ref/complexpartialsystolicmatrixsolveusingqlessqrdecompositionwithforgettingfactor.md) — 官方英文摘要: Compute the value of X in the equation A'AX = B for complex-valued matrices with infinite number of rows using Q-less QR decomposition **完整正文**
 
 ## Embedded Implementation / Fixed-Point Matrix Operations in Simulink / Matrix Factorizations
 
@@ -373,32 +373,32 @@ language: zh-CN
 
 ## Embedded Implementation / Fixed-Point Matrix Operations in Simulink / Matrix Factorizations / QR Decomposition
 
-- Real Burst QR Decomposition — 官方英文摘要: QR decomposition for real-valued matrices **仅元数据，中英文正文待补**
-- Complex Burst QR Decomposition — 官方英文摘要: QR decomposition for complex-valued matrices **仅元数据，中英文正文待补**
-- Real Partial-Systolic QR Decomposition — 官方英文摘要: QR decomposition for real-valued matrices **仅元数据，中英文正文待补**
-- Complex Partial-Systolic QR Decomposition — 官方英文摘要: QR decomposition for complex-valued matrices **仅元数据，中英文正文待补**
-- Systolic QR Decomposition — 官方英文摘要: QR decomposition for matrices (Since R2024a) **仅元数据，中英文正文待补**
+- [Real Burst QR Decomposition](../../zh/products/fixedpoint/ref/realburstqrdecomposition.md) — 官方英文摘要: QR decomposition for real-valued matrices **完整正文**
+- [Complex Burst QR Decomposition](../../zh/products/fixedpoint/ref/complexburstqrdecomposition.md) — 官方英文摘要: QR decomposition for complex-valued matrices **完整正文**
+- [Real Partial-Systolic QR Decomposition](../../zh/products/fixedpoint/ref/realpartialsystolicqrdecomposition.md) — 官方英文摘要: QR decomposition for real-valued matrices **完整正文**
+- [Complex Partial-Systolic QR Decomposition](../../zh/products/fixedpoint/ref/complexpartialsystolicqrdecomposition.md) — 官方英文摘要: QR decomposition for complex-valued matrices **完整正文**
+- [Systolic QR Decomposition](../../zh/products/fixedpoint/ref/systolicqrdecomposition.md) — 官方英文摘要: QR decomposition for matrices (Since R2024a) **完整正文**
 
 ## Embedded Implementation / Fixed-Point Matrix Operations in Simulink / Matrix Factorizations / Q-less QR Decomposition
 
-- Real Burst Q-less QR Decomposition — 官方英文摘要: Q-less QR decomposition for real-valued matrices **仅元数据，中英文正文待补**
-- Complex Burst Q-less QR Decomposition — 官方英文摘要: Q-less QR decomposition for complex-valued matrices **仅元数据，中英文正文待补**
-- Real Burst Q-less QR Decomposition Whole R Output — 官方英文摘要: Q-less QR decomposition for real-valued matrices (Since R2022b) **仅元数据，中英文正文待补**
-- Complex Burst Q-less QR Decomposition Whole R Output — 官方英文摘要: Q-less QR decomposition for complex-valued matrices (Since R2022b) **仅元数据，中英文正文待补**
-- Real Partial-Systolic Q-less QR Decomposition — 官方英文摘要: Q-less QR decomposition for real-valued matrices **仅元数据，中英文正文待补**
-- Complex Partial-Systolic Q-less QR Decomposition — 官方英文摘要: Q-less QR decomposition for complex-valued matrices **仅元数据，中英文正文待补**
+- [Real Burst Q-less QR Decomposition](../../zh/products/fixedpoint/ref/realburstqlessqrdecomposition.md) — 官方英文摘要: Q-less QR decomposition for real-valued matrices **完整正文**
+- [Complex Burst Q-less QR Decomposition](../../zh/products/fixedpoint/ref/complexburstqlessqrdecomposition.md) — 官方英文摘要: Q-less QR decomposition for complex-valued matrices **完整正文**
+- [Real Burst Q-less QR Decomposition Whole R Output](../../zh/products/fixedpoint/ref/realburstqlessqrdecompositionwholeroutput.md) — 官方英文摘要: Q-less QR decomposition for real-valued matrices (Since R2022b) **完整正文**
+- [Complex Burst Q-less QR Decomposition Whole R Output](../../zh/products/fixedpoint/ref/complexburstqlessqrdecompositionwholeroutput.md) — 官方英文摘要: Q-less QR decomposition for complex-valued matrices (Since R2022b) **完整正文**
+- [Real Partial-Systolic Q-less QR Decomposition](../../zh/products/fixedpoint/ref/realpartialsystolicqlessqrdecomposition.md) — 官方英文摘要: Q-less QR decomposition for real-valued matrices **完整正文**
+- [Complex Partial-Systolic Q-less QR Decomposition](../../zh/products/fixedpoint/ref/complexpartialsystolicqlessqrdecomposition.md) — 官方英文摘要: Q-less QR decomposition for complex-valued matrices **完整正文**
 
 ## Embedded Implementation / Fixed-Point Matrix Operations in Simulink / Matrix Factorizations / Q-less QR Decomposition with Forgetting Factor
 
-- Real Burst Q-less QR Decomposition with Forgetting Factor Whole R Output — 官方英文摘要: Q-less QR decomposition for real-valued matrices with infinite number of rows (Since R2022b) **仅元数据，中英文正文待补**
-- Complex Burst Q-less QR Decomposition with Forgetting Factor Whole R Output — 官方英文摘要: Q-less QR decomposition for complex-valued matrices with infinite number of rows (Since R2022b) **仅元数据，中英文正文待补**
-- Real Partial-Systolic Q-less QR Decomposition with Forgetting Factor — 官方英文摘要: Q-less QR decomposition for real-valued matrices with infinite number of rows **仅元数据，中英文正文待补**
-- Complex Partial-Systolic Q-less QR Decomposition with Forgetting Factor — 官方英文摘要: Q-less QR decomposition for complex-valued matrices with infinite number of rows **仅元数据，中英文正文待补**
+- [Real Burst Q-less QR Decomposition with Forgetting Factor Whole R Output](../../zh/products/fixedpoint/ref/realburstqlessqrdecompositionwithforgettingfactorwholeroutput.md) — 官方英文摘要: Q-less QR decomposition for real-valued matrices with infinite number of rows (Since R2022b) **完整正文**
+- [Complex Burst Q-less QR Decomposition with Forgetting Factor Whole R Output](../../zh/products/fixedpoint/ref/complexburstqlessqrdecompositionwithforgettingfactorwholeroutput.md) — 官方英文摘要: Q-less QR decomposition for complex-valued matrices with infinite number of rows (Since R2022b) **完整正文**
+- [Real Partial-Systolic Q-less QR Decomposition with Forgetting Factor](../../zh/products/fixedpoint/ref/realpartialsystolicqlessqrdecompositionwithforgettingfactor.md) — 官方英文摘要: Q-less QR decomposition for real-valued matrices with infinite number of rows **完整正文**
+- [Complex Partial-Systolic Q-less QR Decomposition with Forgetting Factor](../../zh/products/fixedpoint/ref/complexpartialsystolicqlessqrdecompositionwithforgettingfactor.md) — 官方英文摘要: Q-less QR decomposition for complex-valued matrices with infinite number of rows **完整正文**
 
 ## Embedded Implementation / Fixed-Point Matrix Operations in Simulink / Matrix Factorizations / Singular Value Decomposition
 
-- Square Jacobi SVD HDL Optimized — 官方英文摘要: Fixed-point singular value decomposition (Since R2023a) **仅元数据，中英文正文待补**
-- Non-Square Jacobi SVD HDL Optimized — 官方英文摘要: Fixed-point singular value decomposition (Since R2023b) **仅元数据，中英文正文待补**
+- [Square Jacobi SVD HDL Optimized](../../zh/products/fixedpoint/ref/squarejacobisvdhdloptimized.md) — 官方英文摘要: Fixed-point singular value decomposition (Since R2023a) **完整正文**
+- [Non-Square Jacobi SVD HDL Optimized](../../zh/products/fixedpoint/ref/nonsquarejacobisvdhdloptimized.md) — 官方英文摘要: Fixed-point singular value decomposition (Since R2023b) **完整正文**
 
 ## Embedded Implementation / Fixed-Point Matrix Operations in MATLAB
 

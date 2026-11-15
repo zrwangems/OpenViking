@@ -19,8 +19,8 @@ No direct block entries.
 
 ## Model DDS Applications in Simulink
 
-- Take DDS Sample — Official summary: Receive data samples from DDS network (Since R2021a) **metadata only; full English and Chinese documents pending**
-- Write DDS Sample — Official summary: Send data samples to DDS network (Since R2021a) **metadata only; full English and Chinese documents pending**
+- [Take DDS Sample](../../en/products/dds/ref/takeddssample.md) — Official summary: Receive data samples from DDS network (Since R2021a) **full document**
+- [Write DDS Sample](../../en/products/dds/ref/writeddssample.md) — Official summary: Send data samples to DDS network (Since R2021a) **full document**
 
 ## Deploy Applications to DDS Network
 

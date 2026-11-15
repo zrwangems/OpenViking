@@ -24,82 +24,82 @@ language: zh-CN
 
 ## Ladder Diagram Integration / Bit Operations
 
-- ONS — 官方英文摘要: One Shot **仅元数据，中英文正文待补**
-- OSR — 官方英文摘要: One Shot Rising **仅元数据，中英文正文待补**
-- OSF — 官方英文摘要: One Shot Falling **仅元数据，中英文正文待补**
-- XIC — 官方英文摘要: Examine If Closed **仅元数据，中英文正文待补**
-- XIO — 官方英文摘要: Examine If Open **仅元数据，中英文正文待补**
-- OTE — 官方英文摘要: Output Energize **仅元数据，中英文正文待补**
-- OTL — 官方英文摘要: Output Latch **仅元数据，中英文正文待补**
-- OTU — 官方英文摘要: Output Unlatch **仅元数据，中英文正文待补**
+- [ONS](../../zh/products/plccoder/ref/ons.md) — 官方英文摘要: One Shot **完整正文**
+- [OSR](../../zh/products/plccoder/ref/osr.md) — 官方英文摘要: One Shot Rising **完整正文**
+- [OSF](../../zh/products/plccoder/ref/osf.md) — 官方英文摘要: One Shot Falling **完整正文**
+- [XIC](../../zh/products/plccoder/ref/xic.md) — 官方英文摘要: Examine If Closed **完整正文**
+- [XIO](../../zh/products/plccoder/ref/xio.md) — 官方英文摘要: Examine If Open **完整正文**
+- [OTE](../../zh/products/plccoder/ref/ote.md) — 官方英文摘要: Output Energize **完整正文**
+- [OTL](../../zh/products/plccoder/ref/otl.md) — 官方英文摘要: Output Latch **完整正文**
+- [OTU](../../zh/products/plccoder/ref/otu.md) — 官方英文摘要: Output Unlatch **完整正文**
 
 ## Ladder Diagram Integration / Timers and Counters
 
-- TON — 官方英文摘要: Timer On Delay **仅元数据，中英文正文待补**
-- TOF — 官方英文摘要: Timer Off Delay **仅元数据，中英文正文待补**
-- RTO — 官方英文摘要: Retentive Timer On **仅元数据，中英文正文待补**
-- CTU — 官方英文摘要: Count Up **仅元数据，中英文正文待补**
-- CTD — 官方英文摘要: Count Down **仅元数据，中英文正文待补**
-- RES — 官方英文摘要: Reset **仅元数据，中英文正文待补**
+- [TON](../../zh/products/plccoder/ref/ton.md) — 官方英文摘要: Timer On Delay **完整正文**
+- [TOF](../../zh/products/plccoder/ref/tof.md) — 官方英文摘要: Timer Off Delay **完整正文**
+- [RTO](../../zh/products/plccoder/ref/rto.md) — 官方英文摘要: Retentive Timer On **完整正文**
+- [CTU](../../zh/products/plccoder/ref/ctu.md) — 官方英文摘要: Count Up **完整正文**
+- [CTD](../../zh/products/plccoder/ref/ctd.md) — 官方英文摘要: Count Down **完整正文**
+- [RES](../../zh/products/plccoder/ref/res.md) — 官方英文摘要: Reset **完整正文**
 
 ## Ladder Diagram Integration / Program Control
 
-- JMP — 官方英文摘要: Jump **仅元数据，中英文正文待补**
-- LBL — 官方英文摘要: Label **仅元数据，中英文正文待补**
-- TND — 官方英文摘要: Temporary End **仅元数据，中英文正文待补**
-- AFI — 官方英文摘要: Always False **仅元数据，中英文正文待补**
-- NOP — 官方英文摘要: No Operation **仅元数据，中英文正文待补**
-- MCR — 官方英文摘要: Master Control Reset **仅元数据，中英文正文待补**
+- [JMP](../../zh/products/plccoder/ref/jmp.md) — 官方英文摘要: Jump **完整正文**
+- [LBL](../../zh/products/plccoder/ref/lbl.md) — 官方英文摘要: Label **完整正文**
+- [TND](../../zh/products/plccoder/ref/tnd.md) — 官方英文摘要: Temporary End **完整正文**
+- [AFI](../../zh/products/plccoder/ref/afi.md) — 官方英文摘要: Always False **完整正文**
+- [NOP](../../zh/products/plccoder/ref/nop.md) — 官方英文摘要: No Operation **完整正文**
+- [MCR](../../zh/products/plccoder/ref/mcr.md) — 官方英文摘要: Master Control Reset **完整正文**
 
 ## Ladder Diagram Integration / Math, Logical, and Comparison Operations
 
-- ADD — 官方英文摘要: Add inputs **仅元数据，中英文正文待补**
-- SUB — 官方英文摘要: Subtract inputs **仅元数据，中英文正文待补**
-- MUL — 官方英文摘要: Multiply inputs **仅元数据，中英文正文待补**
-- DIV — 官方英文摘要: Divide one input by another **仅元数据，中英文正文待补**
-- CPT — 官方英文摘要: Evaluate expression **仅元数据，中英文正文待补**
-- AND — 官方英文摘要: Bitwise AND **仅元数据，中英文正文待补**
-- OR — 官方英文摘要: Bitwise OR **仅元数据，中英文正文待补**
-- NOT — 官方英文摘要: Bitwise NOT **仅元数据，中英文正文待补**
-- NEQ — 官方英文摘要: Not Equal To **仅元数据，中英文正文待补**
-- EQU — 官方英文摘要: Equal To **仅元数据，中英文正文待补**
-- LEQ — 官方英文摘要: Less Than or Equal To **仅元数据，中英文正文待补**
-- GEQ — 官方英文摘要: Greater Than or Equal To **仅元数据，中英文正文待补**
-- LES — 官方英文摘要: Less Than **仅元数据，中英文正文待补**
-- GRT — 官方英文摘要: Greater than **仅元数据，中英文正文待补**
+- [ADD](../../zh/products/plccoder/ref/add.md) — 官方英文摘要: Add inputs **完整正文**
+- [SUB](../../zh/products/plccoder/ref/sub.md) — 官方英文摘要: Subtract inputs **完整正文**
+- [MUL](../../zh/products/plccoder/ref/mul.md) — 官方英文摘要: Multiply inputs **完整正文**
+- [DIV](../../zh/products/plccoder/ref/div.md) — 官方英文摘要: Divide one input by another **完整正文**
+- [CPT](../../zh/products/plccoder/ref/cpt.md) — 官方英文摘要: Evaluate expression **完整正文**
+- [AND](../../zh/products/plccoder/ref/and.md) — 官方英文摘要: Bitwise AND **完整正文**
+- [OR](../../zh/products/plccoder/ref/or.md) — 官方英文摘要: Bitwise OR **完整正文**
+- [NOT](../../zh/products/plccoder/ref/not.md) — 官方英文摘要: Bitwise NOT **完整正文**
+- [NEQ](../../zh/products/plccoder/ref/neq.md) — 官方英文摘要: Not Equal To **完整正文**
+- [EQU](../../zh/products/plccoder/ref/equ.md) — 官方英文摘要: Equal To **完整正文**
+- [LEQ](../../zh/products/plccoder/ref/leq.md) — 官方英文摘要: Less Than or Equal To **完整正文**
+- [GEQ](../../zh/products/plccoder/ref/geq.md) — 官方英文摘要: Greater Than or Equal To **完整正文**
+- [LES](../../zh/products/plccoder/ref/les.md) — 官方英文摘要: Less Than **完整正文**
+- [GRT](../../zh/products/plccoder/ref/grt.md) — 官方英文摘要: Greater than **完整正文**
 
 ## Ladder Diagram Integration / Memory and File Operations
 
-- MOV — 官方英文摘要: Move **仅元数据，中英文正文待补**
-- CLR — 官方英文摘要: Clear **仅元数据，中英文正文待补**
-- COP — 官方英文摘要: Copy File **仅元数据，中英文正文待补**
-- FLL — 官方英文摘要: File Fill **仅元数据，中英文正文待补**
+- [MOV](../../zh/products/plccoder/ref/mov.md) — 官方英文摘要: Move **完整正文**
+- [CLR](../../zh/products/plccoder/ref/clr.md) — 官方英文摘要: Clear **完整正文**
+- [COP](../../zh/products/plccoder/ref/cop.md) — 官方英文摘要: Copy File **完整正文**
+- [FLL](../../zh/products/plccoder/ref/fll.md) — 官方英文摘要: File Fill **完整正文**
 
 ## Ladder Diagram Integration / Organizational Units
 
-- AOI Runner — 官方英文摘要: AOI Runner **仅元数据，中英文正文待补**
-- PLC Controller Suite — 官方英文摘要: PLC Controller **仅元数据，中英文正文待补**
-- PLC Controller — 官方英文摘要: PLC Controller **仅元数据，中英文正文待补**
-- Task — 官方英文摘要: Task **仅元数据，中英文正文待补**
-- Ladder Diagram Program — 官方英文摘要: Ladder Diagram Program **仅元数据，中英文正文待补**
-- Ladder Diagram Subroutine — 官方英文摘要: Ladder Diagram Subroutine **仅元数据，中英文正文待补**
-- Ladder Diagram Function Block (AOI) — 官方英文摘要: Ladder Diagram Function Block (AOI) **仅元数据，中英文正文待补**
+- [AOI Runner](../../zh/products/plccoder/ref/aoirunner.md) — 官方英文摘要: AOI Runner **完整正文**
+- [PLC Controller Suite](../../zh/products/plccoder/ref/plccontrollersuite.md) — 官方英文摘要: PLC Controller **完整正文**
+- [PLC Controller](../../zh/products/plccoder/ref/plccontroller.md) — 官方英文摘要: PLC Controller **完整正文**
+- [Task](../../zh/products/plccoder/ref/task.md) — 官方英文摘要: Task **完整正文**
+- [Ladder Diagram Program](../../zh/products/plccoder/ref/program.md) — 官方英文摘要: Ladder Diagram Program **完整正文**
+- [Ladder Diagram Subroutine](../../zh/products/plccoder/ref/subroutine.md) — 官方英文摘要: Ladder Diagram Subroutine **完整正文**
+- [Ladder Diagram Function Block (AOI)](../../zh/products/plccoder/ref/functionblockaoi.md) — 官方英文摘要: Ladder Diagram Function Block (AOI) **完整正文**
 
 ## Ladder Diagram Integration / Input/Output
 
-- Variable Read — 官方英文摘要: Variable Read **仅元数据，中英文正文待补**
-- Variable Write — 官方英文摘要: Variable Write **仅元数据，中英文正文待补**
+- [Variable Read](../../zh/products/plccoder/ref/variableread.md) — 官方英文摘要: Variable Read **完整正文**
+- [Variable Write](../../zh/products/plccoder/ref/variablewrite.md) — 官方英文摘要: Variable Write **完整正文**
 
 ## Ladder Diagram Integration / Reference Blocks
 
-- Power Rail Start — 官方英文摘要: Power Rail Start **仅元数据，中英文正文待补**
-- Power Rail Terminal — 官方英文摘要: Power Rail Terminal **仅元数据，中英文正文待补**
-- Rung Terminal — 官方英文摘要: Rung Terminal **仅元数据，中英文正文待补**
-- Junction — 官方英文摘要: Junction **仅元数据，中英文正文待补**
+- [Power Rail Start](../../zh/products/plccoder/ref/powerrailstart.md) — 官方英文摘要: Power Rail Start **完整正文**
+- [Power Rail Terminal](../../zh/products/plccoder/ref/powerrailterminal.md) — 官方英文摘要: Power Rail Terminal **完整正文**
+- [Rung Terminal](../../zh/products/plccoder/ref/rungterminal.md) — 官方英文摘要: Rung Terminal **完整正文**
+- [Junction](../../zh/products/plccoder/ref/junction.md) — 官方英文摘要: Junction **完整正文**
 
 ## Ladder Diagram Integration / Custom PLC Instruction
 
-- Custom Instruction — 官方英文摘要: Create custom ladder logic instruction **仅元数据，中英文正文待补**
+- [Custom Instruction](../../zh/products/plccoder/ref/custominstruction.md) — 官方英文摘要: Create custom ladder logic instruction **完整正文**
 
 ## Code Generation
 

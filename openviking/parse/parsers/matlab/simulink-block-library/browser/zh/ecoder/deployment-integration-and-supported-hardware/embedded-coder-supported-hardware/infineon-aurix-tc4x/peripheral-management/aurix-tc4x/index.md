@@ -1,0 +1,16 @@
+# AURIX TC4x
+
+- [CDSP](cdsp.md)
+- [Digital Port Read](digital-port-read.md)
+- [Digital Port Write](digital-port-write.md)
+- [DSADC](dsadc.md)
+- [Encoder](encoder.md)
+- [FCC](fcc.md)
+- [Hardware Interrupt](hardware-interrupt.md)
+- [MCAN Receive](mcan-receive.md)
+- [MCAN Transmit](mcan-transmit.md)
+- [PWM](pwm.md)
+- [QSPI](qspi.md)
+- [Resolver](resolver.md)
+- [SENT](sent.md)
+- [TMADC](tmadc.md)

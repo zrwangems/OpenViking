@@ -24,7 +24,7 @@ No direct block entries.
 
 ## Author and Validate Requirements / Model and Validate Requirements
 
-- Requirements Table — Official summary: Model formal requirements with input conditions (Since R2022a) **metadata only; full English and Chinese documents pending**
+- [Requirements Table](../../en/products/slrequirements/ref/requirementstable.md) — Official summary: Model formal requirements with input conditions (Since R2022a) **full document**
 
 ## Integrate Requirements from Third-Party Tools
 
@@ -48,7 +48,7 @@ No direct block entries.
 
 ## Link Requirements / Create Requirement Links
 
-- System Requirements — Official summary: List system requirements in Simulink models **metadata only; full English and Chinese documents pending**
+- [System Requirements](../../en/products/slrequirements/ref/systemrequirements.md) — Official summary: List system requirements in Simulink models **full document**
 
 ## Link Requirements / Track and Visualize Links
 

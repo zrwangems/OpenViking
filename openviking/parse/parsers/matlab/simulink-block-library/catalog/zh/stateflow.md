@@ -29,9 +29,9 @@ language: zh-CN
 
 ## Chart Programming / Chart Programming Basics / Stateflow Charts
 
-- Chart — 官方英文摘要: Implement control logic with finite state machine **仅元数据，中英文正文待补**
-- State Transition Table — 官方英文摘要: Represent modal logic in tabular format **仅元数据，中英文正文待补**
-- Truth Table — 官方英文摘要: Represent logical decision-making behavior with conditions, decisions, and actions **仅元数据，中英文正文待补**
+- [Chart](../../zh/products/stateflow/ref/chart.md) — 官方英文摘要: Implement control logic with finite state machine **完整正文**
+- [State Transition Table](../../zh/products/stateflow/ref/statetransitiontable.md) — 官方英文摘要: Represent modal logic in tabular format **完整正文**
+- [Truth Table](../../zh/products/stateflow/ref/truthtable.md) — 官方英文摘要: Represent logical decision-making behavior with conditions, decisions, and actions **完整正文**
 
 ## Chart Programming / Chart Programming Basics / Hierarchy
 
@@ -45,7 +45,7 @@ language: zh-CN
 
 ## Chart Programming / Chart Programming Basics / State Transition Tables
 
-- State Transition Table — 官方英文摘要: Represent modal logic in tabular format **仅元数据，中英文正文待补**
+- [State Transition Table](../../zh/products/stateflow/ref/statetransitiontable.md) — 官方英文摘要: Represent modal logic in tabular format **完整正文**
 
 ## Chart Programming / Stateflow Editor Interface
 
@@ -54,9 +54,9 @@ language: zh-CN
 
 ## Chart Programming / Syntax for States and Transitions
 
-- Chart — 官方英文摘要: Implement control logic with finite state machine **仅元数据，中英文正文待补**
-- State Transition Table — 官方英文摘要: Represent modal logic in tabular format **仅元数据，中英文正文待补**
-- Truth Table — 官方英文摘要: Represent logical decision-making behavior with conditions, decisions, and actions **仅元数据，中英文正文待补**
+- [Chart](../../zh/products/stateflow/ref/chart.md) — 官方英文摘要: Implement control logic with finite state machine **完整正文**
+- [State Transition Table](../../zh/products/stateflow/ref/statetransitiontable.md) — 官方英文摘要: Represent modal logic in tabular format **完整正文**
+- [Truth Table](../../zh/products/stateflow/ref/truthtable.md) — 官方英文摘要: Represent logical decision-making behavior with conditions, decisions, and actions **完整正文**
 
 ## Chart Programming / Chart Simulation Semantics
 
@@ -105,7 +105,7 @@ language: zh-CN
 
 ## Chart Programming / Reusable Components in Charts / Truth Tables
 
-- Truth Table — 官方英文摘要: Represent logical decision-making behavior with conditions, decisions, and actions **仅元数据，中英文正文待补**
+- [Truth Table](../../zh/products/stateflow/ref/truthtable.md) — 官方英文摘要: Represent logical decision-making behavior with conditions, decisions, and actions **完整正文**
 
 ## Chart Programming / Reusable Components in Charts / Atomic Subcharts
 
@@ -159,11 +159,11 @@ language: zh-CN
 
 ## Simulation in Simulink / Data, Events, and Messages / Events
 
-- Sequence Viewer — 官方英文摘要: Display messages, events, states, transitions, and functions between blocks during simulation **仅元数据，中英文正文待补**
+- [Sequence Viewer](../../zh/products/stateflow/ref/sequenceviewer.md) — 官方英文摘要: Display messages, events, states, transitions, and functions between blocks during simulation **完整正文**
 
 ## Simulation in Simulink / Data, Events, and Messages / Messages
 
-- Sequence Viewer — 官方英文摘要: Display messages, events, states, transitions, and functions between blocks during simulation **仅元数据，中英文正文待补**
+- [Sequence Viewer](../../zh/products/stateflow/ref/sequenceviewer.md) — 官方英文摘要: Display messages, events, states, transitions, and functions between blocks during simulation **完整正文**
 
 ## Simulation in Simulink / Data, Events, and Messages / Masking
 

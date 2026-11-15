@@ -24,82 +24,82 @@ No direct block entries.
 
 ## Ladder Diagram Integration / Bit Operations
 
-- ONS — Official summary: One Shot **metadata only; full English and Chinese documents pending**
-- OSR — Official summary: One Shot Rising **metadata only; full English and Chinese documents pending**
-- OSF — Official summary: One Shot Falling **metadata only; full English and Chinese documents pending**
-- XIC — Official summary: Examine If Closed **metadata only; full English and Chinese documents pending**
-- XIO — Official summary: Examine If Open **metadata only; full English and Chinese documents pending**
-- OTE — Official summary: Output Energize **metadata only; full English and Chinese documents pending**
-- OTL — Official summary: Output Latch **metadata only; full English and Chinese documents pending**
-- OTU — Official summary: Output Unlatch **metadata only; full English and Chinese documents pending**
+- [ONS](../../en/products/plccoder/ref/ons.md) — Official summary: One Shot **full document**
+- [OSR](../../en/products/plccoder/ref/osr.md) — Official summary: One Shot Rising **full document**
+- [OSF](../../en/products/plccoder/ref/osf.md) — Official summary: One Shot Falling **full document**
+- [XIC](../../en/products/plccoder/ref/xic.md) — Official summary: Examine If Closed **full document**
+- [XIO](../../en/products/plccoder/ref/xio.md) — Official summary: Examine If Open **full document**
+- [OTE](../../en/products/plccoder/ref/ote.md) — Official summary: Output Energize **full document**
+- [OTL](../../en/products/plccoder/ref/otl.md) — Official summary: Output Latch **full document**
+- [OTU](../../en/products/plccoder/ref/otu.md) — Official summary: Output Unlatch **full document**
 
 ## Ladder Diagram Integration / Timers and Counters
 
-- TON — Official summary: Timer On Delay **metadata only; full English and Chinese documents pending**
-- TOF — Official summary: Timer Off Delay **metadata only; full English and Chinese documents pending**
-- RTO — Official summary: Retentive Timer On **metadata only; full English and Chinese documents pending**
-- CTU — Official summary: Count Up **metadata only; full English and Chinese documents pending**
-- CTD — Official summary: Count Down **metadata only; full English and Chinese documents pending**
-- RES — Official summary: Reset **metadata only; full English and Chinese documents pending**
+- [TON](../../en/products/plccoder/ref/ton.md) — Official summary: Timer On Delay **full document**
+- [TOF](../../en/products/plccoder/ref/tof.md) — Official summary: Timer Off Delay **full document**
+- [RTO](../../en/products/plccoder/ref/rto.md) — Official summary: Retentive Timer On **full document**
+- [CTU](../../en/products/plccoder/ref/ctu.md) — Official summary: Count Up **full document**
+- [CTD](../../en/products/plccoder/ref/ctd.md) — Official summary: Count Down **full document**
+- [RES](../../en/products/plccoder/ref/res.md) — Official summary: Reset **full document**
 
 ## Ladder Diagram Integration / Program Control
 
-- JMP — Official summary: Jump **metadata only; full English and Chinese documents pending**
-- LBL — Official summary: Label **metadata only; full English and Chinese documents pending**
-- TND — Official summary: Temporary End **metadata only; full English and Chinese documents pending**
-- AFI — Official summary: Always False **metadata only; full English and Chinese documents pending**
-- NOP — Official summary: No Operation **metadata only; full English and Chinese documents pending**
-- MCR — Official summary: Master Control Reset **metadata only; full English and Chinese documents pending**
+- [JMP](../../en/products/plccoder/ref/jmp.md) — Official summary: Jump **full document**
+- [LBL](../../en/products/plccoder/ref/lbl.md) — Official summary: Label **full document**
+- [TND](../../en/products/plccoder/ref/tnd.md) — Official summary: Temporary End **full document**
+- [AFI](../../en/products/plccoder/ref/afi.md) — Official summary: Always False **full document**
+- [NOP](../../en/products/plccoder/ref/nop.md) — Official summary: No Operation **full document**
+- [MCR](../../en/products/plccoder/ref/mcr.md) — Official summary: Master Control Reset **full document**
 
 ## Ladder Diagram Integration / Math, Logical, and Comparison Operations
 
-- ADD — Official summary: Add inputs **metadata only; full English and Chinese documents pending**
-- SUB — Official summary: Subtract inputs **metadata only; full English and Chinese documents pending**
-- MUL — Official summary: Multiply inputs **metadata only; full English and Chinese documents pending**
-- DIV — Official summary: Divide one input by another **metadata only; full English and Chinese documents pending**
-- CPT — Official summary: Evaluate expression **metadata only; full English and Chinese documents pending**
-- AND — Official summary: Bitwise AND **metadata only; full English and Chinese documents pending**
-- OR — Official summary: Bitwise OR **metadata only; full English and Chinese documents pending**
-- NOT — Official summary: Bitwise NOT **metadata only; full English and Chinese documents pending**
-- NEQ — Official summary: Not Equal To **metadata only; full English and Chinese documents pending**
-- EQU — Official summary: Equal To **metadata only; full English and Chinese documents pending**
-- LEQ — Official summary: Less Than or Equal To **metadata only; full English and Chinese documents pending**
-- GEQ — Official summary: Greater Than or Equal To **metadata only; full English and Chinese documents pending**
-- LES — Official summary: Less Than **metadata only; full English and Chinese documents pending**
-- GRT — Official summary: Greater than **metadata only; full English and Chinese documents pending**
+- [ADD](../../en/products/plccoder/ref/add.md) — Official summary: Add inputs **full document**
+- [SUB](../../en/products/plccoder/ref/sub.md) — Official summary: Subtract inputs **full document**
+- [MUL](../../en/products/plccoder/ref/mul.md) — Official summary: Multiply inputs **full document**
+- [DIV](../../en/products/plccoder/ref/div.md) — Official summary: Divide one input by another **full document**
+- [CPT](../../en/products/plccoder/ref/cpt.md) — Official summary: Evaluate expression **full document**
+- [AND](../../en/products/plccoder/ref/and.md) — Official summary: Bitwise AND **full document**
+- [OR](../../en/products/plccoder/ref/or.md) — Official summary: Bitwise OR **full document**
+- [NOT](../../en/products/plccoder/ref/not.md) — Official summary: Bitwise NOT **full document**
+- [NEQ](../../en/products/plccoder/ref/neq.md) — Official summary: Not Equal To **full document**
+- [EQU](../../en/products/plccoder/ref/equ.md) — Official summary: Equal To **full document**
+- [LEQ](../../en/products/plccoder/ref/leq.md) — Official summary: Less Than or Equal To **full document**
+- [GEQ](../../en/products/plccoder/ref/geq.md) — Official summary: Greater Than or Equal To **full document**
+- [LES](../../en/products/plccoder/ref/les.md) — Official summary: Less Than **full document**
+- [GRT](../../en/products/plccoder/ref/grt.md) — Official summary: Greater than **full document**
 
 ## Ladder Diagram Integration / Memory and File Operations
 
-- MOV — Official summary: Move **metadata only; full English and Chinese documents pending**
-- CLR — Official summary: Clear **metadata only; full English and Chinese documents pending**
-- COP — Official summary: Copy File **metadata only; full English and Chinese documents pending**
-- FLL — Official summary: File Fill **metadata only; full English and Chinese documents pending**
+- [MOV](../../en/products/plccoder/ref/mov.md) — Official summary: Move **full document**
+- [CLR](../../en/products/plccoder/ref/clr.md) — Official summary: Clear **full document**
+- [COP](../../en/products/plccoder/ref/cop.md) — Official summary: Copy File **full document**
+- [FLL](../../en/products/plccoder/ref/fll.md) — Official summary: File Fill **full document**
 
 ## Ladder Diagram Integration / Organizational Units
 
-- AOI Runner — Official summary: AOI Runner **metadata only; full English and Chinese documents pending**
-- PLC Controller Suite — Official summary: PLC Controller **metadata only; full English and Chinese documents pending**
-- PLC Controller — Official summary: PLC Controller **metadata only; full English and Chinese documents pending**
-- Task — Official summary: Task **metadata only; full English and Chinese documents pending**
-- Ladder Diagram Program — Official summary: Ladder Diagram Program **metadata only; full English and Chinese documents pending**
-- Ladder Diagram Subroutine — Official summary: Ladder Diagram Subroutine **metadata only; full English and Chinese documents pending**
-- Ladder Diagram Function Block (AOI) — Official summary: Ladder Diagram Function Block (AOI) **metadata only; full English and Chinese documents pending**
+- [AOI Runner](../../en/products/plccoder/ref/aoirunner.md) — Official summary: AOI Runner **full document**
+- [PLC Controller Suite](../../en/products/plccoder/ref/plccontrollersuite.md) — Official summary: PLC Controller **full document**
+- [PLC Controller](../../en/products/plccoder/ref/plccontroller.md) — Official summary: PLC Controller **full document**
+- [Task](../../en/products/plccoder/ref/task.md) — Official summary: Task **full document**
+- [Ladder Diagram Program](../../en/products/plccoder/ref/program.md) — Official summary: Ladder Diagram Program **full document**
+- [Ladder Diagram Subroutine](../../en/products/plccoder/ref/subroutine.md) — Official summary: Ladder Diagram Subroutine **full document**
+- [Ladder Diagram Function Block (AOI)](../../en/products/plccoder/ref/functionblockaoi.md) — Official summary: Ladder Diagram Function Block (AOI) **full document**
 
 ## Ladder Diagram Integration / Input/Output
 
-- Variable Read — Official summary: Variable Read **metadata only; full English and Chinese documents pending**
-- Variable Write — Official summary: Variable Write **metadata only; full English and Chinese documents pending**
+- [Variable Read](../../en/products/plccoder/ref/variableread.md) — Official summary: Variable Read **full document**
+- [Variable Write](../../en/products/plccoder/ref/variablewrite.md) — Official summary: Variable Write **full document**
 
 ## Ladder Diagram Integration / Reference Blocks
 
-- Power Rail Start — Official summary: Power Rail Start **metadata only; full English and Chinese documents pending**
-- Power Rail Terminal — Official summary: Power Rail Terminal **metadata only; full English and Chinese documents pending**
-- Rung Terminal — Official summary: Rung Terminal **metadata only; full English and Chinese documents pending**
-- Junction — Official summary: Junction **metadata only; full English and Chinese documents pending**
+- [Power Rail Start](../../en/products/plccoder/ref/powerrailstart.md) — Official summary: Power Rail Start **full document**
+- [Power Rail Terminal](../../en/products/plccoder/ref/powerrailterminal.md) — Official summary: Power Rail Terminal **full document**
+- [Rung Terminal](../../en/products/plccoder/ref/rungterminal.md) — Official summary: Rung Terminal **full document**
+- [Junction](../../en/products/plccoder/ref/junction.md) — Official summary: Junction **full document**
 
 ## Ladder Diagram Integration / Custom PLC Instruction
 
-- Custom Instruction — Official summary: Create custom ladder logic instruction **metadata only; full English and Chinese documents pending**
+- [Custom Instruction](../../en/products/plccoder/ref/custominstruction.md) — Official summary: Create custom ladder logic instruction **full document**
 
 ## Code Generation
 

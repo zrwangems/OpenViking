@@ -325,13 +325,17 @@ def test_block_templates_follow_resource_language():
 
 
 def test_standard_library_and_external_library_matching():
-    assert find_block("Logic") == ("logic-and-bit-operations", "Logical Operator")
+    assert find_block("Logic") == ("browser/simulink/logic-and-bit-operations", "Logical Operator")
     assert find_block("Reference", "autolibdcdc/Bidirectional DC-DC") is None
     assert find_block_reference("Reference", "autolibdcdc/Bidirectional DC-DC") is None
-    assert find_block("Display", "simulink/Sinks/Display") == ("sinks", "Display")
-    assert find_block("Inport", "simulink/Sources/Inport") == ("sources", "Inport")
+    assert find_block("Display", "simulink/Sinks/Display") == ("browser/simulink/sinks", "Display")
+    assert find_block("Inport", "simulink/Sources/Inport") == ("browser/simulink/sources", "Inport")
+    assert find_block("Gain", "simulink/Commonly Used Blocks/Gain") == (
+        "browser/simulink/commonly-used-blocks",
+        "Gain",
+    )
     assert find_block("MatrixConcatenate", "simulink/Matrix Operations/Matrix Concatenate") == (
-        "matrix-operations",
+        "browser/simulink/matrix-operations",
         "Matrix Concatenate",
     )
 
@@ -340,16 +344,17 @@ def test_all_product_manifest_counts_and_explicit_document_gaps():
     root = Path(__file__).parents[3] / "openviking/parse/parsers/matlab/simulink-block-library"
     manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
     assert manifest["release"] == "R2025b"
-    assert manifest["totals"] == {
-        "products": 133,
-        "products_with_blocks": 74,
-        "products_without_block_library": 59,
-        "block_occurrences": 5431,
-        "unique_product_document_paths": 4603,
-        "full_document_occurrences": {"en": 583, "zh": 583},
-        "full_documents": {"en": 333, "zh": 333},
-        "pending_documents": {"en": 4270, "zh": 4270},
-    }
+    totals = manifest["totals"]
+    assert totals["products"] == 133
+    assert totals["products_with_blocks"] == 74
+    assert totals["products_without_block_library"] == 59
+    assert totals["block_occurrences"] == 5431
+    assert totals["unique_product_document_paths"] == 4603
+    assert totals["full_document_occurrences"] == {"en": 5431, "zh": 5431}
+    assert totals["full_documents"] == {"en": 4603, "zh": 4603}
+    assert totals["pending_documents"] == {"en": 0, "zh": 0}
+    assert json.loads((root / "scrape-failures.json").read_text()) == []
+    assert json.loads((root / "translation-failures.json").read_text()) == []
     products = {product["id"]: product for product in manifest["products"]}
     assert products["simulink"]["block_occurrences"] == 839
     assert products["stateflow"]["block_occurrences"] == 10
@@ -360,7 +365,15 @@ def test_all_product_manifest_counts_and_explicit_document_gaps():
         assert len(list(catalog.glob("*.md"))) == 134  # 133 products plus index
     chinese_stateflow = (root / "catalog/zh/stateflow.md").read_text(encoding="utf-8")
     assert "Chart" in chinese_stateflow
-    assert "仅元数据，中英文正文待补" in chinese_stateflow
+    assert "仅元数据，中英文正文待补" not in chinese_stateflow
+    common = root / "browser/en/simulink/commonly-used-blocks"
+    assert len(list(common.glob("*.md"))) == 24  # 23 blocks plus index
+    assert "Quick Insert" in (root / "browser/en/simulink/quick-insert/index.md").read_text()
+    assert len(list((root / "browser/en").rglob("*.md"))) == 7781
+    assert len(list((root / "browser/zh").rglob("*.md"))) == 7781
+    assert (root / "browser/en/communications-toolbox-hdl-support/index.md").is_file()
+    assert (root / "browser/zh/dsp-system-toolbox-hdl-support/index.md").is_file()
+    assert (root / "browser/en/fixed-point-designer-hdl-support/index.md").is_file()
     assert (
         sum(
             len(library["blocks"])
@@ -369,13 +382,28 @@ def test_all_product_manifest_counts_and_explicit_document_gaps():
         )
         == 5431
     )
+    unique_documents = set()
+    for product in products.values():
+        for library in product["libraries"]:
+            for block in library["blocks"]:
+                for language in ("en", "zh"):
+                    document = block["documents"][language]
+                    assert document["status"] == "available"
+                    path = root / document["path"]
+                    assert path.is_file()
+                    unique_documents.add(path)
+                    resource = root / block.get("resource_paths", {}).get(
+                        language, document["path"]
+                    )
+                    assert resource.is_file()
+    assert len(unique_documents) == 9206
 
 
 def test_toolbox_matching_uses_original_product_and_library_path():
     chart = find_block_reference("Chart", "stateflow/Chart")
     assert chart.product_id == "stateflow"
     assert chart.name == "Chart"
-    assert not chart.full_document
+    assert chart.full_document
 
     resistor = find_block_reference(
         "Resistor", "simscape/Foundation Library/Electrical/Electrical Elements/Resistor"
@@ -385,13 +413,24 @@ def test_toolbox_matching_uses_original_product_and_library_path():
         "Electrical Elements" in resistor.library_path
     )
     assert "Linear resistor" in resistor.summary
+    assert resistor.full_document
 
     spectrum = find_block_reference("Spectrum Analyzer", "dsp/Sinks/Spectrum Analyzer")
     assert spectrum.product_id == "dsp"
-    assert find_block("Chart", "stateflow/Chart") is None
-    pending = render_block_template("Chart", "stateflow/Chart", language="zh-CN")[1]
-    assert "完整中英文正文尚未抓取" in pending
-    assert "不补写端口或参数" in pending
+    assert find_block("Chart", "stateflow/Chart") == (
+        "browser/stateflow/chart-programming/chart-programming-basics/stateflow-charts",
+        "Chart",
+    )
+    chart_page = render_block_template("Chart", "stateflow/Chart", language="zh-CN")[1]
+    assert "用有限状态机实现控制逻辑" in chart_page
+    assert "完整中英文正文尚未抓取" not in chart_page
+    pending = render_block_template(
+        "Resistor",
+        "simscape/Foundation Library/Electrical/Electrical Elements/Resistor",
+        language="zh-CN",
+    )[1]
+    assert "完整中英文正文尚未抓取" not in pending
+    assert "Official product:" not in pending
 
 
 def test_scraped_block_knowledge_is_local_and_complete():

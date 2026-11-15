@@ -19,8 +19,8 @@ language: zh-CN
 
 ## Model DDS Applications in Simulink
 
-- Take DDS Sample — 官方英文摘要: Receive data samples from DDS network (Since R2021a) **仅元数据，中英文正文待补**
-- Write DDS Sample — 官方英文摘要: Send data samples to DDS network (Since R2021a) **仅元数据，中英文正文待补**
+- [Take DDS Sample](../../zh/products/dds/ref/takeddssample.md) — 官方英文摘要: Receive data samples from DDS network (Since R2021a) **完整正文**
+- [Write DDS Sample](../../zh/products/dds/ref/writeddssample.md) — 官方英文摘要: Send data samples to DDS network (Since R2021a) **完整正文**
 
 ## Deploy Applications to DDS Network
 

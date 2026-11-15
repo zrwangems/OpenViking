@@ -29,7 +29,7 @@ No direct block entries.
 
 ## Test Authoring / Inputs
 
-- Test Sequence — Official summary: Create simulation testing scenarios, function calls, and assessments **metadata only; full English and Chinese documents pending**
+- [Test Sequence](../../en/products/sltest/ref/testsequence.md) — Official summary: Create simulation testing scenarios, function calls, and assessments **full document**
 
 ## Test Authoring / Outputs
 
@@ -38,12 +38,12 @@ No direct block entries.
 
 ## Test Authoring / Assessments, Criteria, and Verification
 
-- Observer Reference — Official summary: Create and contain an Observer model **metadata only; full English and Chinese documents pending**
-- Observer Port — Official summary: Wirelessly link signals to use with verification **metadata only; full English and Chinese documents pending**
-- Test Sequence — Official summary: Create simulation testing scenarios, function calls, and assessments **metadata only; full English and Chinese documents pending**
-- Test Assessment — Official summary: Assess and verify behavior of system under test **metadata only; full English and Chinese documents pending**
-- Sequence Viewer — Official summary: Display messages, events, states, transitions, and functions between blocks during simulation **metadata only; full English and Chinese documents pending**
-- Assertion — Official summary: Check whether signal is zero **metadata only; full English and Chinese documents pending**
+- [Observer Reference](../../en/products/sltest/ref/observerreference.md) — Official summary: Create and contain an Observer model **full document**
+- [Observer Port](../../en/products/sltest/ref/observerport.md) — Official summary: Wirelessly link signals to use with verification **full document**
+- [Test Sequence](../../en/products/sltest/ref/testsequence.md) — Official summary: Create simulation testing scenarios, function calls, and assessments **full document**
+- [Test Assessment](../../en/products/sltest/ref/testassessment.md) — Official summary: Assess and verify behavior of system under test **full document**
+- [Sequence Viewer](../../en/products/sltest/ref/sequenceviewer.md) — Official summary: Display messages, events, states, transitions, and functions between blocks during simulation **full document**
+- [Assertion](../../en/products/sltest/../simulink/slref/assertion.md) — Official summary: Check whether signal is zero **full document**
 
 ## Test Execution
 

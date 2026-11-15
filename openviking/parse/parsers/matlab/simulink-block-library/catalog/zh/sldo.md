@@ -39,11 +39,11 @@ language: zh-CN
 
 ## Response Optimization / Specify Design Requirements
 
-- Check Against Reference — 官方英文摘要: Check that model signal tracks reference signal during simulation **仅元数据，中英文正文待补**
-- Check Custom Bounds — 官方英文摘要: Check that model signal satisfies bounds during simulation **仅元数据，中英文正文待补**
-- Check Step Response Characteristics — 官方英文摘要: Check that model signal satisfies step response bounds during simulation **仅元数据，中英文正文待补**
-- CRMS — 官方英文摘要: Compute continuous-time, cumulative root mean square of signal **仅元数据，中英文正文待补**
-- DRMS — 官方英文摘要: Compute discrete-time, cumulative root mean square (DRMS) of signal **仅元数据，中英文正文待补**
+- [Check Against Reference](../../zh/products/sldo/ref/checkagainstreference.md) — 官方英文摘要: Check that model signal tracks reference signal during simulation **完整正文**
+- [Check Custom Bounds](../../zh/products/sldo/ref/checkcustombounds.md) — 官方英文摘要: Check that model signal satisfies bounds during simulation **完整正文**
+- [Check Step Response Characteristics](../../zh/products/sldo/ref/checkstepresponsecharacteristics.md) — 官方英文摘要: Check that model signal satisfies step response bounds during simulation **完整正文**
+- [CRMS](../../zh/products/sldo/ref/crms.md) — 官方英文摘要: Compute continuous-time, cumulative root mean square of signal **完整正文**
+- [DRMS](../../zh/products/sldo/ref/drms.md) — 官方英文摘要: Compute discrete-time, cumulative root mean square (DRMS) of signal **完整正文**
 
 ## Response Optimization / Optimize Model Response
 
@@ -62,9 +62,9 @@ language: zh-CN
 
 ## Optimization-Based Control Design / Control Design in Simulink
 
-- Check Against Reference — 官方英文摘要: Check that model signal tracks reference signal during simulation **仅元数据，中英文正文待补**
-- Check Custom Bounds — 官方英文摘要: Check that model signal satisfies bounds during simulation **仅元数据，中英文正文待补**
-- Check Step Response Characteristics — 官方英文摘要: Check that model signal satisfies step response bounds during simulation **仅元数据，中英文正文待补**
+- [Check Against Reference](../../zh/products/sldo/ref/checkagainstreference.md) — 官方英文摘要: Check that model signal tracks reference signal during simulation **完整正文**
+- [Check Custom Bounds](../../zh/products/sldo/ref/checkcustombounds.md) — 官方英文摘要: Check that model signal satisfies bounds during simulation **完整正文**
+- [Check Step Response Characteristics](../../zh/products/sldo/ref/checkstepresponsecharacteristics.md) — 官方英文摘要: Check that model signal satisfies step response bounds during simulation **完整正文**
 
 ## Optimization-Based Control Design / Control Design in MATLAB
 
@@ -83,6 +83,6 @@ language: zh-CN
 
 ## Lookup Table Tuning / Adaptive Lookup Tables
 
-- Adaptive Lookup Table (1D Stair-Fit) — 官方英文摘要: One-dimensional adaptive table lookup **仅元数据，中英文正文待补**
-- Adaptive Lookup Table (2D Stair-Fit) — 官方英文摘要: Two-dimensional adaptive table lookup **仅元数据，中英文正文待补**
-- Adaptive Lookup Table (nD Stair-Fit) — 官方英文摘要: Adaptive lookup table of arbitrary dimension **仅元数据，中英文正文待补**
+- [Adaptive Lookup Table (1D Stair-Fit)](../../zh/products/sldo/ref/adaptivelookuptable1dstairfit.md) — 官方英文摘要: One-dimensional adaptive table lookup **完整正文**
+- [Adaptive Lookup Table (2D Stair-Fit)](../../zh/products/sldo/ref/adaptivelookuptable2dstairfit.md) — 官方英文摘要: Two-dimensional adaptive table lookup **完整正文**
+- [Adaptive Lookup Table (nD Stair-Fit)](../../zh/products/sldo/ref/adaptivelookuptablendstairfit.md) — 官方英文摘要: Adaptive lookup table of arbitrary dimension **完整正文**

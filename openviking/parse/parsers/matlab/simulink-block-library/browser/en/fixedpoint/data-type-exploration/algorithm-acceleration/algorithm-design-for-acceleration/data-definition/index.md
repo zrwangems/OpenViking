@@ -1,0 +1,16 @@
+# Data Definition
+
+- [Categorical Arrays](categorical-arrays/index.md)
+- [Cell Arrays](cell-arrays/index.md)
+- [Characters and Strings](characters-and-strings/index.md)
+- [Datetime Arrays](datetime-arrays/index.md)
+- [Dictionaries](dictionaries/index.md)
+- [Duration Arrays](duration-arrays/index.md)
+- [Enumerations](enumerations/index.md)
+- [Function Handles](function-handles/index.md)
+- [MATLAB Classes](matlab-classes/index.md)
+- [Numeric Types](numeric-types/index.md)
+- [Structures](structures/index.md)
+- [Tables](tables/index.md)
+- [Timetables](timetables/index.md)
+- [Variable-Size Data](variable-size-data/index.md)

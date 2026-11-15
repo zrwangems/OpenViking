@@ -14,10 +14,10 @@ language: zh-CN
 
 ## Model Architecture
 
-- Frame To Samples — 官方英文摘要: Convert frame-based data to sample stream **仅元数据，中英文正文待补**
-- Samples To Frame — 官方英文摘要: Convert sample stream to frame-based data **仅元数据，中英文正文待补**
-- Sample Control Bus Creator — 官方英文摘要: Create control signal bus for use with Wireless HDL Toolbox blocks **仅元数据，中英文正文待补**
-- Sample Control Bus Selector — 官方英文摘要: Select signals from the control signal bus used with Wireless HDL Toolbox blocks **仅元数据，中英文正文待补**
+- [Frame To Samples](../../zh/products/wireless-hdl/ref/frametosamples.md) — 官方英文摘要: Convert frame-based data to sample stream **完整正文**
+- [Samples To Frame](../../zh/products/wireless-hdl/ref/samplestoframe.md) — 官方英文摘要: Convert sample stream to frame-based data **完整正文**
+- [Sample Control Bus Creator](../../zh/products/wireless-hdl/ref/samplecontrolbuscreator.md) — 官方英文摘要: Create control signal bus for use with Wireless HDL Toolbox blocks **完整正文**
+- [Sample Control Bus Selector](../../zh/products/wireless-hdl/ref/samplecontrolbusselector.md) — 官方英文摘要: Select signals from the control signal bus used with Wireless HDL Toolbox blocks **完整正文**
 
 ## HDL-Optimized System Design
 
@@ -26,63 +26,63 @@ language: zh-CN
 
 ## HDL-Optimized System Design / Block Coding
 
-- CCSDS RS Encoder — 官方英文摘要: Encode message into RS codeword according to CCSDS standard (Since R2022a) **仅元数据，中英文正文待补**
-- CCSDS RS Decoder — 官方英文摘要: Decode and recover message from RS codeword according to CCSDS standard (Since R2021b) **仅元数据，中英文正文待补**
-- CCSDS LDPC Decoder — 官方英文摘要: Decode LDPC code according to CCSDS standard (Since R2022b) **仅元数据，中英文正文待补**
-- CCSDS LDPC Encoder — 官方英文摘要: Encode data with (8160,7136) LDPC code specified in CCSDS telemetry standard (Since R2025a) **仅元数据，中英文正文待补**
-- DVB-S2 BCH Decoder — 官方英文摘要: Decode and recover message from BCH codeword according to DVB-S2 standard (Since R2022a) **仅元数据，中英文正文待补**
-- DVB-S2 LDPC Decoder — 官方英文摘要: Decode LDPC code according to DVB-S2 standard (Since R2022a) **仅元数据，中英文正文待补**
-- NR LDPC Encoder — 官方英文摘要: Perform LDPC encoding according to 5G NR standard **仅元数据，中英文正文待补**
-- NR LDPC Decoder — 官方英文摘要: Decode LDPC code according to 5G NR standard **仅元数据，中英文正文待补**
-- NR Polar Encoder — 官方英文摘要: Perform polar encoding according to 5G NR standard **仅元数据，中英文正文待补**
-- NR Polar Decoder — 官方英文摘要: Perform polar decoding according to 5G NR standard **仅元数据，中英文正文待补**
-- WLAN LDPC Decoder — 官方英文摘要: Decode LDPC code according to WLAN standard (Since R2021b) **仅元数据，中英文正文待补**
-- RS Encoder — 官方英文摘要: Encode message to RS codeword **仅元数据，中英文正文待补**
-- RS Decoder — 官方英文摘要: Decode and recover message from RS codeword **仅元数据，中英文正文待补**
-- LDPC Encoder — 官方英文摘要: Encode data with quasi-cyclic low-density parity-check code (Since R2023a) **仅元数据，中英文正文待补**
-- LDPC Decoder — 官方英文摘要: Decode quasi-cyclic low-density parity-check code (Since R2023b) **仅元数据，中英文正文待补**
+- [CCSDS RS Encoder](../../zh/products/wireless-hdl/ref/ccsdsrsencoder.md) — 官方英文摘要: Encode message into RS codeword according to CCSDS standard (Since R2022a) **完整正文**
+- [CCSDS RS Decoder](../../zh/products/wireless-hdl/ref/ccsdsrsdecoder.md) — 官方英文摘要: Decode and recover message from RS codeword according to CCSDS standard (Since R2021b) **完整正文**
+- [CCSDS LDPC Decoder](../../zh/products/wireless-hdl/ref/ccsdsldpcdecoder.md) — 官方英文摘要: Decode LDPC code according to CCSDS standard (Since R2022b) **完整正文**
+- [CCSDS LDPC Encoder](../../zh/products/wireless-hdl/ref/ccsdsldpcencoder.md) — 官方英文摘要: Encode data with (8160,7136) LDPC code specified in CCSDS telemetry standard (Since R2025a) **完整正文**
+- [DVB-S2 BCH Decoder](../../zh/products/wireless-hdl/ref/dvbs2bchdecoder.md) — 官方英文摘要: Decode and recover message from BCH codeword according to DVB-S2 standard (Since R2022a) **完整正文**
+- [DVB-S2 LDPC Decoder](../../zh/products/wireless-hdl/ref/dvbs2ldpcdecoder.md) — 官方英文摘要: Decode LDPC code according to DVB-S2 standard (Since R2022a) **完整正文**
+- [NR LDPC Encoder](../../zh/products/wireless-hdl/ref/nrldpcencoder.md) — 官方英文摘要: Perform LDPC encoding according to 5G NR standard **完整正文**
+- [NR LDPC Decoder](../../zh/products/wireless-hdl/ref/nrldpcdecoder.md) — 官方英文摘要: Decode LDPC code according to 5G NR standard **完整正文**
+- [NR Polar Encoder](../../zh/products/wireless-hdl/ref/nrpolarencoder.md) — 官方英文摘要: Perform polar encoding according to 5G NR standard **完整正文**
+- [NR Polar Decoder](../../zh/products/wireless-hdl/ref/nrpolardecoder.md) — 官方英文摘要: Perform polar decoding according to 5G NR standard **完整正文**
+- [WLAN LDPC Decoder](../../zh/products/wireless-hdl/ref/wlanldpcdecoder.md) — 官方英文摘要: Decode LDPC code according to WLAN standard (Since R2021b) **完整正文**
+- [RS Encoder](../../zh/products/wireless-hdl/ref/rsencoder.md) — 官方英文摘要: Encode message to RS codeword **完整正文**
+- [RS Decoder](../../zh/products/wireless-hdl/ref/rsdecoder.md) — 官方英文摘要: Decode and recover message from RS codeword **完整正文**
+- [LDPC Encoder](../../zh/products/wireless-hdl/ref/ldpcencoder.md) — 官方英文摘要: Encode data with quasi-cyclic low-density parity-check code (Since R2023a) **完整正文**
+- [LDPC Decoder](../../zh/products/wireless-hdl/ref/ldpcdecoder.md) — 官方英文摘要: Decode quasi-cyclic low-density parity-check code (Since R2023b) **完整正文**
 
 ## HDL-Optimized System Design / Convolutional Coding
 
-- APP Decoder — 官方英文摘要: Decode convolutionally-coded LLR values using MAP algorithm (Since R2021b) **仅元数据，中英文正文待补**
-- LTE Convolutional Encoder — 官方英文摘要: Encode binary samples using tail-biting convolutional algorithm **仅元数据，中英文正文待补**
-- LTE Convolutional Decoder — 官方英文摘要: Decode convolutional-encoded samples using Viterbi algorithm **仅元数据，中英文正文待补**
-- LTE Turbo Encoder — 官方英文摘要: Encode binary samples using turbo algorithm **仅元数据，中英文正文待补**
-- LTE Turbo Decoder — 官方英文摘要: Decode turbo-encoded samples **仅元数据，中英文正文待补**
-- Convolutional Encoder — 官方英文摘要: Encode data bits using convolution coding — optimized for HDL code generation **仅元数据，中英文正文待补**
-- Puncturer — 官方英文摘要: Punctures data according to puncture vector **仅元数据，中英文正文待补**
-- Depuncturer — 官方英文摘要: Reverse puncturing scheme to prepare for decoding **仅元数据，中英文正文待补**
-- Viterbi Decoder — 官方英文摘要: Decode convolutionally encoded data using Viterbi algorithm **仅元数据，中英文正文待补**
+- [APP Decoder](../../zh/products/wireless-hdl/ref/appdecoder.md) — 官方英文摘要: Decode convolutionally-coded LLR values using MAP algorithm (Since R2021b) **完整正文**
+- [LTE Convolutional Encoder](../../zh/products/wireless-hdl/ref/lteconvolutionalencoder.md) — 官方英文摘要: Encode binary samples using tail-biting convolutional algorithm **完整正文**
+- [LTE Convolutional Decoder](../../zh/products/wireless-hdl/ref/lteconvolutionaldecoder.md) — 官方英文摘要: Decode convolutional-encoded samples using Viterbi algorithm **完整正文**
+- [LTE Turbo Encoder](../../zh/products/wireless-hdl/ref/lteturboencoder.md) — 官方英文摘要: Encode binary samples using turbo algorithm **完整正文**
+- [LTE Turbo Decoder](../../zh/products/wireless-hdl/ref/lteturbodecoder.md) — 官方英文摘要: Decode turbo-encoded samples **完整正文**
+- [Convolutional Encoder](../../zh/products/wireless-hdl/ref/convolutionalencoder.md) — 官方英文摘要: Encode data bits using convolution coding — optimized for HDL code generation **完整正文**
+- [Puncturer](../../zh/products/wireless-hdl/ref/puncturer.md) — 官方英文摘要: Punctures data according to puncture vector **完整正文**
+- [Depuncturer](../../zh/products/wireless-hdl/ref/depuncturer.md) — 官方英文摘要: Reverse puncturing scheme to prepare for decoding **完整正文**
+- [Viterbi Decoder](../../zh/products/wireless-hdl/ref/viterbidecoder.md) — 官方英文摘要: Decode convolutionally encoded data using Viterbi algorithm **完整正文**
 
 ## HDL-Optimized System Design / Cyclic Redundancy Check (CRC) Coding
 
-- LTE CRC Encoder — 官方英文摘要: Generate checksum and append to input sample stream **仅元数据，中英文正文待补**
-- LTE CRC Decoder — 官方英文摘要: Detect errors in input samples using checksum **仅元数据，中英文正文待补**
-- NR CRC Encoder — 官方英文摘要: Generate CRC code bits and append them to input data (Since R2021a) **仅元数据，中英文正文待补**
-- NR CRC Decoder — 官方英文摘要: Detect errors in input data using CRC (Since R2021a) **仅元数据，中英文正文待补**
+- [LTE CRC Encoder](../../zh/products/wireless-hdl/ref/ltecrcencoder.md) — 官方英文摘要: Generate checksum and append to input sample stream **完整正文**
+- [LTE CRC Decoder](../../zh/products/wireless-hdl/ref/ltecrcdecoder.md) — 官方英文摘要: Detect errors in input samples using checksum **完整正文**
+- [NR CRC Encoder](../../zh/products/wireless-hdl/ref/nrcrcencoder.md) — 官方英文摘要: Generate CRC code bits and append them to input data (Since R2021a) **完整正文**
+- [NR CRC Decoder](../../zh/products/wireless-hdl/ref/nrcrcdecoder.md) — 官方英文摘要: Detect errors in input data using CRC (Since R2021a) **完整正文**
 
 ## HDL-Optimized System Design / Modulation
 
-- DVB-S2 Symbol Demodulator — 官方英文摘要: Demodulate complex constellation symbol to set of LLR values or data bits according to DVB-S2 standard (Since R2021b) **仅元数据，中英文正文待补**
-- DVB-S2 Symbol Modulator — 官方英文摘要: Modulate data bits to complex constellation symbols according to DVB-S2 standard (Since R2022b) **仅元数据，中英文正文待补**
-- LTE OFDM Modulator — 官方英文摘要: Modulate LTE resource grid and return time-domain OFDM samples **仅元数据，中英文正文待补**
-- LTE OFDM Demodulator — 官方英文摘要: Demodulate time-domain OFDM samples and return LTE resource grid **仅元数据，中英文正文待补**
-- LTE Symbol Modulator — 官方英文摘要: Modulate data bits to complex LTE data symbols **仅元数据，中英文正文待补**
-- LTE Symbol Demodulator — 官方英文摘要: Demodulate complex LTE data symbols to data bits or LLR values **仅元数据，中英文正文待补**
-- NR Symbol Modulator — 官方英文摘要: Modulate data bits to complex NR data symbols **仅元数据，中英文正文待补**
-- NR Symbol Demodulator — 官方英文摘要: Demodulate complex NR data symbols to data bits or LLR values **仅元数据，中英文正文待补**
-- FFT 1536 — 官方英文摘要: Computes fast-fourier-transform (FFT) for LTE standard transmission bandwidth of 15 MHz **仅元数据，中英文正文待补**
-- OFDM Channel Estimator — 官方英文摘要: Estimate channel using input data and reference subcarriers **仅元数据，中英文正文待补**
-- OFDM Equalizer — 官方英文摘要: Equalize OFDM data using channel estimates (Since R2021a) **仅元数据，中英文正文待补**
-- OFDM Modulator — 官方英文摘要: Modulate frequency-domain OFDM subcarriers to time-domain samples for custom communication protocols **仅元数据，中英文正文待补**
-- OFDM Demodulator — 官方英文摘要: Demodulate time-domain OFDM samples and return subcarriers for custom communication protocols **仅元数据，中英文正文待补**
-- Symbol Demodulator — 官方英文摘要: Demodulate complex constellation symbol to set of LLR values or data bits (Since R2022a) **仅元数据，中英文正文待补**
-- Symbol Modulator — 官方英文摘要: Modulate data bits to complex data symbols (Since R2025a) **仅元数据，中英文正文待补**
-- GMSK Modulator — 官方英文摘要: Modulate data bits using Gaussian minimum shift keying (GMSK) method (Since R2024a) **仅元数据，中英文正文待补**
+- [DVB-S2 Symbol Demodulator](../../zh/products/wireless-hdl/ref/dvbs2symboldemodulator.md) — 官方英文摘要: Demodulate complex constellation symbol to set of LLR values or data bits according to DVB-S2 standard (Since R2021b) **完整正文**
+- [DVB-S2 Symbol Modulator](../../zh/products/wireless-hdl/ref/dvbs2symbolmodulator.md) — 官方英文摘要: Modulate data bits to complex constellation symbols according to DVB-S2 standard (Since R2022b) **完整正文**
+- [LTE OFDM Modulator](../../zh/products/wireless-hdl/ref/lteofdmmodulator.md) — 官方英文摘要: Modulate LTE resource grid and return time-domain OFDM samples **完整正文**
+- [LTE OFDM Demodulator](../../zh/products/wireless-hdl/ref/lteofdmdemodulator.md) — 官方英文摘要: Demodulate time-domain OFDM samples and return LTE resource grid **完整正文**
+- [LTE Symbol Modulator](../../zh/products/wireless-hdl/ref/ltesymbolmodulator.md) — 官方英文摘要: Modulate data bits to complex LTE data symbols **完整正文**
+- [LTE Symbol Demodulator](../../zh/products/wireless-hdl/ref/ltesymboldemodulator.md) — 官方英文摘要: Demodulate complex LTE data symbols to data bits or LLR values **完整正文**
+- [NR Symbol Modulator](../../zh/products/wireless-hdl/ref/nrsymbolmodulator.md) — 官方英文摘要: Modulate data bits to complex NR data symbols **完整正文**
+- [NR Symbol Demodulator](../../zh/products/wireless-hdl/ref/nrsymboldemodulator.md) — 官方英文摘要: Demodulate complex NR data symbols to data bits or LLR values **完整正文**
+- [FFT 1536](../../zh/products/wireless-hdl/ref/fft1536.md) — 官方英文摘要: Computes fast-fourier-transform (FFT) for LTE standard transmission bandwidth of 15 MHz **完整正文**
+- [OFDM Channel Estimator](../../zh/products/wireless-hdl/ref/ofdmchannelestimator.md) — 官方英文摘要: Estimate channel using input data and reference subcarriers **完整正文**
+- [OFDM Equalizer](../../zh/products/wireless-hdl/ref/ofdmequalizer.md) — 官方英文摘要: Equalize OFDM data using channel estimates (Since R2021a) **完整正文**
+- [OFDM Modulator](../../zh/products/wireless-hdl/ref/ofdmmodulator.md) — 官方英文摘要: Modulate frequency-domain OFDM subcarriers to time-domain samples for custom communication protocols **完整正文**
+- [OFDM Demodulator](../../zh/products/wireless-hdl/ref/ofdmdemodulator.md) — 官方英文摘要: Demodulate time-domain OFDM samples and return subcarriers for custom communication protocols **完整正文**
+- [Symbol Demodulator](../../zh/products/wireless-hdl/ref/symboldemodulator.md) — 官方英文摘要: Demodulate complex constellation symbol to set of LLR values or data bits (Since R2022a) **完整正文**
+- [Symbol Modulator](../../zh/products/wireless-hdl/ref/symbolmodulator.md) — 官方英文摘要: Modulate data bits to complex data symbols (Since R2025a) **完整正文**
+- [GMSK Modulator](../../zh/products/wireless-hdl/ref/gmskmodulator.md) — 官方英文摘要: Modulate data bits using Gaussian minimum shift keying (GMSK) method (Since R2024a) **完整正文**
 
 ## HDL-Optimized System Design / Utilities
 
-- LTE Gold Sequence Generator — 官方英文摘要: Generate Gold sequence **仅元数据，中英文正文待补**
+- [LTE Gold Sequence Generator](../../zh/products/wireless-hdl/ref/ltegoldsequencegenerator.md) — 官方英文摘要: Generate Gold sequence **完整正文**
 
 ## 5G Reference Applications
 
@@ -111,5 +111,5 @@ language: zh-CN
 
 ## HDL Code Generation, Verification, and Deployment
 
-- FIL Frame To Samples — 官方英文摘要: Convert frame-based data to sample stream for FPGA-in-the-loop **仅元数据，中英文正文待补**
-- FIL Samples To Frame — 官方英文摘要: Convert sample stream from FPGA-in-the-loop to frame-based data **仅元数据，中英文正文待补**
+- [FIL Frame To Samples](../../zh/products/wireless-hdl/ref/filframetosamples.md) — 官方英文摘要: Convert frame-based data to sample stream for FPGA-in-the-loop **完整正文**
+- [FIL Samples To Frame](../../zh/products/wireless-hdl/ref/filsamplestoframe.md) — 官方英文摘要: Convert sample stream from FPGA-in-the-loop to frame-based data **完整正文**

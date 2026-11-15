@@ -144,7 +144,7 @@ No direct block entries.
 
 ## Test and Measurement
 
-- Waveform From Wireless Waveform Generator App — Official summary: Wireless waveform source exported to Simulink (Since R2021b) **metadata only; full English and Chinese documents pending**
+- [Waveform From Wireless Waveform Generator App](../../en/products/wlan/ref/waveformfromwirelesswaveformgeneratorapp.md) — Official summary: Wireless waveform source exported to Simulink (Since R2021b) **full document**
 
 ## AI, Positioning, and Sensing
 

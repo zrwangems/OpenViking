@@ -29,29 +29,29 @@ No direct block entries.
 
 ## Fuzzy Logic in Simulink
 
-- Fuzzy Logic Controller — Official summary: Evaluate fuzzy inference system **metadata only; full English and Chinese documents pending**
-- Fuzzy Logic Controller with Ruleviewer — Official summary: Evaluate fuzzy inference system and view rules **metadata only; full English and Chinese documents pending**
-- FIS Tree — Official summary: Evaluate fuzzy inference system tree (Since R2024a) **metadata only; full English and Chinese documents pending**
-- Fuzzy PID Controller — Official summary: Fuzzy logic-based PID controller (Since R2024b) **metadata only; full English and Chinese documents pending**
-- Probabilistic OR — Official summary: Probabilistic OR function **metadata only; full English and Chinese documents pending**
-- Probabilistic Rule Agg — Official summary: Probabilistic OR function for rule aggregation **metadata only; full English and Chinese documents pending**
-- Diff. Sigmoidal MF — Official summary: Difference of two sigmoids membership function **metadata only; full English and Chinese documents pending**
-- Gaussian MF — Official summary: Gaussian membership function **metadata only; full English and Chinese documents pending**
-- Gaussian2 MF — Official summary: Combination of two Gaussian membership functions **metadata only; full English and Chinese documents pending**
-- Generalized Bell MF — Official summary: Generalized bell membership function **metadata only; full English and Chinese documents pending**
-- Linear S-shaped MF — Official summary: Linear s-shaped saturation membership function (Since R2022a) **metadata only; full English and Chinese documents pending**
-- Linear Z-shaped MF — Official summary: Linear z-shaped saturation membership function (Since R2022a) **metadata only; full English and Chinese documents pending**
-- Pi-shaped MF — Official summary: Pi-shaped membership function **metadata only; full English and Chinese documents pending**
-- Prod. Sigmoidal MF — Official summary: Product of two sigmoid membership functions **metadata only; full English and Chinese documents pending**
-- S-shaped MF — Official summary: S-shaped membership function **metadata only; full English and Chinese documents pending**
-- Sigmoidal MF — Official summary: Sigmoidal membership function **metadata only; full English and Chinese documents pending**
-- Trapezoidal MF — Official summary: Trapezoidal membership function **metadata only; full English and Chinese documents pending**
-- Triangular MF — Official summary: Triangular membership function **metadata only; full English and Chinese documents pending**
-- Z-shaped MF — Official summary: Z-shaped membership function **metadata only; full English and Chinese documents pending**
+- [Fuzzy Logic Controller](../../en/products/fuzzy/fuzzylogiccontroller.md) — Official summary: Evaluate fuzzy inference system **full document**
+- [Fuzzy Logic Controller with Ruleviewer](../../en/products/fuzzy/fuzzylogiccontrollerwithruleviewer.md) — Official summary: Evaluate fuzzy inference system and view rules **full document**
+- [FIS Tree](../../en/products/fuzzy/fistreeblock.md) — Official summary: Evaluate fuzzy inference system tree (Since R2024a) **full document**
+- [Fuzzy PID Controller](../../en/products/fuzzy/fuzzypidcontroller.md) — Official summary: Fuzzy logic-based PID controller (Since R2024b) **full document**
+- [Probabilistic OR](../../en/products/fuzzy/probabilisticor.md) — Official summary: Probabilistic OR function **full document**
+- [Probabilistic Rule Agg](../../en/products/fuzzy/probabilisticruleagg.md) — Official summary: Probabilistic OR function for rule aggregation **full document**
+- [Diff. Sigmoidal MF](../../en/products/fuzzy/diff.sigmoidalmf.md) — Official summary: Difference of two sigmoids membership function **full document**
+- [Gaussian MF](../../en/products/fuzzy/gaussianmf.md) — Official summary: Gaussian membership function **full document**
+- [Gaussian2 MF](../../en/products/fuzzy/gaussian2mf.md) — Official summary: Combination of two Gaussian membership functions **full document**
+- [Generalized Bell MF](../../en/products/fuzzy/generalizedbellmf.md) — Official summary: Generalized bell membership function **full document**
+- [Linear S-shaped MF](../../en/products/fuzzy/linearsshapedmf.md) — Official summary: Linear s-shaped saturation membership function (Since R2022a) **full document**
+- [Linear Z-shaped MF](../../en/products/fuzzy/linearzshapedmf.md) — Official summary: Linear z-shaped saturation membership function (Since R2022a) **full document**
+- [Pi-shaped MF](../../en/products/fuzzy/pishapedmf.md) — Official summary: Pi-shaped membership function **full document**
+- [Prod. Sigmoidal MF](../../en/products/fuzzy/prod.sigmoidalmf.md) — Official summary: Product of two sigmoid membership functions **full document**
+- [S-shaped MF](../../en/products/fuzzy/sshapedmf.md) — Official summary: S-shaped membership function **full document**
+- [Sigmoidal MF](../../en/products/fuzzy/sigmoidalmf.md) — Official summary: Sigmoidal membership function **full document**
+- [Trapezoidal MF](../../en/products/fuzzy/trapezoidalmf.md) — Official summary: Trapezoidal membership function **full document**
+- [Triangular MF](../../en/products/fuzzy/triangularmf.md) — Official summary: Triangular membership function **full document**
+- [Z-shaped MF](../../en/products/fuzzy/zshapedmf.md) — Official summary: Z-shaped membership function **full document**
 
 ## Deployment
 
-- Fuzzy Logic Controller — Official summary: Evaluate fuzzy inference system **metadata only; full English and Chinese documents pending**
+- [Fuzzy Logic Controller](../../en/products/fuzzy/fuzzylogiccontroller.md) — Official summary: Evaluate fuzzy inference system **full document**
 
 ## Applications
 

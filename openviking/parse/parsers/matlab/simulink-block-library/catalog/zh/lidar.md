@@ -74,4 +74,4 @@ language: zh-CN
 
 ## Lidar Data Acquisition and Sensor Simulation / Sensor Simulation
 
-- Lidar Sensor — 官方英文摘要: Generate lidar point cloud data for a scene (Since R2023a) **仅元数据，中英文正文待补**
+- [Lidar Sensor](../../zh/products/lidar/ref/lidarsensor.md) — 官方英文摘要: Generate lidar point cloud data for a scene (Since R2023a) **完整正文**

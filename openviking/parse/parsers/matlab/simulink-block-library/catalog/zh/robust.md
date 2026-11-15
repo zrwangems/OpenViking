@@ -24,8 +24,8 @@ language: zh-CN
 
 ## Uncertain System Representation / Uncertain Models in Simulink
 
-- Uncertain State Space — 官方英文摘要: Simulate uncertain system in Simulink **仅元数据，中英文正文待补**
-- USS System — 官方英文摘要: (Not recommended) Import uncertain systems into Simulink **仅元数据，中英文正文待补**
+- [Uncertain State Space](../../zh/products/robust/ref/uncertainstatespace.md) — 官方英文摘要: Simulate uncertain system in Simulink **完整正文**
+- [USS System](../../zh/products/robust/ref/usssystem.md) — 官方英文摘要: (Not recommended) Import uncertain systems into Simulink **完整正文**
 
 ## Uncertain System Analysis
 
@@ -49,8 +49,8 @@ language: zh-CN
 
 ## Uncertain System Analysis / Uncertainty Analysis with Simulink Models
 
-- Uncertain State Space — 官方英文摘要: Simulate uncertain system in Simulink **仅元数据，中英文正文待补**
-- MultiPlot Graph — 官方英文摘要: Plot results of multiple simulations **仅元数据，中英文正文待补**
+- [Uncertain State Space](../../zh/products/robust/ref/uncertainstatespace.md) — 官方英文摘要: Simulate uncertain system in Simulink **完整正文**
+- [MultiPlot Graph](../../zh/products/robust/ref/multiplotgraph.md) — 官方英文摘要: Plot results of multiple simulations **完整正文**
 
 ## Robust Controllers
 

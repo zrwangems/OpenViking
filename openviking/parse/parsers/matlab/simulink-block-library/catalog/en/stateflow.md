@@ -29,9 +29,9 @@ No direct block entries.
 
 ## Chart Programming / Chart Programming Basics / Stateflow Charts
 
-- Chart — Official summary: Implement control logic with finite state machine **metadata only; full English and Chinese documents pending**
-- State Transition Table — Official summary: Represent modal logic in tabular format **metadata only; full English and Chinese documents pending**
-- Truth Table — Official summary: Represent logical decision-making behavior with conditions, decisions, and actions **metadata only; full English and Chinese documents pending**
+- [Chart](../../en/products/stateflow/ref/chart.md) — Official summary: Implement control logic with finite state machine **full document**
+- [State Transition Table](../../en/products/stateflow/ref/statetransitiontable.md) — Official summary: Represent modal logic in tabular format **full document**
+- [Truth Table](../../en/products/stateflow/ref/truthtable.md) — Official summary: Represent logical decision-making behavior with conditions, decisions, and actions **full document**
 
 ## Chart Programming / Chart Programming Basics / Hierarchy
 
@@ -45,7 +45,7 @@ No direct block entries.
 
 ## Chart Programming / Chart Programming Basics / State Transition Tables
 
-- State Transition Table — Official summary: Represent modal logic in tabular format **metadata only; full English and Chinese documents pending**
+- [State Transition Table](../../en/products/stateflow/ref/statetransitiontable.md) — Official summary: Represent modal logic in tabular format **full document**
 
 ## Chart Programming / Stateflow Editor Interface
 
@@ -54,9 +54,9 @@ No direct block entries.
 
 ## Chart Programming / Syntax for States and Transitions
 
-- Chart — Official summary: Implement control logic with finite state machine **metadata only; full English and Chinese documents pending**
-- State Transition Table — Official summary: Represent modal logic in tabular format **metadata only; full English and Chinese documents pending**
-- Truth Table — Official summary: Represent logical decision-making behavior with conditions, decisions, and actions **metadata only; full English and Chinese documents pending**
+- [Chart](../../en/products/stateflow/ref/chart.md) — Official summary: Implement control logic with finite state machine **full document**
+- [State Transition Table](../../en/products/stateflow/ref/statetransitiontable.md) — Official summary: Represent modal logic in tabular format **full document**
+- [Truth Table](../../en/products/stateflow/ref/truthtable.md) — Official summary: Represent logical decision-making behavior with conditions, decisions, and actions **full document**
 
 ## Chart Programming / Chart Simulation Semantics
 
@@ -105,7 +105,7 @@ No direct block entries.
 
 ## Chart Programming / Reusable Components in Charts / Truth Tables
 
-- Truth Table — Official summary: Represent logical decision-making behavior with conditions, decisions, and actions **metadata only; full English and Chinese documents pending**
+- [Truth Table](../../en/products/stateflow/ref/truthtable.md) — Official summary: Represent logical decision-making behavior with conditions, decisions, and actions **full document**
 
 ## Chart Programming / Reusable Components in Charts / Atomic Subcharts
 
@@ -159,11 +159,11 @@ No direct block entries.
 
 ## Simulation in Simulink / Data, Events, and Messages / Events
 
-- Sequence Viewer — Official summary: Display messages, events, states, transitions, and functions between blocks during simulation **metadata only; full English and Chinese documents pending**
+- [Sequence Viewer](../../en/products/stateflow/ref/sequenceviewer.md) — Official summary: Display messages, events, states, transitions, and functions between blocks during simulation **full document**
 
 ## Simulation in Simulink / Data, Events, and Messages / Messages
 
-- Sequence Viewer — Official summary: Display messages, events, states, transitions, and functions between blocks during simulation **metadata only; full English and Chinese documents pending**
+- [Sequence Viewer](../../en/products/stateflow/ref/sequenceviewer.md) — Official summary: Display messages, events, states, transitions, and functions between blocks during simulation **full document**
 
 ## Simulation in Simulink / Data, Events, and Messages / Masking
 

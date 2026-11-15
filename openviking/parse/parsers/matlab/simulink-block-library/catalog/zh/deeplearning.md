@@ -59,11 +59,11 @@ language: zh-CN
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Classification
 
-- Wavelet Scattering — 官方英文摘要: Model wavelet scattering network in Simulink (Since R2022b) **仅元数据，中英文正文待补**
+- [Wavelet Scattering](../../zh/products/deeplearning/../dsp/ref/waveletscattering.md) — 官方英文摘要: Model wavelet scattering network in Simulink (Since R2022b) **完整正文**
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Regression
 
-- Wavelet Scattering — 官方英文摘要: Model wavelet scattering network in Simulink (Since R2022b) **仅元数据，中英文正文待补**
+- [Wavelet Scattering](../../zh/products/deeplearning/../dsp/ref/waveletscattering.md) — 官方英文摘要: Model wavelet scattering network in Simulink (Since R2022b) **完整正文**
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Preprocessing and Feature Extraction
 
@@ -77,8 +77,8 @@ language: zh-CN
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Anomaly Detection
 
-- Wavelet Scattering — 官方英文摘要: Model wavelet scattering network in Simulink (Since R2022b) **仅元数据，中英文正文待补**
-- Deep Signal Anomaly Detector — 官方英文摘要: Detect signal anomalies using deep learning network in Simulink (Since R2024a) **仅元数据，中英文正文待补**
+- [Wavelet Scattering](../../zh/products/deeplearning/../dsp/ref/waveletscattering.md) — 官方英文摘要: Model wavelet scattering network in Simulink (Since R2022b) **完整正文**
+- [Deep Signal Anomaly Detector](../../zh/products/deeplearning/../dsp/ref/deepsignalanomalydetector.md) — 官方英文摘要: Detect signal anomalies using deep learning network in Simulink (Since R2024a) **完整正文**
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Embedded AI Systems
 
@@ -87,14 +87,14 @@ language: zh-CN
 
 ## Applications / Signal Processing, Audio, and Wireless / Audio Processing
 
-- VGGish — 官方英文摘要: VGGish embeddings extraction network (Since R2022a) **仅元数据，中英文正文待补**
-- VGGish Embeddings — 官方英文摘要: Extract VGGish embeddings (Since R2022a) **仅元数据，中英文正文待补**
-- YAMNet — 官方英文摘要: YAMNet sound classification network (Since R2021b) **仅元数据，中英文正文待补**
-- Sound Classifier — 官方英文摘要: Classify sounds in audio signal (Since R2021b) **仅元数据，中英文正文待补**
-- OpenL3 — 官方英文摘要: OpenL3 embeddings extraction network (Since R2022b) **仅元数据，中英文正文待补**
-- OpenL3 Embeddings — 官方英文摘要: Extract OpenL3 embeddings (Since R2022b) **仅元数据，中英文正文待补**
-- CREPE — 官方英文摘要: CREPE deep pitch estimation neural network (Since R2023a) **仅元数据，中英文正文待补**
-- Deep Pitch Estimator — 官方英文摘要: Estimate pitch with CREPE deep learning neural network (Since R2023a) **仅元数据，中英文正文待补**
+- [VGGish](../../zh/products/deeplearning/../audio/ref/vggishblock.md) — 官方英文摘要: VGGish embeddings extraction network (Since R2022a) **完整正文**
+- [VGGish Embeddings](../../zh/products/deeplearning/../audio/ref/vggishembeddingsblock.md) — 官方英文摘要: Extract VGGish embeddings (Since R2022a) **完整正文**
+- [YAMNet](../../zh/products/deeplearning/../audio/ref/yamnetblock.md) — 官方英文摘要: YAMNet sound classification network (Since R2021b) **完整正文**
+- [Sound Classifier](../../zh/products/deeplearning/../audio/ref/soundclassifier.md) — 官方英文摘要: Classify sounds in audio signal (Since R2021b) **完整正文**
+- [OpenL3](../../zh/products/deeplearning/../audio/ref/openl3block.md) — 官方英文摘要: OpenL3 embeddings extraction network (Since R2022b) **完整正文**
+- [OpenL3 Embeddings](../../zh/products/deeplearning/../audio/ref/openl3embeddingsblock.md) — 官方英文摘要: Extract OpenL3 embeddings (Since R2022b) **完整正文**
+- [CREPE](../../zh/products/deeplearning/../audio/ref/crepeblock.md) — 官方英文摘要: CREPE deep pitch estimation neural network (Since R2023a) **完整正文**
+- [Deep Pitch Estimator](../../zh/products/deeplearning/../audio/ref/deeppitchestimator.md) — 官方英文摘要: Estimate pitch with CREPE deep learning neural network (Since R2023a) **完整正文**
 
 ## Applications / Signal Processing, Audio, and Wireless / Wireless Communications
 
@@ -153,8 +153,8 @@ language: zh-CN
 
 ## Applications / Reduced Order Modeling
 
-- Predict — 官方英文摘要: Predict responses using a trained deep learning neural network **仅元数据，中英文正文待补**
-- Stateful Predict — 官方英文摘要: Predict responses using a trained recurrent neural network (Since R2021a) **仅元数据，中英文正文待补**
+- [Predict](../../zh/products/deeplearning/ref/predict.md) — 官方英文摘要: Predict responses using a trained deep learning neural network **完整正文**
+- [Stateful Predict](../../zh/products/deeplearning/ref/statefulpredict.md) — 官方英文摘要: Predict responses using a trained recurrent neural network (Since R2021a) **完整正文**
 
 ## Applications / Autonomous and Control Systems
 
@@ -203,86 +203,86 @@ language: zh-CN
 
 ## Deep Learning with Simulink / Networks
 
-- Image Classifier — 官方英文摘要: Classify data using a trained deep learning neural network **仅元数据，中英文正文待补**
-- Predict — 官方英文摘要: Predict responses using a trained deep learning neural network **仅元数据，中英文正文待补**
-- Stateful Classify — 官方英文摘要: Classify data using a trained deep learning recurrent neural network (Since R2021a) **仅元数据，中英文正文待补**
-- Stateful Predict — 官方英文摘要: Predict responses using a trained recurrent neural network (Since R2021a) **仅元数据，中英文正文待补**
-- Deep Learning Object Detector — 官方英文摘要: Detect objects using trained deep learning object detector (Since R2021b) **仅元数据，中英文正文待补**
-- TensorFlow Model Predict — 官方英文摘要: Predict responses using pretrained Python TensorFlow model (Since R2024a) **仅元数据，中英文正文待补**
-- PyTorch Model Predict — 官方英文摘要: Predict responses using pretrained Python PyTorch model (Since R2024a) **仅元数据，中英文正文待补**
-- ONNX Model Predict — 官方英文摘要: Predict responses using pretrained Python ONNX model (Since R2024a) **仅元数据，中英文正文待补**
-- Custom Python Model Predict — 官方英文摘要: Predict responses using pretrained custom Python model (Since R2024a) **仅元数据，中英文正文待补**
+- [Image Classifier](../../zh/products/deeplearning/ref/imageclassifier.md) — 官方英文摘要: Classify data using a trained deep learning neural network **完整正文**
+- [Predict](../../zh/products/deeplearning/ref/predict.md) — 官方英文摘要: Predict responses using a trained deep learning neural network **完整正文**
+- [Stateful Classify](../../zh/products/deeplearning/ref/statefulclassify.md) — 官方英文摘要: Classify data using a trained deep learning recurrent neural network (Since R2021a) **完整正文**
+- [Stateful Predict](../../zh/products/deeplearning/ref/statefulpredict.md) — 官方英文摘要: Predict responses using a trained recurrent neural network (Since R2021a) **完整正文**
+- [Deep Learning Object Detector](../../zh/products/deeplearning/../vision/ref/deeplearningobjectdetector.md) — 官方英文摘要: Detect objects using trained deep learning object detector (Since R2021b) **完整正文**
+- [TensorFlow Model Predict](../../zh/products/deeplearning/ref/tensorflowmodelpredict.md) — 官方英文摘要: Predict responses using pretrained Python TensorFlow model (Since R2024a) **完整正文**
+- [PyTorch Model Predict](../../zh/products/deeplearning/ref/pytorchmodelpredict.md) — 官方英文摘要: Predict responses using pretrained Python PyTorch model (Since R2024a) **完整正文**
+- [ONNX Model Predict](../../zh/products/deeplearning/ref/onnxmodelpredict.md) — 官方英文摘要: Predict responses using pretrained Python ONNX model (Since R2024a) **完整正文**
+- [Custom Python Model Predict](../../zh/products/deeplearning/ref/custompythonmodelpredict.md) — 官方英文摘要: Predict responses using pretrained custom Python model (Since R2024a) **完整正文**
 
 ## Deep Learning with Simulink / Activation Layers
 
-- Clipped ReLU Layer — 官方英文摘要: Clipped Rectified Linear Unit (ReLU) layer (Since R2024b) **仅元数据，中英文正文待补**
-- GELU Layer — 官方英文摘要: Gaussian error linear unit (GELU) layer (Since R2024b) **仅元数据，中英文正文待补**
-- Leaky ReLU Layer — 官方英文摘要: Leaky rectified linear unit (ReLU) layer (Since R2024b) **仅元数据，中英文正文待补**
-- ReLU Layer — 官方英文摘要: Rectified linear unit (ReLU) layer (Since R2024b) **仅元数据，中英文正文待补**
-- Sigmoid Layer — 官方英文摘要: Sigmoid layer (Since R2024b) **仅元数据，中英文正文待补**
-- Softmax Layer — 官方英文摘要: Softmax layer (Since R2024b) **仅元数据，中英文正文待补**
-- Tanh Layer — 官方英文摘要: Hyperbolic tangent (tanh) layer (Since R2024a) **仅元数据，中英文正文待补**
+- [Clipped ReLU Layer](../../zh/products/deeplearning/ref/clippedrelulayer.md) — 官方英文摘要: Clipped Rectified Linear Unit (ReLU) layer (Since R2024b) **完整正文**
+- [GELU Layer](../../zh/products/deeplearning/ref/gelulayer.md) — 官方英文摘要: Gaussian error linear unit (GELU) layer (Since R2024b) **完整正文**
+- [Leaky ReLU Layer](../../zh/products/deeplearning/ref/leakyrelulayer.md) — 官方英文摘要: Leaky rectified linear unit (ReLU) layer (Since R2024b) **完整正文**
+- [ReLU Layer](../../zh/products/deeplearning/ref/relulayer.md) — 官方英文摘要: Rectified linear unit (ReLU) layer (Since R2024b) **完整正文**
+- [Sigmoid Layer](../../zh/products/deeplearning/ref/sigmoidlayer.md) — 官方英文摘要: Sigmoid layer (Since R2024b) **完整正文**
+- [Softmax Layer](../../zh/products/deeplearning/ref/softmaxlayer.md) — 官方英文摘要: Softmax layer (Since R2024b) **完整正文**
+- [Tanh Layer](../../zh/products/deeplearning/ref/tanhlayer.md) — 官方英文摘要: Hyperbolic tangent (tanh) layer (Since R2024a) **完整正文**
 
 ## Deep Learning with Simulink / Combination Layers
 
-- Addition Layer — 官方英文摘要: Addition layer (Since R2024b) **仅元数据，中英文正文待补**
-- Concatenation Layer — 官方英文摘要: Concatenation layer (Since R2024b) **仅元数据，中英文正文待补**
-- Depth Concatenation Layer — 官方英文摘要: Depth concatenation layer (Since R2024b) **仅元数据，中英文正文待补**
-- Multiplication Layer — 官方英文摘要: Multiplication layer (Since R2024b) **仅元数据，中英文正文待补**
+- [Addition Layer](../../zh/products/deeplearning/ref/additionlayer.md) — 官方英文摘要: Addition layer (Since R2024b) **完整正文**
+- [Concatenation Layer](../../zh/products/deeplearning/ref/concatenationlayer.md) — 官方英文摘要: Concatenation layer (Since R2024b) **完整正文**
+- [Depth Concatenation Layer](../../zh/products/deeplearning/ref/depthconcatenationlayer.md) — 官方英文摘要: Depth concatenation layer (Since R2024b) **完整正文**
+- [Multiplication Layer](../../zh/products/deeplearning/ref/multiplicationlayer.md) — 官方英文摘要: Multiplication layer (Since R2024b) **完整正文**
 
 ## Deep Learning with Simulink / Convolution and Fully Connected Layers
 
-- Convolution 1D Layer — 官方英文摘要: 1-D convolutional layer (Since R2024b) **仅元数据，中英文正文待补**
-- Convolution 2D Layer — 官方英文摘要: 2-D convolutional layer (Since R2024b) **仅元数据，中英文正文待补**
-- Convolution 3D Layer — 官方英文摘要: 3-D convolutional layer (Since R2024b) **仅元数据，中英文正文待补**
-- Fully Connected Layer — 官方英文摘要: Fully connected layer (Since R2024b) **仅元数据，中英文正文待补**
+- [Convolution 1D Layer](../../zh/products/deeplearning/ref/convolution1dlayer.md) — 官方英文摘要: 1-D convolutional layer (Since R2024b) **完整正文**
+- [Convolution 2D Layer](../../zh/products/deeplearning/ref/convolution2dlayer.md) — 官方英文摘要: 2-D convolutional layer (Since R2024b) **完整正文**
+- [Convolution 3D Layer](../../zh/products/deeplearning/ref/convolution3dlayer.md) — 官方英文摘要: 3-D convolutional layer (Since R2024b) **完整正文**
+- [Fully Connected Layer](../../zh/products/deeplearning/ref/fullyconnectedlayer.md) — 官方英文摘要: Fully connected layer (Since R2024b) **完整正文**
 
 ## Deep Learning with Simulink / Input Layer Normalizations
 
-- Rescale-Symmetric 1D — 官方英文摘要: 1-D input layer with rescale-symmetric normalization (Since R2024b) **仅元数据，中英文正文待补**
-- Rescale-Symmetric 2D — 官方英文摘要: 2-D input layer with rescale-symmetric normalization (Since R2024b) **仅元数据，中英文正文待补**
-- Rescale-Symmetric 3D — 官方英文摘要: 3-D input layer with rescale-symmetric normalization (Since R2024b) **仅元数据，中英文正文待补**
-- Rescale-Zero-One 1D — 官方英文摘要: 1-D input layer with rescale-zero-one normalization (Since R2024b) **仅元数据，中英文正文待补**
-- Rescale-Zero-One 2D — 官方英文摘要: 2-D input layer with rescale-zero-one normalization (Since R2024b) **仅元数据，中英文正文待补**
-- Rescale-Zero-One 3D — 官方英文摘要: 3-D input layer with rescale-zero-one normalization (Since R2024b) **仅元数据，中英文正文待补**
-- Zerocenter 1D — 官方英文摘要: 1-D input layer with zerocenter normalization (Since R2024b) **仅元数据，中英文正文待补**
-- Zerocenter 2D — 官方英文摘要: 2-D input layer with zerocenter normalization (Since R2024b) **仅元数据，中英文正文待补**
-- Zerocenter 3D — 官方英文摘要: 3-D input layer with zerocenter normalization (Since R2024b) **仅元数据，中英文正文待补**
-- Zscore 1D — 官方英文摘要: 1-D input layer with zscore normalization (Since R2024b) **仅元数据，中英文正文待补**
-- Zscore 2D — 官方英文摘要: 2-D input layer with zscore normalization (Since R2024b) **仅元数据，中英文正文待补**
-- Zscore 3D — 官方英文摘要: 3-D input layer with zscore normalization (Since R2024b) **仅元数据，中英文正文待补**
+- [Rescale-Symmetric 1D](../../zh/products/deeplearning/ref/rescalesymmetric1d.md) — 官方英文摘要: 1-D input layer with rescale-symmetric normalization (Since R2024b) **完整正文**
+- [Rescale-Symmetric 2D](../../zh/products/deeplearning/ref/rescalesymmetric2d.md) — 官方英文摘要: 2-D input layer with rescale-symmetric normalization (Since R2024b) **完整正文**
+- [Rescale-Symmetric 3D](../../zh/products/deeplearning/ref/rescalesymmetric3d.md) — 官方英文摘要: 3-D input layer with rescale-symmetric normalization (Since R2024b) **完整正文**
+- [Rescale-Zero-One 1D](../../zh/products/deeplearning/ref/rescalezeroone1d.md) — 官方英文摘要: 1-D input layer with rescale-zero-one normalization (Since R2024b) **完整正文**
+- [Rescale-Zero-One 2D](../../zh/products/deeplearning/ref/rescalezeroone2d.md) — 官方英文摘要: 2-D input layer with rescale-zero-one normalization (Since R2024b) **完整正文**
+- [Rescale-Zero-One 3D](../../zh/products/deeplearning/ref/rescalezeroone3d.md) — 官方英文摘要: 3-D input layer with rescale-zero-one normalization (Since R2024b) **完整正文**
+- [Zerocenter 1D](../../zh/products/deeplearning/ref/zerocenter1d.md) — 官方英文摘要: 1-D input layer with zerocenter normalization (Since R2024b) **完整正文**
+- [Zerocenter 2D](../../zh/products/deeplearning/ref/zerocenter2d.md) — 官方英文摘要: 2-D input layer with zerocenter normalization (Since R2024b) **完整正文**
+- [Zerocenter 3D](../../zh/products/deeplearning/ref/zerocenter3d.md) — 官方英文摘要: 3-D input layer with zerocenter normalization (Since R2024b) **完整正文**
+- [Zscore 1D](../../zh/products/deeplearning/ref/zscore1d.md) — 官方英文摘要: 1-D input layer with zscore normalization (Since R2024b) **完整正文**
+- [Zscore 2D](../../zh/products/deeplearning/ref/zscore2d.md) — 官方英文摘要: 2-D input layer with zscore normalization (Since R2024b) **完整正文**
+- [Zscore 3D](../../zh/products/deeplearning/ref/zscore3d.md) — 官方英文摘要: 3-D input layer with zscore normalization (Since R2024b) **完整正文**
 
 ## Deep Learning with Simulink / Normalization Layers
 
-- Batch Normalization Layer — 官方英文摘要: Batch normalization layer (Since R2024b) **仅元数据，中英文正文待补**
-- Layer Normalization Layer — 官方英文摘要: Layer normalization layer (Since R2024b) **仅元数据，中英文正文待补**
+- [Batch Normalization Layer](../../zh/products/deeplearning/ref/batchnormalizationlayer.md) — 官方英文摘要: Batch normalization layer (Since R2024b) **完整正文**
+- [Layer Normalization Layer](../../zh/products/deeplearning/ref/layernormalizationlayer.md) — 官方英文摘要: Layer normalization layer (Since R2024b) **完整正文**
 
 ## Deep Learning with Simulink / Pooling Layers
 
-- Average Pooling 1D Layer — 官方英文摘要: 1-D average pooling layer (Since R2024b) **仅元数据，中英文正文待补**
-- Average Pooling 2D Layer — 官方英文摘要: 2-D average pooling layer (Since R2024b) **仅元数据，中英文正文待补**
-- Average Pooling 3D Layer — 官方英文摘要: 3-D average pooling layer (Since R2024b) **仅元数据，中英文正文待补**
-- Global Average Pooling 1D Layer — 官方英文摘要: 1-D global average pooling layer (Since R2024b) **仅元数据，中英文正文待补**
-- Global Average Pooling 2D Layer — 官方英文摘要: 2-D global average pooling layer (Since R2024b) **仅元数据，中英文正文待补**
-- Global Average Pooling 3D Layer — 官方英文摘要: 3-D global average pooling layer (Since R2024b) **仅元数据，中英文正文待补**
-- Global Max Pooling 1D Layer — 官方英文摘要: 1-D global max pooling layer (Since R2024b) **仅元数据，中英文正文待补**
-- Global Max Pooling 2D Layer — 官方英文摘要: 2-D global max pooling layer (Since R2024b) **仅元数据，中英文正文待补**
-- Global Max Pooling 3D Layer — 官方英文摘要: 3-D global max pooling layer (Since R2024b) **仅元数据，中英文正文待补**
-- Max Pooling 1D Layer — 官方英文摘要: 1-D max pooling layer (Since R2024b) **仅元数据，中英文正文待补**
-- Max Pooling 2D Layer — 官方英文摘要: 2-D max pooling layer (Since R2024b) **仅元数据，中英文正文待补**
-- Max Pooling 3D Layer — 官方英文摘要: 3-D max pooling layer (Since R2024b) **仅元数据，中英文正文待补**
+- [Average Pooling 1D Layer](../../zh/products/deeplearning/ref/averagepooling1dlayer.md) — 官方英文摘要: 1-D average pooling layer (Since R2024b) **完整正文**
+- [Average Pooling 2D Layer](../../zh/products/deeplearning/ref/averagepooling2dlayer.md) — 官方英文摘要: 2-D average pooling layer (Since R2024b) **完整正文**
+- [Average Pooling 3D Layer](../../zh/products/deeplearning/ref/averagepooling3dlayer.md) — 官方英文摘要: 3-D average pooling layer (Since R2024b) **完整正文**
+- [Global Average Pooling 1D Layer](../../zh/products/deeplearning/ref/globalaveragepooling1dlayer.md) — 官方英文摘要: 1-D global average pooling layer (Since R2024b) **完整正文**
+- [Global Average Pooling 2D Layer](../../zh/products/deeplearning/ref/globalaveragepooling2dlayer.md) — 官方英文摘要: 2-D global average pooling layer (Since R2024b) **完整正文**
+- [Global Average Pooling 3D Layer](../../zh/products/deeplearning/ref/globalaveragepooling3dlayer.md) — 官方英文摘要: 3-D global average pooling layer (Since R2024b) **完整正文**
+- [Global Max Pooling 1D Layer](../../zh/products/deeplearning/ref/globalmaxpooling1dlayer.md) — 官方英文摘要: 1-D global max pooling layer (Since R2024b) **完整正文**
+- [Global Max Pooling 2D Layer](../../zh/products/deeplearning/ref/globalmaxpooling2dlayer.md) — 官方英文摘要: 2-D global max pooling layer (Since R2024b) **完整正文**
+- [Global Max Pooling 3D Layer](../../zh/products/deeplearning/ref/globalmaxpooling3dlayer.md) — 官方英文摘要: 3-D global max pooling layer (Since R2024b) **完整正文**
+- [Max Pooling 1D Layer](../../zh/products/deeplearning/ref/maxpooling1dlayer.md) — 官方英文摘要: 1-D max pooling layer (Since R2024b) **完整正文**
+- [Max Pooling 2D Layer](../../zh/products/deeplearning/ref/maxpooling2dlayer.md) — 官方英文摘要: 2-D max pooling layer (Since R2024b) **完整正文**
+- [Max Pooling 3D Layer](../../zh/products/deeplearning/ref/maxpooling3dlayer.md) — 官方英文摘要: 3-D max pooling layer (Since R2024b) **完整正文**
 
 ## Deep Learning with Simulink / Sequence Layers
 
-- Flatten Layer — 官方英文摘要: Flatten layer (Since R2024b) **仅元数据，中英文正文待补**
-- GRU Layer — 官方英文摘要: Gated recurrent unit (GRU) layer for recurrent neural network (RNN) (Since R2025a) **仅元数据，中英文正文待补**
-- GRU Projected Layer — 官方英文摘要: Gated recurrent unit (GRU) projected layer for recurrent neural network (RNN) (Since R2025a) **仅元数据，中英文正文待补**
-- LSTM Layer — 官方英文摘要: Long short-term memory (LSTM) layer for recurrent neural network (RNN) (Since R2024b) **仅元数据，中英文正文待补**
-- LSTM Projected Layer — 官方英文摘要: Long short-term memory (LSTM) projected layer for recurrent neural network (RNN) (Since R2024b) **仅元数据，中英文正文待补**
+- [Flatten Layer](../../zh/products/deeplearning/ref/flattenlayer.md) — 官方英文摘要: Flatten layer (Since R2024b) **完整正文**
+- [GRU Layer](../../zh/products/deeplearning/ref/grulayer.md) — 官方英文摘要: Gated recurrent unit (GRU) layer for recurrent neural network (RNN) (Since R2025a) **完整正文**
+- [GRU Projected Layer](../../zh/products/deeplearning/ref/gruprojectedlayer.md) — 官方英文摘要: Gated recurrent unit (GRU) projected layer for recurrent neural network (RNN) (Since R2025a) **完整正文**
+- [LSTM Layer](../../zh/products/deeplearning/ref/lstmlayer.md) — 官方英文摘要: Long short-term memory (LSTM) layer for recurrent neural network (RNN) (Since R2024b) **完整正文**
+- [LSTM Projected Layer](../../zh/products/deeplearning/ref/lstmprojectedlayer.md) — 官方英文摘要: Long short-term memory (LSTM) projected layer for recurrent neural network (RNN) (Since R2024b) **完整正文**
 
 ## Deep Learning with Simulink / Utility Layers
 
-- Dropout Layer — 官方英文摘要: Dropout layer (Since R2024b) **仅元数据，中英文正文待补**
+- [Dropout Layer](../../zh/products/deeplearning/ref/dropoutlayer.md) — 官方英文摘要: Dropout layer (Since R2024b) **完整正文**
 
 ## Preprocess Data for Deep Neural Networks
 
@@ -296,8 +296,8 @@ language: zh-CN
 
 ## Import and Build Deep Neural Networks / Built-In Pretrained Networks
 
-- Predict — 官方英文摘要: Predict responses using a trained deep learning neural network **仅元数据，中英文正文待补**
-- Image Classifier — 官方英文摘要: Classify data using a trained deep learning neural network **仅元数据，中英文正文待补**
+- [Predict](../../zh/products/deeplearning/ref/predict.md) — 官方英文摘要: Predict responses using a trained deep learning neural network **完整正文**
+- [Image Classifier](../../zh/products/deeplearning/ref/imageclassifier.md) — 官方英文摘要: Classify data using a trained deep learning neural network **完整正文**
 
 ## Import and Build Deep Neural Networks / Pretrained Networks from External Platforms
 

@@ -29,9 +29,9 @@ No direct block entries.
 
 ## System Integration of Deep Learning Processor IP Core
 
-- Deep Learning HDL Processing System — Official summary: Simulate deep learning processor IP core interface (Since R2023b) **metadata only; full English and Chinese documents pending**
-- Deep Learning HDL Int8 To Single Conversion — Official summary: Convert 8-bit signed integer data to single-precision data (Since R2024b) **metadata only; full English and Chinese documents pending**
-- Deep Learning HDL Single To Int8 Conversion — Official summary: Convert single-precision data to 8-bit signed integer data (Since R2024b) **metadata only; full English and Chinese documents pending**
+- [Deep Learning HDL Processing System](../../en/products/deep-learning-hdl/ref/deeplearninghdlprocessingsystem.md) — Official summary: Simulate deep learning processor IP core interface (Since R2023b) **full document**
+- [Deep Learning HDL Int8 To Single Conversion](../../en/products/deep-learning-hdl/ref/deeplearninghdlint8tosingleconversion.md) — Official summary: Convert 8-bit signed integer data to single-precision data (Since R2024b) **full document**
+- [Deep Learning HDL Single To Int8 Conversion](../../en/products/deep-learning-hdl/ref/deeplearninghdlsingletoint8conversion.md) — Official summary: Convert single-precision data to 8-bit signed integer data (Since R2024b) **full document**
 
 ## Deep Learning INT8 Quantization
 

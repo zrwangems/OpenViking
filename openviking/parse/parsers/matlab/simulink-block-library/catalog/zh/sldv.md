@@ -59,14 +59,14 @@ language: zh-CN
 
 ## Specify and Verify Design Requirements
 
-- Proof Assumption — 官方英文摘要: Constrain signal values when proving model properties **仅元数据，中英文正文待补**
-- Proof Objective — 官方英文摘要: Define objectives that signals must satisfy when proving model properties **仅元数据，中英文正文待补**
-- Assertion — 官方英文摘要: Check whether signal is zero **仅元数据，中英文正文待补**
-- Detector — 官方英文摘要: Detect true duration on input and construct output true duration based on output type **仅元数据，中英文正文待补**
-- Extender — 官方英文摘要: Extend true duration of input **仅元数据，中英文正文待补**
-- Implies — 官方英文摘要: Specify condition that produces a certain response **仅元数据，中英文正文待补**
-- Within Implies — 官方英文摘要: Verify response occurs within desired duration **仅元数据，中英文正文待补**
-- Verification Subsystem — 官方英文摘要: Specify proof or test objectives without impacting simulation results or generated code **仅元数据，中英文正文待补**
+- [Proof Assumption](../../zh/products/sldv/ref/proofassumption.md) — 官方英文摘要: Constrain signal values when proving model properties **完整正文**
+- [Proof Objective](../../zh/products/sldv/ref/proofobjective.md) — 官方英文摘要: Define objectives that signals must satisfy when proving model properties **完整正文**
+- [Assertion](../../zh/products/sldv/../simulink/slref/assertion.md) — 官方英文摘要: Check whether signal is zero **完整正文**
+- [Detector](../../zh/products/sldv/ref/detector.md) — 官方英文摘要: Detect true duration on input and construct output true duration based on output type **完整正文**
+- [Extender](../../zh/products/sldv/ref/extender.md) — 官方英文摘要: Extend true duration of input **完整正文**
+- [Implies](../../zh/products/sldv/ref/implies.md) — 官方英文摘要: Specify condition that produces a certain response **完整正文**
+- [Within Implies](../../zh/products/sldv/ref/withinimplies.md) — 官方英文摘要: Verify response occurs within desired duration **完整正文**
+- [Verification Subsystem](../../zh/products/sldv/ref/verificationsubsystem.md) — 官方英文摘要: Specify proof or test objectives without impacting simulation results or generated code **完整正文**
 
 ## Generate Tests
 
@@ -75,13 +75,13 @@ language: zh-CN
 
 ## Generate Tests / Basics of Test Generation
 
-- Test Condition — 官方英文摘要: Constrain signal values in test cases **仅元数据，中英文正文待补**
-- Test Objective — 官方英文摘要: Define custom objectives that signals must satisfy in test cases **仅元数据，中英文正文待补**
-- Detector — 官方英文摘要: Detect true duration on input and construct output true duration based on output type **仅元数据，中英文正文待补**
-- Extender — 官方英文摘要: Extend true duration of input **仅元数据，中英文正文待补**
-- Implies — 官方英文摘要: Specify condition that produces a certain response **仅元数据，中英文正文待补**
-- Within Implies — 官方英文摘要: Verify response occurs within desired duration **仅元数据，中英文正文待补**
-- Verification Subsystem — 官方英文摘要: Specify proof or test objectives without impacting simulation results or generated code **仅元数据，中英文正文待补**
+- [Test Condition](../../zh/products/sldv/ref/testcondition.md) — 官方英文摘要: Constrain signal values in test cases **完整正文**
+- [Test Objective](../../zh/products/sldv/ref/testobjective.md) — 官方英文摘要: Define custom objectives that signals must satisfy in test cases **完整正文**
+- [Detector](../../zh/products/sldv/ref/detector.md) — 官方英文摘要: Detect true duration on input and construct output true duration based on output type **完整正文**
+- [Extender](../../zh/products/sldv/ref/extender.md) — 官方英文摘要: Extend true duration of input **完整正文**
+- [Implies](../../zh/products/sldv/ref/implies.md) — 官方英文摘要: Specify condition that produces a certain response **完整正文**
+- [Within Implies](../../zh/products/sldv/ref/withinimplies.md) — 官方英文摘要: Verify response occurs within desired duration **完整正文**
+- [Verification Subsystem](../../zh/products/sldv/ref/verificationsubsystem.md) — 官方英文摘要: Specify proof or test objectives without impacting simulation results or generated code **完整正文**
 
 ## Generate Tests / Tests for Functional Requirements
 

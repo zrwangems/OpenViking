@@ -44,7 +44,7 @@ language: zh-CN
 
 ## Serial Link Design / Visualize and Interpret Serial Link Project Analysis Results
 
-- Eye Measurement — 官方英文摘要: Calculate metrics from eye diagram (Since R2024a) **仅元数据，中英文正文待补**
+- [Eye Measurement](../../zh/products/signal-integrity/ref/eyemeasurement.md) — 官方英文摘要: Calculate metrics from eye diagram (Since R2024a) **完整正文**
 
 ## Parallel Link Design
 
@@ -78,7 +78,7 @@ language: zh-CN
 
 ## Parallel Link Design / Visualize and Interpret Parallel Link Project Analysis Results
 
-- Eye Measurement — 官方英文摘要: Calculate metrics from eye diagram (Since R2024a) **仅元数据，中英文正文待补**
+- [Eye Measurement](../../zh/products/signal-integrity/ref/eyemeasurement.md) — 官方英文摘要: Calculate metrics from eye diagram (Since R2024a) **完整正文**
 
 ## Signal Integrity Analysis Using MATLAB
 

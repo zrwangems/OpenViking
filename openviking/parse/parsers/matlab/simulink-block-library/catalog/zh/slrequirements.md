@@ -24,7 +24,7 @@ language: zh-CN
 
 ## Author and Validate Requirements / Model and Validate Requirements
 
-- Requirements Table — 官方英文摘要: Model formal requirements with input conditions (Since R2022a) **仅元数据，中英文正文待补**
+- [Requirements Table](../../zh/products/slrequirements/ref/requirementstable.md) — 官方英文摘要: Model formal requirements with input conditions (Since R2022a) **完整正文**
 
 ## Integrate Requirements from Third-Party Tools
 
@@ -48,7 +48,7 @@ language: zh-CN
 
 ## Link Requirements / Create Requirement Links
 
-- System Requirements — 官方英文摘要: List system requirements in Simulink models **仅元数据，中英文正文待补**
+- [System Requirements](../../zh/products/slrequirements/ref/systemrequirements.md) — 官方英文摘要: List system requirements in Simulink models **完整正文**
 
 ## Link Requirements / Track and Visualize Links
 

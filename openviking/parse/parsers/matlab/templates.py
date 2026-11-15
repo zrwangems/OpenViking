@@ -10,6 +10,7 @@ from openviking.parse.parsers.matlab.catalog import find_block_reference
 from openviking.parse.parsers.matlab.library import (
     front_matter,
     read_block_document,
+    read_reference_document,
     section,
 )
 
@@ -44,11 +45,14 @@ def render_block_template(
             "Full English and Chinese documentation is pending. This template contains "
             "official catalog metadata only and does not invent ports or parameters."
         )
-    relative = reference.documents["en"]["path"]
-    if not relative:
+    if not reference.resource_path("en"):
         return None
-    family = relative.removeprefix("en/").split("/", 1)[0]
-    document = read_block_document(family, name, language=language)
+    if reference.product_id == "simulink" and "Commonly Used Blocks" in source_block.split("/"):
+        document = read_block_document(
+            "browser/simulink/commonly-used-blocks", name, language=language
+        )
+    else:
+        document = read_reference_document(reference, language=language)
     category = front_matter(document, "official_category")
     page = front_matter(document, "documentation_page")
     release = front_matter(document, "documentation_release")

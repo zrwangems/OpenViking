@@ -59,7 +59,7 @@ No direct block entries.
 
 ## Image Acquisition in Simulink
 
-- From Video Device — Official summary: Capture live image data from image acquisition device **metadata only; full English and Chinese documents pending**
+- [From Video Device](../../en/products/imaq/fromvideodevice.md) — Official summary: Capture live image data from image acquisition device **full document**
 
 ## Creating Custom Adaptors
 

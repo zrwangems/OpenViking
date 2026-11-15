@@ -79,16 +79,16 @@ language: zh-CN
 
 ## Architecture and Component Design / External Code Import
 
-- Model Header — 官方英文摘要: Specify external header code **仅元数据，中英文正文待补**
-- Model Source — 官方英文摘要: Specify external source code **仅元数据，中英文正文待补**
-- System Derivatives — 官方英文摘要: Specify external system derivative code **仅元数据，中英文正文待补**
-- System Disable — 官方英文摘要: Specify external system disable code **仅元数据，中英文正文待补**
-- System Enable — 官方英文摘要: Specify external system enable code **仅元数据，中英文正文待补**
-- System Initialize — 官方英文摘要: Specify external system initialization code **仅元数据，中英文正文待补**
-- System Outputs — 官方英文摘要: Specify external system outputs code **仅元数据，中英文正文待补**
-- System Start — 官方英文摘要: Specify external system startup code **仅元数据，中英文正文待补**
-- System Terminate — 官方英文摘要: Specify external system termination code **仅元数据，中英文正文待补**
-- System Update — 官方英文摘要: Specify external system update code **仅元数据，中英文正文待补**
+- [Model Header](../../zh/products/rtw/ref/modelheader.md) — 官方英文摘要: Specify external header code **完整正文**
+- [Model Source](../../zh/products/rtw/ref/modelsource.md) — 官方英文摘要: Specify external source code **完整正文**
+- [System Derivatives](../../zh/products/rtw/ref/systemderivatives.md) — 官方英文摘要: Specify external system derivative code **完整正文**
+- [System Disable](../../zh/products/rtw/ref/systemdisable.md) — 官方英文摘要: Specify external system disable code **完整正文**
+- [System Enable](../../zh/products/rtw/ref/systemenable.md) — 官方英文摘要: Specify external system enable code **完整正文**
+- [System Initialize](../../zh/products/rtw/ref/systeminitialize.md) — 官方英文摘要: Specify external system initialization code **完整正文**
+- [System Outputs](../../zh/products/rtw/ref/systemoutputs.md) — 官方英文摘要: Specify external system outputs code **完整正文**
+- [System Start](../../zh/products/rtw/ref/systemstart.md) — 官方英文摘要: Specify external system startup code **完整正文**
+- [System Terminate](../../zh/products/rtw/ref/systemterminate.md) — 官方英文摘要: Specify external system termination code **完整正文**
+- [System Update](../../zh/products/rtw/ref/systemupdate.md) — 官方英文摘要: Specify external system update code **完整正文**
 
 ## Architecture and Component Design / Timers and Scheduling
 
@@ -107,15 +107,15 @@ language: zh-CN
 
 ## Architecture and Component Design / Timers and Scheduling / Event-Based Scheduling
 
-- Asynchronous Task Specification — 官方英文摘要: Specify priority of asynchronous task represented by referenced model triggered by asynchronous interrupt **仅元数据，中英文正文待补**
-- Async Interrupt — 官方英文摘要: Generate Versa Module Eurocard (VME) interrupt service routines (ISRs) that execute downstream subsystems or Task Sync blocks **仅元数据，中英文正文待补**
-- Task Sync — 官方英文摘要: Run code of downstream function-call subsystem or Stateflow chart by spawning an example RTOS (VxWorks) task **仅元数据，中英文正文待补**
+- [Asynchronous Task Specification](../../zh/products/rtw/ref/asynchronoustaskspecification.md) — 官方英文摘要: Specify priority of asynchronous task represented by referenced model triggered by asynchronous interrupt **完整正文**
+- [Async Interrupt](../../zh/products/rtw/ref/asyncinterrupt.md) — 官方英文摘要: Generate Versa Module Eurocard (VME) interrupt service routines (ISRs) that execute downstream subsystems or Task Sync blocks **完整正文**
+- [Task Sync](../../zh/products/rtw/ref/tasksync.md) — 官方英文摘要: Run code of downstream function-call subsystem or Stateflow chart by spawning an example RTOS (VxWorks) task **完整正文**
 
 ## Architecture and Component Design / Timers and Scheduling / Data Transfers
 
-- IC — 官方英文摘要: Set initial value of signal **仅元数据，中英文正文待补**
-- Initialize Function — 官方英文摘要: Execute subsystem on model initialize event **仅元数据，中英文正文待补**
-- Rate Transition — 官方英文摘要: Handle transfer of data between blocks operating at different rates **仅元数据，中英文正文待补**
+- [IC](../../zh/products/rtw/../simulink/slref/ic.md) — 官方英文摘要: Set initial value of signal **完整正文**
+- [Initialize Function](../../zh/products/rtw/../simulink/slref/initializefunction.md) — 官方英文摘要: Execute subsystem on model initialize event **完整正文**
+- [Rate Transition](../../zh/products/rtw/../simulink/slref/ratetransition.md) — 官方英文摘要: Handle transfer of data between blocks operating at different rates **完整正文**
 
 ## Code Generation
 
@@ -219,39 +219,39 @@ language: zh-CN
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / ARM Cortex-based VEX Microcontroller / Modeling / Actuators
 
-- DC Motor — 官方英文摘要: Represent connected DC motor and set motor speed **仅元数据，中英文正文待补**
-- Digital Output — 官方英文摘要: Represent one pin as digital output and set logical value **仅元数据，中英文正文待补**
-- Servo Motor — 官方英文摘要: Represent connected servo motor and set angular position value **仅元数据，中英文正文待补**
+- [DC Motor](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/dcmotor.md) — 官方英文摘要: Represent connected DC motor and set motor speed **完整正文**
+- [Digital Output](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/digitaloutput.md) — 官方英文摘要: Represent one pin as digital output and set logical value **完整正文**
+- [Servo Motor](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/servomotor.md) — 官方英文摘要: Represent connected servo motor and set angular position value **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / ARM Cortex-based VEX Microcontroller / Modeling / Gamepad
 
-- Competition Switch — 官方英文摘要: Read switch positions of VEXnet Competition Switch and provide logical values for Autonomous and Driver modes **仅元数据，中英文正文待补**
-- Gamepad Accelerometer — 官方英文摘要: Read analog value from VEX gamepad accelerometer **仅元数据，中英文正文待补**
-- Gamepad Button — 官方英文摘要: Represent one button on VEX gamepad and read logical value **仅元数据，中英文正文待补**
-- Gamepad Joystick — 官方英文摘要: Represent one control axis on x-yanalog VEX gamepad joystick and read values **仅元数据，中英文正文待补**
+- [Competition Switch](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/competitionswitch.md) — 官方英文摘要: Read switch positions of VEXnet Competition Switch and provide logical values for Autonomous and Driver modes **完整正文**
+- [Gamepad Accelerometer](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/gamepadaccelerometer.md) — 官方英文摘要: Read analog value from VEX gamepad accelerometer **完整正文**
+- [Gamepad Button](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/gamepadbutton.md) — 官方英文摘要: Represent one button on VEX gamepad and read logical value **完整正文**
+- [Gamepad Joystick](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/gamepadjoystick.md) — 官方英文摘要: Represent one control axis on x-yanalog VEX gamepad joystick and read values **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / ARM Cortex-based VEX Microcontroller / Modeling / LCD
 
-- LCD Button — 官方英文摘要: Read logical state of selected push button on LCD Display Module **仅元数据，中英文正文待补**
-- LCD Screen — 官方英文摘要: Display text and numerical value on specified line of LCD screen **仅元数据，中英文正文待补**
+- [LCD Button](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/lcdbutton.md) — 官方英文摘要: Read logical state of selected push button on LCD Display Module **完整正文**
+- [LCD Screen](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/lcdscreen.md) — 官方英文摘要: Display text and numerical value on specified line of LCD screen **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / ARM Cortex-based VEX Microcontroller / Modeling / Sensors
 
-- Analog Input — 官方英文摘要: Read the value of a sensor attached to an analog input pin **仅元数据，中英文正文待补**
-- Digital Input — 官方英文摘要: Read the digital value of an input pin **仅元数据，中英文正文待补**
-- Gyroscope — 官方英文摘要: Measure yaw rotation in degrees **仅元数据，中英文正文待补**
-- Integrated Encoder Module — 官方英文摘要: Measure the rotation of a motor in ticks **仅元数据，中英文正文待补**
-- Optical Shaft Encoder — 官方英文摘要: Measure the rotation of a motor in ticks **仅元数据，中英文正文待补**
-- Ultrasonic Sensor — 官方英文摘要: Measure the distance to an object: 0.02 to 2.0 meters (m) **仅元数据，中英文正文待补**
+- [Analog Input](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/analoginput.md) — 官方英文摘要: Read the value of a sensor attached to an analog input pin **完整正文**
+- [Digital Input](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/digitalinput.md) — 官方英文摘要: Read the digital value of an input pin **完整正文**
+- [Gyroscope](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/gyroscope.md) — 官方英文摘要: Measure yaw rotation in degrees **完整正文**
+- [Integrated Encoder Module](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/integratedencodermodule.md) — 官方英文摘要: Measure the rotation of a motor in ticks **完整正文**
+- [Optical Shaft Encoder](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/opticalshaftencoder.md) — 官方英文摘要: Measure the rotation of a motor in ticks **完整正文**
+- [Ultrasonic Sensor](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/ultrasonicsensor.md) — 官方英文摘要: Measure the distance to an object: 0.02 to 2.0 meters (m) **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / ARM Cortex-based VEX Microcontroller / Modeling / Utilities
 
-- Arcade Module — 官方英文摘要: Get the right and left wheel speed values of a robot in an Arcade configuration **仅元数据，中英文正文待补**
-- Field Simulator — 官方英文摘要: View the simulation speed values of a two-wheel robot **仅元数据，中英文正文待补**
-- Gamepad Simulator — 官方英文摘要: Get the simulation value of a VEX gamepad using Logitech F310 or XBOX Controller **仅元数据，中英文正文待补**
-- Gear Transmission — 官方英文摘要: Set a scalar value (1 to 4) based on input values **仅元数据，中英文正文待补**
-- Latch — 官方英文摘要: Latch the logical value based on the change in the input signal **仅元数据，中英文正文待补**
-- Real Time — 官方英文摘要: Slow down simulation time close to real time **仅元数据，中英文正文待补**
+- [Arcade Module](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/arcademodule.md) — 官方英文摘要: Get the right and left wheel speed values of a robot in an Arcade configuration **完整正文**
+- [Field Simulator](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/fieldsimulator.md) — 官方英文摘要: View the simulation speed values of a two-wheel robot **完整正文**
+- [Gamepad Simulator](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/gamepadsimulator.md) — 官方英文摘要: Get the simulation value of a VEX gamepad using Logitech F310 or XBOX Controller **完整正文**
+- [Gear Transmission](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/geartransmission.md) — 官方英文摘要: Set a scalar value (1 to 4) based on input values **完整正文**
+- [Latch](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/latch.md) — 官方英文摘要: Latch the logical value based on the change in the input signal **完整正文**
+- [Real Time](../../zh/products/rtw/armcortexbasedvexmicrocontroller/ref/realtime.md) — 官方英文摘要: Slow down simulation time close to real time **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / BBC micro:bit
 
@@ -270,42 +270,42 @@ language: zh-CN
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / BBC micro:bit / Modeling / Basic
 
-- Digital Read — 官方英文摘要: Read logical state of digital input pin **仅元数据，中英文正文待补**
-- Digital Write — 官方英文摘要: Set logical state of digital output pin **仅元数据，中英文正文待补**
-- Analog Input — 官方英文摘要: Measure voltage of analog input pin **仅元数据，中英文正文待补**
-- PWM Output — 官方英文摘要: Generate square wave on the specified output pin **仅元数据，中英文正文待补**
-- I2C Master Read — 官方英文摘要: Read data from I2C Peripheral devices or I2C Peripheral devices register **仅元数据，中英文正文待补**
-- I2C Master Write — 官方英文摘要: Write data to I2C peripheral devices or I2C peripheral devices register **仅元数据，中英文正文待补**
-- SPI Register Read — 官方英文摘要: Read data from SPI peripheral devices register **仅元数据，中英文正文待补**
-- SPI Register Write — 官方英文摘要: Write data to registers of SPI peripheral devices **仅元数据，中英文正文待补**
-- SPI Master Transfer — 官方英文摘要: Write data to and read data from SPI peripheral devices **仅元数据，中英文正文待补**
-- SCI Read — 官方英文摘要: Read N-by-1 array of data on UART **仅元数据，中英文正文待补**
-- SCI Write — 官方英文摘要: Send N-by-1 array of data to UART **仅元数据，中英文正文待补**
+- [Digital Read](../../zh/products/rtw/microbit/ref/digitalread.md) — 官方英文摘要: Read logical state of digital input pin **完整正文**
+- [Digital Write](../../zh/products/rtw/microbit/ref/digitalwrite.md) — 官方英文摘要: Set logical state of digital output pin **完整正文**
+- [Analog Input](../../zh/products/rtw/microbit/ref/analoginput.md) — 官方英文摘要: Measure voltage of analog input pin **完整正文**
+- [PWM Output](../../zh/products/rtw/microbit/ref/pwmoutput.md) — 官方英文摘要: Generate square wave on the specified output pin **完整正文**
+- [I2C Master Read](../../zh/products/rtw/microbit/ref/i2ccontrollerreadblock.md) — 官方英文摘要: Read data from I2C Peripheral devices or I2C Peripheral devices register **完整正文**
+- [I2C Master Write](../../zh/products/rtw/microbit/ref/i2ccontrollerwriteblock.md) — 官方英文摘要: Write data to I2C peripheral devices or I2C peripheral devices register **完整正文**
+- [SPI Register Read](../../zh/products/rtw/microbit/ref/spiregisterread.md) — 官方英文摘要: Read data from SPI peripheral devices register **完整正文**
+- [SPI Register Write](../../zh/products/rtw/microbit/ref/spiregisterwrite.md) — 官方英文摘要: Write data to registers of SPI peripheral devices **完整正文**
+- [SPI Master Transfer](../../zh/products/rtw/microbit/ref/spicontrollertransferblock.md) — 官方英文摘要: Write data to and read data from SPI peripheral devices **完整正文**
+- [SCI Read](../../zh/products/rtw/microbit/ref/sciread.md) — 官方英文摘要: Read N-by-1 array of data on UART **完整正文**
+- [SCI Write](../../zh/products/rtw/microbit/ref/sciwrite.md) — 官方英文摘要: Send N-by-1 array of data to UART **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / BBC micro:bit / Modeling / Accelerometer
 
-- MMA8652FC 3-Axis Accelerometer — 官方英文摘要: Get measurement of linear acceleration along the X, Y, and Z axes of the MMA8652FC 3-Axis chip **仅元数据，中英文正文待补**
-- Accelerometer X-Y-Z — 官方英文摘要: Get measurement of linear acceleration along the X, Y, and Z axes of the Accelerometer (Since R2023b) **仅元数据，中英文正文待补**
+- [MMA8652FC 3-Axis Accelerometer](../../zh/products/rtw/microbit/ref/mma8652fc3axisaccelerometer.md) — 官方英文摘要: Get measurement of linear acceleration along the X, Y, and Z axes of the MMA8652FC 3-Axis chip **完整正文**
+- [Accelerometer X-Y-Z](../../zh/products/rtw/microbit/ref/accelerometerxyz.md) — 官方英文摘要: Get measurement of linear acceleration along the X, Y, and Z axes of the Accelerometer (Since R2023b) **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / BBC micro:bit / Modeling / Magnetometer
 
-- MAG3110 3-Axis Magnetometer — 官方英文摘要: Get measurement of magnetic field along the X, Y, and Z axes of the MAG3110 3-Axis chip **仅元数据，中英文正文待补**
-- Magnetometer X-Y-Z — 官方英文摘要: Get measurement of magnetic field along the X, Y, and Z axes of the Magnetometer (Since R2023b) **仅元数据，中英文正文待补**
+- [MAG3110 3-Axis Magnetometer](../../zh/products/rtw/microbit/ref/mag31103axismagnetometer.md) — 官方英文摘要: Get measurement of magnetic field along the X, Y, and Z axes of the MAG3110 3-Axis chip **完整正文**
+- [Magnetometer X-Y-Z](../../zh/products/rtw/microbit/ref/magnetometerxyz.md) — 官方英文摘要: Get measurement of magnetic field along the X, Y, and Z axes of the Magnetometer (Since R2023b) **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / BBC micro:bit / Modeling / LED
 
-- 5x5 LED Matrix — 官方英文摘要: Output 5x5 LED image on board **仅元数据，中英文正文待补**
-- LED Text Scroll — 官方英文摘要: Create scrolling text for BBC micro:bit **仅元数据，中英文正文待补**
+- [5x5 LED Matrix](../../zh/products/rtw/microbit/ref/5x5ledmatrix.md) — 官方英文摘要: Output 5x5 LED image on board **完整正文**
+- [LED Text Scroll](../../zh/products/rtw/microbit/ref/ledtextscroll.md) — 官方英文摘要: Create scrolling text for BBC micro:bit **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / BBC micro:bit / Modeling / Radio
 
-- Radio Receive — 官方英文摘要: Receive data from micro:bit devices via radio **仅元数据，中英文正文待补**
-- Radio Transmit — 官方英文摘要: Transmit data to micro:bit devices via radio **仅元数据，中英文正文待补**
+- [Radio Receive](../../zh/products/rtw/microbit/ref/radioreceive.md) — 官方英文摘要: Receive data from micro:bit devices via radio **完整正文**
+- [Radio Transmit](../../zh/products/rtw/microbit/ref/radiotransmit.md) — 官方英文摘要: Transmit data to micro:bit devices via radio **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / BBC micro:bit / Modeling / Audio
 
-- Note Generator — 官方英文摘要: Generate frequency corresponding to a musical note **仅元数据，中英文正文待补**
-- Play Note — 官方英文摘要: Play musical note on specified pin on BBC micro:bit **仅元数据，中英文正文待补**
+- [Note Generator](../../zh/products/rtw/microbit/ref/notegenerator.md) — 官方英文摘要: Generate frequency corresponding to a musical note **完整正文**
+- [Play Note](../../zh/products/rtw/microbit/ref/playnote.md) — 官方英文摘要: Play musical note on specified pin on BBC micro:bit **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / BBC micro:bit / Working with MATLAB Functions
 
@@ -329,42 +329,42 @@ language: zh-CN
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / BeagleBone Blue Hardware / Modeling / Actuators
 
-- DC Motor — 官方英文摘要: Set power, direction, and stopping action of a DC motor **仅元数据，中英文正文待补**
-- Servo Motor — 官方英文摘要: Set shaft position of servo motor **仅元数据，中英文正文待补**
+- [DC Motor](../../zh/products/rtw/beagleboneblue/ref/dcmotor.md) — 官方英文摘要: Set power, direction, and stopping action of a DC motor **完整正文**
+- [Servo Motor](../../zh/products/rtw/beagleboneblue/ref/servomotor.md) — 官方英文摘要: Set shaft position of servo motor **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / BeagleBone Blue Hardware / Modeling / Basic
 
-- Analog Input — 官方英文摘要: Measure voltage of specified analog input pin **仅元数据，中英文正文待补**
-- Button — 官方英文摘要: Read logical state of button **仅元数据，中英文正文待补**
-- Digital Read — 官方英文摘要: Read logical state of digital input pin **仅元数据，中英文正文待补**
-- Digital Write — 官方英文摘要: Set the logical state of the digital output pin **仅元数据，中英文正文待补**
-- LED — 官方英文摘要: Illuminate built-in LED **仅元数据，中英文正文待补**
-- PWM — 官方英文摘要: Pulse width modulation of digital output pin **仅元数据，中英文正文待补**
+- [Analog Input](../../zh/products/rtw/beagleboneblue/ref/analoginput.md) — 官方英文摘要: Measure voltage of specified analog input pin **完整正文**
+- [Button](../../zh/products/rtw/beagleboneblue/ref/button.md) — 官方英文摘要: Read logical state of button **完整正文**
+- [Digital Read](../../zh/products/rtw/beagleboneblue/ref/digitalread.md) — 官方英文摘要: Read logical state of digital input pin **完整正文**
+- [Digital Write](../../zh/products/rtw/beagleboneblue/ref/digitalwrite.md) — 官方英文摘要: Set the logical state of the digital output pin **完整正文**
+- [LED](../../zh/products/rtw/beagleboneblue/ref/led.md) — 官方英文摘要: Illuminate built-in LED **完整正文**
+- [PWM](../../zh/products/rtw/beagleboneblue/ref/pwm.md) — 官方英文摘要: Pulse width modulation of digital output pin **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / BeagleBone Blue Hardware / Modeling / Communication
 
-- I2C Master Read — 官方英文摘要: Read data from I2C peripheral device or I2C peripheral device register **仅元数据，中英文正文待补**
-- I2C Master Write — 官方英文摘要: Write data to I2C peripheral device or I2C peripheral device register **仅元数据，中英文正文待补**
-- SPI Master Transfer — 官方英文摘要: Write data to and read data from SPI peripheral device **仅元数据，中英文正文待补**
-- SPI Register Read — 官方英文摘要: Read data from SPI peripheral device register **仅元数据，中英文正文待补**
-- SPI Register Write — 官方英文摘要: Write data to registers of an SPI peripheral device **仅元数据，中英文正文待补**
-- SCI Write — 官方英文摘要: Send serial data to UART port **仅元数据，中英文正文待补**
-- SCI Read — 官方英文摘要: Read serial data from UART port **仅元数据，中英文正文待补**
-- TCP/IP Receive — 官方英文摘要: Receive data over TCP/IP network from remote host **仅元数据，中英文正文待补**
-- TCP/IP Send — 官方英文摘要: Send data over TCP/IP network to another remote host **仅元数据，中英文正文待补**
-- UDP Receive — 官方英文摘要: Receive UDP packets from another UDP host on an Internet network **仅元数据，中英文正文待补**
-- UDP Send — 官方英文摘要: Send UDP packets to another UDP host on Internet network **仅元数据，中英文正文待补**
+- [I2C Master Read](../../zh/products/rtw/beagleboneblue/ref/i2ccontrollerread.md) — 官方英文摘要: Read data from I2C peripheral device or I2C peripheral device register **完整正文**
+- [I2C Master Write](../../zh/products/rtw/beagleboneblue/ref/i2ccontrollerwrite.md) — 官方英文摘要: Write data to I2C peripheral device or I2C peripheral device register **完整正文**
+- [SPI Master Transfer](../../zh/products/rtw/beagleboneblue/ref/spicontrollertransfer.md) — 官方英文摘要: Write data to and read data from SPI peripheral device **完整正文**
+- [SPI Register Read](../../zh/products/rtw/beagleboneblue/ref/spiregisterread.md) — 官方英文摘要: Read data from SPI peripheral device register **完整正文**
+- [SPI Register Write](../../zh/products/rtw/beagleboneblue/ref/spiregisterwrite.md) — 官方英文摘要: Write data to registers of an SPI peripheral device **完整正文**
+- [SCI Write](../../zh/products/rtw/beagleboneblue/ref/sciwrite.md) — 官方英文摘要: Send serial data to UART port **完整正文**
+- [SCI Read](../../zh/products/rtw/beagleboneblue/ref/sciread.md) — 官方英文摘要: Read serial data from UART port **完整正文**
+- [TCP/IP Receive](../../zh/products/rtw/beagleboneblue/ref/tcpipreceive.md) — 官方英文摘要: Receive data over TCP/IP network from remote host **完整正文**
+- [TCP/IP Send](../../zh/products/rtw/beagleboneblue/ref/tcpipsend.md) — 官方英文摘要: Send data over TCP/IP network to another remote host **完整正文**
+- [UDP Receive](../../zh/products/rtw/beagleboneblue/ref/udpreceive.md) — 官方英文摘要: Receive UDP packets from another UDP host on an Internet network **完整正文**
+- [UDP Send](../../zh/products/rtw/beagleboneblue/ref/udpsend.md) — 官方英文摘要: Send UDP packets to another UDP host on Internet network **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / BeagleBone Blue Hardware / Modeling / Sensors
 
-- Encoder — 官方英文摘要: Measure incremental position and direction of a rotating motor **仅元数据，中英文正文待补**
-- Barometer — 官方英文摘要: Measure barometric air pressure around the BMP280 sensor **仅元数据，中英文正文待补**
-- MPU9250 — 官方英文摘要: Measure acceleration, angular rate, and magnetic field, and calculate fusion values such as Euler angles and quaternion along the axes of MPU-9250 sensor **仅元数据，中英文正文待补**
+- [Encoder](../../zh/products/rtw/beagleboneblue/ref/encoder.md) — 官方英文摘要: Measure incremental position and direction of a rotating motor **完整正文**
+- [Barometer](../../zh/products/rtw/beagleboneblue/ref/barometer.md) — 官方英文摘要: Measure barometric air pressure around the BMP280 sensor **完整正文**
+- [MPU9250](../../zh/products/rtw/beagleboneblue/ref/mpu9250.md) — 官方英文摘要: Measure acceleration, angular rate, and magnetic field, and calculate fusion values such as Euler angles and quaternion along the axes of MPU-9250 sensor **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / BeagleBone Blue Hardware / Modeling / Video
 
-- SDL Video Display — 官方英文摘要: Display video using SDL **仅元数据，中英文正文待补**
-- V4L2 Video Capture — 官方英文摘要: Capture video from USB camera using V4L2 **仅元数据，中英文正文待补**
+- [SDL Video Display](../../zh/products/rtw/beagleboneblue/ref/sdlvideodisplay.md) — 官方英文摘要: Display video using SDL **完整正文**
+- [V4L2 Video Capture](../../zh/products/rtw/beagleboneblue/ref/v4l2videocapture.md) — 官方英文摘要: Capture video from USB camera using V4L2 **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / BeagleBone Blue Hardware / Deployment
 
@@ -393,66 +393,66 @@ language: zh-CN
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / STMicroelectronics Nucleo Boards / Modeling / Common
 
-- Analog Input — 官方英文摘要: Measure voltage of analog input pin **仅元数据，中英文正文待补**
-- Analog Output — 官方英文摘要: Generate voltage on the specified analog output pin in volt (V) (Since R2023a) **仅元数据，中英文正文待补**
-- Digital Read — 官方英文摘要: Read logical state of digital input pin **仅元数据，中英文正文待补**
-- Digital Write — 官方英文摘要: Set logical state of digital output pin **仅元数据，中英文正文待补**
-- External Interrupt — 官方英文摘要: Trigger the downstream function-call subsystem from an Interrupt Service Routine (Since R2021a) **仅元数据，中英文正文待补**
-- I2C Controller Read — 官方英文摘要: Read data from I2C Peripheral devices or I2C Peripheral devices register **仅元数据，中英文正文待补**
-- I2C Controller Write — 官方英文摘要: Write data to I2C peripheral devices or I2C peripheral devices register **仅元数据，中英文正文待补**
-- PWM Output — 官方英文摘要: Generate square wave on the specified output pin **仅元数据，中英文正文待补**
-- SCI Read — 官方英文摘要: Read N-by-1 array of data on UART **仅元数据，中英文正文待补**
-- SCI Write — 官方英文摘要: Send N-by-1 array of data to UART **仅元数据，中英文正文待补**
-- SPI Controller Transfer — 官方英文摘要: Write data to and read data from SPI peripheral devices **仅元数据，中英文正文待补**
-- SPI Register Read — 官方英文摘要: Read data from SPI peripheral devices register **仅元数据，中英文正文待补**
-- SPI Register Write — 官方英文摘要: Write data to registers of SPI peripheral devices **仅元数据，中英文正文待补**
-- Modbus RS485 Client Read — 官方英文摘要: Client device reads data from server device register(s) over RS485 network (Since R2021b) **仅元数据，中英文正文待补**
-- Modbus RS485 Client Write — 官方英文摘要: Client device writes data to server device register(s) over RS485 network (Since R2021b) **仅元数据，中英文正文待补**
-- Modbus RS485 Server Read — 官方英文摘要: Server device reads data from the server device register over RS485 network (Since R2021b) **仅元数据，中英文正文待补**
-- Modbus RS485 Server Write — 官方英文摘要: Server device writes data to server device register over RS485 network (Since R2021b) **仅元数据，中英文正文待补**
+- [Analog Input](../../zh/products/rtw/nucleo/ref/analoginput.md) — 官方英文摘要: Measure voltage of analog input pin **完整正文**
+- [Analog Output](../../zh/products/rtw/nucleo/ref/analogoutput.md) — 官方英文摘要: Generate voltage on the specified analog output pin in volt (V) (Since R2023a) **完整正文**
+- [Digital Read](../../zh/products/rtw/nucleo/ref/digitalread.md) — 官方英文摘要: Read logical state of digital input pin **完整正文**
+- [Digital Write](../../zh/products/rtw/nucleo/ref/digitalwrite.md) — 官方英文摘要: Set logical state of digital output pin **完整正文**
+- [External Interrupt](../../zh/products/rtw/nucleo/ref/externalinterrupt.md) — 官方英文摘要: Trigger the downstream function-call subsystem from an Interrupt Service Routine (Since R2021a) **完整正文**
+- [I2C Controller Read](../../zh/products/rtw/nucleo/ref/i2ccontrollerreadblock.md) — 官方英文摘要: Read data from I2C Peripheral devices or I2C Peripheral devices register **完整正文**
+- [I2C Controller Write](../../zh/products/rtw/nucleo/ref/i2ccontrollerwriteblock.md) — 官方英文摘要: Write data to I2C peripheral devices or I2C peripheral devices register **完整正文**
+- [PWM Output](../../zh/products/rtw/nucleo/ref/pwmoutput.md) — 官方英文摘要: Generate square wave on the specified output pin **完整正文**
+- [SCI Read](../../zh/products/rtw/nucleo/ref/sciread.md) — 官方英文摘要: Read N-by-1 array of data on UART **完整正文**
+- [SCI Write](../../zh/products/rtw/nucleo/ref/sciwrite.md) — 官方英文摘要: Send N-by-1 array of data to UART **完整正文**
+- [SPI Controller Transfer](../../zh/products/rtw/nucleo/ref/spicontrollertransferblock.md) — 官方英文摘要: Write data to and read data from SPI peripheral devices **完整正文**
+- [SPI Register Read](../../zh/products/rtw/nucleo/ref/spiregisterread.md) — 官方英文摘要: Read data from SPI peripheral devices register **完整正文**
+- [SPI Register Write](../../zh/products/rtw/nucleo/ref/spiregisterwrite.md) — 官方英文摘要: Write data to registers of SPI peripheral devices **完整正文**
+- [Modbus RS485 Client Read](../../zh/products/rtw/nucleo/ref/modbusrs485clientread.md) — 官方英文摘要: Client device reads data from server device register(s) over RS485 network (Since R2021b) **完整正文**
+- [Modbus RS485 Client Write](../../zh/products/rtw/nucleo/ref/modbusrs485clientwrite.md) — 官方英文摘要: Client device writes data to server device register(s) over RS485 network (Since R2021b) **完整正文**
+- [Modbus RS485 Server Read](../../zh/products/rtw/nucleo/ref/modbusrs485serverread.md) — 官方英文摘要: Server device reads data from the server device register over RS485 network (Since R2021b) **完整正文**
+- [Modbus RS485 Server Write](../../zh/products/rtw/nucleo/ref/modbusrs485serverwrite.md) — 官方英文摘要: Server device writes data to server device register over RS485 network (Since R2021b) **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / STMicroelectronics Nucleo Boards / Modeling / Sensors
 
-- HTS221 Humidity Sensor — 官方英文摘要: Measure relative humidity and temperature from HTS221 sensor (Since R2021b) **仅元数据，中英文正文待补**
-- LIS3MDL Magnetometer Sensor — 官方英文摘要: Measure magnetic field strength and temperature from LIS3MDL Magnetometer sensor (Since R2021b) **仅元数据，中英文正文待补**
-- LPS22HB Pressure Sensor — 官方英文摘要: Measure barometric air pressure and temperature from LPS22HB sensor (Since R2021b) **仅元数据，中英文正文待补**
-- LSM6DSL IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from LSM6DSL sensor (Since R2021b) **仅元数据，中英文正文待补**
-- ADXL34x Sensor — 官方英文摘要: Measure linear acceleration along axes of ADXL34x family of accelerometers (Since R2022a) **仅元数据，中英文正文待补**
-- BMI160 IMU Sensor — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from BMI160 sensor (Since R2023a) **仅元数据，中英文正文待补**
-- VL53L0X Time of Flight Sensor — 官方英文摘要: Measure distance to a target object (Since R2023a) **仅元数据，中英文正文待补**
-- LIS3DH Accelerometer Sensor — 官方英文摘要: Measure linear acceleration, voltage, and temperature from LIS3DH sensor (Since R2023b) **仅元数据，中英文正文待补**
-- CCS811 Air Quality Sensor — 官方英文摘要: Measure equivalent CO2 (eCO2) and the equivalent total volatile organic compound concentration (eTVOC) (Since R2023b) **仅元数据，中英文正文待补**
+- [HTS221 Humidity Sensor](../../zh/products/rtw/nucleo/ref/hts221humiditysensor.md) — 官方英文摘要: Measure relative humidity and temperature from HTS221 sensor (Since R2021b) **完整正文**
+- [LIS3MDL Magnetometer Sensor](../../zh/products/rtw/nucleo/ref/lis3mdlmagnetometersensor.md) — 官方英文摘要: Measure magnetic field strength and temperature from LIS3MDL Magnetometer sensor (Since R2021b) **完整正文**
+- [LPS22HB Pressure Sensor](../../zh/products/rtw/nucleo/ref/lps22hbpressuresensor.md) — 官方英文摘要: Measure barometric air pressure and temperature from LPS22HB sensor (Since R2021b) **完整正文**
+- [LSM6DSL IMU Sensor](../../zh/products/rtw/nucleo/ref/lsm6dslimusensor.md) — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from LSM6DSL sensor (Since R2021b) **完整正文**
+- [ADXL34x Sensor](../../zh/products/rtw/nucleo/ref/adxl34xaccelerometer.md) — 官方英文摘要: Measure linear acceleration along axes of ADXL34x family of accelerometers (Since R2022a) **完整正文**
+- [BMI160 IMU Sensor](../../zh/products/rtw/nucleo/ref/bmi160imusensor.md) — 官方英文摘要: Measure linear acceleration, angular rate, and temperature from BMI160 sensor (Since R2023a) **完整正文**
+- [VL53L0X Time of Flight Sensor](../../zh/products/rtw/nucleo/ref/vl53l0xtimeofflightsensor.md) — 官方英文摘要: Measure distance to a target object (Since R2023a) **完整正文**
+- [LIS3DH Accelerometer Sensor](../../zh/products/rtw/nucleo/ref/lis3dhaccelerometersensor.md) — 官方英文摘要: Measure linear acceleration, voltage, and temperature from LIS3DH sensor (Since R2023b) **完整正文**
+- [CCS811 Air Quality Sensor](../../zh/products/rtw/nucleo/ref/ccs811airqualitysensor.md) — 官方英文摘要: Measure equivalent CO2 (eCO2) and the equivalent total volatile organic compound concentration (eTVOC) (Since R2023b) **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / STMicroelectronics Nucleo Boards / Modeling / STM32F7
 
-- CAN Receive — 官方英文摘要: Receive message from CAN network (Since R2021b) **仅元数据，中英文正文待补**
-- CAN Transmit — 官方英文摘要: Transmit message to CAN network (Since R2021b) **仅元数据，中英文正文待补**
-- TCP/IP Receive — 官方英文摘要: Receive data over TCP/IP network from remote host **仅元数据，中英文正文待补**
-- TCP/IP Send — 官方英文摘要: Send data over TCP/IP network to remote host **仅元数据，中英文正文待补**
-- ThingSpeak Read — 官方英文摘要: Read data stored in ThingSpeak channel (Since R2021b) **仅元数据，中英文正文待补**
-- ThingSpeak Write — 官方英文摘要: Publish data to Internet of Things using ThingSpeak (Since R2021b) **仅元数据，中英文正文待补**
-- UDP Receive — 官方英文摘要: Receive UDP packets from UDP host **仅元数据，中英文正文待补**
-- UDP Send — 官方英文摘要: Send UDP packets to UDP host **仅元数据，中英文正文待补**
+- [CAN Receive](../../zh/products/rtw/nucleo/ref/canreceive.md) — 官方英文摘要: Receive message from CAN network (Since R2021b) **完整正文**
+- [CAN Transmit](../../zh/products/rtw/nucleo/ref/cantransmit.md) — 官方英文摘要: Transmit message to CAN network (Since R2021b) **完整正文**
+- [TCP/IP Receive](../../zh/products/rtw/nucleo/ref/tcpreceive.md) — 官方英文摘要: Receive data over TCP/IP network from remote host **完整正文**
+- [TCP/IP Send](../../zh/products/rtw/nucleo/ref/tcpsend.md) — 官方英文摘要: Send data over TCP/IP network to remote host **完整正文**
+- [ThingSpeak Read](../../zh/products/rtw/nucleo/ref/thingspeakread.md) — 官方英文摘要: Read data stored in ThingSpeak channel (Since R2021b) **完整正文**
+- [ThingSpeak Write](../../zh/products/rtw/nucleo/ref/thingspeakwrite.md) — 官方英文摘要: Publish data to Internet of Things using ThingSpeak (Since R2021b) **完整正文**
+- [UDP Receive](../../zh/products/rtw/nucleo/ref/udpreceive.md) — 官方英文摘要: Receive UDP packets from UDP host **完整正文**
+- [UDP Send](../../zh/products/rtw/nucleo/ref/udpsend.md) — 官方英文摘要: Send UDP packets to UDP host **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / STMicroelectronics Nucleo Boards / Modeling / STM32H7
 
-- CAN Read — 官方英文摘要: Read message from CAN network **仅元数据，中英文正文待补**
-- CAN Write — 官方英文摘要: Write message to CAN network **仅元数据，中英文正文待补**
-- TCP/IP Receive — 官方英文摘要: Receive data over TCP/IP network from remote host **仅元数据，中英文正文待补**
-- TCP/IP Send — 官方英文摘要: Send data over TCP/IP network to remote host **仅元数据，中英文正文待补**
-- ThingSpeak Read — 官方英文摘要: Read data stored in ThingSpeak channel (Since R2021b) **仅元数据，中英文正文待补**
-- ThingSpeak Write — 官方英文摘要: Publish data to Internet of Things using ThingSpeak (Since R2021b) **仅元数据，中英文正文待补**
-- UDP Receive — 官方英文摘要: Receive UDP packets from UDP host **仅元数据，中英文正文待补**
-- UDP Send — 官方英文摘要: Send UDP packets to UDP host **仅元数据，中英文正文待补**
+- [CAN Read](../../zh/products/rtw/nucleo/ref/canread.md) — 官方英文摘要: Read message from CAN network **完整正文**
+- [CAN Write](../../zh/products/rtw/nucleo/ref/canwrite.md) — 官方英文摘要: Write message to CAN network **完整正文**
+- [TCP/IP Receive](../../zh/products/rtw/nucleo/ref/tcpreceive.md) — 官方英文摘要: Receive data over TCP/IP network from remote host **完整正文**
+- [TCP/IP Send](../../zh/products/rtw/nucleo/ref/tcpsend.md) — 官方英文摘要: Send data over TCP/IP network to remote host **完整正文**
+- [ThingSpeak Read](../../zh/products/rtw/nucleo/ref/thingspeakread.md) — 官方英文摘要: Read data stored in ThingSpeak channel (Since R2021b) **完整正文**
+- [ThingSpeak Write](../../zh/products/rtw/nucleo/ref/thingspeakwrite.md) — 官方英文摘要: Publish data to Internet of Things using ThingSpeak (Since R2021b) **完整正文**
+- [UDP Receive](../../zh/products/rtw/nucleo/ref/udpreceive.md) — 官方英文摘要: Receive UDP packets from UDP host **完整正文**
+- [UDP Send](../../zh/products/rtw/nucleo/ref/udpsend.md) — 官方英文摘要: Send UDP packets to UDP host **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / STMicroelectronics Nucleo Boards / Modeling / Utilities
 
-- Byte Pack — 官方英文摘要: Convert input signals to 8-, 16-, or 32-bit vector **仅元数据，中英文正文待补**
-- Byte Unpack — 官方英文摘要: Unpack 8-, 16-, or 32-bit input vector to multiple output vectors **仅元数据，中英文正文待补**
-- Byte Reversal — 官方英文摘要: Reverse little-endian data for big-endian processor **仅元数据，中英文正文待补**
-- Memory Copy — 官方英文摘要: Copy to and from memory section **仅元数据，中英文正文待补**
-- Protocol Encoder — 官方英文摘要: Encode input data into a uint8 byte stream by specifying the packet structure (Since R2023a) **仅元数据，中英文正文待补**
-- Protocol Decoder — 官方英文摘要: Decode a uint8 byte stream by specifying the packet structure (Since R2023a) **仅元数据，中英文正文待补**
+- [Byte Pack](../../zh/products/rtw/nucleo/ref/bytepack.md) — 官方英文摘要: Convert input signals to 8-, 16-, or 32-bit vector **完整正文**
+- [Byte Unpack](../../zh/products/rtw/nucleo/ref/byteunpack.md) — 官方英文摘要: Unpack 8-, 16-, or 32-bit input vector to multiple output vectors **完整正文**
+- [Byte Reversal](../../zh/products/rtw/nucleo/ref/bytereversal.md) — 官方英文摘要: Reverse little-endian data for big-endian processor **完整正文**
+- [Memory Copy](../../zh/products/rtw/nucleo/ref/memorycopy.md) — 官方英文摘要: Copy to and from memory section **完整正文**
+- [Protocol Encoder](../../zh/products/rtw/nucleo/ref/protocolencoder.md) — 官方英文摘要: Encode input data into a uint8 byte stream by specifying the packet structure (Since R2023a) **完整正文**
+- [Protocol Decoder](../../zh/products/rtw/nucleo/ref/protocoldecoder.md) — 官方英文摘要: Decode a uint8 byte stream by specifying the packet structure (Since R2023a) **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / STMicroelectronics Nucleo Boards / Verification
 
@@ -476,24 +476,24 @@ language: zh-CN
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / NXP FRDM-KL25Z Board / Modeling
 
-- Digital Output — 官方英文摘要: Set the logical value of a digital output pin **仅元数据，中英文正文待补**
-- Digital Input — 官方英文摘要: Read the logical value of a digital input pin **仅元数据，中英文正文待补**
-- RGB LED — 官方英文摘要: Set the RGB LED to a desired color **仅元数据，中英文正文待补**
-- Serial Receive — 官方英文摘要: Receive an [Nx1] array of byte data on the UART **仅元数据，中英文正文待补**
-- Serial Transmit — 官方英文摘要: Send an [MxN] array of data to the UART **仅元数据，中英文正文待补**
-- Analog Output — 官方英文摘要: Send an analog output signal to PTE30 pin **仅元数据，中英文正文待补**
-- Analog Input — 官方英文摘要: Measure the voltage of an analog input pin **仅元数据，中英文正文待补**
-- Servo Write — 官方英文摘要: Drive the servo motor to the specified angle **仅元数据，中英文正文待补**
-- Line Scan Camera — 官方英文摘要: Read the data from a line scan camera **仅元数据，中英文正文待补**
-- Momentary Switch — 官方英文摘要: Read the state of a momentary switch **仅元数据，中英文正文待补**
-- DIP Switch — 官方英文摘要: Read the state of a DIP switch **仅元数据，中英文正文待补**
-- DC Motor — 官方英文摘要: Drive a DC motor in either direction **仅元数据，中英文正文待补**
-- Potentiometer — 官方英文摘要: Read the state of a potentiometer **仅元数据，中英文正文待补**
-- Battery Read — 官方英文摘要: Read the battery voltage of a battery connected to the TFC Shield **仅元数据，中英文正文待补**
-- Battery Indicator — 官方英文摘要: Display the battery voltage level with LEDs on the TFC shield **仅元数据，中英文正文待补**
-- I2C Controller Read — 官方英文摘要: Read data from I2C peripheral device or I2C peripheral device register **仅元数据，中英文正文待补**
-- I2C Controller Write — 官方英文摘要: Write data to I2C peripheral device or I2C peripheral device register **仅元数据，中英文正文待补**
-- PWM Output — 官方英文摘要: Generate square wave on the specified output pin **仅元数据，中英文正文待补**
+- [Digital Output](../../zh/products/rtw/freedomboard/ref/digitaloutput.md) — 官方英文摘要: Set the logical value of a digital output pin **完整正文**
+- [Digital Input](../../zh/products/rtw/freedomboard/ref/digitalinput.md) — 官方英文摘要: Read the logical value of a digital input pin **完整正文**
+- [RGB LED](../../zh/products/rtw/freedomboard/ref/rgbled.md) — 官方英文摘要: Set the RGB LED to a desired color **完整正文**
+- [Serial Receive](../../zh/products/rtw/freedomboard/ref/serialreceive.md) — 官方英文摘要: Receive an [Nx1] array of byte data on the UART **完整正文**
+- [Serial Transmit](../../zh/products/rtw/freedomboard/ref/serialtransmit.md) — 官方英文摘要: Send an [MxN] array of data to the UART **完整正文**
+- [Analog Output](../../zh/products/rtw/freedomboard/ref/analogoutput.md) — 官方英文摘要: Send an analog output signal to PTE30 pin **完整正文**
+- [Analog Input](../../zh/products/rtw/freedomboard/ref/analoginput.md) — 官方英文摘要: Measure the voltage of an analog input pin **完整正文**
+- [Servo Write](../../zh/products/rtw/freedomboard/ref/servowrite.md) — 官方英文摘要: Drive the servo motor to the specified angle **完整正文**
+- [Line Scan Camera](../../zh/products/rtw/freedomboard/ref/linescancamera.md) — 官方英文摘要: Read the data from a line scan camera **完整正文**
+- [Momentary Switch](../../zh/products/rtw/freedomboard/ref/momentaryswitch.md) — 官方英文摘要: Read the state of a momentary switch **完整正文**
+- [DIP Switch](../../zh/products/rtw/freedomboard/ref/dipswitch.md) — 官方英文摘要: Read the state of a DIP switch **完整正文**
+- [DC Motor](../../zh/products/rtw/freedomboard/ref/dcmotor.md) — 官方英文摘要: Drive a DC motor in either direction **完整正文**
+- [Potentiometer](../../zh/products/rtw/freedomboard/ref/potentiometer.md) — 官方英文摘要: Read the state of a potentiometer **完整正文**
+- [Battery Read](../../zh/products/rtw/freedomboard/ref/batteryread.md) — 官方英文摘要: Read the battery voltage of a battery connected to the TFC Shield **完整正文**
+- [Battery Indicator](../../zh/products/rtw/freedomboard/ref/batteryindicator.md) — 官方英文摘要: Display the battery voltage level with LEDs on the TFC shield **完整正文**
+- [I2C Controller Read](../../zh/products/rtw/freedomboard/ref/i2ccontrollerread.md) — 官方英文摘要: Read data from I2C peripheral device or I2C peripheral device register **完整正文**
+- [I2C Controller Write](../../zh/products/rtw/freedomboard/ref/i2ccontrollerwrite.md) — 官方英文摘要: Write data to I2C peripheral device or I2C peripheral device register **完整正文**
+- [PWM Output](../../zh/products/rtw/freedomboard/ref/pwmoutput.md) — 官方英文摘要: Generate square wave on the specified output pin **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / NXP FRDM-K64F Board
 
@@ -507,22 +507,22 @@ language: zh-CN
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / NXP FRDM-K64F Board / Modeling
 
-- Analog Input — 官方英文摘要: Measure the voltage of analog input pin **仅元数据，中英文正文待补**
-- Analog Output — 官方英文摘要: Send analog output signal to DAC0_OUT pin **仅元数据，中英文正文待补**
-- Digital Read — 官方英文摘要: Read the logical value of digital input pin **仅元数据，中英文正文待补**
-- Digital Write — 官方英文摘要: Set the logical value of a digital output pin **仅元数据，中英文正文待补**
-- FXOS8700 6-Axes Sensor — 官方英文摘要: Get measurement of linear acceleration and magnetic field along the X, Y, and Z axes of the FXOS8700 6-Axes chip **仅元数据，中英文正文待补**
-- I2C Controller Read — 官方英文摘要: Read data from I2C peripheral device or I2C peripheral device register **仅元数据，中英文正文待补**
-- I2C Controller Write — 官方英文摘要: Write data to I2C peripheral device or I2C peripheral device register **仅元数据，中英文正文待补**
-- Push Button — 官方英文摘要: Read logical state of Push button **仅元数据，中英文正文待补**
-- PWM Output — 官方英文摘要: Generate pulse waveform on specified output pin **仅元数据，中英文正文待补**
-- Quadrature Encoder — 官方英文摘要: Measure rotation of encoder in ticks **仅元数据，中英文正文待补**
-- Serial Receive — 官方英文摘要: Read data from UART port **仅元数据，中英文正文待补**
-- Serial Transmit — 官方英文摘要: Send serial data to UART port **仅元数据，中英文正文待补**
-- TCP Receive — 官方英文摘要: Receive data over TCP/IP network from remote host **仅元数据，中英文正文待补**
-- TCP Send — 官方英文摘要: Send data over TCP/IP network to remote host **仅元数据，中英文正文待补**
-- UDP Receive — 官方英文摘要: Receive UDP message from UDP host **仅元数据，中英文正文待补**
-- UDP Send — 官方英文摘要: Send UDP message to UDP host **仅元数据，中英文正文待补**
+- [Analog Input](../../zh/products/rtw/freescalefrdmk64fboard/ref/analoginput.md) — 官方英文摘要: Measure the voltage of analog input pin **完整正文**
+- [Analog Output](../../zh/products/rtw/freescalefrdmk64fboard/ref/analogoutput.md) — 官方英文摘要: Send analog output signal to DAC0_OUT pin **完整正文**
+- [Digital Read](../../zh/products/rtw/freescalefrdmk64fboard/ref/digitalread.md) — 官方英文摘要: Read the logical value of digital input pin **完整正文**
+- [Digital Write](../../zh/products/rtw/freescalefrdmk64fboard/ref/digitalwrite.md) — 官方英文摘要: Set the logical value of a digital output pin **完整正文**
+- [FXOS8700 6-Axes Sensor](../../zh/products/rtw/freescalefrdmk64fboard/ref/fxos87006axessensor.md) — 官方英文摘要: Get measurement of linear acceleration and magnetic field along the X, Y, and Z axes of the FXOS8700 6-Axes chip **完整正文**
+- [I2C Controller Read](../../zh/products/rtw/freescalefrdmk64fboard/ref/i2ccontrollerread.md) — 官方英文摘要: Read data from I2C peripheral device or I2C peripheral device register **完整正文**
+- [I2C Controller Write](../../zh/products/rtw/freescalefrdmk64fboard/ref/i2ccontrollerwrite.md) — 官方英文摘要: Write data to I2C peripheral device or I2C peripheral device register **完整正文**
+- [Push Button](../../zh/products/rtw/freescalefrdmk64fboard/ref/pushbutton.md) — 官方英文摘要: Read logical state of Push button **完整正文**
+- [PWM Output](../../zh/products/rtw/freescalefrdmk64fboard/ref/pwmoutput.md) — 官方英文摘要: Generate pulse waveform on specified output pin **完整正文**
+- [Quadrature Encoder](../../zh/products/rtw/freescalefrdmk64fboard/ref/quadratureencoder.md) — 官方英文摘要: Measure rotation of encoder in ticks **完整正文**
+- [Serial Receive](../../zh/products/rtw/freescalefrdmk64fboard/ref/serialreceive.md) — 官方英文摘要: Read data from UART port **完整正文**
+- [Serial Transmit](../../zh/products/rtw/freescalefrdmk64fboard/ref/serialtransmit.md) — 官方英文摘要: Send serial data to UART port **完整正文**
+- [TCP Receive](../../zh/products/rtw/freescalefrdmk64fboard/ref/tcpreceive.md) — 官方英文摘要: Receive data over TCP/IP network from remote host **完整正文**
+- [TCP Send](../../zh/products/rtw/freescalefrdmk64fboard/ref/tcpsend.md) — 官方英文摘要: Send data over TCP/IP network to remote host **完整正文**
+- [UDP Receive](../../zh/products/rtw/freescalefrdmk64fboard/ref/udpreceive.md) — 官方英文摘要: Receive UDP message from UDP host **完整正文**
+- [UDP Send](../../zh/products/rtw/freescalefrdmk64fboard/ref/udpsend.md) — 官方英文摘要: Send UDP message to UDP host **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / VEX EDR V5 Robot Brain
 
@@ -546,43 +546,43 @@ language: zh-CN
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / VEX EDR V5 Robot Brain / Modeling / Actuators
 
-- DC Motor — 官方英文摘要: Represent connected DC motor and set motor speed **仅元数据，中英文正文待补**
-- Digital Output — 官方英文摘要: Set logical value to the 3-wire port on VEX EDR V5 Robot Brain **仅元数据，中英文正文待补**
-- Servo Motor — 官方英文摘要: Represent connected servo motor and set angular position value **仅元数据，中英文正文待补**
-- Smart Motor Write — 官方英文摘要: Represent connected V5 Smart Motor and set its velocity and position **仅元数据，中英文正文待补**
+- [DC Motor](../../zh/products/rtw/vexv5/ref/dcmotor.md) — 官方英文摘要: Represent connected DC motor and set motor speed **完整正文**
+- [Digital Output](../../zh/products/rtw/vexv5/ref/digitaloutput.md) — 官方英文摘要: Set logical value to the 3-wire port on VEX EDR V5 Robot Brain **完整正文**
+- [Servo Motor](../../zh/products/rtw/vexv5/ref/servomotor.md) — 官方英文摘要: Represent connected servo motor and set angular position value **完整正文**
+- [Smart Motor Write](../../zh/products/rtw/vexv5/ref/smartmotorwrite.md) — 官方英文摘要: Represent connected V5 Smart Motor and set its velocity and position **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / VEX EDR V5 Robot Brain / Modeling / Drivetrain
 
-- Differential Drive — 官方英文摘要: Set up differential drive and control robot pose (Since R2021a) **仅元数据，中英文正文待补**
+- [Differential Drive](../../zh/products/rtw/vexv5/ref/differentialtankdrive.md) — 官方英文摘要: Set up differential drive and control robot pose (Since R2021a) **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / VEX EDR V5 Robot Brain / Modeling / Gamepad
 
-- Gamepad Button — 官方英文摘要: Represent one of the 12 buttons on VEX V5 Controller gamepad and read the logical value of the button **仅元数据，中英文正文待补**
-- Gamepad Joystick — 官方英文摘要: Represent one of the control axis on an x-y analog joystick on VEX V5 Controller gamepad and read the values **仅元数据，中英文正文待补**
-- Competition Switch — 官方英文摘要: Read the switch positions of VEXnet Competition Switch or field controller **仅元数据，中英文正文待补**
+- [Gamepad Button](../../zh/products/rtw/vexv5/ref/gamepadbutton.md) — 官方英文摘要: Represent one of the 12 buttons on VEX V5 Controller gamepad and read the logical value of the button **完整正文**
+- [Gamepad Joystick](../../zh/products/rtw/vexv5/ref/gamepadjoystick.md) — 官方英文摘要: Represent one of the control axis on an x-y analog joystick on VEX V5 Controller gamepad and read the values **完整正文**
+- [Competition Switch](../../zh/products/rtw/vexv5/ref/competitionswitch.md) — 官方英文摘要: Read the switch positions of VEXnet Competition Switch or field controller **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / VEX EDR V5 Robot Brain / Modeling / Sensors
 
-- Analog Input — 官方英文摘要: Read analog values from the 3-wire port on VEX EDR V5 Robot Brain **仅元数据，中英文正文待补**
-- Digital Input — 官方英文摘要: Read logical values from the 3-wire port on VEX EDR V5 Robot Brain **仅元数据，中英文正文待补**
-- Smart Motor Read — 官方英文摘要: Represent connected V5 Smart Motor and read encoder values **仅元数据，中英文正文待补**
-- Vision Sensor — 官方英文摘要: Represent connected V5 Vision Sensor and read coordinates of color blobs (objects) **仅元数据，中英文正文待补**
-- Optical Shaft Encoder — 官方英文摘要: Represent connected Optical Shaft Encoder and read relative position of motor shaft in ticks **仅元数据，中英文正文待补**
-- Ultrasonic Sensor — 官方英文摘要: Represent connected Ultrasonic sensor and measure distance to object **仅元数据，中英文正文待补**
-- Gyroscope — 官方英文摘要: Represent connected gyroscope and measure yaw angle **仅元数据，中英文正文待补**
-- Inertial Sensor — 官方英文摘要: Measure orientation, acceleration, and angular rate (Since R2021a) **仅元数据，中英文正文待补**
-- Distance Sensor — 官方英文摘要: Read distance, velocity, and relative size of obstacle (Since R2021b) **仅元数据，中英文正文待补**
-- Optical Sensor — 官方英文摘要: Read proximity, color, and brightness (Since R2021b) **仅元数据，中英文正文待补**
-- Rotation Sensor — 官方英文摘要: Read shaft position and velocity (Since R2021b) **仅元数据，中英文正文待补**
-- GPS Sensor — 官方英文摘要: Read position and orientation (Since R2022b) **仅元数据，中英文正文待补**
+- [Analog Input](../../zh/products/rtw/vexv5/ref/analoginput.md) — 官方英文摘要: Read analog values from the 3-wire port on VEX EDR V5 Robot Brain **完整正文**
+- [Digital Input](../../zh/products/rtw/vexv5/ref/digitalinput.md) — 官方英文摘要: Read logical values from the 3-wire port on VEX EDR V5 Robot Brain **完整正文**
+- [Smart Motor Read](../../zh/products/rtw/vexv5/ref/smartmotorread.md) — 官方英文摘要: Represent connected V5 Smart Motor and read encoder values **完整正文**
+- [Vision Sensor](../../zh/products/rtw/vexv5/ref/visionsensor.md) — 官方英文摘要: Represent connected V5 Vision Sensor and read coordinates of color blobs (objects) **完整正文**
+- [Optical Shaft Encoder](../../zh/products/rtw/vexv5/ref/opticalshaftencoder.md) — 官方英文摘要: Represent connected Optical Shaft Encoder and read relative position of motor shaft in ticks **完整正文**
+- [Ultrasonic Sensor](../../zh/products/rtw/vexv5/ref/ultrasonicsensor.md) — 官方英文摘要: Represent connected Ultrasonic sensor and measure distance to object **完整正文**
+- [Gyroscope](../../zh/products/rtw/vexv5/ref/gyroscope.md) — 官方英文摘要: Represent connected gyroscope and measure yaw angle **完整正文**
+- [Inertial Sensor](../../zh/products/rtw/vexv5/ref/inertialsensor.md) — 官方英文摘要: Measure orientation, acceleration, and angular rate (Since R2021a) **完整正文**
+- [Distance Sensor](../../zh/products/rtw/vexv5/ref/distancesensor.md) — 官方英文摘要: Read distance, velocity, and relative size of obstacle (Since R2021b) **完整正文**
+- [Optical Sensor](../../zh/products/rtw/vexv5/ref/opticalsensor.md) — 官方英文摘要: Read proximity, color, and brightness (Since R2021b) **完整正文**
+- [Rotation Sensor](../../zh/products/rtw/vexv5/ref/rotationsensor.md) — 官方英文摘要: Read shaft position and velocity (Since R2021b) **完整正文**
+- [GPS Sensor](../../zh/products/rtw/vexv5/ref/v5gpssensor.md) — 官方英文摘要: Read position and orientation (Since R2022b) **完整正文**
 
 ## Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / VEX EDR V5 Robot Brain / Modeling / Utilities
 
-- Arcade Module — 官方英文摘要: Get the right and left wheel speed values of a robot in an Arcade configuration **仅元数据，中英文正文待补**
-- Field Simulator — 官方英文摘要: View the simulation speed values of a two-wheel robot **仅元数据，中英文正文待补**
-- Gamepad Simulator — 官方英文摘要: Get the simulation value of a VEX gamepad using Logitech F310 or XBOX Controller **仅元数据，中英文正文待补**
-- Gear Transmission — 官方英文摘要: Set a scalar value (1 to 4) based on input values **仅元数据，中英文正文待补**
-- Latch — 官方英文摘要: Latch the logical value based on the change in the input signal **仅元数据，中英文正文待补**
+- [Arcade Module](../../zh/products/rtw/vexv5/ref/arcademodule.md) — 官方英文摘要: Get the right and left wheel speed values of a robot in an Arcade configuration **完整正文**
+- [Field Simulator](../../zh/products/rtw/vexv5/ref/fieldsimulator.md) — 官方英文摘要: View the simulation speed values of a two-wheel robot **完整正文**
+- [Gamepad Simulator](../../zh/products/rtw/vexv5/ref/gamepadsimulator.md) — 官方英文摘要: Get the simulation value of a VEX gamepad using Logitech F310 or XBOX Controller **完整正文**
+- [Gear Transmission](../../zh/products/rtw/vexv5/ref/geartransmission.md) — 官方英文摘要: Set a scalar value (1 to 4) based on input values **完整正文**
+- [Latch](../../zh/products/rtw/vexv5/ref/latch.md) — 官方英文摘要: Latch the logical value based on the change in the input signal **完整正文**
 
 ## Code Efficiency
 
@@ -631,7 +631,7 @@ language: zh-CN
 
 ## Code and Tool Customization / Code Generation for Custom Blocks
 
-- Generated S-Function — 官方英文摘要: Represent model or subsystem as generated S-function code **仅元数据，中英文正文待补**
+- [Generated S-Function](../../zh/products/rtw/ref/generatedsfunction.md) — 官方英文摘要: Represent model or subsystem as generated S-function code **完整正文**
 
 ## Code and Tool Customization / Target Language Compiler
 

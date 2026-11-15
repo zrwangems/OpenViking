@@ -34,8 +34,8 @@ No direct block entries.
 
 ## Live Data I/O / Radio I/O
 
-- SDRu Receiver — Official summary: Receive data from USRP device **metadata only; full English and Chinese documents pending**
-- SDRu Transmitter — Official summary: Send data to USRP device **metadata only; full English and Chinese documents pending**
+- [SDRu Receiver](../../en/products/wireless-testbench/ref/sdrureceiver.md) — Official summary: Receive data from USRP device **full document**
+- [SDRu Transmitter](../../en/products/wireless-testbench/ref/sdrutransmitter.md) — Official summary: Send data to USRP device **full document**
 
 ## Live Data I/O / Performance
 

@@ -24,8 +24,8 @@ No direct block entries.
 
 ## Uncertain System Representation / Uncertain Models in Simulink
 
-- Uncertain State Space — Official summary: Simulate uncertain system in Simulink **metadata only; full English and Chinese documents pending**
-- USS System — Official summary: (Not recommended) Import uncertain systems into Simulink **metadata only; full English and Chinese documents pending**
+- [Uncertain State Space](../../en/products/robust/ref/uncertainstatespace.md) — Official summary: Simulate uncertain system in Simulink **full document**
+- [USS System](../../en/products/robust/ref/usssystem.md) — Official summary: (Not recommended) Import uncertain systems into Simulink **full document**
 
 ## Uncertain System Analysis
 
@@ -49,8 +49,8 @@ No direct block entries.
 
 ## Uncertain System Analysis / Uncertainty Analysis with Simulink Models
 
-- Uncertain State Space — Official summary: Simulate uncertain system in Simulink **metadata only; full English and Chinese documents pending**
-- MultiPlot Graph — Official summary: Plot results of multiple simulations **metadata only; full English and Chinese documents pending**
+- [Uncertain State Space](../../en/products/robust/ref/uncertainstatespace.md) — Official summary: Simulate uncertain system in Simulink **full document**
+- [MultiPlot Graph](../../en/products/robust/ref/multiplotgraph.md) — Official summary: Plot results of multiple simulations **full document**
 
 ## Robust Controllers
 

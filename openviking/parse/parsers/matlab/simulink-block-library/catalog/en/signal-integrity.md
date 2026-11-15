@@ -44,7 +44,7 @@ No direct block entries.
 
 ## Serial Link Design / Visualize and Interpret Serial Link Project Analysis Results
 
-- Eye Measurement — Official summary: Calculate metrics from eye diagram (Since R2024a) **metadata only; full English and Chinese documents pending**
+- [Eye Measurement](../../en/products/signal-integrity/ref/eyemeasurement.md) — Official summary: Calculate metrics from eye diagram (Since R2024a) **full document**
 
 ## Parallel Link Design
 
@@ -78,7 +78,7 @@ No direct block entries.
 
 ## Parallel Link Design / Visualize and Interpret Parallel Link Project Analysis Results
 
-- Eye Measurement — Official summary: Calculate metrics from eye diagram (Since R2024a) **metadata only; full English and Chinese documents pending**
+- [Eye Measurement](../../en/products/signal-integrity/ref/eyemeasurement.md) — Official summary: Calculate metrics from eye diagram (Since R2024a) **full document**
 
 ## Signal Integrity Analysis Using MATLAB
 

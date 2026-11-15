@@ -27,10 +27,14 @@ class BlockReference:
     documentation_path: str
     summary: str
     documents: dict[str, dict[str, str | None]]
+    resource_paths: dict[str, str]
 
     @property
     def full_document(self) -> bool:
-        return self.documents["en"]["status"] == "available"
+        return all(self.documents[language]["status"] == "available" for language in ("en", "zh"))
+
+    def resource_path(self, language: str = "en") -> str | None:
+        return self.resource_paths.get(language) or self.documents[language]["path"]
 
 
 @lru_cache(maxsize=1)
@@ -50,6 +54,7 @@ def block_references() -> tuple[BlockReference, ...]:
             documentation_path=block["documentation_path"],
             summary=block["summary"],
             documents=block["documents"],
+            resource_paths=block.get("resource_paths", {}),
         )
         for product in manifest()["products"]
         for library in product["libraries"]
@@ -65,10 +70,26 @@ def slug(value: str) -> str:
 def read_block_document(family: str, name: str, language: str = "en") -> str:
     """Structure a block page while adding a resource, not in the source library."""
     localized = "zh" if str(language).lower().startswith("zh") else "en"
-    document = (library_root() / localized / family / f"{slug(name)}.md").read_text(
-        encoding="utf-8"
-    )
+    if family == "browser" or family.startswith("browser/"):
+        relative = family.removeprefix("browser/")
+        path = library_root() / "browser" / localized / relative / f"{slug(name)}.md"
+    else:
+        path = library_root() / localized / family / f"{slug(name)}.md"
+    document = path.read_text(encoding="utf-8")
     return normalize_block_document(document, language=localized)
+
+
+def read_reference_document(reference: BlockReference, language: str = "en") -> str:
+    """Read the exact Browser occurrence, including disambiguated duplicate names."""
+    localized = "zh" if str(language).lower().startswith("zh") else "en"
+    relative = reference.resource_path(localized)
+    if not relative:
+        raise FileNotFoundError(
+            f"No packaged document for {reference.product_name}/{reference.name}"
+        )
+    return normalize_block_document(
+        (library_root() / relative).read_text(encoding="utf-8"), language=localized
+    )
 
 
 def section(document: str, name: str) -> str:

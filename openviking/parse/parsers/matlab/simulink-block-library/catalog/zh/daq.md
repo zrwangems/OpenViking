@@ -59,12 +59,12 @@ language: zh-CN
 
 ## Simulink Data Acquisition
 
-- Analog Input — 官方英文摘要: Acquire data from multiple analog channels of data acquisition device **仅元数据，中英文正文待补**
-- Analog Output — 官方英文摘要: Output data to multiple analog channels of data acquisition device **仅元数据，中英文正文待补**
-- Analog Input (Single Sample) — 官方英文摘要: Acquire single sample from multiple analog channels of data acquisition device **仅元数据，中英文正文待补**
-- Analog Output (Single Sample) — 官方英文摘要: Output single sample to multiple analog channels of data acquisition device **仅元数据，中英文正文待补**
-- Digital Input (Single Sample) — 官方英文摘要: Acquire single sample from multiple digital lines of data acquisition device **仅元数据，中英文正文待补**
-- Digital Output (Single Sample) — 官方英文摘要: Output single sample to multiple digital lines of data acquisition device **仅元数据，中英文正文待补**
+- [Analog Input](../../zh/products/daq/analog_input.md) — 官方英文摘要: Acquire data from multiple analog channels of data acquisition device **完整正文**
+- [Analog Output](../../zh/products/daq/analog_output.md) — 官方英文摘要: Output data to multiple analog channels of data acquisition device **完整正文**
+- [Analog Input (Single Sample)](../../zh/products/daq/analoginputsinglesample.md) — 官方英文摘要: Acquire single sample from multiple analog channels of data acquisition device **完整正文**
+- [Analog Output (Single Sample)](../../zh/products/daq/analogoutputsinglesample.md) — 官方英文摘要: Output single sample to multiple analog channels of data acquisition device **完整正文**
+- [Digital Input (Single Sample)](../../zh/products/daq/digitalinputsinglesample.md) — 官方英文摘要: Acquire single sample from multiple digital lines of data acquisition device **完整正文**
+- [Digital Output (Single Sample)](../../zh/products/daq/digitaloutputsinglesample.md) — 官方英文摘要: Output single sample to multiple digital lines of data acquisition device **完整正文**
 
 ## TDMS Format Files
 

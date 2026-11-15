@@ -24,9 +24,9 @@ No direct block entries.
 
 ## Signal Transmission
 
-- DVBS-APSK Demodulator Baseband — Official summary: DVB-S2/S2X/SH standard-specific APSK demodulation **metadata only; full English and Chinese documents pending**
-- DVBS-APSK Modulator Baseband — Official summary: DVB-S2/S2X/SH standard-specific APSK modulation **metadata only; full English and Chinese documents pending**
-- Waveform From Wireless Waveform Generator App — Official summary: Wireless waveform source exported to Simulink (Since R2023b) **metadata only; full English and Chinese documents pending**
+- [DVBS-APSK Demodulator Baseband](../../en/products/satcom/ref/dvbsapskdemodulatorbaseband.md) — Official summary: DVB-S2/S2X/SH standard-specific APSK demodulation **full document**
+- [DVBS-APSK Modulator Baseband](../../en/products/satcom/ref/dvbsapskmodulatorbaseband.md) — Official summary: DVB-S2/S2X/SH standard-specific APSK modulation **full document**
+- [Waveform From Wireless Waveform Generator App](../../en/products/satcom/ref/waveformfromwirelesswaveformgeneratorapp.md) — Official summary: Wireless waveform source exported to Simulink (Since R2023b) **full document**
 
 ## RF Propagation and Channel Models
 

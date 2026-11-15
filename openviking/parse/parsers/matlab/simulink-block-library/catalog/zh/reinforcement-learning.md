@@ -14,20 +14,20 @@ language: zh-CN
 
 ## Environments
 
-- RL Agent — 官方英文摘要: Reinforcement learning agent **仅元数据，中英文正文待补**
+- [RL Agent](../../zh/products/reinforcement-learning/ref/rlagent.md) — 官方英文摘要: Reinforcement learning agent **完整正文**
 
 ## Agents
 
-- RL Agent — 官方英文摘要: Reinforcement learning agent **仅元数据，中英文正文待补**
+- [RL Agent](../../zh/products/reinforcement-learning/ref/rlagent.md) — 官方英文摘要: Reinforcement learning agent **完整正文**
 
 ## Policies and Value Functions
 
-- Policy — 官方英文摘要: Reinforcement learning policy (Since R2022b) **仅元数据，中英文正文待补**
+- [Policy](../../zh/products/reinforcement-learning/ref/policy.md) — 官方英文摘要: Reinforcement learning policy (Since R2022b) **完整正文**
 
 ## Training and Simulation
 
-- RL Agent — 官方英文摘要: Reinforcement learning agent **仅元数据，中英文正文待补**
-- Policy — 官方英文摘要: Reinforcement learning policy (Since R2022b) **仅元数据，中英文正文待补**
+- [RL Agent](../../zh/products/reinforcement-learning/ref/rlagent.md) — 官方英文摘要: Reinforcement learning agent **完整正文**
+- [Policy](../../zh/products/reinforcement-learning/ref/policy.md) — 官方英文摘要: Reinforcement learning policy (Since R2022b) **完整正文**
 
 ## Benchmark Examples
 
@@ -41,4 +41,4 @@ language: zh-CN
 
 ## Policy Deployment
 
-- Policy — 官方英文摘要: Reinforcement learning policy (Since R2022b) **仅元数据，中英文正文待补**
+- [Policy](../../zh/products/reinforcement-learning/ref/policy.md) — 官方英文摘要: Reinforcement learning policy (Since R2022b) **完整正文**

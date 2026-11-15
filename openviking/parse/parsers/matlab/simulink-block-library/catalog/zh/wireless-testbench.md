@@ -34,8 +34,8 @@ language: zh-CN
 
 ## Live Data I/O / Radio I/O
 
-- SDRu Receiver — 官方英文摘要: Receive data from USRP device **仅元数据，中英文正文待补**
-- SDRu Transmitter — 官方英文摘要: Send data to USRP device **仅元数据，中英文正文待补**
+- [SDRu Receiver](../../zh/products/wireless-testbench/ref/sdrureceiver.md) — 官方英文摘要: Receive data from USRP device **完整正文**
+- [SDRu Transmitter](../../zh/products/wireless-testbench/ref/sdrutransmitter.md) — 官方英文摘要: Send data to USRP device **完整正文**
 
 ## Live Data I/O / Performance
 

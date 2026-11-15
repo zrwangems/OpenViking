@@ -1,0 +1,152 @@
+---
+type: simulink-block
+title: 'Self-Conditioned [A,B,C,D]'
+family: 'aeroblks'
+product_id: 'aeroblks'
+product_name: 'Aerospace Blockset'
+documentation_release: R2025b
+official_category: 'Guidance, Navigation, and Control (GNC) / Control'
+documentation_page: 'selfconditionedabcd'
+documentation_source_path: 'selfconditionedabcd.html'
+language: zh-CN
+chinese_source: worker-translation
+---
+
+# Self-Conditioned [A,B,C,D]
+
+## 端口
+
+### 输入
+
+### **e** — 控制误差向量
+
+控制误差，指定为向量。
+
+**数据类型:** `double`
+
+### **u\_meas** — 已实现执行器位置向量
+
+已实现执行器位置，指定为向量。
+
+**数据类型:** `double`
+### 输出
+
+### **u\_dem** — 执行器需求向量
+
+执行器需求，指定为向量。
+
+**数据类型:** `double`
+
+## 参数
+
+### **A-matrix** — 状态空间实现的 *A* 矩阵 `[-1 -0.2;0 -3]` (默认) | array
+
+状态空间实现的 *A* 矩阵。*A* 矩阵应具有三个维度，最后一个维度对应调度变量 *v*。例如，如果 *v* 的第一个条目对应的 *A* 矩阵是单位矩阵，则 `A(:,:,1) = [1 0;0 1];`。
+
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数**: `Ak` |
+| **类型**: character vector |
+| **值**: vector |
+| **默认**: `'[-1 -0.2;0 -3]'` |
+
+### **B-matrix** — 状态空间实现的 *B* 矩阵 `[1;1]` (默认) | array
+
+状态空间实现的 *B* 矩阵，指定为数组。*B* 矩阵应具有三个维度，最后一个维度对应调度变量 *v*。例如，如果 *v* 的第一个条目对应的 *B* 矩阵是单位矩阵，则 `B(:,:,1) = [1 0;0 1];`。
+
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数**: `Bk` |
+| **类型**: character vector |
+| **值**: vector |
+| **默认**: `'[1;1]'` |
+
+### **C-matrix** — 状态空间实现的 *C* 矩阵 `[1 0]` (默认) | array
+
+状态空间实现的 *C* 矩阵，指定为数组。*C* 矩阵应具有三个维度，最后一个维度对应调度变量 *v*。例如，如果 *v* 的第一个条目对应的 *C* 矩阵是单位矩阵，则 `C(:,:,1) = [1 0;0 1];`。
+
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数**: `Ck` |
+| **类型**: character vector |
+| **值**: vector |
+| **默认**: `'[1 0]'` |
+
+### **D-matrix** — 状态空间实现的 *D* 矩阵 `0.02` (默认) | array | scalar
+
+状态空间实现的 D 矩阵。*D* 矩阵应具有三个维度，最后一个维度对应调度变量 *v*。例如，如果 *v* 的第一个条目对应的 *D* 矩阵是单位矩阵，则 `D(:,:,1) = [1 0;0 1];`。
+
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数**: `Dk` |
+| **类型**: character vector |
+| **值**: vector |
+| **默认**: `'0.02'` |
+
+### **Initial state, x\_initial** — 初始状态 0 (默认) | vector
+
+控制器的初始状态，即状态向量 *z* 的初始值。其长度应等于 *A* 的第一维的大小。
+
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数**: `x_initial` |
+| **类型**: character vector |
+| **值**: vector |
+| **默认**: `'0'` |
+
+### **Poles of A-H\*C** — 期望极点 `[-5 -2]` (默认) | vector
+
+*A*-*H*\**C* 的期望极点，指定为向量。因此定义的极点位置数量应等于 *A* 矩阵的维度。
+
+#### 程序化使用
+
+|  |
+| --- |
+| **模块参数**: `vec_w` |
+| **类型**: character vector |
+| **值**: vector |
+| **默认**: `'[-5 -2]'` |
+
+## 所属库
+
+Aerospace Blockset / GNC / Control
+
+## 模块特性
+
+未在 R2025b 中记录。
+
+## 扩展功能
+
+### C/C++ 代码生成
+
+使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+
+## 版本历史
+
+**在 R2006a 之前引入**
+
+## 描述
+
+以自条件形式实现状态空间控制器
+
+Self-Conditioned [A,B,C,D] 模块可用于实现由
+
+[x˙=Ax+Beu=Cx+De]
+
+定义的状态空间控制器，其自条件形式为
+
+[z˙=(A−HC)z+(B−HD)e+Humeasudem=Cz+De]
+
+输入 umeas 是已实现执行器位置的向量，输出 udem 是控制器执行器需求的向量。在执行器不受限制的情况下，则 umeas=udem，并且将输出方程代入状态方程可返回标称控制器。在它们不相等的情况下，控制器的动态由 *A*-*HC* 的极点设定。
+
+因此必须选择 *H* 使极点足够快以跟踪 umeas，但同时不能太快，以免 e 上的噪声传播到 udem。矩阵 *H* 通过回调 Control System Toolbox™ 命令 `place` 设计，以将极点放置到定义的位置。

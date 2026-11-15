@@ -29,7 +29,7 @@ language: zh-CN
 
 ## Test and Measurement
 
-- Waveform From Wireless Waveform Generator App — 官方英文摘要: Wireless waveform source exported to Simulink (Since R2022a) **仅元数据，中英文正文待补**
+- [Waveform From Wireless Waveform Generator App](../../zh/products/bluetooth/ref/waveformfromwirelesswaveformgeneratorapp.md) — 官方英文摘要: Wireless waveform source exported to Simulink (Since R2022a) **完整正文**
 
 ## End-to-End Simulation
 

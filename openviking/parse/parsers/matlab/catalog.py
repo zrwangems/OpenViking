@@ -114,13 +114,19 @@ def find_block(block_type: str, source_block: str = "") -> tuple[str, str] | Non
     reference = find_block_reference(block_type, source_block)
     if not reference or not reference.full_document:
         return None
-    relative = reference.documents["en"]["path"]
+    if reference.product_id == "simulink" and "commonlyusedblocks" in {
+        _normalize(part) for part in source_block.split("/")
+    }:
+        return "browser/simulink/commonly-used-blocks", reference.name
+    relative = reference.resource_path("en")
     if not relative:
         return None
+    if relative.startswith("browser/en/"):
+        family = "browser/" + relative.removeprefix("browser/en/").rsplit("/", 1)[0]
+        return family, reference.name
     family, filename = relative.removeprefix("en/").rsplit("/", 1)
-    # Base-library documents have one flat family directory.
-    if "/" in family:
-        return None
+    if family.startswith("products/"):
+        return family, reference.name
     for entry_family, _, name, _ in catalog_entries():
         if entry_family == family and slug(name) == filename.removesuffix(".md"):
             return entry_family, name

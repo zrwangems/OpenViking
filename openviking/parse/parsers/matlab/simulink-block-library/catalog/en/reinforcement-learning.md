@@ -14,20 +14,20 @@ No direct block entries.
 
 ## Environments
 
-- RL Agent — Official summary: Reinforcement learning agent **metadata only; full English and Chinese documents pending**
+- [RL Agent](../../en/products/reinforcement-learning/ref/rlagent.md) — Official summary: Reinforcement learning agent **full document**
 
 ## Agents
 
-- RL Agent — Official summary: Reinforcement learning agent **metadata only; full English and Chinese documents pending**
+- [RL Agent](../../en/products/reinforcement-learning/ref/rlagent.md) — Official summary: Reinforcement learning agent **full document**
 
 ## Policies and Value Functions
 
-- Policy — Official summary: Reinforcement learning policy (Since R2022b) **metadata only; full English and Chinese documents pending**
+- [Policy](../../en/products/reinforcement-learning/ref/policy.md) — Official summary: Reinforcement learning policy (Since R2022b) **full document**
 
 ## Training and Simulation
 
-- RL Agent — Official summary: Reinforcement learning agent **metadata only; full English and Chinese documents pending**
-- Policy — Official summary: Reinforcement learning policy (Since R2022b) **metadata only; full English and Chinese documents pending**
+- [RL Agent](../../en/products/reinforcement-learning/ref/rlagent.md) — Official summary: Reinforcement learning agent **full document**
+- [Policy](../../en/products/reinforcement-learning/ref/policy.md) — Official summary: Reinforcement learning policy (Since R2022b) **full document**
 
 ## Benchmark Examples
 
@@ -41,4 +41,4 @@ No direct block entries.
 
 ## Policy Deployment
 
-- Policy — Official summary: Reinforcement learning policy (Since R2022b) **metadata only; full English and Chinese documents pending**
+- [Policy](../../en/products/reinforcement-learning/ref/policy.md) — Official summary: Reinforcement learning policy (Since R2022b) **full document**

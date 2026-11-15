@@ -24,9 +24,9 @@ language: zh-CN
 
 ## Signal Transmission
 
-- DVBS-APSK Demodulator Baseband — 官方英文摘要: DVB-S2/S2X/SH standard-specific APSK demodulation **仅元数据，中英文正文待补**
-- DVBS-APSK Modulator Baseband — 官方英文摘要: DVB-S2/S2X/SH standard-specific APSK modulation **仅元数据，中英文正文待补**
-- Waveform From Wireless Waveform Generator App — 官方英文摘要: Wireless waveform source exported to Simulink (Since R2023b) **仅元数据，中英文正文待补**
+- [DVBS-APSK Demodulator Baseband](../../zh/products/satcom/ref/dvbsapskdemodulatorbaseband.md) — 官方英文摘要: DVB-S2/S2X/SH standard-specific APSK demodulation **完整正文**
+- [DVBS-APSK Modulator Baseband](../../zh/products/satcom/ref/dvbsapskmodulatorbaseband.md) — 官方英文摘要: DVB-S2/S2X/SH standard-specific APSK modulation **完整正文**
+- [Waveform From Wireless Waveform Generator App](../../zh/products/satcom/ref/waveformfromwirelesswaveformgeneratorapp.md) — 官方英文摘要: Wireless waveform source exported to Simulink (Since R2023b) **完整正文**
 
 ## RF Propagation and Channel Models
 

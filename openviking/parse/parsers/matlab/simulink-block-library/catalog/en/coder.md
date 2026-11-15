@@ -284,48 +284,48 @@ No direct block entries.
 
 ## MATLAB Coder Supported Hardware / MATLAB Coder Support Package for NVIDIA Jetson and NVIDIA DRIVE Platforms / Modeling / Audio and Video
 
-- ALSA Audio Capture — Official summary: Capture audio from sound card using ALSA (Since R2021a) **metadata only; full English and Chinese documents pending**
-- ALSA Audio Playback — Official summary: Send audio to sound card for playback using ALSA (Since R2021a) **metadata only; full English and Chinese documents pending**
-- Audio File Read — Official summary: Read audio frames from an audio file (Since R2021a) **metadata only; full English and Chinese documents pending**
-- Camera — Official summary: Capture video from a USB or CSI camera connected to the NVIDIA target **metadata only; full English and Chinese documents pending**
-- Network Video Receive — Official summary: Receive video from a network RTP or IP camera RTSP stream (Since R2021b) **metadata only; full English and Chinese documents pending**
-- SDL Video Display — Official summary: Display video on a monitor connected to the NVIDIA target **metadata only; full English and Chinese documents pending**
-- Video Read — Official summary: Read video frames from multimedia file on NVIDIA target (Since R2024a) **metadata only; full English and Chinese documents pending**
-- Video Send — Official summary: Send video stream to remote hardware (Since R2023b) **metadata only; full English and Chinese documents pending**
+- [ALSA Audio Capture](../../en/products/coder/nvidia/ref/alsaaudiocapture.md) — Official summary: Capture audio from sound card using ALSA (Since R2021a) **full document**
+- [ALSA Audio Playback](../../en/products/coder/nvidia/ref/alsaaudioplayback.md) — Official summary: Send audio to sound card for playback using ALSA (Since R2021a) **full document**
+- [Audio File Read](../../en/products/coder/nvidia/ref/audiofileread.md) — Official summary: Read audio frames from an audio file (Since R2021a) **full document**
+- [Camera](../../en/products/coder/nvidia/ref/nvidiacamera.md) — Official summary: Capture video from a USB or CSI camera connected to the NVIDIA target **full document**
+- [Network Video Receive](../../en/products/coder/nvidia/ref/networkvideoreceive.md) — Official summary: Receive video from a network RTP or IP camera RTSP stream (Since R2021b) **full document**
+- [SDL Video Display](../../en/products/coder/nvidia/ref/sdlvideodisplay.md) — Official summary: Display video on a monitor connected to the NVIDIA target **full document**
+- [Video Read](../../en/products/coder/nvidia/ref/videoread.md) — Official summary: Read video frames from multimedia file on NVIDIA target (Since R2024a) **full document**
+- [Video Send](../../en/products/coder/nvidia/ref/videosend.md) — Official summary: Send video stream to remote hardware (Since R2023b) **full document**
 
 ## MATLAB Coder Supported Hardware / MATLAB Coder Support Package for NVIDIA Jetson and NVIDIA DRIVE Platforms / Modeling / Basic
 
-- GPIO Read — Official summary: Read logical state of an input pin (Since R2021b) **metadata only; full English and Chinese documents pending**
-- GPIO Write — Official summary: Set logical state of an output pin (Since R2021b) **metadata only; full English and Chinese documents pending**
+- [GPIO Read](../../en/products/coder/nvidia/ref/gpioread.md) — Official summary: Read logical state of an input pin (Since R2021b) **full document**
+- [GPIO Write](../../en/products/coder/nvidia/ref/gpiowrite.md) — Official summary: Set logical state of an output pin (Since R2021b) **full document**
 
 ## MATLAB Coder Supported Hardware / MATLAB Coder Support Package for NVIDIA Jetson and NVIDIA DRIVE Platforms / Modeling / Communication
 
-- CAN Receive — Official summary: Receive messages from the controller area network (CAN) bus (Since R2021b) **metadata only; full English and Chinese documents pending**
-- CAN Transmit — Official summary: Transmit messages on the controller area network (CAN) bus (Since R2021b) **metadata only; full English and Chinese documents pending**
-- Serial Read — Official summary: Read data from serial port **metadata only; full English and Chinese documents pending**
-- Serial Write — Official summary: Write data to serial port **metadata only; full English and Chinese documents pending**
+- [CAN Receive](../../en/products/coder/nvidia/ref/canreceive.md) — Official summary: Receive messages from the controller area network (CAN) bus (Since R2021b) **full document**
+- [CAN Transmit](../../en/products/coder/nvidia/ref/cantransmit.md) — Official summary: Transmit messages on the controller area network (CAN) bus (Since R2021b) **full document**
+- [Serial Read](../../en/products/coder/nvidia/ref/serialread.md) — Official summary: Read data from serial port **full document**
+- [Serial Write](../../en/products/coder/nvidia/ref/serialwrite.md) — Official summary: Write data to serial port **full document**
 
 ## MATLAB Coder Supported Hardware / MATLAB Coder Support Package for NVIDIA Jetson and NVIDIA DRIVE Platforms / Modeling / Internet Of Things
 
-- MQTT Publish — Official summary: Publish messages to MQTT broker on specified topic (Since R2023a) **metadata only; full English and Chinese documents pending**
-- MQTT Subscribe — Official summary: Receive messages from the MQTT broker for specified topic (Since R2023a) **metadata only; full English and Chinese documents pending**
+- [MQTT Publish](../../en/products/coder/nvidia/ref/mqttpublish.md) — Official summary: Publish messages to MQTT broker on specified topic (Since R2023a) **full document**
+- [MQTT Subscribe](../../en/products/coder/nvidia/ref/mqttsubscribe.md) — Official summary: Receive messages from the MQTT broker for specified topic (Since R2023a) **full document**
 
 ## MATLAB Coder Supported Hardware / MATLAB Coder Support Package for NVIDIA Jetson and NVIDIA DRIVE Platforms / Modeling / Network
 
-- Modbus TCP/IP Client Read — Official summary: Client device reads data from server device register(s) over TCP/IP network (Since R2022a) **metadata only; full English and Chinese documents pending**
-- Modbus TCP/IP Client Write — Official summary: Client device writes data to server device register(s) over TCP/IP network (Since R2022a) **metadata only; full English and Chinese documents pending**
-- Modbus TCP/IP Server Read — Official summary: Server device reads data from server device register over TCP/IP network (Since R2022a) **metadata only; full English and Chinese documents pending**
-- Modbus TCP/IP Server Write — Official summary: Server device writes data to server device register over TCP/IP network (Since R2022a) **metadata only; full English and Chinese documents pending**
-- TCP/IP Receive — Official summary: Receive data over TCP/IP network from remote host **metadata only; full English and Chinese documents pending**
-- TCP/IP Send — Official summary: Send data over TCP/IP network to another remote host **metadata only; full English and Chinese documents pending**
-- UDP Receive — Official summary: Receive UDP packets from UDP host **metadata only; full English and Chinese documents pending**
-- UDP Send — Official summary: Send UDP packets to UDP host **metadata only; full English and Chinese documents pending**
+- [Modbus TCP/IP Client Read](../../en/products/coder/nvidia/ref/modbustcpipclientread.md) — Official summary: Client device reads data from server device register(s) over TCP/IP network (Since R2022a) **full document**
+- [Modbus TCP/IP Client Write](../../en/products/coder/nvidia/ref/modbustcpipclientwrite.md) — Official summary: Client device writes data to server device register(s) over TCP/IP network (Since R2022a) **full document**
+- [Modbus TCP/IP Server Read](../../en/products/coder/nvidia/ref/modbustcpipserverread.md) — Official summary: Server device reads data from server device register over TCP/IP network (Since R2022a) **full document**
+- [Modbus TCP/IP Server Write](../../en/products/coder/nvidia/ref/modbustcpipserverwrite.md) — Official summary: Server device writes data to server device register over TCP/IP network (Since R2022a) **full document**
+- [TCP/IP Receive](../../en/products/coder/nvidia/ref/tcpipreceive.md) — Official summary: Receive data over TCP/IP network from remote host **full document**
+- [TCP/IP Send](../../en/products/coder/nvidia/ref/tcpipsend.md) — Official summary: Send data over TCP/IP network to another remote host **full document**
+- [UDP Receive](../../en/products/coder/nvidia/ref/udpreceive.md) — Official summary: Receive UDP packets from UDP host **full document**
+- [UDP Send](../../en/products/coder/nvidia/ref/udpsend.md) — Official summary: Send UDP packets to UDP host **full document**
 
 ## MATLAB Coder Supported Hardware / MATLAB Coder Support Package for NVIDIA Jetson and NVIDIA DRIVE Platforms / Modeling / Sensors
 
-- BME280 — Official summary: Measure barometric air pressure, relative humidity, and temperature from BME280 sensor (Since R2022b) **metadata only; full English and Chinese documents pending**
-- BMI160 — Official summary: Measure linear acceleration, angular rate, and temperature from BMI160 sensor (Since R2022b) **metadata only; full English and Chinese documents pending**
-- BMM150 — Official summary: Measure magnetic field from BMM150 sensor (Since R2022b) **metadata only; full English and Chinese documents pending**
+- [BME280](../../en/products/coder/nvidia/ref/bme280.md) — Official summary: Measure barometric air pressure, relative humidity, and temperature from BME280 sensor (Since R2022b) **full document**
+- [BMI160](../../en/products/coder/nvidia/ref/bmi160.md) — Official summary: Measure linear acceleration, angular rate, and temperature from BMI160 sensor (Since R2022b) **full document**
+- [BMM150](../../en/products/coder/nvidia/ref/bmm150.md) — Official summary: Measure magnetic field from BMM150 sensor (Since R2022b) **full document**
 
 ## MATLAB Coder Supported Hardware / MATLAB Coder Support Package for NVIDIA Jetson and NVIDIA DRIVE Platforms / Deployment
 

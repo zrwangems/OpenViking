@@ -59,12 +59,12 @@ No direct block entries.
 
 ## Simulink Data Acquisition
 
-- Analog Input — Official summary: Acquire data from multiple analog channels of data acquisition device **metadata only; full English and Chinese documents pending**
-- Analog Output — Official summary: Output data to multiple analog channels of data acquisition device **metadata only; full English and Chinese documents pending**
-- Analog Input (Single Sample) — Official summary: Acquire single sample from multiple analog channels of data acquisition device **metadata only; full English and Chinese documents pending**
-- Analog Output (Single Sample) — Official summary: Output single sample to multiple analog channels of data acquisition device **metadata only; full English and Chinese documents pending**
-- Digital Input (Single Sample) — Official summary: Acquire single sample from multiple digital lines of data acquisition device **metadata only; full English and Chinese documents pending**
-- Digital Output (Single Sample) — Official summary: Output single sample to multiple digital lines of data acquisition device **metadata only; full English and Chinese documents pending**
+- [Analog Input](../../en/products/daq/analog_input.md) — Official summary: Acquire data from multiple analog channels of data acquisition device **full document**
+- [Analog Output](../../en/products/daq/analog_output.md) — Official summary: Output data to multiple analog channels of data acquisition device **full document**
+- [Analog Input (Single Sample)](../../en/products/daq/analoginputsinglesample.md) — Official summary: Acquire single sample from multiple analog channels of data acquisition device **full document**
+- [Analog Output (Single Sample)](../../en/products/daq/analogoutputsinglesample.md) — Official summary: Output single sample to multiple analog channels of data acquisition device **full document**
+- [Digital Input (Single Sample)](../../en/products/daq/digitalinputsinglesample.md) — Official summary: Acquire single sample from multiple digital lines of data acquisition device **full document**
+- [Digital Output (Single Sample)](../../en/products/daq/digitaloutputsinglesample.md) — Official summary: Output single sample to multiple digital lines of data acquisition device **full document**
 
 ## TDMS Format Files
 

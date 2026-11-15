@@ -24,8 +24,8 @@ language: zh-CN
 
 ## Data Preparation / Represent Data
 
-- Iddata Sink — 官方英文摘要: Export simulation data as iddata object to MATLAB workspace **仅元数据，中英文正文待补**
-- Iddata Source — 官方英文摘要: Import time-domain data stored in iddata object in MATLAB workspace **仅元数据，中英文正文待补**
+- [Iddata Sink](../../zh/products/ident/ref/iddatasink.md) — 官方英文摘要: Export simulation data as iddata object to MATLAB workspace **完整正文**
+- [Iddata Source](../../zh/products/ident/ref/iddatasource.md) — 官方英文摘要: Import time-domain data stored in iddata object in MATLAB workspace **完整正文**
 
 ## Data Preparation / Select Data for Estimation
 
@@ -104,15 +104,15 @@ language: zh-CN
 
 ## Nonlinear Model Identification / Nonlinear ARX Models
 
-- Nonlinear ARX Model — 官方英文摘要: Simulate nonlinear ARX model in Simulink software **仅元数据，中英文正文待补**
-- Iddata Sink — 官方英文摘要: Export simulation data as iddata object to MATLAB workspace **仅元数据，中英文正文待补**
-- Iddata Source — 官方英文摘要: Import time-domain data stored in iddata object in MATLAB workspace **仅元数据，中英文正文待补**
+- [Nonlinear ARX Model](../../zh/products/ident/ref/nonlineararxmodel.md) — 官方英文摘要: Simulate nonlinear ARX model in Simulink software **完整正文**
+- [Iddata Sink](../../zh/products/ident/ref/iddatasink.md) — 官方英文摘要: Export simulation data as iddata object to MATLAB workspace **完整正文**
+- [Iddata Source](../../zh/products/ident/ref/iddatasource.md) — 官方英文摘要: Import time-domain data stored in iddata object in MATLAB workspace **完整正文**
 
 ## Nonlinear Model Identification / Hammerstein-Wiener Models
 
-- Hammerstein-Wiener Model — 官方英文摘要: Simulate Hammerstein-Wiener model in Simulink software **仅元数据，中英文正文待补**
-- Iddata Sink — 官方英文摘要: Export simulation data as iddata object to MATLAB workspace **仅元数据，中英文正文待补**
-- Iddata Source — 官方英文摘要: Import time-domain data stored in iddata object in MATLAB workspace **仅元数据，中英文正文待补**
+- [Hammerstein-Wiener Model](../../zh/products/ident/ref/hammersteinwienermodel.md) — 官方英文摘要: Simulate Hammerstein-Wiener model in Simulink software **完整正文**
+- [Iddata Sink](../../zh/products/ident/ref/iddatasink.md) — 官方英文摘要: Export simulation data as iddata object to MATLAB workspace **完整正文**
+- [Iddata Source](../../zh/products/ident/ref/iddatasource.md) — 官方英文摘要: Import time-domain data stored in iddata object in MATLAB workspace **完整正文**
 
 ## Nonlinear Model Identification / Nonlinear Grey-Box Models
 
@@ -121,7 +121,7 @@ language: zh-CN
 
 ## Nonlinear Model Identification / Neural State-Space Models
 
-- Neural State-Space Model — 官方英文摘要: Simulate neural state-space model in Simulink (Since R2022b) **仅元数据，中英文正文待补**
+- [Neural State-Space Model](../../zh/products/ident/ref/neuralstatespacemodel.md) — 官方英文摘要: Simulate neural state-space model in Simulink (Since R2022b) **完整正文**
 
 ## Nonlinear Model Identification / Reduced Order Modeling
 
@@ -185,12 +185,12 @@ language: zh-CN
 
 ## Model Analysis / Simulation and Prediction
 
-- Iddata Source — 官方英文摘要: Import time-domain data stored in iddata object in MATLAB workspace **仅元数据，中英文正文待补**
-- Iddata Sink — 官方英文摘要: Export simulation data as iddata object to MATLAB workspace **仅元数据，中英文正文待补**
-- Idmodel — 官方英文摘要: Simulate identified linear model in Simulink software **仅元数据，中英文正文待补**
-- Nonlinear ARX Model — 官方英文摘要: Simulate nonlinear ARX model in Simulink software **仅元数据，中英文正文待补**
-- Hammerstein-Wiener Model — 官方英文摘要: Simulate Hammerstein-Wiener model in Simulink software **仅元数据，中英文正文待补**
-- Nonlinear Grey-Box Model — 官方英文摘要: Simulate nonlinear grey-box model in Simulink software **仅元数据，中英文正文待补**
+- [Iddata Source](../../zh/products/ident/ref/iddatasource.md) — 官方英文摘要: Import time-domain data stored in iddata object in MATLAB workspace **完整正文**
+- [Iddata Sink](../../zh/products/ident/ref/iddatasink.md) — 官方英文摘要: Export simulation data as iddata object to MATLAB workspace **完整正文**
+- [Idmodel](../../zh/products/ident/ref/idmodel.md) — 官方英文摘要: Simulate identified linear model in Simulink software **完整正文**
+- [Nonlinear ARX Model](../../zh/products/ident/ref/nonlineararxmodel.md) — 官方英文摘要: Simulate nonlinear ARX model in Simulink software **完整正文**
+- [Hammerstein-Wiener Model](../../zh/products/ident/ref/hammersteinwienermodel.md) — 官方英文摘要: Simulate Hammerstein-Wiener model in Simulink software **完整正文**
+- [Nonlinear Grey-Box Model](../../zh/products/ident/ref/nonlineargreyboxmodel.md) — 官方英文摘要: Simulate nonlinear grey-box model in Simulink software **完整正文**
 
 ## Model Analysis / Response Computation and Visualization
 
@@ -209,13 +209,13 @@ language: zh-CN
 
 ## Online Estimation / Online Parameter Estimation
 
-- Recursive Least Squares Estimator — 官方英文摘要: Estimate model coefficients using recursive least squares (RLS) algorithm **仅元数据，中英文正文待补**
-- Recursive Polynomial Model Estimator — 官方英文摘要: Estimate input-output and time-series polynomial model coefficients **仅元数据，中英文正文待补**
-- Model Type Converter — 官方英文摘要: Convert polynomial model coefficients to state-space model matrices **仅元数据，中英文正文待补**
+- [Recursive Least Squares Estimator](../../zh/products/ident/ref/recursiveleastsquaresestimator.md) — 官方英文摘要: Estimate model coefficients using recursive least squares (RLS) algorithm **完整正文**
+- [Recursive Polynomial Model Estimator](../../zh/products/ident/ref/recursivepolynomialmodelestimator.md) — 官方英文摘要: Estimate input-output and time-series polynomial model coefficients **完整正文**
+- [Model Type Converter](../../zh/products/ident/ref/modeltypeconverter.md) — 官方英文摘要: Convert polynomial model coefficients to state-space model matrices **完整正文**
 
 ## Online Estimation / Online State Estimation
 
-- Kalman Filter — 官方英文摘要: Estimate states of discrete-time or continuous-time linear system **仅元数据，中英文正文待补**
-- Extended Kalman Filter — 官方英文摘要: Estimate states of discrete-time nonlinear system using extended Kalman filter **仅元数据，中英文正文待补**
-- Particle Filter — 官方英文摘要: Estimate states of discrete-time nonlinear system using particle filter **仅元数据，中英文正文待补**
-- Unscented Kalman Filter — 官方英文摘要: Estimate states of discrete-time nonlinear system using unscented Kalman filter **仅元数据，中英文正文待补**
+- [Kalman Filter](../../zh/products/ident/ref/kalmanfilter.md) — 官方英文摘要: Estimate states of discrete-time or continuous-time linear system **完整正文**
+- [Extended Kalman Filter](../../zh/products/ident/ref/ekf_block.md) — 官方英文摘要: Estimate states of discrete-time nonlinear system using extended Kalman filter **完整正文**
+- [Particle Filter](../../zh/products/ident/ref/pf_block.md) — 官方英文摘要: Estimate states of discrete-time nonlinear system using particle filter **完整正文**
+- [Unscented Kalman Filter](../../zh/products/ident/ref/ukf_block.md) — 官方英文摘要: Estimate states of discrete-time nonlinear system using unscented Kalman filter **完整正文**
