@@ -140,11 +140,12 @@ def test_mat_v73_hdf5_full_array_export(tmp_path):
     path = tmp_path / "large.mat"
     with h5py.File(path, "w") as handle:
         handle.create_dataset("trajectory", data=[[1.0, 2.0], [3.0, 4.0]])
+        handle.create_dataset("nested/speed", data=[5.0, 6.0])
     content, warnings = parse_mat(path)
     assert "MAT v7.3 (HDF5)" in content
     assert "| trajectory | 2 × 2 |" in content
     documents, warnings = parse_mat_documents(path)
-    csv_path = next(name for name in documents if name.endswith(".csv"))
+    csv_path = next(name for name in documents if "trajectory" in name and name.endswith(".csv"))
     rows = list(csv.reader(io.StringIO(documents[csv_path])))
     assert rows == [
         ["row", "column", "value"],
@@ -152,6 +153,25 @@ def test_mat_v73_hdf5_full_array_export(tmp_path):
         ["1", "2", "2"],
         ["2", "1", "3"],
         ["2", "2", "4"],
+    ]
+    assert not warnings
+    nested = next(name for name in documents if "nested_speed" in name)
+    assert documents[nested].splitlines() == ["dim_1,value", "1,5", "2,6"]
+
+
+def test_mat_sparse_array_is_exported_in_full(tmp_path):
+    sparse = pytest.importorskip("scipy.sparse")
+    savemat = pytest.importorskip("scipy.io").savemat
+    path = tmp_path / "sparse.mat"
+    savemat(path, {"matrix": sparse.csc_matrix([[0.0, 1.5], [2.5, 0.0]])})
+    documents, warnings = parse_mat_documents(path)
+    csv_path = next(name for name in documents if name.endswith(".csv"))
+    assert list(csv.reader(io.StringIO(documents[csv_path]))) == [
+        ["row", "column", "value"],
+        ["1", "1", "0"],
+        ["1", "2", "1.5"],
+        ["2", "1", "2.5"],
+        ["2", "2", "0"],
     ]
     assert not warnings
 

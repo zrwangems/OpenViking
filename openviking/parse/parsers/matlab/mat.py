@@ -36,8 +36,12 @@ def _preview(value: Any, limit: int = 12) -> str:
 def _walk_arrays(value: Any, path: str, depth: int = 0) -> Iterator[tuple[str, Any]]:
     """Yield every scalar/string/numeric array, including struct and cell members."""
     import numpy as np
+    from scipy import sparse
 
     if depth > 64:
+        return
+    if sparse.issparse(value):
+        yield path, value
         return
     if isinstance(value, np.ndarray):
         if value.dtype.names:
@@ -81,8 +85,9 @@ def _number(value: Any) -> str:
 def _array_csv(value: Any) -> str:
     """Serialize an N-D array without truncation; indices are one-based."""
     import numpy as np
+    from scipy import sparse
 
-    array = np.asarray(value)
+    array = value.toarray() if sparse.issparse(value) else np.asarray(value)
     output = io.StringIO(newline="")
     writer = csv.writer(output, lineterminator="\n")
     complex_values = np.issubdtype(array.dtype, np.complexfloating)
@@ -149,9 +154,15 @@ def parse_mat_documents(path: str | Path) -> tuple[dict[str, str], list[str]]:
                 if isinstance(dataset, h5py.Group):
                     hdf_previews[name] = "group fields: " + ", ".join(dataset.keys())
                 else:
-                    value = dataset[()]
-                    arrays.append((name, value))
-                    hdf_previews[name] = _preview(value)
+                    hdf_previews[name] = _preview(dataset[()])
+
+            def collect_dataset(name: str, dataset: Any) -> None:
+                if name.startswith("#refs#") or "/#refs#/" in name:
+                    return
+                if isinstance(dataset, h5py.Dataset):
+                    arrays.append((name, dataset[()]))
+
+            handle.visititems(collect_dataset)
         fmt = "MAT v7.3 (HDF5)"
     else:
         hdf_shapes = {}
