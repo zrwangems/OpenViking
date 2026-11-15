@@ -134,7 +134,11 @@ def html_to_markdown(html: bytes, entry: dict[str, str]) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=Path("openviking/simulink-block-library"))
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=Path("openviking/parse/parsers/matlab/simulink-block-library"),
+    )
     parser.add_argument("--cache", type=Path, default=Path("/tmp/simulink-block-knowledge-cache"))
     parser.add_argument(
         "--manifest", type=Path, default=Path(__file__).with_name("simulink-block-manifest.json")

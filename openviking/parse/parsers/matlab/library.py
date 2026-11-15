@@ -11,7 +11,7 @@ from pathlib import Path
 
 def library_root() -> Path:
     """Return the single source of Simulink block knowledge shipped with OV."""
-    return Path(__file__).resolve().parents[3] / "simulink-block-library"
+    return Path(__file__).resolve().parent / "simulink-block-library"
 
 
 def slug(value: str) -> str:

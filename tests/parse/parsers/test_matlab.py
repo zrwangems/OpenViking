@@ -285,7 +285,14 @@ def test_standard_library_and_external_library_matching():
 
 
 def test_scraped_block_knowledge_is_local_and_complete():
-    root = Path(__file__).parents[3] / "openviking" / "simulink-block-library"
+    root = (
+        Path(__file__).parents[3]
+        / "openviking"
+        / "parse"
+        / "parsers"
+        / "matlab"
+        / "simulink-block-library"
+    )
     assert not (
         Path(__file__).parents[3]
         / "openviking"
