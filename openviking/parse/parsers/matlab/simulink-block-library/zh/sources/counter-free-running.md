@@ -11,6 +11,22 @@ chinese_source: official
 
 # Counter Free-Running
 
+进行累加计数并在达到指定位数的最大值后溢出归零
+
+## 所属库
+
+Simulink / Sources HDL Coder / Sources
+
+## 描述
+
+Counter Free-Running 模块进行累加计数，直到达到最大值 2*Nbits* – 1，其中 *Nbits* 是位数。然后，该计数器将溢出归零并重新开始进行累加计数。
+
+溢出之后，该计数器始终初始化为零。但是，如果您选择全局双精度值覆盖， Counter Free-Running 模块不会绕回到零。
+
+**注意**
+
+仿真期间，此模块不会报告溢出绕回警告。要报告这些警告，请参阅 `Simulink.restoreDiagnostic` 参考页。但此模块会报告由于溢出绕回而导致的错误。
+
 ## 端口
 
 ### 输出
@@ -52,10 +68,6 @@ chinese_source: official
 | **值：**标量 | 向量 |
 | **默认值：**`'-1'` |
 
-## 所属库
-
-Simulink / Sources HDL Coder / Sources
-
 ## 模块特性
 
 |  |  |
@@ -92,18 +104,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-进行累加计数并在达到指定位数的最大值后溢出归零
-
-Counter Free-Running 模块进行累加计数，直到达到最大值 2*Nbits* – 1，其中 *Nbits* 是位数。然后，该计数器将溢出归零并重新开始进行累加计数。
-
-溢出之后，该计数器始终初始化为零。但是，如果您选择全局双精度值覆盖， Counter Free-Running 模块不会绕回到零。
-
-**注意**
-
-仿真期间，此模块不会报告溢出绕回警告。要报告这些警告，请参阅 `Simulink.restoreDiagnostic` 参考页。但此模块会报告由于溢出绕回而导致的错误。

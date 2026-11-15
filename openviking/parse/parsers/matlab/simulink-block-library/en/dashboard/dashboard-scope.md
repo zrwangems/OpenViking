@@ -10,9 +10,124 @@ language: en
 
 # Dashboard Scope
 
-## Ports
+Trace signals on scope display during simulation
 
-Not documented in R2025b.
+## Libraries
+
+Simulink / Dashboard
+
+## Description
+
+The Dashboard Scope block plots connected signals during simulation on
+a scope display. You can use the Dashboard Scope block with other
+dashboard blocks to build an interactive dashboard of controls and indicators for your
+model. Signals connected to the Dashboard Scope block log to the
+Simulation Data Inspector for analysis during or after simulation. The Dashboard
+Scope block can display signals of any data type that Simulink® supports, including enumerated data types, and up to eight signals from an
+array or bus.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
+use connect mode. To enter connect mode on an unconnected block, pause on the block you want
+to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a display block to a signal in your model or change the connection of a display
+block, enter connect mode. Select the signal line to which you want to connect. From the
+list that appears, select the signal to which you want to connect. Then, pause on the
+dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
+connected block, run the simulation.
+
+For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+This animation shows how to connect the Dashboard Scope block to
+your model.
+
+An unconnected Dashboard Scope block connects three signals.
+
+### Analyze Signal Data
+
+You can use the subplot menu or the context menu for the Dashboard
+Scope block to:
+
+- Show or hide data cursors.
+- Zoom out by a fixed amount.
+- Configure the mouse interaction to pan and select or to zoom in time,
+  in *y*, or in both time and
+  *y*.
+- Perform a fit-to-view in time, in *y*, or in both
+  time and *y*.
+
+**Note**
+
+To use keyboard shortcuts to analyze data, select a signal or axis in the
+Dashboard Scope block.
+
+To access the subplot menu, select the Dashboard Scope block then
+click the three dots that appear when you pause on the plot area.
+
+A selected Dashboard Scope block with two cursors displayed and the subplot menu visible.
+
+### Configure Signal Line Style and Color
+
+You can modify the color and line style for signals connected to a
+Dashboard Scope block using the **Connection**
+table in the Block Parameters dialog box or the Property Inspector. To modify the
+appearance of a connected signal:
+
+1. Click the preview of the signal appearance in the
+   **Style** column of the
+   **Connection** table.
+
+   Line color and style selection menu for a signal connected to a Dashboard Scope block.
+2. Choose a color from the palette of standard colors or select the
+   **Custom** tab to specify a custom color using
+   `RGB` values between `0` and
+   `255`.
+3. Select the line style from the solid, dotted, dashed, and dot-dashed
+   options in the **Style** column.
+4. Click **Set**.
+
+When you mark a signal connected to the Dashboard Scope block for
+signal logging, you can also configure the signal color and line style using the
+Instrumentation Properties dialog box. In the signal color and line
+style menu for the Dashboard Scope block, the **Override
+style and color** option is selected by default and specifies whether
+signal appearance options you choose using the **Connection** table
+for the Dashboard Scope block override signal appearance options
+configured in the instrumentation properties for the connected signals.
+
+When you connect signals to the Dashboard Scope block using the
+Block Parameters dialog box, the connection table shows the default signal color and
+line style for each signal you connect. As you select signals to connect, the
+**Connection** table updates the style and color for signals
+that are not selected to indicate the style and color for the next signal you connect.
+
+Connection table for a Dashboard Scope block with several options of signals to connect and two signals selected.
+
+### Configure Complex Signal Format
+
+When you connect a complex signal to the Dashboard Scope block, you
+can configure how the signal is displayed by specifying the **Complex
+Format** property for the signal:
+
+1. Mark the complex signal for signal logging.
+2. Right-click the logging badge for the complex signal and select
+   **Properties**.
+3. Specify the **Complex Format**.
+4. Click **OK**.
+
+When you specify the **Complex Format** for a signal as
+`Real-Imaginary` or
+`Magnitude-Phase`, the Dashboard Scope
+block displays both components of the signal. The real or magnitude component is
+displayed using the color indicated in the **Connection** table.
+The imaginary or phase component is displayed using a different shade of the color
+indicated in the **Connection** table.
 
 ## Parameters
 
@@ -448,10 +563,6 @@ as a `1`-by-`3`
 | **Block Parameter:** `FontColor` |
 | **Type:** `[r g b]` vector |
 
-## Libraries
-
-Simulink / Dashboard
-
 ## Block Characteristics
 
 |  |  |
@@ -471,118 +582,3 @@ Dashboard blocks are ignored for code generation.
 ## Version History
 
 **Introduced in R2015a**
-
-## Description
-
-Trace signals on scope display during simulation
-
-The Dashboard Scope block plots connected signals during simulation on
-a scope display. You can use the Dashboard Scope block with other
-dashboard blocks to build an interactive dashboard of controls and indicators for your
-model. Signals connected to the Dashboard Scope block log to the
-Simulation Data Inspector for analysis during or after simulation. The Dashboard
-Scope block can display signals of any data type that Simulink® supports, including enumerated data types, and up to eight signals from an
-array or bus.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
-use connect mode. To enter connect mode on an unconnected block, pause on the block you want
-to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a display block to a signal in your model or change the connection of a display
-block, enter connect mode. Select the signal line to which you want to connect. From the
-list that appears, select the signal to which you want to connect. Then, pause on the
-dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
-connected block, run the simulation.
-
-For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-This animation shows how to connect the Dashboard Scope block to
-your model.
-
-An unconnected Dashboard Scope block connects three signals.
-
-### Analyze Signal Data
-
-You can use the subplot menu or the context menu for the Dashboard
-Scope block to:
-
-- Show or hide data cursors.
-- Zoom out by a fixed amount.
-- Configure the mouse interaction to pan and select or to zoom in time,
-  in *y*, or in both time and
-  *y*.
-- Perform a fit-to-view in time, in *y*, or in both
-  time and *y*.
-
-**Note**
-
-To use keyboard shortcuts to analyze data, select a signal or axis in the
-Dashboard Scope block.
-
-To access the subplot menu, select the Dashboard Scope block then
-click the three dots that appear when you pause on the plot area.
-
-A selected Dashboard Scope block with two cursors displayed and the subplot menu visible.
-
-### Configure Signal Line Style and Color
-
-You can modify the color and line style for signals connected to a
-Dashboard Scope block using the **Connection**
-table in the Block Parameters dialog box or the Property Inspector. To modify the
-appearance of a connected signal:
-
-1. Click the preview of the signal appearance in the
-   **Style** column of the
-   **Connection** table.
-
-   Line color and style selection menu for a signal connected to a Dashboard Scope block.
-2. Choose a color from the palette of standard colors or select the
-   **Custom** tab to specify a custom color using
-   `RGB` values between `0` and
-   `255`.
-3. Select the line style from the solid, dotted, dashed, and dot-dashed
-   options in the **Style** column.
-4. Click **Set**.
-
-When you mark a signal connected to the Dashboard Scope block for
-signal logging, you can also configure the signal color and line style using the
-Instrumentation Properties dialog box. In the signal color and line
-style menu for the Dashboard Scope block, the **Override
-style and color** option is selected by default and specifies whether
-signal appearance options you choose using the **Connection** table
-for the Dashboard Scope block override signal appearance options
-configured in the instrumentation properties for the connected signals.
-
-When you connect signals to the Dashboard Scope block using the
-Block Parameters dialog box, the connection table shows the default signal color and
-line style for each signal you connect. As you select signals to connect, the
-**Connection** table updates the style and color for signals
-that are not selected to indicate the style and color for the next signal you connect.
-
-Connection table for a Dashboard Scope block with several options of signals to connect and two signals selected.
-
-### Configure Complex Signal Format
-
-When you connect a complex signal to the Dashboard Scope block, you
-can configure how the signal is displayed by specifying the **Complex
-Format** property for the signal:
-
-1. Mark the complex signal for signal logging.
-2. Right-click the logging badge for the complex signal and select
-   **Properties**.
-3. Specify the **Complex Format**.
-4. Click **OK**.
-
-When you specify the **Complex Format** for a signal as
-`Real-Imaginary` or
-`Magnitude-Phase`, the Dashboard Scope
-block displays both components of the signal. The real or magnitude component is
-displayed using the color indicated in the **Connection** table.
-The imaginary or phase component is displayed using a different shade of the color
-indicated in the **Connection** table.

@@ -11,6 +11,16 @@ chinese_source: official
 
 # String Length
 
+输出输入字符串中的字符数
+
+## 所属库
+
+Simulink / String
+
+## 描述
+
+String Length 模块输出在输入字符串中的字符数。例如，您可以使用 String Length 模块将注意力焦点移至字符串中的特定位置。
+
 ## 端口
 
 ### 输入
@@ -58,10 +68,6 @@ chinese_source: official
 
 点击**显示数据类型助手**按钮将启用此参数。
 
-## 所属库
-
-Simulink / String
-
 ## 模块特性
 
 |  |  |
@@ -92,12 +98,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 | **InputPipeline** | 要在生成的代码中插入的输入流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅InputPipeline (HDL Coder)。 |
 | **OutputPipeline** | 要在生成的代码中插入的输出流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅OutputPipeline (HDL Coder)。 |
 
-## 版本历史
+## 版本历史记录
 
 **在 R2018a 中推出**
-
-## 描述
-
-输出输入字符串中的字符数
-
-String Length 模块输出在输入字符串中的字符数。例如，您可以使用 String Length 模块将注意力焦点移至字符串中的特定位置。

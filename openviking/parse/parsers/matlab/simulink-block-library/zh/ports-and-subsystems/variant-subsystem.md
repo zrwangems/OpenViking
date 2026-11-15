@@ -11,6 +11,74 @@ chinese_source: worker-translation
 
 # Variant Subsystem
 
+
+
+包含 Subsystem 模块作为变体选项的模板子系统
+
+## 所属库
+
+Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
+
+## 描述
+
+Variant Subsystem 模块允许您在一个单独层次结构中包含组件的多个实现。
+
+例如，假设您要仿真一个表示具有三种可能发动机配置的车辆的模型：2-cylinder gas、4-cylinder gas 和 8-cylinder gas。您可以将每个发动机模型实现为 Variant Subsystem 模块内的单独子系统，然后根据您选择的 Types of Variant Control Modes in Variant Blocks 在子系统之间切换。有关详细信息，请参阅 Introduction to Variant Controls。
+
+**注意**
+
+在仿真期间，Variant Subsystem 模块只有一个实现处于活动状态。
+
+Variant Subsystem 模块内的发动机多个模型
+
+Variant Subsystem 模块是一个预先配置的模板，包含两个或多个模块以用作变体选项。这些选项表示系统的多个实现。在模型执行期间，只有一个子模块处于活动状态。活动子模块称为 *active variant*。
+
+Variant Subsystem 模块内的每个变体选项都与 **Variant control mode** 和 **Variant activation time** 相关联。变体控制模式确定如何选择活动变体。变体激活时间确定激活选项的时间，并决定在生成的代码中是仅包含活动选项还是同时包含活动和非活动选项。
+
+Variant Subsystem 模块可以包含 Subsystem 模块、Model 模块或 Subsystem Reference 模块的混合作为变体选项。仅以 Model 模块作为选项的 Variant Subsystem 模块称为 Variant Model 模块。有关详细信息，请参阅 Implement Variations in Separate Hierarchy Using Variant Subsystems。以 Model 或 Subsystem Reference 模块作为选项，且这些选项只能从外部文件添加或移除而不能在模块内添加或移除的 Variant Subsystem 模块称为 Variant Assembly Subsystem 模块。
+
+除了变体选项之外，您可以在 Variant Subsystem 模块内包含 Inport、控制端口（Enable、Trigger、Reset 和 Function-Call Subsystem）、Outport 或 Connection Port (Simscape) 模块。Variant Subsystem 模块内的模块之间没有绘制的连接。在模型编译期间，软件会自动将活动变体连接到 Variant Subsystem 的 Inport 和 Outport 模块。表示变体选项的模块可以具有与父 Variant Subsystem 模块中的输入和输出端口数量不同的输入和输出端口。有关详细信息，请参阅 Map Input and Output Ports of Variant Choices in Variant Subsystem。
+
+当您加载包含 Variant Subsystem 模块的模型，且该模块的变体选项存储在子系统文件中时，默认情况下，仅加载活动选项以优化模型的加载时间。但是，如果您使用 `find_system`、`get_param` 或 `set_param` 函数以编程方式初始化模型，则可能会加载非活动选项。
+
+使用 Variant Subsystem 模块允许您：
+
+- 混合使用 Subsystem、Model 和 Subsystem Reference 模块作为变体选项。
+- 对不具有相似接口的组件建模。您可以在 Variant Subsystem 内为多个变体选项设置不同数量的 inport 和 outport。但是，必须满足 Map Input and Output Ports of Variant Choices in Variant Subsystem 中列出的条件。
+- 建立层次化框图，其中 Variant Subsystem 模块位于一层，变体选项位于另一层。
+- 将功能相关的模块保持在一起。
+- 降低模型的复杂度。
+- 在模型编译期间，软件会根据您选择的变体激活时间消除整个模型中的非活动模块。
+
+模块图标上变体徽章的颜色和图标会根据模块上设置的 **Variant activation time**、**Variant control mode** 和 **Propagate conditions outside of variant subsystem** 参数的值而变化。有关详细信息，请参阅 Variant Badges。
+
+### Open the Block
+
+您可以从 Simulink® 界面或以编程方式打开 Variant Subsystem 模块。根据您的需求，这些方法使您能够访问活动变体选项或 Variant Subsystem 模块的整个变体层。
+
+**从 Simulink 界面打开**
+
+在 Simulink 界面中使用以下任一操作打开 Variant Subsystem 模块。
+
+| 键盘和鼠标操作 | 结果 |
+| --- | --- |
+| 双击 | 在新选项卡中打开模块内的活动变体选项  **注意**  如果变体选项是 Model 模块且其引用的模型未加载，则双击该模块会打开包含变体选项的变体层，而不是打开活动变体选项的底层。 |
+| 按住 **Ctrl** 并双击 | 在新选项卡中打开模块，显示变体层 |
+| 按住 **Shift** 并双击 | 在新窗口中打开模块，显示变体层 |
+| 右键单击，选择 **Open** > **Open in New Tab** | 在当前窗口中打开模块，显示变体层 |
+| 右键单击，选择 **Open** > **Open in New Window** | 在新窗口中打开模块，显示变体层 |
+| 右键单击变体徽章，选择 **Open** >**(active variant)** | 在新选项卡中打开活动变体选项 |
+| 右键单击变体徽章，选择 **Open** > **variant control (variant choice name)**，其中 *`variant control`* 是指由 *variant choice name* 指定的变体选项的变体控制 `expression`、`label` 或 `(sim)` 或 `(codegen)` | 在新选项卡中打开选定的变体选项 |
+
+**以编程方式打开**
+
+使用以下任一命令打开 Variant Subsystem 模块，其中 *`variantSubsystemBlockName`* 是模块的名称：
+
+- `open_system("variantSubsystemBlockName")` 命令 — 打开 Variant Subsystem 模块并查看其变体层。
+- `open_system("variantSubsystemBlockName","ActiveChoice")` — 打开 Variant Subsystem 模块内的活动变体选项。
+
+有关使用 `open_system` 命令打开 Variant Subsystem 模块的其他选项（例如在新选项卡或窗口中打开）的信息，请参阅 `open_system`。
+
 ## 端口
 
 ### Input
@@ -404,10 +472,6 @@ Variant Source 和 Variant Sink 模块：
 | **值：** `'off'` | `'on'` |
 | **默认值：** `'on'` |
 
-## 所属库
-
-Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
-
 ## 模块特性
 
 |  |  |
@@ -535,65 +599,3 @@ open_system(vssBlock,'ActiveChoice','window')
 ### R2021a：自动提升活动变体的 mask 图标
 
 Simulink 会自动在父 Variant Subsystem 上显示活动变体模块的 mask 图标。在 R2021a 之前，您必须在 Variant Subsystem 的 mask 上提供图标绘制命令，以显示底层活动变体模块的 mask 图标。
-
-## 描述
-
-包含 Subsystem 模块作为变体选项的模板子系统
-
-Variant Subsystem 模块允许您在一个单独层次结构中包含组件的多个实现。
-
-例如，假设您要仿真一个表示具有三种可能发动机配置的车辆的模型：2-cylinder gas、4-cylinder gas 和 8-cylinder gas。您可以将每个发动机模型实现为 Variant Subsystem 模块内的单独子系统，然后根据您选择的 Types of Variant Control Modes in Variant Blocks 在子系统之间切换。有关详细信息，请参阅 Introduction to Variant Controls。
-
-**注意**
-
-在仿真期间，Variant Subsystem 模块只有一个实现处于活动状态。
-
-Variant Subsystem 模块内的发动机多个模型
-
-Variant Subsystem 模块是一个预先配置的模板，包含两个或多个模块以用作变体选项。这些选项表示系统的多个实现。在模型执行期间，只有一个子模块处于活动状态。活动子模块称为 *active variant*。
-
-Variant Subsystem 模块内的每个变体选项都与 **Variant control mode** 和 **Variant activation time** 相关联。变体控制模式确定如何选择活动变体。变体激活时间确定激活选项的时间，并决定在生成的代码中是仅包含活动选项还是同时包含活动和非活动选项。
-
-Variant Subsystem 模块可以包含 Subsystem 模块、Model 模块或 Subsystem Reference 模块的混合作为变体选项。仅以 Model 模块作为选项的 Variant Subsystem 模块称为 Variant Model 模块。有关详细信息，请参阅 Implement Variations in Separate Hierarchy Using Variant Subsystems。以 Model 或 Subsystem Reference 模块作为选项，且这些选项只能从外部文件添加或移除而不能在模块内添加或移除的 Variant Subsystem 模块称为 Variant Assembly Subsystem 模块。
-
-除了变体选项之外，您可以在 Variant Subsystem 模块内包含 Inport、控制端口（Enable、Trigger、Reset 和 Function-Call Subsystem）、Outport 或 Connection Port (Simscape) 模块。Variant Subsystem 模块内的模块之间没有绘制的连接。在模型编译期间，软件会自动将活动变体连接到 Variant Subsystem 的 Inport 和 Outport 模块。表示变体选项的模块可以具有与父 Variant Subsystem 模块中的输入和输出端口数量不同的输入和输出端口。有关详细信息，请参阅 Map Input and Output Ports of Variant Choices in Variant Subsystem。
-
-当您加载包含 Variant Subsystem 模块的模型，且该模块的变体选项存储在子系统文件中时，默认情况下，仅加载活动选项以优化模型的加载时间。但是，如果您使用 `find_system`、`get_param` 或 `set_param` 函数以编程方式初始化模型，则可能会加载非活动选项。
-
-使用 Variant Subsystem 模块允许您：
-
-- 混合使用 Subsystem、Model 和 Subsystem Reference 模块作为变体选项。
-- 对不具有相似接口的组件建模。您可以在 Variant Subsystem 内为多个变体选项设置不同数量的 inport 和 outport。但是，必须满足 Map Input and Output Ports of Variant Choices in Variant Subsystem 中列出的条件。
-- 建立层次化框图，其中 Variant Subsystem 模块位于一层，变体选项位于另一层。
-- 将功能相关的模块保持在一起。
-- 降低模型的复杂度。
-- 在模型编译期间，软件会根据您选择的变体激活时间消除整个模型中的非活动模块。
-
-模块图标上变体徽章的颜色和图标会根据模块上设置的 **Variant activation time**、**Variant control mode** 和 **Propagate conditions outside of variant subsystem** 参数的值而变化。有关详细信息，请参阅 Variant Badges。
-
-### Open the Block
-
-您可以从 Simulink® 界面或以编程方式打开 Variant Subsystem 模块。根据您的需求，这些方法使您能够访问活动变体选项或 Variant Subsystem 模块的整个变体层。
-
-**从 Simulink 界面打开**
-
-在 Simulink 界面中使用以下任一操作打开 Variant Subsystem 模块。
-
-| 键盘和鼠标操作 | 结果 |
-| --- | --- |
-| 双击 | 在新选项卡中打开模块内的活动变体选项  **注意**  如果变体选项是 Model 模块且其引用的模型未加载，则双击该模块会打开包含变体选项的变体层，而不是打开活动变体选项的底层。 |
-| 按住 **Ctrl** 并双击 | 在新选项卡中打开模块，显示变体层 |
-| 按住 **Shift** 并双击 | 在新窗口中打开模块，显示变体层 |
-| 右键单击，选择 **Open** > **Open in New Tab** | 在当前窗口中打开模块，显示变体层 |
-| 右键单击，选择 **Open** > **Open in New Window** | 在新窗口中打开模块，显示变体层 |
-| 右键单击变体徽章，选择 **Open** >**(active variant)** | 在新选项卡中打开活动变体选项 |
-| 右键单击变体徽章，选择 **Open** > **variant control (variant choice name)**，其中 *`variant control`* 是指由 *variant choice name* 指定的变体选项的变体控制 `expression`、`label` 或 `(sim)` 或 `(codegen)` | 在新选项卡中打开选定的变体选项 |
-
-**以编程方式打开**
-
-使用以下任一命令打开 Variant Subsystem 模块，其中 *`variantSubsystemBlockName`* 是模块的名称：
-
-- `open_system("variantSubsystemBlockName")` 命令 — 打开 Variant Subsystem 模块并查看其变体层。
-- `open_system("variantSubsystemBlockName","ActiveChoice")` — 打开 Variant Subsystem 模块内的活动变体选项。
-
-有关使用 `open_system` 命令打开 Variant Subsystem 模块的其他选项（例如在新选项卡或窗口中打开）的信息，请参阅 `open_system`。

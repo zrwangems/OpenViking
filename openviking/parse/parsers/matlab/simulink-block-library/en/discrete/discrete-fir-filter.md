@@ -10,6 +10,71 @@ language: en
 
 # Discrete FIR Filter
 
+Model FIR filters
+
+## Libraries
+
+Simulink / Discrete HDL Coder / Discrete HDL Coder / HDL Floating Point Operations
+
+## Description
+
+The Discrete FIR Filter block independently filters each channel of the input
+signal with the specified digital FIR filter. The block can implement static filters
+with fixed coefficients, and time-varying filters with coefficients that change over
+time. You can tune the coefficients of a static filter during simulation.
+
+This block filters each channel of the input signal independently
+over time. The **Input processing** parameter allows
+you to specify whether the block treats each element of the input
+as an independent channel (sample-based processing), or each column
+of the input as an independent channel (frame-based processing). To
+perform frame-based processing, you must have a DSP System Toolbox™ license.
+
+The output dimensions equal the input dimensions, except when you specify a matrix of filter
+taps for the **Coefficients** parameter. When you do so, the output
+dimensions depend on the number of different sets of filter taps you specify.
+
+This block supports custom state attributes to customize and generate code more efficiently.
+For an example, see Custom State Attributes in Discrete FIR Filter block. Under certain
+conditions, the block also supports SIMD code generation. For details, see Code Generation.
+
+The outputs of this block numerically match the outputs of the DSP System Toolbox
+Digital Filter Design (DSP System Toolbox) block.
+
+This block supports the Simulink® state logging feature. For more information, see State.
+
+### Filter Structure Support
+
+You can change the filter structure implemented with the Discrete FIR Filter block by selecting one of the following from the **Filter structure** parameter:
+
+- `Direct form`
+- `Direct form symmetric`
+- `Direct form antisymmetric`
+- `Direct form transposed`
+- `Lattice MA`
+
+You must have an available DSP System Toolbox license
+to run a model with any of these filter structures other than `Direct form`.
+
+For more information on the filter structures, see Algorithms.
+
+### Specifying Initial States
+
+The Discrete FIR Filter block initializes the
+internal filter states to zero by default, which has the same effect
+as assuming that past inputs and outputs are zero. You can optionally
+use the **Initial states** parameter to specify nonzero initial conditions for the filter delays.
+
+To determine the number of initial states you must specify and
+how to specify them, see the table on valid initial states. The **Initial states** parameter can take one of the forms described in the next table.
+
+**Valid Initial States**
+
+| Initial Condition | Description |
+| --- | --- |
+| Scalar | The block initializes all delay elements in the filter to the scalar value. |
+| Vector or matrix   (for applying different delay elements to each channel) | Each vector or matrix element specifies a unique initial condition for a corresponding delay element in a corresponding channel:  - The vector length equals the product of the number of   input channels and the number of delay elements in the   filter, `#_of_filter_coeffs-1` (or   `#_of_reflection_coeffs` for   `Lattice MA`). - The matrix must have the same number of rows as the   number of delay elements in the filter, `#_of_filter_coeffs-1` (`#_of_reflection_coeffs` for `Lattice MA`), and must have one column for each channel of the input signal. |
+
 ## Ports
 
 ### Input
@@ -622,10 +687,6 @@ the `set_param` function.
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **Values:** | `'off'` (default) | `'on'` |
 
-## Libraries
-
-Simulink / Discrete HDL Coder / Discrete HDL Coder / HDL Floating Point Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -843,64 +904,3 @@ The Discrete FIR Filter block no longer displays the
 default. The parameter is visible only if you set the sample time to a value other
 the default value (`-1`) at the command line or in an existing
 model. For more information, see Blocks for Which Sample Time Is Not Recommended.
-
-## Description
-
-Model FIR filters
-
-The Discrete FIR Filter block independently filters each channel of the input
-signal with the specified digital FIR filter. The block can implement static filters
-with fixed coefficients, and time-varying filters with coefficients that change over
-time. You can tune the coefficients of a static filter during simulation.
-
-This block filters each channel of the input signal independently
-over time. The **Input processing** parameter allows
-you to specify whether the block treats each element of the input
-as an independent channel (sample-based processing), or each column
-of the input as an independent channel (frame-based processing). To
-perform frame-based processing, you must have a DSP System Toolbox™ license.
-
-The output dimensions equal the input dimensions, except when you specify a matrix of filter
-taps for the **Coefficients** parameter. When you do so, the output
-dimensions depend on the number of different sets of filter taps you specify.
-
-This block supports custom state attributes to customize and generate code more efficiently.
-For an example, see Custom State Attributes in Discrete FIR Filter block. Under certain
-conditions, the block also supports SIMD code generation. For details, see Code Generation.
-
-The outputs of this block numerically match the outputs of the DSP System Toolbox
-Digital Filter Design (DSP System Toolbox) block.
-
-This block supports the Simulink® state logging feature. For more information, see State.
-
-### Filter Structure Support
-
-You can change the filter structure implemented with the Discrete FIR Filter block by selecting one of the following from the **Filter structure** parameter:
-
-- `Direct form`
-- `Direct form symmetric`
-- `Direct form antisymmetric`
-- `Direct form transposed`
-- `Lattice MA`
-
-You must have an available DSP System Toolbox license
-to run a model with any of these filter structures other than `Direct form`.
-
-For more information on the filter structures, see Algorithms.
-
-### Specifying Initial States
-
-The Discrete FIR Filter block initializes the
-internal filter states to zero by default, which has the same effect
-as assuming that past inputs and outputs are zero. You can optionally
-use the **Initial states** parameter to specify nonzero initial conditions for the filter delays.
-
-To determine the number of initial states you must specify and
-how to specify them, see the table on valid initial states. The **Initial states** parameter can take one of the forms described in the next table.
-
-**Valid Initial States**
-
-| Initial Condition | Description |
-| --- | --- |
-| Scalar | The block initializes all delay elements in the filter to the scalar value. |
-| Vector or matrix   (for applying different delay elements to each channel) | Each vector or matrix element specifies a unique initial condition for a corresponding delay element in a corresponding channel:  - The vector length equals the product of the number of   input channels and the number of delay elements in the   filter, `#_of_filter_coeffs-1` (or   `#_of_reflection_coeffs` for   `Lattice MA`). - The matrix must have the same number of rows as the   number of delay elements in the filter, `#_of_filter_coeffs-1` (`#_of_reflection_coeffs` for `Lattice MA`), and must have one column for each channel of the input signal. |

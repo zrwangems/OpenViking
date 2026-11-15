@@ -10,6 +10,51 @@ language: en
 
 # Selector
 
+Select input elements from vector, matrix, or multidimensional signal
+
+## Libraries
+
+Simulink / Signal Routing HDL Coder / Signal Routing
+
+## Description
+
+The Selector block extracts selected elements of an input vector,
+matrix, or multidimensional signal based on specified indices. The extracted signals can be
+grouped differently than the input signals.
+
+Based on the value you enter for the **Number of input dimensions**
+parameter, a table of indexing settings is displayed. Each row of the table corresponds
+to one of the input dimensions in **Number of input dimensions**. For
+each dimension, you define the elements of the signal to work with. Specify a vector
+signal as a 1-D signal and a matrix signal as a 2-D signal. When you configure the
+Selector block for multidimensional signal operations, the block icon
+changes.
+
+For example, assume a 6-D signal with a one-based index mode. The table of the
+Selector block dialog box changes to include one row for each
+dimension. If you define dimensions as shown in the next table, the output is `Y
+= U(1:end,2:6,[1 3 5],Idx4:Idx4+7,Idx5,Idx6(1):Idx6(2))`, where
+`Idx4`, `Idx5`, and `Idx6` are
+the index ports for dimensions 4, 5, and 6. For more information, see Select Elements from Multidimensional Array Using Selector Block.
+
+| Row | Index Option | Index | Output Size |
+| --- | --- | --- | --- |
+| 1 | `Select all` |  |  |
+| 2 | `Starting index (dialog)` | `2` | `5` |
+| 3 | `Index vector (dialog)` | `[1 3 5]` |  |
+| 4 | `Starting index (port)` |  | `8` |
+| 5 | `Index vector (port)` |  |  |
+| 6 | `Starting and ending indices (port)` |  |  |
+
+You can use an array of buses as an input signal to a Selector block.
+For details about defining and using an array of buses, see Group Nonvirtual Buses in Arrays of Buses.
+
+**Note**
+
+Selector block does not change the dimensionality (number of
+dimensions) of the input signals. If you need to change the dimensionality of the
+signal to the dimensions you specify, use Reshape block.
+
 ## Ports
 
 ### Input
@@ -238,10 +283,6 @@ of whether you select this check box.
 | **Values:** `'Off'` | `'On'` |
 | **Default:** `'Off'` |
 
-## Libraries
-
-Simulink / Signal Routing HDL Coder / Signal Routing
-
 ## Block Characteristics
 
 |  |  |
@@ -328,44 +369,3 @@ the **Index Option**.
 This enhancement allows you to choose from all the available **Index
 Option** settings when you configure the Selector block
 to accept a1-D variable-size input signal.
-
-## Description
-
-Select input elements from vector, matrix, or multidimensional signal
-
-The Selector block extracts selected elements of an input vector,
-matrix, or multidimensional signal based on specified indices. The extracted signals can be
-grouped differently than the input signals.
-
-Based on the value you enter for the **Number of input dimensions**
-parameter, a table of indexing settings is displayed. Each row of the table corresponds
-to one of the input dimensions in **Number of input dimensions**. For
-each dimension, you define the elements of the signal to work with. Specify a vector
-signal as a 1-D signal and a matrix signal as a 2-D signal. When you configure the
-Selector block for multidimensional signal operations, the block icon
-changes.
-
-For example, assume a 6-D signal with a one-based index mode. The table of the
-Selector block dialog box changes to include one row for each
-dimension. If you define dimensions as shown in the next table, the output is `Y
-= U(1:end,2:6,[1 3 5],Idx4:Idx4+7,Idx5,Idx6(1):Idx6(2))`, where
-`Idx4`, `Idx5`, and `Idx6` are
-the index ports for dimensions 4, 5, and 6. For more information, see Select Elements from Multidimensional Array Using Selector Block.
-
-| Row | Index Option | Index | Output Size |
-| --- | --- | --- | --- |
-| 1 | `Select all` |  |  |
-| 2 | `Starting index (dialog)` | `2` | `5` |
-| 3 | `Index vector (dialog)` | `[1 3 5]` |  |
-| 4 | `Starting index (port)` |  | `8` |
-| 5 | `Index vector (port)` |  |  |
-| 6 | `Starting and ending indices (port)` |  |  |
-
-You can use an array of buses as an input signal to a Selector block.
-For details about defining and using an array of buses, see Group Nonvirtual Buses in Arrays of Buses.
-
-**Note**
-
-Selector block does not change the dimensionality (number of
-dimensions) of the input signals. If you need to change the dimensionality of the
-signal to the dimensions you specify, use Reshape block.

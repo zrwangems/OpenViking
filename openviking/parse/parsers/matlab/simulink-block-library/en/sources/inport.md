@@ -10,6 +10,122 @@ language: en
 
 # Inport
 
+Create input port for subsystem or external input
+
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Ports & Subsystems Simulink / Sources HDL Coder / Commonly Used Blocks HDL Coder / Ports & Subsystems HDL Coder / Sources
+
+## Description
+
+Inport blocks link signals from outside a system into the system.
+
+The software assigns Inport block port numbers according to these
+rules:
+
+- Inport blocks within a top-level system or subsystem are
+  numbered sequentially, starting with 1.
+- If you add an Inport block, the label is the next available
+  number.
+- If you delete an Inport block, other port numbers are
+  renumbered to ensure that the Inport blocks are in sequence and
+  that no numbers are omitted.
+- If you copy an Inport block into a system, its port number is
+  not renumbered unless its current number conflicts with an input port already in
+  the system. If the port number for the copied Inport block is not
+  in sequence, renumber the block. Otherwise, you get an error message when you
+  simulate the model or update the block diagram.
+
+### Inport Blocks in Top-Level Systems
+
+You can use an Inport block in a top-level system to:
+
+- Supply external inputs from a workspace using the **Input** parameter. If
+  you do not provide external input data, the output from the
+  Inport block is the ground value. For more information,
+  see Load Data to Root-Level Input Ports.
+
+  - To load data for several signals using root-level input ports,
+    consider using the Root Inport Mapper tool. See Map Data Using Root Inport Mapper Tool.
+  - Use the `createInputDataset` function to create a
+    `Simulink.SimulationData.Dataset` object that
+    contains an element for each root-level Inport
+    block in the model you specify.
+- Provide a means for perturbation of the model by the
+  `linmod` and `trim` analysis
+  functions. For more information, see Linearizing Models.
+
+### Inport Blocks in Subsystems
+
+Inport blocks in a subsystem represent inputs to the subsystem. A signal
+arriving at an input port on a Subsystem block flows out of the
+associated Inport block in that subsystem. The Inport
+block associated with an input port on a Subsystem block is the block
+whose **Port number** parameter matches the relative position of
+the input port on the Subsystem block. For example, the
+Inport block whose **Port number** parameter is
+`1` gets its signal from the block connected to the topmost
+port on the Subsystem block.
+
+If you renumber the **Port number** of an Inport block, the
+block becomes connected to a different input port. The block continues to receive
+its signal from the same block outside the subsystem.
+
+Inport blocks inside a subsystem support signal label propagation, but
+root-level Inport blocks do not. For more information, see Signal Label Propagation.
+
+You can directly edit port labels on a Subsystem block. For more
+information, see Edit Port Labels on Subsystem Blocks.
+
+**Tip**
+
+For models that include buses composed of many bus elements, consider using In Bus
+Element and Out Bus Element blocks. These
+blocks:
+
+- Reduce signal line complexity and clutter in a block diagram.
+- Make it easier to change the interface incrementally.
+- Allow access to a bus element closer to the point of usage, avoiding
+  the use of a Bus Selector and Goto block
+  configuration.
+
+The In Bus Element block is of block type Inport and the
+Out Bus Element block is of block type
+Outport.
+
+### Create Duplicate Inport Blocks
+
+You can create any number of duplicates of an Inport block. The duplicates
+are graphical representations of the original intended to simplify block diagrams by
+eliminating unnecessary lines. The duplicate has the same port number, properties,
+and output as the original.
+
+To create a duplicate of an Inport block:
+
+1. In the block diagram, select the unconnected
+   Inport block that you want to duplicate.
+2. Press and hold the **Ctrl** key and drag
+   the block.
+3. Release the pointer, and then select
+   **Duplicate** from the context menu.
+
+You can select an Inport block that has duplicates to highlight the
+duplicate blocks. To show a related block in an open diagram or new tab, pause your
+cursor on the ellipsis that appears after selection. Then, select **Related
+Blocks**
+ from the action menu. When multiple blocks
+correspond to the selected block, a list of related blocks opens. You can filter the
+list of related blocks by entering a search term in the text box. After you select a
+related block from the list, window focus goes to the open diagram or new tab that
+shows the related block.
+
+### Connect Buses to Root-Level Inport Blocks
+
+If you want a root-level Inport block of a model to produce a bus, set the
+**Data type** parameter to the name of a bus object that
+defines the bus that the Inport block produces. For more information,
+see Specify Bus Properties with Bus Objects.
+
 ## Ports
 
 ### Output
@@ -548,10 +664,6 @@ root-level input port in a rate-based model.
 | **Values:** `1`-by-`1` cell array | `2`-by-`1` cell array | `3`-by-`1` cell array |
 | **Default:** `[]` |
 
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Ports & Subsystems Simulink / Sources HDL Coder / Commonly Used Blocks HDL Coder / Ports & Subsystems HDL Coder / Sources
-
 ## Block Characteristics
 
 |  |  |
@@ -604,115 +716,3 @@ more information about value types, see Specify Common Set of Signal Properties 
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Create input port for subsystem or external input
-
-Inport blocks link signals from outside a system into the system.
-
-The software assigns Inport block port numbers according to these
-rules:
-
-- Inport blocks within a top-level system or subsystem are
-  numbered sequentially, starting with 1.
-- If you add an Inport block, the label is the next available
-  number.
-- If you delete an Inport block, other port numbers are
-  renumbered to ensure that the Inport blocks are in sequence and
-  that no numbers are omitted.
-- If you copy an Inport block into a system, its port number is
-  not renumbered unless its current number conflicts with an input port already in
-  the system. If the port number for the copied Inport block is not
-  in sequence, renumber the block. Otherwise, you get an error message when you
-  simulate the model or update the block diagram.
-
-### Inport Blocks in Top-Level Systems
-
-You can use an Inport block in a top-level system to:
-
-- Supply external inputs from a workspace using the **Input** parameter. If
-  you do not provide external input data, the output from the
-  Inport block is the ground value. For more information,
-  see Load Data to Root-Level Input Ports.
-
-  - To load data for several signals using root-level input ports,
-    consider using the Root Inport Mapper tool. See Map Data Using Root Inport Mapper Tool.
-  - Use the `createInputDataset` function to create a
-    `Simulink.SimulationData.Dataset` object that
-    contains an element for each root-level Inport
-    block in the model you specify.
-- Provide a means for perturbation of the model by the
-  `linmod` and `trim` analysis
-  functions. For more information, see Linearizing Models.
-
-### Inport Blocks in Subsystems
-
-Inport blocks in a subsystem represent inputs to the subsystem. A signal
-arriving at an input port on a Subsystem block flows out of the
-associated Inport block in that subsystem. The Inport
-block associated with an input port on a Subsystem block is the block
-whose **Port number** parameter matches the relative position of
-the input port on the Subsystem block. For example, the
-Inport block whose **Port number** parameter is
-`1` gets its signal from the block connected to the topmost
-port on the Subsystem block.
-
-If you renumber the **Port number** of an Inport block, the
-block becomes connected to a different input port. The block continues to receive
-its signal from the same block outside the subsystem.
-
-Inport blocks inside a subsystem support signal label propagation, but
-root-level Inport blocks do not. For more information, see Signal Label Propagation.
-
-You can directly edit port labels on a Subsystem block. For more
-information, see Edit Port Labels on Subsystem Blocks.
-
-**Tip**
-
-For models that include buses composed of many bus elements, consider using In Bus
-Element and Out Bus Element blocks. These
-blocks:
-
-- Reduce signal line complexity and clutter in a block diagram.
-- Make it easier to change the interface incrementally.
-- Allow access to a bus element closer to the point of usage, avoiding
-  the use of a Bus Selector and Goto block
-  configuration.
-
-The In Bus Element block is of block type Inport and the
-Out Bus Element block is of block type
-Outport.
-
-### Create Duplicate Inport Blocks
-
-You can create any number of duplicates of an Inport block. The duplicates
-are graphical representations of the original intended to simplify block diagrams by
-eliminating unnecessary lines. The duplicate has the same port number, properties,
-and output as the original.
-
-To create a duplicate of an Inport block:
-
-1. In the block diagram, select the unconnected
-   Inport block that you want to duplicate.
-2. Press and hold the **Ctrl** key and drag
-   the block.
-3. Release the pointer, and then select
-   **Duplicate** from the context menu.
-
-You can select an Inport block that has duplicates to highlight the
-duplicate blocks. To show a related block in an open diagram or new tab, pause your
-cursor on the ellipsis that appears after selection. Then, select **Related
-Blocks**
- from the action menu. When multiple blocks
-correspond to the selected block, a list of related blocks opens. You can filter the
-list of related blocks by entering a search term in the text box. After you select a
-related block from the list, window focus goes to the open diagram or new tab that
-shows the related block.
-
-### Connect Buses to Root-Level Inport Blocks
-
-If you want a root-level Inport block of a model to produce a bus, set the
-**Data type** parameter to the name of a bus object that
-defines the bus that the Inport block produces. For more information,
-see Specify Bus Properties with Bus Objects.

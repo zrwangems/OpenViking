@@ -10,6 +10,25 @@ language: en
 
 # Data Type Conversion Inherited
 
+Convert from one data type to another using inherited data type and scaling
+
+## Libraries
+
+Simulink / Signal Attributes
+
+## Description
+
+The Data Type Conversion Inherited block converts one input to the data type
+and scaling of the other input. The first input is used as the reference signal. The
+second input, **u**, is converted to the reference type by inheriting
+the data type and scaling information. (For a description of the port order for various
+block orientations, see Identify Port Location on Rotated or Flipped Block.)
+
+Inheriting the data type and scaling provides these advantages:
+
+- It makes reusing existing models easier.
+- It allows you to create new fixed-point models with less effort since you can avoid the detail of specifying the associated parameters.
+
 ## Ports
 
 ### Input
@@ -94,10 +113,6 @@ saturation code.
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
-## Libraries
-
-Simulink / Signal Attributes
-
 ## Block Characteristics
 
 |  |  |
@@ -117,18 +132,3 @@ Simulink / Signal Attributes
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Convert from one data type to another using inherited data type and scaling
-
-The Data Type Conversion Inherited block converts one input to the data type
-and scaling of the other input. The first input is used as the reference signal. The
-second input, **u**, is converted to the reference type by inheriting
-the data type and scaling information. (For a description of the port order for various
-block orientations, see Identify Port Location on Rotated or Flipped Block.)
-
-Inheriting the data type and scaling provides these advantages:
-
-- It makes reusing existing models easier.
-- It allows you to create new fixed-point models with less effort since you can avoid the detail of specifying the associated parameters.

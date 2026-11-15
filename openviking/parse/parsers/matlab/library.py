@@ -20,8 +20,12 @@ def slug(value: str) -> str:
 
 @lru_cache(maxsize=1024)
 def read_block_document(family: str, name: str, language: str = "en") -> str:
+    """Structure a block page while adding a resource, not in the source library."""
     localized = "zh" if str(language).lower().startswith("zh") else "en"
-    return (library_root() / localized / family / f"{slug(name)}.md").read_text(encoding="utf-8")
+    document = (library_root() / localized / family / f"{slug(name)}.md").read_text(
+        encoding="utf-8"
+    )
+    return normalize_block_document(document, language=localized)
 
 
 def section(document: str, name: str) -> str:

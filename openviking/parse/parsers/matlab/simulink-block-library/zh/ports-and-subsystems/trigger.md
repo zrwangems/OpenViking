@@ -11,6 +11,22 @@ chinese_source: official
 
 # Trigger
 
+向子系统或模型添加触发器或函数端口
+
+## 所属库
+
+Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
+
+## 描述
+
+Trigger 模块可以添加外部信号或消息端口来控制子系统或模型的执行。要启用此功能，可在 Subsystem 模块中添加此模块，或在 Model 模块所引用模型的根级别添加此模块。
+
+然后，对 Trigger 模块进行配置，以按下列方式之一执行子系统或模型：
+
+- 当控制信号的值以您指定的方式更改时，在每个时间步执行一次。
+- 当控制信号是来自 Stateflow® 图、Function-Call Generator 模块或 S-Function 模块的函数调用事件时，在一个时间步执行多次。
+- 基于在控制端口接收的消息。
+
 ## 端口
 
 ### 输出
@@ -597,10 +613,6 @@ Trigger 模块将忽略定点工具的**数据类型覆盖**设置。
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'on'` |
 
-## 所属库
-
-Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
-
 ## 模块特性
 
 |  |  |
@@ -633,18 +645,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-向子系统或模型添加触发器或函数端口
-
-Trigger 模块可以添加外部信号或消息端口来控制子系统或模型的执行。要启用此功能，可在 Subsystem 模块中添加此模块，或在 Model 模块所引用模型的根级别添加此模块。
-
-然后，对 Trigger 模块进行配置，以按下列方式之一执行子系统或模型：
-
-- 当控制信号的值以您指定的方式更改时，在每个时间步执行一次。
-- 当控制信号是来自 Stateflow® 图、Function-Call Generator 模块或 S-Function 模块的函数调用事件时，在一个时间步执行多次。
-- 基于在控制端口接收的消息。

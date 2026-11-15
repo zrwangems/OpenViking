@@ -10,6 +10,18 @@ language: en
 
 # String Constant
 
+Output specified string
+
+## Libraries
+
+Simulink / String
+
+## Description
+
+The String Constant block outputs a string specified by the
+**String** parameter. Use this block when you want a constant whose
+type is string.
+
 ## Ports
 
 ### Output
@@ -68,10 +80,6 @@ Use the `stringtype` function, for example,
 Clicking the **Show data type assistant** button
 enables this parameter.
 
-## Libraries
-
-Simulink / String
-
 ## Block Characteristics
 
 |  |  |
@@ -105,11 +113,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced in R2018a**
-
-## Description
-
-Output specified string
-
-The String Constant block outputs a string specified by the
-**String** parameter. Use this block when you want a constant whose
-type is string.

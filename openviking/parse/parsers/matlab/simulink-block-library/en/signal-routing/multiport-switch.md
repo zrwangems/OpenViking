@@ -10,6 +10,121 @@ language: en
 
 # Multiport Switch
 
+Select output signal based on control signal
+
+## Libraries
+
+Simulink / Signal Routing HDL Coder / Signal Routing
+
+## Description
+
+The Multiport Switch block determines which of several inputs to the block
+passes to the output. The block bases this decision on the value of the first input. The
+first input is the control input and the remaining inputs are the data inputs. The value
+of the control input determines which data input passes to the output.
+
+The Multiport Switch and Index Vector blocks are alternative
+configurations of the same block.
+
+- Multiport Switch — Select output signal based on control signal.
+- Index Vector — Switch output between different inputs based on
+  value of first input.
+
+The table summarizes how Multiport Switch interprets the control input and
+determines the data input that is passed to the output.
+
+| Control Input | Truncation | Setting for Data Port Order | Block Behavior During Simulation | |
+| --- | --- | --- | --- | --- |
+| Indexing to Select Data Input | Out-of-Range Condition |
+| Integer value | None | `Zero-based contiguous` | Zero-based indexing | The control input is less than `0` or greater than the number of data inputs minus one. |
+| `One-based contiguous` | One-based indexing | The control input is less than `1` or greater than the number of data inputs. |
+| `Specify indices` | Indices you specify | The control input does not correspond to any specified data port index. |
+| Not an integer value | The block truncates the value to an integer by rounding to zero. | `Zero-based contiguous` | Zero-based indexing | The truncated control input is less than `0` or greater than the number of data inputs minus one. |
+| `One-based contiguous` | One-based indexing | The truncated control input is less than `1` or greater than the number of data inputs. |
+| `Specify indices` | Indices you specify | The truncated control input does not correspond to any specified data port index. |
+
+For information on how the block handles the out-of-range condition, see
+How the Block Handles an Out-of-Range Control Input.
+
+### Multiport Switch Configured as an Index Vector Block
+
+An Index Vector is a special
+configuration of a Multiport Switch block in which you specify one
+data input and the control input is zero-based. The block output is the element of
+the input vector whose index matches the control input. For example, if the input
+vector is `[18 15 17 10]` and the control input is
+`3`, the element that matches the index of 3 (zero-based) is
+10, and that becomes the output value.
+
+To configure a Multiport Switch block to work as an Index
+Vector block, set **Number of data ports** to
+`1` and **Data port order** to
+`Zero-based contiguous`.
+
+### How the Block Handles an Out-of-Range Control Input
+
+For an input with an integer value less than `intmax(‘int32’)`, the input
+is out of range when the value does not match any data port indices. For a control
+input that is not an integer value, the input is out of range when the
+*truncated* value does not match any data port indices. In
+both cases, the block behavior depends on your settings for **Data port for
+default case** and **Diagnostic for default
+case**.
+
+**Note**
+
+If the control input is larger than `intmax(‘int32’)`, the
+block wraps the input value to an integer.
+
+**Behavior for Simulation**
+
+The following behavior applies only to simulation for your model.
+
+| Data Port for Default Case | Diagnostic for Default Case | | |
+| --- | --- | --- | --- |
+| None | Warning | Error |
+| `Last data port` | Use the last data port and do not report any warning or error. | Use the last data port and report a warning. | Report an error and stop simulation. |
+| `Additional data port` | Use the additional data port with a `*` label and do not report any warning or error. | Use the additional data port with a `*` label and report a warning. | Report an error and stop simulation. |
+
+**Behavior for Code Generation**
+
+The following behavior applies to code generation for your model.
+
+| Data Port for Default Case | Diagnostic for Default Case | | |
+| --- | --- | --- | --- |
+| None | Warning | Error |
+| `Last data port` | Use the last data port. | Use the last data port. | Use the last data port. |
+| `Additional data port` | Use the additional data port with a `*` label. | Use the additional data port with a `*` label. | Use the additional data port with a `*` label. |
+
+### Use Data Inputs That Have Different Dimensions
+
+If two signals have a different number of dimensions or different
+dimension lengths, you can use the signals as data inputs to a Multiport Switch block. In the block dialog box, select the parameter **Allow different data input sizes**. In this case, the output of the block is a variable-size signal. If you do not select this parameter, the block generates an error.
+
+For more information about the parameter, see Allow different data input sizes (Results in variable-size output signal). For
+more information about variable-size signals, see Variable-Size Signal Basics.
+
+### Rules That Determine the Block Behavior
+
+You specify the number of data inputs with **Number of data ports**.
+
+- If you set **Number of data ports** to
+  1, the block behaves as an *index selector* or *index vector* and not as a multiport switch. For more details,
+  see Multiport Switch Configured as an Index Vector Block.
+- If you set **Number of data ports** to an integer greater than 1, the block behaves as a multiport switch. The block output is the data input that corresponds to the value of the control input. If at least one of the data inputs is a vector, the block output is a vector. In this case, the block expands any scalar inputs to vectors.
+- If all the data inputs are scalar, the output is a scalar.
+
+### Guidelines on Setting Parameters for Enumerated Control Port
+
+When the control port on the Multiport Switch block is of enumerated type, follow these guidelines:
+
+| Scenario | What to Do | Rationale |
+| --- | --- | --- |
+| The enumerated type contains a value that represents invalid, out-of-range, or uninitialized values. | - Set **Data port order** to `Specify indices`. - Set **Data port indices** to use this value for the last data port. - Set **Data port for default case** to `Last data port`. | This block configuration handles invalid values that the enumerated type explicitly represents. |
+| The enumerated type contains only valid enumerated values. However, a data input port can get invalid values of enumerated type. | - Set **Data port for default case** to `Additional data port`. | This block configuration handles invalid values that the enumerated type does not explicitly represent. |
+| The enumerated type contains only valid enumerated values. Data input ports can never get invalid values of enumerated type. | - Set **Data port for default case** to `Last data port`. - Set **Diagnostic for default case** to `None`. | This block configuration avoids unnecessary diagnostic action. |
+| The block does not have a data input port for every value of the enumerated type. | - Set **Data port for default case** to `Additional data port`. | This block configuration handles enumerated values that do not have a data input port, along with invalid values. |
+
 ## Ports
 
 ### Input
@@ -733,10 +848,6 @@ information, see Specifying a Fixed-Point Data Type.
 To enable this parameter, set **Scaling** to
 `Slope and bias`.
 
-## Libraries
-
-Simulink / Signal Routing HDL Coder / Signal Routing
-
 ## Block Characteristics
 
 |  |  |
@@ -819,114 +930,3 @@ The Multiport Switch block now issues a runtime error when the
 control signal in the first port has a floating point value that exceeds the
 datatype range of integers. This range includes `Inf` and
 `NaN`.
-
-## Description
-
-Select output signal based on control signal
-
-The Multiport Switch block determines which of several inputs to the block
-passes to the output. The block bases this decision on the value of the first input. The
-first input is the control input and the remaining inputs are the data inputs. The value
-of the control input determines which data input passes to the output.
-
-The Multiport Switch and Index Vector blocks are alternative
-configurations of the same block.
-
-- Multiport Switch — Select output signal based on control signal.
-- Index Vector — Switch output between different inputs based on
-  value of first input.
-
-The table summarizes how Multiport Switch interprets the control input and
-determines the data input that is passed to the output.
-
-| Control Input | Truncation | Setting for Data Port Order | Block Behavior During Simulation | |
-| --- | --- | --- | --- | --- |
-| Indexing to Select Data Input | Out-of-Range Condition |
-| Integer value | None | `Zero-based contiguous` | Zero-based indexing | The control input is less than `0` or greater than the number of data inputs minus one. |
-| `One-based contiguous` | One-based indexing | The control input is less than `1` or greater than the number of data inputs. |
-| `Specify indices` | Indices you specify | The control input does not correspond to any specified data port index. |
-| Not an integer value | The block truncates the value to an integer by rounding to zero. | `Zero-based contiguous` | Zero-based indexing | The truncated control input is less than `0` or greater than the number of data inputs minus one. |
-| `One-based contiguous` | One-based indexing | The truncated control input is less than `1` or greater than the number of data inputs. |
-| `Specify indices` | Indices you specify | The truncated control input does not correspond to any specified data port index. |
-
-For information on how the block handles the out-of-range condition, see
-How the Block Handles an Out-of-Range Control Input.
-
-### Multiport Switch Configured as an Index Vector Block
-
-An Index Vector is a special
-configuration of a Multiport Switch block in which you specify one
-data input and the control input is zero-based. The block output is the element of
-the input vector whose index matches the control input. For example, if the input
-vector is `[18 15 17 10]` and the control input is
-`3`, the element that matches the index of 3 (zero-based) is
-10, and that becomes the output value.
-
-To configure a Multiport Switch block to work as an Index
-Vector block, set **Number of data ports** to
-`1` and **Data port order** to
-`Zero-based contiguous`.
-
-### How the Block Handles an Out-of-Range Control Input
-
-For an input with an integer value less than `intmax(‘int32’)`, the input
-is out of range when the value does not match any data port indices. For a control
-input that is not an integer value, the input is out of range when the
-*truncated* value does not match any data port indices. In
-both cases, the block behavior depends on your settings for **Data port for
-default case** and **Diagnostic for default
-case**.
-
-**Note**
-
-If the control input is larger than `intmax(‘int32’)`, the
-block wraps the input value to an integer.
-
-**Behavior for Simulation**
-
-The following behavior applies only to simulation for your model.
-
-| Data Port for Default Case | Diagnostic for Default Case | | |
-| --- | --- | --- | --- |
-| None | Warning | Error |
-| `Last data port` | Use the last data port and do not report any warning or error. | Use the last data port and report a warning. | Report an error and stop simulation. |
-| `Additional data port` | Use the additional data port with a `*` label and do not report any warning or error. | Use the additional data port with a `*` label and report a warning. | Report an error and stop simulation. |
-
-**Behavior for Code Generation**
-
-The following behavior applies to code generation for your model.
-
-| Data Port for Default Case | Diagnostic for Default Case | | |
-| --- | --- | --- | --- |
-| None | Warning | Error |
-| `Last data port` | Use the last data port. | Use the last data port. | Use the last data port. |
-| `Additional data port` | Use the additional data port with a `*` label. | Use the additional data port with a `*` label. | Use the additional data port with a `*` label. |
-
-### Use Data Inputs That Have Different Dimensions
-
-If two signals have a different number of dimensions or different
-dimension lengths, you can use the signals as data inputs to a Multiport Switch block. In the block dialog box, select the parameter **Allow different data input sizes**. In this case, the output of the block is a variable-size signal. If you do not select this parameter, the block generates an error.
-
-For more information about the parameter, see Allow different data input sizes (Results in variable-size output signal). For
-more information about variable-size signals, see Variable-Size Signal Basics.
-
-### Rules That Determine the Block Behavior
-
-You specify the number of data inputs with **Number of data ports**.
-
-- If you set **Number of data ports** to
-  1, the block behaves as an *index selector* or *index vector* and not as a multiport switch. For more details,
-  see Multiport Switch Configured as an Index Vector Block.
-- If you set **Number of data ports** to an integer greater than 1, the block behaves as a multiport switch. The block output is the data input that corresponds to the value of the control input. If at least one of the data inputs is a vector, the block output is a vector. In this case, the block expands any scalar inputs to vectors.
-- If all the data inputs are scalar, the output is a scalar.
-
-### Guidelines on Setting Parameters for Enumerated Control Port
-
-When the control port on the Multiport Switch block is of enumerated type, follow these guidelines:
-
-| Scenario | What to Do | Rationale |
-| --- | --- | --- |
-| The enumerated type contains a value that represents invalid, out-of-range, or uninitialized values. | - Set **Data port order** to `Specify indices`. - Set **Data port indices** to use this value for the last data port. - Set **Data port for default case** to `Last data port`. | This block configuration handles invalid values that the enumerated type explicitly represents. |
-| The enumerated type contains only valid enumerated values. However, a data input port can get invalid values of enumerated type. | - Set **Data port for default case** to `Additional data port`. | This block configuration handles invalid values that the enumerated type does not explicitly represent. |
-| The enumerated type contains only valid enumerated values. Data input ports can never get invalid values of enumerated type. | - Set **Data port for default case** to `Last data port`. - Set **Diagnostic for default case** to `None`. | This block configuration avoids unnecessary diagnostic action. |
-| The block does not have a data input port for every value of the enumerated type. | - Set **Data port for default case** to `Additional data port`. | This block configuration handles enumerated values that do not have a data input port, along with invalid values. |

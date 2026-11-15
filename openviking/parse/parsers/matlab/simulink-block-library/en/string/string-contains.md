@@ -10,6 +10,26 @@ language: en
 
 # String Contains
 
+Determine if string contains, starts with, or ends with pattern
+
+## Libraries
+
+Simulink / String
+
+## Description
+
+The String Contains, String Starts With, and String
+Ends With blocks determine if a string (**str**) contains, starts
+with, or ends with a pattern (**sub**).
+
+The String Contains, String Starts With, and String
+Ends With blocks are identical. When **Function** is set to
+`Contains`, the block determines if the string contains a specified
+pattern. When **Function** is set to `Starts with`,
+the block determines if the string starts with a specified pattern. When
+**Function** is set to `Ends with`, the block
+determines if the string ends with a specified pattern.
+
 ## Ports
 
 ### Input
@@ -81,10 +101,6 @@ Pattern search function, specified as:
 | **Values:** `'Contains'` | `'Starts with'` | `'Ends with'` |
 | **Default**: `'Contains'` for String Contains block, `'Starts with'` for String Starts With block, `'Ends with'` for String Ends With block |
 
-## Libraries
-
-Simulink / String
-
 ## Block Characteristics
 
 |  |  |
@@ -102,19 +118,3 @@ Simulink / String
 ## Version History
 
 **Introduced in R2020a**
-
-## Description
-
-Determine if string contains, starts with, or ends with pattern
-
-The String Contains, String Starts With, and String
-Ends With blocks determine if a string (**str**) contains, starts
-with, or ends with a pattern (**sub**).
-
-The String Contains, String Starts With, and String
-Ends With blocks are identical. When **Function** is set to
-`Contains`, the block determines if the string contains a specified
-pattern. When **Function** is set to `Starts with`,
-the block determines if the string starts with a specified pattern. When
-**Function** is set to `Ends with`, the block
-determines if the string ends with a specified pattern.

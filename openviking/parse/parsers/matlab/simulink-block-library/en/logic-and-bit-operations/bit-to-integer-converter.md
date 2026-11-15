@@ -10,6 +10,30 @@ language: en
 
 # Bit to Integer Converter
 
+Map vector of bits to corresponding vector of integers
+
+## Libraries
+
+Simulink / Logic and Bit Operations Communications Toolbox / Utility Blocks HDL Coder / Logic and Bit Operations
+
+## Description
+
+The Bit to Integer Converter block maps groups of bits in the input
+vector to integers in the output vector.
+
+If *M* is specified by the **Number of bits per
+integer(M)** parameter:
+
+- For unsigned integers, the block maps each group of *M*
+  bits to an integer in the range [0,
+  (2*M* – 1)]. As a result,
+  the output vector length is 1/*M* times the input vector
+  length.
+- For signed integers, the block maps each group of *M*
+  bits to an integer in the range
+  [(–2*M*-1),
+  (2*M* – 1 – 1)].
+
 ## Ports
 
 ### Input
@@ -158,10 +182,6 @@ the Configuration Parameters dialog box.
 | **Values**: `'Inherit via internal rule'` | `'Smallest integer'` | `'Same as input'` | `'double'` | `'single'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` |
 | **Default**: `'Inherit via internal rule'` |
 
-## Libraries
-
-Simulink / Logic and Bit Operations Communications Toolbox / Utility Blocks HDL Coder / Logic and Bit Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -236,23 +256,3 @@ generated model or validation model. See Generated Model and Validation Model (H
 ### R2022a: Bit to Integer Converter Block Added to Simulink Logic and Bit Operations Library
 
 The Bit to Integer Converter block has been added from the **Communications Toolbox** > **Utility Blocks** library to the **Simulink** > **Logic and Bit Operations** library. All existing models continue to work.
-
-## Description
-
-Map vector of bits to corresponding vector of integers
-
-The Bit to Integer Converter block maps groups of bits in the input
-vector to integers in the output vector.
-
-If *M* is specified by the **Number of bits per
-integer(M)** parameter:
-
-- For unsigned integers, the block maps each group of *M*
-  bits to an integer in the range [0,
-  (2*M* – 1)]. As a result,
-  the output vector length is 1/*M* times the input vector
-  length.
-- For signed integers, the block maps each group of *M*
-  bits to an integer in the range
-  [(–2*M*-1),
-  (2*M* – 1 – 1)].

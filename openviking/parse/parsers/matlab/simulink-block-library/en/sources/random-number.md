@@ -10,6 +10,35 @@ language: en
 
 # Random Number
 
+Generate normally distributed random numbers
+
+## Libraries
+
+Simulink / Sources
+
+## Description
+
+The Random Number block generates normally distributed random numbers. To
+generate uniformly distributed random numbers, use the Uniform Random Number block. Both blocks use the Normal (Gaussian) random
+number generator (`'v4'`: legacy MATLAB® 4.0 generator of the `rng` function).
+
+You can generate a repeatable sequence using any Random Number
+block with the same nonnegative seed and parameters. The seed resets
+to the specified value each time a simulation starts. By default,
+the block produces a sequence that has a mean of 0 and a variance
+of 1. To generate a vector of random numbers with the same mean and
+variance, specify the **Seed** parameter as a vector.
+
+Avoid integrating a random signal, because solvers must integrate
+relatively smooth signals. Instead, use the Band-Limited White Noise block.
+
+The numeric parameters of this block must have the same dimensions after scalar expansion.
+If you select the **Interpret vector parameters as 1-D** check box, and
+the numeric parameters are row or column vectors after scalar expansion, the block
+outputs a 1-D signal. If you clear the **Interpret vector parameters as
+1-D** check box, the block outputs a signal of the same dimensionality as
+the parameters.
+
 ## Ports
 
 ### Output
@@ -108,10 +137,6 @@ the **Mean**, **Variance**, and
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
 
-## Libraries
-
-Simulink / Sources
-
 ## Block Characteristics
 
 |  |  |
@@ -129,28 +154,3 @@ Simulink / Sources
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Generate normally distributed random numbers
-
-The Random Number block generates normally distributed random numbers. To
-generate uniformly distributed random numbers, use the Uniform Random Number block. Both blocks use the Normal (Gaussian) random
-number generator (`'v4'`: legacy MATLAB® 4.0 generator of the `rng` function).
-
-You can generate a repeatable sequence using any Random Number
-block with the same nonnegative seed and parameters. The seed resets
-to the specified value each time a simulation starts. By default,
-the block produces a sequence that has a mean of 0 and a variance
-of 1. To generate a vector of random numbers with the same mean and
-variance, specify the **Seed** parameter as a vector.
-
-Avoid integrating a random signal, because solvers must integrate
-relatively smooth signals. Instead, use the Band-Limited White Noise block.
-
-The numeric parameters of this block must have the same dimensions after scalar expansion.
-If you select the **Interpret vector parameters as 1-D** check box, and
-the numeric parameters are row or column vectors after scalar expansion, the block
-outputs a 1-D signal. If you clear the **Interpret vector parameters as
-1-D** check box, the block outputs a signal of the same dimensionality as
-the parameters.

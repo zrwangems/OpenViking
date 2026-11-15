@@ -10,6 +10,22 @@ language: en
 
 # Counter Limited
 
+Count up and wrap to zero after specified upper limit
+
+## Libraries
+
+Simulink / Sources HDL Coder / Sources
+
+## Description
+
+The Counter Limited block counts up until the specified upper limit is reached. Then the counter wraps back to zero, and restarts counting up. The counter always initializes to zero.
+
+**Note**
+
+This block does not report wrap on overflow warnings during simulation. To report
+these warnings, see the `Simulink.restoreDiagnostic`
+reference page. The block does report errors due to wrap on overflow.
+
 ## Ports
 
 ### Output
@@ -52,10 +68,6 @@ parameter to `-1`. For more information, see Specify Sample Time.
 | **Type:** character vector |
 | **Values:** scalar | vector |
 | **Default:** `'-1'` |
-
-## Libraries
-
-Simulink / Sources HDL Coder / Sources
 
 ## Block Characteristics
 
@@ -110,15 +122,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Count up and wrap to zero after specified upper limit
-
-The Counter Limited block counts up until the specified upper limit is reached. Then the counter wraps back to zero, and restarts counting up. The counter always initializes to zero.
-
-**Note**
-
-This block does not report wrap on overflow warnings during simulation. To report
-these warnings, see the `Simulink.restoreDiagnostic`
-reference page. The block does report errors due to wrap on overflow.

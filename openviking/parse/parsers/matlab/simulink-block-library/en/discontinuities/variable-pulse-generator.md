@@ -10,6 +10,25 @@ language: en
 
 # Variable Pulse Generator
 
+Generate ideal, time varying pulse signal
+
+## Libraries
+
+Simulink / Discontinuities
+
+## Description
+
+Use the Variable Pulse Generator block to create ideal modulated pulse
+signals.
+
+Generally speaking, the output pulse of the block is described by
+
+y(t)={1tk<t<tk+pw0tk+pw<t<tk+1
+
+where *pw* is the output pulse width.
+
+For an implementation of Pulse Width Modulation, see PWM.
+
 ## Ports
 
 ### Input
@@ -70,10 +89,6 @@ rate becomes the resolution of the output pulse signal.
 This parameter requires that **Sampling mode** is set to
 `discrete`
 
-## Libraries
-
-Simulink / Discontinuities
-
 ## Block Characteristics
 
 |  |  |
@@ -95,18 +110,3 @@ In general, consider using the Simulink Model Discretizer to map continuous bloc
 ## Version History
 
 **Introduced in R2020b**
-
-## Description
-
-Generate ideal, time varying pulse signal
-
-Use the Variable Pulse Generator block to create ideal modulated pulse
-signals.
-
-Generally speaking, the output pulse of the block is described by
-
-y(t)={1tk<t<tk+pw0tk+pw<t<tk+1
-
-where *pw* is the output pulse width.
-
-For an implementation of Pulse Width Modulation, see PWM.

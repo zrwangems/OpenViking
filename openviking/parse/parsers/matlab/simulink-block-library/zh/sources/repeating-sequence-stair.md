@@ -11,6 +11,16 @@ chinese_source: official
 
 # Repeating Sequence Stair
 
+输出并重复离散时间序列
+
+## 所属库
+
+Simulink / Sources
+
+## 描述
+
+Repeating Sequence Stair 模块输出并重复您使用**输出值的向量**参数指定的阶梯序列。例如，您可以将向量指定为 `[3 1 2 4 1]'`。在每个时间间隔输出**输出值的向量**中的值，然后重复该序列。
+
 ## 端口
 
 ### 输出
@@ -129,10 +139,6 @@ chinese_source: official
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
 
-## 所属库
-
-Simulink / Sources
-
 ## 模块特性
 
 |  |  |
@@ -167,12 +173,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-输出并重复离散时间序列
-
-Repeating Sequence Stair 模块输出并重复您使用**输出值的向量**参数指定的阶梯序列。例如，您可以将向量指定为 `[3 1 2 4 1]'`。在每个时间间隔输出**输出值的向量**中的值，然后重复该序列。

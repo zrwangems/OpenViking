@@ -11,6 +11,16 @@ chinese_source: official
 
 # Variable Integer Delay
 
+按可变采样周期延迟输入信号
+
+## 所属库
+
+Simulink / Discrete
+
+## 描述
+
+Variable Integer Delay 模块是 Delay 模块的变体，默认情况下，后者具有延迟长度设置为 `Input port` 的信源。
+
 ## 端口
 
 ### 输入
@@ -318,10 +328,6 @@ Simulink® 使用舍入到最邻近值运算和饱和处理，将**初始条件*
 | **值：**`'off' | 'on'` |
 | **默认值：**`'off'` |
 
-## 所属库
-
-Simulink / Discrete
-
 ## 模块特性
 
 |  |  |
@@ -344,12 +350,6 @@ Simulink / Discrete
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2012b 中推出**
-
-## 描述
-
-按可变采样周期延迟输入信号
-
-Variable Integer Delay 模块是 Delay 模块的变体，默认情况下，后者具有延迟长度设置为 `Input port` 的信源。

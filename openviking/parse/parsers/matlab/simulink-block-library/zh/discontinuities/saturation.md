@@ -11,6 +11,22 @@ chinese_source: official
 
 # Saturation
 
+将输入信号限制在饱和上限和下限值之间
+
+## 所属库
+
+Simulink / Commonly Used Blocks Simulink / Discontinuities HDL Coder / Discontinuities
+
+## 描述
+
+Saturation 模块产生输出信号，该信号是在饱和上限和下限值之间的输入信号值。上限和下限由参数**上限**和**下限**指定。
+
+| 输入 | 输出 |
+| --- | --- |
+| 下限 ≤ 输入值 ≤ 上限 | 输入值 |
+| 输入值 < 下限 | 下限 |
+| 输入值 > 上限 | 上限 |
+
 ## 端口
 
 ### 输入
@@ -217,10 +233,6 @@ chinese_source: official
 
 有关详细信息，请参阅舍入模式 (Fixed-Point Designer)。
 
-## 所属库
-
-Simulink / Commonly Used Blocks Simulink / Discontinuities HDL Coder / Discontinuities
-
 ## 模块特性
 
 |  |  |
@@ -255,18 +267,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-将输入信号限制在饱和上限和下限值之间
-
-Saturation 模块产生输出信号，该信号是在饱和上限和下限值之间的输入信号值。上限和下限由参数**上限**和**下限**指定。
-
-| 输入 | 输出 |
-| --- | --- |
-| 下限 ≤ 输入值 ≤ 上限 | 输入值 |
-| 输入值 < 下限 | 下限 |
-| 输入值 > 上限 | 上限 |

@@ -10,6 +10,137 @@ language: en
 
 # From Spreadsheet
 
+Read data from spreadsheet
+
+## Libraries
+
+Simulink / Sources
+
+## Description
+
+The From Spreadsheet block reads data from Microsoft®
+Excel® (all platforms) or CSV (Microsoft Windows® platform with Microsoft Office installed only) spreadsheets and outputs the data as a signal. The
+From Spreadsheet block does not support Microsoft
+Excel spreadsheet charts.
+
+The From Spreadsheet icon displays the spreadsheet
+file name and sheet name specified in the block **File name** and **Sheet name** parameters.
+
+### Storage Formats
+
+The data that the From Spreadsheet block reads from a spreadsheet
+must be appropriately formatted.
+
+For Microsoft
+Excel spreadsheets:
+
+- The From Spreadsheet block interprets the first row as a
+  signal name. If you do not specify a signal name, the From
+  Spreadsheet block assigns a default one with the format
+  `Signal #`, where
+  *`#`* increments with each additional unnamed
+  signal.
+- The From Spreadsheet block interprets the first column as
+  time. In this column, the time values must monotonically increase.
+- The From Spreadsheet block interprets the remaining columns
+  as signals.
+
+This example shows an acceptably formatted Microsoft
+Excel spreadsheet. The first column is Time and the first row contains
+signal names. Each worksheet contains a signal group.
+
+For CSV text files (Microsoft platform with Microsoft Office installed only):
+
+- The From Spreadsheet block interprets the first column as
+  time. In this column, the time values must increase.
+- The From Spreadsheet block interprets the remaining columns
+  as signals.
+- Each column must have the same number of entries.
+- The From Spreadsheet block interprets each file as one
+  signal group.
+
+This example shows an acceptably formatted CSV file. The contents represent one
+signal group.
+
+```
+0,0,0,5,0
+1,0,1,5,0
+2,0,1,5,0
+3,0,1,5,0
+4,5,1,5,0
+5,5,1,5,0
+6,5,1,5,0
+7,0,1,5,0
+8,0,1,5,1
+9,0,1,5,1
+10,0,1,5,0
+```
+
+The From Spreadsheet block does not accept signal values of
+nonfinite data, such as `Nan`, `Inf`, or
+`-Inf`.
+
+### Block Behavior During Simulation
+
+The From Spreadsheet block incrementally reads data from the spreadsheet during simulation.
+
+The **Sample time** parameter specifies the
+sample time that the From Spreadsheet block uses to
+read data from the spreadsheet. For details, see Parameters. The time stamps in the file must be monotonically nondecreasing.
+
+For each simulation time hit for which the spreadsheet contains
+no matching time stamp, Simulink® software interpolates or extrapolates
+to obtain the needed data using the selected method. For details,
+see Simulation Time Hits That Have No Corresponding Spreadsheet Time Stamps.
+
+### Simulation Time Hits That Have No Corresponding Spreadsheet Time Stamps
+
+If the simulation time hit does not have a corresponding spreadsheet
+time stamp, the From Spreadsheet block output depends on:
+
+- Whether the simulation time hit occurs before the first time stamp, within the range of time stamps, or after the last time stamp
+- The interpolation or extrapolation methods that you select
+- The data type of the spreadsheet data
+
+For details about interpolation and extrapolation options, see the descriptions of these
+parameters:
+
+- Data extrapolation before first data point
+- Data interpolation within time range
+- Data extrapolation after last data point
+
+Sometimes the spreadsheet includes two or more data values that
+have the same time stamp. In such cases, the From Spreadsheet block action depends on when the simulation time hit occurs, relative to the duplicate time stamps in the spreadsheet.
+
+For example, suppose that the spreadsheet contains this data.
+Three data values have a time stamp value of `2`.
+
+```
+time stamps:    0 1 2 2 2 3 4
+data values:    2 3 6 4 9 1 5
+```
+
+The table describes the From Spreadsheet block output.
+
+| Simulation Time, Relative to Duplicate Time Stamp Values in Spreadsheet | From Spreadsheet Block Action |
+| --- | --- |
+| Before the duplicate time stamps | Performs the same actions as when the time stamps are distinct, using the first of the duplicate time stamp values as the basis for interpolation. (In this example, the time stamp value is `6`.) |
+| At or after the duplicate time stamps | Performs the same actions as when the times stamps are distinct, using the last of the duplicate time stamp values as the basis for interpolation. (In this example, that time stamp value is `9`.) |
+
+### Read Issue with COM
+
+By default, the From Spreadsheet block reads spreadsheets using the
+Component Object Model (COM) interface on Windows platforms and the LibXL library on other platforms. If the From
+Spreadsheet block has a problem reading the spreadsheet on Windows, use the `set_param` function to set
+`'ReaderLibrary'` to `'LibXL'`. For
+example:
+
+```
+set_param(blockPath,‘ReaderLibrary’,‘LibXL’);
+```
+
+where *blockPath* is the model block path.
+
 ## Ports
 
 ### Output
@@ -554,10 +685,6 @@ information, see Specifying a Fixed-Point Data Type.
 To enable this parameter, set **Scaling** to
 `Slope and bias`.
 
-## Libraries
-
-Simulink / Sources
-
 ## Block Characteristics
 
 |  |  |
@@ -616,130 +743,3 @@ folders.
 
 `'LibXL'` is a new value for the `'ReaderLibrary'`
 parameter of the `set_param` function.
-
-## Description
-
-Read data from spreadsheet
-
-The From Spreadsheet block reads data from Microsoft®
-Excel® (all platforms) or CSV (Microsoft Windows® platform with Microsoft Office installed only) spreadsheets and outputs the data as a signal. The
-From Spreadsheet block does not support Microsoft
-Excel spreadsheet charts.
-
-The From Spreadsheet icon displays the spreadsheet
-file name and sheet name specified in the block **File name** and **Sheet name** parameters.
-
-### Storage Formats
-
-The data that the From Spreadsheet block reads from a spreadsheet
-must be appropriately formatted.
-
-For Microsoft
-Excel spreadsheets:
-
-- The From Spreadsheet block interprets the first row as a
-  signal name. If you do not specify a signal name, the From
-  Spreadsheet block assigns a default one with the format
-  `Signal #`, where
-  *`#`* increments with each additional unnamed
-  signal.
-- The From Spreadsheet block interprets the first column as
-  time. In this column, the time values must monotonically increase.
-- The From Spreadsheet block interprets the remaining columns
-  as signals.
-
-This example shows an acceptably formatted Microsoft
-Excel spreadsheet. The first column is Time and the first row contains
-signal names. Each worksheet contains a signal group.
-
-For CSV text files (Microsoft platform with Microsoft Office installed only):
-
-- The From Spreadsheet block interprets the first column as
-  time. In this column, the time values must increase.
-- The From Spreadsheet block interprets the remaining columns
-  as signals.
-- Each column must have the same number of entries.
-- The From Spreadsheet block interprets each file as one
-  signal group.
-
-This example shows an acceptably formatted CSV file. The contents represent one
-signal group.
-
-```
-0,0,0,5,0
-1,0,1,5,0
-2,0,1,5,0
-3,0,1,5,0
-4,5,1,5,0
-5,5,1,5,0
-6,5,1,5,0
-7,0,1,5,0
-8,0,1,5,1
-9,0,1,5,1
-10,0,1,5,0
-```
-
-The From Spreadsheet block does not accept signal values of
-nonfinite data, such as `Nan`, `Inf`, or
-`-Inf`.
-
-### Block Behavior During Simulation
-
-The From Spreadsheet block incrementally reads data from the spreadsheet during simulation.
-
-The **Sample time** parameter specifies the
-sample time that the From Spreadsheet block uses to
-read data from the spreadsheet. For details, see Parameters. The time stamps in the file must be monotonically nondecreasing.
-
-For each simulation time hit for which the spreadsheet contains
-no matching time stamp, Simulink® software interpolates or extrapolates
-to obtain the needed data using the selected method. For details,
-see Simulation Time Hits That Have No Corresponding Spreadsheet Time Stamps.
-
-### Simulation Time Hits That Have No Corresponding Spreadsheet Time Stamps
-
-If the simulation time hit does not have a corresponding spreadsheet
-time stamp, the From Spreadsheet block output depends on:
-
-- Whether the simulation time hit occurs before the first time stamp, within the range of time stamps, or after the last time stamp
-- The interpolation or extrapolation methods that you select
-- The data type of the spreadsheet data
-
-For details about interpolation and extrapolation options, see the descriptions of these
-parameters:
-
-- Data extrapolation before first data point
-- Data interpolation within time range
-- Data extrapolation after last data point
-
-Sometimes the spreadsheet includes two or more data values that
-have the same time stamp. In such cases, the From Spreadsheet block action depends on when the simulation time hit occurs, relative to the duplicate time stamps in the spreadsheet.
-
-For example, suppose that the spreadsheet contains this data.
-Three data values have a time stamp value of `2`.
-
-```
-time stamps:    0 1 2 2 2 3 4
-data values:    2 3 6 4 9 1 5
-```
-
-The table describes the From Spreadsheet block output.
-
-| Simulation Time, Relative to Duplicate Time Stamp Values in Spreadsheet | From Spreadsheet Block Action |
-| --- | --- |
-| Before the duplicate time stamps | Performs the same actions as when the time stamps are distinct, using the first of the duplicate time stamp values as the basis for interpolation. (In this example, the time stamp value is `6`.) |
-| At or after the duplicate time stamps | Performs the same actions as when the times stamps are distinct, using the last of the duplicate time stamp values as the basis for interpolation. (In this example, that time stamp value is `9`.) |
-
-### Read Issue with COM
-
-By default, the From Spreadsheet block reads spreadsheets using the
-Component Object Model (COM) interface on Windows platforms and the LibXL library on other platforms. If the From
-Spreadsheet block has a problem reading the spreadsheet on Windows, use the `set_param` function to set
-`'ReaderLibrary'` to `'LibXL'`. For
-example:
-
-```
-set_param(blockPath,‘ReaderLibrary’,‘LibXL’);
-```
-
-where *blockPath* is the model block path.

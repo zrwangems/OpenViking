@@ -10,6 +10,20 @@ language: en
 
 # Repeating Sequence Stair
 
+Output and repeat discrete time sequence
+
+## Libraries
+
+Simulink / Sources
+
+## Description
+
+The Repeating Sequence Stair block outputs and repeats a stair sequence that
+you specify with the **Vector of output values** parameter. For
+example, you can specify the vector as `[3 1 2 4 1]'`. A value in
+**Vector of output values** is output at each time interval, and
+then the sequence repeats.
+
 ## Ports
 
 ### Output
@@ -152,10 +166,6 @@ information, see Use Lock Output Data Type Setting (Fixed-Point Designer).
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'off'` |
 
-## Libraries
-
-Simulink / Sources
-
 ## Block Characteristics
 
 |  |  |
@@ -195,13 +205,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Output and repeat discrete time sequence
-
-The Repeating Sequence Stair block outputs and repeats a stair sequence that
-you specify with the **Vector of output values** parameter. For
-example, you can specify the vector as `[3 1 2 4 1]'`. A value in
-**Vector of output values** is output at each time interval, and
-then the sequence repeats.

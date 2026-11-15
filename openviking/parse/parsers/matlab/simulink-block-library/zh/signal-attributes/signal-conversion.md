@@ -11,6 +11,20 @@ chinese_source: official
 
 # Signal Conversion
 
+将信号转换为新类型，而不改变信号值
+
+## 所属库
+
+Simulink / Signal Attributes HDL Coder / Signal Attributes
+
+## 描述
+
+Signal Conversion 模块可将信号从一种类型转换为另一种类型。要选择要执行的转换类型，请使用**输出**参数或下列预配置的 Signal Conversion 模块之一：
+
+- Signal Copy 模块
+- To Virtual Bus 模块
+- To Nonvirtual Bus 模块
+
 ## 端口
 
 ### 输入
@@ -112,10 +126,6 @@ chinese_source: official
 
 **示例:** `set_param(gcb,'OverrideOpt','on')`
 
-## 所属库
-
-Simulink / Signal Attributes HDL Coder / Signal Attributes
-
 ## 模块特性
 
 |  |  |
@@ -154,16 +164,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-将信号转换为新类型，而不改变信号值
-
-Signal Conversion 模块可将信号从一种类型转换为另一种类型。要选择要执行的转换类型，请使用**输出**参数或下列预配置的 Signal Conversion 模块之一：
-
-- Signal Copy 模块
-- To Virtual Bus 模块
-- To Nonvirtual Bus 模块

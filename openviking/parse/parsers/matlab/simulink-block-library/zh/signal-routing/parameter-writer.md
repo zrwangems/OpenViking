@@ -11,6 +11,64 @@ chinese_source: worker-translation
 
 # Parameter Writer
 
+
+
+写入模块参数或变量
+
+## 库
+
+Simulink / Signal Routing
+
+## 说明
+
+Parameter Writer 模块通过写入以下之一来更改模块参数值：
+
+- 仿真期间可调谐的模块参数
+- 属于引用某个模型的 Model 模块的实例参数
+- 封装子系统参数
+- 模型工作区变量
+- 基础工作区变量
+- 在 `Simulink.data.Dictionary` 中创建的变量
+
+具有可由 Parameter Writer 模块写入的参数的模块称为 *参数所有者模块*。为了让 Parameter Writer 模块找到参数所有者模块支持的参数，必须启用这些支持的参数。
+
+将 Parameter Writer 模块与 Initialize Function、Reinitialize Function 和 Reset Function 模块一起使用，以响应事件。例如，某个事件可以是读取硬件传感器的值，然后基于传感器值更新模块参数。有关使用 Parameter Writer 模块的详细信息，请参阅 Initialize and Reset Parameter Values。
+
+对于封装子系统中的 Parameter Writer 模块，Parameter Writer 模块和对应的参数所有者模块必须具有相同的直接父级封装子系统。
+
+否则，Parameter Writer 模块必须与以下之一位于同一封装中：
+
+- 其参数由 Parameter Writer 模块直接写入的模块，可以是内置模块，例如 Gain 模块、Model 模块、封装子系统模块，或用户定义函数模块，例如 S-Function 模块
+- 其参数通过工作区变量间接写入的模块
+
+建议在条件执行子系统内使用 Parameter Writer 模块，以提高仿真性能。有关使用条件执行子系统的详细信息，请参阅 Conditionally Executed Subsystems and Models。
+
+要使用 Parameter Writer 模块写入基础工作区变量、模型工作区变量、在 `Simulink.data.Dictionary` 中创建的变量、封装参数或 Model 模块实例参数，这些变量和参数必须由参数所有者模块或具有运行时可调谐参数的 C MEX S-function 使用。
+
+当 Parameter Writer 模块将数据类型不是 `double`（默认数据类型）的值写入封装参数时，必须使用与 Parameter Writer 模块写入值相同数据类型的值初始化封装参数。要初始化封装参数，请双击该模块以打开封装对话框，指定封装参数的数据类型和值。或者，要以编程方式初始化封装参数，请将 **MaskValues** 参数与 `set_param` 函数一起使用。有关详细信息，请参阅 Control Masks Programmatically。
+
+在所示示例中，Parameter Writer 模块将数据类型为 `single` 的值写入封装子系统内 Gain 模块的模块参数。封装参数初始化为 1，数据类型为 `single`。
+
+当 Parameter Writer 模块将数据类型不是 double 的数据写入封装子系统内参数时的封装参数值设置
+
+当 Parameter Writer 模块写入存储类设置为 `Model default` 的实例参数时，代码生成器在为该参数生成代码时会使用 **Model parameter arguments** 的默认配置。请参阅 Specify Instance-Specific Parameter Values for Reusable Referenced Model (Simulink Coder)。
+
+**注意**
+
+创建包含 Parameter Writer 模块的库模块时，还必须在该库模块中包含对应的参数所有者模块。除了使用 Create Custom Library 中所述工作流创建的自定义库模块之外，Simulink® 还会将使用 Subsystem Reference 模块创建的模型组件视为单模块库。
+
+### 识别参数所有者模块
+
+你可以通过 `IsParamOwnerBlock` 模块参数的值确定某个模块是否是支持的参数所有者模块。使用 `get_param` 函数，并传入模块名称或句柄 `blk` 以及 `IsParamOwnerBlock` 模块参数。
+
+    get_param(blk,'IsParamOwnerBlock')
+
+如果该模块是支持的参数所有者模块，该函数返回 `'on'`；否则返回 `'off'`。
+
+Parameter Writer 模块与该模块所写入值的参数所有者模块构成一组相关模块。你可以选择 Parameter Writer 模块以突出显示相关的参数所有者模块，反之亦然。突出显示相关模块时，当前模型中包含该相关模块的模块也会突出显示。例如，当 Initialize Function 模块包含与所选模块相关的 Parameter Writer 模块时，该 Initialize Function 模块会突出显示。在模型画布中突出显示的模块也会在小地图中突出显示。
+
+要在打开的图或新选项卡中显示相关模块，请在选择后出现的省略号上暂停。然后，从操作栏中选择 **Related Blocks** 按钮。窗口焦点将转到显示相关模块的已打开图或新选项卡。
+
 ## 端口
 
 ### 输入
@@ -136,10 +194,6 @@ chinese_source: worker-translation
 
 **示例：** `set_param(gcb,'ParameterName','Gain')`
 
-## 所属库
-
-Simulink / Signal Routing
-
 ## 模块特性
 
 |  |  |
@@ -171,55 +225,3 @@ Simulink / Signal Routing
 要为 Parameter Writer 模块局部启用或禁用参数验证，请使用 **Validate parameter** 模块参数。
 
 要为 Parameter Writer 模块全局启用或禁用参数验证，请使用 **Parameter Writer block validation** 配置参数。
-
-## 描述
-
-写入模块参数或变量
-
-Parameter Writer 模块通过写入以下之一来更改模块参数值：
-
-- 仿真期间可调谐的模块参数
-- 属于引用某个模型的 Model 模块的实例参数
-- 封装子系统参数
-- 模型工作区变量
-- 基础工作区变量
-- 在 `Simulink.data.Dictionary` 中创建的变量
-
-具有可由 Parameter Writer 模块写入的参数的模块称为 *参数所有者模块*。为了让 Parameter Writer 模块找到参数所有者模块支持的参数，必须启用这些支持的参数。
-
-将 Parameter Writer 模块与 Initialize Function、Reinitialize Function 和 Reset Function 模块一起使用，以响应事件。例如，某个事件可以是读取硬件传感器的值，然后基于传感器值更新模块参数。有关使用 Parameter Writer 模块的详细信息，请参阅 Initialize and Reset Parameter Values。
-
-对于封装子系统中的 Parameter Writer 模块，Parameter Writer 模块和对应的参数所有者模块必须具有相同的直接父级封装子系统。
-
-否则，Parameter Writer 模块必须与以下之一位于同一封装中：
-
-- 其参数由 Parameter Writer 模块直接写入的模块，可以是内置模块，例如 Gain 模块、Model 模块、封装子系统模块，或用户定义函数模块，例如 S-Function 模块
-- 其参数通过工作区变量间接写入的模块
-
-建议在条件执行子系统内使用 Parameter Writer 模块，以提高仿真性能。有关使用条件执行子系统的详细信息，请参阅 Conditionally Executed Subsystems and Models。
-
-要使用 Parameter Writer 模块写入基础工作区变量、模型工作区变量、在 `Simulink.data.Dictionary` 中创建的变量、封装参数或 Model 模块实例参数，这些变量和参数必须由参数所有者模块或具有运行时可调谐参数的 C MEX S-function 使用。
-
-当 Parameter Writer 模块将数据类型不是 `double`（默认数据类型）的值写入封装参数时，必须使用与 Parameter Writer 模块写入值相同数据类型的值初始化封装参数。要初始化封装参数，请双击该模块以打开封装对话框，指定封装参数的数据类型和值。或者，要以编程方式初始化封装参数，请将 **MaskValues** 参数与 `set_param` 函数一起使用。有关详细信息，请参阅 Control Masks Programmatically。
-
-在所示示例中，Parameter Writer 模块将数据类型为 `single` 的值写入封装子系统内 Gain 模块的模块参数。封装参数初始化为 1，数据类型为 `single`。
-
-当 Parameter Writer 模块将数据类型不是 double 的数据写入封装子系统内参数时的封装参数值设置
-
-当 Parameter Writer 模块写入存储类设置为 `Model default` 的实例参数时，代码生成器在为该参数生成代码时会使用 **Model parameter arguments** 的默认配置。请参阅 Specify Instance-Specific Parameter Values for Reusable Referenced Model (Simulink Coder)。
-
-**注意**
-
-创建包含 Parameter Writer 模块的库模块时，还必须在该库模块中包含对应的参数所有者模块。除了使用 Create Custom Library 中所述工作流创建的自定义库模块之外，Simulink® 还会将使用 Subsystem Reference 模块创建的模型组件视为单模块库。
-
-### 识别参数所有者模块
-
-你可以通过 `IsParamOwnerBlock` 模块参数的值确定某个模块是否是支持的参数所有者模块。使用 `get_param` 函数，并传入模块名称或句柄 `blk` 以及 `IsParamOwnerBlock` 模块参数。
-
-    get_param(blk,'IsParamOwnerBlock')
-
-如果该模块是支持的参数所有者模块，该函数返回 `'on'`；否则返回 `'off'`。
-
-Parameter Writer 模块与该模块所写入值的参数所有者模块构成一组相关模块。你可以选择 Parameter Writer 模块以突出显示相关的参数所有者模块，反之亦然。突出显示相关模块时，当前模型中包含该相关模块的模块也会突出显示。例如，当 Initialize Function 模块包含与所选模块相关的 Parameter Writer 模块时，该 Initialize Function 模块会突出显示。在模型画布中突出显示的模块也会在小地图中突出显示。
-
-要在打开的图或新选项卡中显示相关模块，请在选择后出现的省略号上暂停。然后，从操作栏中选择 **Related Blocks** 按钮。窗口焦点将转到显示相关模块的已打开图或新选项卡。

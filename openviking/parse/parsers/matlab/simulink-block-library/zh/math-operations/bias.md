@@ -11,6 +11,20 @@ chinese_source: official
 
 # Bias
 
+为输入添加偏差
+
+## 所属库
+
+Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
+
+## 描述
+
+Bias 模块根据以下公式为输入信号添加偏差或偏移量：
+
+*Y* = *U* + *bias*
+
+其中 *U* 是模块输入，*Y* 是输出。
+
 ## 端口
 
 ### 输入
@@ -71,10 +85,6 @@ chinese_source: official
 | **参数:** | `SaturateOnIntegerOverflow` |
 | **值:** | `'off'` (默认) | `'on'` |
 
-## 所属库
-
-Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
-
 ## 模块特性
 
 |  |  |
@@ -109,16 +119,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-为输入添加偏差
-
-Bias 模块根据以下公式为输入信号添加偏差或偏移量：
-
-*Y* = *U* + *bias*
-
-其中 *U* 是模块输入，*Y* 是输出。

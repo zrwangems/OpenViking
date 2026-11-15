@@ -11,9 +11,29 @@ chinese_source: worker-translation
 
 # Sequence Viewer
 
-## 端口
 
-R2025b 官方文档未提供。
+
+在仿真期间显示模块之间的消息、事件、状态、转移和函数。
+
+## 库
+
+Simulink / Messages & Events Simulink Test SimEvents Stateflow
+
+## 说明
+
+Sequence Viewer 模块在仿真期间显示某些模块之间的消息、事件、状态、转移和函数。可以显示的模块称为 *生命线模块*，包括：
+
+- 子系统
+- 引用模型
+- 包含消息的模块，例如 Stateflow® 图
+- 调用函数或生成事件的模块，例如 Function Caller、Function-Call Generator 和 MATLAB Function 模块
+- 包含函数的模块，例如 Function-Call Subsystem 和 Simulink Function 模块
+
+要查看引用模型中生命线模块的状态、转移和事件，引用模型中必须有一个 Sequence Viewer 模块。如果引用模型中没有 Sequence Viewer 模块，则只能查看引用模型中生命线模块的消息和函数。
+
+**注意**
+
+Sequence Viewer 模块不显示由 MATLAB Function 模块和 S-functions 生成的函数调用。
 
 ## 参数
 
@@ -49,10 +69,6 @@ R2025b 官方文档未提供。
 | **值**: `"1000"` | scalar |
 | **默认**: `"1000"` |
 
-## 所属库
-
-Simulink / Messages & Events Simulink Test SimEvents Stateflow
-
 ## 模块特性
 
 |  |  |
@@ -72,21 +88,3 @@ Simulink / Messages & Events Simulink Test SimEvents Stateflow
 ## 版本历史
 
 **在 R2015b 中引入**
-
-## 描述
-
-在仿真期间显示模块之间的消息、事件、状态、转移和函数。
-
-Sequence Viewer 模块在仿真期间显示某些模块之间的消息、事件、状态、转移和函数。可以显示的模块称为 *生命线模块*，包括：
-
-- 子系统
-- 引用模型
-- 包含消息的模块，例如 Stateflow® 图
-- 调用函数或生成事件的模块，例如 Function Caller、Function-Call Generator 和 MATLAB Function 模块
-- 包含函数的模块，例如 Function-Call Subsystem 和 Simulink Function 模块
-
-要查看引用模型中生命线模块的状态、转移和事件，引用模型中必须有一个 Sequence Viewer 模块。如果引用模型中没有 Sequence Viewer 模块，则只能查看引用模型中生命线模块的消息和函数。
-
-**注意**
-
-Sequence Viewer 模块不显示由 MATLAB Function 模块和 S-functions 生成的函数调用。

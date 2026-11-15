@@ -10,6 +10,35 @@ language: en
 
 # Descriptor State-Space
 
+Model linear implicit system
+
+## Libraries
+
+Simulink / Continuous
+
+## Description
+
+The Descriptor State-Space block allows you to model linear implicit systems
+described in the implicit form Ex˙=Ax+Bu, where *E* is the mass matrix of the system. When
+*E* is nonsingular and therefore invertible, you can describe the
+system in the explicit form, x˙=E−1Ax+E−1Bu, and model the system using the State-Space block.
+
+When the mass matrix *E* is singular, the equations do not contain
+derivatives for one or more of the dependent variables in the system. Dependent
+variables in the system are also called *algebraic variables*, and
+differential equations that contain algebraic variables are called
+*differential algebraic equations*. The state-space
+representation of a system described by differential algebraic equations has this
+form:
+
+Ex˙=Ax+Buy=Cx+Du
+
+where:
+
+- *x* is the state vector.
+- *u* is the input vector.
+- *y* is the output vector.
+
 ## Ports
 
 ### Input
@@ -329,10 +358,6 @@ programmatically, use the `get_param` function.
 **Example:** `set_param("MyModel/Descriptor
 State-Space",ContinuousStateAttributes={'position','velocity'})`
 
-## Libraries
-
-Simulink / Continuous
-
 ## Block Characteristics
 
 |  |  |
@@ -371,28 +396,3 @@ You can generate C++ code for implicit systems that have a mass matrix, such as
 those implemented using the Descriptor State-Space block. Use the
 **Language (Simulink Coder)** parameter to specify the
 language for code generation.
-
-## Description
-
-Model linear implicit system
-
-The Descriptor State-Space block allows you to model linear implicit systems
-described in the implicit form Ex˙=Ax+Bu, where *E* is the mass matrix of the system. When
-*E* is nonsingular and therefore invertible, you can describe the
-system in the explicit form, x˙=E−1Ax+E−1Bu, and model the system using the State-Space block.
-
-When the mass matrix *E* is singular, the equations do not contain
-derivatives for one or more of the dependent variables in the system. Dependent
-variables in the system are also called *algebraic variables*, and
-differential equations that contain algebraic variables are called
-*differential algebraic equations*. The state-space
-representation of a system described by differential algebraic equations has this
-form:
-
-Ex˙=Ax+Buy=Cx+Du
-
-where:
-
-- *x* is the state vector.
-- *u* is the input vector.
-- *y* is the output vector.

@@ -10,9 +10,136 @@ language: en
 
 # Slider Switch
 
-## Ports
+Change parameter or variable value using switch with customizable appearance
 
-Not documented in R2025b.
+## Libraries
+
+Simulink / Dashboard / Customizable Blocks
+
+## Description
+
+Use the Slider Switch block to change the value of the connected variable
+or parameter before or during simulation. When you use the Slider Switch block
+in the Customizable Blocks library, you can customize the appearance of the block to look like
+a real switch in your system. You can configure the switch with any number of states to
+customize the behavior. For example, you could design a three-way toggle switch or a gearbox.
+Use the Slider Switch block with other dashboard blocks to create an
+interactive dashboard for your model.
+
+A real slider switch has multiple settings. The Slider Switch block treats
+these settings as different states. A state pairs a state value with an image, a click area,
+and a state label that is displayed on the click area.
+
+To activate a state during simulation, click the click area of the state. To activate a
+state when the simulation is not running, click the Slider Switch block to
+select the block, and then click the click area of the state. When you activate the state, the
+state value is assigned to the Simulink® block diagram element to which the Slider Switch block
+connects.
+
+**Note**
+
+- Double-clicking a connected Slider Switch block during simulation or
+  after clicking the block does not open the Block Parameters dialog box. To open the
+  Block Parameters dialog box, press **Shift**, then double-click the
+  block.
+- Clicking a connected Slider Switch block during simulation both
+  selects the block and moves the switch. To select the block without moving the switch,
+  press **Shift**, then click the block.
+
+### Customize Slider Switch Blocks
+
+When you add a Slider Switch block to your model, the block is
+preconfigured with a default design. You can use the block with the default design or
+customize the appearance of the block.
+
+To customize the appearance of the block, use design mode.
+After selecting the block, you can enter design mode in one of three ways:
+
+- In the Simulink Toolstrip, on the block-specific tab, under
+  **Design**, click **Edit**.
+- In the Property Inspector, on the **Design** tab, click
+  **Edit**.
+- Pause on the ellipsis that appears over the block and click the Edit Custom Block
+  button .
+
+In design mode, you can use the toolbar above the block to customize the slider switch.
+To access additional customization options or to enter exact values for design settings, use
+the **Design** tab in the Property Inspector.
+
+Customizable Slider Switch block in design mode with the toolbar and the Design tab in the Property Inspector visible.
+
+When you customize a Slider Switch block, you configure the block
+appearance for each state. To select a state to customize, use the drop-down list in the
+toolbar. Alternatively, on the **Design** tab, select the
+**States** component, and then select from the **Select
+State** list. To add a state, in the toolbar, click the Add State button
+. To delete a state, click the Remove State button
+.
+
+**Design Mode Actions that Customize the Selected State**
+
+| Action | Available in Toolbar | Available in **Design** Tab |
+| --- | --- | --- |
+| Specify the state value. | No | Yes |
+| Specify the state label text and color. | No | Yes |
+| Add or remove states. | Yes | Yes |
+| Upload a state image that defines the appearance of the block in the state. | Yes | Yes |
+| Change the size of the state image and click area. | No | Yes |
+| Change the position the state label, state image, and click area. | No | Yes |
+
+In addition to customizing the block design using the toolbar and
+**Design** tab, you can also resize and reposition components
+interactively in the canvas. To resize a component specific to a state, such as the state
+image, select the state in the toolbar, and then resize or reposition the component.
+
+**Design Mode Actions that Apply to All States**
+
+| Action | Available in Toolbar | Available in **Design** Tab |
+| --- | --- | --- |
+| Upload a background image. | No | Yes |
+| Set a solid background color. | No | Yes |
+| Upload a foreground image. | No | Yes |
+
+When you finish editing the design, to exit design mode, click the
+**X** in the upper right of the canvas.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard
+block, use connect mode. To enter connect mode on an unconnected block, pause on the block
+you want to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a control block to a parameter in your model or to change the connection of a
+control block, enter connect mode. Select the block to whose parameter you want to connect.
+From the list that appears, select the parameter to which you want to connect. Then, pause
+on the dashboard block and click the Done Connecting button .
+
+The control block cannot connect to a parameter defined by a variable until you update the
+model diagram. To connect to a parameter defined by a variable or to modify the value of a
+variable that defines the value of a connected parameter when the simulation is not running,
+update the model diagram by pressing **Ctrl+D**.
+
+You can connect to a parameter with a scalar value or to an element of a matrix or structure.
+For more information, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+This animation shows how to connect the Slider Switch block to your
+model.
+
+An unconnected Slider Switch block connects to a Constant block.
+
+### Parameter Logging
+
+Tunable parameters connected to dashboard blocks are logged to the Simulation Data
+Inspector, where you can view the parameter values along with logged signal data. You can
+access logged parameter data in the MATLAB® workspace by exporting the parameter data from the Simulation Data Inspector
+by using the UI or the `Simulink.sdi.exportRun` function. For more information about exporting
+data using the Simulation Data Inspector UI, see Export Data to Workspace or File. The
+parameter data is stored in a `Simulink.SimulationData.Parameter` object, accessible as an element in the
+exported `Simulink.SimulationData.Dataset`.
 
 ## Parameters
 
@@ -461,10 +588,6 @@ Specify the height of the foreground image as a ratio of the block height.
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
 
-## Libraries
-
-Simulink / Dashboard / Customizable Blocks
-
 ## Block Characteristics
 
 |  |  |
@@ -644,130 +767,3 @@ your Android device as well as on your web browser.
 The blocks in the Customizable Blocks library have an option to add a foreground image
 as part of the design for a block. Starting in R2022a, you can rotate, resize, and
 reposition the foreground image within the block design.
-
-## Description
-
-Change parameter or variable value using switch with customizable appearance
-
-Use the Slider Switch block to change the value of the connected variable
-or parameter before or during simulation. When you use the Slider Switch block
-in the Customizable Blocks library, you can customize the appearance of the block to look like
-a real switch in your system. You can configure the switch with any number of states to
-customize the behavior. For example, you could design a three-way toggle switch or a gearbox.
-Use the Slider Switch block with other dashboard blocks to create an
-interactive dashboard for your model.
-
-A real slider switch has multiple settings. The Slider Switch block treats
-these settings as different states. A state pairs a state value with an image, a click area,
-and a state label that is displayed on the click area.
-
-To activate a state during simulation, click the click area of the state. To activate a
-state when the simulation is not running, click the Slider Switch block to
-select the block, and then click the click area of the state. When you activate the state, the
-state value is assigned to the Simulink® block diagram element to which the Slider Switch block
-connects.
-
-**Note**
-
-- Double-clicking a connected Slider Switch block during simulation or
-  after clicking the block does not open the Block Parameters dialog box. To open the
-  Block Parameters dialog box, press **Shift**, then double-click the
-  block.
-- Clicking a connected Slider Switch block during simulation both
-  selects the block and moves the switch. To select the block without moving the switch,
-  press **Shift**, then click the block.
-
-### Customize Slider Switch Blocks
-
-When you add a Slider Switch block to your model, the block is
-preconfigured with a default design. You can use the block with the default design or
-customize the appearance of the block.
-
-To customize the appearance of the block, use design mode.
-After selecting the block, you can enter design mode in one of three ways:
-
-- In the Simulink Toolstrip, on the block-specific tab, under
-  **Design**, click **Edit**.
-- In the Property Inspector, on the **Design** tab, click
-  **Edit**.
-- Pause on the ellipsis that appears over the block and click the Edit Custom Block
-  button .
-
-In design mode, you can use the toolbar above the block to customize the slider switch.
-To access additional customization options or to enter exact values for design settings, use
-the **Design** tab in the Property Inspector.
-
-Customizable Slider Switch block in design mode with the toolbar and the Design tab in the Property Inspector visible.
-
-When you customize a Slider Switch block, you configure the block
-appearance for each state. To select a state to customize, use the drop-down list in the
-toolbar. Alternatively, on the **Design** tab, select the
-**States** component, and then select from the **Select
-State** list. To add a state, in the toolbar, click the Add State button
-. To delete a state, click the Remove State button
-.
-
-**Design Mode Actions that Customize the Selected State**
-
-| Action | Available in Toolbar | Available in **Design** Tab |
-| --- | --- | --- |
-| Specify the state value. | No | Yes |
-| Specify the state label text and color. | No | Yes |
-| Add or remove states. | Yes | Yes |
-| Upload a state image that defines the appearance of the block in the state. | Yes | Yes |
-| Change the size of the state image and click area. | No | Yes |
-| Change the position the state label, state image, and click area. | No | Yes |
-
-In addition to customizing the block design using the toolbar and
-**Design** tab, you can also resize and reposition components
-interactively in the canvas. To resize a component specific to a state, such as the state
-image, select the state in the toolbar, and then resize or reposition the component.
-
-**Design Mode Actions that Apply to All States**
-
-| Action | Available in Toolbar | Available in **Design** Tab |
-| --- | --- | --- |
-| Upload a background image. | No | Yes |
-| Set a solid background color. | No | Yes |
-| Upload a foreground image. | No | Yes |
-
-When you finish editing the design, to exit design mode, click the
-**X** in the upper right of the canvas.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard
-block, use connect mode. To enter connect mode on an unconnected block, pause on the block
-you want to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a control block to a parameter in your model or to change the connection of a
-control block, enter connect mode. Select the block to whose parameter you want to connect.
-From the list that appears, select the parameter to which you want to connect. Then, pause
-on the dashboard block and click the Done Connecting button .
-
-The control block cannot connect to a parameter defined by a variable until you update the
-model diagram. To connect to a parameter defined by a variable or to modify the value of a
-variable that defines the value of a connected parameter when the simulation is not running,
-update the model diagram by pressing **Ctrl+D**.
-
-You can connect to a parameter with a scalar value or to an element of a matrix or structure.
-For more information, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-This animation shows how to connect the Slider Switch block to your
-model.
-
-An unconnected Slider Switch block connects to a Constant block.
-
-### Parameter Logging
-
-Tunable parameters connected to dashboard blocks are logged to the Simulation Data
-Inspector, where you can view the parameter values along with logged signal data. You can
-access logged parameter data in the MATLAB® workspace by exporting the parameter data from the Simulation Data Inspector
-by using the UI or the `Simulink.sdi.exportRun` function. For more information about exporting
-data using the Simulation Data Inspector UI, see Export Data to Workspace or File. The
-parameter data is stored in a `Simulink.SimulationData.Parameter` object, accessible as an element in the
-exported `Simulink.SimulationData.Dataset`.

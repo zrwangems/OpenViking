@@ -10,6 +10,36 @@ language: en
 
 # In Bus Element
 
+Select input from external port
+
+## Libraries
+
+Simulink / Ports & Subsystems Simulink / Sources HDL Coder / Ports & Subsystems HDL Coder / Sources
+
+## Description
+
+The In Bus Element block selects input from an external port that
+receives a bus, signal, or message.
+
+When the port receives a bus, the In Bus Element block combines the
+functionality of an Inport block and a Bus Selector block. To
+select multiple elements from the bus, use multiple In Bus Element blocks. All
+In Bus Element blocks that correspond with the same port share a dialog
+box.
+
+For interfaces that include buses composed of many bus elements, In Bus
+Element blocks:
+
+- Reduce signal line complexity and clutter in a block diagram.
+- Allow you to more easily make incremental changes to the interface.
+- Allow access to a bus element closer to the point of usage, avoiding the use of a
+  Bus Selector and Goto block configuration.
+
+To convert an interface to use In Bus Element blocks, see Simplify Subsystem and Model Interfaces with Bus Element Ports.
+
+The In Bus Element block does not support mixing message and signal
+elements as outputs.
+
 ## Ports
 
 ### Output
@@ -768,10 +798,6 @@ separating each name in the hierarchy with a dot.
 
 **Example:** `set_param("mymodel/InBus.message1",MessageQueueOverwriting="off")`
 
-## Libraries
-
-Simulink / Ports & Subsystems Simulink / Sources HDL Coder / Ports & Subsystems HDL Coder / Sources
-
 ## Block Characteristics
 
 |  |  |
@@ -893,29 +919,3 @@ Warning and error messages for In Bus Element and Out Bus
 Element blocks now link to the corresponding block in the block diagram,
 helping you quickly find the source of the warning or error. In previous releases,
 warning and error messages refer to a hidden block and do not provide a link.
-
-## Description
-
-Select input from external port
-
-The In Bus Element block selects input from an external port that
-receives a bus, signal, or message.
-
-When the port receives a bus, the In Bus Element block combines the
-functionality of an Inport block and a Bus Selector block. To
-select multiple elements from the bus, use multiple In Bus Element blocks. All
-In Bus Element blocks that correspond with the same port share a dialog
-box.
-
-For interfaces that include buses composed of many bus elements, In Bus
-Element blocks:
-
-- Reduce signal line complexity and clutter in a block diagram.
-- Allow you to more easily make incremental changes to the interface.
-- Allow access to a bus element closer to the point of usage, avoiding the use of a
-  Bus Selector and Goto block configuration.
-
-To convert an interface to use In Bus Element blocks, see Simplify Subsystem and Model Interfaces with Bus Element Ports.
-
-The In Bus Element block does not support mixing message and signal
-elements as outputs.

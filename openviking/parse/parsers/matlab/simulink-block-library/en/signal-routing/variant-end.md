@@ -10,6 +10,23 @@ language: en
 
 # Variant End
 
+Define end of bounded region
+
+## Libraries
+
+Simulink / Signal Routing
+
+## Description
+
+The Variant End block defines the end of the bounded region that allows
+you to limit variant condition propagation without introducing a level of hierarchy. Define
+the start of the bounded region by using the Variant Start block. For every
+Variant Start block, there is a single corresponding Variant
+End block. When you specify the variant conditions on the Variant
+Start block, the corresponding Variant End block inherits the
+conditions and other parameters based on the unique **Variant Start End
+Tag** on compile.
+
 ## Ports
 
 ### Input
@@ -72,10 +89,6 @@ highlighted.
 | **Values:** `'off'` | `'on'` |
 | **Default:** `'off'` |
 
-## Libraries
-
-Simulink / Signal Routing
-
 ## Block Characteristics
 
 |  |  |
@@ -95,16 +108,3 @@ Simulink / Signal Routing
 ## Version History
 
 **Introduced in R2024a**
-
-## Description
-
-Define end of bounded region
-
-The Variant End block defines the end of the bounded region that allows
-you to limit variant condition propagation without introducing a level of hierarchy. Define
-the start of the bounded region by using the Variant Start block. For every
-Variant Start block, there is a single corresponding Variant
-End block. When you specify the variant conditions on the Variant
-Start block, the corresponding Variant End block inherits the
-conditions and other parameters based on the unique **Variant Start End
-Tag** on compile.

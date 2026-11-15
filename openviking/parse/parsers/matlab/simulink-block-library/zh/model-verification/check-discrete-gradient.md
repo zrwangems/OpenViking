@@ -11,6 +11,22 @@ chinese_source: worker-translation
 
 # Check Discrete Gradient
 
+
+
+检查离散信号连续样本之间差值的绝对值是否小于指定值
+
+## 库
+
+Simulink / Model Verification HDL Coder / Model Verification
+
+## 描述
+
+Check Discrete Gradient 模块检查每个信号元素，并确定该元素在连续值之间差值的绝对值是否小于指定值。该模块随后在比较后执行断言。您可以通过调整 **最大梯度** 参数来指定梯度值（默认值为 `1`）。如果输入信号差值小于 **最大梯度** 的绝对值，则断言为 `true (1)`，并且该模块不执行任何操作。否则，该模块会停止仿真，并默认返回错误消息。
+
+**注意**
+
+要运行仿真，Check Discrete Gradient 模块需要固定步长离散求解器。如果选择了其他求解器，则会提示错误。
+
 ## 端口
 
 ### 输入
@@ -115,10 +131,6 @@ chinese_source: worker-translation
 | **值：** `"graphic"` | `"text"` |
 | **默认值：** `"graphic"` |
 
-## 所属库
-
-Simulink / Model Verification HDL Coder / Model Verification
-
 ## 模块特性
 
 |  |  |
@@ -160,13 +172,3 @@ HDL Coder™ 提供了会影响 HDL 实现和综合逻辑的附加配置选项�
 ## 版本历史
 
 **R2006a 之前引入**
-
-## 描述
-
-检查离散信号连续样本之间差值的绝对值是否小于指定值
-
-Check Discrete Gradient 模块检查每个信号元素，并确定该元素在连续值之间差值的绝对值是否小于指定值。该模块随后在比较后执行断言。您可以通过调整 **最大梯度** 参数来指定梯度值（默认值为 `1`）。如果输入信号差值小于 **最大梯度** 的绝对值，则断言为 `true (1)`，并且该模块不执行任何操作。否则，该模块会停止仿真，并默认返回错误消息。
-
-**注意**
-
-要运行仿真，Check Discrete Gradient 模块需要固定步长离散求解器。如果选择了其他求解器，则会提示错误。

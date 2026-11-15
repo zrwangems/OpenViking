@@ -10,6 +10,38 @@ language: en
 
 # Function Element
 
+Specify function to be called via exporting function port
+
+## Libraries
+
+Simulink / Ports & Subsystems
+
+## Description
+
+The Function Element block allows a Simulink® function in a referenced model to be called by a function caller in
+another referenced model. The Function Element block, when placed at the
+root level of a model referenced by a Model block, creates an exporting
+function port in the Model block. When the exporting function port is
+connected to an invoking function port of another Model block, a function
+caller in that other Model block can issue function calls and receive
+return values through the respective function ports of the Model
+blocks.
+
+Simulink canvas showing 2 referenced models with function ports and a line connecting them.
+
+Simulink canvas showing Function Element block and Simulink Function block.
+
+By using multiple Function Element blocks, multiple Simulink functions in a referenced model can be called through a single exporting
+function port. All Function Element blocks that use the same port share a
+dialog box. A model can have more than one exporting function port.
+
+A Function Element block must be placed at the root level of model
+designated as an export-function model. See Export-Function Models Overview.
+For each Function Element block, a port-scoped Simulink
+Function block should also be placed at the root level of the model,
+defining the function to be called through the Function Element
+block.
+
 ## Ports
 
 ### Input
@@ -164,10 +196,6 @@ and the port name.
 OutDataTypeStr="Bus:
 ServiceInterface")`
 
-## Libraries
-
-Simulink / Ports & Subsystems
-
 ## Block Characteristics
 
 |  |  |
@@ -230,31 +258,3 @@ These actions now consistently create a port:
 
 In previous releases, these actions create a port or add an element to a
 port.
-
-## Description
-
-Specify function to be called via exporting function port
-
-The Function Element block allows a Simulink® function in a referenced model to be called by a function caller in
-another referenced model. The Function Element block, when placed at the
-root level of a model referenced by a Model block, creates an exporting
-function port in the Model block. When the exporting function port is
-connected to an invoking function port of another Model block, a function
-caller in that other Model block can issue function calls and receive
-return values through the respective function ports of the Model
-blocks.
-
-Simulink canvas showing 2 referenced models with function ports and a line connecting them.
-
-Simulink canvas showing Function Element block and Simulink Function block.
-
-By using multiple Function Element blocks, multiple Simulink functions in a referenced model can be called through a single exporting
-function port. All Function Element blocks that use the same port share a
-dialog box. A model can have more than one exporting function port.
-
-A Function Element block must be placed at the root level of model
-designated as an export-function model. See Export-Function Models Overview.
-For each Function Element block, a port-scoped Simulink
-Function block should also be placed at the root level of the model,
-defining the function to be called through the Function Element
-block.

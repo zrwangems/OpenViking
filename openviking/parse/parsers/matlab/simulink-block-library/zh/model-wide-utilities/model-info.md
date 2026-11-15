@@ -11,9 +11,15 @@ chinese_source: official
 
 # Model Info
 
-## 端口
+显示模型属性和模型中的文本
 
-R2025b 官方文档未提供。
+## 所属库
+
+Simulink / Model-Wide Utilities HDL Coder / Model-Wide Utilities
+
+## 描述
+
+Model Info 模块在模块封装上显示模型属性和有关模型的文本。使用 Model Info 模块对话框可指定该模块显示的文本的内容和格式。您可以选择要在模块上显示的模型属性。在模块封装上显示的文本中，软件将属性名称替换为模型中该属性的当前值。
 
 ## 参数
 
@@ -41,10 +47,6 @@ R2025b 官方文档未提供。
 ### **显示模块边框** — 模块封装的边框 `on` (默认) | `off`
 
 指定是否显示模块边框，模块边框是模块封装周围的边框。
-
-## 所属库
-
-Simulink / Model-Wide Utilities HDL Coder / Model-Wide Utilities
 
 ## 模块特性
 
@@ -84,12 +86,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-显示模型属性和模型中的文本
-
-Model Info 模块在模块封装上显示模型属性和有关模型的文本。使用 Model Info 模块对话框可指定该模块显示的文本的内容和格式。您可以选择要在模块上显示的模型属性。在模块封装上显示的文本中，软件将属性名称替换为模型中该属性的当前值。

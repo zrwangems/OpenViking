@@ -10,6 +10,22 @@ language: en
 
 # Integer to Bit Converter
 
+Map vector of integers to vector of bits
+
+## Libraries
+
+Simulink / Logic and Bit Operations Communications Toolbox / Utility Blocks HDL Coder / Logic and Bit Operations
+
+## Description
+
+The Integer to Bit Converter block maps each integer (or fixed-point value)
+in the input vector to a group of bits in the output vector.
+
+This block is single-rate and single-channel. The block maps each integer value (or stored
+integer when you use a fixed point input) to a group of *M* bits, using the
+selection for the **Output bit order** to determine the most significant bit.
+The resulting output vector length is *M* times the input vector length.
+
 ## Ports
 
 ### Input
@@ -124,10 +140,6 @@ Specify the data type of the output bits. You can choose one of the following
 | **Values**: `'Inherit via internal rule'` | `'Smallest unsigned integer'` | `'Same as input'` | `'double'` | `'single'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'`| `'boolean'` |
 | **Default**: `'Inherit via internal rule'` |
 
-## Libraries
-
-Simulink / Logic and Bit Operations Communications Toolbox / Utility Blocks HDL Coder / Logic and Bit Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -201,15 +213,3 @@ generated model or validation model. See Generated Model and Validation Model (H
 ### R2022a: Integer to Bit Converter Block Added to Simulink Logic and Bit Operations Library
 
 The Integer to Bit Converter block has been added from the **Communications Toolbox** > **Utility Blocks** library to the **Simulink** > **Logic and Bit Operations** library. All existing models continue to work.
-
-## Description
-
-Map vector of integers to vector of bits
-
-The Integer to Bit Converter block maps each integer (or fixed-point value)
-in the input vector to a group of bits in the output vector.
-
-This block is single-rate and single-channel. The block maps each integer value (or stored
-integer when you use a fixed point input) to a group of *M* bits, using the
-selection for the **Output bit order** to determine the most significant bit.
-The resulting output vector length is *M* times the input vector length.

@@ -10,9 +10,44 @@ language: en
 
 # Display
 
-## Ports
+Display signal value during simulation
 
-Not documented in R2025b.
+## Libraries
+
+Simulink / Dashboard
+
+## Description
+
+The Display block connects to a signal in your model and displays its
+value during simulation. You can configure the appearance and format of the
+Display block to make intuitive sense for the value it displays. You
+can edit the parameters of the Display block during simulation. The
+Display block can display complex, vector, and 2-D matrix signals.
+Use the Display block with other dashboard blocks to build an interactive
+dashboard of controls and indicators for your model.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
+use connect mode. To enter connect mode on an unconnected block, pause on the block you want
+to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a display block to a signal in your model or change the connection of a display
+block, enter connect mode. Select the signal line to which you want to connect. From the
+list that appears, select the signal to which you want to connect. Then, pause on the
+dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
+connected block, run the simulation.
+
+For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+This animation shows how to connect the Display block to your
+model.
+
+An unconnected Display block connects to the signal that a Ramp block sends to a Terminator block.
 
 ## Parameters
 
@@ -245,10 +280,6 @@ as a `1`-by-`3`
 | **Type:** `[r g b]` vector |
 | **Default:** `[0.502 0.502 0.502]` |
 
-## Libraries
-
-Simulink / Dashboard
-
 ## Block Characteristics
 
 |  |  |
@@ -268,38 +299,3 @@ Dashboard blocks are ignored for code generation.
 ## Version History
 
 **Introduced in R2017b**
-
-## Description
-
-Display signal value during simulation
-
-The Display block connects to a signal in your model and displays its
-value during simulation. You can configure the appearance and format of the
-Display block to make intuitive sense for the value it displays. You
-can edit the parameters of the Display block during simulation. The
-Display block can display complex, vector, and 2-D matrix signals.
-Use the Display block with other dashboard blocks to build an interactive
-dashboard of controls and indicators for your model.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
-use connect mode. To enter connect mode on an unconnected block, pause on the block you want
-to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a display block to a signal in your model or change the connection of a display
-block, enter connect mode. Select the signal line to which you want to connect. From the
-list that appears, select the signal to which you want to connect. Then, pause on the
-dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
-connected block, run the simulation.
-
-For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-This animation shows how to connect the Display block to your
-model.
-
-An unconnected Display block connects to the signal that a Ramp block sends to a Terminator block.

@@ -11,6 +11,18 @@ chinese_source: worker-translation
 
 # IsHermitian
 
+
+
+检查矩阵是 Hermitian 还是 skew-Hermitian
+
+## 库
+
+Simulink / Matrix Operations
+
+## 说明
+
+IsHermitian 模块确定输入是 Hermitian 矩阵还是 skew-Hermitian 矩阵。
+
 ## 端口
 
 ### 输入
@@ -44,10 +56,6 @@ chinese_source: worker-translation
 | **值：** `'Hermitian'` | `'Skew-Hermitian'` |
 | **默认值：** `'Hermitian'` |
 
-## 所属库
-
-Simulink / Matrix Operations
-
 ## 模块特性
 
 |  |  |
@@ -68,9 +76,3 @@ Simulink / Matrix Operations
 ## 版本历史
 
 **在 R2022a 中引入**
-
-## 描述
-
-检查矩阵是 Hermitian 还是 skew-Hermitian
-
-IsHermitian 模块确定输入是 Hermitian 矩阵还是 skew-Hermitian 矩阵。

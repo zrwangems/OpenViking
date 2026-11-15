@@ -10,6 +10,31 @@ language: en
 
 # Uniform Random Number
 
+Generate uniformly distributed random numbers
+
+## Libraries
+
+Simulink / Sources
+
+## Description
+
+The Uniform Random Number block generates uniformly distributed random
+numbers over an interval that you specify. To generate normally distributed random
+numbers, use the Random Number block. Both blocks use the
+Normal (Gaussian) random number generator (`'v4'`: legacy MATLAB® 4.0 generator of the `rng` function).
+
+You can generate a repeatable sequence using any Uniform Random Number block
+with the same nonnegative seed and parameters. The seed resets to the specified value
+each time a simulation starts.
+
+Avoid integrating a random signal, because solvers must integrate relatively smooth signals.
+Instead, use the Band-Limited White Noise block.
+
+The numeric parameters of this block must have the same dimensions
+after scalar expansion. If you select the **Interpret vector parameters as 1-D** check box and the numeric parameters
+are row or column vectors after scalar expansion, the block outputs
+a 1-D signal. If you clear the **Interpret vector parameters as 1-D** check box, the block outputs a signal of the same dimensionality as the parameters.
+
 ## Ports
 
 ### Output
@@ -103,10 +128,6 @@ Select this check box to output a vector of length `N` if the
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
 
-## Libraries
-
-Simulink / Sources
-
 ## Block Characteristics
 
 |  |  |
@@ -124,24 +145,3 @@ Simulink / Sources
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Generate uniformly distributed random numbers
-
-The Uniform Random Number block generates uniformly distributed random
-numbers over an interval that you specify. To generate normally distributed random
-numbers, use the Random Number block. Both blocks use the
-Normal (Gaussian) random number generator (`'v4'`: legacy MATLAB® 4.0 generator of the `rng` function).
-
-You can generate a repeatable sequence using any Uniform Random Number block
-with the same nonnegative seed and parameters. The seed resets to the specified value
-each time a simulation starts.
-
-Avoid integrating a random signal, because solvers must integrate relatively smooth signals.
-Instead, use the Band-Limited White Noise block.
-
-The numeric parameters of this block must have the same dimensions
-after scalar expansion. If you select the **Interpret vector parameters as 1-D** check box and the numeric parameters
-are row or column vectors after scalar expansion, the block outputs
-a 1-D signal. If you clear the **Interpret vector parameters as 1-D** check box, the block outputs a signal of the same dimensionality as the parameters.

@@ -10,6 +10,68 @@ language: en
 
 # n-D Lookup Table
 
+Approximate n-dimensional function
+
+## Libraries
+
+Simulink / Lookup Tables HDL Coder / Lookup Tables
+
+## Description
+
+### Supported Block Operations
+
+The 1-D, 2-D, and n-D Lookup Table blocks evaluate a sampled representation of a function in N
+variables
+
+y=F(x1,x2,x3,...,xN)
+
+where the function *F* can be empirical. The block maps inputs to an output
+value by looking up or interpolating a table of values you define with block parameters. The
+block supports flat (constant), linear (linear point-slope), Lagrange (linear Lagrange),
+nearest, cubic-spline, and Akima spline interpolation methods. You can apply these methods to
+a table of any dimension from 1 through 30.
+
+In the following block, the first input identifies the first dimension (row) breakpoints, the second input identifies the second dimension (column) breakpoints, and so on.
+
+See Identify Port Location on Rotated or Flipped Block for a description of the port order for various block orientations.
+
+When the **Math and Data Types** > **Use algorithms optimized for row-major array layout** configuration parameter is set, the 2-D and n-D Lookup Table block behavior
+changes from column-major to row-major. For these blocks, the column-major and row-major
+algorithms may differ in the order of the output calculations, possibly resulting in slightly
+different numerical values. This capability requires a Simulink®
+Coder™ or Embedded Coder® license. For more information on row-major support, see Code Generation of Matrices and Arrays (Simulink Coder).
+
+### Specification of Breakpoint and Table Data
+
+These block parameters define the breakpoint and table data.
+
+| Block Parameter | Purpose |
+| --- | --- |
+| **Number of table dimensions** | Specifies the number of dimensions of your lookup table. |
+| **Breakpoints** | Specifies a breakpoint vector that corresponds to each dimension of your lookup table. |
+| **Table data** | Defines the associated set of output values. |
+
+**Tip**
+
+Evenly spaced breakpoints can make the generated code division-free. For more information, see `fixpt_evenspace_cleanup` and Identify questionable fixed-point operations (Embedded Coder).
+
+### How the Block Generates Output
+
+The n-D, 1-D and 2-D Lookup Table blocks generate output by looking up or estimating table
+values based on the input values.
+
+| Block Inputs | n-D Lookup Table Block Behavior |
+| --- | --- |
+| Match the values of indices in breakpoint vectors | Outputs the table value at the intersection of the row, column, and higher dimension breakpoints |
+| Do not match the values of indices in breakpoint vectors, but are within range | Interpolates appropriate table values, using the **Interpolation method** you select |
+| Do not match the values of indices in breakpoint vectors, and are out of range | Extrapolates the output value, using the **Extrapolation method** you select |
+
+### Other Blocks That Perform Equivalent Operations
+
+You can use the Interpolation Using Prelookup block with the Prelookup block to perform the equivalent operation of one n-D Lookup Table block. This combination of blocks offers greater flexibility that can result in more efficient simulation performance for linear interpolations.
+
+When the lookup operation is an array access that does not require interpolation, use the Direct Lookup Table (n-D) block. For example, if you have an integer value `k` and you want the `k`th element of a table, `y = table(k)`, interpolation is unnecessary.
+
 ## Ports
 
 ### Input
@@ -1306,10 +1368,6 @@ When you select this check box, saturation applies to every internal operation o
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
-## Libraries
-
-Simulink / Lookup Tables HDL Coder / Lookup Tables
-
 ## Block Characteristics
 
 |  |  |
@@ -1532,61 +1590,3 @@ tunable table size**. Due to this change:
   dimension** parameter. The block displays a warning on the
   block dialog box. Existing models continue to work. For more information,
   see Tunable size.
-
-## Description
-
-Approximate n-dimensional function
-
-### Supported Block Operations
-
-The 1-D, 2-D, and n-D Lookup Table blocks evaluate a sampled representation of a function in N
-variables
-
-y=F(x1,x2,x3,...,xN)
-
-where the function *F* can be empirical. The block maps inputs to an output
-value by looking up or interpolating a table of values you define with block parameters. The
-block supports flat (constant), linear (linear point-slope), Lagrange (linear Lagrange),
-nearest, cubic-spline, and Akima spline interpolation methods. You can apply these methods to
-a table of any dimension from 1 through 30.
-
-In the following block, the first input identifies the first dimension (row) breakpoints, the second input identifies the second dimension (column) breakpoints, and so on.
-
-See Identify Port Location on Rotated or Flipped Block for a description of the port order for various block orientations.
-
-When the **Math and Data Types** > **Use algorithms optimized for row-major array layout** configuration parameter is set, the 2-D and n-D Lookup Table block behavior
-changes from column-major to row-major. For these blocks, the column-major and row-major
-algorithms may differ in the order of the output calculations, possibly resulting in slightly
-different numerical values. This capability requires a Simulink®
-Coder™ or Embedded Coder® license. For more information on row-major support, see Code Generation of Matrices and Arrays (Simulink Coder).
-
-### Specification of Breakpoint and Table Data
-
-These block parameters define the breakpoint and table data.
-
-| Block Parameter | Purpose |
-| --- | --- |
-| **Number of table dimensions** | Specifies the number of dimensions of your lookup table. |
-| **Breakpoints** | Specifies a breakpoint vector that corresponds to each dimension of your lookup table. |
-| **Table data** | Defines the associated set of output values. |
-
-**Tip**
-
-Evenly spaced breakpoints can make the generated code division-free. For more information, see `fixpt_evenspace_cleanup` and Identify questionable fixed-point operations (Embedded Coder).
-
-### How the Block Generates Output
-
-The n-D, 1-D and 2-D Lookup Table blocks generate output by looking up or estimating table
-values based on the input values.
-
-| Block Inputs | n-D Lookup Table Block Behavior |
-| --- | --- |
-| Match the values of indices in breakpoint vectors | Outputs the table value at the intersection of the row, column, and higher dimension breakpoints |
-| Do not match the values of indices in breakpoint vectors, but are within range | Interpolates appropriate table values, using the **Interpolation method** you select |
-| Do not match the values of indices in breakpoint vectors, and are out of range | Extrapolates the output value, using the **Extrapolation method** you select |
-
-### Other Blocks That Perform Equivalent Operations
-
-You can use the Interpolation Using Prelookup block with the Prelookup block to perform the equivalent operation of one n-D Lookup Table block. This combination of blocks offers greater flexibility that can result in more efficient simulation performance for linear interpolations.
-
-When the lookup operation is an array access that does not require interpolation, use the Direct Lookup Table (n-D) block. For example, if you have an integer value `k` and you want the `k`th element of a table, `y = table(k)`, interpolation is unnecessary.

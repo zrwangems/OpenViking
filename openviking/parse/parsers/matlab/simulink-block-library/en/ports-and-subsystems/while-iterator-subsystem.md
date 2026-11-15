@@ -10,6 +10,39 @@ language: en
 
 # While Iterator Subsystem
 
+Repeat subsystem execution during simulation time step while logical expression is true
+
+## Libraries
+
+Simulink / Ports & Subsystems
+
+## Description
+
+The While Iterator Subsystem block is a Subsystem block preconfigured as a starting point for creating a subsystem
+that repeats execution during a simulation time step while a logical condition is
+`true`. Execution is controlled by a While Iterator block inside the
+subsystem. For an example, see `ex_while_iterator_block`.
+
+**Note**
+
+To break a loop and terminate the simulation manually before the simulation stop
+time of a model, press **Ctrl + C**.
+
+Use While Iterator Subsystem blocks to model:
+
+- Block diagram equivalent of a program `while` or
+  `do-while` loop.
+- An iterative algorithm that converges on a more accurate solution after
+  multiple iterations.
+
+When using simplified initialization mode, if you place a block that needs elapsed
+time (such as a Discrete-Time Integrator block) in a While
+Iterator Subsystem block, Simulink® displays an error.
+
+If the output signal from a While Iterator Subsystem block is a
+function-call signal, Simulink displays an error when you simulate the model or update the
+diagram.
+
 ## Ports
 
 ### Input
@@ -735,10 +768,6 @@ the `set_param` function.
 | **Parameter:** | `RTWMemSecDataParameters` |
 | **Values:** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
 
-## Libraries
-
-Simulink / Ports & Subsystems
-
 ## Block Characteristics
 
 |  |  |
@@ -781,32 +810,3 @@ did not pause the simulation and appeared as invalid in the block diagram.
 Port value labels at the same locations now display the iteration number. In previous releases, port value labels at these locations showed `inaccessible`.
 
 For an example, see Debug Simulation of Iterator Subsystem.
-
-## Description
-
-Repeat subsystem execution during simulation time step while logical expression is true
-
-The While Iterator Subsystem block is a Subsystem block preconfigured as a starting point for creating a subsystem
-that repeats execution during a simulation time step while a logical condition is
-`true`. Execution is controlled by a While Iterator block inside the
-subsystem. For an example, see `ex_while_iterator_block`.
-
-**Note**
-
-To break a loop and terminate the simulation manually before the simulation stop
-time of a model, press **Ctrl + C**.
-
-Use While Iterator Subsystem blocks to model:
-
-- Block diagram equivalent of a program `while` or
-  `do-while` loop.
-- An iterative algorithm that converges on a more accurate solution after
-  multiple iterations.
-
-When using simplified initialization mode, if you place a block that needs elapsed
-time (such as a Discrete-Time Integrator block) in a While
-Iterator Subsystem block, Simulink® displays an error.
-
-If the output signal from a While Iterator Subsystem block is a
-function-call signal, Simulink displays an error when you simulate the model or update the
-diagram.

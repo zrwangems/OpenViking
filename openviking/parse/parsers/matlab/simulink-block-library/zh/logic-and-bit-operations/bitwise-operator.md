@@ -11,6 +11,22 @@ chinese_source: official
 
 # Bitwise Operator
 
+对输入执行指定的按位运算
+
+## 所属库
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
+## 描述
+
+Bitwise Operator 模块执行您为一个或多个操作数指定的按位运算。与 Logical Operator 模块的逻辑运算不同的是，按位运算将操作数视为位向量，而不是单个值。
+
+### 对模块运算的限制
+
+Bitwise Operator 模块不支持移位运算。对于移位运算，请使用 Shift Arithmetic 模块。
+
+当配置为多输入 XOR 门时，此模块将按照 IEEE® 逻辑元素标准的规定执行模 2 加法。
+
 ## 端口
 
 ### 输入
@@ -140,10 +156,6 @@ chinese_source: official
 | **值**：`'Real World Value'` | `'Stored Integer'` |
 | **默认值**：`'Stored Integer'` |
 
-## 所属库
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
 ## 模块特性
 
 |  |  |
@@ -181,18 +193,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-对输入执行指定的按位运算
-
-Bitwise Operator 模块执行您为一个或多个操作数指定的按位运算。与 Logical Operator 模块的逻辑运算不同的是，按位运算将操作数视为位向量，而不是单个值。
-
-### 对模块运算的限制
-
-Bitwise Operator 模块不支持移位运算。对于移位运算，请使用 Shift Arithmetic 模块。
-
-当配置为多输入 XOR 门时，此模块将按照 IEEE® 逻辑元素标准的规定执行模 2 加法。

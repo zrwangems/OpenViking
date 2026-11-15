@@ -11,6 +11,103 @@ chinese_source: official
 
 # From Spreadsheet
 
+从电子表格读取数据
+
+## 所属库
+
+Simulink / Sources
+
+## 描述
+
+From Spreadsheet 模块可以从 Microsoft® Excel®（所有平台）或 CSV（仅限安装了 Microsoft Office 的 Microsoft Windows® 平台）电子表格读取数据并将数据输出为信号。From Spreadsheet 模块不支持 Microsoft Excel 电子表格图。
+
+From Spreadsheet 图标显示在模块的**文件名**和**工作表名称**参数中指定的电子表格文件名和工作表名称。
+
+### 存储格式
+
+From Spreadsheet 模块从电子表格中读取的数据必须已适当格式化。
+
+对于 Microsoft Excel 电子表格：
+
+- From Spreadsheet 模块将第一行解释为信号名称。如果您不指定信号名称，From Spreadsheet 模块将使用格式 `Signal #` 指定默认信号名称，其中 *`#`* 随着每个未命名信号的增加而递增。
+- From Spreadsheet 模块将第一列解释为时间。在此列中，时间值必须是单调递增的。
+- From Spreadsheet 模块将其余列解释为信号。
+
+以下示例显示了一个可接受格式的 Microsoft Excel 电子表格。第一列是 Time，第一行包含信号名称。每个工作表包含一个组。
+
+对于 CSV 文本文件（仅限安装了 Microsoft Office 的 Microsoft 平台）：
+
+- From Spreadsheet 模块将第一列解释为时间。在此列中，时间值必须是递增的。
+- From Spreadsheet 模块将其余列解释为信号。
+- 每个列必须具有相同的条目数。
+- From Spreadsheet 模块将每个文件解释为一个信号组。
+
+以下示例显示了一个可接受格式的 CSV 文件。内容表示一个信号组。
+
+```
+0,0,0,5,0
+1,0,1,5,0
+2,0,1,5,0
+3,0,1,5,0
+4,5,1,5,0
+5,5,1,5,0
+6,5,1,5,0
+7,0,1,5,0
+8,0,1,5,1
+9,0,1,5,1
+10,0,1,5,0
+```
+
+From Spreadsheet 模块不接受非有限数据的信号值，例如 `Nan`、`Inf` 或 `-Inf`。
+
+### 仿真过程中的模块行为
+
+From Spreadsheet 模块在仿真期间以增量方式从电子表格中读取数据。
+
+**采样时间**参数指定 From Spreadsheet 模块用来从电子表格中读取数据的采样时间。有关详细信息，请参阅参数。文件中的时间戳必须单调非递减。
+
+对于电子表格中不包含任何匹配时间戳的每个仿真时间点，Simulink® 软件都会使用所选方法进行内插或外插以获得所需数据。有关详细信息，请参阅没有对应电子表格时间戳的仿真时间点。
+
+### 没有对应电子表格时间戳的仿真时间点
+
+如果仿真时间点没有对应的电子表格时间戳，则 From Spreadsheet 模块输出将取决于：
+
+- 仿真时间点出现在第一个时间戳之前、时间戳范围内还是最后一个时间戳之后
+- 您选择的内插或外插方法
+- 电子表格数据的数据类型
+
+有关内插和外插选项的详细信息，请参阅下列参数描述：
+
+- 第一个数据点之前的数据外插
+- 时间范围内的数据插值
+- 末尾数据点后的数据外插
+
+有时，电子表格包含两个或多个具有相同时间戳的数据值。在这种情况下，From Spreadsheet 模块的操作取决于仿真时间点的出现时间（相对于电子表格中的重复时间戳）。
+
+例如，假设电子表格包含以下数据。三个数据值的时间戳值为 `2`。
+
+```
+time stamps:    0 1 2 2 2 3 4
+data values:    2 3 6 4 9 1 5
+```
+
+下表列出了 From Spreadsheet 模块输出。
+
+| 仿真时间（相对电子表格中的重复时间戳值） | From Spreadsheet 模块操作 |
+| --- | --- |
+| 在重复时间戳之前 | 执行与时间戳不同时相同的操作，使用第一个重复时间戳值作为插值的基础。（在此示例中，该时间戳值为 `6`。） |
+| 在重复时间戳当时或之后 | 执行与时间戳不同时相同的操作，使用最后一个重复时间戳值作为插值的基础。（在此示例中，该时间戳值为 `9`。） |
+
+### COM 的读取问题
+
+默认情况下，From Spreadsheet 模块使用 Windows 平台上的组件对象模型 (COM) 接口和其他平台上的 LibXL 库读取电子表格。如果 From Spreadsheet 模块在读取 Windows 上的电子表格时遇到问题，请使用 `set_param` 函数将 `'ReaderLibrary'` 设置为 `'LibXL'`。例如：
+
+```
+set_param(blockPath,‘ReaderLibrary’,‘LibXL’);
+```
+
+其中 *blockPath* 是模型模块路径。
+
 ## 端口
 
 ### 输出
@@ -420,10 +517,6 @@ Graph showing no zero crossing at the first point, zero crossing at each interna
 
 要启用此参数，请将**定标**设置为**斜率和偏置**。
 
-## 所属库
-
-Simulink / Sources
-
 ## 模块特性
 
 |  |  |
@@ -450,7 +543,7 @@ Simulink / Sources
 
 支持多达 32 位的定点数据类型。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2015b 中推出**
 
@@ -465,96 +558,3 @@ From Spreadsheet 现在支持使用**文件名**的相对和完整路径进行�
 ### R2022b: COM 的读取问题
 
 `'LibXL'` 是 `set_param` 函数的 `'ReaderLibrary'` 参数的新值。
-
-## 描述
-
-从电子表格读取数据
-
-From Spreadsheet 模块可以从 Microsoft® Excel®（所有平台）或 CSV（仅限安装了 Microsoft Office 的 Microsoft Windows® 平台）电子表格读取数据并将数据输出为信号。From Spreadsheet 模块不支持 Microsoft Excel 电子表格图。
-
-From Spreadsheet 图标显示在模块的**文件名**和**工作表名称**参数中指定的电子表格文件名和工作表名称。
-
-### 存储格式
-
-From Spreadsheet 模块从电子表格中读取的数据必须已适当格式化。
-
-对于 Microsoft Excel 电子表格：
-
-- From Spreadsheet 模块将第一行解释为信号名称。如果您不指定信号名称，From Spreadsheet 模块将使用格式 `Signal #` 指定默认信号名称，其中 *`#`* 随着每个未命名信号的增加而递增。
-- From Spreadsheet 模块将第一列解释为时间。在此列中，时间值必须是单调递增的。
-- From Spreadsheet 模块将其余列解释为信号。
-
-以下示例显示了一个可接受格式的 Microsoft Excel 电子表格。第一列是 Time，第一行包含信号名称。每个工作表包含一个组。
-
-对于 CSV 文本文件（仅限安装了 Microsoft Office 的 Microsoft 平台）：
-
-- From Spreadsheet 模块将第一列解释为时间。在此列中，时间值必须是递增的。
-- From Spreadsheet 模块将其余列解释为信号。
-- 每个列必须具有相同的条目数。
-- From Spreadsheet 模块将每个文件解释为一个信号组。
-
-以下示例显示了一个可接受格式的 CSV 文件。内容表示一个信号组。
-
-```
-0,0,0,5,0
-1,0,1,5,0
-2,0,1,5,0
-3,0,1,5,0
-4,5,1,5,0
-5,5,1,5,0
-6,5,1,5,0
-7,0,1,5,0
-8,0,1,5,1
-9,0,1,5,1
-10,0,1,5,0
-```
-
-From Spreadsheet 模块不接受非有限数据的信号值，例如 `Nan`、`Inf` 或 `-Inf`。
-
-### 仿真过程中的模块行为
-
-From Spreadsheet 模块在仿真期间以增量方式从电子表格中读取数据。
-
-**采样时间**参数指定 From Spreadsheet 模块用来从电子表格中读取数据的采样时间。有关详细信息，请参阅参数。文件中的时间戳必须单调非递减。
-
-对于电子表格中不包含任何匹配时间戳的每个仿真时间点，Simulink® 软件都会使用所选方法进行内插或外插以获得所需数据。有关详细信息，请参阅没有对应电子表格时间戳的仿真时间点。
-
-### 没有对应电子表格时间戳的仿真时间点
-
-如果仿真时间点没有对应的电子表格时间戳，则 From Spreadsheet 模块输出将取决于：
-
-- 仿真时间点出现在第一个时间戳之前、时间戳范围内还是最后一个时间戳之后
-- 您选择的内插或外插方法
-- 电子表格数据的数据类型
-
-有关内插和外插选项的详细信息，请参阅下列参数描述：
-
-- 第一个数据点之前的数据外插
-- 时间范围内的数据插值
-- 末尾数据点后的数据外插
-
-有时，电子表格包含两个或多个具有相同时间戳的数据值。在这种情况下，From Spreadsheet 模块的操作取决于仿真时间点的出现时间（相对于电子表格中的重复时间戳）。
-
-例如，假设电子表格包含以下数据。三个数据值的时间戳值为 `2`。
-
-```
-time stamps:    0 1 2 2 2 3 4
-data values:    2 3 6 4 9 1 5
-```
-
-下表列出了 From Spreadsheet 模块输出。
-
-| 仿真时间（相对电子表格中的重复时间戳值） | From Spreadsheet 模块操作 |
-| --- | --- |
-| 在重复时间戳之前 | 执行与时间戳不同时相同的操作，使用第一个重复时间戳值作为插值的基础。（在此示例中，该时间戳值为 `6`。） |
-| 在重复时间戳当时或之后 | 执行与时间戳不同时相同的操作，使用最后一个重复时间戳值作为插值的基础。（在此示例中，该时间戳值为 `9`。） |
-
-### COM 的读取问题
-
-默认情况下，From Spreadsheet 模块使用 Windows 平台上的组件对象模型 (COM) 接口和其他平台上的 LibXL 库读取电子表格。如果 From Spreadsheet 模块在读取 Windows 上的电子表格时遇到问题，请使用 `set_param` 函数将 `'ReaderLibrary'` 设置为 `'LibXL'`。例如：
-
-```
-set_param(blockPath,‘ReaderLibrary’,‘LibXL’);
-```
-
-其中 *blockPath* 是模型模块路径。

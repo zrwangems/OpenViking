@@ -10,6 +10,27 @@ language: en
 
 # MinMax Running Resettable
 
+Determine minimum or maximum of signal over time
+
+## Libraries
+
+Simulink / Math Operations
+
+## Description
+
+The MinMax Running Resettable block outputs the minimum or maximum of all
+past inputs `u`. You specify whether the block outputs the running
+minimum or maximum with the **Function** parameter.
+
+The block can reset its state based on an external reset signal `R`. When
+the reset signal `R` is nonzero (`true`), the block
+resets the output to the value of the **Initial condition**
+parameter.
+
+The input can be a scalar, vector, or matrix signal. The block outputs a signal having the
+same dimensions as the input. Each output element equals the running minimum or maximum
+of the corresponding input elements.
+
 ## Ports
 
 ### Input
@@ -83,10 +104,6 @@ output to the value you specify.
 | **Values:** scalar or vector |
 | **Default:** `'0.0'` |
 
-## Libraries
-
-Simulink / Math Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -108,20 +125,3 @@ Simulink / Math Operations
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Determine minimum or maximum of signal over time
-
-The MinMax Running Resettable block outputs the minimum or maximum of all
-past inputs `u`. You specify whether the block outputs the running
-minimum or maximum with the **Function** parameter.
-
-The block can reset its state based on an external reset signal `R`. When
-the reset signal `R` is nonzero (`true`), the block
-resets the output to the value of the **Initial condition**
-parameter.
-
-The input can be a scalar, vector, or matrix signal. The block outputs a signal having the
-same dimensions as the input. Each output element equals the running minimum or maximum
-of the corresponding input elements.

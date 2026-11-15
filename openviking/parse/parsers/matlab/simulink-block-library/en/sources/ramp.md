@@ -10,6 +10,20 @@ language: en
 
 # Ramp
 
+Generate constantly increasing or decreasing signal
+
+## Libraries
+
+Simulink / Sources
+
+## Description
+
+The Ramp block generates a signal that starts at a specified time and value
+and changes by a specified rate. The block's **Slope**, **Start
+time**, and **Initial output** parameters determine the
+characteristics of the output signal. All must have the same dimensions after scalar
+expansion.
+
 ## Ports
 
 ### Output
@@ -92,10 +106,6 @@ the **Slope**, **Start time**, or
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
 
-## Libraries
-
-Simulink / Sources
-
 ## Block Characteristics
 
 |  |  |
@@ -115,13 +125,3 @@ Not recommended for production code.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Generate constantly increasing or decreasing signal
-
-The Ramp block generates a signal that starts at a specified time and value
-and changes by a specified rate. The block's **Slope**, **Start
-time**, and **Initial output** parameters determine the
-characteristics of the output signal. All must have the same dimensions after scalar
-expansion.

@@ -10,6 +10,33 @@ language: en
 
 # Check Static Gap
 
+Check that gap exists in signal's range of amplitudes
+
+## Libraries
+
+Simulink / Model Verification HDL Coder / Model Verification
+
+## Description
+
+The Check Static Gap block checks that an input signal is less than (or
+optionally equal to) a static lower bound or greater than (or optionally equal to) a
+static upper bound at the current time step. The **Upper bound** and
+**Lower bound** parameters define the upper and lower bounds of the
+gap. The block then executes an assertion after comparison. If the signal falls outside
+of the gap, the assertion is `true (1)` and the block does nothing. If
+not, the block halts the simulation and returns an error message by default.
+
+The input signal and bounds can be scalars, vectors, or matrices. The input and the bounds
+must be the same data type. The block compares the value of the input to the bounds
+differently depending on the signal.
+
+- When comparing scalars to vectors or matrices, the block compares the
+  scalar to each element of the non-scalar input signal or bound.
+- When comparing vectors or matrix signals to other vectors or matrices, the
+  block compares the input signal and the bounds element-by-element.
+- For models with more than one vector or matrix as the input signal or
+  bounds, the vectors or matrices must have the same dimensions.
+
 ## Ports
 
 ### Input
@@ -174,10 +201,6 @@ the assertion condition.
 | **Values:** `"graphic"` | `"text"` |
 | **Default:** `"graphic"` |
 
-## Libraries
-
-Simulink / Model Verification HDL Coder / Model Verification
-
 ## Block Characteristics
 
 |  |  |
@@ -221,26 +244,3 @@ implementation and synthesized logic.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Check that gap exists in signal's range of amplitudes
-
-The Check Static Gap block checks that an input signal is less than (or
-optionally equal to) a static lower bound or greater than (or optionally equal to) a
-static upper bound at the current time step. The **Upper bound** and
-**Lower bound** parameters define the upper and lower bounds of the
-gap. The block then executes an assertion after comparison. If the signal falls outside
-of the gap, the assertion is `true (1)` and the block does nothing. If
-not, the block halts the simulation and returns an error message by default.
-
-The input signal and bounds can be scalars, vectors, or matrices. The input and the bounds
-must be the same data type. The block compares the value of the input to the bounds
-differently depending on the signal.
-
-- When comparing scalars to vectors or matrices, the block compares the
-  scalar to each element of the non-scalar input signal or bound.
-- When comparing vectors or matrix signals to other vectors or matrices, the
-  block compares the input signal and the bounds element-by-element.
-- For models with more than one vector or matrix as the input signal or
-  bounds, the vectors or matrices must have the same dimensions.

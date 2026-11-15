@@ -11,9 +11,74 @@ chinese_source: official
 
 # Dashboard Scope
 
-## 端口
+仿真期间跟踪示波器显示画面上的信号
 
-R2025b 官方文档未提供。
+## 所属库
+
+Simulink / Dashboard
+
+## 描述
+
+Dashboard Scope 模块在波形视图上绘制仿真过程中的连接信号。您可以将 Dashboard Scope 模块与其他 Dashboard 模块结合使用，为您的模型构建包含各种控件和指示器的交互式仪表板。连接到 Dashboard Scope 模块的信号记录到仿真数据检查器，以便在仿真期间或仿真后进行分析。Dashboard Scope 模块可以显示 Simulink® 支持的任何数据类型的信号，包括枚举数据类型，以及来自数组或总线的多达 8 个信号。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口来连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标在要连接的模块上暂停并点击连接按钮 。要在已连接的模块上进入连接模式，请选择该模块，在显示的省略号 (…) 上暂停，然后在展开的操作菜单中点击连接按钮。
+
+要将显示模块连接到模型中的信号或更改显示模块的连接，请进入连接模式。选择要连接的信号线。从出现的列表中，选择您要连接的信号。然后，请在 Dashboard 模块上悬停并点击完成连接按钮 。要查看 Dashboard 模块显示连接模块的值，请运行仿真。
+
+有关连接 Dashboard 模块的详细信息，请参阅Connect Dashboard Blocks to Simulink Model。
+
+您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画说明如何将 Dashboard Scope 模块连接到您的模型。
+
+An unconnected Dashboard Scope block connects three signals.
+
+### 分析信号数据
+
+您可以使用 Dashboard Scope 模块的子图菜单或上下文菜单来执行以下操作：
+
+- 显示或隐藏数据游标。
+- 按固定量缩小。
+- 配置鼠标交互，以进行平移和选择，或在时间轴方向、在 *y* 轴方向或同时在时间轴和 *y* 轴方向进行缩放。
+- 在时间轴方向、在 *y* 轴方向或同时在时间轴和 *y* 轴方向执行适应视图操作。
+
+**注意**
+
+要使用键盘快捷方式来分析数据，请在 Dashboard Scope 模块中选择一个信号或轴。
+
+要访问子图菜单，请选择 Dashboard Scope 模块，然后点击在绘图区域上暂停时出现的三个点。
+
+A selected Dashboard Scope block with two cursors displayed and the subplot menu visible.
+
+### 配置信号线的线型和颜色
+
+您可以使用“模块参数”对话框中的**连接**表或属性检查器来修改连接到 Dashboard Scope 模块的信号的颜色和线型。要修改连接信号的外观，请执行以下操作：
+
+1. 在**连接**表的**线型**列中点击信号外观的预览。
+
+   Line color and style selection menu for a signal connected to a Dashboard Scope block.
+2. 从标准调色板中选择一种颜色，或选择**自定义**选项卡，使用 `0` 和 `255` 之间的 `RGB` 值指定自定义颜色。
+3. 从**线型**列中的实线、点虚线、虚线和点线选项中选择线型。
+4. 点击**设置**。
+
+当您将连接到 Dashboard Scope 模块的信号标记为信号记录时，您也可以使用插桩属性对话框配置信号颜色和线型。在 Dashboard Scope 模块的信号颜色和线型菜单中，默认情况下**覆盖线型和颜色**选项处于选中状态，并指定您使用**连接**表为 Dashboard Scope 模块选择的信号外观选项是否覆盖在所连接信号的插桩属性中配置的信号外观选项。
+
+当您使用“模块参数”对话框将信号连接到 Dashboard Scope 模块时，连接表会显示您连接的每个信号的默认信号颜色和线型。当您选择要连接的信号时，**连接**表会更新未选择的信号的线型和颜色，以指示您连接的下一个信号的线型和颜色。
+
+Connection table for a Dashboard Scope block with several options of signals to connect and two signals selected.
+
+### 配置复信号格式
+
+将复信号连接到 Dashboard Scope 模块时，可以通过指定信号的**复信号格式**属性来配置信号的显示方式：
+
+1. 标记要进行信号记录的复信号。
+2. 右键点击复信号的记录标记，然后选择**属性**。
+3. 指定**复信号格式**。
+4. 点击**确定**。
+
+当您将**复信号格式**指定为**实部-虚部**或**幅值-相位**时，Dashboard Scope 模块将显示信号的两个分量。实部（即幅值）分量使用**连接**表中指示的颜色显示。虚部（即相位）分量是使用在**连接**表中所指示颜色的另一种深度显示。
 
 ## 参数
 
@@ -344,10 +409,6 @@ set_param(blockPath,'Colors',sigColors);
 | **模块参数**：`FontColor` |
 | **类型：**`[r g b]` 向量 |
 
-## 所属库
-
-Simulink / Dashboard
-
 ## 模块特性
 
 |  |  |
@@ -364,71 +425,6 @@ Simulink / Dashboard
 
 Dashboard 模块在代码生成中会被忽略。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2015a 中推出**
-
-## 描述
-
-仿真期间跟踪示波器显示画面上的信号
-
-Dashboard Scope 模块在波形视图上绘制仿真过程中的连接信号。您可以将 Dashboard Scope 模块与其他 Dashboard 模块结合使用，为您的模型构建包含各种控件和指示器的交互式仪表板。连接到 Dashboard Scope 模块的信号记录到仿真数据检查器，以便在仿真期间或仿真后进行分析。Dashboard Scope 模块可以显示 Simulink® 支持的任何数据类型的信号，包括枚举数据类型，以及来自数组或总线的多达 8 个信号。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口来连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标在要连接的模块上暂停并点击连接按钮 。要在已连接的模块上进入连接模式，请选择该模块，在显示的省略号 (…) 上暂停，然后在展开的操作菜单中点击连接按钮。
-
-要将显示模块连接到模型中的信号或更改显示模块的连接，请进入连接模式。选择要连接的信号线。从出现的列表中，选择您要连接的信号。然后，请在 Dashboard 模块上悬停并点击完成连接按钮 。要查看 Dashboard 模块显示连接模块的值，请运行仿真。
-
-有关连接 Dashboard 模块的详细信息，请参阅Connect Dashboard Blocks to Simulink Model。
-
-您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画说明如何将 Dashboard Scope 模块连接到您的模型。
-
-An unconnected Dashboard Scope block connects three signals.
-
-### 分析信号数据
-
-您可以使用 Dashboard Scope 模块的子图菜单或上下文菜单来执行以下操作：
-
-- 显示或隐藏数据游标。
-- 按固定量缩小。
-- 配置鼠标交互，以进行平移和选择，或在时间轴方向、在 *y* 轴方向或同时在时间轴和 *y* 轴方向进行缩放。
-- 在时间轴方向、在 *y* 轴方向或同时在时间轴和 *y* 轴方向执行适应视图操作。
-
-**注意**
-
-要使用键盘快捷方式来分析数据，请在 Dashboard Scope 模块中选择一个信号或轴。
-
-要访问子图菜单，请选择 Dashboard Scope 模块，然后点击在绘图区域上暂停时出现的三个点。
-
-A selected Dashboard Scope block with two cursors displayed and the subplot menu visible.
-
-### 配置信号线的线型和颜色
-
-您可以使用“模块参数”对话框中的**连接**表或属性检查器来修改连接到 Dashboard Scope 模块的信号的颜色和线型。要修改连接信号的外观，请执行以下操作：
-
-1. 在**连接**表的**线型**列中点击信号外观的预览。
-
-   Line color and style selection menu for a signal connected to a Dashboard Scope block.
-2. 从标准调色板中选择一种颜色，或选择**自定义**选项卡，使用 `0` 和 `255` 之间的 `RGB` 值指定自定义颜色。
-3. 从**线型**列中的实线、点虚线、虚线和点线选项中选择线型。
-4. 点击**设置**。
-
-当您将连接到 Dashboard Scope 模块的信号标记为信号记录时，您也可以使用插桩属性对话框配置信号颜色和线型。在 Dashboard Scope 模块的信号颜色和线型菜单中，默认情况下**覆盖线型和颜色**选项处于选中状态，并指定您使用**连接**表为 Dashboard Scope 模块选择的信号外观选项是否覆盖在所连接信号的插桩属性中配置的信号外观选项。
-
-当您使用“模块参数”对话框将信号连接到 Dashboard Scope 模块时，连接表会显示您连接的每个信号的默认信号颜色和线型。当您选择要连接的信号时，**连接**表会更新未选择的信号的线型和颜色，以指示您连接的下一个信号的线型和颜色。
-
-Connection table for a Dashboard Scope block with several options of signals to connect and two signals selected.
-
-### 配置复信号格式
-
-将复信号连接到 Dashboard Scope 模块时，可以通过指定信号的**复信号格式**属性来配置信号的显示方式：
-
-1. 标记要进行信号记录的复信号。
-2. 右键点击复信号的记录标记，然后选择**属性**。
-3. 指定**复信号格式**。
-4. 点击**确定**。
-
-当您将**复信号格式**指定为**实部-虚部**或**幅值-相位**时，Dashboard Scope 模块将显示信号的两个分量。实部（即幅值）分量使用**连接**表中指示的颜色显示。虚部（即相位）分量是使用在**连接**表中所指示颜色的另一种深度显示。

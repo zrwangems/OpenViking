@@ -11,13 +11,88 @@ chinese_source: worker-translation
 
 # Radio Button
 
-## 端口
 
-R2025b 官方文档未提供。
+
+使用具有可自定义外观的单选按钮在仿真期间更改参数或变量值
+
+## 库
+
+Simulink / Dashboard / Customizable Blocks
+
+## 说明
+
+使用 Radio Button 模块在仿真之前或仿真期间更改所连接参数或变量的值。当您在 Customizable Blocks 库中使用 Radio Button 模块时，您可以自定义模块外观，例如，使模块看起来像您正在设计的数字用户界面中的单选按钮。将 Radio Button 模块与其他 dashboard 模块一起使用，为您的模型构建由控件和指示器组成的交互式 dashboard。
+
+每个单选按钮选项对应 Radio Button 模块的一个状态。状态包含标签和值。状态标签是模块上标识选项的文本。当您选择某个选项时，Radio Button 模块进入关联状态，并将状态值赋给所连接的参数。要在仿真期间选择 Radio Button 模块上的某个选项，请单击要选择的选项的单选按钮图标或标签文本。要在仿真未运行时选择选项，请单击 Radio Button 模块以选择该模块，然后单击选项图标或文本。
+
+要自定义状态标签或值，请打开 Property Inspector 的 **Parameters** 选项卡或 Block Parameters 对话框。
+
+**注意**
+
+- 在仿真期间双击已连接的 Radio Button 模块，或在单击该模块后双击，不会打开 Block Parameters 对话框。要打开 Block Parameters 对话框，请按 **Shift**，然后双击该模块。
+- 在仿真期间单击已连接的 Radio Button 模块会同时选择该模块并选择一个单选按钮选项。要在不选择选项的情况下选择该模块，请按 **Shift**，然后单击该模块。
+
+### 自定义 Radio Button 模块
+
+当您将 Radio Button 模块添加到模型时，该模块已预配置为默认设计。您可以使用默认设计使用该模块，也可以自定义该模块的外观。
+
+要自定义模块外观，请使用设计模式。选择该模块后，可通过以下三种方式之一进入设计模式：
+
+- 在 Simulink® Toolstrip 中，在模块特定选项卡上的 **Design** 下，单击 **Edit**。
+- 在 Property Inspector 中，在 **Design** 选项卡上，单击 **Edit**。
+- 暂停在模块上方出现的省略号上，然后单击 Edit Custom Block 按钮。
+
+在设计模式中，您可以使用模块上方的工具栏自定义单选按钮。要访问其他自定义选项或输入设计设置的精确值，请使用 Property Inspector 中的 **Design** 选项卡。
+
+处于设计模式的可自定义 Radio Button 模块，其中工具栏和 Property Inspector 中的 Design 选项卡可见。
+
+**设计模式操作**
+
+| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
+| --- | --- | --- |
+| 更改每个选项赋给所连接参数的值。 | No | Yes |
+| 更改选项标签的文本。 | No | Yes |
+| 添加或删除选项。 | Yes | Yes |
+| 上传表示已选中单选按钮的图标。 | No | Yes |
+| 上传表示未选中单选按钮的图标。 | No | Yes |
+| 更改单选按钮图标位于标签的哪一侧。 | No | Yes |
+| 在选项列表周围添加边框，并在列表上方添加标题。 | No | Yes |
+| 更改选项列表的标题。 | No | Yes |
+| 更改边框粗细。 | No | Yes |
+| 更改边框和标题的颜色。 | No | Yes |
+| 上传背景图像。 | No | Yes |
+| 设置纯色背景颜色。 | No | Yes |
+| 上传前景图像。 | No | Yes |
+
+要更改选项标签的字体颜色，请选择 Radio Button 模块，然后在 Simulink Toolstrip 的 **Format** 选项卡上更改前景色。
+
+完成设计编辑后，要退出设计模式，请单击画布右上角的 **X**。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口连接到模型元素。要连接 dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后单击 Connect 按钮。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中单击 Connect 按钮。
+
+要将控制模块连接到模型中的参数，或更改控制模块的连接，请进入连接模式。选择要连接其参数的模块。从出现的列表中，选择要连接到的参数。然后，暂停在 dashboard 模块上，并单击 Done Connecting 按钮。
+
+在更新模型图之前，控制模块无法连接到由变量定义的参数。要连接到由变量定义的参数，或在仿真未运行时修改定义所连接参数值的变量值，请按 **Ctrl+D** 更新模型图。
+
+您可以连接到具有标量值的参数，也可以连接到矩阵或结构体的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
+
+您还可以将 dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画显示如何将 Radio Button 模块连接到您的模型。
+
+未连接的 Radio Button 模块连接到 Constant 模块。
+
+### 参数记录
+
+连接到 dashboard 模块的可调参数会记录到 Simulation Data Inspector，您可以在其中查看参数值以及记录的信号数据。您可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB® 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素访问。
 
 ## 参数
 
 使用 Property Inspector 和 Block Parameters 对话框指定模块参数的值。要设置 dashboard 模块的核心参数，请使用 Block Parameters 对话框或 Property Inspector 中的 **Parameters** 选项卡。要自定义模块，请使用 Property Inspector 中的 **Design** 选项卡。要打开模块的 Block Parameters 对话框，请双击该模块。要打开 Property Inspector，请在 **Modeling** 选项卡上的 **Design** 下，选择 **Property Inspector**。
+
+## 参数
 
 要设置 dashboard 模块的核心参数，请打开 Property Inspector，然后单击 **Parameters** 选项卡。
 
@@ -302,14 +377,6 @@ Dashboard 模块不使用端口连接到模型元素。要将 dashboard 模块�
 | **可变大小信号** | `no` |
 | **过零检测** | `no` |
 
-## 所属库
-
-Simulink / Dashboard / Customizable Blocks
-
-## 模块特性
-
-R2025b 官方文档未提供。
-
 ## 扩展功能
 
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
@@ -325,74 +392,3 @@ Dashboard 模块在代码生成时会被忽略。
 当来自 Dashboard 或 Customizable Blocks 库的 Simulink 模块处于*活动*状态时，您可以与该模块所代表的小工具交互。例如，您可以按下按钮或拨动开关。当模块处于非活动状态时，您只能与该模块交互。例如，您可以移动或调整模块大小。默认情况下，来自 Dashboard 和 Customizable Blocks 库的所有模块在仿真期间均处于活动状态。提升到 dashboard 面板的模块在面板于其自己的窗口中打开或停靠且未锁定时也处于活动状态。对于 Callback Button 模块，如果按下按钮触发的至少一个 callback 具有非空值，则该模块始终处于活动状态。要与非活动模块所代表的小工具交互，您可以通过单击模块临时激活该模块。当您取消选择该模块时，该模块会再次变为非活动状态。
 
 单击活动的 Callback Button 模块，或单击连接到参数或变量值的来自 Dashboard 或 Customizable Blocks 库的活动模块，会同时选择该模块并与该模块所代表的小工具交互。例如，单击未选择的活动的已连接 Push Button 模块会同时选择该模块并按下按钮。从 R2025a 开始，您可以通过按 **Shift** 然后单击模块来选择该模块而不与小工具交互。同样，您可以通过按 **Shift** 然后双击模块来打开 Block Parameters 对话框。
-
-## 描述
-
-使用具有可自定义外观的单选按钮在仿真期间更改参数或变量值
-
-使用 Radio Button 模块在仿真之前或仿真期间更改所连接参数或变量的值。当您在 Customizable Blocks 库中使用 Radio Button 模块时，您可以自定义模块外观，例如，使模块看起来像您正在设计的数字用户界面中的单选按钮。将 Radio Button 模块与其他 dashboard 模块一起使用，为您的模型构建由控件和指示器组成的交互式 dashboard。
-
-每个单选按钮选项对应 Radio Button 模块的一个状态。状态包含标签和值。状态标签是模块上标识选项的文本。当您选择某个选项时，Radio Button 模块进入关联状态，并将状态值赋给所连接的参数。要在仿真期间选择 Radio Button 模块上的某个选项，请单击要选择的选项的单选按钮图标或标签文本。要在仿真未运行时选择选项，请单击 Radio Button 模块以选择该模块，然后单击选项图标或文本。
-
-要自定义状态标签或值，请打开 Property Inspector 的 **Parameters** 选项卡或 Block Parameters 对话框。
-
-**注意**
-
-- 在仿真期间双击已连接的 Radio Button 模块，或在单击该模块后双击，不会打开 Block Parameters 对话框。要打开 Block Parameters 对话框，请按 **Shift**，然后双击该模块。
-- 在仿真期间单击已连接的 Radio Button 模块会同时选择该模块并选择一个单选按钮选项。要在不选择选项的情况下选择该模块，请按 **Shift**，然后单击该模块。
-
-### 自定义 Radio Button 模块
-
-当您将 Radio Button 模块添加到模型时，该模块已预配置为默认设计。您可以使用默认设计使用该模块，也可以自定义该模块的外观。
-
-要自定义模块外观，请使用设计模式。选择该模块后，可通过以下三种方式之一进入设计模式：
-
-- 在 Simulink® Toolstrip 中，在模块特定选项卡上的 **Design** 下，单击 **Edit**。
-- 在 Property Inspector 中，在 **Design** 选项卡上，单击 **Edit**。
-- 暂停在模块上方出现的省略号上，然后单击 Edit Custom Block 按钮。
-
-在设计模式中，您可以使用模块上方的工具栏自定义单选按钮。要访问其他自定义选项或输入设计设置的精确值，请使用 Property Inspector 中的 **Design** 选项卡。
-
-处于设计模式的可自定义 Radio Button 模块，其中工具栏和 Property Inspector 中的 Design 选项卡可见。
-
-**设计模式操作**
-
-| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
-| --- | --- | --- |
-| 更改每个选项赋给所连接参数的值。 | No | Yes |
-| 更改选项标签的文本。 | No | Yes |
-| 添加或删除选项。 | Yes | Yes |
-| 上传表示已选中单选按钮的图标。 | No | Yes |
-| 上传表示未选中单选按钮的图标。 | No | Yes |
-| 更改单选按钮图标位于标签的哪一侧。 | No | Yes |
-| 在选项列表周围添加边框，并在列表上方添加标题。 | No | Yes |
-| 更改选项列表的标题。 | No | Yes |
-| 更改边框粗细。 | No | Yes |
-| 更改边框和标题的颜色。 | No | Yes |
-| 上传背景图像。 | No | Yes |
-| 设置纯色背景颜色。 | No | Yes |
-| 上传前景图像。 | No | Yes |
-
-要更改选项标签的字体颜色，请选择 Radio Button 模块，然后在 Simulink Toolstrip 的 **Format** 选项卡上更改前景色。
-
-完成设计编辑后，要退出设计模式，请单击画布右上角的 **X**。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口连接到模型元素。要连接 dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后单击 Connect 按钮。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中单击 Connect 按钮。
-
-要将控制模块连接到模型中的参数，或更改控制模块的连接，请进入连接模式。选择要连接其参数的模块。从出现的列表中，选择要连接到的参数。然后，暂停在 dashboard 模块上，并单击 Done Connecting 按钮。
-
-在更新模型图之前，控制模块无法连接到由变量定义的参数。要连接到由变量定义的参数，或在仿真未运行时修改定义所连接参数值的变量值，请按 **Ctrl+D** 更新模型图。
-
-您可以连接到具有标量值的参数，也可以连接到矩阵或结构体的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
-
-您还可以将 dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画显示如何将 Radio Button 模块连接到您的模型。
-
-未连接的 Radio Button 模块连接到 Constant 模块。
-
-### 参数记录
-
-连接到 dashboard 模块的可调参数会记录到 Simulation Data Inspector，您可以在其中查看参数值以及记录的信号数据。您可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB® 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素访问。

@@ -11,6 +11,16 @@ chinese_source: official
 
 # IsSymmetric
 
+检查矩阵是否对称或斜对称
+
+## 所属库
+
+Simulink / Matrix Operations
+
+## 描述
+
+IsSymmetric 模块确定输入是对称矩阵还是斜对称矩阵。
+
 ## 端口
 
 ### 输入
@@ -43,10 +53,6 @@ chinese_source: official
 | **值：**`'Symmetric'` | `'Skew-Symmetric'` |
 | **默认值**：`'Symmetric'` |
 
-## 所属库
-
-Simulink / Matrix Operations
-
 ## 模块特性
 
 |  |  |
@@ -64,12 +70,6 @@ Simulink / Matrix Operations
 
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2021b 中推出**
-
-## 描述
-
-检查矩阵是否对称或斜对称
-
-IsSymmetric 模块确定输入是对称矩阵还是斜对称矩阵。

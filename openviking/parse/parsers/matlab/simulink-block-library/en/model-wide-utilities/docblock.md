@@ -10,9 +10,39 @@ language: en
 
 # DocBlock
 
-## Ports
+Create text that documents model and save text with model
 
-Not documented in R2025b.
+## Libraries
+
+Simulink / Model-Wide Utilities HDL Coder / Model-Wide Utilities
+
+## Description
+
+The DocBlock allows you to create and edit text that documents a model,
+and save that text with the model. Double-clicking an instance of the block creates a
+temporary file containing the text associated with this block and opens the file in an
+editor. Use the editor to modify the text and save the file. Simulink® software stores the contents of the saved file in the model file.
+
+The DocBlock supports HTML, Rich Text Format (RTF), and ASCII text
+document types. The default editors for these different document types are
+
+- HTML — Microsoft® Word (if available). Otherwise, the DocBlock opens
+  HTML documents using the editor specified on the **Editor/Debugger
+  Preferences** pane of the Preferences dialog box.
+- RTF — Microsoft Word (if available). Otherwise, the DocBlock opens
+  RTF documents using the editor specified on the **Editor/Debugger
+  Preferences** pane of the Preferences dialog box.
+- Text — The DocBlock opens text documents using the
+  editor specified on the **Editor/Debugger Preferences** pane of
+  the Preferences dialog box.
+
+Use the `docblock` command to change the
+default editors.
+
+**Tip**
+
+To edit the block parameters of the DocBlock, right-click the block
+icon and select **Mask > Mask Parameters...**.
 
 ## Parameters
 
@@ -62,10 +92,6 @@ code.
 | **Type:** character vector |
 | **Values:** `'Text'` | `'RTF'` | `'HTML'` |
 | **Default:** `'Text'` |
-
-## Libraries
-
-Simulink / Model-Wide Utilities HDL Coder / Model-Wide Utilities
 
 ## Block Characteristics
 
@@ -132,33 +158,3 @@ implementation and synthesized logic. See also Generate HDL Code with Annotation
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Create text that documents model and save text with model
-
-The DocBlock allows you to create and edit text that documents a model,
-and save that text with the model. Double-clicking an instance of the block creates a
-temporary file containing the text associated with this block and opens the file in an
-editor. Use the editor to modify the text and save the file. Simulink® software stores the contents of the saved file in the model file.
-
-The DocBlock supports HTML, Rich Text Format (RTF), and ASCII text
-document types. The default editors for these different document types are
-
-- HTML — Microsoft® Word (if available). Otherwise, the DocBlock opens
-  HTML documents using the editor specified on the **Editor/Debugger
-  Preferences** pane of the Preferences dialog box.
-- RTF — Microsoft Word (if available). Otherwise, the DocBlock opens
-  RTF documents using the editor specified on the **Editor/Debugger
-  Preferences** pane of the Preferences dialog box.
-- Text — The DocBlock opens text documents using the
-  editor specified on the **Editor/Debugger Preferences** pane of
-  the Preferences dialog box.
-
-Use the `docblock` command to change the
-default editors.
-
-**Tip**
-
-To edit the block parameters of the DocBlock, right-click the block
-icon and select **Mask > Mask Parameters...**.

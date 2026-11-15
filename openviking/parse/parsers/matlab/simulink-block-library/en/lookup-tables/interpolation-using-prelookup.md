@@ -10,6 +10,71 @@ language: en
 
 # Interpolation Using Prelookup
 
+Use precalculated index and fraction values to accelerate approximation of N-dimensional function
+
+## Libraries
+
+Simulink / Lookup Tables
+
+## Description
+
+The Interpolation Using Prelookup block is most efficient when used with the Prelookup block. The Prelookup block calculates the index and interval
+fraction that specify how its input value `u` relates to the breakpoint
+data set. Feed the resulting index and fraction values into an Interpolation Using
+Prelookup block to interpolate an *n*-dimensional table. These two
+blocks have distributed algorithms. When combined together, they perform the same
+operation as the integrated algorithm in the n-D Lookup Table block. However, the
+Prelookup and Interpolation Using Prelookup blocks offer greater flexibility that can
+provide more efficient simulation and code generation. For more information, see Efficiency of Performance.
+
+### Supported Block Operations
+
+To use the Interpolation Using Prelookup block, you specify a set of table data values
+directly on the dialog box or feed values into the **T** input
+port. Typically, these table values correspond to the breakpoint data sets specified
+in Prelookup blocks. The Interpolation Using Prelookup block generates output by
+looking up or estimating table values based on index and interval fraction values
+fed from Prelookup blocks. Labels for the index and interval fraction appear as
+`k` and `f` on the Interpolation Using
+Prelookup block icon.
+
+| When inputs for index and interval fraction... | The Interpolation Using Prelookup block... |
+| --- | --- |
+| Map to values in breakpoint data sets | Outputs the table value at the intersection of the row, column, and higher dimension breakpoints |
+| Do not map to values in breakpoint data sets, but are within range | Interpolates appropriate table values using the **Interpolation method** you select |
+| Do not map to values in breakpoint data sets, and are out of range | Extrapolates the output value using the **Extrapolation method** you select |
+
+### How The Block Interpolates a Subset of Table Data
+
+You can use the **Number of sub-table selection dimensions** parameter to
+specify that interpolation occur only on a subset of the table data. To activate
+this interpolation mode, set this parameter to a positive integer. This value
+defines the number of dimensions to select, starting from the highest dimension of
+table data for the default column-major algorithm. Therefore, the value must be less
+than or equal to the **Number of table dimensions**.
+
+For row-major algorithms, the interpolation starts from the first or lowest
+dimension of the table data.
+
+For nonzero values, the subtable selection behavior is optimized for row-major
+layout when you select the **Math and Data Types** > **Use algorithms optimized for row-major array layout** configuration parameter.
+
+Suppose that you have 3-D table data in your Interpolation Using Prelookup
+block. This behavior applies for the column-major algorithm.
+
+| Number of Selection Dimensions | Action by the Block | Block Appearance |
+| --- | --- | --- |
+| 0 | Interpolates the entire table and does not activate subtable selection | Does not change |
+| 1 | Interpolates the first two dimensions and selects the third dimension | Displays an input port with the label `s3` that you use to select and interpolate 2-D tables |
+| 2 | Interpolates the first dimension and selects the second and third dimensions | Displays two input ports with the labels `s2` and `s3` that you use to select and interpolate 1-D tables |
+
+Subtable selection uses zero-based indexing. For an example of interpolating a subset of
+table data, see Using the Prelookup and Interpolation Blocks.
+
+For 2-D or n-D interpolation without subtable selection, the column-major and
+row-major algorithms may differ in the order of output calculations, causing slight
+different numerical results.
+
 ## Ports
 
 ### Input
@@ -818,10 +883,6 @@ the `set_param` function.
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **Values:** | `'off'` (default) | `'on'` |
 
-## Libraries
-
-Simulink / Lookup Tables
-
 ## Block Characteristics
 
 |  |  |
@@ -875,64 +936,3 @@ a workaround. if you have a model from a release prior to R2025a and cannot migr
 to a later release, set the **Diagnostic for out-of-range input**
 parameter to `Error`. The next time you run the model, an
 error is generated when the index is out-of-range.
-
-## Description
-
-Use precalculated index and fraction values to accelerate approximation of N-dimensional function
-
-The Interpolation Using Prelookup block is most efficient when used with the Prelookup block. The Prelookup block calculates the index and interval
-fraction that specify how its input value `u` relates to the breakpoint
-data set. Feed the resulting index and fraction values into an Interpolation Using
-Prelookup block to interpolate an *n*-dimensional table. These two
-blocks have distributed algorithms. When combined together, they perform the same
-operation as the integrated algorithm in the n-D Lookup Table block. However, the
-Prelookup and Interpolation Using Prelookup blocks offer greater flexibility that can
-provide more efficient simulation and code generation. For more information, see Efficiency of Performance.
-
-### Supported Block Operations
-
-To use the Interpolation Using Prelookup block, you specify a set of table data values
-directly on the dialog box or feed values into the **T** input
-port. Typically, these table values correspond to the breakpoint data sets specified
-in Prelookup blocks. The Interpolation Using Prelookup block generates output by
-looking up or estimating table values based on index and interval fraction values
-fed from Prelookup blocks. Labels for the index and interval fraction appear as
-`k` and `f` on the Interpolation Using
-Prelookup block icon.
-
-| When inputs for index and interval fraction... | The Interpolation Using Prelookup block... |
-| --- | --- |
-| Map to values in breakpoint data sets | Outputs the table value at the intersection of the row, column, and higher dimension breakpoints |
-| Do not map to values in breakpoint data sets, but are within range | Interpolates appropriate table values using the **Interpolation method** you select |
-| Do not map to values in breakpoint data sets, and are out of range | Extrapolates the output value using the **Extrapolation method** you select |
-
-### How The Block Interpolates a Subset of Table Data
-
-You can use the **Number of sub-table selection dimensions** parameter to
-specify that interpolation occur only on a subset of the table data. To activate
-this interpolation mode, set this parameter to a positive integer. This value
-defines the number of dimensions to select, starting from the highest dimension of
-table data for the default column-major algorithm. Therefore, the value must be less
-than or equal to the **Number of table dimensions**.
-
-For row-major algorithms, the interpolation starts from the first or lowest
-dimension of the table data.
-
-For nonzero values, the subtable selection behavior is optimized for row-major
-layout when you select the **Math and Data Types** > **Use algorithms optimized for row-major array layout** configuration parameter.
-
-Suppose that you have 3-D table data in your Interpolation Using Prelookup
-block. This behavior applies for the column-major algorithm.
-
-| Number of Selection Dimensions | Action by the Block | Block Appearance |
-| --- | --- | --- |
-| 0 | Interpolates the entire table and does not activate subtable selection | Does not change |
-| 1 | Interpolates the first two dimensions and selects the third dimension | Displays an input port with the label `s3` that you use to select and interpolate 2-D tables |
-| 2 | Interpolates the first dimension and selects the second and third dimensions | Displays two input ports with the labels `s2` and `s3` that you use to select and interpolate 1-D tables |
-
-Subtable selection uses zero-based indexing. For an example of interpolating a subset of
-table data, see Using the Prelookup and Interpolation Blocks.
-
-For 2-D or n-D interpolation without subtable selection, the column-major and
-row-major algorithms may differ in the order of output calculations, causing slight
-different numerical results.

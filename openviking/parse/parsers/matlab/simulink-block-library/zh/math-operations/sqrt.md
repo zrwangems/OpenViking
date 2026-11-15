@@ -11,6 +11,24 @@ chinese_source: official
 
 # Sqrt
 
+计算平方根、带符号的平方根或平方根的倒数
+
+## 所属库
+
+Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
+
+## 描述
+
+Sqrt 模块计算输入信号的平方根、有符号平方根或平方根的倒数。从**函数**下拉列表中选择以下函数之一。
+
+| 函数 | 描述 | 数学表达式 | MATLAB® 等效函数 |
+| --- | --- | --- | --- |
+| `sqrt` | 输入信号的平方根 | `u0.5` | `sqrt` |
+| `signedSqrt` | 输入信号绝对值的平方根乘以输入信号的符号 | `sign(u)*|u|0.5` | — |
+| `rSqrt` | 输入信号的平方根的倒数 | `u-0.5` | — |
+
+模块图标将发生变化以匹配函数。
+
 ## 端口
 
 ### 输入
@@ -329,10 +347,6 @@ chinese_source: official
 | **参数:** | `SaturateOnIntegerOverflow` |
 | **值:** | `'on'` (默认) | `'off'` |
 
-## 所属库
-
-Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
-
 ## 模块特性
 
 |  |  |
@@ -466,20 +480,6 @@ Use SqrtFunction Architecture for Square Root Block (HDL Coder)
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2010a 中推出**
-
-## 描述
-
-计算平方根、带符号的平方根或平方根的倒数
-
-Sqrt 模块计算输入信号的平方根、有符号平方根或平方根的倒数。从**函数**下拉列表中选择以下函数之一。
-
-| 函数 | 描述 | 数学表达式 | MATLAB® 等效函数 |
-| --- | --- | --- | --- |
-| `sqrt` | 输入信号的平方根 | `u0.5` | `sqrt` |
-| `signedSqrt` | 输入信号绝对值的平方根乘以输入信号的符号 | `sign(u)*|u|0.5` | — |
-| `rSqrt` | 输入信号的平方根的倒数 | `u-0.5` | — |
-
-模块图标将发生变化以匹配函数。

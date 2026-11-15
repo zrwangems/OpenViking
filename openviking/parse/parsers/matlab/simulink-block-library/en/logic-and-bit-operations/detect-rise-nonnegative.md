@@ -10,6 +10,25 @@ language: en
 
 # Detect Rise Nonnegative
 
+Detect rising edge when signal value increases to nonnegative value, and its previous value was strictly negative
+
+## Libraries
+
+Simulink / Logic and Bit Operations
+
+## Description
+
+The Detect Rise Nonnegative block determining if the input is greater
+than or equal to zero, and its previous value was less than zero.
+
+- The output is true (equal to `1`) when the input signal is
+  greater than or equal to zero, and its previous value was less than zero.
+- The output is false (equal to `0`) when the input signal is
+  less than zero, or if the input signal is nonnegative, its previous value was
+  also nonnegative.
+
+This block supports only discrete sample times.
+
 ## Ports
 
 ### Input
@@ -96,10 +115,6 @@ Specify the output data type as `boolean` or
 | **Values:** `'boolean' | 'uint8'` |
 | **Default:** `'boolean'` |
 
-## Libraries
-
-Simulink / Logic and Bit Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -142,18 +157,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Detect rising edge when signal value increases to nonnegative value, and its previous value was strictly negative
-
-The Detect Rise Nonnegative block determining if the input is greater
-than or equal to zero, and its previous value was less than zero.
-
-- The output is true (equal to `1`) when the input signal is
-  greater than or equal to zero, and its previous value was less than zero.
-- The output is false (equal to `0`) when the input signal is
-  less than zero, or if the input signal is nonnegative, its previous value was
-  also nonnegative.
-
-This block supports only discrete sample times.

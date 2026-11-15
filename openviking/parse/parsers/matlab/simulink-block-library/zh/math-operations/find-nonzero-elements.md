@@ -11,6 +11,18 @@ chinese_source: official
 
 # Find Nonzero Elements
 
+查找数组中的非零元素
+
+## 所属库
+
+Simulink / Math Operations
+
+## 描述
+
+Find Nonzero Elements 模块找到输入信号的所有非零元素，并返回这些元素的线性索引。如果输入是多维信号，则 Find Nonzero Elements 模块还可以返回非零输入元素的下标。在这两种情况下，您都可以显示具有非零输入值的输出端口。
+
+Find Nonzero Elements 模块输出一个可变大小信号。任何可变大小信号的采样时间必须是离散的。如果模型尚未使用定步长求解器，则可能需要在“配置参数”对话框中选择定步长求解器。有关详细信息，请参阅比较求解器和选择求解器。
+
 ## 端口
 
 ### 输入
@@ -206,10 +218,6 @@ Find Nonzero Elements 模块将非零元素的索引输出为一个可变大小�
 
 要启用此参数，请将**模式**设置为 `Fixed point`。
 
-## 所属库
-
-Simulink / Math Operations
-
 ## 模块特性
 
 |  |  |
@@ -226,14 +234,6 @@ Simulink / Math Operations
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2010a 中推出**
-
-## 描述
-
-查找数组中的非零元素
-
-Find Nonzero Elements 模块找到输入信号的所有非零元素，并返回这些元素的线性索引。如果输入是多维信号，则 Find Nonzero Elements 模块还可以返回非零输入元素的下标。在这两种情况下，您都可以显示具有非零输入值的输出端口。
-
-Find Nonzero Elements 模块输出一个可变大小信号。任何可变大小信号的采样时间必须是离散的。如果模型尚未使用定步长求解器，则可能需要在“配置参数”对话框中选择定步长求解器。有关详细信息，请参阅比较求解器和选择求解器。

@@ -11,6 +11,26 @@ chinese_source: worker-translation
 
 # Function Element Call
 
+
+
+指定要经由调用函数端口发出的函数调用
+
+## 库
+
+Simulink / Ports & Subsystems
+
+## 说明
+
+Function Element Call 模块允许被引用模型中的 Function Caller 模块调用另一个被引用模型中的 Simulink® 函数。当 Function Element Call 模块放置在由 Model 模块引用的模型的根层级时，它会在 Model 模块中创建一个调用函数端口。当调用函数端口连接到另一个 Model 模块的导出函数端口时，该 Model 模块中的 Function Caller 模块可以向该另一个 Model 模块中的 Simulink 函数发出函数调用，并通过这些 Model 模块各自的函数端口接收返回值。
+
+Simulink 画布显示 2 个带有函数端口的被引用模型以及连接它们的线。
+
+Simulink 画布显示 Function Element Call 模块和 Function-Call Subsystem 模块，其中 Function Caller 模块位于该子系统内。
+
+通过使用多个 Function Element Call 模块，被引用模型中的多个 Function Caller 模块可以通过单个调用函数端口发出函数调用。所有使用同一端口的 Function Element Call 模块共享一个对话框。一个模型可以具有多个调用函数端口。
+
+Function Element Call 模块必须放置在指定为导出函数模型的模型的根层级。请参阅 Export-Function Models Overview。对于每个 Function Element Call 模块，还应在模型的根层级放置一个 Function-Call Subsystem 模块，并在该子系统内放置一个 Function Caller 模块，以指定要通过 Function Element Call 模块调用的函数。
+
 ## 端口
 
 ### 输出
@@ -123,10 +143,6 @@ chinese_source: worker-translation
 
 **示例：** `set_param("mymodel/client", OutDataTypeStr="Bus: ServiceInterface")`
 
-## 所属库
-
-Simulink / Ports & Subsystems
-
 ## 模块特性
 
 |  |  |
@@ -175,17 +191,3 @@ Simulink / Ports & Subsystems
 - 复制并粘贴 Function Element Call 模块。
 
 在以前的版本中，这些操作会创建端口、向端口添加元素或复制模块。
-
-## 描述
-
-指定要经由调用函数端口发出的函数调用
-
-Function Element Call 模块允许被引用模型中的 Function Caller 模块调用另一个被引用模型中的 Simulink® 函数。当 Function Element Call 模块放置在由 Model 模块引用的模型的根层级时，它会在 Model 模块中创建一个调用函数端口。当调用函数端口连接到另一个 Model 模块的导出函数端口时，该 Model 模块中的 Function Caller 模块可以向该另一个 Model 模块中的 Simulink 函数发出函数调用，并通过这些 Model 模块各自的函数端口接收返回值。
-
-Simulink 画布显示 2 个带有函数端口的被引用模型以及连接它们的线。
-
-Simulink 画布显示 Function Element Call 模块和 Function-Call Subsystem 模块，其中 Function Caller 模块位于该子系统内。
-
-通过使用多个 Function Element Call 模块，被引用模型中的多个 Function Caller 模块可以通过单个调用函数端口发出函数调用。所有使用同一端口的 Function Element Call 模块共享一个对话框。一个模型可以具有多个调用函数端口。
-
-Function Element Call 模块必须放置在指定为导出函数模型的模型的根层级。请参阅 Export-Function Models Overview。对于每个 Function Element Call 模块，还应在模型的根层级放置一个 Function-Call Subsystem 模块，并在该子系统内放置一个 Function Caller 模块，以指定要通过 Function Element Call 模块调用的函数。

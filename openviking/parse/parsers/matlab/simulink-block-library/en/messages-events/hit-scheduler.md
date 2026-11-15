@@ -10,6 +10,49 @@ language: en
 
 # Hit Scheduler
 
+Schedule major time steps for variable-step solver
+
+## Libraries
+
+Simulink / Messages & Events
+
+## Description
+
+Use the Hit Scheduler block to schedule major time steps for a
+variable-step solver during simulation. With the Hit Scheduler block, you can
+implement dynamic solver hit event scheduling based on the behavior of your model during
+simulation.
+
+To schedule a major time step, you provide the block two inputs:
+
+- **En** — The enable input controls when the block schedules a time
+  step. The block schedules a time step when the input is logical
+  `true`.
+- **Δt** — The time interval input specifies when the scheduled time
+  step occurs. The Hit Scheduler block calculates the time hit to schedule,
+  in seconds, as the sum of the current simulation time and the time interval
+  input.
+
+When the simulation reaches the scheduled time hit, the simulation takes a major time step
+and the block output updates. You can configure the block to produce either a signal output or
+a function-call output using the **Output type** parameter.
+
+You can use the Hit Scheduler block to schedule multiple future time steps.
+The block stores the future time steps in a queue you can configure using the
+**Initial buffer size** and **Use fixed buffer size**
+parameters.
+
+### Vector Signal Inputs and Outputs
+
+When you configure the block to produce a signal output, you can use a single block to
+schedule time hits based on multiple signals in the model by using vector inputs. Each
+element in the **En** input vector indicates when the block should schedule
+a time hit based on the same element in the **Δt** vector. The block output
+signal has the same dimensions as the input signals. When the simulation takes a scheduled
+step, the element in the output vector that corresponds to the input vector element that
+scheduled the time step changes from logical `false` to logical
+`true`.
+
 ## Ports
 
 ### Input
@@ -135,10 +178,6 @@ needed.
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'off'` |
 
-## Libraries
-
-Simulink / Messages & Events
-
 ## Block Characteristics
 
 |  |  |
@@ -149,49 +188,6 @@ Simulink / Messages & Events
 | **Variable-Size Signals** | `no` |
 | **Zero-Crossing Detection** | `no` |
 
-## Extended Capabilities
-
-Not documented in R2025b.
-
 ## Version History
 
 **Introduced in R2022b**
-
-## Description
-
-Schedule major time steps for variable-step solver
-
-Use the Hit Scheduler block to schedule major time steps for a
-variable-step solver during simulation. With the Hit Scheduler block, you can
-implement dynamic solver hit event scheduling based on the behavior of your model during
-simulation.
-
-To schedule a major time step, you provide the block two inputs:
-
-- **En** — The enable input controls when the block schedules a time
-  step. The block schedules a time step when the input is logical
-  `true`.
-- **Δt** — The time interval input specifies when the scheduled time
-  step occurs. The Hit Scheduler block calculates the time hit to schedule,
-  in seconds, as the sum of the current simulation time and the time interval
-  input.
-
-When the simulation reaches the scheduled time hit, the simulation takes a major time step
-and the block output updates. You can configure the block to produce either a signal output or
-a function-call output using the **Output type** parameter.
-
-You can use the Hit Scheduler block to schedule multiple future time steps.
-The block stores the future time steps in a queue you can configure using the
-**Initial buffer size** and **Use fixed buffer size**
-parameters.
-
-### Vector Signal Inputs and Outputs
-
-When you configure the block to produce a signal output, you can use a single block to
-schedule time hits based on multiple signals in the model by using vector inputs. Each
-element in the **En** input vector indicates when the block should schedule
-a time hit based on the same element in the **Δt** vector. The block output
-signal has the same dimensions as the input signals. When the simulation takes a scheduled
-step, the element in the output vector that corresponds to the input vector element that
-scheduled the time step changes from logical `false` to logical
-`true`.

@@ -11,6 +11,45 @@ chinese_source: worker-translation
 
 # Trigger-Based Linearization
 
+
+
+触发时在基础工作区中生成线性模型
+
+## 库
+
+Simulink / Model-Wide Utilities
+
+## 说明
+
+当被触发时，此模块会调用 `linmod` 或 `dlinmod`，在当前工作点为系统创建线性模型。不执行配平。线性模型以结构体形式存储在基础工作区中，同时存储拍摄快照时所在工作点的信息。多个快照会追加，形成一个结构体数组。
+
+**注意**
+
+`linmod` 和 `dlinmod` 仅提供基本的线性化功能。要使用完整的线性化功能，请使用 Simulink® Control Design™ 软件。有关详细信息，请参阅 Choose Linearization Tools (Simulink Control Design)。
+
+该模块将以下模型参数设置为指定值：
+
+- `BufferReuse = 'off'`
+- `BlockReductionOpt = 'off'`
+
+用于保存快照的结构体名称是模型名称追加 `_Trigger_Based_Linearization`，例如 `vdp_Trigger_Based_Linearization`。该结构体包含以下字段：
+
+| 字段 | 说明 |
+| --- | --- |
+| `a` | 线性化的 A 矩阵 |
+| `b` | 线性化的 B 矩阵 |
+| `c` | 线性化的 C 矩阵 |
+| `d` | 线性化的 D 矩阵 |
+| `StateName` | 模型状态名称 |
+| `OutputName` | 模型输出端口名称 |
+| `InputName` | 模型输入端口名称 |
+| `OperPoint` | 指定线性化工作点的结构体。该结构体指定工作点时间 (`OperPoint.t`) 处模型状态 (`OperPoint.x`) 和输入 (`OperPoint.u`) 的值。 |
+| `Ts` | 离散线性化的采样时间 |
+
+**提示**
+
+使用 Timed-Based Linearization 模块在预定时间生成线性模型。
+
 ## 端口
 
 ### 输入
@@ -54,10 +93,6 @@ chinese_source: worker-translation
 | **值：** scalar | vector |
 | **默认值：** `'0'` |
 
-## 所属库
-
-Simulink / Model-Wide Utilities
-
 ## 模块特性
 
 |  |  |
@@ -75,36 +110,3 @@ Simulink / Model-Wide Utilities
 ## 版本历史
 
 **在 R2006a 之前引入**
-
-## 描述
-
-触发时在基础工作区中生成线性模型
-
-当被触发时，此模块会调用 `linmod` 或 `dlinmod`，在当前工作点为系统创建线性模型。不执行配平。线性模型以结构体形式存储在基础工作区中，同时存储拍摄快照时所在工作点的信息。多个快照会追加，形成一个结构体数组。
-
-**注意**
-
-`linmod` 和 `dlinmod` 仅提供基本的线性化功能。要使用完整的线性化功能，请使用 Simulink® Control Design™ 软件。有关详细信息，请参阅 Choose Linearization Tools (Simulink Control Design)。
-
-该模块将以下模型参数设置为指定值：
-
-- `BufferReuse = 'off'`
-- `BlockReductionOpt = 'off'`
-
-用于保存快照的结构体名称是模型名称追加 `_Trigger_Based_Linearization`，例如 `vdp_Trigger_Based_Linearization`。该结构体包含以下字段：
-
-| 字段 | 说明 |
-| --- | --- |
-| `a` | 线性化的 A 矩阵 |
-| `b` | 线性化的 B 矩阵 |
-| `c` | 线性化的 C 矩阵 |
-| `d` | 线性化的 D 矩阵 |
-| `StateName` | 模型状态名称 |
-| `OutputName` | 模型输出端口名称 |
-| `InputName` | 模型输入端口名称 |
-| `OperPoint` | 指定线性化工作点的结构体。该结构体指定工作点时间 (`OperPoint.t`) 处模型状态 (`OperPoint.x`) 和输入 (`OperPoint.u`) 的值。 |
-| `Ts` | 离散线性化的采样时间 |
-
-**提示**
-
-使用 Timed-Based Linearization 模块在预定时间生成线性模型。

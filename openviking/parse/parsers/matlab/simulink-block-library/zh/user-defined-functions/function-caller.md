@@ -11,6 +11,34 @@ chinese_source: official
 
 # Function Caller
 
+调用 Simulink 函数
+
+## 所属库
+
+Simulink / User-Defined Functions
+
+## 描述
+
+Function Caller 模块调用并执行 Simulink® 函数。Simulink 函数指定函数原型，其中包括函数名称以及输入和输出参量。例如，当 Function Caller 模块调用原型为 `y = f(u)` 的函数时，Function Caller 模块的输入是 Simulink 函数的输入参量 `u`，而 Simulink 函数的输出参量 `y` 是 Function Caller 模块的输出。
+
+在此示例中，Function Caller 模块配置为调用和执行在 Simulink Function 模块中定义的 Simulink 函数 `y = timestwo(x)`。为了测试函数调用，Sine Wave 模块连接到输入端口 `x` 以提供输入数据，Scope 模块连接到输出端口 `y` 以查看输出结果。
+
+A Sine Wave block is the input to the Function Caller block which sends output to a Scope block.
+
+您可以调用通过以下方式定义的 Simulink 函数：Simulink Function 模块、作为导出函数的 Stateflow® Chart (Stateflow)，或 S-Function 模块。有关定义 Simulink 函数的详细信息，请参阅在模型中定义 Simulink 函数。
+
+有关详细信息，请参阅 Simulink Functions Overview。
+
+**提示**
+
+您可以使用 Function Caller 模块来调用模型层次结构之外的函数。
+
+有关详细信息，请参阅Simulink Function Blocks in Referenced Models。
+
+### 使用 Simulink Function 和 Function Caller 模块的代码生成
+
+如果您有 Simulink Coder™ 或 Embedded Coder®，您可以从包含 Simulink 函数的模型中生成代码。有关详细信息，请参阅 Simulink Function Blocks and Code Generation (Embedded Coder)和Configure Entry-Point Function Interfaces for Simulink Function and Function Caller Blocks (Embedded Coder)。
+
 ## 端口
 
 ### 输入
@@ -155,10 +183,6 @@ chinese_source: official
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
 
-## 所属库
-
-Simulink / User-Defined Functions
-
 ## 模块特性
 
 |  |  |
@@ -180,7 +204,7 @@ Simulink / User-Defined Functions
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2014b 中推出**
 
@@ -200,27 +224,3 @@ Simulink / User-Defined Functions
 ### R2022b: 指定异步函数执行
 
 从 R2022b 开始，您可以通过在 Simulink Function 模块内的 Trigger 模块中和 Function Caller 模块中选择新的**异步执行函数调用**参数，指定要异步执行的 Simulink 函数。
-
-## 描述
-
-调用 Simulink 函数
-
-Function Caller 模块调用并执行 Simulink® 函数。Simulink 函数指定函数原型，其中包括函数名称以及输入和输出参量。例如，当 Function Caller 模块调用原型为 `y = f(u)` 的函数时，Function Caller 模块的输入是 Simulink 函数的输入参量 `u`，而 Simulink 函数的输出参量 `y` 是 Function Caller 模块的输出。
-
-在此示例中，Function Caller 模块配置为调用和执行在 Simulink Function 模块中定义的 Simulink 函数 `y = timestwo(x)`。为了测试函数调用，Sine Wave 模块连接到输入端口 `x` 以提供输入数据，Scope 模块连接到输出端口 `y` 以查看输出结果。
-
-A Sine Wave block is the input to the Function Caller block which sends output to a Scope block.
-
-您可以调用通过以下方式定义的 Simulink 函数：Simulink Function 模块、作为导出函数的 Stateflow® Chart (Stateflow)，或 S-Function 模块。有关定义 Simulink 函数的详细信息，请参阅在模型中定义 Simulink 函数。
-
-有关详细信息，请参阅 Simulink Functions Overview。
-
-**提示**
-
-您可以使用 Function Caller 模块来调用模型层次结构之外的函数。
-
-有关详细信息，请参阅Simulink Function Blocks in Referenced Models。
-
-### 使用 Simulink Function 和 Function Caller 模块的代码生成
-
-如果您有 Simulink Coder™ 或 Embedded Coder®，您可以从包含 Simulink 函数的模型中生成代码。有关详细信息，请参阅 Simulink Function Blocks and Code Generation (Embedded Coder)和Configure Entry-Point Function Interfaces for Simulink Function and Function Caller Blocks (Embedded Coder)。

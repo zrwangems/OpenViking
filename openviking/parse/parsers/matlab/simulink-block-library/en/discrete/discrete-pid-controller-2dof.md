@@ -10,6 +10,65 @@ language: en
 
 # Discrete PID Controller (2DOF)
 
+Discrete-time or continuous-time two-degree-of-freedom PID controller
+
+## Libraries
+
+Simulink / Discrete
+
+## Description
+
+The Discrete PID Controller (2DOF) block implements a
+two-degree-of-freedom PID controller (PID, PI, or PD). The block is identical to the
+PID Controller
+(2DOF) block with the **Time domain** parameter set to
+`Discrete-time`.
+
+The block generates an output signal based on the difference between a reference
+signal and a measured system output. The block computes a weighted difference signal for
+the proportional and derivative actions according to the setpoint weights
+(**b** and **c**) that you specify. The block
+output is the sum of the proportional, integral, and derivative actions on the
+respective difference signals, where each action is weighted according to the gain
+parameters **P**, **I**, and **D**. A
+first-order pole filters the derivative action.
+
+The block supports several controller types and structures. Configurable options in
+the block include:
+
+- Controller type (PID, PI, or PD) — See the **Controller**
+  parameter.
+- Controller form (Parallel or Ideal) — See the **Form**
+  parameter.
+- Time domain (discrete or continuous) — See the **Time
+  domain** parameter.
+- Initial conditions and reset trigger — See the **Source** and
+  **External reset** parameters.
+- Output saturation limits and built-in anti-windup mechanism — See the
+  **Limit output** parameter.
+- Signal tracking for bumpless control transfer and multiloop control — See the
+  **Enable tracking mode** parameter.
+
+As you change these options, the internal structure of the block changes by activating
+different variant subsystems. (See Implement Variations in Separate Hierarchy Using Variant Subsystems.) To examine the internal structure of the block and its variant subsystems,
+right-click the block and select **Mask** > **Look Under Mask**.
+
+### Control Configuration
+
+In one common implementation, the PID Controller block operates in
+the feedforward path of a feedback loop.
+
+For a single-input block that accepts an error signal (a difference between a
+setpoint and a system output), see Discrete PID
+Controller.
+
+### PID Gain Tuning
+
+The PID controller coefficients and the setpoint weights are tunable either
+manually or automatically. Automatic tuning requires Simulink®
+Control Design™ software. For more information about automatic tuning, see the
+**Select tuning method** parameter.
+
 ## Ports
 
 ### Input
@@ -1637,10 +1696,6 @@ To enable this parameter for the discrete-time integrator or filter state:
 | **Values:** `"off"`, `"on"` |
 | **Default:** `"off"` |
 
-## Libraries
-
-Simulink / Discrete
-
 ## Block Characteristics
 
 |  |  |
@@ -1739,58 +1794,3 @@ PID Controller (2DOF) and Discrete PID Controller
 Controller (2DOF)'`.
 
 This change does not affect any other functionality or workflows. You can still use the previous path with the `set_param` function.
-
-## Description
-
-Discrete-time or continuous-time two-degree-of-freedom PID controller
-
-The Discrete PID Controller (2DOF) block implements a
-two-degree-of-freedom PID controller (PID, PI, or PD). The block is identical to the
-PID Controller
-(2DOF) block with the **Time domain** parameter set to
-`Discrete-time`.
-
-The block generates an output signal based on the difference between a reference
-signal and a measured system output. The block computes a weighted difference signal for
-the proportional and derivative actions according to the setpoint weights
-(**b** and **c**) that you specify. The block
-output is the sum of the proportional, integral, and derivative actions on the
-respective difference signals, where each action is weighted according to the gain
-parameters **P**, **I**, and **D**. A
-first-order pole filters the derivative action.
-
-The block supports several controller types and structures. Configurable options in
-the block include:
-
-- Controller type (PID, PI, or PD) — See the **Controller**
-  parameter.
-- Controller form (Parallel or Ideal) — See the **Form**
-  parameter.
-- Time domain (discrete or continuous) — See the **Time
-  domain** parameter.
-- Initial conditions and reset trigger — See the **Source** and
-  **External reset** parameters.
-- Output saturation limits and built-in anti-windup mechanism — See the
-  **Limit output** parameter.
-- Signal tracking for bumpless control transfer and multiloop control — See the
-  **Enable tracking mode** parameter.
-
-As you change these options, the internal structure of the block changes by activating
-different variant subsystems. (See Implement Variations in Separate Hierarchy Using Variant Subsystems.) To examine the internal structure of the block and its variant subsystems,
-right-click the block and select **Mask** > **Look Under Mask**.
-
-### Control Configuration
-
-In one common implementation, the PID Controller block operates in
-the feedforward path of a feedback loop.
-
-For a single-input block that accepts an error signal (a difference between a
-setpoint and a system output), see Discrete PID
-Controller.
-
-### PID Gain Tuning
-
-The PID controller coefficients and the setpoint weights are tunable either
-manually or automatically. Automatic tuning requires Simulink®
-Control Design™ software. For more information about automatic tuning, see the
-**Select tuning method** parameter.

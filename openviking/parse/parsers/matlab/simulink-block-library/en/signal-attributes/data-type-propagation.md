@@ -10,6 +10,89 @@ language: en
 
 # Data Type Propagation
 
+Set data type and scaling of propagated signal based on information from reference signals
+
+## Libraries
+
+Simulink / Signal Attributes HDL Coder / Signal Attributes
+
+## Description
+
+The Data Type Propagation block allows you to control the data type and
+scaling of signals in your model. You can use this block along with fixed-point blocks
+that have their **Output data type** parameter configured to
+`Inherit: Inherit via back propagation`.
+
+The block has three inputs: **Ref1** and **Ref2** are the
+reference inputs, while the **Prop** input back-propagates the data
+type and scaling information gathered from the reference inputs. This information is
+then passed on to other fixed-point blocks.
+
+The block provides many choices for propagating data type and scaling information. For
+example, you can use:
+
+- The number of bits from the **Ref1** reference signal or the
+  number of bits from widest reference signal
+- The range from the **Ref2** reference signal or the range of
+  the reference signal with the greatest range
+- A bias of zero, regardless of the biases used by the reference signals
+- The precision of the reference signal with the least precision
+
+You specify how data type information is propagated using the **Propagated data
+type** parameter:
+
+- If you select `Specify via dialog`, then you manually specify
+  the data type via the **Propagated data type** edit field.
+- If you select `Inherit via propagation rule`, then you must
+  use the parameters described in Parameters.
+
+You specify how scaling information is propagated using the **Propagated
+scaling** parameter:
+
+- If you select `Specify via dialog`, then you manually specify
+  the scaling via the **Propagated scaling** edit field.
+- If you select `Inherit via propagation rule`, then you must
+  use the parameters described in Parameters.
+
+After you use the information from the reference signals, you can apply a second level of
+adjustments to the data type and scaling. To do so, use individual multiplicative and
+additive adjustments. This flexibility has various uses. For example, if you are
+targeting a DSP, then you can configure the block so that the number of bits associated
+with a multiply and accumulate (MAC) operation is twice as wide as the input signal, and
+has a specific number of guard bits added to it.
+
+The Data Type Propagation block also provides a mechanism to force the
+computed number of bits to a useful value. For example, if you are targeting a 16-bit
+micro, then the target C compiler is likely to support sizes of only 8 bits, 16 bits,
+and 32 bits. The block forces these three choices to be used. For example, suppose that
+the block computes a data type size of 24 bits. Since 24 bits is not directly usable by
+the target chip, the signal is forced up to 32 bits, which is natively supported.
+
+There is also a method for dealing with floating-point reference signals. This method makes
+it easier to create designs that are easily retargeted between fixed-point chips and
+floating-point chips.
+
+The Data Type Propagation block allows you to set up libraries of useful
+subsystems that are properly configured based on the connected signals. Without this
+data type propagation process, subsystems from a library are unlikely to work as desired
+with most integer or fixed-point signals. Manual intervention would be required to
+configure the data type and scaling. In many situations, this block can eliminate the
+manual intervention.
+
+### Precedence Rules
+
+The precedence of the dialog box parameters decreases from top to bottom. Also:
+
+- Double-precision reference inputs have precedence over all other data types.
+- Single-precision reference inputs have precedence over integer and fixed-point data types.
+- Multiplicative adjustments are carried out before additive adjustments.
+- The number of bits is determined before the precision or positive range is inherited from the reference inputs.
+- `PosRange` is one bit higher than the exact maximum
+  positive range of the signal.
+- The computed number-of-bits are promoted to the smallest allowable value
+  that is greater than or equal to the computation. If none exists, then the
+  block returns an error.
+
 ## Ports
 
 ### Input
@@ -479,10 +562,6 @@ rule`.
 | **Values:** scalar |
 | **Default:** `'0'` |
 
-## Libraries
-
-Simulink / Signal Attributes HDL Coder / Signal Attributes
-
 ## Block Characteristics
 
 |  |  |
@@ -518,82 +597,3 @@ in model generation.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Set data type and scaling of propagated signal based on information from reference signals
-
-The Data Type Propagation block allows you to control the data type and
-scaling of signals in your model. You can use this block along with fixed-point blocks
-that have their **Output data type** parameter configured to
-`Inherit: Inherit via back propagation`.
-
-The block has three inputs: **Ref1** and **Ref2** are the
-reference inputs, while the **Prop** input back-propagates the data
-type and scaling information gathered from the reference inputs. This information is
-then passed on to other fixed-point blocks.
-
-The block provides many choices for propagating data type and scaling information. For
-example, you can use:
-
-- The number of bits from the **Ref1** reference signal or the
-  number of bits from widest reference signal
-- The range from the **Ref2** reference signal or the range of
-  the reference signal with the greatest range
-- A bias of zero, regardless of the biases used by the reference signals
-- The precision of the reference signal with the least precision
-
-You specify how data type information is propagated using the **Propagated data
-type** parameter:
-
-- If you select `Specify via dialog`, then you manually specify
-  the data type via the **Propagated data type** edit field.
-- If you select `Inherit via propagation rule`, then you must
-  use the parameters described in Parameters.
-
-You specify how scaling information is propagated using the **Propagated
-scaling** parameter:
-
-- If you select `Specify via dialog`, then you manually specify
-  the scaling via the **Propagated scaling** edit field.
-- If you select `Inherit via propagation rule`, then you must
-  use the parameters described in Parameters.
-
-After you use the information from the reference signals, you can apply a second level of
-adjustments to the data type and scaling. To do so, use individual multiplicative and
-additive adjustments. This flexibility has various uses. For example, if you are
-targeting a DSP, then you can configure the block so that the number of bits associated
-with a multiply and accumulate (MAC) operation is twice as wide as the input signal, and
-has a specific number of guard bits added to it.
-
-The Data Type Propagation block also provides a mechanism to force the
-computed number of bits to a useful value. For example, if you are targeting a 16-bit
-micro, then the target C compiler is likely to support sizes of only 8 bits, 16 bits,
-and 32 bits. The block forces these three choices to be used. For example, suppose that
-the block computes a data type size of 24 bits. Since 24 bits is not directly usable by
-the target chip, the signal is forced up to 32 bits, which is natively supported.
-
-There is also a method for dealing with floating-point reference signals. This method makes
-it easier to create designs that are easily retargeted between fixed-point chips and
-floating-point chips.
-
-The Data Type Propagation block allows you to set up libraries of useful
-subsystems that are properly configured based on the connected signals. Without this
-data type propagation process, subsystems from a library are unlikely to work as desired
-with most integer or fixed-point signals. Manual intervention would be required to
-configure the data type and scaling. In many situations, this block can eliminate the
-manual intervention.
-
-### Precedence Rules
-
-The precedence of the dialog box parameters decreases from top to bottom. Also:
-
-- Double-precision reference inputs have precedence over all other data types.
-- Single-precision reference inputs have precedence over integer and fixed-point data types.
-- Multiplicative adjustments are carried out before additive adjustments.
-- The number of bits is determined before the precision or positive range is inherited from the reference inputs.
-- `PosRange` is one bit higher than the exact maximum
-  positive range of the signal.
-- The computed number-of-bits are promoted to the smallest allowable value
-  that is greater than or equal to the computation. If none exists, then the
-  block returns an error.

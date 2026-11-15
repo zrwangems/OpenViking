@@ -10,6 +10,17 @@ language: en
 
 # Transpose
 
+Compute transpose of matrix
+
+## Libraries
+
+Simulink / Matrix Operations
+
+## Description
+
+The Transpose block computes the transpose of an
+*M*-by-*N* matrix.
+
 ## Ports
 
 ### Input
@@ -29,14 +40,6 @@ matrix.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 
-## Parameters
-
-Not documented in R2025b.
-
-## Libraries
-
-Simulink / Matrix Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -54,10 +57,3 @@ Simulink / Matrix Operations
 ## Version History
 
 **Introduced in R2021b**
-
-## Description
-
-Compute transpose of matrix
-
-The Transpose block computes the transpose of an
-*M*-by-*N* matrix.

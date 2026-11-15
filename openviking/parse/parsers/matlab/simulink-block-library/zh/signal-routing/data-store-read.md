@@ -11,6 +11,24 @@ chinese_source: official
 
 # Data Store Read
 
+从数据存储中读取数据
+
+## 所属库
+
+Simulink / Signal Routing
+
+## 描述
+
+Data Store Read 模块将数据从指定数据存储或其所选部分复制到其输出。多个 Data Store Read 模块可从同一个数据存储读取数据。
+
+用来读取数据的源数据存储由 Data Store Memory 模块或定义数据存储的信号对象的位置决定。有关详细信息，请参阅数据存储和 Data Store Memory。
+
+要从数据存储获取正确的结果，必须确保数据存储按照预期的顺序进行读取和写入。有关详细信息，请参阅对数据存储访问进行排序和 数据存储诊断。
+
+您可以选择 Data Store Read、Data Store Write 或 Data Store Memory 模块来突出显示与其相关的模块。要在打开的图或新选项卡中显示相关模块，请在选择后出现的省略号上暂停。然后，从操作栏中选择相关模块 。当多个模块对应于所选模块时，将打开一个相关模块列表。您可以通过在文本框中输入搜索词来过滤相关模块列表。从列表中选择相关模块后，窗口焦点转至显示该相关模块的打开的图或新选项卡。
+
+当 Data Store Read 模块读取**维度**参数值设置为 `Inf` 的 Data Store Memory 模块时，不支持**元素选择**选项卡。换句话说，Data Store Read 模块从数据存储中读取无界可变大小信号。
+
 ## 端口
 
 ### 输入
@@ -266,10 +284,6 @@ chinese_source: official
 | **值：**元胞数组 |
 | **默认值：**`'{ }'` |
 
-## 所属库
-
-Simulink / Signal Routing
-
 ## 模块特性
 
 |  |  |
@@ -286,24 +300,10 @@ Simulink / Signal Routing
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
 
 ### R2024a: Data Store Read 模块支持对符号索引进行索引
 
 现在，Data Store Read 模块在 Data Store Memory 模块使用符号维度时支持索引。
-
-## 描述
-
-从数据存储中读取数据
-
-Data Store Read 模块将数据从指定数据存储或其所选部分复制到其输出。多个 Data Store Read 模块可从同一个数据存储读取数据。
-
-用来读取数据的源数据存储由 Data Store Memory 模块或定义数据存储的信号对象的位置决定。有关详细信息，请参阅数据存储和 Data Store Memory。
-
-要从数据存储获取正确的结果，必须确保数据存储按照预期的顺序进行读取和写入。有关详细信息，请参阅对数据存储访问进行排序和 数据存储诊断。
-
-您可以选择 Data Store Read、Data Store Write 或 Data Store Memory 模块来突出显示与其相关的模块。要在打开的图或新选项卡中显示相关模块，请在选择后出现的省略号上暂停。然后，从操作栏中选择相关模块 。当多个模块对应于所选模块时，将打开一个相关模块列表。您可以通过在文本框中输入搜索词来过滤相关模块列表。从列表中选择相关模块后，窗口焦点转至显示该相关模块的打开的图或新选项卡。
-
-当 Data Store Read 模块读取**维度**参数值设置为 `Inf` 的 Data Store Memory 模块时，不支持**元素选择**选项卡。换句话说，Data Store Read 模块从数据存储中读取无界可变大小信号。

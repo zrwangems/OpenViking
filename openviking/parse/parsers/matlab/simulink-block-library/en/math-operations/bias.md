@@ -10,6 +10,21 @@ language: en
 
 # Bias
 
+Add bias to input
+
+## Libraries
+
+Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
+
+## Description
+
+The Bias block adds a bias, or offset, to the input signal according to
+
+*Y* = *U* + *bias*
+
+where *U* is the block input and *Y* is the
+output.
+
 ## Ports
 
 ### Input
@@ -92,10 +107,6 @@ the `set_param` function.
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **Values:** | `'off'` (default) | `'on'` |
 
-## Libraries
-
-Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -134,14 +145,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Add bias to input
-
-The Bias block adds a bias, or offset, to the input signal according to
-
-*Y* = *U* + *bias*
-
-where *U* is the block input and *Y* is the
-output.

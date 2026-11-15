@@ -11,6 +11,16 @@ chinese_source: official
 
 # Cross Product
 
+两个向量的叉积
+
+## 所属库
+
+Simulink / Matrix Operations
+
+## 描述
+
+Cross Product 模块返回两个 3×1 向量的叉积或向量积。
+
 ## 端口
 
 ### 输入
@@ -34,14 +44,6 @@ chinese_source: official
 
 **数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 
-## 参数
-
-R2025b 官方文档未提供。
-
-## 所属库
-
-Simulink / Matrix Operations
-
 ## 模块特性
 
 |  |  |
@@ -56,12 +58,6 @@ Simulink / Matrix Operations
 
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2021b 中推出**
-
-## 描述
-
-两个向量的叉积
-
-Cross Product 模块返回两个 3×1 向量的叉积或向量积。

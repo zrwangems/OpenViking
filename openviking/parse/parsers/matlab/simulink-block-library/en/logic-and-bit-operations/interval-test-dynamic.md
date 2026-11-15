@@ -10,6 +10,22 @@ language: en
 
 # Interval Test Dynamic
 
+Determine if signal is in specified interval
+
+## Libraries
+
+Simulink / Logic and Bit Operations
+
+## Description
+
+The Interval Test Dynamic block outputs true (`1`) if
+the input is between the values of the external signals **up** and
+**lo**. The block outputs false (`0`) if the input
+is outside those values. To control how the block handles input values that are equal to
+the signal **lo** or the signal **up**, use the
+**Interval closed on left** and **Interval closed on
+right** check boxes.
+
 ## Ports
 
 ### Input
@@ -109,10 +125,6 @@ Specify the output data type as `boolean` or
 | **Values:** `'boolean' | 'uint8'` |
 | **Default:** `'boolean'` |
 
-## Libraries
-
-Simulink / Logic and Bit Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -151,15 +163,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Determine if signal is in specified interval
-
-The Interval Test Dynamic block outputs true (`1`) if
-the input is between the values of the external signals **up** and
-**lo**. The block outputs false (`0`) if the input
-is outside those values. To control how the block handles input values that are equal to
-the signal **lo** or the signal **up**, use the
-**Interval closed on left** and **Interval closed on
-right** check boxes.

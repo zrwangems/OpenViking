@@ -10,6 +10,35 @@ language: en
 
 # Sine
 
+Implement fixed-point sine or cosine wave using lookup table approach that exploits quarter wave symmetry
+
+## Libraries
+
+Simulink / Lookup Tables
+
+## Description
+
+The Sine and Cosine blocks implement a sine wave, cosine
+wave, or both in fixed point using a lookup table method that exploits quarter wave
+symmetry. The block can output the following functions of the input signal, depending
+upon what you select for the **Output formula** parameter:
+
+- sin(2π*u*)
+- cos(2π*u*)
+- exp(*j*2π*u*)
+- sin(2π*u*) and
+  cos(2π*u*)
+
+You define the number of lookup table points in the **Number of data points
+for lookup table** parameter. The block implementation is most efficient
+when you specify the lookup table data points to be
+`(2^n)+1`, where *n* is an
+integer.
+
+Use the **Output word length** parameter to specify the word length
+of the fixed-point output data type. The fraction length of the output is the output
+word length minus 2.
+
 ## Ports
 
 ### Input
@@ -140,10 +169,6 @@ do, a loss of accuracy might occur, usually up to 2 bits.
 | **Values:** `'Speed' | 'Precision'` |
 | **Default:** `'Speed'` |
 
-## Libraries
-
-Simulink / Lookup Tables
-
 ## Block Characteristics
 
 |  |  |
@@ -201,28 +226,3 @@ hardware-optimized HDL code. For better synthesis results, use Sine HDL Optimize
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Implement fixed-point sine or cosine wave using lookup table approach that exploits quarter wave symmetry
-
-The Sine and Cosine blocks implement a sine wave, cosine
-wave, or both in fixed point using a lookup table method that exploits quarter wave
-symmetry. The block can output the following functions of the input signal, depending
-upon what you select for the **Output formula** parameter:
-
-- sin(2π*u*)
-- cos(2π*u*)
-- exp(*j*2π*u*)
-- sin(2π*u*) and
-  cos(2π*u*)
-
-You define the number of lookup table points in the **Number of data points
-for lookup table** parameter. The block implementation is most efficient
-when you specify the lookup table data points to be
-`(2^n)+1`, where *n* is an
-integer.
-
-Use the **Output word length** parameter to specify the word length
-of the fixed-point output data type. The fraction length of the output is the output
-word length minus 2.

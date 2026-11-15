@@ -10,6 +10,33 @@ language: en
 
 # Check Static Lower Bound
 
+Check that signal is greater than (or optionally equal to) static lower bound
+
+## Libraries
+
+Simulink / Model Verification HDL Coder / Model Verification
+
+## Description
+
+The Check Static Lower Bound block checks if an input signal is greater than
+(or optionally equal to) a specified lower bound at each time step and executes an
+assertion after comparison. The **Lower bound** parameter defines the
+lower bound. If the input signal is greater than the lower bound, the assertion is
+`true (1)` and the block does nothing. If not, the block halts the
+simulation and returns an error message by default.
+
+The input signal and bound can be scalars, vectors, or matrices. The input and the
+bound must be the same data type. The block compares the value of the input to the bound
+differently depending on the signal.
+
+- When comparing scalars to vectors or matrices, the block compares the
+  scalar to each element of the non-scalar input signal or bound.
+- When comparing a vector or matrix input signal to a vector or matrix
+  bound, the block compares the input signal to the bound
+  element-by-element.
+- For models with an input signal and bound that are both vectors or
+  matrices, the input signal and bound must have the same dimensions.
+
 ## Ports
 
 ### Input
@@ -147,10 +174,6 @@ the assertion condition.
 | **Values:** `"graphic"` | `"text"` |
 | **Default:** `"graphic"` |
 
-## Libraries
-
-Simulink / Model Verification HDL Coder / Model Verification
-
 ## Block Characteristics
 
 |  |  |
@@ -194,26 +217,3 @@ implementation and synthesized logic.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Check that signal is greater than (or optionally equal to) static lower bound
-
-The Check Static Lower Bound block checks if an input signal is greater than
-(or optionally equal to) a specified lower bound at each time step and executes an
-assertion after comparison. The **Lower bound** parameter defines the
-lower bound. If the input signal is greater than the lower bound, the assertion is
-`true (1)` and the block does nothing. If not, the block halts the
-simulation and returns an error message by default.
-
-The input signal and bound can be scalars, vectors, or matrices. The input and the
-bound must be the same data type. The block compares the value of the input to the bound
-differently depending on the signal.
-
-- When comparing scalars to vectors or matrices, the block compares the
-  scalar to each element of the non-scalar input signal or bound.
-- When comparing a vector or matrix input signal to a vector or matrix
-  bound, the block compares the input signal to the bound
-  element-by-element.
-- For models with an input signal and bound that are both vectors or
-  matrices, the input signal and bound must have the same dimensions.

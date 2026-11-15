@@ -11,6 +11,20 @@ chinese_source: official
 
 # Resettable Subsystem
 
+通过外部触发器重置模块状态的子系统
+
+## 所属库
+
+Simulink / Ports & Subsystems
+
+## 描述
+
+当您要有条件地将子系统中所有模块的状态重置为其初始条件时，请使用可重置子系统。可重置子系统在每个时间步执行，但当 Reset 端口上发生触发事件时，该子系统会有条件地重置子系统内部模块的状态。有关 **Reset** 端口支持的触发事件的详细信息，请参阅重置触发器类型。
+
+重置行为与使用 **Reset** 端口的模块的重置行为类似，只是可重置子系统会重置其中所有模块的状态。有关重置行为的详细信息，请参阅可重置子系统的行为。
+
+Resettable Subsystem 模块是通过将 Reset 模块放在 Subsystem 模块中进行配置的。可重置子系统的行为由 Resettable Subsystem 模块的 **Reset** 端口控制。
+
 ## 端口
 
 ### 输入
@@ -487,10 +501,6 @@ chinese_source: official
 | **参数:** | `RTWMemSecDataParameters` |
 | **值:** | `'Inherit from model'` (默认) | `'Default'` | model memory section in quotes |
 
-## 所属库
-
-Simulink / Ports & Subsystems
-
 ## 模块特性
 
 |  |  |
@@ -542,16 +552,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 实际数据类型支持取决于模块实现。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2015a 中推出**
-
-## 描述
-
-通过外部触发器重置模块状态的子系统
-
-当您要有条件地将子系统中所有模块的状态重置为其初始条件时，请使用可重置子系统。可重置子系统在每个时间步执行，但当 Reset 端口上发生触发事件时，该子系统会有条件地重置子系统内部模块的状态。有关 **Reset** 端口支持的触发事件的详细信息，请参阅重置触发器类型。
-
-重置行为与使用 **Reset** 端口的模块的重置行为类似，只是可重置子系统会重置其中所有模块的状态。有关重置行为的详细信息，请参阅可重置子系统的行为。
-
-Resettable Subsystem 模块是通过将 Reset 模块放在 Subsystem 模块中进行配置的。可重置子系统的行为由 Resettable Subsystem 模块的 **Reset** 端口控制。

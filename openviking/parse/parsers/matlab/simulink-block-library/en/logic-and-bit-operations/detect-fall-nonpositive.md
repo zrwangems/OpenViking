@@ -10,6 +10,25 @@ language: en
 
 # Detect Fall Nonpositive
 
+Detect falling edge when signal value decreases to nonpositive value, and its previous value was strictly positive
+
+## Libraries
+
+Simulink / Logic and Bit Operations
+
+## Description
+
+The Detect Fall Nonpositive block determines if the input is less than
+or equal to zero, and its previous value was greater than zero.
+
+- The output is true (equal to `1`) when the input signal is
+  less than or equal to zero, and its previous value was greater than zero.
+- The output is false (equal to `0`) when the input signal is
+  greater than zero, or if it is nonpositive, its previous value was also
+  nonpositive.
+
+This block supports only discrete sample times.
+
 ## Ports
 
 ### Input
@@ -94,10 +113,6 @@ Specify the output data type as `boolean` or
 | **Values:** `'boolean' | 'uint8'` |
 | **Default:** `'boolean'` |
 
-## Libraries
-
-Simulink / Logic and Bit Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -140,18 +155,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Detect falling edge when signal value decreases to nonpositive value, and its previous value was strictly positive
-
-The Detect Fall Nonpositive block determines if the input is less than
-or equal to zero, and its previous value was greater than zero.
-
-- The output is true (equal to `1`) when the input signal is
-  less than or equal to zero, and its previous value was greater than zero.
-- The output is false (equal to `0`) when the input signal is
-  greater than zero, or if it is nonpositive, its previous value was also
-  nonpositive.
-
-This block supports only discrete sample times.

@@ -11,6 +11,33 @@ chinese_source: official
 
 # MATLAB System
 
+在模型中包含 System object
+
+## 所属库
+
+Simulink / User-Defined Functions HDL Coder / User-Defined Functions
+
+## 描述
+
+MATLAB System 模块将现有的 System object（基于 `matlab.System`）添加到 Simulink® 中。它还允许您使用 System object API 为 Simulink 开发新模块。有关此模块的详细信息，请参阅使用 MATLAB System 模块和 System object 创建自定义模块。
+
+对于解释执行，模型使用 MATLAB® 执行引擎进行模块仿真。
+
+对于代码生成，模型使用代码生成进行模块仿真（使用代码生成支持的 MATLAB 代码子集）。MATLAB System 模块仅支持 MATLAB 中的部分可用函数。有关完整的函数列表，请参阅 C/C++ 代码生成支持的函数和对象。这些函数包括那些常见类别的函数，例如：
+
+- 数组与矩阵运算，例如 `plus`、`minus` 和 `power`
+- `size` 和 `length` 等矩阵运算
+- `lu`、`inv`、`svd` 和 `chol` 等高级矩阵运算
+- `sin`、`cos`、`sinh` 和 `cosh` 等三角函数
+
+默认情况下，模块识别一维输入信号，并将一维输出信号作为二维信号进行传播。使用 `supports1DVectorsImpl` 方法使模块能够将一维输入和输出作为一维信号进行识别和传播。
+
+从 R2025a 开始，该模块在其输入端口和输出端口支持无界可变大小信号。有关无界可变大小信号的详细信息，请参阅Unbounded Variable-Size Signals。
+
+### System object
+
+要使用 MATLAB System 模块，您必须先创建新的 System object™，或者使用现有的 System object。有关详细信息，请参阅使用 MATLAB System object 创建模块。
+
 ## 端口
 
 ### 输入
@@ -149,10 +176,6 @@ Off
 
 当您在 System object 中使用 `showFiSettingsImpl` 方法时，将出现此复选框。
 
-## 所属库
-
-Simulink / User-Defined Functions HDL Coder / User-Defined Functions
-
 ## 模块特性
 
 |  |  |
@@ -233,7 +256,7 @@ x.CoderInfo.StorageClass = 'ExportedGlobal'
 
 实际数据类型支持取决于模块实现。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2013b 中推出**
 
@@ -244,26 +267,3 @@ x.CoderInfo.StorageClass = 'ExportedGlobal'
 ### R2024a: 报告 MATLAB System 模块在快速加速模式下的运行时错误
 
 通过将**启用内存完整性检查**配置参数设置为**始终打开**，报告在快速加速模式下进行仿真时 MATLAB System 模块的运行时错误。
-
-## 描述
-
-在模型中包含 System object
-
-MATLAB System 模块将现有的 System object（基于 `matlab.System`）添加到 Simulink® 中。它还允许您使用 System object API 为 Simulink 开发新模块。有关此模块的详细信息，请参阅使用 MATLAB System 模块和 System object 创建自定义模块。
-
-对于解释执行，模型使用 MATLAB® 执行引擎进行模块仿真。
-
-对于代码生成，模型使用代码生成进行模块仿真（使用代码生成支持的 MATLAB 代码子集）。MATLAB System 模块仅支持 MATLAB 中的部分可用函数。有关完整的函数列表，请参阅 C/C++ 代码生成支持的函数和对象。这些函数包括那些常见类别的函数，例如：
-
-- 数组与矩阵运算，例如 `plus`、`minus` 和 `power`
-- `size` 和 `length` 等矩阵运算
-- `lu`、`inv`、`svd` 和 `chol` 等高级矩阵运算
-- `sin`、`cos`、`sinh` 和 `cosh` 等三角函数
-
-默认情况下，模块识别一维输入信号，并将一维输出信号作为二维信号进行传播。使用 `supports1DVectorsImpl` 方法使模块能够将一维输入和输出作为一维信号进行识别和传播。
-
-从 R2025a 开始，该模块在其输入端口和输出端口支持无界可变大小信号。有关无界可变大小信号的详细信息，请参阅Unbounded Variable-Size Signals。
-
-### System object
-
-要使用 MATLAB System 模块，您必须先创建新的 System object™，或者使用现有的 System object。有关详细信息，请参阅使用 MATLAB System object 创建模块。

@@ -10,6 +10,25 @@ language: en
 
 # Chirp Signal
 
+Generate sine wave with increasing frequency
+
+## Libraries
+
+Simulink / Sources
+
+## Description
+
+The Chirp Signal block generates a sine wave whose frequency increases at a
+linear rate with time. You can use this block for spectral analysis of nonlinear
+systems. The block generates a scalar or vector output.
+
+The parameters, **Initial frequency**, **Target time**, and **Frequency at target time**,
+determine the block's output. You can specify any or all of these
+variables as scalars or arrays. All the parameters specified as arrays
+must have the same dimensions. The block expands scalar parameters
+to have the same dimensions as the array parameters. The block output
+has the same dimensions as the parameters unless you select the **Interpret vector parameters as 1-D** check box. If you select this check box and the parameters are row or column vectors, the block outputs a vector (1-D array) signal.
+
 ## Ports
 
 ### Output
@@ -85,10 +104,6 @@ row or column. For more information, see Determine the Output Dimensions of Sour
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
 
-## Libraries
-
-Simulink / Sources
-
 ## Block Characteristics
 
 |  |  |
@@ -114,18 +129,3 @@ Thus, blocks suitable for production code remain suitable.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Generate sine wave with increasing frequency
-
-The Chirp Signal block generates a sine wave whose frequency increases at a
-linear rate with time. You can use this block for spectral analysis of nonlinear
-systems. The block generates a scalar or vector output.
-
-The parameters, **Initial frequency**, **Target time**, and **Frequency at target time**,
-determine the block's output. You can specify any or all of these
-variables as scalars or arrays. All the parameters specified as arrays
-must have the same dimensions. The block expands scalar parameters
-to have the same dimensions as the array parameters. The block output
-has the same dimensions as the parameters unless you select the **Interpret vector parameters as 1-D** check box. If you select this check box and the parameters are row or column vectors, the block outputs a vector (1-D array) signal.

@@ -10,6 +10,35 @@ language: en
 
 # Manual Variant Source
 
+Switch between multiple variant choices at input
+
+## Libraries
+
+Simulink / Signal Routing
+
+## Description
+
+The Manual Variant Source block is a toggle switch that activates one of its
+variant choices at the input to pass through to the output.
+
+A Manual Variant Source block can have two or more input ports and has one
+output port. Each input port is associated with a variant control. To change the number
+of input ports, right-click the block and select **Mask
+Parameters**, then type a value in the **Number of
+choices** box.
+
+To toggle between the variant choices at input, double-click the block. The block displays
+the active choice with a line connecting the input to the output. The block propagates
+the active variant choice at input directly to the output and discards the blocks
+connected to inactive input ports during simulation.
+
+**Note**
+
+- Double-clicking the Manual Variant Source block does not
+  open the block dialog box instead it toggles the output choice.
+- Changing the active choice during compile, simulation, or paused states is
+  not supported.
+
 ## Ports
 
 ### Input
@@ -53,10 +82,6 @@ Specify the number of variant input ports.
 | **Value:** `integer` |
 | **Default:** `'2'` |
 
-## Libraries
-
-Simulink / Signal Routing
-
 ## Block Characteristics
 
 |  |  |
@@ -76,28 +101,3 @@ Simulink / Signal Routing
 ## Version History
 
 **Introduced in R2016b**
-
-## Description
-
-Switch between multiple variant choices at input
-
-The Manual Variant Source block is a toggle switch that activates one of its
-variant choices at the input to pass through to the output.
-
-A Manual Variant Source block can have two or more input ports and has one
-output port. Each input port is associated with a variant control. To change the number
-of input ports, right-click the block and select **Mask
-Parameters**, then type a value in the **Number of
-choices** box.
-
-To toggle between the variant choices at input, double-click the block. The block displays
-the active choice with a line connecting the input to the output. The block propagates
-the active variant choice at input directly to the output and discards the blocks
-connected to inactive input ports during simulation.
-
-**Note**
-
-- Double-clicking the Manual Variant Source block does not
-  open the block dialog box instead it toggles the output choice.
-- Changing the active choice during compile, simulation, or paused states is
-  not supported.

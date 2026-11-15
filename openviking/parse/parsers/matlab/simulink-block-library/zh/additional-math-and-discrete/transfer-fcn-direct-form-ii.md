@@ -11,6 +11,18 @@ chinese_source: official
 
 # Transfer Fcn Direct Form II
 
+实现传递函数的直接 II 型实现
+
+## 所属库
+
+Simulink / Additional Math & Discrete / Additional Discrete
+
+## 描述
+
+Transfer Fcn Direct Form II 模块实现由**分子系数**和**不含首项的分母系数**参数指定的传递函数的直接 II 型实现。该模块仅支持单输入单输出 (SISO) 传递函数。
+
+该模块自动选择输出的数据类型和定标、系数和任何临时变量。
+
 ## 端口
 
 ### 输入
@@ -97,10 +109,6 @@ chinese_source: official
 | **值：**`'off' | 'on'` |
 | **默认值：**`'off'` |
 
-## 所属库
-
-Simulink / Additional Math & Discrete / Additional Discrete
-
 ## 模块特性
 
 |  |  |
@@ -121,14 +129,6 @@ Simulink / Additional Math & Discrete / Additional Discrete
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-实现传递函数的直接 II 型实现
-
-Transfer Fcn Direct Form II 模块实现由**分子系数**和**不含首项的分母系数**参数指定的传递函数的直接 II 型实现。该模块仅支持单输入单输出 (SISO) 传递函数。
-
-该模块自动选择输出的数据类型和定标、系数和任何临时变量。

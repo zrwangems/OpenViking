@@ -11,6 +11,22 @@ chinese_source: worker-translation
 
 # Extract Diagonal
 
+
+
+提取输入矩阵的主对角线
+
+## 库
+
+Simulink / Matrix Operations
+
+## 描述
+
+Extract Diagonal 模块用 *M*×*N* 输入矩阵 `A` 主对角线上的元素填充未定向输出向量。
+
+等效的 MATLAB® 代码如下：
+
+    D = diag(A)
+
 ## 端口
 
 ### 输入
@@ -31,14 +47,6 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **复数支持：** Yes
-
-## 参数
-
-R2025b 官方文档未提供。
-
-## 所属库
-
-Simulink / Matrix Operations
 
 ## 模块特性
 
@@ -66,13 +74,3 @@ Simulink / Matrix Operations
 ### R2021b: Extract Diagonal 模块已移至 Simulink Matrix Operations 库
 
 Extract Diagonal 模块已从 **DSP System Toolbox** > **Math Functions** > **Matrices and Linear Algebra** > **Matrix Operations** 库移至 **Simulink** > **Matrix Operations** 库。所有现有模型继续正常工作。
-
-## 描述
-
-提取输入矩阵的主对角线
-
-Extract Diagonal 模块用 *M*×*N* 输入矩阵 `A` 主对角线上的元素填充未定向输出向量。
-
-等效的 MATLAB® 代码如下：
-
-    D = diag(A)

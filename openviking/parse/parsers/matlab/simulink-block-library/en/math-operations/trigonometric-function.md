@@ -10,6 +10,66 @@ language: en
 
 # Trigonometric Function
 
+Specified trigonometric function on input
+
+## Libraries
+
+Simulink / Math Operations HDL Coder / Math Operations HDL Coder / HDL Floating Point Operations
+
+## Description
+
+The Trigonometric Function block performs common trigonometric
+functions and outputs the result in rad or rev.
+
+### Supported Functions
+
+You can select one of these functions from the **Function**
+parameter list.
+
+| Function | Description | Mathematical Expression | MATLAB® Equivalent |
+| --- | --- | --- | --- |
+| `sin` | Sine of the input | `sin(u)` | `sin` |
+| `cos` | Cosine of the input | `cos(u)` | `cos` |
+| `tan` | Tangent of the input | `tan(u)` | `tan` |
+| `asin` | Inverse sine of the input | `asin(u)` | `asin` |
+| `acos` | Inverse cosine of the input | `acos(u)` | `acos` |
+| `atan` | Inverse tangent of the input | `atan(u)` | `atan` |
+| `atan2` | Four-quadrant inverse tangent of the input | `atan2(u)` | `atan2` |
+| `sinh` | Hyperbolic sine of the input | `sinh(u)` | `sinh` |
+| `cosh` | Hyperbolic cosine of the input | `cosh(u)` | `cosh` |
+| `tanh` | Hyperbolic tangent of the input | `tanh(u)` | `tanh` |
+| `asinh` | Inverse hyperbolic sine of the input | `asinh(u)` | `asinh` |
+| `acosh` | Inverse hyperbolic cosine of the input | `acosh(u)` | `acosh` |
+| `atanh` | Inverse hyperbolic tangent of the input | `atanh(u)` | `atanh` |
+| `sincos` | Sine of the input; cosine of the input | — | — |
+| `cos + jsin` | Complex exponential of the input | — | — |
+
+### CORDIC Approximation Method
+
+CORDIC is an acronym for COordinate Rotation DIgital Computer. The Givens
+rotation-based CORDIC algorithm is one of the most hardware-efficient algorithms
+available because it requires only iterative shift-add operations. For more
+information, see More About. The block input has further
+requirements.
+
+For more information on when you set **Function** to
+`sin`, `cos`, `sincos`, or
+`cos + jsin` and set the **Approximation
+method** to `CORDIC`, see Port\_1.
+
+This table summarizes what happens for an invalid input.
+
+| Block Usage | Effect of Invalid Input |
+| --- | --- |
+| Simulation modes | An error appears. |
+| Generated code | Undefined behavior occurs. Avoid relying on undefined behavior for generated code. |
+
+### Lookup Approximation Method
+
+For more information on when you set **Function**  to
+`sin`, `cos`, `sincos`,
+or `cos + jsin` and set the **Approximation method** to `Lookup`, see Port\_1.
+
 ## Ports
 
 ### Input
@@ -509,10 +569,6 @@ To enable this parameter, set:
 - **Scaling** to `Binary
   point`
 
-## Libraries
-
-Simulink / Math Operations HDL Coder / Math Operations HDL Coder / HDL Floating Point Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -656,59 +712,3 @@ This block supports fixed-point and base integer data types when you set the
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Specified trigonometric function on input
-
-The Trigonometric Function block performs common trigonometric
-functions and outputs the result in rad or rev.
-
-### Supported Functions
-
-You can select one of these functions from the **Function**
-parameter list.
-
-| Function | Description | Mathematical Expression | MATLAB® Equivalent |
-| --- | --- | --- | --- |
-| `sin` | Sine of the input | `sin(u)` | `sin` |
-| `cos` | Cosine of the input | `cos(u)` | `cos` |
-| `tan` | Tangent of the input | `tan(u)` | `tan` |
-| `asin` | Inverse sine of the input | `asin(u)` | `asin` |
-| `acos` | Inverse cosine of the input | `acos(u)` | `acos` |
-| `atan` | Inverse tangent of the input | `atan(u)` | `atan` |
-| `atan2` | Four-quadrant inverse tangent of the input | `atan2(u)` | `atan2` |
-| `sinh` | Hyperbolic sine of the input | `sinh(u)` | `sinh` |
-| `cosh` | Hyperbolic cosine of the input | `cosh(u)` | `cosh` |
-| `tanh` | Hyperbolic tangent of the input | `tanh(u)` | `tanh` |
-| `asinh` | Inverse hyperbolic sine of the input | `asinh(u)` | `asinh` |
-| `acosh` | Inverse hyperbolic cosine of the input | `acosh(u)` | `acosh` |
-| `atanh` | Inverse hyperbolic tangent of the input | `atanh(u)` | `atanh` |
-| `sincos` | Sine of the input; cosine of the input | — | — |
-| `cos + jsin` | Complex exponential of the input | — | — |
-
-### CORDIC Approximation Method
-
-CORDIC is an acronym for COordinate Rotation DIgital Computer. The Givens
-rotation-based CORDIC algorithm is one of the most hardware-efficient algorithms
-available because it requires only iterative shift-add operations. For more
-information, see More About. The block input has further
-requirements.
-
-For more information on when you set **Function** to
-`sin`, `cos`, `sincos`, or
-`cos + jsin` and set the **Approximation
-method** to `CORDIC`, see Port\_1.
-
-This table summarizes what happens for an invalid input.
-
-| Block Usage | Effect of Invalid Input |
-| --- | --- |
-| Simulation modes | An error appears. |
-| Generated code | Undefined behavior occurs. Avoid relying on undefined behavior for generated code. |
-
-### Lookup Approximation Method
-
-For more information on when you set **Function**  to
-`sin`, `cos`, `sincos`,
-or `cos + jsin` and set the **Approximation method** to `Lookup`, see Port\_1.

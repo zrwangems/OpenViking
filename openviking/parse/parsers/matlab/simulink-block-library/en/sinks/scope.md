@@ -10,6 +10,87 @@ language: en
 
 # Scope
 
+Display signals generated during simulation
+
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Sinks HDL Coder / Commonly Used Blocks HDL Coder / Sinks
+
+## Description
+
+The Simulink®
+Scope block and DSP System Toolbox™
+Time Scope block display time domain signals.
+
+The two blocks have identical
+functionality, but different default settings. The Time Scope is optimized for discrete time processing.
+The Scope is optimized for general time-domain simulation. For a side-by-side comparison, see Simulink Scope Block Versus DSP System Toolbox Time Scope Block.
+
+**Scope Tab**
+
+This screenshot highlights the important aspects of the scope window.
+
+**Scope display features:**
+
+- Simulation control — Run and debug models from a Scope window using
+  **Run**, **Step Forward**, and
+  **Step Backward** toolbar buttons.
+- Multiple signals — Plot multiple signals on the same display using multiple
+  input
+  ports.
+- Multiple displays — Display signals on multiple subplots. All the
+  *y*-axes of the subplots have a common time range on the
+  *x*-axis. Control the layout of the subplots using the
+  **Display Grid** parameter in the
+  **Scope** tab of the toolstrip.
+- Modify parameters — Modify scope parameter values before and during a
+  simulation.
+- Axis autoscaling — Autoscale axes during or at the end of a simulation.
+  Margins are drawn at the top and bottom of the axes.
+- Display data after simulation — Scope data is saved during a simulation. If a
+  scope is closed at the start of a simulation, when you open the scope after a
+  simulation, the scope displays simulation results for attached input signals.
+
+  **Note**
+
+  If you have a high sample rate or long simulation time, you may run
+  into issues with memory or system performance because the scope saves
+  data internally. To limit the amount of data saved for scope
+  visualization, use the `Limit data points to last`
+  property.
+- Scope window management –– The scope container enables you to dock multiple
+  scopes of the Simulink model into a single window. The container provides a convenient
+  interface from which you can visualize the signals and manage the settings of
+  the scopes.
+
+**Measurements Tab**
+
+This screenshot highlights the important aspects of the measurements window.
+
+Here is a list of all the measurements the Scope block supports:
+
+- Triggers —
+  Set triggers to sync repeating signals and pause the display when events
+  occur.
+- Cursor
+  Measurements — Measure signal values using vertical and horizontal
+  cursors.
+- Signal
+  Statistics — Display the maximum, minimum, peak-to-peak difference,
+  mean, median, and RMS values of a selected signal.
+- Peak
+  Finder — Find maxima, showing the *x*-axis values at
+  which they occur.
+- Bilevel
+  Measurements — Measure transitions, overshoots, undershoots, and
+  cycles.
+
+You must have a Simscape™ or DSP System Toolbox license to use the Peak Finder, Bilevel Measurements, and Signal
+Statistics.
+
+For information on controlling a
+scope programmatically, see Control Scope Blocks Programmatically.
+
 ## Ports
 
 ### Input
@@ -862,10 +943,6 @@ For more information on the measurements, see these pages:
   Measurements — Measure transitions, overshoots, undershoots, and
   cycles.
 
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Sinks HDL Coder / Commonly Used Blocks HDL Coder / Sinks
-
 ## Block Characteristics
 
 |  |  |
@@ -956,80 +1033,3 @@ information, see Scope Window Management.
 If you have a model created in R2024b or a previous release with four or more open scopes,
 and you open that model in R2025a, the opened scopes automatically dock in the scope
 container window.
-
-## Description
-
-Display signals generated during simulation
-
-The Simulink®
-Scope block and DSP System Toolbox™
-Time Scope block display time domain signals.
-
-The two blocks have identical
-functionality, but different default settings. The Time Scope is optimized for discrete time processing.
-The Scope is optimized for general time-domain simulation. For a side-by-side comparison, see Simulink Scope Block Versus DSP System Toolbox Time Scope Block.
-
-**Scope Tab**
-
-This screenshot highlights the important aspects of the scope window.
-
-**Scope display features:**
-
-- Simulation control — Run and debug models from a Scope window using
-  **Run**, **Step Forward**, and
-  **Step Backward** toolbar buttons.
-- Multiple signals — Plot multiple signals on the same display using multiple
-  input
-  ports.
-- Multiple displays — Display signals on multiple subplots. All the
-  *y*-axes of the subplots have a common time range on the
-  *x*-axis. Control the layout of the subplots using the
-  **Display Grid** parameter in the
-  **Scope** tab of the toolstrip.
-- Modify parameters — Modify scope parameter values before and during a
-  simulation.
-- Axis autoscaling — Autoscale axes during or at the end of a simulation.
-  Margins are drawn at the top and bottom of the axes.
-- Display data after simulation — Scope data is saved during a simulation. If a
-  scope is closed at the start of a simulation, when you open the scope after a
-  simulation, the scope displays simulation results for attached input signals.
-
-  **Note**
-
-  If you have a high sample rate or long simulation time, you may run
-  into issues with memory or system performance because the scope saves
-  data internally. To limit the amount of data saved for scope
-  visualization, use the `Limit data points to last`
-  property.
-- Scope window management –– The scope container enables you to dock multiple
-  scopes of the Simulink model into a single window. The container provides a convenient
-  interface from which you can visualize the signals and manage the settings of
-  the scopes.
-
-**Measurements Tab**
-
-This screenshot highlights the important aspects of the measurements window.
-
-Here is a list of all the measurements the Scope block supports:
-
-- Triggers —
-  Set triggers to sync repeating signals and pause the display when events
-  occur.
-- Cursor
-  Measurements — Measure signal values using vertical and horizontal
-  cursors.
-- Signal
-  Statistics — Display the maximum, minimum, peak-to-peak difference,
-  mean, median, and RMS values of a selected signal.
-- Peak
-  Finder — Find maxima, showing the *x*-axis values at
-  which they occur.
-- Bilevel
-  Measurements — Measure transitions, overshoots, undershoots, and
-  cycles.
-
-You must have a Simscape™ or DSP System Toolbox license to use the Peak Finder, Bilevel Measurements, and Signal
-Statistics.
-
-For information on controlling a
-scope programmatically, see Control Scope Blocks Programmatically.

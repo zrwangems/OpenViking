@@ -10,6 +10,19 @@ language: en
 
 # Unary Minus
 
+Negate input
+
+## Libraries
+
+Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
+
+## Description
+
+The
+Unary
+Minus
+block negates the input.
+
 ## Ports
 
 ### Input
@@ -80,10 +93,6 @@ the `set_param` function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
 
-## Libraries
-
-Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -131,12 +140,3 @@ This block only supports signed fixed-point data types.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Negate input
-
-The
-Unary
-Minus
-block negates the input.

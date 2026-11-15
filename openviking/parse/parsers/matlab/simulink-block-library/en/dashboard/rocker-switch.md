@@ -10,9 +10,62 @@ language: en
 
 # Rocker Switch
 
-## Ports
+Toggle parameter between two values
 
-Not documented in R2025b.
+## Libraries
+
+Simulink / Dashboard
+
+## Description
+
+The Rocker Switch block toggles the value of the connected block
+parameter between two values during simulation. For example, you can connect the
+Rocker Switch block to a Switch block in your model
+and change its state during simulation. Use the Rocker Switch block with
+other Dashboard blocks to create an interactive dashboard for your model.
+
+Double-clicking the Rocker Switch block does not open its dialog box
+during simulation and when the block is selected. To edit the block's parameters, you
+can use the **Property Inspector**, or you can right-click the block
+and select **Block Parameters** from the context menu.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard
+block, use connect mode. To enter connect mode on an unconnected block, pause on the block
+you want to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a control block to a parameter in your model or to change the connection of a
+control block, enter connect mode. Select the block to whose parameter you want to connect.
+From the list that appears, select the parameter to which you want to connect. Then, pause
+on the dashboard block and click the Done Connecting button .
+
+The control block cannot connect to a parameter defined by a variable until you update the
+model diagram. To connect to a parameter defined by a variable or to modify the value of a
+variable that defines the value of a connected parameter when the simulation is not running,
+update the model diagram by pressing **Ctrl+D**.
+
+You can connect to a parameter with a scalar value or to an element of a matrix or structure.
+For more information, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+This animation shows how to connect the Rocker Switch block to your
+model.
+
+An unconnected Rocker Switch block connects to the Values parameter of a Constant block.
+
+### Parameter Logging
+
+Tunable parameters connected to dashboard blocks are logged to the Simulation Data
+Inspector, where you can view the parameter values along with logged signal data. You can
+access logged parameter data in the MATLAB® workspace by exporting the parameter data from the Simulation Data Inspector
+by using the UI or the `Simulink.sdi.exportRun` function. For more information about exporting
+data using the Simulation Data Inspector UI, see Export Data to Workspace or File. The
+parameter data is stored in a `Simulink.SimulationData.Parameter` object, accessible as an element in the
+exported `Simulink.SimulationData.Dataset`.
 
 ## Parameters
 
@@ -119,10 +172,6 @@ model, the label is the name of the connected element.
 | **Type:** character vector |
 | **Values:** `'Top'` | `'Bottom'` | `'Hide'` |
 | **Default:** `'Top'` |
-
-## Libraries
-
-Simulink / Dashboard
 
 ## Block Characteristics
 
@@ -234,56 +283,3 @@ panel.
 Starting in R2019a, you can use functions such as `add_block`
 and `set_param` to create and configure blocks from the Dashboard
 library in your model.
-
-## Description
-
-Toggle parameter between two values
-
-The Rocker Switch block toggles the value of the connected block
-parameter between two values during simulation. For example, you can connect the
-Rocker Switch block to a Switch block in your model
-and change its state during simulation. Use the Rocker Switch block with
-other Dashboard blocks to create an interactive dashboard for your model.
-
-Double-clicking the Rocker Switch block does not open its dialog box
-during simulation and when the block is selected. To edit the block's parameters, you
-can use the **Property Inspector**, or you can right-click the block
-and select **Block Parameters** from the context menu.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard
-block, use connect mode. To enter connect mode on an unconnected block, pause on the block
-you want to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a control block to a parameter in your model or to change the connection of a
-control block, enter connect mode. Select the block to whose parameter you want to connect.
-From the list that appears, select the parameter to which you want to connect. Then, pause
-on the dashboard block and click the Done Connecting button .
-
-The control block cannot connect to a parameter defined by a variable until you update the
-model diagram. To connect to a parameter defined by a variable or to modify the value of a
-variable that defines the value of a connected parameter when the simulation is not running,
-update the model diagram by pressing **Ctrl+D**.
-
-You can connect to a parameter with a scalar value or to an element of a matrix or structure.
-For more information, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-This animation shows how to connect the Rocker Switch block to your
-model.
-
-An unconnected Rocker Switch block connects to the Values parameter of a Constant block.
-
-### Parameter Logging
-
-Tunable parameters connected to dashboard blocks are logged to the Simulation Data
-Inspector, where you can view the parameter values along with logged signal data. You can
-access logged parameter data in the MATLAB® workspace by exporting the parameter data from the Simulation Data Inspector
-by using the UI or the `Simulink.sdi.exportRun` function. For more information about exporting
-data using the Simulation Data Inspector UI, see Export Data to Workspace or File. The
-parameter data is stored in a `Simulink.SimulationData.Parameter` object, accessible as an element in the
-exported `Simulink.SimulationData.Dataset`.

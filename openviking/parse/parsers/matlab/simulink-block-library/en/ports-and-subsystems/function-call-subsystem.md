@@ -10,6 +10,29 @@ language: en
 
 # Function-Call Subsystem
 
+Subsystem whose execution is controlled by external function-call input
+
+## Libraries
+
+Simulink / Ports & Subsystems
+
+## Description
+
+The Function-Call Subsystem block is a Subsystem block preconfigured as a starting point for creating a subsystem that
+executes when a function-call input port receives a function-call event. A Stateflow® chart, Function-Call Generator block, S-Function
+block, or Hit Crossing block can provide function-call events. See Using Function-Call Subsystems.
+
+Contents of an Function-Call Subsystem block.
+
+Use Function-Call Subsystem blocks to:
+
+- Schedule the execution order of model components.
+- Control the rate of model component execution.
+
+Simulink® ignores any priority set on a Function-Call Subsystem block, but
+you can set the priority on a block connected to the function-call port of the subsystem. The
+function-call port can receive a function-call event from a Stateflow chart, MATLAB Function block, Function-Call Generator block, S-Function block, or Hit Crossing block.
+
 ## Ports
 
 ### Input
@@ -762,10 +785,6 @@ the `set_param` function.
 | **Values:** | `''` (default) | subsystem filename in quotes |
 | **Data Types:** | `char` | `string` |
 
-## Libraries
-
-Simulink / Ports & Subsystems
-
 ## Block Characteristics
 
 |  |  |
@@ -794,22 +813,3 @@ Actual data type support depends on block implementation.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Subsystem whose execution is controlled by external function-call input
-
-The Function-Call Subsystem block is a Subsystem block preconfigured as a starting point for creating a subsystem that
-executes when a function-call input port receives a function-call event. A Stateflow® chart, Function-Call Generator block, S-Function
-block, or Hit Crossing block can provide function-call events. See Using Function-Call Subsystems.
-
-Contents of an Function-Call Subsystem block.
-
-Use Function-Call Subsystem blocks to:
-
-- Schedule the execution order of model components.
-- Control the rate of model component execution.
-
-Simulink® ignores any priority set on a Function-Call Subsystem block, but
-you can set the priority on a block connected to the function-call port of the subsystem. The
-function-call port can receive a function-call event from a Stateflow chart, MATLAB Function block, Function-Call Generator block, S-Function block, or Hit Crossing block.

@@ -11,6 +11,22 @@ chinese_source: official
 
 # Signal Specification
 
+指定信号所需的维度、采样时间、数据类型、数值类型和其他属性
+
+## 所属库
+
+Simulink / Signal Attributes HDL Coder / Signal Attributes
+
+## 描述
+
+Signal Specification 模块允许您指定连接到其输入和输出端口上的信号的属性。如果指定的属性与其端口上连接的模块所指定的属性冲突，软件将在编译模型时显示错误消息。例如，在仿真开始时，如果不存在冲突，该软件将从已编译的模型中消除 Signal Specification 模块。换句话说，Signal Specification 模块是虚拟模块。它的存在只是为了指定信号的属性，在模型的仿真中不起任何作用。
+
+您可以使用 Signal Specification 模块确保信号的实际属性满足所需的属性要求。例如，假设您和一位同事负责设计同一个模型的不同部分。您可以使用 Signal Specification 模块将您负责的那部分模型与您同事负责的那部分连接起来。如果您的同事更改了某个信号的属性而没有通知您，则输入对应 Signal Specification 模块的属性将不匹配。当您尝试对模型进行仿真时，您会看到错误消息。
+
+您还可以使用 Signal Specification 模块确保信号属性在整个模型中的正确传播。但是，如果有些模块收到或输出的信号具有未指定的属性，模型将没有足够的信息进行正确的属性传播。在这些情况下，Signal Specification 模块可以提供软件需要的信息。使用 Signal Specification 模块，还可以在模块缺少信号属性时帮助您提高模型的编译速度。
+
+Signal Specification 模块支持信号标签传播。有关详细信息，请参阅信号标签传播。
+
 ## 端口
 
 ### 输入
@@ -354,10 +370,6 @@ chinese_source: official
 
 要启用此参数，请将**定标**设置为**斜率和偏置**。
 
-## 所属库
-
-Simulink / Signal Attributes HDL Coder / Signal Attributes
-
 ## 模块特性
 
 |  |  |
@@ -398,18 +410,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-指定信号所需的维度、采样时间、数据类型、数值类型和其他属性
-
-Signal Specification 模块允许您指定连接到其输入和输出端口上的信号的属性。如果指定的属性与其端口上连接的模块所指定的属性冲突，软件将在编译模型时显示错误消息。例如，在仿真开始时，如果不存在冲突，该软件将从已编译的模型中消除 Signal Specification 模块。换句话说，Signal Specification 模块是虚拟模块。它的存在只是为了指定信号的属性，在模型的仿真中不起任何作用。
-
-您可以使用 Signal Specification 模块确保信号的实际属性满足所需的属性要求。例如，假设您和一位同事负责设计同一个模型的不同部分。您可以使用 Signal Specification 模块将您负责的那部分模型与您同事负责的那部分连接起来。如果您的同事更改了某个信号的属性而没有通知您，则输入对应 Signal Specification 模块的属性将不匹配。当您尝试对模型进行仿真时，您会看到错误消息。
-
-您还可以使用 Signal Specification 模块确保信号属性在整个模型中的正确传播。但是，如果有些模块收到或输出的信号具有未指定的属性，模型将没有足够的信息进行正确的属性传播。在这些情况下，Signal Specification 模块可以提供软件需要的信息。使用 Signal Specification 模块，还可以在模块缺少信号属性时帮助您提高模型的编译速度。
-
-Signal Specification 模块支持信号标签传播。有关详细信息，请参阅信号标签传播。

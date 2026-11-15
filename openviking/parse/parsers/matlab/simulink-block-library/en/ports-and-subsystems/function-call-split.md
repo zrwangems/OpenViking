@@ -10,6 +10,56 @@ language: en
 
 # Function-Call Split
 
+Provide junction for splitting function-call line
+
+## Libraries
+
+Simulink / Ports & Subsystems
+
+## Description
+
+The Function-Call Split block allows a function-call line to branch and
+connect to several function-call subsystems or function-call models.
+
+The function-call subsystem or function-call model connected to the output port of the
+Function-Call Split block that is marked with a dot executes before
+the subsystems or models connected to other output ports. If data dependencies between
+subsystems or models do not support the specified execution order, the
+Function-Call Split block returns an error. To eliminate this error,
+consider selecting the **Latch input for feedback signals of function-call
+subsystem outputs** parameter on one or more Inport blocks
+of the function-call subsystems or models involved in a data-dependency loop. Selecting
+this option delays the corresponding function-call, thereby eliminating the
+data-dependency loop.
+
+To display the execution order of function-call subsystems connected to branches of a
+given function-call signal, in the Simulink Editor, on the **Debug**
+tab, select **Information Overlays** and click **Execution
+Order**. A pane opens on the Simulink canvas that represents the
+**Execution Order Block List**. In the list, the execution order of
+the function-call subsystems is represented in the form
+[`n`]←[`m`] `subsystem block
+name`, where:
+
+- `n` indicates the execution order of the
+  subsystem.
+- `m` indicates the execution order of the block that
+  generates the function-call signal.
+- `subsystem block name` indicates the name of the
+  function-call subsystem.
+
+The Function-Call Split block supports Signal Label Propagation.
+
+The following model shows how to apply the **Latch input for feedback signals
+of function-call subsystem outputs** parameter to work around a
+data-dependency error caused by a Function-Call Split block. By turning
+this parameter on in the `f1` subsystem's Inport block,
+the Function-Call Split block ignores the data dependency of signal b.
+The block breaks the loop of data dependencies between subsystems `f1`
+and `g1`. The model achieves the behavior of consistently calling f1 to
+execute before g1. For a given execution step, subsystem `f1` uses the
+`g1` output computed at the previous execution step.
+
 ## Ports
 
 ### Input
@@ -92,10 +142,6 @@ provides a function-call first.
 | **Values**: `'default'` | `'reverse'` |
 | **Default**: `'default'` |
 
-## Libraries
-
-Simulink / Ports & Subsystems
-
 ## Block Characteristics
 
 |  |  |
@@ -113,49 +159,3 @@ Simulink / Ports & Subsystems
 ## Version History
 
 **Introduced in R2010a**
-
-## Description
-
-Provide junction for splitting function-call line
-
-The Function-Call Split block allows a function-call line to branch and
-connect to several function-call subsystems or function-call models.
-
-The function-call subsystem or function-call model connected to the output port of the
-Function-Call Split block that is marked with a dot executes before
-the subsystems or models connected to other output ports. If data dependencies between
-subsystems or models do not support the specified execution order, the
-Function-Call Split block returns an error. To eliminate this error,
-consider selecting the **Latch input for feedback signals of function-call
-subsystem outputs** parameter on one or more Inport blocks
-of the function-call subsystems or models involved in a data-dependency loop. Selecting
-this option delays the corresponding function-call, thereby eliminating the
-data-dependency loop.
-
-To display the execution order of function-call subsystems connected to branches of a
-given function-call signal, in the Simulink Editor, on the **Debug**
-tab, select **Information Overlays** and click **Execution
-Order**. A pane opens on the Simulink canvas that represents the
-**Execution Order Block List**. In the list, the execution order of
-the function-call subsystems is represented in the form
-[`n`]←[`m`] `subsystem block
-name`, where:
-
-- `n` indicates the execution order of the
-  subsystem.
-- `m` indicates the execution order of the block that
-  generates the function-call signal.
-- `subsystem block name` indicates the name of the
-  function-call subsystem.
-
-The Function-Call Split block supports Signal Label Propagation.
-
-The following model shows how to apply the **Latch input for feedback signals
-of function-call subsystem outputs** parameter to work around a
-data-dependency error caused by a Function-Call Split block. By turning
-this parameter on in the `f1` subsystem's Inport block,
-the Function-Call Split block ignores the data dependency of signal b.
-The block breaks the loop of data dependencies between subsystems `f1`
-and `g1`. The model achieves the behavior of consistently calling f1 to
-execute before g1. For a given execution step, subsystem `f1` uses the
-`g1` output computed at the previous execution step.

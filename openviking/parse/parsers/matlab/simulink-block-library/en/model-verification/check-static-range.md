@@ -10,6 +10,33 @@ language: en
 
 # Check Static Range
 
+Check that signal falls inside fixed range of amplitudes
+
+## Libraries
+
+Simulink / Model Verification HDL Coder / Model Verification
+
+## Description
+
+The Check Static Range block checks that each element of the input signal
+falls inside the same range of amplitudes at each time step. The **Upper
+bound** and **Lower bound** parameters define the upper
+and lower bounds of the range. The block then executes an assertion after comparison. If
+the signal falls inside the bounds, the assertion is `true (1)` and the
+block does nothing. If not, the block halts the simulation and returns an error message
+by default.
+
+The input signal and bounds can be scalars, vectors, or matrices. All three must be the same
+data type. The block compares the value of the input to the bounds differently depending
+on the signal.
+
+- When comparing scalars to vectors or matrices, the block compares the
+  scalar to each element of the non-scalar input signal or bounds.
+- When comparing vectors or matrix signals to other vectors or matrices, the
+  block compares the input signal to the bounds element-by-element.
+- For models with more than one vector or matrix input signal or bounds, the
+  vectors or matrices must have the same dimensions.
+
 ## Ports
 
 ### Input
@@ -175,10 +202,6 @@ the assertion condition.
 | **Values:** `"graphic"` | `"text"` |
 | **Default:** `"graphic"` |
 
-## Libraries
-
-Simulink / Model Verification HDL Coder / Model Verification
-
 ## Block Characteristics
 
 |  |  |
@@ -222,26 +245,3 @@ implementation and synthesized logic.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Check that signal falls inside fixed range of amplitudes
-
-The Check Static Range block checks that each element of the input signal
-falls inside the same range of amplitudes at each time step. The **Upper
-bound** and **Lower bound** parameters define the upper
-and lower bounds of the range. The block then executes an assertion after comparison. If
-the signal falls inside the bounds, the assertion is `true (1)` and the
-block does nothing. If not, the block halts the simulation and returns an error message
-by default.
-
-The input signal and bounds can be scalars, vectors, or matrices. All three must be the same
-data type. The block compares the value of the input to the bounds differently depending
-on the signal.
-
-- When comparing scalars to vectors or matrices, the block compares the
-  scalar to each element of the non-scalar input signal or bounds.
-- When comparing vectors or matrix signals to other vectors or matrices, the
-  block compares the input signal to the bounds element-by-element.
-- For models with more than one vector or matrix input signal or bounds, the
-  vectors or matrices must have the same dimensions.

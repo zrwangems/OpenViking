@@ -10,6 +10,31 @@ language: en
 
 # String to Double
 
+Convert string signal to double signal
+
+## Libraries
+
+Simulink / String
+
+## Description
+
+Scan String scans an input string and converts it to signals per the
+format specified by the **Format** parameter. The block converts values
+to their decimal (base 10) representation and outputs the results as numeric or string
+signals. For example, if the **Format** parameter is set to
+`"%s is %f."`, the block outputs two parts, a string signal and a
+single signal. If the input is the string `"Pi is 3.14"`, the two
+outputs are `"Pi"` and `"3.14"`.
+
+The Scan String, String to Double, and String to
+Single blocks are identical blocks. When configured for String to
+Double, the block converts the input string signal to a double numerical
+output. When configured for String to Single, the block converts the
+input string signal to a single numerical output.
+
+For code generation, configure models that contain this block for non-finite number
+support by selecting the **Configuration Parameters** > **Code Generation** > **Interface** > **Support non-finite numbers** check box.
+
 ## Ports
 
 ### Input
@@ -75,10 +100,6 @@ section.
 | **Values:** `'<filename>'` |
 | **Default:** `'"%lf"'` if the block is String to Double, `'"%f"'` if the block is String to Single |
 
-## Libraries
-
-Simulink / String
-
 ## Block Characteristics
 
 |  |  |
@@ -96,24 +117,3 @@ Simulink / String
 ## Version History
 
 **Introduced in R2018a**
-
-## Description
-
-Convert string signal to double signal
-
-Scan String scans an input string and converts it to signals per the
-format specified by the **Format** parameter. The block converts values
-to their decimal (base 10) representation and outputs the results as numeric or string
-signals. For example, if the **Format** parameter is set to
-`"%s is %f."`, the block outputs two parts, a string signal and a
-single signal. If the input is the string `"Pi is 3.14"`, the two
-outputs are `"Pi"` and `"3.14"`.
-
-The Scan String, String to Double, and String to
-Single blocks are identical blocks. When configured for String to
-Double, the block converts the input string signal to a double numerical
-output. When configured for String to Single, the block converts the
-input string signal to a single numerical output.
-
-For code generation, configure models that contain this block for non-finite number
-support by selecting the **Configuration Parameters** > **Code Generation** > **Interface** > **Support non-finite numbers** check box.

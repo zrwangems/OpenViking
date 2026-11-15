@@ -10,9 +10,72 @@ language: en
 
 # Data Store Memory
 
-## Ports
+Define data store
 
-Not documented in R2025b.
+## Libraries
+
+Simulink / Signal Routing
+
+## Description
+
+The Data Store Memory block defines and initializes a named shared data
+store, which is a memory region usable by Data Store Read and Data
+Store Write blocks that specify the same data store name.
+
+The location of the Data Store Memory block that defines a data store
+determines which Data Store Read and Data Store Write
+blocks can access the data store:
+
+- If the Data Store Memory block is in the *top-level
+  system*, Data Store Read and Data Store
+  Write blocks anywhere in the model can access the data store.
+- If the Data Store Memory block is in a
+  *subsystem*, Data Store Read and
+  Data Store Write blocks in the same subsystem or in any
+  subsystem below it in the model hierarchy can access the data store.
+- A Data Store Read  or Data Store Write block
+  defined inside a referenced model can access the data stored at a higher level
+  in the model hierarchy.
+
+To allow a Data Store Read  or Data Store Write block to
+access the data stored at a higher level in the model hierarchy from inside a referenced model:
+
+- Place a Data Store Memory block inside the referenced model.
+- In the Data Store Memory block dialog box, select
+  **Data store reference**.
+
+Do not include a Data Store Memory block in a For Each
+subsystem.
+
+Obtaining correct results from data stores requires ensuring that data store reads and
+writes occur in the expected order. For details, see:
+
+- Order Data Store Access
+- Data Store Diagnostics
+- Log Data Stores
+
+You can use `Simulink.Signal` objects in addition
+to, or instead of, Data Store Memory blocks to define data stores. A data
+store defined in the *base* workspace with a signal object is a
+*global* data store. Global data stores are accessible to every
+model, including all referenced models. See Data Stores for more
+information.
+
+You can select a Data Store Read, Data Store Write, or
+Data Store Memory block to highlight blocks related to it. To show a
+related block in an open diagram or new tab, pause on the ellipsis that appears after
+selection. Then, select **Related Blocks**
+Related Blocks button from the action bar. When multiple blocks correspond
+to the selected block, a list of related blocks opens. You can filter the list of
+related blocks by entering a search term in the text box. After you select a related
+block from the list, window focus goes to the open diagram or new tab that shows the
+related block.
+
+### String Support
+
+The Data Store Memory block can accept and output string data type only
+if the block is configured for the default value of the **Initial
+value** parameter (`0`).
 
 ## Parameters
 
@@ -527,10 +590,6 @@ the software records data points for this signal at times
 | **Values:** non-zero integer |
 | **Default:** `'2'` |
 
-## Libraries
-
-Simulink / Signal Routing
-
 ## Block Characteristics
 
 |  |  |
@@ -570,66 +629,3 @@ Write block, S-Function block, MATLAB
 Function block, MATLAB System block, and
 Chart block can access the data store in a Data Store
 Memory block defined at a higher level in the model hierarchy.
-
-## Description
-
-Define data store
-
-The Data Store Memory block defines and initializes a named shared data
-store, which is a memory region usable by Data Store Read and Data
-Store Write blocks that specify the same data store name.
-
-The location of the Data Store Memory block that defines a data store
-determines which Data Store Read and Data Store Write
-blocks can access the data store:
-
-- If the Data Store Memory block is in the *top-level
-  system*, Data Store Read and Data Store
-  Write blocks anywhere in the model can access the data store.
-- If the Data Store Memory block is in a
-  *subsystem*, Data Store Read and
-  Data Store Write blocks in the same subsystem or in any
-  subsystem below it in the model hierarchy can access the data store.
-- A Data Store Read  or Data Store Write block
-  defined inside a referenced model can access the data stored at a higher level
-  in the model hierarchy.
-
-To allow a Data Store Read  or Data Store Write block to
-access the data stored at a higher level in the model hierarchy from inside a referenced model:
-
-- Place a Data Store Memory block inside the referenced model.
-- In the Data Store Memory block dialog box, select
-  **Data store reference**.
-
-Do not include a Data Store Memory block in a For Each
-subsystem.
-
-Obtaining correct results from data stores requires ensuring that data store reads and
-writes occur in the expected order. For details, see:
-
-- Order Data Store Access
-- Data Store Diagnostics
-- Log Data Stores
-
-You can use `Simulink.Signal` objects in addition
-to, or instead of, Data Store Memory blocks to define data stores. A data
-store defined in the *base* workspace with a signal object is a
-*global* data store. Global data stores are accessible to every
-model, including all referenced models. See Data Stores for more
-information.
-
-You can select a Data Store Read, Data Store Write, or
-Data Store Memory block to highlight blocks related to it. To show a
-related block in an open diagram or new tab, pause on the ellipsis that appears after
-selection. Then, select **Related Blocks**
-Related Blocks button from the action bar. When multiple blocks correspond
-to the selected block, a list of related blocks opens. You can filter the list of
-related blocks by entering a search term in the text box. After you select a related
-block from the list, window focus goes to the open diagram or new tab that shows the
-related block.
-
-### String Support
-
-The Data Store Memory block can accept and output string data type only
-if the block is configured for the default value of the **Initial
-value** parameter (`0`).

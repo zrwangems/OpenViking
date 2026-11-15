@@ -11,6 +11,16 @@ chinese_source: official
 
 # String Find
 
+返回模式字符串第一次出现的索引
+
+## 所属库
+
+Simulink / String
+
+## 描述
+
+String Find 模块返回模式字符串 **sub** 在文本字符串 **str** 中第一次出现的索引。
+
 ## 端口
 
 ### 输入
@@ -67,10 +77,6 @@ chinese_source: official
 
 点击**显示数据类型助手**按钮将启用此参数。
 
-## 所属库
-
-Simulink / String
-
 ## 模块特性
 
 |  |  |
@@ -85,12 +91,6 @@ Simulink / String
 
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2018a 中推出**
-
-## 描述
-
-返回模式字符串第一次出现的索引
-
-String Find 模块返回模式字符串 **sub** 在文本字符串 **str** 中第一次出现的索引。

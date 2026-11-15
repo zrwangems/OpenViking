@@ -10,6 +10,91 @@ language: en
 
 # Neighborhood Processing Subsystem
 
+Create algorithm that follows the neighborhood pattern
+
+## Libraries
+
+Simulink / Matrix Operations
+
+## Description
+
+The Neighborhood Processing Subsystem block is a Subsystem block
+preconfigured as a starting point for creating a subsystem that follows the neighborhood
+pattern. At each simulation time step, the subsystem iterates over each element of an input
+array. For each element, the subsystem processes a neighborhood of values surrounding that
+element. Use the subsystem for image processing. Certain image processing algorithms involve
+processing images in sections rather than processing the entire image at once.
+
+### Configuring Subsystem
+
+The Neighborhood Processing Subsystem contains a Neighborhood block that acts as a
+control block for the subsystem. Specify the parameters of the Neighborhood
+block to configure the behavior of the subsystem.
+
+The **Neighborhood size** parameter controls the dimensions of the
+neighborhood. For elements near the edges of the input matrix, the neighborhood can extend
+beyond the input matrix. The **Padding option** parameter controls how the
+subsystem treats values from outside the input matrix. You can configure the subsystem to
+pad these values with a constant or by reusing values from inside the matrix. If you use the
+`Constant` padding option, use the **Padding
+constant** parameter to set the constant value.
+
+You can configure the Neighborhood Processing Subsystem block to process
+only certain elements of an input matrix. Use the **Stride** parameter to
+configure the Neighborhood Processing Subsystem block to skip a certain
+number of elements at each iteration. Use the **Processing offset** and
+**Processing width** parameters to define the top left and bottom right
+boundaries, respectively, of a region of interest (ROI) within the image. The
+Neighborhood Processing Subsystem block iterates over only that region.
+
+The **Output size** parameter controls the size of the output matrix.
+The `Same` value configures the output matrix to be the same size
+as the ROI. The `Full` value produces a larger output matrix by
+calculating values for elements outside the ROI whose neighborhoods include at least one
+element from the ROI. The `Valid` value creates a smaller output
+matrix by calculating values for only the elements whose neighborhoods do not extend beyond
+the ROI. When you use this setting, the **Padding constant** parameter is
+disabled.
+
+### Example
+
+Consider this model.
+
+A model containing a Constant block with a value of "ones(5,5)" being passed through a Neighborhood Processing Subsystem, which outputs to a Display block. The Display block displays no values.
+
+In this example, the Neighborhood Processing Subsystem block takes a
+5-by-5 matrix and outputs a matrix of the same dimensions by using the
+`Same` output size option. The subsystem contains these
+blocks.
+
+A Neighborhood Processing Subsystem with one inport and one outport. The inport is connected to a Sum of Elements block, which outputs to the outport.
+
+Inside the Neighborhood Processing Subsystem block, the inport does not
+receive the full 5-by-5 matrix. Instead, because the **Neighborhood size**
+parameter value is `[3 3]`, the inport receives a smaller, 3-by-3 window of
+elements. The subsystem iterates over the elements of the input matrix, passing the
+neighborhood of each element to the inport at each iteration.
+
+The model uses the `Constant` padding option with a padding value of
+`0`. For neighborhoods that extend beyond the input matrix, the subsystem
+treats the external values as `0`.
+
+The outport of the Neighborhood Processing Subsystem block receives a
+scalar which represents the derived value for the element at the center of the window. In
+this case, a Sum of Elements block with the **Sum over**
+parameter set to `All dimensions` produces a scalar for each
+window, representing the sum of the values in that window.
+
+Run the model to populate the Display block.
+
+The same model as before, with the Display block populated with a 5-by-5 matrix. The inner 9 elements have value 9, the corner elements have value 4, and the noncorner edge elements have value 6.
+
+Each value of the output matrix is the sum of the corresponding element and its eight
+direct neighbors in the input matrix. The inner elements are surrounded by values of
+`1`, and so have the value `9`. The outer elements have
+lower values because the selected padding method uses the value `0` for
+elements outside the input matrix.
+
 ## Ports
 
 ### Input
@@ -727,10 +812,6 @@ the `set_param` function.
 | **Parameter:** | `RTWMemSecDataParameters` |
 | **Values:** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
 
-## Libraries
-
-Simulink / Matrix Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -826,84 +907,3 @@ Neighborhood Processing Subsystem block.
 
 The Neighborhood Processing Subsystem block cannot contain blocks that
 have state.
-
-## Description
-
-Create algorithm that follows the neighborhood pattern
-
-The Neighborhood Processing Subsystem block is a Subsystem block
-preconfigured as a starting point for creating a subsystem that follows the neighborhood
-pattern. At each simulation time step, the subsystem iterates over each element of an input
-array. For each element, the subsystem processes a neighborhood of values surrounding that
-element. Use the subsystem for image processing. Certain image processing algorithms involve
-processing images in sections rather than processing the entire image at once.
-
-### Configuring Subsystem
-
-The Neighborhood Processing Subsystem contains a Neighborhood block that acts as a
-control block for the subsystem. Specify the parameters of the Neighborhood
-block to configure the behavior of the subsystem.
-
-The **Neighborhood size** parameter controls the dimensions of the
-neighborhood. For elements near the edges of the input matrix, the neighborhood can extend
-beyond the input matrix. The **Padding option** parameter controls how the
-subsystem treats values from outside the input matrix. You can configure the subsystem to
-pad these values with a constant or by reusing values from inside the matrix. If you use the
-`Constant` padding option, use the **Padding
-constant** parameter to set the constant value.
-
-You can configure the Neighborhood Processing Subsystem block to process
-only certain elements of an input matrix. Use the **Stride** parameter to
-configure the Neighborhood Processing Subsystem block to skip a certain
-number of elements at each iteration. Use the **Processing offset** and
-**Processing width** parameters to define the top left and bottom right
-boundaries, respectively, of a region of interest (ROI) within the image. The
-Neighborhood Processing Subsystem block iterates over only that region.
-
-The **Output size** parameter controls the size of the output matrix.
-The `Same` value configures the output matrix to be the same size
-as the ROI. The `Full` value produces a larger output matrix by
-calculating values for elements outside the ROI whose neighborhoods include at least one
-element from the ROI. The `Valid` value creates a smaller output
-matrix by calculating values for only the elements whose neighborhoods do not extend beyond
-the ROI. When you use this setting, the **Padding constant** parameter is
-disabled.
-
-### Example
-
-Consider this model.
-
-A model containing a Constant block with a value of "ones(5,5)" being passed through a Neighborhood Processing Subsystem, which outputs to a Display block. The Display block displays no values.
-
-In this example, the Neighborhood Processing Subsystem block takes a
-5-by-5 matrix and outputs a matrix of the same dimensions by using the
-`Same` output size option. The subsystem contains these
-blocks.
-
-A Neighborhood Processing Subsystem with one inport and one outport. The inport is connected to a Sum of Elements block, which outputs to the outport.
-
-Inside the Neighborhood Processing Subsystem block, the inport does not
-receive the full 5-by-5 matrix. Instead, because the **Neighborhood size**
-parameter value is `[3 3]`, the inport receives a smaller, 3-by-3 window of
-elements. The subsystem iterates over the elements of the input matrix, passing the
-neighborhood of each element to the inport at each iteration.
-
-The model uses the `Constant` padding option with a padding value of
-`0`. For neighborhoods that extend beyond the input matrix, the subsystem
-treats the external values as `0`.
-
-The outport of the Neighborhood Processing Subsystem block receives a
-scalar which represents the derived value for the element at the center of the window. In
-this case, a Sum of Elements block with the **Sum over**
-parameter set to `All dimensions` produces a scalar for each
-window, representing the sum of the values in that window.
-
-Run the model to populate the Display block.
-
-The same model as before, with the Display block populated with a 5-by-5 matrix. The inner 9 elements have value 9, the corner elements have value 4, and the noncorner edge elements have value 6.
-
-Each value of the output matrix is the sum of the corresponding element and its eight
-direct neighbors in the input matrix. The inner elements are surrounded by values of
-`1`, and so have the value `9`. The outer elements have
-lower values because the selected padding method uses the value `0` for
-elements outside the input matrix.

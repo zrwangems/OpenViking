@@ -10,73 +10,13 @@ language: en
 
 # State Writer
 
-## Ports
-
-### Input
-
-### **In** — State value scalar | vector
-
-State value written to a state owner block.
-
-When writing to a state owner block with an input scalar, the scalar
-value is expanded to match the dimension of the state. All elements of
-the state are set to the same value.
-
-**Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
-## Parameters
-
-### **State owner block** — Name of state owner block none (default)
-
-Name of state owner block whose state this block is writing. To change the
-state owner block, select a block from the **State Owner Selector
-Tree**.
-
-**Note**
-
-If the name of a state owner block contains a slash
-(`/`), the slash appears as two slashes
-(`//`) in the State Writer block
-parameters dialog. This notation distinguishes the slash in the block
-name itself from slashes that separate names at different levels of the
-model hierarchy.
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter:** `StateOwnerBlock` |
-| **Type:** character vector |
-| **Value:** `''` | `'<model path/block name>'` |
-| **Default:** `''` |
+Write to a block state
 
 ## Libraries
 
 Simulink / Signal Routing
 
-## Block Characteristics
-
-|  |  |
-| --- | --- |
-| **Data Types** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `half` | `integer` | `single` |
-| **Direct Feedthrough** | `no` |
-| **Multidimensional Signals** | `yes` |
-| **Variable-Size Signals** | `no` |
-| **Zero-Crossing Detection** | `no` |
-
-## Extended Capabilities
-
-### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
-
-### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
-
-## Version History
-
-Not documented in R2025b.
-
 ## Description
-
-Write to a block state
 
 The State Writer block sets the state of a supported state owner
 block.
@@ -173,3 +113,59 @@ to the selected block, a list of related blocks opens. You can filter the list o
 related blocks by entering a search term in the text box. After you select a related
 block from the list, window focus goes to the open diagram or new tab that shows the
 related block.
+
+## Ports
+
+### Input
+
+### **In** — State value scalar | vector
+
+State value written to a state owner block.
+
+When writing to a state owner block with an input scalar, the scalar
+value is expanded to match the dimension of the state. All elements of
+the state are set to the same value.
+
+**Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+
+## Parameters
+
+### **State owner block** — Name of state owner block none (default)
+
+Name of state owner block whose state this block is writing. To change the
+state owner block, select a block from the **State Owner Selector
+Tree**.
+
+**Note**
+
+If the name of a state owner block contains a slash
+(`/`), the slash appears as two slashes
+(`//`) in the State Writer block
+parameters dialog. This notation distinguishes the slash in the block
+name itself from slashes that separate names at different levels of the
+model hierarchy.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `StateOwnerBlock` |
+| **Type:** character vector |
+| **Value:** `''` | `'<model path/block name>'` |
+| **Default:** `''` |
+
+## Block Characteristics
+
+|  |  |
+| --- | --- |
+| **Data Types** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `half` | `integer` | `single` |
+| **Direct Feedthrough** | `no` |
+| **Multidimensional Signals** | `yes` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
+
+## Extended Capabilities
+
+### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
+
+### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.

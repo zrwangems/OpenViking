@@ -10,6 +10,59 @@ language: en
 
 # Display
 
+Show value of input
+
+## Libraries
+
+Simulink / Sinks HDL Coder / Sinks
+
+## Description
+
+The Display block shows the value of the input data. You can specify the
+frequency of the display. For numeric input data, you can also specify the format of
+display.
+
+If the block input is an array, you can resize the block vertically or horizontally to
+show more than just the first element. If the block input is a vector, the block
+sequentially adds display fields from left to right and top to bottom. The block
+displays as many values as possible. A black triangle indicates that the block is not
+displaying all input array elements.
+
+The Display block shows the first 200 elements of a vector signal and the
+first 20 rows and 10 columns of a matrix signal.
+
+**Note**
+
+If you specify a numeric display format that is not large enough to display all
+the digits of a value, the displayed values may lose precision. The result depends
+on your computer hardware and operating system.
+
+### Display Abbreviations
+
+The following abbreviations appear on the Display block to help you identify
+the format of the value.
+
+| When You See... | The Value That Appears Is... |
+| --- | --- |
+| `(SI)` | The stored integer value  **Note**  `(SI)` does not appear when the signal is of an integer data type. |
+| `hex` | In hexadecimal format |
+| `bin` | In binary format |
+| `oct` | In octal format |
+
+### Displaying Strings
+
+When working with strings, the Display block displays:
+
+- Strings with double quotes.
+- Special characters such as newline are shown as escaped sequences, for
+  example `'\n'`.
+- Non-displayable characters as escaped octal number, for example
+  `'\201'`.
+
+If the incoming signal is of type string, the **Numeric display
+format** parameter selection does not affect the display of the
+string.
+
 ## Ports
 
 ### Input
@@ -129,10 +182,6 @@ If you select **Floating display**:
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
 
-## Libraries
-
-Simulink / Sinks HDL Coder / Sinks
-
 ## Block Characteristics
 
 |  |  |
@@ -170,52 +219,3 @@ Ignored for code generation.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Show value of input
-
-The Display block shows the value of the input data. You can specify the
-frequency of the display. For numeric input data, you can also specify the format of
-display.
-
-If the block input is an array, you can resize the block vertically or horizontally to
-show more than just the first element. If the block input is a vector, the block
-sequentially adds display fields from left to right and top to bottom. The block
-displays as many values as possible. A black triangle indicates that the block is not
-displaying all input array elements.
-
-The Display block shows the first 200 elements of a vector signal and the
-first 20 rows and 10 columns of a matrix signal.
-
-**Note**
-
-If you specify a numeric display format that is not large enough to display all
-the digits of a value, the displayed values may lose precision. The result depends
-on your computer hardware and operating system.
-
-### Display Abbreviations
-
-The following abbreviations appear on the Display block to help you identify
-the format of the value.
-
-| When You See... | The Value That Appears Is... |
-| --- | --- |
-| `(SI)` | The stored integer value  **Note**  `(SI)` does not appear when the signal is of an integer data type. |
-| `hex` | In hexadecimal format |
-| `bin` | In binary format |
-| `oct` | In octal format |
-
-### Displaying Strings
-
-When working with strings, the Display block displays:
-
-- Strings with double quotes.
-- Special characters such as newline are shown as escaped sequences, for
-  example `'\n'`.
-- Non-displayable characters as escaped octal number, for example
-  `'\201'`.
-
-If the incoming signal is of type string, the **Numeric display
-format** parameter selection does not affect the display of the
-string.

@@ -10,17 +10,16 @@ language: en
 
 # Block Support Table
 
-## Ports
-
-Not documented in R2025b.
-
-## Parameters
-
-Not documented in R2025b.
+View data type support for Simulink blocks
 
 ## Libraries
 
 Simulink / Model-Wide Utilities
+
+## Description
+
+The Block Support Table block helps you access a table that lists the
+data types that Simulink® blocks support. To view the table, double-click the block.
 
 ## Block Characteristics
 
@@ -42,10 +41,3 @@ generation.
 ## Version History
 
 **Introduced in R2007b**
-
-## Description
-
-View data type support for Simulink blocks
-
-The Block Support Table block helps you access a table that lists the
-data types that Simulink® blocks support. To view the table, double-click the block.

@@ -11,6 +11,18 @@ chinese_source: worker-translation
 
 # Variant End
 
+
+
+定义有界区域的终点
+
+## 库
+
+Simulink / Signal Routing
+
+## 描述
+
+Variant End 模块定义有界区域的终点，使您能够限制变体条件传播，而无需引入层级。使用 Variant Start 模块定义有界区域的起点。对于每个 Variant Start 模块，都有一个唯一对应的 Variant End 模块。当您在 Variant Start 模块上指定变体条件时，对应的 Variant End 模块会在编译时基于唯一的 **Variant Start End Tag** 继承这些条件和其他参数。
+
 ## 端口
 
 ### 输入
@@ -62,10 +74,6 @@ chinese_source: worker-translation
 | **取值：** `'off'` | `'on'` |
 | **默认值：** `'off'` |
 
-## 所属库
-
-Simulink / Signal Routing
-
 ## 模块特性
 
 |  |  |
@@ -85,9 +93,3 @@ Simulink / Signal Routing
 ## 版本历史
 
 **在 R2024a 中引入**
-
-## 描述
-
-定义有界区域的终点
-
-Variant End 模块定义有界区域的终点，使您能够限制变体条件传播，而无需引入层级。使用 Variant Start 模块定义有界区域的起点。对于每个 Variant Start 模块，都有一个唯一对应的 Variant End 模块。当您在 Variant Start 模块上指定变体条件时，对应的 Variant End 模块会在编译时基于唯一的 **Variant Start End Tag** 继承这些条件和其他参数。

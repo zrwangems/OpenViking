@@ -10,6 +10,92 @@ language: en
 
 # Switch
 
+Switch output between first input and third input based on value of second input
+
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Commonly Used Blocks HDL Coder / Signal Routing
+
+## Description
+
+### Types of Block Inputs
+
+The Switch block passes through the first input or the third input
+based on the value of the second input. The first and third inputs are called
+*data inputs*. The second input is called the
+*control input*. Specify the condition under which the
+block passes the first input by using the **Criteria for passing first
+input** and **Threshold** parameters.
+
+To immediately back propagate a known output data type to the first and third
+input ports, set the **Output data type** parameter to
+`Inherit: Inherit via internal rule` and select the
+**Require all data port inputs to have the same data type**
+check box.
+
+**Tip**
+
+For back propagation `Inherit: Inherit via internal rule`, the
+**Require all data port inputs to have the same data
+type** parameter must be selected. Otherwise, the block does not
+automatically back propagate the output data type to the first and third output
+ports.
+
+### Limitations on Data Inputs
+
+The sizes of the two data inputs can be different if you select **Allow
+different data input sizes**. However, this block does not support
+variable-size input signals. Therefore, the size of each input cannot change during
+simulation.
+
+If the data inputs to the Switch block are buses, the element names
+of both buses must be the same. Using the same element names ensures that the output
+bus has the same element names no matter which input bus the block selects. To
+ensure that your model meets this requirement, use a bus object to define the buses
+and set the **Element name mismatch** diagnostic to
+`error`. For more information, see Model Configuration Parameters: Connectivity Diagnostics.
+
+### Block Icon Appearance
+
+The block icon helps you identify **Criteria for passing first
+input** and **Threshold** without having to open the
+block dialog box.
+
+For information about port order for various block orientations, see Identify Port Location on Rotated or Flipped Block.
+
+### Block Behavior for Boolean Control Input
+
+When the control input is a `Boolean` signal, use one of these
+combinations of criteria and threshold value:
+
+- `u2 >= Threshold`, where the threshold value
+  equals `1`
+- `u2 > Threshold`, where the threshold value
+  equals `0`
+- `u2 ~=0`
+
+Otherwise, the Switch block ignores the threshold and uses the
+Boolean input for signal routing. For a control input of `1`, the
+block passes the first input, and for a control input of `0`, the
+block passes the third input. In this case, the block icon changes after compile
+time and uses `T` and `F` to label the first and
+third inputs, respectively.
+
+### Data Type Support
+
+The control input can be of any data type that Simulink® supports, including fixed-point and enumerated types. The control
+input cannot be complex. If the control input is enumerated, the
+**Threshold** parameter must be a value of the same enumerated
+type.
+
+The data inputs can be of any data type that Simulink supports. If either data input is of an enumerated type, the other
+must be of the same enumerated type.
+
+When the output is of enumerated type, both data inputs should use the same
+enumerated type as the output.
+
+For more information, see Data Types Supported by Simulink.
+
 ## Ports
 
 ### Input
@@ -472,10 +558,6 @@ can be equal or different.
 | **Value:** `'on'` | `'off'` |
 | **Default:** `'off'` |
 
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Commonly Used Blocks HDL Coder / Signal Routing
-
 ## Block Characteristics
 
 |  |  |
@@ -521,85 +603,3 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Switch output between first input and third input based on value of second input
-
-### Types of Block Inputs
-
-The Switch block passes through the first input or the third input
-based on the value of the second input. The first and third inputs are called
-*data inputs*. The second input is called the
-*control input*. Specify the condition under which the
-block passes the first input by using the **Criteria for passing first
-input** and **Threshold** parameters.
-
-To immediately back propagate a known output data type to the first and third
-input ports, set the **Output data type** parameter to
-`Inherit: Inherit via internal rule` and select the
-**Require all data port inputs to have the same data type**
-check box.
-
-**Tip**
-
-For back propagation `Inherit: Inherit via internal rule`, the
-**Require all data port inputs to have the same data
-type** parameter must be selected. Otherwise, the block does not
-automatically back propagate the output data type to the first and third output
-ports.
-
-### Limitations on Data Inputs
-
-The sizes of the two data inputs can be different if you select **Allow
-different data input sizes**. However, this block does not support
-variable-size input signals. Therefore, the size of each input cannot change during
-simulation.
-
-If the data inputs to the Switch block are buses, the element names
-of both buses must be the same. Using the same element names ensures that the output
-bus has the same element names no matter which input bus the block selects. To
-ensure that your model meets this requirement, use a bus object to define the buses
-and set the **Element name mismatch** diagnostic to
-`error`. For more information, see Model Configuration Parameters: Connectivity Diagnostics.
-
-### Block Icon Appearance
-
-The block icon helps you identify **Criteria for passing first
-input** and **Threshold** without having to open the
-block dialog box.
-
-For information about port order for various block orientations, see Identify Port Location on Rotated or Flipped Block.
-
-### Block Behavior for Boolean Control Input
-
-When the control input is a `Boolean` signal, use one of these
-combinations of criteria and threshold value:
-
-- `u2 >= Threshold`, where the threshold value
-  equals `1`
-- `u2 > Threshold`, where the threshold value
-  equals `0`
-- `u2 ~=0`
-
-Otherwise, the Switch block ignores the threshold and uses the
-Boolean input for signal routing. For a control input of `1`, the
-block passes the first input, and for a control input of `0`, the
-block passes the third input. In this case, the block icon changes after compile
-time and uses `T` and `F` to label the first and
-third inputs, respectively.
-
-### Data Type Support
-
-The control input can be of any data type that Simulink® supports, including fixed-point and enumerated types. The control
-input cannot be complex. If the control input is enumerated, the
-**Threshold** parameter must be a value of the same enumerated
-type.
-
-The data inputs can be of any data type that Simulink supports. If either data input is of an enumerated type, the other
-must be of the same enumerated type.
-
-When the output is of enumerated type, both data inputs should use the same
-enumerated type as the output.
-
-For more information, see Data Types Supported by Simulink.

@@ -10,6 +10,76 @@ language: en
 
 # Message Triggered Subsystem
 
+Subsystem whose execution is controlled by message input
+
+## Libraries
+
+Simulink / Messages & Events
+
+## Description
+
+This block is a Subsystem block preconfigured as a starting point for
+creating a subsystem that executes based on message input. The block has different names based
+on the timing of execution.
+
+- A Message Triggered Subsystem block executes whenever a message is
+  available at the control port, independent of the block sample time.
+- A Message Polling Subsystem block periodically checks for messages
+  and executes if a message is available at the control port.
+
+Inside the subsystem, a Trigger block displays an output port that outputs
+a data signal carrying the message payload.
+
+### Message Triggered Subsystem
+
+A Message Triggered Subsystem block enables event-based message triggers.
+The block executes whenever a message is available at the control port, independent of
+sample time. The block contains a Trigger block with the **Trigger
+type** set to `message` and the **Trigger
+time** set to `on message available`.
+
+The block operates in two modes, scheduled and immediate.
+
+- In *scheduled mode*, execution order of a subsystem can be
+  scheduled in the Schedule Editor to model asynchronous behavior. You can defer
+  subsystem execution to follow a specific Simulink® task while staying at the same time step. A Queue block in front of the
+  trigger port can buffer messages before they enter the subsystem. When a message
+  arrives at the Queue block, it raises an event that triggers the
+  subsystem to pull the message from the Queue block based on the schedule. If there is
+  no Queue block between the message source and the trigger port,
+  Simulink treats the trigger port as having an internal, overwriting-type queue
+  with a capacity of 1, similar to the Receive block. The trigger port
+  can be connected to a root-level Inport block for modeling a software
+  component. Message-trigger subsystem can be placed in an export-function model, for
+  example, a function-call subsystem.
+
+  To use scheduled mode, select the **Schedule as aperiodic
+  partition** check box in the Trigger block.
+- In *immediate mode*, the subsystem executes as soon as a
+  message is available at the control port, which pushes the message to the subsystem
+  without a queue buffering the message.
+
+  To use immediate mode, clear the **Schedule as aperiodic
+  partition** check box in the Trigger block.
+
+### Message Polling Subsystem
+
+A Message Polling Subsystem block executes conditionally at each time
+step based on whether a message is available at the control port. The block contains a
+Trigger block with the **Trigger type** set to
+`message` and the **Trigger time** set to
+`on sample time hit`.
+
+The block tries at each time step to pull a message from the queue in front of the
+control port. If there is no Queue block between the message source and the
+control port, Simulink treats the control port as having an internal, overwriting-type queue with a
+capacity of 1, similar to the Receive block. If the queue is not empty, a
+message is pulled and the subsystem executes, with the message payload as input. Only one
+message is pulled at each time step. If more than one message is in the queue at the current
+time step, the next message is pulled at the next time step. If the queue is empty, the
+subsystem does not execute at that time step. You can set the sample time in the block
+dialog box of the Message Polling Subsystem block. See Sample time.
+
 ## Ports
 
 ### Input
@@ -807,10 +877,6 @@ the `set_param` function.
 | **Values:** | `''` (default) | subsystem filename in quotes |
 | **Data Types:** | `char` | `string` |
 
-## Libraries
-
-Simulink / Messages & Events
-
 ## Block Characteristics
 
 |  |  |
@@ -840,69 +906,3 @@ Actual data type support depends on block implementation.
 ## Version History
 
 **Introduced in R2022a**
-
-## Description
-
-Subsystem whose execution is controlled by message input
-
-This block is a Subsystem block preconfigured as a starting point for
-creating a subsystem that executes based on message input. The block has different names based
-on the timing of execution.
-
-- A Message Triggered Subsystem block executes whenever a message is
-  available at the control port, independent of the block sample time.
-- A Message Polling Subsystem block periodically checks for messages
-  and executes if a message is available at the control port.
-
-Inside the subsystem, a Trigger block displays an output port that outputs
-a data signal carrying the message payload.
-
-### Message Triggered Subsystem
-
-A Message Triggered Subsystem block enables event-based message triggers.
-The block executes whenever a message is available at the control port, independent of
-sample time. The block contains a Trigger block with the **Trigger
-type** set to `message` and the **Trigger
-time** set to `on message available`.
-
-The block operates in two modes, scheduled and immediate.
-
-- In *scheduled mode*, execution order of a subsystem can be
-  scheduled in the Schedule Editor to model asynchronous behavior. You can defer
-  subsystem execution to follow a specific Simulink® task while staying at the same time step. A Queue block in front of the
-  trigger port can buffer messages before they enter the subsystem. When a message
-  arrives at the Queue block, it raises an event that triggers the
-  subsystem to pull the message from the Queue block based on the schedule. If there is
-  no Queue block between the message source and the trigger port,
-  Simulink treats the trigger port as having an internal, overwriting-type queue
-  with a capacity of 1, similar to the Receive block. The trigger port
-  can be connected to a root-level Inport block for modeling a software
-  component. Message-trigger subsystem can be placed in an export-function model, for
-  example, a function-call subsystem.
-
-  To use scheduled mode, select the **Schedule as aperiodic
-  partition** check box in the Trigger block.
-- In *immediate mode*, the subsystem executes as soon as a
-  message is available at the control port, which pushes the message to the subsystem
-  without a queue buffering the message.
-
-  To use immediate mode, clear the **Schedule as aperiodic
-  partition** check box in the Trigger block.
-
-### Message Polling Subsystem
-
-A Message Polling Subsystem block executes conditionally at each time
-step based on whether a message is available at the control port. The block contains a
-Trigger block with the **Trigger type** set to
-`message` and the **Trigger time** set to
-`on sample time hit`.
-
-The block tries at each time step to pull a message from the queue in front of the
-control port. If there is no Queue block between the message source and the
-control port, Simulink treats the control port as having an internal, overwriting-type queue with a
-capacity of 1, similar to the Receive block. If the queue is not empty, a
-message is pulled and the subsystem executes, with the message payload as input. Only one
-message is pulled at each time step. If more than one message is in the queue at the current
-time step, the next message is pulled at the next time step. If the queue is empty, the
-subsystem does not execute at that time step. You can set the sample time in the block
-dialog box of the Message Polling Subsystem block. See Sample time.

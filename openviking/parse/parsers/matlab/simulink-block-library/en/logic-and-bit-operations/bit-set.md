@@ -10,6 +10,20 @@ language: en
 
 # Bit Set
 
+Set specified bit of stored integer to one
+
+## Libraries
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
+## Description
+
+The Bit Set block sets the specified bit of the stored integer to one.
+Scaling is ignored.
+
+You can specify the bit to be set to one with the **Index of bit**
+parameter, where bit zero is the least significant bit.
+
 ## Ports
 
 ### Input
@@ -41,10 +55,6 @@ Index of bit where bit 0 is the least significant bit.
 | **Type**: character vector |
 | **Values**: positive integer |
 | **Default**: `'0'` |
-
-## Libraries
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
 
 ## Block Characteristics
 
@@ -87,13 +97,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Set specified bit of stored integer to one
-
-The Bit Set block sets the specified bit of the stored integer to one.
-Scaling is ignored.
-
-You can specify the bit to be set to one with the **Index of bit**
-parameter, where bit zero is the least significant bit.

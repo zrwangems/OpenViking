@@ -11,6 +11,16 @@ chinese_source: official
 
 # Enumerated Constant
 
+生成枚举常量值
+
+## 所属库
+
+Simulink / Sources HDL Coder / Sources
+
+## 描述
+
+Enumerated Constant 模块输出枚举值的标量、数组或矩阵。您也可以使用 Constant 模块输出枚举值，但它提供不适用于枚举类型的模块参数，如**输出最小值**和**输出最大值**。当您需要只输出常量枚举值的模块时，请使用 Enumerated Constant 而不是 Constant。有关详细信息，请参阅 Simulink 枚举。
+
 ## 端口
 
 ### 输出
@@ -71,10 +81,6 @@ chinese_source: official
 | **值**：标量 | 向量 |
 | **默认值**：`'inf'` |
 
-## 所属库
-
-Simulink / Sources HDL Coder / Sources
-
 ## 模块特性
 
 |  |  |
@@ -106,12 +112,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2009b 中推出**
-
-## 描述
-
-生成枚举常量值
-
-Enumerated Constant 模块输出枚举值的标量、数组或矩阵。您也可以使用 Constant 模块输出枚举值，但它提供不适用于枚举类型的模块参数，如**输出最小值**和**输出最大值**。当您需要只输出常量枚举值的模块时，请使用 Enumerated Constant 而不是 Constant。有关详细信息，请参阅 Simulink 枚举。

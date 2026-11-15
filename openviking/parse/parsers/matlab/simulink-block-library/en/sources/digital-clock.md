@@ -10,6 +10,22 @@ language: en
 
 # Digital Clock
 
+Output simulation time at specified sampling interval
+
+## Libraries
+
+Simulink / Sources
+
+## Description
+
+The Digital Clock block outputs the simulation time only at the specified
+sampling interval. At other times, the block holds the output at the previous value. To
+control the precision of this block, use the **Sample time** parameter
+in the block dialog box.
+
+Use this block rather than the Clock block, which outputs continuous
+time, when you need the current simulation time within a discrete system.
+
 ## Ports
 
 ### Output
@@ -53,10 +69,6 @@ block is a source.
 | **Values:** scalar | vector |
 | **Default:** `'1'` |
 
-## Libraries
-
-Simulink / Sources
-
 ## Block Characteristics
 
 |  |  |
@@ -82,15 +94,3 @@ Thus, blocks suitable for production code remain suitable.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Output simulation time at specified sampling interval
-
-The Digital Clock block outputs the simulation time only at the specified
-sampling interval. At other times, the block holds the output at the previous value. To
-control the precision of this block, use the **Sample time** parameter
-in the block dialog box.
-
-Use this block rather than the Clock block, which outputs continuous
-time, when you need the current simulation time within a discrete system.

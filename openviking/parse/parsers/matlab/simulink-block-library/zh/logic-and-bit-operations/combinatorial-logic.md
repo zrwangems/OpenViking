@@ -11,6 +11,26 @@ chinese_source: official
 
 # Combinatorial Logic
 
+实现真值表
+
+## 所属库
+
+Simulink / Logic and Bit Operations
+
+## 描述
+
+Combinatorial Logic 模块实现一个标准真值表，用于建模可编程逻辑数组 (PLA)、逻辑电路、决策表和其他布尔表达式。您可以将此模块与 Memory 模块一起使用，以实现有限状态机或触发器。
+
+**提示**
+
+要以编程方式将此模块添加到名为 `untitled` 的模型，请使用命令，例如：
+
+```
+open_system(new_system);
+add_block(sprintf('simulink/Logic and Bit\nOperations/Combinatorial \nLogic'),...
+'untitled/Combinatorial Logic');
+```
+
 ## 端口
 
 ### 输入
@@ -53,10 +73,6 @@ Simulink® 通过计算来自输入向量元素的行索引，返回矩阵的一
 | **值**：矩阵 |
 | **默认值**：`'[0 0;0 1;0 1;1 0;0 1;1 0;1 0;1 1]'` |
 
-## 所属库
-
-Simulink / Logic and Bit Operations
-
 ## 模块特性
 
 |  |  |
@@ -71,22 +87,6 @@ Simulink / Logic and Bit Operations
 
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-实现真值表
-
-Combinatorial Logic 模块实现一个标准真值表，用于建模可编程逻辑数组 (PLA)、逻辑电路、决策表和其他布尔表达式。您可以将此模块与 Memory 模块一起使用，以实现有限状态机或触发器。
-
-**提示**
-
-要以编程方式将此模块添加到名为 `untitled` 的模型，请使用命令，例如：
-
-```
-open_system(new_system);
-add_block(sprintf('simulink/Logic and Bit\nOperations/Combinatorial \nLogic'),...
-'untitled/Combinatorial Logic');
-```

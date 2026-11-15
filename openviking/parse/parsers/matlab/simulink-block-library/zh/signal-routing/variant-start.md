@@ -11,6 +11,23 @@ chinese_source: worker-translation
 
 # Variant Start
 
+
+
+定义有界区域的起点
+
+## 库
+
+Simulink / Signal Routing
+
+## 说明
+
+Variant Start block 定义有界区域的起点，允许你在不引入层级的情况下限制变体条件传播。使用 Variant End 定义有界区域的终点。对于每个 Variant Start block，都有一个对应的 Variant End block。当你在 Variant Start block 上指定变体条件时，对应的 Variant End block 在编译时基于唯一的 **Variant Start End Tag** 继承这些条件和其他参数。
+
+在给定的层级中，如果满足以下条件，则 Variant Start block 的输出端口与对应 Variant End block 的输入端口之间的区域被定义为有界区域：
+
+- 你可以创建一个子系统，该子系统包装该选择内的所有模块，而不与其他选择相交。因此，选择有清晰的界限。
+- 你可以创建一个仅有一个输入端口（连接到 Variant Start block 的输出端口）和仅有一个输出端口（连接到目的地的输出端口）的子系统。选择不会分支到该区域之外。
+
 ## 端口
 
 ### 输入
@@ -239,10 +256,6 @@ Variant Source 和 Variant Sink block：
 | **值：** `'off'` | `'on'` |
 | **默认值：** `'off'` |
 
-## 所属库
-
-Simulink / Signal Routing
-
 ## 模块特性
 
 |  |  |
@@ -262,14 +275,3 @@ Simulink / Signal Routing
 ## 版本历史
 
 **在 R2024a 中引入**
-
-## 描述
-
-定义有界区域的起点
-
-Variant Start block 定义有界区域的起点，允许你在不引入层级的情况下限制变体条件传播。使用 Variant End 定义有界区域的终点。对于每个 Variant Start block，都有一个对应的 Variant End block。当你在 Variant Start block 上指定变体条件时，对应的 Variant End block 在编译时基于唯一的 **Variant Start End Tag** 继承这些条件和其他参数。
-
-在给定的层级中，如果满足以下条件，则 Variant Start block 的输出端口与对应 Variant End block 的输入端口之间的区域被定义为有界区域：
-
-- 你可以创建一个子系统，该子系统包装该选择内的所有模块，而不与其他选择相交。因此，选择有清晰的界限。
-- 你可以创建一个仅有一个输入端口（连接到 Variant Start block 的输出端口）和仅有一个输出端口（连接到目的地的输出端口）的子系统。选择不会分支到该区域之外。

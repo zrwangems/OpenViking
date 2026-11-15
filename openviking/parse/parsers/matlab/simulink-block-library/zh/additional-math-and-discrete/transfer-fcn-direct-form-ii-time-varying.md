@@ -11,6 +11,22 @@ chinese_source: worker-translation
 
 # Transfer Fcn Direct Form II Time Varying
 
+
+
+实现传递函数的时变 Direct Form II 实现
+
+## 库
+
+Simulink / Additional Math & Discrete / Additional Discrete
+
+## 描述
+
+Transfer Fcn Direct Form II Time Varying 模块实现指定传递函数的 Direct Form II 实现。该模块仅支持单输入单输出 (SISO) 传递函数。
+
+标记为 **Den No Lead** 的输入信号包含传递函数的分母系数。完整分母的首项系数为 1，但它从输入信号中排除。例如，要使用分母 `[1 -1.7 0.72]`，请指定值为 `[-1.7 0.72]` 的信号。标记为 **Num** 的输入信号包含分子系数。分子系数和分母系数的数据类型可以不同，但分子向量的长度和完整分母向量的长度必须相同。如果需要，用零填充分子向量。
+
+该模块自动选择输出、系数以及任何临时变量的数据类型和定标。
+
 ## 端口
 
 ### 输入
@@ -96,10 +112,6 @@ chinese_source: worker-translation
 | **取值：** `'off' | 'on'` |
 | **默认：** `'off'` |
 
-## 所属库
-
-Simulink / Additional Math & Discrete / Additional Discrete
-
 ## 模块特性
 
 |  |  |
@@ -132,13 +144,3 @@ Simulink / Additional Math & Discrete / Additional Discrete
 ## 版本历史
 
 **在 R2006a 之前引入**
-
-## 描述
-
-实现传递函数的时变 Direct Form II 实现
-
-Transfer Fcn Direct Form II Time Varying 模块实现指定传递函数的 Direct Form II 实现。该模块仅支持单输入单输出 (SISO) 传递函数。
-
-标记为 **Den No Lead** 的输入信号包含传递函数的分母系数。完整分母的首项系数为 1，但它从输入信号中排除。例如，要使用分母 `[1 -1.7 0.72]`，请指定值为 `[-1.7 0.72]` 的信号。标记为 **Num** 的输入信号包含分子系数。分子系数和分母系数的数据类型可以不同，但分子向量的长度和完整分母向量的长度必须相同。如果需要，用零填充分子向量。
-
-该模块自动选择输出、系数以及任何临时变量的数据类型和定标。

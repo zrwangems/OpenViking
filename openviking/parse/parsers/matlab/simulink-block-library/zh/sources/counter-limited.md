@@ -11,6 +11,20 @@ chinese_source: official
 
 # Counter Limited
 
+进行累加计数，并在达到指定的上限后绕回到 0
+
+## 所属库
+
+Simulink / Sources HDL Coder / Sources
+
+## 描述
+
+Counter Limited 模块进行累加计数，直到达到指定的上限。然后，该计数器绕回到零并重新启动累加计数。该计数器始终初始化为零。
+
+**注意**
+
+仿真期间，此模块不会报告溢出绕回警告。要报告这些警告，请参阅 `Simulink.restoreDiagnostic` 参考页。但此模块会报告由于溢出绕回而导致的错误。
+
 ## 端口
 
 ### 输出
@@ -49,10 +63,6 @@ chinese_source: official
 | **值：**标量 | 向量 |
 | **默认值：**`'-1'` |
 
-## 所属库
-
-Simulink / Sources HDL Coder / Sources
-
 ## 模块特性
 
 |  |  |
@@ -90,16 +100,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-进行累加计数，并在达到指定的上限后绕回到 0
-
-Counter Limited 模块进行累加计数，直到达到指定的上限。然后，该计数器绕回到零并重新启动累加计数。该计数器始终初始化为零。
-
-**注意**
-
-仿真期间，此模块不会报告溢出绕回警告。要报告这些警告，请参阅 `Simulink.restoreDiagnostic` 参考页。但此模块会报告由于溢出绕回而导致的错误。

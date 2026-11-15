@@ -10,6 +10,154 @@ language: en
 
 # Second-Order Integrator
 
+Second-order integration of input signal
+
+## Libraries
+
+Simulink / Continuous
+
+## Description
+
+The Second-Order Integrator block and the Second-Order Integrator Limited block solve the second-order initial value problem:
+
+d2xdt2=u,dxdt|t=0=dxo,x|t=0=xo,
+
+where *u* is the input to the system. The block is therefore a dynamic system with two continuous states: *x* and *dx/dt*.
+
+**Note**
+
+These two states have a mathematical relationship, namely, that *dx/dt* is the derivative of *x*. To satisfy this relationship throughout the simulation, Simulink places various constraints on the block parameters and behavior.
+
+The Second-Order Integrator Limited block is identical to the Second-Order Integrator block with the exception that it defaults to limiting the states based on the specified upper and lower limits. For more information, see Limiting the States.
+
+Simulink® software can use several different numerical integration methods to compute the outputs of the block. Each has advantages for specific applications. Use the **Solver** pane of the Configuration Parameters dialog box to select the technique best suited to your application. (For more information, see Solver Selection Criteria.) The selected solver computes the states of the Second-Order Integrator block at the current time step using the current input value.
+
+Use the block parameter dialog box to:
+
+- Specify whether the source of each state initial condition is internal or external
+- Specify a value for the state initial conditions
+- Define upper and lower limits on either or both states
+- Specify absolute tolerances for each state
+- Specify names for both states
+- Choose an external reset condition
+- Enable zero-crossing detection
+- Reinitialize dx/dt when x reaches saturation
+- Specify that Simulink disregard the state limits and external reset for linearization operations
+
+### Defining Initial Conditions
+
+You can define the initial conditions of each state individually as a parameter on the block dialog box or input one or both of them from an external signal.
+
+- To define the initial conditions of state *x* as a block parameter, use the **Initial condition source x** drop-down menu to select `internal` and enter the value in the **Initial condition x** field.
+- To provide the initial conditions from an external source for state *x*, specify the **Initial condition source x** parameter as `external`. An additional input port appears on the block.
+- To define the initial conditions of state *dx/dt* as a block parameter, use the **Initial condition source dx/dt** drop-down menu to select `internal` and enter the value in the **Initial condition dx/dt** field.
+- To provide the initial conditions from an external source for state *dx/dt*, specify **Initial condition source dx/dt** as `external`. An additional input port appears on the block.
+
+If you choose to use an external source for both state initial conditions, your block appears as follows.
+
+**Note**
+
+- Simulink does not allow initial condition values of `inf` or `NaN`.
+- If you limit state *x* or state *dx/dt*  by specifying saturation limits (see Limiting the States) and one or more initial conditions are outside the corresponding limits, then the respective states are initialized to the closest valid value and a set of consistent initial conditions is calculated.
+
+### Limiting the States
+
+When modeling a second-order system, you may need to limit the block states. For example, the motion of a piston within a cylinder is governed by Newton's Second Law and has constraints on the piston position (*x*). With the Second-Order Integrator  block, you can limit the states *x* and *dx/dt* independent of each other. You can even change the limits during simulation; however, you cannot change whether or not the states are limited. An important rule to follow is that an upper limit must be strictly greater than its corresponding lower limit.
+
+The block appearance changes when you limit one or both states. With both states limited, the block appears as follows.
+
+For each state, you can use the block parameter dialog box to set appropriate saturation limits.
+
+### Limiting *x* Only
+
+If you use the Second-Order Integrator Limited block, both states are limited by default. But you can also manually limit state *x* on the Second-Order Integrator block by selecting **Limit x** and entering the limits in the appropriate parameter fields.
+
+The block then determines the values of the states as follows:
+
+- When *x* is less than or equal to its lower limit, the value of *x* is held at its lower limit and *dx/dt* is set to zero.
+- When *x* is in between its lower and upper limits, both states follow the trajectory given by the second-order ODE.
+- When *x* is greater than or equal to its upper limit, the value of *x* is held at its upper limit and *dx/dt* is set to zero.
+
+You can choose to reinitialize *dx/dt* to a new value at the time when *x* reaches saturation. See Reinitializing dx/dt When x Reaches Saturation.
+
+### Limiting *dx/dt* Only
+
+As with state *x*, state *dx/dt* is set as limited by default on the **dx/dt** pane of the Second-Order Integrator Limited block dialog box. You can manually set this parameter, **Limit dx/dt**, on the Second-Order Integrator block. In either case, you must enter the appropriate limits for *dx/dt*.
+
+If you limit only the state *dx/dt*, then the block determines the values of *dx/dt* as follows:
+
+- When *dx/dt* is less than or equal to its lower limit, the value of *dx/dt* is held at its lower limit.
+- When *dx/dt* is in between its lower and upper limits, both states follow the trajectory given by the second-order ODE.
+- When *dx/dt* is greater than or equal to its upper limit, the value of *dx/dt* is held at its upper limit.
+
+When state *dx/dt* is held at it upper or lower limit, the value of *x* is governed by the first-order initial value problem:
+
+dxdt=L,x(tL)=xL,
+
+where *L* is the *dx/dt* limit (upper or lower), *t**L* is the time when *dx/dt* reaches this limit, and *x**L* is the value of state *x*  at that time.
+
+### Limiting Both States
+
+When you limit both states, Simulink maintains mathematical consistency of the states by limiting the allowable values of the upper and lower limits for *dx/dt*. Such limitations are necessary to satisfy the following constraints:
+
+- When *x* is at its saturation limits, the value of *dx/dt* must be zero.
+- In order for *x* to leave the upper limit, the value of *dx/dt*  must be strictly negative.
+- In order for *x* to leave its lower limit, the value of *dx/dt* must be strictly positive.
+
+For such cases, the upper limit of *dx/dt* must be strictly positive and the lower limit of *dx/dt* must be strictly negative.
+
+When both states are limited, the block determines the states as follows:
+
+- Whenever *x* reaches its limits, the resulting behavior is the same as that described in “Limiting x only”.
+- Whenever *dx/dt* reaches one of its limits, the resulting behavior is the same as that described in “Limiting dx/dt only” — including the computation of *x* using a first-order ODE when *dx/dt* is held at one of its limits. In such cases, when *x* reaches one of its limits, it is held at that limit and *dx/dt* is set to zero.
+- Whenever both reach their respective limits simultaneously, the state *x*  behavior overrides *dx/dt* behavior to maintain consistency of the states.
+
+When you limit both states, you can choose to reinitialize *dx/dt* at the time when state *x* reaches saturation. If the reinitialized value is outside specified limits on *dx/dt*, then *dx/dt* is reinitialized to the closest valid value and a consistent set of initial conditions is calculated. See Reinitializing dx/dt When x Reaches Saturation
+
+### Resetting the State
+
+The block can reset its states to the specified initial conditions based on an external signal. To cause the block to reset its states, select one of the **External reset** choices on the **Attributes** pane. A trigger port appears on the block below its input port and indicates the trigger type.
+
+- Select `rising` to reset the states when the reset signal rises from zero to a positive value, from a negative to a positive value, or a negative value to zero.
+- Select `falling` to reset the states when the reset signal falls from a positive value to zero, from a positive to a negative value, or from zero to negative.
+- Select `either` to reset the states when the reset signal changes from zero to a nonzero value or changes sign.
+
+The reset port has direct feedthrough. If the block output feeds back into this port, either directly or through a series of blocks with direct feedthrough, an algebraic loop results (see Algebraic Loop Concepts).
+
+### Enabling Zero-Crossing Detection
+
+This parameter controls whether zero-crossing detection is enabled for this block. By default, the **Enable zero-crossing detection** parameter is selected on the **Attributes** pane. However, this parameter is only in affect if the **Zero-crossing control**, on the **Solver** pane of the Configuration Parameters dialog box, is set to `Use local settings`. For more information, see Zero-Crossing Detection.
+
+### Reinitializing *dx/dt* When *x* Reaches Saturation
+
+For certain modeling applications, *dx/dt* must be reinitialized when state *x* reaches its limits in order to pull *x* out of saturation immediately. You can achieve this by selecting **Reinitialize dx/dt when x reaches saturation** on the **Attributes** pane.
+
+If this option is on, then at the instant when *x*  reaches saturation, Simulink checks whether the current value of the *dx/dt* initial condition (parameter or signal) allows the state *x* to leave saturation immediately. If so, Simulink reinitializes state *dx/dt* with the value of the initial condition (parameter or signal) at that instant. If not, Simulink ignores this parameter at the current instant and sets *dx/dt* to zero to make the block states consistent.
+
+This parameter only applies at the time when *x* actually reaches saturation limit. It does not apply at any future time when *x* is being held at saturation.
+
+Refer to the sections on limiting the states for more information. For an example, see Simulation of Bouncing Ball.
+
+### Disregarding State Limits and External Reset for Linearization
+
+For cases where you simplify your model by linearizing it, you can have Simulink disregard the limits of the states and the external reset by selecting **Ignore state limits and the reset for linearization**.
+
+### Specifying the Absolute Tolerance for the Block Outputs
+
+By default Simulink software uses the absolute tolerance value specified in the Configuration Parameters dialog box (see Error Tolerances for Variable-Step Solvers) to compute the output of the integrator blocks. If this value does not provide sufficient error control, specify a more appropriate value for state *x* in the **Absolute tolerance x** field and for state *dx/dt* in the **Absolute tolerance dx/dt** field of the parameter dialog box. Simulink uses the values that you specify to compute the state values of the block.
+
+### Specifying the Display of the Output Ports
+
+You can control whether to display the *x* or the *dx/dt* output port using the `ShowOutput` parameter. You can display one output port or both; however, you must select at least one.
+
+### Specifying the State Names
+
+You can specify the name of *x* states and *dx/dt* states using the `StateNameX` and `StateNameDXDT` parameters. However, you must specify names for both or neither; you cannot specify names for just *x*  or just *dx/dt*. Both state names must have identical type and length. Furthermore, the number of names must evenly divide the number of states.
+
+### Selecting All Options
+
+When you select all options, the block icon looks like this.
+
 ## Ports
 
 ### Input
@@ -513,10 +661,6 @@ Specify the output ports on the block.
 | **Values:** `'both'` | `'x'` | `'dxdt'` |
 | **Default:** `'both'` |
 
-## Libraries
-
-Simulink / Continuous
-
 ## Block Characteristics
 
 |  |  |
@@ -547,147 +691,3 @@ approximate discretization.
 ## Version History
 
 **Introduced in R2010a**
-
-## Description
-
-Second-order integration of input signal
-
-The Second-Order Integrator block and the Second-Order Integrator Limited block solve the second-order initial value problem:
-
-d2xdt2=u,dxdt|t=0=dxo,x|t=0=xo,
-
-where *u* is the input to the system. The block is therefore a dynamic system with two continuous states: *x* and *dx/dt*.
-
-**Note**
-
-These two states have a mathematical relationship, namely, that *dx/dt* is the derivative of *x*. To satisfy this relationship throughout the simulation, Simulink places various constraints on the block parameters and behavior.
-
-The Second-Order Integrator Limited block is identical to the Second-Order Integrator block with the exception that it defaults to limiting the states based on the specified upper and lower limits. For more information, see Limiting the States.
-
-Simulink® software can use several different numerical integration methods to compute the outputs of the block. Each has advantages for specific applications. Use the **Solver** pane of the Configuration Parameters dialog box to select the technique best suited to your application. (For more information, see Solver Selection Criteria.) The selected solver computes the states of the Second-Order Integrator block at the current time step using the current input value.
-
-Use the block parameter dialog box to:
-
-- Specify whether the source of each state initial condition is internal or external
-- Specify a value for the state initial conditions
-- Define upper and lower limits on either or both states
-- Specify absolute tolerances for each state
-- Specify names for both states
-- Choose an external reset condition
-- Enable zero-crossing detection
-- Reinitialize dx/dt when x reaches saturation
-- Specify that Simulink disregard the state limits and external reset for linearization operations
-
-### Defining Initial Conditions
-
-You can define the initial conditions of each state individually as a parameter on the block dialog box or input one or both of them from an external signal.
-
-- To define the initial conditions of state *x* as a block parameter, use the **Initial condition source x** drop-down menu to select `internal` and enter the value in the **Initial condition x** field.
-- To provide the initial conditions from an external source for state *x*, specify the **Initial condition source x** parameter as `external`. An additional input port appears on the block.
-- To define the initial conditions of state *dx/dt* as a block parameter, use the **Initial condition source dx/dt** drop-down menu to select `internal` and enter the value in the **Initial condition dx/dt** field.
-- To provide the initial conditions from an external source for state *dx/dt*, specify **Initial condition source dx/dt** as `external`. An additional input port appears on the block.
-
-If you choose to use an external source for both state initial conditions, your block appears as follows.
-
-**Note**
-
-- Simulink does not allow initial condition values of `inf` or `NaN`.
-- If you limit state *x* or state *dx/dt*  by specifying saturation limits (see Limiting the States) and one or more initial conditions are outside the corresponding limits, then the respective states are initialized to the closest valid value and a set of consistent initial conditions is calculated.
-
-### Limiting the States
-
-When modeling a second-order system, you may need to limit the block states. For example, the motion of a piston within a cylinder is governed by Newton's Second Law and has constraints on the piston position (*x*). With the Second-Order Integrator  block, you can limit the states *x* and *dx/dt* independent of each other. You can even change the limits during simulation; however, you cannot change whether or not the states are limited. An important rule to follow is that an upper limit must be strictly greater than its corresponding lower limit.
-
-The block appearance changes when you limit one or both states. With both states limited, the block appears as follows.
-
-For each state, you can use the block parameter dialog box to set appropriate saturation limits.
-
-### Limiting *x* Only
-
-If you use the Second-Order Integrator Limited block, both states are limited by default. But you can also manually limit state *x* on the Second-Order Integrator block by selecting **Limit x** and entering the limits in the appropriate parameter fields.
-
-The block then determines the values of the states as follows:
-
-- When *x* is less than or equal to its lower limit, the value of *x* is held at its lower limit and *dx/dt* is set to zero.
-- When *x* is in between its lower and upper limits, both states follow the trajectory given by the second-order ODE.
-- When *x* is greater than or equal to its upper limit, the value of *x* is held at its upper limit and *dx/dt* is set to zero.
-
-You can choose to reinitialize *dx/dt* to a new value at the time when *x* reaches saturation. See Reinitializing dx/dt When x Reaches Saturation.
-
-### Limiting *dx/dt* Only
-
-As with state *x*, state *dx/dt* is set as limited by default on the **dx/dt** pane of the Second-Order Integrator Limited block dialog box. You can manually set this parameter, **Limit dx/dt**, on the Second-Order Integrator block. In either case, you must enter the appropriate limits for *dx/dt*.
-
-If you limit only the state *dx/dt*, then the block determines the values of *dx/dt* as follows:
-
-- When *dx/dt* is less than or equal to its lower limit, the value of *dx/dt* is held at its lower limit.
-- When *dx/dt* is in between its lower and upper limits, both states follow the trajectory given by the second-order ODE.
-- When *dx/dt* is greater than or equal to its upper limit, the value of *dx/dt* is held at its upper limit.
-
-When state *dx/dt* is held at it upper or lower limit, the value of *x* is governed by the first-order initial value problem:
-
-dxdt=L,x(tL)=xL,
-
-where *L* is the *dx/dt* limit (upper or lower), *t**L* is the time when *dx/dt* reaches this limit, and *x**L* is the value of state *x*  at that time.
-
-### Limiting Both States
-
-When you limit both states, Simulink maintains mathematical consistency of the states by limiting the allowable values of the upper and lower limits for *dx/dt*. Such limitations are necessary to satisfy the following constraints:
-
-- When *x* is at its saturation limits, the value of *dx/dt* must be zero.
-- In order for *x* to leave the upper limit, the value of *dx/dt*  must be strictly negative.
-- In order for *x* to leave its lower limit, the value of *dx/dt* must be strictly positive.
-
-For such cases, the upper limit of *dx/dt* must be strictly positive and the lower limit of *dx/dt* must be strictly negative.
-
-When both states are limited, the block determines the states as follows:
-
-- Whenever *x* reaches its limits, the resulting behavior is the same as that described in “Limiting x only”.
-- Whenever *dx/dt* reaches one of its limits, the resulting behavior is the same as that described in “Limiting dx/dt only” — including the computation of *x* using a first-order ODE when *dx/dt* is held at one of its limits. In such cases, when *x* reaches one of its limits, it is held at that limit and *dx/dt* is set to zero.
-- Whenever both reach their respective limits simultaneously, the state *x*  behavior overrides *dx/dt* behavior to maintain consistency of the states.
-
-When you limit both states, you can choose to reinitialize *dx/dt* at the time when state *x* reaches saturation. If the reinitialized value is outside specified limits on *dx/dt*, then *dx/dt* is reinitialized to the closest valid value and a consistent set of initial conditions is calculated. See Reinitializing dx/dt When x Reaches Saturation
-
-### Resetting the State
-
-The block can reset its states to the specified initial conditions based on an external signal. To cause the block to reset its states, select one of the **External reset** choices on the **Attributes** pane. A trigger port appears on the block below its input port and indicates the trigger type.
-
-- Select `rising` to reset the states when the reset signal rises from zero to a positive value, from a negative to a positive value, or a negative value to zero.
-- Select `falling` to reset the states when the reset signal falls from a positive value to zero, from a positive to a negative value, or from zero to negative.
-- Select `either` to reset the states when the reset signal changes from zero to a nonzero value or changes sign.
-
-The reset port has direct feedthrough. If the block output feeds back into this port, either directly or through a series of blocks with direct feedthrough, an algebraic loop results (see Algebraic Loop Concepts).
-
-### Enabling Zero-Crossing Detection
-
-This parameter controls whether zero-crossing detection is enabled for this block. By default, the **Enable zero-crossing detection** parameter is selected on the **Attributes** pane. However, this parameter is only in affect if the **Zero-crossing control**, on the **Solver** pane of the Configuration Parameters dialog box, is set to `Use local settings`. For more information, see Zero-Crossing Detection.
-
-### Reinitializing *dx/dt* When *x* Reaches Saturation
-
-For certain modeling applications, *dx/dt* must be reinitialized when state *x* reaches its limits in order to pull *x* out of saturation immediately. You can achieve this by selecting **Reinitialize dx/dt when x reaches saturation** on the **Attributes** pane.
-
-If this option is on, then at the instant when *x*  reaches saturation, Simulink checks whether the current value of the *dx/dt* initial condition (parameter or signal) allows the state *x* to leave saturation immediately. If so, Simulink reinitializes state *dx/dt* with the value of the initial condition (parameter or signal) at that instant. If not, Simulink ignores this parameter at the current instant and sets *dx/dt* to zero to make the block states consistent.
-
-This parameter only applies at the time when *x* actually reaches saturation limit. It does not apply at any future time when *x* is being held at saturation.
-
-Refer to the sections on limiting the states for more information. For an example, see Simulation of Bouncing Ball.
-
-### Disregarding State Limits and External Reset for Linearization
-
-For cases where you simplify your model by linearizing it, you can have Simulink disregard the limits of the states and the external reset by selecting **Ignore state limits and the reset for linearization**.
-
-### Specifying the Absolute Tolerance for the Block Outputs
-
-By default Simulink software uses the absolute tolerance value specified in the Configuration Parameters dialog box (see Error Tolerances for Variable-Step Solvers) to compute the output of the integrator blocks. If this value does not provide sufficient error control, specify a more appropriate value for state *x* in the **Absolute tolerance x** field and for state *dx/dt* in the **Absolute tolerance dx/dt** field of the parameter dialog box. Simulink uses the values that you specify to compute the state values of the block.
-
-### Specifying the Display of the Output Ports
-
-You can control whether to display the *x* or the *dx/dt* output port using the `ShowOutput` parameter. You can display one output port or both; however, you must select at least one.
-
-### Specifying the State Names
-
-You can specify the name of *x* states and *dx/dt* states using the `StateNameX` and `StateNameDXDT` parameters. However, you must specify names for both or neither; you cannot specify names for just *x*  or just *dx/dt*. Both state names must have identical type and length. Furthermore, the number of names must evenly divide the number of states.
-
-### Selecting All Options
-
-When you select all options, the block icon looks like this.

@@ -10,6 +10,28 @@ language: en
 
 # Entity Transport Delay
 
+Introduce a delay in propagation of a SimEvents message
+
+## Libraries
+
+Simulink / Continuous SimEvents
+
+## Description
+
+The Entity Transport Delay block delays an entity for a period of time, named *transport delay*. The first input is the entity that is
+transported from point A to point B on a constant-length moving surface whose speed
+changes over time. The value from the second input is the *instantaneous delay*. The speed of the surface is the reciprocal of
+instantaneous delay. The product of instantaneous delay and the speed is 1.
+
+The block calculates the implemented transport delay by the distance-speed-time
+relationship, where the surface length (distance) is equal to the integral of the
+variable surface speed over the duration of the transport delay (time). For more
+information about this calculation, see Variable Transport Delay.
+
+The Entity Transport Delay block connects SimEvents® to Simulink® using the input from a Simulink signal and computing the transport delay as a continuous process, and
+applying this delay to an entity in a discrete-event process. For an example that uses
+the Entity Transport Delay block, see Modeling Cyber-Physical Systems.
+
 ## Ports
 
 ### Input
@@ -78,10 +100,6 @@ Number of entities present in the block that are being delayed.
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
 
-## Libraries
-
-Simulink / Continuous SimEvents
-
 ## Block Characteristics
 
 |  |  |
@@ -99,21 +117,3 @@ Simulink / Continuous SimEvents
 ## Version History
 
 **Introduced in R2019b**
-
-## Description
-
-Introduce a delay in propagation of a SimEvents message
-
-The Entity Transport Delay block delays an entity for a period of time, named *transport delay*. The first input is the entity that is
-transported from point A to point B on a constant-length moving surface whose speed
-changes over time. The value from the second input is the *instantaneous delay*. The speed of the surface is the reciprocal of
-instantaneous delay. The product of instantaneous delay and the speed is 1.
-
-The block calculates the implemented transport delay by the distance-speed-time
-relationship, where the surface length (distance) is equal to the integral of the
-variable surface speed over the duration of the transport delay (time). For more
-information about this calculation, see Variable Transport Delay.
-
-The Entity Transport Delay block connects SimEvents® to Simulink® using the input from a Simulink signal and computing the transport delay as a continuous process, and
-applying this delay to an entity in a discrete-event process. For an example that uses
-the Entity Transport Delay block, see Modeling Cyber-Physical Systems.

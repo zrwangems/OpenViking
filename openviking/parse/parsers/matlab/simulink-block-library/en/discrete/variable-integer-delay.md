@@ -10,6 +10,18 @@ language: en
 
 # Variable Integer Delay
 
+Delay input signal by variable sample period
+
+## Libraries
+
+Simulink / Discrete
+
+## Description
+
+The Variable Integer Delay block is a variant
+of the Delay block that has the
+source of the delay length set to `Input port`, by default.
+
 ## Ports
 
 ### Input
@@ -393,10 +405,6 @@ To enable this parameter, specify a value for **State name**. This parameter app
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
-## Libraries
-
-Simulink / Discrete
-
 ## Block Characteristics
 
 |  |  |
@@ -424,11 +432,3 @@ For information about HDL code generation, see HDL Code Generation on the Delay 
 ## Version History
 
 **Introduced in R2012b**
-
-## Description
-
-Delay input signal by variable sample period
-
-The Variable Integer Delay block is a variant
-of the Delay block that has the
-source of the delay length set to `Input port`, by default.

@@ -11,6 +11,110 @@ chinese_source: official
 
 # For Each Subsystem
 
+将算法应用于输入信号或封装参数的单个元素或子数组
+
+## 所属库
+
+Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
+
+## 描述
+
+For Each Subsystem 模块是一个预先配置的 Subsystem 模块，可以作为一个起点，用于创建在仿真时间步期间对输入信号或封装参数数组的每个元素或子数组都要重复执行的子系统。
+
+For Each Subsystem block icon, displayed alongside contents of for-each subsystem, consisting of a For Each block, an Inport block, and an Outport block.
+
+子系统中的模块组表示应用于原始信号或封装参数数组的单个元素（或子数组）的算法。在子系统内，具有状态的每个模块维护它所处理的每个元素或子数组的单独状态集。因此，此子系统的操作在行为上类似于复制原始输入信号或封装参数数组中每个元素的子系统的内容，然后使用其各自的子系统副本处理每个元素。随着该子系统中的模块集对元素（或子数组）的处理，该子系统串联结果以形成输出信号。
+
+### 配置子系统
+
+For Each Subsystem 模块包含 For Each 模块，该模块充当子系统的控制模块。指定 For Each 模块的参数，以配置将子系统输入或封装参数分解为元素或子数组，并配置将各个结果串联为输出信号。模块参数**分区维度**和**分区宽度**分别指定对输入信号或封装参数数组进行切片的维度和每个切片的宽度。要对行向量进行分区，请将**分区维度**指定为 `2`。要对列向量进行分区，请将**分区维度**指定为 `1`。使用参数**分区偏移量**指定分区之间的间隙或重叠。指定**迭代次数**以将处理范围限制为部分数据。要了解有关模块参数的更多信息，请参阅 For Each。
+
+**将输入信号分区到子系统**
+
+要为 For Each 子系统中的每次迭代指定要对哪些输入信号分区，请使用 For Each 模块的对话框中的**输入分区**选项卡。在指定要分区的信号时，指定**分区维度**、**分区宽度**和**分区偏移量**参数。
+
+**对子系统的封装参数进行分区**
+
+您可以对 For Each Subsystem 模块的封装参数进行分区。对于在每次迭代中结构相同但参数值不同的系统，分区非常有用。在这种情况下，针对每个参数更改模型来对额外输入参数进行分区非常繁琐。请改为将封装参数添加到 For Each 子系统中。有关详细信息，请参阅创建简单封装。要选择封装参数进行分区，请使用 For Each 模块对话框中的**参数分区**选项卡。有关详细信息，请参阅下文的选择分区参数。
+
+**串联输出**
+
+通过在**输出串联**选项卡中指定**串联维度**来定义沿哪个维度串联结果。
+
+模块为每个子数组生成的结果沿串联维度 1 堆叠。默认情况下，使用维度 1（*y* 轴），这意味着结果垂直堆叠。但是，如果指定的串联维度为 2，结果将沿水平方向（*x* 轴）串联。因此，如果该过程生成行向量，则串联的结果在第一种情况下是矩阵，在第二个种情况下是行向量。有关示例，请参阅在 For Each 模块中指定连接维度。
+
+**选择分区参数**
+
+当选择要分区的输入信号或子系统封装参数时，您必须为每次迭代指定如何将其分解为元素或子数组。为**分区维度**、**分区宽度**和**分区偏移量**参数设置整数值。
+
+作为说明，以如下形式的输入信号矩阵 `A` 为例：
+
+A 3-by-3 matrix A with all nine elements displayed, showing d1 as the vertical dimension and d2 as the horizontal dimension
+
+标签 *d*1 和 *d*2 分别定义维度 1 和 2。如果为分区维度和分区宽度均保留默认设置 `1`，为分区偏移量保留默认设置 `0`，则 Simulink® 会垂直于分区维度 1 以等于分区宽度（一个元素）的宽度进行切片：
+
+A 3-by-3 matrix A, with all nine elements showing, partitioned into rows
+
+矩阵 A 分解为以下三个行向量：
+
+A 3-by-3 matrix A, decomposed into three 3-element row vectors
+
+如果改为将 `2` 指定为分区维度，则 Simulink 将垂直于维度 2 进行切片来形成以下三个列向量：
+
+A 3-by-3 matrix A, decomposed into three 3-element column vectors
+
+除了将**分区维度**设置为 `2` 之外，如果再将**分区宽度**设置为 `2` 并将**分区偏移量**设置为 `-1`，Simulink 会将矩阵处理为两个重叠的 3×2 分区。
+
+A 3-by-3 matrix A, decomposed into two overlapping 3-by-2 matrices
+
+有关示例，请参阅使用 For Each 模块对输入信号进行分区。
+
+默认情况下，处理输入信号或封装参数的所有分区。要处理部分分区，请在**迭代次数**中输入要处理的分区的数量。在上面的矩阵示例中，如果**分区偏移量**设置为 `0`（默认值），并且**迭代次数**设置为 `2`，则仅处理输入矩阵 `A` 的前 2 行或前 2 列。
+
+**注意**
+
+在 Simulink 中，只有信号被视为一维。封装参数是行向量或列向量，具体取决于其方向。要对行向量进行分区，请将分区维度指定为 2（沿列进行）。要对列向量进行分区，请将分区维度指定为 1（沿行进行）。
+
+### 代码重用支持
+
+对于某些模型，For Each Subsystem 模块可提高 Simulink Coder™ 生成代码的代码重用。假设有一个模型包含两个可重用的 Atomic Subsystem 模块，且对信号的每个元素应用相同的标量算法。如果这些子系统的输入信号维度不同，Simulink Coder 生成的代码中将包含两个不同的函数。您可以将这两个子系统替换为两个相同的 For Each Subsystem 模块，后两者配置为使用相同的算法处理其各自输入的每个元素。在这种情况下，Simulink Coder 生成的代码会包含一个根据输入信号的元素数进行参数化的函数。此函数被调用两次，即对模型中 For Each Subsystem 模块的每个唯一实例分别调用一次。对于其中每种情况，输入信号元素均具有不同的值。
+
+### 多核执行支持
+
+在快速加速模式下仿真模型时，Simulink 使用多核执行来加快 For Each 子系统的仿真速度。Simulink 自动为每个符合条件的 For Each 子系统探查其在快速加速模式下运行的前两个时间步，以比较并行和串行执行时间。然后，如果在仿真运行的后续时间步中指定 For Each 子系统进行并行多核执行会加快执行速度，则 Simulink 会指定采用这种方式。对于嵌套的 For Each 子系统，多核执行仅适用于顶层子系统。多核执行不适用于包含连续状态或 Function Caller 模块的 For Each 子系统。
+
+要禁止给定 For Each 子系统的多核执行，请将该子系统内 For Each 模块的 `MultithreadedSim` 参数设置为 `'off'`。
+
+```
+set_param(ForEachBlockName,'MultithreadedSim','off')
+```
+
+请注意，这是子系统中 For Each 模块的参数，而不是 For Each Subsystem 模块本身的参数。要禁止模型中所有 For Each 子系统的多核执行，请将模型的 `MultithreadedSim` 参数设置为 `'off'`。
+
+```
+set_param(ModelName,'MultithreadedSim','off')
+```
+
+要重新启用多核执行，请将相关的 `MultithreadedSim` 参数设置为其默认值 `'auto'`。
+
+有关示例，请参阅Multithreaded Simulation Using For Each Subsystem。
+
+**注意**
+
+如果以快速加速模式仿真模型或从模型生成代码，并且对 For Each 子系统中的封装参数进行分区，则 For Each Subsystem 中引用分区参数的任何表达式都必须为可调表达式。请参阅Tunable Expression Limitations (Simulink Coder)。
+
+### S-Function 支持
+
+For Each Subsystem 模块支持 C-MEX S-Function 和 2 级 MATLAB® S-Function，前提是 S-Function 使用以下方法之一支持多个执行实例：
+
+- C-MEX S-Function 必须在 `mdlSetWorkWidths` 方法中声明 `ssSupportsMultipleExecInstances(S, true)`。
+- 2 级 MATLAB S-Function 必须在 setup 方法中声明 `block.SupportsMultipleExecInstances = true`。
+
+如果使用这些设定，则：
+
+- 不要使用全局变量或持久变量或在 S-Function 的用户数据内缓存运行时数据，如 DWork 和模块 I/O。
+- 在 For Each Subsystem 模块中，对于 S-Function 处理的每个元素，各调用一次 S-Function 执行方法（从 `mdlStart` 直到 `mdlTerminate`）。因此，您必须确保不要在重复调用 `mdlTerminate` 时释放相同的内存。例如，假设某个 C-MEX S-Function 为 `mdlSetWorkWidths` 内的运行时参数分配内存。仅当在 `mdlTerminate` 中时，该内存才需要释放一次。作为一种解决方案，请在首次调用 `mdlTerminate` 后将指针设置为空。
+
 ## 端口
 
 ### 输入
@@ -501,10 +605,6 @@ Subsystem 模块的信号输入，指定为标量、向量或矩阵。在 Subsys
 | **参数:** | `RTWMemSecDataParameters` |
 | **值:** | `'Inherit from model'` (默认) | `'Default'` | model memory section in quotes |
 
-## 所属库
-
-Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
-
 ## 模块特性
 
 |  |  |
@@ -584,7 +684,7 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 实际数据类型支持取决于模块实现。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2010a 中推出**
 
@@ -601,103 +701,3 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 相同位置的端口值标签现在显示迭代序号。在以前的版本中，这些位置的端口值标签显示 `inaccessible`。
 
 有关示例，请参阅Debug Simulation of Iterator Subsystem。
-
-## 描述
-
-将算法应用于输入信号或封装参数的单个元素或子数组
-
-For Each Subsystem 模块是一个预先配置的 Subsystem 模块，可以作为一个起点，用于创建在仿真时间步期间对输入信号或封装参数数组的每个元素或子数组都要重复执行的子系统。
-
-For Each Subsystem block icon, displayed alongside contents of for-each subsystem, consisting of a For Each block, an Inport block, and an Outport block.
-
-子系统中的模块组表示应用于原始信号或封装参数数组的单个元素（或子数组）的算法。在子系统内，具有状态的每个模块维护它所处理的每个元素或子数组的单独状态集。因此，此子系统的操作在行为上类似于复制原始输入信号或封装参数数组中每个元素的子系统的内容，然后使用其各自的子系统副本处理每个元素。随着该子系统中的模块集对元素（或子数组）的处理，该子系统串联结果以形成输出信号。
-
-### 配置子系统
-
-For Each Subsystem 模块包含 For Each 模块，该模块充当子系统的控制模块。指定 For Each 模块的参数，以配置将子系统输入或封装参数分解为元素或子数组，并配置将各个结果串联为输出信号。模块参数**分区维度**和**分区宽度**分别指定对输入信号或封装参数数组进行切片的维度和每个切片的宽度。要对行向量进行分区，请将**分区维度**指定为 `2`。要对列向量进行分区，请将**分区维度**指定为 `1`。使用参数**分区偏移量**指定分区之间的间隙或重叠。指定**迭代次数**以将处理范围限制为部分数据。要了解有关模块参数的更多信息，请参阅 For Each。
-
-**将输入信号分区到子系统**
-
-要为 For Each 子系统中的每次迭代指定要对哪些输入信号分区，请使用 For Each 模块的对话框中的**输入分区**选项卡。在指定要分区的信号时，指定**分区维度**、**分区宽度**和**分区偏移量**参数。
-
-**对子系统的封装参数进行分区**
-
-您可以对 For Each Subsystem 模块的封装参数进行分区。对于在每次迭代中结构相同但参数值不同的系统，分区非常有用。在这种情况下，针对每个参数更改模型来对额外输入参数进行分区非常繁琐。请改为将封装参数添加到 For Each 子系统中。有关详细信息，请参阅创建简单封装。要选择封装参数进行分区，请使用 For Each 模块对话框中的**参数分区**选项卡。有关详细信息，请参阅下文的选择分区参数。
-
-**串联输出**
-
-通过在**输出串联**选项卡中指定**串联维度**来定义沿哪个维度串联结果。
-
-模块为每个子数组生成的结果沿串联维度 1 堆叠。默认情况下，使用维度 1（*y* 轴），这意味着结果垂直堆叠。但是，如果指定的串联维度为 2，结果将沿水平方向（*x* 轴）串联。因此，如果该过程生成行向量，则串联的结果在第一种情况下是矩阵，在第二个种情况下是行向量。有关示例，请参阅在 For Each 模块中指定连接维度。
-
-**选择分区参数**
-
-当选择要分区的输入信号或子系统封装参数时，您必须为每次迭代指定如何将其分解为元素或子数组。为**分区维度**、**分区宽度**和**分区偏移量**参数设置整数值。
-
-作为说明，以如下形式的输入信号矩阵 `A` 为例：
-
-A 3-by-3 matrix A with all nine elements displayed, showing d1 as the vertical dimension and d2 as the horizontal dimension
-
-标签 *d*1 和 *d*2 分别定义维度 1 和 2。如果为分区维度和分区宽度均保留默认设置 `1`，为分区偏移量保留默认设置 `0`，则 Simulink® 会垂直于分区维度 1 以等于分区宽度（一个元素）的宽度进行切片：
-
-A 3-by-3 matrix A, with all nine elements showing, partitioned into rows
-
-矩阵 A 分解为以下三个行向量：
-
-A 3-by-3 matrix A, decomposed into three 3-element row vectors
-
-如果改为将 `2` 指定为分区维度，则 Simulink 将垂直于维度 2 进行切片来形成以下三个列向量：
-
-A 3-by-3 matrix A, decomposed into three 3-element column vectors
-
-除了将**分区维度**设置为 `2` 之外，如果再将**分区宽度**设置为 `2` 并将**分区偏移量**设置为 `-1`，Simulink 会将矩阵处理为两个重叠的 3×2 分区。
-
-A 3-by-3 matrix A, decomposed into two overlapping 3-by-2 matrices
-
-有关示例，请参阅使用 For Each 模块对输入信号进行分区。
-
-默认情况下，处理输入信号或封装参数的所有分区。要处理部分分区，请在**迭代次数**中输入要处理的分区的数量。在上面的矩阵示例中，如果**分区偏移量**设置为 `0`（默认值），并且**迭代次数**设置为 `2`，则仅处理输入矩阵 `A` 的前 2 行或前 2 列。
-
-**注意**
-
-在 Simulink 中，只有信号被视为一维。封装参数是行向量或列向量，具体取决于其方向。要对行向量进行分区，请将分区维度指定为 2（沿列进行）。要对列向量进行分区，请将分区维度指定为 1（沿行进行）。
-
-### 代码重用支持
-
-对于某些模型，For Each Subsystem 模块可提高 Simulink Coder™ 生成代码的代码重用。假设有一个模型包含两个可重用的 Atomic Subsystem 模块，且对信号的每个元素应用相同的标量算法。如果这些子系统的输入信号维度不同，Simulink Coder 生成的代码中将包含两个不同的函数。您可以将这两个子系统替换为两个相同的 For Each Subsystem 模块，后两者配置为使用相同的算法处理其各自输入的每个元素。在这种情况下，Simulink Coder 生成的代码会包含一个根据输入信号的元素数进行参数化的函数。此函数被调用两次，即对模型中 For Each Subsystem 模块的每个唯一实例分别调用一次。对于其中每种情况，输入信号元素均具有不同的值。
-
-### 多核执行支持
-
-在快速加速模式下仿真模型时，Simulink 使用多核执行来加快 For Each 子系统的仿真速度。Simulink 自动为每个符合条件的 For Each 子系统探查其在快速加速模式下运行的前两个时间步，以比较并行和串行执行时间。然后，如果在仿真运行的后续时间步中指定 For Each 子系统进行并行多核执行会加快执行速度，则 Simulink 会指定采用这种方式。对于嵌套的 For Each 子系统，多核执行仅适用于顶层子系统。多核执行不适用于包含连续状态或 Function Caller 模块的 For Each 子系统。
-
-要禁止给定 For Each 子系统的多核执行，请将该子系统内 For Each 模块的 `MultithreadedSim` 参数设置为 `'off'`。
-
-```
-set_param(ForEachBlockName,'MultithreadedSim','off')
-```
-
-请注意，这是子系统中 For Each 模块的参数，而不是 For Each Subsystem 模块本身的参数。要禁止模型中所有 For Each 子系统的多核执行，请将模型的 `MultithreadedSim` 参数设置为 `'off'`。
-
-```
-set_param(ModelName,'MultithreadedSim','off')
-```
-
-要重新启用多核执行，请将相关的 `MultithreadedSim` 参数设置为其默认值 `'auto'`。
-
-有关示例，请参阅Multithreaded Simulation Using For Each Subsystem。
-
-**注意**
-
-如果以快速加速模式仿真模型或从模型生成代码，并且对 For Each 子系统中的封装参数进行分区，则 For Each Subsystem 中引用分区参数的任何表达式都必须为可调表达式。请参阅Tunable Expression Limitations (Simulink Coder)。
-
-### S-Function 支持
-
-For Each Subsystem 模块支持 C-MEX S-Function 和 2 级 MATLAB® S-Function，前提是 S-Function 使用以下方法之一支持多个执行实例：
-
-- C-MEX S-Function 必须在 `mdlSetWorkWidths` 方法中声明 `ssSupportsMultipleExecInstances(S, true)`。
-- 2 级 MATLAB S-Function 必须在 setup 方法中声明 `block.SupportsMultipleExecInstances = true`。
-
-如果使用这些设定，则：
-
-- 不要使用全局变量或持久变量或在 S-Function 的用户数据内缓存运行时数据，如 DWork 和模块 I/O。
-- 在 For Each Subsystem 模块中，对于 S-Function 处理的每个元素，各调用一次 S-Function 执行方法（从 `mdlStart` 直到 `mdlTerminate`）。因此，您必须确保不要在重复调用 `mdlTerminate` 时释放相同的内存。例如，假设某个 C-MEX S-Function 为 `mdlSetWorkWidths` 内的运行时参数分配内存。仅当在 `mdlTerminate` 中时，该内存才需要释放一次。作为一种解决方案，请在首次调用 `mdlTerminate` 后将指针设置为空。

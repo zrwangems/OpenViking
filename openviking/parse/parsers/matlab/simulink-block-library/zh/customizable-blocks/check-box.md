@@ -11,13 +11,87 @@ chinese_source: worker-translation
 
 # Check Box
 
-## 端口
 
-R2025b 官方文档未提供。
+
+在仿真期间使用具有可自定义外观的复选框更改参数或变量值
+
+## 库
+
+Simulink / Dashboard / Customizable Blocks
+
+## 说明
+
+使用 Check Box 模块在仿真前或仿真期间更改所连接的变量或参数的值。当你在 Customizable Blocks 库中使用 Check Box 模块时，可以自定义该模块的外观，例如使该模块看起来像你正在设计的数字用户界面中的复选框。将 Check Box 模块与其他 Dashboard 模块一起使用，为你的模型构建由控件和指示器组成的交互式仪表板。
+
+你可以通过将 Check Box 模块连接到参数，然后选中或清除复选框来更改参数的值。默认情况下，选中复选框会将参数值设置为 `1`，清除复选框会将该值设置为 `0`。要自定义这些值，请打开 Property Inspector 的 **Parameters** 选项卡或 Block Parameters 对话框，然后更改 **Cleared value** 和 **Checked value**。
+
+要在仿真期间选中或清除复选框，请点击 Check Box 模块上的复选框图标。要在仿真未运行时选中或清除复选框，请点击 Check Box 模块以选择该模块，然后点击复选框图标。
+
+**注意**
+
+- 在仿真期间或点击已连接的 Check Box 模块后，双击该模块不会打开 Block Parameters 对话框。要打开 Block Parameters 对话框，请按 **Shift**，然后双击该模块。
+- 在仿真期间点击已连接的 Check Box 模块会同时选择该模块并选中或取消选中复选框。要在不选中或取消选中复选框的情况下选择模块，请按 **Shift**，然后点击该模块。
+
+### 自定义 Check Box 模块
+
+当你将 Check Box 模块添加到模型中时，该模块已预配置为默认设计。你可以使用采用默认设计的模块，也可以自定义该模块的外观。
+
+要自定义模块的外观，请使用设计模式。选择模块后，你可以通过以下三种方式之一进入设计模式：
+
+- 在 Simulink® Toolstrip 中，在模块特定的选项卡上，于 **Design** 下，点击 **Edit**。
+- 在 Property Inspector 中，在 **Design** 选项卡上，点击 **Edit**。
+- 暂停在模块上方出现的省略号上，然后点击 Edit Custom Block 按钮 。
+
+在设计模式下，你可以使用模块上方的工具栏来自定义复选框。要访问其他自定义选项或为设计设置输入精确值，请使用 Property Inspector 中的 **Design** 选项卡。
+
+处于设计模式下的 Customizable Check Box 模块，其中工具栏和 Property Inspector 中的 Design 选项卡可见。
+
+**设计模式操作**
+
+| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
+| --- | --- | --- |
+| 更改标签文本。 | No | Yes |
+| 更改标签字体颜色。 | Yes | Yes |
+| 上传表示已选中复选框的图标。 | Yes | Yes |
+| 上传表示已清除复选框的图标。 | Yes | Yes |
+| 更改模块内图标和标签的位置。 | No | Yes |
+| 上传背景图像。 | Yes | Yes |
+| 设置纯色背景颜色。 | No | Yes |
+| 上传前景图像。 | No | Yes |
+
+**注意**
+
+你在 **Design** 选项卡中做的所有更改——包括在 **Label and Icon** 组件中做的更改——都会同时应用于已清除的复选框和已选中的复选框。例如，当你更改图标宽度时，你会同时更改表示已清除复选框的图标的宽度以及表示已选中复选框的图标的宽度。
+
+除了使用工具栏和 **Design** 选项卡自定义模块设计外，你还可以在画布中交互式地重新定位标签和图标。
+
+完成设计编辑后，要退出设计模式，请点击画布右上角的 **X**。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后点击 Connect 按钮 。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
+
+要将控制模块连接到模型中的参数，或更改控制模块的连接，请进入连接模式。选择要连接到其参数的模块。从出现的列表中，选择要连接到的参数。然后，暂停在 Dashboard 模块上，并点击 Done Connecting 按钮 。
+
+在你更新模型图之前，控制模块无法连接到由变量定义的参数。要连接到由变量定义的参数，或在仿真未运行时修改定义所连接参数值的变量值，请按 **Ctrl+D** 更新模型图。
+
+你可以连接到具有标量值的参数，也可以连接到矩阵或结构体的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
+
+你也可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画展示如何将 Check Box 模块连接到你的模型。
+
+未连接的 Check Box 模块会连接到 Constant 模块。
+
+### 参数日志记录
+
+连接到 Dashboard 模块的可调参数会记录到 Simulation Data Inspector，你可以在其中查看参数值以及记录的信号数据。你可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB® workspace 中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素进行访问。
 
 ## 参数
 
 使用 Property Inspector 和 Block Parameters 对话框指定模块参数的值。要设置 Dashboard 模块的核心参数，请使用 Block Parameters 对话框或 Property Inspector 中的 **Parameters** 选项卡。要自定义模块，请使用 Property Inspector 中的 **Design** 选项卡。要打开模块的 Block Parameters 对话框，请双击该模块。要打开 Property Inspector，请在 **Modeling** 选项卡上的 **Design** 下，选择 **Property Inspector**。
+
+## 参数
 
 要设置 Dashboard 模块的核心参数，请打开 Property Inspector，然后点击 **Parameters** 选项卡。
 
@@ -260,10 +334,6 @@ Dashboard 模块不使用端口连接到模型元素。要将 Dashboard 模块�
 
 使用 Property Inspector 调整图像大小时，选择此参数以保持宽高比。
 
-## 所属库
-
-Simulink / Dashboard / Customizable Blocks
-
 ## 模块特性
 
 |  |  |
@@ -295,73 +365,3 @@ Simulink / Dashboard / Customizable Blocks
 如果来自 Dashboard 库的模块的宽高比已锁定，你可以通过按 **Shift** 临时解锁宽高比。当你释放 **Shift** 键时，宽高比会锁定。
 
 如果宽高比已解锁，按 **Shift** 会临时锁定宽高比。当你释放 **Shift** 键时，宽高比会解锁。
-
-## 描述
-
-在仿真期间使用具有可自定义外观的复选框更改参数或变量值
-
-使用 Check Box 模块在仿真前或仿真期间更改所连接的变量或参数的值。当你在 Customizable Blocks 库中使用 Check Box 模块时，可以自定义该模块的外观，例如使该模块看起来像你正在设计的数字用户界面中的复选框。将 Check Box 模块与其他 Dashboard 模块一起使用，为你的模型构建由控件和指示器组成的交互式仪表板。
-
-你可以通过将 Check Box 模块连接到参数，然后选中或清除复选框来更改参数的值。默认情况下，选中复选框会将参数值设置为 `1`，清除复选框会将该值设置为 `0`。要自定义这些值，请打开 Property Inspector 的 **Parameters** 选项卡或 Block Parameters 对话框，然后更改 **Cleared value** 和 **Checked value**。
-
-要在仿真期间选中或清除复选框，请点击 Check Box 模块上的复选框图标。要在仿真未运行时选中或清除复选框，请点击 Check Box 模块以选择该模块，然后点击复选框图标。
-
-**注意**
-
-- 在仿真期间或点击已连接的 Check Box 模块后，双击该模块不会打开 Block Parameters 对话框。要打开 Block Parameters 对话框，请按 **Shift**，然后双击该模块。
-- 在仿真期间点击已连接的 Check Box 模块会同时选择该模块并选中或取消选中复选框。要在不选中或取消选中复选框的情况下选择模块，请按 **Shift**，然后点击该模块。
-
-### 自定义 Check Box 模块
-
-当你将 Check Box 模块添加到模型中时，该模块已预配置为默认设计。你可以使用采用默认设计的模块，也可以自定义该模块的外观。
-
-要自定义模块的外观，请使用设计模式。选择模块后，你可以通过以下三种方式之一进入设计模式：
-
-- 在 Simulink® Toolstrip 中，在模块特定的选项卡上，于 **Design** 下，点击 **Edit**。
-- 在 Property Inspector 中，在 **Design** 选项卡上，点击 **Edit**。
-- 暂停在模块上方出现的省略号上，然后点击 Edit Custom Block 按钮 。
-
-在设计模式下，你可以使用模块上方的工具栏来自定义复选框。要访问其他自定义选项或为设计设置输入精确值，请使用 Property Inspector 中的 **Design** 选项卡。
-
-处于设计模式下的 Customizable Check Box 模块，其中工具栏和 Property Inspector 中的 Design 选项卡可见。
-
-**设计模式操作**
-
-| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
-| --- | --- | --- |
-| 更改标签文本。 | No | Yes |
-| 更改标签字体颜色。 | Yes | Yes |
-| 上传表示已选中复选框的图标。 | Yes | Yes |
-| 上传表示已清除复选框的图标。 | Yes | Yes |
-| 更改模块内图标和标签的位置。 | No | Yes |
-| 上传背景图像。 | Yes | Yes |
-| 设置纯色背景颜色。 | No | Yes |
-| 上传前景图像。 | No | Yes |
-
-**注意**
-
-你在 **Design** 选项卡中做的所有更改——包括在 **Label and Icon** 组件中做的更改——都会同时应用于已清除的复选框和已选中的复选框。例如，当你更改图标宽度时，你会同时更改表示已清除复选框的图标的宽度以及表示已选中复选框的图标的宽度。
-
-除了使用工具栏和 **Design** 选项卡自定义模块设计外，你还可以在画布中交互式地重新定位标签和图标。
-
-完成设计编辑后，要退出设计模式，请点击画布右上角的 **X**。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后点击 Connect 按钮 。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
-
-要将控制模块连接到模型中的参数，或更改控制模块的连接，请进入连接模式。选择要连接到其参数的模块。从出现的列表中，选择要连接到的参数。然后，暂停在 Dashboard 模块上，并点击 Done Connecting 按钮 。
-
-在你更新模型图之前，控制模块无法连接到由变量定义的参数。要连接到由变量定义的参数，或在仿真未运行时修改定义所连接参数值的变量值，请按 **Ctrl+D** 更新模型图。
-
-你可以连接到具有标量值的参数，也可以连接到矩阵或结构体的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
-
-你也可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画展示如何将 Check Box 模块连接到你的模型。
-
-未连接的 Check Box 模块会连接到 Constant 模块。
-
-### 参数日志记录
-
-连接到 Dashboard 模块的可调参数会记录到 Simulation Data Inspector，你可以在其中查看参数值以及记录的信号数据。你可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB® workspace 中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素进行访问。

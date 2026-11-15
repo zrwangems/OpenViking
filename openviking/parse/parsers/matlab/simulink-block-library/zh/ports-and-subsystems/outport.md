@@ -11,6 +11,68 @@ chinese_source: official
 
 # Outport
 
+为子系统或外部输出创建输出端口
+
+## 所属库
+
+Simulink / Commonly Used Blocks Simulink / Ports & Subsystems Simulink / Sinks HDL Coder / Commonly Used Blocks HDL Coder / Ports & Subsystems HDL Coder / Sinks
+
+## 描述
+
+Outport 模块将信号从系统内链接到系统外部的目标。它们可以连接从子系统流动到模型其他部分的信号。它们还可以在模型层次结构的顶层提供外部输出。
+
+Outport 模块端口号根据以下规则进行分配：
+
+- 根级系统或子系统中的 Outport 模块按顺序编号，从 1 开始。
+- 如果添加一个 Outport 模块，Simulink 将为其分配下一个可用的编号。
+- 如果您删除一个 Outport 模块，其他端口号会自动重新编号，以确保 Outport 模块的连续的且没有遗漏任何编号。
+
+### 子系统中的 Outport 模块
+
+子系统中的 Outport 模块表示来自子系统的输出。到达子系统中某个 Outport 模块的信号将从 Subsystem 模块上的关联输出端口流出。与输出端口关联的 Outport 模块是指**端口号**参数与该输出端口在 Subsystem 模块上的相对位置匹配的模块。例如，**端口号**参数为 `1` 的 Outport 模块将其信号发送给与 Subsystem 模块上最上面的输出端口连接的模块。
+
+如果您对 Outport 模块的**端口号**重新进行编号，模块将连接到一个不同的输出端口。模块会继续将信号发送给子系统外部的同一个模块。
+
+您可以直接编辑 Subsystem 模块上的端口标签。有关详细信息，请参阅 编辑子系统模块上的端口标签。
+
+**提示**
+
+对于包含总线的模型，如果总线信号中包含很多总线元素，则可以考虑使用 In Bus Element 和 Out Bus Element 模块。这些模块可以：
+
+- 减少模块图中信号线的复杂度和杂乱无章。
+- 使增量更改接口更容易。
+- 允许访问更靠近使用点的总线元素，避免使用 Bus Selector 和 Goto 模块配置。
+
+In Bus Element 模块属于 Inport 模块类型，Out Bus Element 模块属于 Outport 模块类型。
+
+### 模型层次结构中的顶层 Outport 模块
+
+模型层次结构顶层的 Outport 模块有两种用途。它们可以为 MATLAB® 基础工作区提供外部输出，为 `linmod` 和 `trim` 分析函数提供一种从系统中获取输出的方法。
+
+要为工作区提供外部输出，请使用**配置参数** > **数据导入/导出**窗格（请参阅将输出数据导出到 MATLAB 工作区）或 `sim` 命令。例如，如果系统有多个 Outport 模块，且保存格式为数组，则以下命令
+
+```
+[t,x,y] = sim(...);
+```
+
+将 `y` 写入为矩阵，每一列均包含一个不同 Outport 模块的数据。列顺序与 Outport 模块的端口号顺序匹配。
+
+如果您在第二个 (state) 参量之后指定多个变量名称，系统会将来自每个 Outport 模块的数据写入不同的变量。例如，如果系统有两个 Outport 模块，要将 Outport 模块 1 的数据保存到 `speed`，将 Outport 模块 2 的数据保存到 `dist`，请指定以下命令：
+
+```
+[t,x,speed,dist] = sim(...);
+```
+
+### 将总线连接到根级 Outport
+
+只有当虚拟总线中的所有元素均具有相同的数据类型时，模型中的根级 Outport 模块才会接受虚拟总线。Outport 模块自动将总线统一为与总线具有相同元素数的向量并提供该向量作为输出。
+
+如果希望模型的根级 Outport 模块接受包含混合类型的总线，请将 Outport 模块**数据类型**设置为 `Bus: <object name>`。如果总线为虚拟信号，则被转换为非虚拟信号，如Virtual and Nonvirtual Bus Conversions中所述。
+
+### 将根级 Outport 模块与 `Simulink.Signal` 对象关联
+
+要将根级 Outport 模块与 `Simulink.Signal` 对象关联，请使用模型数据编辑器。请参阅用于信号。
+
 ## 端口
 
 ### 输入
@@ -441,10 +503,6 @@ Simulink 尝试从输入信号继承输出值。然而，如果输入信号不�
 | **值：**标量 |
 | **默认值：**`'-1'` |
 
-## 所属库
-
-Simulink / Commonly Used Blocks Simulink / Ports & Subsystems Simulink / Sinks HDL Coder / Commonly Used Blocks HDL Coder / Ports & Subsystems HDL Coder / Sinks
-
 ## 模块特性
 
 |  |  |
@@ -488,7 +546,7 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
 
@@ -503,61 +561,3 @@ Outport 模块支持记录 `datetime` 数据。
 ### R2023b: 记录无界可变大小信号
 
 在普通和加速模式仿真中，Outport 模块支持记录无界可变大小信号。不支持记录包含无界可变大小信号的非虚拟总线。
-
-## 描述
-
-为子系统或外部输出创建输出端口
-
-Outport 模块将信号从系统内链接到系统外部的目标。它们可以连接从子系统流动到模型其他部分的信号。它们还可以在模型层次结构的顶层提供外部输出。
-
-Outport 模块端口号根据以下规则进行分配：
-
-- 根级系统或子系统中的 Outport 模块按顺序编号，从 1 开始。
-- 如果添加一个 Outport 模块，Simulink 将为其分配下一个可用的编号。
-- 如果您删除一个 Outport 模块，其他端口号会自动重新编号，以确保 Outport 模块的连续的且没有遗漏任何编号。
-
-### 子系统中的 Outport 模块
-
-子系统中的 Outport 模块表示来自子系统的输出。到达子系统中某个 Outport 模块的信号将从 Subsystem 模块上的关联输出端口流出。与输出端口关联的 Outport 模块是指**端口号**参数与该输出端口在 Subsystem 模块上的相对位置匹配的模块。例如，**端口号**参数为 `1` 的 Outport 模块将其信号发送给与 Subsystem 模块上最上面的输出端口连接的模块。
-
-如果您对 Outport 模块的**端口号**重新进行编号，模块将连接到一个不同的输出端口。模块会继续将信号发送给子系统外部的同一个模块。
-
-您可以直接编辑 Subsystem 模块上的端口标签。有关详细信息，请参阅 编辑子系统模块上的端口标签。
-
-**提示**
-
-对于包含总线的模型，如果总线信号中包含很多总线元素，则可以考虑使用 In Bus Element 和 Out Bus Element 模块。这些模块可以：
-
-- 减少模块图中信号线的复杂度和杂乱无章。
-- 使增量更改接口更容易。
-- 允许访问更靠近使用点的总线元素，避免使用 Bus Selector 和 Goto 模块配置。
-
-In Bus Element 模块属于 Inport 模块类型，Out Bus Element 模块属于 Outport 模块类型。
-
-### 模型层次结构中的顶层 Outport 模块
-
-模型层次结构顶层的 Outport 模块有两种用途。它们可以为 MATLAB® 基础工作区提供外部输出，为 `linmod` 和 `trim` 分析函数提供一种从系统中获取输出的方法。
-
-要为工作区提供外部输出，请使用**配置参数** > **数据导入/导出**窗格（请参阅将输出数据导出到 MATLAB 工作区）或 `sim` 命令。例如，如果系统有多个 Outport 模块，且保存格式为数组，则以下命令
-
-```
-[t,x,y] = sim(...);
-```
-
-将 `y` 写入为矩阵，每一列均包含一个不同 Outport 模块的数据。列顺序与 Outport 模块的端口号顺序匹配。
-
-如果您在第二个 (state) 参量之后指定多个变量名称，系统会将来自每个 Outport 模块的数据写入不同的变量。例如，如果系统有两个 Outport 模块，要将 Outport 模块 1 的数据保存到 `speed`，将 Outport 模块 2 的数据保存到 `dist`，请指定以下命令：
-
-```
-[t,x,speed,dist] = sim(...);
-```
-
-### 将总线连接到根级 Outport
-
-只有当虚拟总线中的所有元素均具有相同的数据类型时，模型中的根级 Outport 模块才会接受虚拟总线。Outport 模块自动将总线统一为与总线具有相同元素数的向量并提供该向量作为输出。
-
-如果希望模型的根级 Outport 模块接受包含混合类型的总线，请将 Outport 模块**数据类型**设置为 `Bus: <object name>`。如果总线为虚拟信号，则被转换为非虚拟信号，如Virtual and Nonvirtual Bus Conversions中所述。
-
-### 将根级 Outport 模块与 `Simulink.Signal` 对象关联
-
-要将根级 Outport 模块与 `Simulink.Signal` 对象关联，请使用模型数据编辑器。请参阅用于信号。

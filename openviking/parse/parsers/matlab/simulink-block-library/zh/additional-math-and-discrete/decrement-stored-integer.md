@@ -11,6 +11,18 @@ chinese_source: official
 
 # Decrement Stored Integer
 
+将信号的存储整数值减 1
+
+## 所属库
+
+Simulink / Additional Math & Discrete / Additional Math: Increment - Decrement HDL Coder / Math Operations
+
+## 描述
+
+Decrement Stored Integer 模块将信号的存储整数值减 1。
+
+浮点信号也减 1，并且溢出始终绕回。
+
 ## 端口
 
 ### 输入
@@ -27,14 +39,6 @@ chinese_source: official
 输出是输入信号的存储的整数值减 1。浮点信号也减 1，并且溢出始终绕回。输出具有与输入相同的数据类型和维度。
 
 **数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
-## 参数
-
-R2025b 官方文档未提供。
-
-## 所属库
-
-Simulink / Additional Math & Discrete / Additional Math: Increment - Decrement HDL Coder / Math Operations
 
 ## 模块特性
 
@@ -70,14 +74,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-将信号的存储整数值减 1
-
-Decrement Stored Integer 模块将信号的存储整数值减 1。
-
-浮点信号也减 1，并且溢出始终绕回。

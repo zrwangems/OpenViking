@@ -10,6 +10,61 @@ language: en
 
 # PID Controller
 
+Continuous-time or discrete-time PID controller
+
+## Libraries
+
+Simulink / Continuous
+
+## Description
+
+The PID Controller block implements a PID controller (PID, PI, PD, P
+only, or I only). The block is identical to the Discrete PID
+Controller block with the **Time domain** parameter set to
+`Continuous-time`.
+
+The block output is a weighted sum of the input signal, the integral of the input
+signal, and the derivative of the input signal. The weights are the proportional,
+integral, and derivative gain parameters. A first-order pole filters the derivative
+action.
+
+The block supports several controller types and structures. Configurable options in
+the block include:
+
+- Controller type (PID, PI, PD, P only, or I only) — See the
+  **Controller** parameter.
+- Controller form (Parallel or Ideal) — See the **Form**
+  parameter.
+- Time domain (continuous or discrete) — See the **Time
+  domain** parameter.
+- Initial conditions and reset trigger — See the **Source** and
+  **External reset** parameters.
+- Output saturation limits and built-in anti-windup mechanism — See the
+  **Limit output** parameter.
+- Signal tracking for bumpless control transfer and multiloop control — See the
+  **Enable tracking mode** parameter.
+
+As you change these options, the internal structure of the block changes by activating
+different variant subsystems. (See Implement Variations in Separate Hierarchy Using Variant Subsystems.) To examine the internal structure of the block and its variant subsystems,
+right-click the block and select **Mask** > **Look Under Mask**.
+
+### Control Configuration
+
+In one common implementation, the PID Controller block operates in
+the feedforward path of a feedback loop.
+
+The input of the block is typically an error signal, which is the difference
+between a reference signal and the system output. For a two-input block that permits
+setpoint weighting, see PID Controller
+(2DOF).
+
+### PID Gain Tuning
+
+The PID controller coefficients are tunable either manually or automatically.
+Automatic tuning requires Simulink®
+Control Design™ software. For more information about automatic tuning, see the
+**Select tuning method** parameter.
+
 ## Ports
 
 ### Input
@@ -1623,10 +1678,6 @@ To enable this parameter for the discrete-time integrator or filter state:
 | **Values:** `"off"`, `"on"` |
 | **Default:** `"off"` |
 
-## Libraries
-
-Simulink / Continuous
-
 ## Block Characteristics
 
 |  |  |
@@ -1767,54 +1818,3 @@ link to `'pid_lib/PID Controller'`. Previously, the blocks linked to
 `'simulink/Continuous/PID Controller'`.
 
 This change does not affect any other functionality or workflows. You can still use the previous path with the `set_param` function.
-
-## Description
-
-Continuous-time or discrete-time PID controller
-
-The PID Controller block implements a PID controller (PID, PI, PD, P
-only, or I only). The block is identical to the Discrete PID
-Controller block with the **Time domain** parameter set to
-`Continuous-time`.
-
-The block output is a weighted sum of the input signal, the integral of the input
-signal, and the derivative of the input signal. The weights are the proportional,
-integral, and derivative gain parameters. A first-order pole filters the derivative
-action.
-
-The block supports several controller types and structures. Configurable options in
-the block include:
-
-- Controller type (PID, PI, PD, P only, or I only) — See the
-  **Controller** parameter.
-- Controller form (Parallel or Ideal) — See the **Form**
-  parameter.
-- Time domain (continuous or discrete) — See the **Time
-  domain** parameter.
-- Initial conditions and reset trigger — See the **Source** and
-  **External reset** parameters.
-- Output saturation limits and built-in anti-windup mechanism — See the
-  **Limit output** parameter.
-- Signal tracking for bumpless control transfer and multiloop control — See the
-  **Enable tracking mode** parameter.
-
-As you change these options, the internal structure of the block changes by activating
-different variant subsystems. (See Implement Variations in Separate Hierarchy Using Variant Subsystems.) To examine the internal structure of the block and its variant subsystems,
-right-click the block and select **Mask** > **Look Under Mask**.
-
-### Control Configuration
-
-In one common implementation, the PID Controller block operates in
-the feedforward path of a feedback loop.
-
-The input of the block is typically an error signal, which is the difference
-between a reference signal and the system output. For a two-input block that permits
-setpoint weighting, see PID Controller
-(2DOF).
-
-### PID Gain Tuning
-
-The PID controller coefficients are tunable either manually or automatically.
-Automatic tuning requires Simulink®
-Control Design™ software. For more information about automatic tuning, see the
-**Select tuning method** parameter.

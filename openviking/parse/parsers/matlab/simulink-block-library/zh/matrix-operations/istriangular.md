@@ -11,6 +11,18 @@ chinese_source: worker-translation
 
 # IsTriangular
 
+
+
+检查矩阵是上三角矩阵还是下三角矩阵
+
+## 库
+
+Simulink / Matrix Operations
+
+## 说明
+
+IsTriangular 模块确定输入是上三角矩阵还是下三角矩阵。
+
 ## 端口
 
 ### 输入
@@ -43,10 +55,6 @@ chinese_source: worker-translation
 | **取值：** `'Upper'` | `'Lower'` |
 | **默认值：** `'Upper'` |
 
-## 所属库
-
-Simulink / Matrix Operations
-
 ## 模块特性
 
 |  |  |
@@ -66,9 +74,3 @@ Simulink / Matrix Operations
 ## 版本历史
 
 **在 R2021b 中引入**
-
-## 描述
-
-检查矩阵是上三角矩阵还是下三角矩阵
-
-IsTriangular 模块确定输入是上三角矩阵还是下三角矩阵。

@@ -15,6 +15,7 @@ from openviking.parse.parsers.directory import DirectoryParser
 from openviking.parse.parsers.matlab._zip import read_xml_member
 from openviking.parse.parsers.matlab.catalog import find_block
 from openviking.parse.parsers.matlab.formats import parse_additional
+from openviking.parse.parsers.matlab.library import normalize_block_document, read_block_document
 from openviking.parse.parsers.matlab.mat import parse_mat, parse_mat_documents
 from openviking.parse.parsers.matlab.parser import MatlabParser
 from openviking.parse.parsers.matlab.scripts import parse_m_file, parse_mlx
@@ -383,29 +384,6 @@ def test_scraped_block_knowledge_is_local_and_complete():
         assert "## 中文" not in text
         assert "language: zh-CN" in chinese_text
         assert re.search(r"[\u4e00-\u9fff]", chinese_text)
-        expected = [
-            "## Ports",
-            "## Parameters",
-            "## Libraries",
-            "## Block Characteristics",
-            "## Extended Capabilities",
-            "## Version History",
-            "## Description",
-        ]
-        assert [line for line in text.splitlines() if line.startswith("## ")] == expected
-        chinese_expected = [
-            "## 端口",
-            "## 参数",
-            "## 所属库",
-            "## 模块特性",
-            "## 扩展功能",
-            "## 版本历史",
-            "## 描述",
-        ]
-        assert [
-            line for line in chinese_text.splitlines() if line.startswith("## ")
-        ] == chinese_expected
-
     logical = (english / "logic-and-bit-operations" / "logical-operator.md").read_text(
         encoding="utf-8"
     )
@@ -433,6 +411,65 @@ def test_scraped_block_knowledge_is_local_and_complete():
     assert "# Messages & Events" in (english / "messages-events" / "index.md").read_text(
         encoding="utf-8"
     )
+
+
+def test_resource_add_structures_block_pages_without_rewriting_source_files():
+    expected = {
+        "en": [
+            "## Ports",
+            "## Parameters",
+            "## Libraries",
+            "## Block Characteristics",
+            "## Extended Capabilities",
+            "## Version History",
+            "## Description",
+        ],
+        "zh-CN": [
+            "## 端口",
+            "## 参数",
+            "## 所属库",
+            "## 模块特性",
+            "## 扩展功能",
+            "## 版本历史",
+            "## 描述",
+        ],
+    }
+    for language, headings in expected.items():
+        document = read_block_document("math-operations", "Abs", language=language)
+        assert [line for line in document.splitlines() if line.startswith("## ")] == headings
+        assert document.index(headings[0]) < document.index(headings[-1])
+        expected_summary = (
+            "输出输入信号的绝对值" if language == "zh-CN" else "Output absolute value of input"
+        )
+        assert expected_summary in document
+
+    # Aliases in older source documents are normalized only in the add-resource output.
+    document = read_block_document("messages-events", "Receive", language="zh-CN")
+    assert "## 描述" in document
+    assert "## 说明" not in document
+
+
+def test_block_document_normalization_preserves_body_and_is_idempotent():
+    document = """---
+type: simulink-block
+---
+# Example
+Summary.
+
+## 说明
+Details.
+
+## 库
+Simulink / Examples
+
+## 端口
+Input and output.
+"""
+    normalized = normalize_block_document(document, language="zh-CN")
+    assert normalized.index("## 端口") < normalized.index("## 所属库")
+    assert normalized.index("## 所属库") < normalized.index("## 描述")
+    assert normalized.endswith("Summary.\n\nDetails.\n")
+    assert normalize_block_document(normalized, language="zh-CN") == normalized
 
 
 def test_real_simscape_model_preserves_conserving_network_semantics():

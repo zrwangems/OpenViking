@@ -10,120 +10,13 @@ language: en
 
 # S-Function
 
-## Ports
-
-### Input
-
-### **In** — Signal input to an S-function block scalar | vector | matrix
-
-You can configure input port using the `mdlInitializeSizes`
-callback function. Use the `mdlInitializeSizes`
-function to specify number of input ports, dimension of input signals,
-sample time of each port, and if ports are direct feedthrough.
-
-**Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-### Output
-
-### **Out** — Signal output of an S-function block scalar | vector | matrix
-
-You can configure output port using the `mdlInitializeSizes`
-callback function. Use the `mdlInitializeSizes`
-function to specify number of output ports, dimension of output signals,
-and sample time of each port.
-
-**Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
-## Parameters
-
-### **S-function name** — Name of the S-function `system` (default) | S-function name
-
-Use this parameter to specify the name of your S-function.
-
-#### Programmatic Use
-
-To set the block parameter value programmatically, use
-the `set_param` function.
-
-|  |  |
-| --- | --- |
-| **Parameter:** | `FunctionName` |
-| **Values:** | `'system'` (default) | S-function name in quotes |
-
-### **S-function parameters** — Additional S-function parameters MATLAB expressions | comma-separated variables
-
-Specify the additional S-function parameters.
-
-The function parameters can be specified as MATLAB expressions or as variables separated by commas. For
-example:
-
-```
-A, B, C, D, [eye(2,2);zeros(2,2)]
-```
-
-Although individual parameters can be enclosed in brackets, the list of
-parameters must not be enclosed in brackets.
-
-#### Programmatic Use
-
-|  |  |
-| --- | --- |
-| **Parameter:** | `Parameters` |
-| **Values:** | `''` (default) | S-function parameters in quotes |
-
-### **S-function modules** — Additional files for code generation `''` (default) | filenames
-
-This parameter applies only if this block represents a C MEX S-function
-and you intend to use the Simulink
-Coder™ software to generate code from the model containing the block.
-If you use it, when you are ready to generate code, you must force the coder
-to rebuild the top model as explained in Control Regeneration of Top Model Code (Simulink Coder).
-
-For more information on using this parameter, see Specify Additional Source Files for an S-Function (Simulink Coder).
-
-#### Programmatic Use
-
-|  |  |
-| --- | --- |
-| **Parameter:** | `SFunctionModules` |
-| **Values:** | `''` (default) | filenames in quotes |
+Include S-function in model
 
 ## Libraries
 
 Simulink / User-Defined Functions
 
-## Block Characteristics
-
-|  |  |
-| --- | --- |
-| **Data Types** | `Booleana` | `busa` | `doublea` | `fixed pointa` | `halfa` | `integera` | `singlea` | `stringa` |
-| **Direct Feedthrough** | `yesa` |
-| **Multidimensional Signals** | `yesa` |
-| **Variable-Size Signals** | `yesa` |
-| **Zero-Crossing Detection** | `yesa` |
-|  |  |
-| --- | --- |
-| a Actual data type or capability support depends on block implementation. | |
-
-## Extended Capabilities
-
-### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
-
-- Actual code generation support depends on block implementation.
-- S-functions that call into MATLAB are not supported for code generation.
-
-### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
-
-- Actual data type support depends on block implementation.
-- See Integrate External Code (Fixed-Point Designer) for details on using
-  fixed-point data types in S-functions.
-
-## Version History
-
-**Introduced before R2006a**
-
 ## Description
-
-Include S-function in model
 
 The S-Function block allows you to integrate your S-function or system
 function algorithms written in C, C++, or Fortran®, known as C MEX S-functions, into Simulink models. You can use the block
@@ -216,3 +109,110 @@ the inputs must have the dimensions specified by the S-function for the inputs.
 Use the Level-2 MATLAB S-Function block to
 include a Level-2 MATLAB S-function in a
 block diagram.
+
+## Ports
+
+### Input
+
+### **In** — Signal input to an S-function block scalar | vector | matrix
+
+You can configure input port using the `mdlInitializeSizes`
+callback function. Use the `mdlInitializeSizes`
+function to specify number of input ports, dimension of input signals,
+sample time of each port, and if ports are direct feedthrough.
+
+**Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+### Output
+
+### **Out** — Signal output of an S-function block scalar | vector | matrix
+
+You can configure output port using the `mdlInitializeSizes`
+callback function. Use the `mdlInitializeSizes`
+function to specify number of output ports, dimension of output signals,
+and sample time of each port.
+
+**Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+
+## Parameters
+
+### **S-function name** — Name of the S-function `system` (default) | S-function name
+
+Use this parameter to specify the name of your S-function.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `FunctionName` |
+| **Values:** | `'system'` (default) | S-function name in quotes |
+
+### **S-function parameters** — Additional S-function parameters MATLAB expressions | comma-separated variables
+
+Specify the additional S-function parameters.
+
+The function parameters can be specified as MATLAB expressions or as variables separated by commas. For
+example:
+
+```
+A, B, C, D, [eye(2,2);zeros(2,2)]
+```
+
+Although individual parameters can be enclosed in brackets, the list of
+parameters must not be enclosed in brackets.
+
+#### Programmatic Use
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `Parameters` |
+| **Values:** | `''` (default) | S-function parameters in quotes |
+
+### **S-function modules** — Additional files for code generation `''` (default) | filenames
+
+This parameter applies only if this block represents a C MEX S-function
+and you intend to use the Simulink
+Coder™ software to generate code from the model containing the block.
+If you use it, when you are ready to generate code, you must force the coder
+to rebuild the top model as explained in Control Regeneration of Top Model Code (Simulink Coder).
+
+For more information on using this parameter, see Specify Additional Source Files for an S-Function (Simulink Coder).
+
+#### Programmatic Use
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `SFunctionModules` |
+| **Values:** | `''` (default) | filenames in quotes |
+
+## Block Characteristics
+
+|  |  |
+| --- | --- |
+| **Data Types** | `Booleana` | `busa` | `doublea` | `fixed pointa` | `halfa` | `integera` | `singlea` | `stringa` |
+| **Direct Feedthrough** | `yesa` |
+| **Multidimensional Signals** | `yesa` |
+| **Variable-Size Signals** | `yesa` |
+| **Zero-Crossing Detection** | `yesa` |
+|  |  |
+| --- | --- |
+| a Actual data type or capability support depends on block implementation. | |
+
+## Extended Capabilities
+
+### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
+
+- Actual code generation support depends on block implementation.
+- S-functions that call into MATLAB are not supported for code generation.
+
+### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
+
+- Actual data type support depends on block implementation.
+- See Integrate External Code (Fixed-Point Designer) for details on using
+  fixed-point data types in S-functions.
+
+## Version History
+
+**Introduced before R2006a**

@@ -10,6 +10,21 @@ language: en
 
 # If
 
+Select subsystem execution using logic similar to if-else statement
+
+## Libraries
+
+Simulink / Ports & Subsystems
+
+## Description
+
+The If block, along with If Action Subsystem blocks that contain
+an Action Port block, implements if-else
+logic to control subsystem execution. For an example that uses the If
+block, see Select Subsystem Execution.
+
+Model ex\_if\_block
+
 ## Ports
 
 ### Input
@@ -231,10 +246,6 @@ list of logical expressions
 | **Values**: `''` | list of logical expressions separated by commas placed in quotes |
 | **Default**: `''` |
 
-## Libraries
-
-Simulink / Ports & Subsystems
-
 ## Block Characteristics
 
 |  |  |
@@ -283,14 +294,3 @@ This block has one default HDL architecture.
 - Generated code contains if-else expressions. This change prevents
   inclusion of switch-case statements and enhances readability of the
   generated code.
-
-## Description
-
-Select subsystem execution using logic similar to if-else statement
-
-The If block, along with If Action Subsystem blocks that contain
-an Action Port block, implements if-else
-logic to control subsystem execution. For an example that uses the If
-block, see Select Subsystem Execution.
-
-Model ex\_if\_block

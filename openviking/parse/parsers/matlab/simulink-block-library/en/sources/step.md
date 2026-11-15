@@ -10,6 +10,28 @@ language: en
 
 # Step
 
+Generate step function
+
+## Libraries
+
+Simulink / Sources
+
+## Description
+
+The Step block provides a step between two definable levels at a specified
+time. If the simulation time is less than the **Step time** parameter
+value, the block's output is the **Initial value** parameter value. For
+simulation time greater than or equal to the **Step time**, the output
+is the **Final value** parameter value.
+
+The numeric block parameters must be of the same dimensions after scalar expansion. If the
+**Interpret vector parameters as 1-D** option is off, the block
+outputs a signal of the same dimensions and dimensionality as the parameters. If the
+**Interpret vector parameters as 1-D** option is on and the numeric
+parameters are row or column vectors (that is, single-row or column 2-D arrays), the
+block outputs a vector (1-D array) signal. Otherwise, the block outputs a signal of the
+same dimensionality and dimensions as the parameters.
+
 ## Ports
 
 ### Output
@@ -181,10 +203,6 @@ apply data type override. For example, you can use this option to ensure
 that data types meet the requirements of downstream blocks regardless of
 the data type override setting.
 
-## Libraries
-
-Simulink / Sources
-
 ## Block Characteristics
 
 |  |  |
@@ -204,21 +222,3 @@ Not recommended for production code.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Generate step function
-
-The Step block provides a step between two definable levels at a specified
-time. If the simulation time is less than the **Step time** parameter
-value, the block's output is the **Initial value** parameter value. For
-simulation time greater than or equal to the **Step time**, the output
-is the **Final value** parameter value.
-
-The numeric block parameters must be of the same dimensions after scalar expansion. If the
-**Interpret vector parameters as 1-D** option is off, the block
-outputs a signal of the same dimensions and dimensionality as the parameters. If the
-**Interpret vector parameters as 1-D** option is on and the numeric
-parameters are row or column vectors (that is, single-row or column 2-D arrays), the
-block outputs a vector (1-D array) signal. Otherwise, the block outputs a signal of the
-same dimensionality and dimensions as the parameters.

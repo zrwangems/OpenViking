@@ -11,6 +11,32 @@ chinese_source: worker-translation
 
 # Record
 
+
+
+将数据查看并记录到工作区、文件，或同时记录到两者
+
+## 所属库
+Simulink / Sinks
+
+## 描述
+使用 Record 模块或 XY Graph 模块将数据记录到工作区、文件，或同时记录到工作区和文件。将数据记录到文件时，可以选择记录到 MAT 文件、MLDATX 文件、Excel® 文件或 Parquet 文件 *(自 R2025a 起)*。连接到 Record 模块的信号始终记录到 Simulation Data Inspector。如果决定需要在仿真后保存数据，可以将数据从 Record 模块导出到工作区或任何支持的文件类型（Parquet 文件除外）。
+
+还可以使用 Record 模块可视化连接的信号。要查看连接到 Record 模块的信号数据，请双击该模块。在 Record 模块中查看数据时，可以访问仿真控制项，例如 **Run** 按钮。
+
+默认情况下，Record 模块在 sparklines 图上显示所有连接的信号。每个连接的信号都会添加一个 sparkline。当 sparklines 填满可见空间后，滚动条允许你继续绘制信号。
+
+一个打开的模型，用于查看由 Record 模块记录的数据，且模块参数在 Property Inspector 中可见
+
+### Build Visualizations
+Record 模块支持 Simulation Data Inspector 中可用的大多数可视化。当其他可视化更适合你的数据时，可以使用 **Layouts** 选项和绘图类型选择器（默认标记为 **Sparklines**）修改绘图布局和绘图类型。使用 **Layouts** 列表选择子图布局。要更改子图的绘图类型，请选择该子图，然后从绘图类型选择器中选择所需的绘图类型。
+
+有关详细信息，请参阅 Log Data to the Workspace and a File Using the Record Block。有关展示如何使用每种可视化类型的示例，请参阅：
+
+- Sparklines — 使用 Sparklines 一起查看多个信号
+- XY — 在 XY Plot 上可视化仿真数据并使用 XY Plot 分析数据
+- Map — 查看和回放 Map 数据
+- Time plot and text editor — 使用 Simulation Data Inspector 创建绘图
+
 ## 端口
 
 ### Input
@@ -32,7 +58,6 @@ XY Graph 模块是 Record 模块的另一种配置，可在 XY 图上可视化�
 **复数支持：** Yes
 
 ## 参数
-
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® Toolstrip 的 **Simulation** 选项卡中，在 **Prepare** 库中，选择 **Property Inspector**。
 
 ### Main
@@ -436,10 +461,6 @@ XY Graph 模块是 Record 模块的另一种配置，可在 XY 图上可视化�
 
 **Example:** `set_param("myModel/Record","ParquetRowGroupPolicy","sizeinmb","ParquetRowGroupsize","450")`
 
-## 所属库
-
-Simulink / Sinks
-
 ## 模块特性
 
 |  |  |
@@ -546,25 +567,3 @@ XY Graph 模块替换为预配置为在 XY 图上显示两个输入信号的 Rec
 **Logging intervals** 配置参数适用于使用 Record 模块记录到工作区的数据。
 
 **Logging intervals** 参数不影响使用 Record 模块记录到文件的数据，也不影响信号在 Record 模块中的显示方式。还可以在 Simulation Data Inspector 中访问连接到 Record 模块的信号的完整信号数据。
-
-## 描述
-
-将数据查看并记录到工作区、文件，或同时记录到两者
-
-使用 Record 模块或 XY Graph 模块将数据记录到工作区、文件，或同时记录到工作区和文件。将数据记录到文件时，可以选择记录到 MAT 文件、MLDATX 文件、Excel® 文件或 Parquet 文件 *(自 R2025a 起)*。连接到 Record 模块的信号始终记录到 Simulation Data Inspector。如果决定需要在仿真后保存数据，可以将数据从 Record 模块导出到工作区或任何支持的文件类型（Parquet 文件除外）。
-
-还可以使用 Record 模块可视化连接的信号。要查看连接到 Record 模块的信号数据，请双击该模块。在 Record 模块中查看数据时，可以访问仿真控制项，例如 **Run** 按钮。
-
-默认情况下，Record 模块在 sparklines 图上显示所有连接的信号。每个连接的信号都会添加一个 sparkline。当 sparklines 填满可见空间后，滚动条允许你继续绘制信号。
-
-一个打开的模型，用于查看由 Record 模块记录的数据，且模块参数在 Property Inspector 中可见
-
-### Build Visualizations
-Record 模块支持 Simulation Data Inspector 中可用的大多数可视化。当其他可视化更适合你的数据时，可以使用 **Layouts** 选项和绘图类型选择器（默认标记为 **Sparklines**）修改绘图布局和绘图类型。使用 **Layouts** 列表选择子图布局。要更改子图的绘图类型，请选择该子图，然后从绘图类型选择器中选择所需的绘图类型。
-
-有关详细信息，请参阅 Log Data to the Workspace and a File Using the Record Block。有关展示如何使用每种可视化类型的示例，请参阅：
-
-- Sparklines — 使用 Sparklines 一起查看多个信号
-- XY — 在 XY Plot 上可视化仿真数据并使用 XY Plot 分析数据
-- Map — 查看和回放 Map 数据
-- Time plot and text editor — 使用 Simulation Data Inspector 创建绘图

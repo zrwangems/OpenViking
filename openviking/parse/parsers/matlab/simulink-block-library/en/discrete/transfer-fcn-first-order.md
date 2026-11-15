@@ -10,6 +10,17 @@ language: en
 
 # Transfer Fcn First Order
 
+Implement discrete-time first order transfer function
+
+## Libraries
+
+Simulink / Discrete
+
+## Description
+
+The Transfer Fcn First Order block implements a discrete-time first order
+transfer function of the input. The transfer function has a unity DC gain.
+
 ## Ports
 
 ### Input
@@ -92,10 +103,6 @@ saturation code.
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
-## Libraries
-
-Simulink / Discrete
-
 ## Block Characteristics
 
 |  |  |
@@ -117,10 +124,3 @@ Simulink / Discrete
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Implement discrete-time first order transfer function
-
-The Transfer Fcn First Order block implements a discrete-time first order
-transfer function of the input. The transfer function has a unity DC gain.

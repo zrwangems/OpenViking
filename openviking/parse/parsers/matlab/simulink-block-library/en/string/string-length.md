@@ -10,6 +10,18 @@ language: en
 
 # String Length
 
+Output number of characters in input string
+
+## Libraries
+
+Simulink / String
+
+## Description
+
+The String Length block outputs the number of characters in the input
+string. For example, you can use the String Length block to move focus of
+attention to a particular location in a string.
+
 ## Ports
 
 ### Input
@@ -70,10 +82,6 @@ information on using this parameter, see Specify Data Types Using Data Type Assi
 Clicking the **Show data type assistant** button
 enables this parameter.
 
-## Libraries
-
-Simulink / String
-
 ## Block Characteristics
 
 |  |  |
@@ -108,11 +116,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced in R2018a**
-
-## Description
-
-Output number of characters in input string
-
-The String Length block outputs the number of characters in the input
-string. For example, you can use the String Length block to move focus of
-attention to a particular location in a string.

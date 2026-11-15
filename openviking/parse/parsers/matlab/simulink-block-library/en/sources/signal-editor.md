@@ -10,6 +10,101 @@ language: en
 
 # Signal Editor
 
+Display, create, edit, and switch interchangeable scenarios
+
+## Libraries
+
+Simulink / Sources
+
+## Description
+
+The Signal Editor block displays, creates, and edits interchangeable
+scenarios, which contain signals. Signals can be:
+
+- MATLAB®
+  `timeseries` objects.
+  `timeseries` objects cannot have empty
+  `Data` properties.
+- `timetable` objects.
+  `timetable` objects cannot represent multiple
+  variables.
+- Structure of MATLAB
+  `timeseries` or `timetable` objects.
+- Two-dimensional matrices.
+
+The block creates one port for each signal.
+
+To create and edit scenarios and the signals contained in the scenarios, click
+**Open Signal Editor** (). You can also use the Signal Editor
+block to switch scenarios in and out of models.
+
+The Signal Editor block supports MAT files that contain signals as one
+or more scalar `Simulink.SimulationData.Dataset` objects.
+
+### Create and Edit Scenarios and Signals
+
+To create and edit scenarios and the signals contained in them, open the Signal
+Editor tool by clicking . The Signal Editor tool enables you to easily
+manipulate signals in these ways:
+
+- Create and edit multiple signals in multiple data sets. By default, the
+  Signal Editor creates timeseries format data.
+- Use signal notations to create more complicated signals using MATLAB expressions. You can use the Author and Insert dialog box or
+  manually enter simple MATLAB expressions in the tabular area.
+- Use existing scenarios to get existing data sets for which you can edit
+  and create signals.
+- Create and edit multidimensional signals.
+
+For more information on the Signal Editor tool, see Create and Edit Signal Data.
+
+### Programmatic Interactions
+
+To programmatically get the total number of scenarios and signals in the
+Signal Editor block, use the `get_param`
+function with the `NumberOfScenarios` and
+`NumberOfSignals` parameters, respectively. These read-only
+parameters contain the values as character vectors. To convert these values to
+doubles, use the `str2double` function.
+
+To programmatically enable the Signal Editor block to label output
+signal lines, set `PreserveSignalName` to `'on'`
+(default) with the `set_param` function.
+
+```
+set_param(gcb,'PreserveSignalName','on')
+```
+
+For more information on programmatic interactions, see Parameters and Replace Programmatic Use of signalbuilder.
+
+### Import and Export
+
+The Signal Editor supports custom file types, such as Microsoft®
+Excel®, by letting you:
+
+- Edit signals imported from registered custom file types. For more
+  information, see Import Custom File Type.
+- Export signals from Signal Editor to your registered custom file types.
+  For more information, see Export Signals to Custom Registered File Types.
+
+### Migrating from Signal Builder Blocks
+
+You can port Signal Builder block configurations to the
+Signal Editor block using the
+`signalBuilderToSignalEditor` function. For more information,
+see Replace Signal Builder Block with Signal Editor Block and Migrate from Signal Builder Block to Signal Editor Block.
+
+### Fast Restart
+
+The Signal Editor block supports fast restart. With fast restart
+enabled, you can still:
+
+- Change the active scenario.
+- Change the active signal.
+
+  While you can change the active signal, you cannot edit the signal
+  properties in the block.
+- Open the Signal Editor and edit data.
+
 ## Ports
 
 ### Output Arguments
@@ -467,10 +562,6 @@ exists.
 | **Values**: `'Setting to zero' | 'Extrapolation' | 'Holding final value'` |
 | **Default**: `'Setting to zero'` |
 
-## Libraries
-
-Simulink / Sources
-
 ## Block Characteristics
 
 |  |  |
@@ -614,94 +705,3 @@ A Signal Editor block in the top model can load data for an array of
 buses in normal or accelerator mode simulations. Loading data for an array of buses
 using a Signal Editor block in a referenced model is supported only
 when the referenced model executes in normal mode.
-
-## Description
-
-Display, create, edit, and switch interchangeable scenarios
-
-The Signal Editor block displays, creates, and edits interchangeable
-scenarios, which contain signals. Signals can be:
-
-- MATLAB®
-  `timeseries` objects.
-  `timeseries` objects cannot have empty
-  `Data` properties.
-- `timetable` objects.
-  `timetable` objects cannot represent multiple
-  variables.
-- Structure of MATLAB
-  `timeseries` or `timetable` objects.
-- Two-dimensional matrices.
-
-The block creates one port for each signal.
-
-To create and edit scenarios and the signals contained in the scenarios, click
-**Open Signal Editor** (). You can also use the Signal Editor
-block to switch scenarios in and out of models.
-
-The Signal Editor block supports MAT files that contain signals as one
-or more scalar `Simulink.SimulationData.Dataset` objects.
-
-### Create and Edit Scenarios and Signals
-
-To create and edit scenarios and the signals contained in them, open the Signal
-Editor tool by clicking . The Signal Editor tool enables you to easily
-manipulate signals in these ways:
-
-- Create and edit multiple signals in multiple data sets. By default, the
-  Signal Editor creates timeseries format data.
-- Use signal notations to create more complicated signals using MATLAB expressions. You can use the Author and Insert dialog box or
-  manually enter simple MATLAB expressions in the tabular area.
-- Use existing scenarios to get existing data sets for which you can edit
-  and create signals.
-- Create and edit multidimensional signals.
-
-For more information on the Signal Editor tool, see Create and Edit Signal Data.
-
-### Programmatic Interactions
-
-To programmatically get the total number of scenarios and signals in the
-Signal Editor block, use the `get_param`
-function with the `NumberOfScenarios` and
-`NumberOfSignals` parameters, respectively. These read-only
-parameters contain the values as character vectors. To convert these values to
-doubles, use the `str2double` function.
-
-To programmatically enable the Signal Editor block to label output
-signal lines, set `PreserveSignalName` to `'on'`
-(default) with the `set_param` function.
-
-```
-set_param(gcb,'PreserveSignalName','on')
-```
-
-For more information on programmatic interactions, see Parameters and Replace Programmatic Use of signalbuilder.
-
-### Import and Export
-
-The Signal Editor supports custom file types, such as Microsoft®
-Excel®, by letting you:
-
-- Edit signals imported from registered custom file types. For more
-  information, see Import Custom File Type.
-- Export signals from Signal Editor to your registered custom file types.
-  For more information, see Export Signals to Custom Registered File Types.
-
-### Migrating from Signal Builder Blocks
-
-You can port Signal Builder block configurations to the
-Signal Editor block using the
-`signalBuilderToSignalEditor` function. For more information,
-see Replace Signal Builder Block with Signal Editor Block and Migrate from Signal Builder Block to Signal Editor Block.
-
-### Fast Restart
-
-The Signal Editor block supports fast restart. With fast restart
-enabled, you can still:
-
-- Change the active scenario.
-- Change the active signal.
-
-  While you can change the active signal, you cannot edit the signal
-  properties in the block.
-- Open the Signal Editor and edit data.

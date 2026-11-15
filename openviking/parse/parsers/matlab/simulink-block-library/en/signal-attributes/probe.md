@@ -10,6 +10,23 @@ language: en
 
 # Probe
 
+Output signal attributes, including width, dimensionality, sample time, and complex signal flag
+
+## Libraries
+
+Simulink / Signal Attributes HDL Coder / Signal Attributes
+
+## Description
+
+The Probe block outputs selected information about the signal on its input.
+The block can output the following attributes of the input signal: width,
+dimensionality, sample time, and a flag indicating whether the input is a complex-valued
+signal. The block has one input port. The number of output ports depends on the
+information that you select for probing, that is, signal dimensionality, sample time,
+and/or complex signal flag. Each probed value is output as a separate signal on a
+separate output port, with an independent data type control. During simulation, the
+block icon displays the probed data.
+
 ## Ports
 
 ### Input
@@ -201,10 +218,6 @@ Select the output data type for the signal dimension output.
 | **Values:** `'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'Same as input'` |
 | **Default:** `'double'` |
 
-## Libraries
-
-Simulink / Signal Attributes HDL Coder / Signal Attributes
-
 ## Block Characteristics
 
 |  |  |
@@ -244,16 +257,3 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Output signal attributes, including width, dimensionality, sample time, and complex signal flag
-
-The Probe block outputs selected information about the signal on its input.
-The block can output the following attributes of the input signal: width,
-dimensionality, sample time, and a flag indicating whether the input is a complex-valued
-signal. The block has one input port. The number of output ports depends on the
-information that you select for probing, that is, signal dimensionality, sample time,
-and/or complex signal flag. Each probed value is output as a separate signal on a
-separate output port, with an independent data type control. During simulation, the
-block icon displays the probed data.

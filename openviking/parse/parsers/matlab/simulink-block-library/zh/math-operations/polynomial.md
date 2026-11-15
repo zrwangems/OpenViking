@@ -11,6 +11,16 @@ chinese_source: official
 
 # Polynomial
 
+对输入值执行多项式系数计算
+
+## 所属库
+
+Simulink / Math Operations
+
+## 描述
+
+Polynomial 模块将计算输入 *u* 在每个时间步的 *`P(u)`*。您可以采用 MATLAB® `polyval` 命令接受的形式定义一组多项式系数。
+
 ## 端口
 
 ### 输入
@@ -42,10 +52,6 @@ chinese_source: official
 | **类型：**实数数组 |
 | **默认值：**`[ +2.081618890e-019, -1.441693666e-014, +4.719686976e-010, -8.536869453e-006, +1.621573104e-001, -8.087801117e+001 ]` |
 
-## 所属库
-
-Simulink / Math Operations
-
 ## 模块特性
 
 |  |  |
@@ -62,12 +68,6 @@ Simulink / Math Operations
 
 ### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-对输入值执行多项式系数计算
-
-Polynomial 模块将计算输入 *u* 在每个时间步的 *`P(u)`*。您可以采用 MATLAB® `polyval` 命令接受的形式定义一组多项式系数。

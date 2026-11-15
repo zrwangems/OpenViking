@@ -11,6 +11,18 @@ chinese_source: official
 
 # Compare To Zero
 
+确定信号与零的比较方式
+
+## 所属库
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
+## 描述
+
+Compare To Zero 模块将输入信号与零进行比较。使用**运算符**参数指定输入与零的比较方式。
+
+如果比较结果为 false，输出为 `0`；如果比较结果为 true，输出为 `1`。
+
 ## 端口
 
 ### 输入
@@ -80,10 +92,6 @@ chinese_source: official
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'on'` |
 
-## 所属库
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
 ## 模块特性
 
 |  |  |
@@ -122,14 +130,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-确定信号与零的比较方式
-
-Compare To Zero 模块将输入信号与零进行比较。使用**运算符**参数指定输入与零的比较方式。
-
-如果比较结果为 false，输出为 `0`；如果比较结果为 true，输出为 `1`。

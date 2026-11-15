@@ -10,6 +10,28 @@ language: en
 
 # Check Discrete Gradient
 
+Check that absolute value of difference between successive samples of discrete signal is less than specified value
+
+## Libraries
+
+Simulink / Model Verification HDL Coder / Model Verification
+
+## Description
+
+The Check Discrete Gradient block checks each signal element and determines
+whether the absolute value of the difference between successive values of the element is
+less than an specified value. The block then executes an assertion after comparison. You
+can specify the value of gradient (`1` by default) by adjusting the
+**Maximum gradient** parameter. If the input signal difference is
+less than the absolute value of the **Maximum gradient**, the assertion
+is `true (1)` and the block does nothing. If not, the block halts the
+simulation and returns an error message by default.
+
+**Note**
+
+To run simulations, the Check Discrete Gradient block requires a
+fixed-step discrete solver. If another solver is selected, an error prompts.
+
 ## Ports
 
 ### Input
@@ -134,10 +156,6 @@ the assertion condition.
 | **Values:** `"graphic"` | `"text"` |
 | **Default:** `"graphic"` |
 
-## Libraries
-
-Simulink / Model Verification HDL Coder / Model Verification
-
 ## Block Characteristics
 
 |  |  |
@@ -181,21 +199,3 @@ implementation and synthesized logic.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Check that absolute value of difference between successive samples of discrete signal is less than specified value
-
-The Check Discrete Gradient block checks each signal element and determines
-whether the absolute value of the difference between successive values of the element is
-less than an specified value. The block then executes an assertion after comparison. You
-can specify the value of gradient (`1` by default) by adjusting the
-**Maximum gradient** parameter. If the input signal difference is
-less than the absolute value of the **Maximum gradient**, the assertion
-is `true (1)` and the block does nothing. If not, the block halts the
-simulation and returns an error message by default.
-
-**Note**
-
-To run simulations, the Check Discrete Gradient block requires a
-fixed-step discrete solver. If another solver is selected, an error prompts.

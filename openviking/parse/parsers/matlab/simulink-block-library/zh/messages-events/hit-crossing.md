@@ -11,6 +11,18 @@ chinese_source: official
 
 # Hit Crossing
 
+检测穿越点
+
+## 所属库
+
+Simulink / Discontinuities Simulink / Messages & Events HDL Coder / Discontinuities SimEvents
+
+## 描述
+
+Hit Crossing 模块检测输入何时在由**穿越方向**属性指定的方向上到达**穿越偏移量**参数值。
+
+您可以将该模块配置为输出 `1` 或 `0` 信号、消息或函数调用事件。有关详细信息，请参阅输出。
+
 ## 端口
 
 ### 输入
@@ -169,10 +181,6 @@ chinese_source: official
 | **值：**`'on'` | `'off'` |
 | **默认值：**`'on'` |
 
-## 所属库
-
-Simulink / Discontinuities Simulink / Messages & Events HDL Coder / Discontinuities SimEvents
-
 ## 模块特性
 
 |  |  |
@@ -213,14 +221,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 当 `Output Type` 设置为**消息**时，不支持 HDL 代码生成。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-检测穿越点
-
-Hit Crossing 模块检测输入何时在由**穿越方向**属性指定的方向上到达**穿越偏移量**参数值。
-
-您可以将该模块配置为输出 `1` 或 `0` 信号、消息或函数调用事件。有关详细信息，请参阅输出。

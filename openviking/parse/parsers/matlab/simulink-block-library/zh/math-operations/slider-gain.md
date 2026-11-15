@@ -11,6 +11,16 @@ chinese_source: official
 
 # Slider Gain
 
+使用滑块更改标量增益
+
+## 所属库
+
+Simulink / Math Operations
+
+## 描述
+
+Slider Gain 模块执行标量增益，您可以在仿真过程中修改标量增益。使用滑块参数即可修改该增益。
+
 ## 端口
 
 ### 输入
@@ -69,10 +79,6 @@ Slider Gain 模块的输出是输入乘以常量增益值的结果。当该模�
 | **值**：实数标量 |
 | **默认值**：`'2'` |
 
-## 所属库
-
-Simulink / Math Operations
-
 ## 模块特性
 
 |  |  |
@@ -91,12 +97,6 @@ Simulink / Math Operations
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-使用滑块更改标量增益
-
-Slider Gain 模块执行标量增益，您可以在仿真过程中修改标量增益。使用滑块参数即可修改该增益。

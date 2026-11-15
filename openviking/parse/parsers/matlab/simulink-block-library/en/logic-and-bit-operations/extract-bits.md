@@ -10,6 +10,51 @@ language: en
 
 # Extract Bits
 
+Output selection of contiguous bits from input signal
+
+## Libraries
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
+## Description
+
+The Extract Bits block allows you to output a contiguous selection of
+bits from the stored integer value of the input signal. Use the **Bits to
+extract** parameter to define the method for selecting the output
+bits.
+
+- Select `Upper half` to output the half of the input bits that
+  contain the most significant bit. If there is an odd number of bits in the input
+  signal, the number of output bits is given by the equation
+
+  ```
+  number of output bits = ceil(number of input bits/2)
+  ```
+- Select `Lower half` to output the half of the input bits that
+  contain the least significant bit. If there is an odd number of bits in the
+  input signal, the number of output bits is given by the equation
+
+  ```
+  number of output bits = ceil(number of input bits/2)
+  ```
+- Select `Range starting with most significant bit` to output a
+  certain number of the most significant bits of the input signal. Specify the
+  number of most significant bits to output in the **Number of
+  bits** parameter.
+- Select `Range ending with least significant bit` to output a
+  certain number of the least significant bits of the input signal. Specify the
+  number of least significant bits to output in the **Number of
+  bits** parameter.
+- Select `Range of bits` to indicate a series of contiguous
+  bits of the input to output in the **Bit indices** parameter.
+  You indicate the range in `[start end]` format, and the indices
+  of the input bits are labeled contiguously starting at 0 for the least
+  significant bit.
+
+This block does not report wrap on overflow warnings during simulation. To report
+these warnings, see the `Simulink.restoreDiagnostic` reference
+page. The block does report errors due to wrap on overflow.
+
 ## Ports
 
 ### Input
@@ -139,10 +184,6 @@ Select the scaling mode to use on the output bit selection:
 | **Values:** `'Preserve fixed-point scaling' | 'Treat bit field as an integer'` |
 | **Default:** `'Preserve fixed-point scaling'` |
 
-## Libraries
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -181,44 +222,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Output selection of contiguous bits from input signal
-
-The Extract Bits block allows you to output a contiguous selection of
-bits from the stored integer value of the input signal. Use the **Bits to
-extract** parameter to define the method for selecting the output
-bits.
-
-- Select `Upper half` to output the half of the input bits that
-  contain the most significant bit. If there is an odd number of bits in the input
-  signal, the number of output bits is given by the equation
-
-  ```
-  number of output bits = ceil(number of input bits/2)
-  ```
-- Select `Lower half` to output the half of the input bits that
-  contain the least significant bit. If there is an odd number of bits in the
-  input signal, the number of output bits is given by the equation
-
-  ```
-  number of output bits = ceil(number of input bits/2)
-  ```
-- Select `Range starting with most significant bit` to output a
-  certain number of the most significant bits of the input signal. Specify the
-  number of most significant bits to output in the **Number of
-  bits** parameter.
-- Select `Range ending with least significant bit` to output a
-  certain number of the least significant bits of the input signal. Specify the
-  number of least significant bits to output in the **Number of
-  bits** parameter.
-- Select `Range of bits` to indicate a series of contiguous
-  bits of the input to output in the **Bit indices** parameter.
-  You indicate the range in `[start end]` format, and the indices
-  of the input bits are labeled contiguously starting at 0 for the least
-  significant bit.
-
-This block does not report wrap on overflow warnings during simulation. To report
-these warnings, see the `Simulink.restoreDiagnostic` reference
-page. The block does report errors due to wrap on overflow.

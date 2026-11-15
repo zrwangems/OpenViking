@@ -11,6 +11,16 @@ chinese_source: official
 
 # String Concatenate
 
+串联各个输入字符串以形成一个输出字符串。
+
+## 所属库
+
+Simulink / String
+
+## 描述
+
+String Concatenate 模块按输入顺序串联多个输入字符串，以形成一个输出字符串。如果要将多个字符串组合为单个字符串，请使用此模块。
+
 ## 端口
 
 ### 输入
@@ -74,10 +84,6 @@ chinese_source: official
 
 点击**显示数据类型助手**按钮将启用此参数。
 
-## 所属库
-
-Simulink / String
-
 ## 模块特性
 
 |  |  |
@@ -92,12 +98,6 @@ Simulink / String
 
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2018a 中推出**
-
-## 描述
-
-串联各个输入字符串以形成一个输出字符串。
-
-String Concatenate 模块按输入顺序串联多个输入字符串，以形成一个输出字符串。如果要将多个字符串组合为单个字符串，请使用此模块。

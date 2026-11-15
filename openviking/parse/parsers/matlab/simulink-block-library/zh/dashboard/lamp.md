@@ -11,9 +11,37 @@ chinese_source: official
 
 # Lamp
 
-## 端口
+显示反映信号灯上信号值的颜色
 
-R2025b 官方文档未提供。
+## 所属库
+
+Simulink / Dashboard
+
+## 描述
+
+Lamp 模块会显示一种颜色，用来指示其所连接的信号的值。要配置 Lamp 模块以提供仿真期间所需的信息，请指定一个或多个状态，这些状态将信号值与要显示的 Lamp 模块的颜色配对。您可以将 Lamp 模块与其他 Dashboard 模块结合使用，为您的模型构建包含各种控件和指示器的交互式仪表板。
+
+### 信号灯图标
+
+您可以通过选择一个内置图标或上传您自己的自定义图标来更改 Lamp 模块的外观。内置图标包括基本形状、汽车指示灯和无线图标。您可以使用**图标**参数或使用工具条中的模块选项卡来更改 Lamp 模块的图标。Dashboard 库还包含为每个图标提供预配置的 Lamp 模块版本的库。有关完整的详细信息，请参阅图标。
+
+Lamp Icon drop-down menu showing basic shape icons, automotive indicator lamps, wireless icons, and the option to choose a custom icon
+
+如果您要自定义 Lamp 模块的外观（该外观无法通过选择图标来实现），请考虑使用 Customizable Blocks 库中的 Lamp 模块来设计您自己的指示灯。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口来连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标在要连接的模块上暂停并点击连接按钮 。要在已连接的模块上进入连接模式，请选择该模块，在显示的省略号 (…) 上暂停，然后在展开的操作菜单中点击连接按钮。
+
+要将显示模块连接到模型中的信号或更改显示模块的连接，请进入连接模式。选择要连接的信号线。从出现的列表中，选择您要连接的信号。然后，请在 Dashboard 模块上悬停并点击完成连接按钮 。要查看 Dashboard 模块显示连接模块的值，请运行仿真。
+
+有关连接 Dashboard 模块的详细信息，请参阅Connect Dashboard Blocks to Simulink Model。
+
+您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画说明如何将 Lamp 模块连接到您的模型。
+
+An unconnected Lamp block connects to the signal that a Ramp block sends to a Terminator block.
 
 ## 参数
 
@@ -215,10 +243,6 @@ lampStates = [lampState1 lampState2];
 | **类型：**标量 |
 | **默认值：**`1` |
 
-## 所属库
-
-Simulink / Dashboard
-
 ## 模块特性
 
 |  |  |
@@ -235,34 +259,6 @@ Simulink / Dashboard
 
 Dashboard 模块在代码生成中会被忽略。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2015a 中推出**
-
-## 描述
-
-显示反映信号灯上信号值的颜色
-
-Lamp 模块会显示一种颜色，用来指示其所连接的信号的值。要配置 Lamp 模块以提供仿真期间所需的信息，请指定一个或多个状态，这些状态将信号值与要显示的 Lamp 模块的颜色配对。您可以将 Lamp 模块与其他 Dashboard 模块结合使用，为您的模型构建包含各种控件和指示器的交互式仪表板。
-
-### 信号灯图标
-
-您可以通过选择一个内置图标或上传您自己的自定义图标来更改 Lamp 模块的外观。内置图标包括基本形状、汽车指示灯和无线图标。您可以使用**图标**参数或使用工具条中的模块选项卡来更改 Lamp 模块的图标。Dashboard 库还包含为每个图标提供预配置的 Lamp 模块版本的库。有关完整的详细信息，请参阅图标。
-
-Lamp Icon drop-down menu showing basic shape icons, automotive indicator lamps, wireless icons, and the option to choose a custom icon
-
-如果您要自定义 Lamp 模块的外观（该外观无法通过选择图标来实现），请考虑使用 Customizable Blocks 库中的 Lamp 模块来设计您自己的指示灯。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口来连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标在要连接的模块上暂停并点击连接按钮 。要在已连接的模块上进入连接模式，请选择该模块，在显示的省略号 (…) 上暂停，然后在展开的操作菜单中点击连接按钮。
-
-要将显示模块连接到模型中的信号或更改显示模块的连接，请进入连接模式。选择要连接的信号线。从出现的列表中，选择您要连接的信号。然后，请在 Dashboard 模块上悬停并点击完成连接按钮 。要查看 Dashboard 模块显示连接模块的值，请运行仿真。
-
-有关连接 Dashboard 模块的详细信息，请参阅Connect Dashboard Blocks to Simulink Model。
-
-您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画说明如何将 Lamp 模块连接到您的模型。
-
-An unconnected Lamp block connects to the signal that a Ramp block sends to a Terminator block.

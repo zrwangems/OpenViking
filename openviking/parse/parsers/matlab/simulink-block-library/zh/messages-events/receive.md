@@ -11,6 +11,22 @@ chinese_source: worker-translation
 
 # Receive
 
+
+
+接收消息
+
+## 库
+
+Simulink / Messages & Events SimEvents
+
+## 说明
+
+Receive 模块从接收到的消息中提取数据，并将其写入输出信号端口。如果模块执行时没有新消息，则模块使用 **队列为空时的值来源** 的值。
+Receive 和 Message Receive 模块是完全相同的模块。
+
+- 选择 `Hold last value` 以保持从最后一条消息读取的数据。
+- 选择 `Use initial value` 以写入默认数据。
+
 ## 端口
 
 ### 输入
@@ -200,10 +216,6 @@ chinese_source: worker-translation
 | **值**: `'-1'` | scalar |
 | **默认值**: `'-1'` |
 
-## 所属库
-
-Simulink / Messages & Events SimEvents
-
 ## 模块特性
 
 |  |  |
@@ -227,13 +239,3 @@ Receive 模块不支持行主序代码生成。
 ## 版本历史
 
 **在 R2016a 中引入**
-
-## 描述
-
-接收消息
-
-Receive 模块从接收到的消息中提取数据，并将其写入输出信号端口。如果模块执行时没有新消息，则模块使用 **队列为空时的值来源** 的值。
-Receive 和 Message Receive 模块是完全相同的模块。
-
-- 选择 `Hold last value` 以保持从最后一条消息读取的数据。
-- 选择 `Use initial value` 以写入默认数据。

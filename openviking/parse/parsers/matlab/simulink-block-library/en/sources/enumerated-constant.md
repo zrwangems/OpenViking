@@ -10,6 +10,21 @@ language: en
 
 # Enumerated Constant
 
+Generate enumerated constant value
+
+## Libraries
+
+Simulink / Sources HDL Coder / Sources
+
+## Description
+
+The Enumerated Constant block outputs a scalar, array, or matrix of
+enumerated values. You can also use the Constant block to output enumerated values, but it provides block
+parameters that do not apply to enumerated types, such as **Output
+minimum** and **Output maximum**. When you need a block
+that outputs only constant enumerated values, use Enumerated Constant
+rather than Constant. For more information, see Simulink Enumerations.
+
 ## Ports
 
 ### Output
@@ -96,10 +111,6 @@ the block output. For more information, see Specify Sample Time.
 | **Values**: scalar | vector |
 | **Default**: `'inf'` |
 
-## Libraries
-
-Simulink / Sources HDL Coder / Sources
-
 ## Block Characteristics
 
 |  |  |
@@ -135,14 +146,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced in R2009b**
-
-## Description
-
-Generate enumerated constant value
-
-The Enumerated Constant block outputs a scalar, array, or matrix of
-enumerated values. You can also use the Constant block to output enumerated values, but it provides block
-parameters that do not apply to enumerated types, such as **Output
-minimum** and **Output maximum**. When you need a block
-that outputs only constant enumerated values, use Enumerated Constant
-rather than Constant. For more information, see Simulink Enumerations.

@@ -11,6 +11,20 @@ chinese_source: official
 
 # Stop Simulation
 
+当输入为非零值时使仿真停止
+
+## 所属库
+
+Simulink / Sinks HDL Coder / Sinks
+
+## 描述
+
+当输入为非零值时，Stop Simulation 模块将使仿真停止。在停止之前，仿真会完成当前时间步。如果模块的输入为向量，则任何非零的向量元素都会导致仿真停止。
+
+如果您在 For Iterator 子系统中使用 Stop Simulation 模块，停止操作将在执行完子系统在一个时间步中的*所有*迭代之后发生。在下一个时间步开始之前，停止操作不会中断仿真。
+
+您不能使用 Stop Simulation 模块暂停仿真。要创建暂停仿真的模块，请参阅使用 Assertion 模块暂停仿真。
+
 ## 端口
 
 ### 输入
@@ -20,14 +34,6 @@ chinese_source: official
 当输入信号为非零值时使仿真停止。此端口接受 `double` 或 `Boolean` 数据类型的实信号。
 
 **数据类型:** `double` | `Boolean`
-
-## 参数
-
-R2025b 官方文档未提供。
-
-## 所属库
-
-Simulink / Sinks HDL Coder / Sinks
 
 ## 模块特性
 
@@ -63,16 +69,6 @@ Simulink / Sinks HDL Coder / Sinks
 
 ### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-当输入为非零值时使仿真停止
-
-当输入为非零值时，Stop Simulation 模块将使仿真停止。在停止之前，仿真会完成当前时间步。如果模块的输入为向量，则任何非零的向量元素都会导致仿真停止。
-
-如果您在 For Iterator 子系统中使用 Stop Simulation 模块，停止操作将在执行完子系统在一个时间步中的*所有*迭代之后发生。在下一个时间步开始之前，停止操作不会中断仿真。
-
-您不能使用 Stop Simulation 模块暂停仿真。要创建暂停仿真的模块，请参阅使用 Assertion 模块暂停仿真。

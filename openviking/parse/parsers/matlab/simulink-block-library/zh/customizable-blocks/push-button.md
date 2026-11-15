@@ -11,13 +11,117 @@ chinese_source: worker-translation
 
 # Push Button
 
-## 端口
 
-R2025b 官方文档未提供。
+
+使用具有可自定义外观的按钮更改参数或变量值
+
+## 库
+
+Simulink / Dashboard / Customizable Blocks
+
+## 说明
+
+Push Button 模块会更改所连接变量或参数的值，并响应点击（立即松开指针）或按下（延迟松开指针）执行 MATLAB® 代码。您可以为点击指定与按下不同的代码。当您按下按钮时，代码要么在您指定的时间跨度后执行，要么在您指定的时间间隔执行。当您在 Customizable Blocks 库中使用 Push Button 模块时，可以修改模块的外观，使其看起来像真实系统中的按钮。将 Push Button 模块与其他 dashboard 模块一起使用，可创建交互式 dashboard 来控制模型。
+
+要在仿真期间按下虚拟按钮，请点击 Push Button 模块。要在仿真未运行时按下虚拟按钮，请点击 Push Button 以选择该模块，然后再次点击 Push Button 模块以按下按钮。当您为点击按下指针时，按钮被按下。当您松开指针时，您松开按钮。
+
+可以使用回调函数指定希望按钮执行的操作：
+
+- `PressFcn` 函数在按钮被按下期间运行。您可以将按钮配置为在按钮被按下期间仅运行一次 `PressFcn` 函数，也可以指定重复间隔。要仅运行一次，请将重复间隔指定为 `0`。
+- `ClickFcn` 函数在您松开按钮时运行。
+
+您可以通过将 **Button Type** 设置为 `Latched`，将按钮配置为在松开指针后保持按下状态。选择锁存按钮类型时：
+
+- 要锁存按钮，请点击按钮。
+- 要取消锁存按钮，请再次点击按钮。
+
+`PressFcn` 函数在按钮被锁存期间运行。`ClickFcn` 函数在您锁存按钮时运行一次，并在您取消锁存按钮时运行一次。
+
+可以使用状态来指定与按钮交互时 Push Button 模块外观的变化：
+
+- 当您按下按钮时，模块处于 `Pressed` 状态。
+- 当按钮已锁存且您未按下它时，模块处于 `Latched` 状态。
+- 当按钮已锁存且您正在按下它时，模块处于 `Latched and Pressed` 状态。
+- 当模块未处于这三个状态中的任何一个时，它处于 `Default` 状态。
+
+状态将指针操作与以下内容配对：
+
+- 状态标签
+- 状态图标
+- 状态图像
+
+`Pressed`、`Latched` 和 `Latched and Pressed` 状态还会将指针操作与 Push Button 模块的 **On Value** 配对。当您从默认状态进入这些状态之一时，**On Value** 会赋值给 Push Button 模块所连接的 Simulink® 组件，并保持赋值，直到按钮返回到 `Default` 状态。如果在完整时间步过去之前松开按钮，则 **On Value** 会在后续时间步的持续时间内赋值给该组件。
+
+**注意**
+
+- 在仿真期间双击已连接的 Push Button 模块，或在点击该模块后双击，不会打开 Block Parameters 对话框。要打开 Block Parameters 对话框，请按 **Shift**，然后双击该模块。
+- 在仿真期间点击已连接的 Push Button 模块会同时选择该模块并按下按钮。要在不按下按钮的情况下选择该模块，请按 **Shift**，然后点击该模块。
+
+### 自定义 Push Button 模块
+
+将 Push Button 模块添加到模型时，该模块会预配置为默认设计。您可以使用默认设计使用该模块，也可以自定义模块的外观。
+
+要自定义模块的外观，请使用设计模式。选择该模块后，可以通过以下三种方式之一进入设计模式：
+
+- 在 Simulink 工具条的模块特定选项卡上，在 **Design** 下，单击 **Edit**。
+- 在 Property Inspector 的 **Design** 选项卡上，单击 **Edit**。
+- 暂停在模块上出现的省略号上，然后单击 Edit Custom Block 按钮。
+
+在设计模式中，可以使用模块上方的工具栏自定义 push button。要访问其他自定义选项或输入设计设置的精确值，请使用 Property Inspector 中的 **Design** 选项卡。
+
+处于设计模式的 Customizable Push Button 模块，其中工具栏和 Property Inspector 中的 Design 选项卡可见。
+
+自定义 Push Button 模块时，需要为每个状态配置模块外观。将 **Block Type** 配置为 `Momentary` 时，模块有两个状态。将 **Block Type** 配置为 `Latch` 时，模块有四个状态。要选择要自定义的状态，请使用工具栏中的下拉列表。或者，在 **Design** 选项卡上，选择 **States** 组件，然后从 **Select State** 列表中选择。
+
+**自定义所选状态的设计模式操作**
+
+| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
+| --- | --- | --- |
+| 为 `Pressed`、`Latched` 和 `Latched and Pressed` 状态指定 **On Value**。 | 否 | 是 |
+| 指定状态标签文本。 | 否 | 是 |
+| 指定状态标签文本的颜色和不透明度。 | 是 | 是 |
+| 上传状态图像。 | 是 | 是 |
+| 上传状态图标。 | 是 | 是 |
+| 更改状态图像和状态图标的大小。 | 否 | 是 |
+| 更改状态标签、状态图像和状态图标的位置。 | 否 | 是 |
+
+除了使用工具栏和 **Design** 选项卡自定义模块设计外，还可以在画布中以交互方式调整组件的大小和位置。要调整特定于某个状态的组件（例如状态图像）的大小，请在工具栏中选择该状态，然后调整组件的大小或位置。
+
+**应用于所有状态的设计模式操作**
+
+| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
+| --- | --- | --- |
+| 上传背景图像。 | 否 | 是 |
+| 设置纯色背景颜色。 | 否 | 是 |
+| 上传前景图像。 | 否 | 是 |
+
+完成设计编辑后，要退出设计模式，请单击画布右上角的 **X**。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口连接到模型元素。要连接 dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后单击 Connect 按钮。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中单击 Connect 按钮。
+
+要将控制模块连接到模型中的参数，或更改控制模块的连接，请进入连接模式。选择要将其参数连接的模块。在出现的列表中，选择要连接到的参数。然后，暂停在 dashboard 模块上，并单击 Done Connecting 按钮。
+
+在更新模型图之前，控制模块无法连接到由变量定义的参数。要在仿真未运行时连接到由变量定义的参数，或修改定义已连接参数值的变量的值，请按 **Ctrl+D** 更新模型图。
+
+可以连接到具有标量值的参数，也可以连接到矩阵或结构体的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
+
+还可以将 dashboard 模块连接到 Stateflow® 图表。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画展示了如何将 Push 模块连接到您的模型。
+
+未连接的 Push Button 模块连接到 Constant 模块。
+
+### 参数记录
+
+连接到 dashboard 模块的可调参数会记录到 Simulation Data Inspector，您可以在其中查看参数值以及记录的信号数据。可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素访问。
 
 ## 参数
 
 使用 Property Inspector 和 Block Parameters 对话框指定模块参数的值。要设置 dashboard 模块的核心参数，请使用 Block Parameters 对话框或 Property Inspector 中的 **Parameters** 选项卡。要自定义模块，请使用 Property Inspector 中的 **Design** 选项卡。要为模块打开 Block Parameters 对话框，请双击该模块。要打开 Property Inspector，请在 **Modeling** 选项卡上的 **Design** 下，选择 **Property Inspector**。
+
+## 参数
 
 要设置 dashboard 模块的核心参数，请打开 Property Inspector，然后单击 **Parameters** 选项卡。
 
@@ -434,10 +538,6 @@ Dashboard 模块不使用端口连接到模型元素。要将 dashboard 模块�
 
 选择此参数以在使用 Property Inspector 调整图像大小时保持纵横比。
 
-## 所属库
-
-Simulink / Dashboard / Customizable Blocks
-
 ## 模块特性
 
 |  |  |
@@ -569,103 +669,3 @@ Simulink / Dashboard / Customizable Blocks
 ### R2022a：调整前景图像的大小和位置
 
 Customizable Blocks 库中的模块具有将前景图像添加为模块设计一部分的选项。从 R2022a 开始，您可以在模块设计中旋转、调整前景图像大小并重新定位前景图像。
-
-## 描述
-
-使用具有可自定义外观的按钮更改参数或变量值
-
-Push Button 模块会更改所连接变量或参数的值，并响应点击（立即松开指针）或按下（延迟松开指针）执行 MATLAB® 代码。您可以为点击指定与按下不同的代码。当您按下按钮时，代码要么在您指定的时间跨度后执行，要么在您指定的时间间隔执行。当您在 Customizable Blocks 库中使用 Push Button 模块时，可以修改模块的外观，使其看起来像真实系统中的按钮。将 Push Button 模块与其他 dashboard 模块一起使用，可创建交互式 dashboard 来控制模型。
-
-要在仿真期间按下虚拟按钮，请点击 Push Button 模块。要在仿真未运行时按下虚拟按钮，请点击 Push Button 以选择该模块，然后再次点击 Push Button 模块以按下按钮。当您为点击按下指针时，按钮被按下。当您松开指针时，您松开按钮。
-
-可以使用回调函数指定希望按钮执行的操作：
-
-- `PressFcn` 函数在按钮被按下期间运行。您可以将按钮配置为在按钮被按下期间仅运行一次 `PressFcn` 函数，也可以指定重复间隔。要仅运行一次，请将重复间隔指定为 `0`。
-- `ClickFcn` 函数在您松开按钮时运行。
-
-您可以通过将 **Button Type** 设置为 `Latched`，将按钮配置为在松开指针后保持按下状态。选择锁存按钮类型时：
-
-- 要锁存按钮，请点击按钮。
-- 要取消锁存按钮，请再次点击按钮。
-
-`PressFcn` 函数在按钮被锁存期间运行。`ClickFcn` 函数在您锁存按钮时运行一次，并在您取消锁存按钮时运行一次。
-
-可以使用状态来指定与按钮交互时 Push Button 模块外观的变化：
-
-- 当您按下按钮时，模块处于 `Pressed` 状态。
-- 当按钮已锁存且您未按下它时，模块处于 `Latched` 状态。
-- 当按钮已锁存且您正在按下它时，模块处于 `Latched and Pressed` 状态。
-- 当模块未处于这三个状态中的任何一个时，它处于 `Default` 状态。
-
-状态将指针操作与以下内容配对：
-
-- 状态标签
-- 状态图标
-- 状态图像
-
-`Pressed`、`Latched` 和 `Latched and Pressed` 状态还会将指针操作与 Push Button 模块的 **On Value** 配对。当您从默认状态进入这些状态之一时，**On Value** 会赋值给 Push Button 模块所连接的 Simulink® 组件，并保持赋值，直到按钮返回到 `Default` 状态。如果在完整时间步过去之前松开按钮，则 **On Value** 会在后续时间步的持续时间内赋值给该组件。
-
-**注意**
-
-- 在仿真期间双击已连接的 Push Button 模块，或在点击该模块后双击，不会打开 Block Parameters 对话框。要打开 Block Parameters 对话框，请按 **Shift**，然后双击该模块。
-- 在仿真期间点击已连接的 Push Button 模块会同时选择该模块并按下按钮。要在不按下按钮的情况下选择该模块，请按 **Shift**，然后点击该模块。
-
-### 自定义 Push Button 模块
-
-将 Push Button 模块添加到模型时，该模块会预配置为默认设计。您可以使用默认设计使用该模块，也可以自定义模块的外观。
-
-要自定义模块的外观，请使用设计模式。选择该模块后，可以通过以下三种方式之一进入设计模式：
-
-- 在 Simulink 工具条的模块特定选项卡上，在 **Design** 下，单击 **Edit**。
-- 在 Property Inspector 的 **Design** 选项卡上，单击 **Edit**。
-- 暂停在模块上出现的省略号上，然后单击 Edit Custom Block 按钮。
-
-在设计模式中，可以使用模块上方的工具栏自定义 push button。要访问其他自定义选项或输入设计设置的精确值，请使用 Property Inspector 中的 **Design** 选项卡。
-
-处于设计模式的 Customizable Push Button 模块，其中工具栏和 Property Inspector 中的 Design 选项卡可见。
-
-自定义 Push Button 模块时，需要为每个状态配置模块外观。将 **Block Type** 配置为 `Momentary` 时，模块有两个状态。将 **Block Type** 配置为 `Latch` 时，模块有四个状态。要选择要自定义的状态，请使用工具栏中的下拉列表。或者，在 **Design** 选项卡上，选择 **States** 组件，然后从 **Select State** 列表中选择。
-
-**自定义所选状态的设计模式操作**
-
-| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
-| --- | --- | --- |
-| 为 `Pressed`、`Latched` 和 `Latched and Pressed` 状态指定 **On Value**。 | 否 | 是 |
-| 指定状态标签文本。 | 否 | 是 |
-| 指定状态标签文本的颜色和不透明度。 | 是 | 是 |
-| 上传状态图像。 | 是 | 是 |
-| 上传状态图标。 | 是 | 是 |
-| 更改状态图像和状态图标的大小。 | 否 | 是 |
-| 更改状态标签、状态图像和状态图标的位置。 | 否 | 是 |
-
-除了使用工具栏和 **Design** 选项卡自定义模块设计外，还可以在画布中以交互方式调整组件的大小和位置。要调整特定于某个状态的组件（例如状态图像）的大小，请在工具栏中选择该状态，然后调整组件的大小或位置。
-
-**应用于所有状态的设计模式操作**
-
-| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
-| --- | --- | --- |
-| 上传背景图像。 | 否 | 是 |
-| 设置纯色背景颜色。 | 否 | 是 |
-| 上传前景图像。 | 否 | 是 |
-
-完成设计编辑后，要退出设计模式，请单击画布右上角的 **X**。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口连接到模型元素。要连接 dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后单击 Connect 按钮。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中单击 Connect 按钮。
-
-要将控制模块连接到模型中的参数，或更改控制模块的连接，请进入连接模式。选择要将其参数连接的模块。在出现的列表中，选择要连接到的参数。然后，暂停在 dashboard 模块上，并单击 Done Connecting 按钮。
-
-在更新模型图之前，控制模块无法连接到由变量定义的参数。要在仿真未运行时连接到由变量定义的参数，或修改定义已连接参数值的变量的值，请按 **Ctrl+D** 更新模型图。
-
-可以连接到具有标量值的参数，也可以连接到矩阵或结构体的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
-
-还可以将 dashboard 模块连接到 Stateflow® 图表。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画展示了如何将 Push 模块连接到您的模型。
-
-未连接的 Push Button 模块连接到 Constant 模块。
-
-### 参数记录
-
-连接到 dashboard 模块的可调参数会记录到 Simulation Data Inspector，您可以在其中查看参数值以及记录的信号数据。可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素访问。

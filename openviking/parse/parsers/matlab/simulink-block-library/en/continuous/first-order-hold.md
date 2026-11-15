@@ -10,6 +10,22 @@ language: en
 
 # First Order Hold
 
+Implement linearly extrapolated first order hold on input signal
+
+## Libraries
+
+Simulink / Continuous
+
+## Description
+
+The First Order Hold block generates a continuous piecewise linear
+approximation of the input signal. Use the First Order Hold block to
+convert a sampled discrete signal to a continuous signal without triggering a solver
+reset.
+
+You can also use the First Order Hold block to break algebraic loops in
+your model.
+
 ## Ports
 
 ### Input
@@ -105,10 +121,6 @@ loop.
 | **Values:** `'off'`| `'on'` |
 | **Default:** `'off'` |
 
-## Libraries
-
-Simulink / Continuous
-
 ## Block Characteristics
 
 |  |  |
@@ -130,15 +142,3 @@ Consider discretizing your model.
 ## Version History
 
 **Introduced in R2019b**
-
-## Description
-
-Implement linearly extrapolated first order hold on input signal
-
-The First Order Hold block generates a continuous piecewise linear
-approximation of the input signal. Use the First Order Hold block to
-convert a sampled discrete signal to a continuous signal without triggering a solver
-reset.
-
-You can also use the First Order Hold block to break algebraic loops in
-your model.

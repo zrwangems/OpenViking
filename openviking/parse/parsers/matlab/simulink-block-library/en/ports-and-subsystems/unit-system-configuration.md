@@ -10,9 +10,21 @@ language: en
 
 # Unit System Configuration
 
-## Ports
+Restrict units to specified allowed unit systems
 
-Not documented in R2025b.
+## Libraries
+
+Simulink / Ports & Subsystems
+
+## Description
+
+The Unit System Configuration block specifies allowed and disallowed
+unit systems for the component. It restricts units systems for a subsystem or top model
+and all its children, unless you override it with another Unit System
+Configuration block in a child.
+
+This block supports normal, accelerator, and rapid accelerator modes and fast
+restart.
 
 ## Parameters
 
@@ -78,10 +90,6 @@ disables the **Disallowed unit systems** and
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
 
-## Libraries
-
-Simulink / Ports & Subsystems
-
 ## Block Characteristics
 
 |  |  |
@@ -101,15 +109,3 @@ Simulink / Ports & Subsystems
 ## Version History
 
 **Introduced in R2016a**
-
-## Description
-
-Restrict units to specified allowed unit systems
-
-The Unit System Configuration block specifies allowed and disallowed
-unit systems for the component. It restricts units systems for a subsystem or top model
-and all its children, unless you override it with another Unit System
-Configuration block in a child.
-
-This block supports normal, accelerator, and rapid accelerator modes and fast
-restart.

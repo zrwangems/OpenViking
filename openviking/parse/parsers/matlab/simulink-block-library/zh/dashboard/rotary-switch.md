@@ -11,9 +11,39 @@ chinese_source: worker-translation
 
 # Rotary Switch
 
-## 端口
 
-R2025b 官方文档未提供。
+
+切换旋钮开关所设置的参数值
+
+## 库
+
+Simulink / Dashboard
+
+## 描述
+
+Rotary Switch 在仿真期间将所连接模块参数的值更改为多个指定值。例如，您可以将 Rotary Switch 模块连接到模型中输入信号的 amplitude 或 frequency，并在仿真期间更改其特性。将 Rotary Switch 模块与其他 Dashboard 模块一起使用，以创建交互式 dashboard 来控制您的模型。
+
+在仿真期间且选中该模块时，双击 Rotary Switch 模块不会打开其对话框。要编辑模块的参数，可以使用 **Property Inspector**，或者右键单击该模块，然后从上下文菜单中选择 **Block Parameters**。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口连接到模型元素。要连接 dashboard 模块，请使用 connect mode。要在未连接的模块上进入 connect mode，请将鼠标悬停在要连接的模块上，然后单击 Connect 按钮 。要在已连接的模块上进入 connect mode，请选择该模块，将鼠标悬停在出现的省略号 (…) 上，然后在展开的操作菜单中单击 Connect 按钮。
+
+要将控制模块连接到模型中的参数，或更改控制模块的连接，请进入 connect mode。选择要将其参数连接到的模块。在出现的列表中，选择要连接到的参数。然后，将鼠标悬停在 dashboard 模块上，并单击 Done Connecting 按钮 。
+
+在更新模型图之前，控制模块无法连接到由变量定义的参数。若要连接到由变量定义的参数，或在仿真未运行时修改定义所连接参数值的变量值，请按 **Ctrl+D** 更新模型图。
+
+您可以连接到具有标量值的参数，或连接到矩阵或结构体的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
+
+您还可以将 dashboard 模块连接到 Stateflow® 图表。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画显示如何将 Rotary Switch 模块连接到您的模型。
+
+未连接的 Rotary Switch 模块连接到 Gain 模块的 Gain 参数。
+
+### 参数记录
+
+连接到 dashboard 模块的可调参数会记录到 Simulation Data Inspector，您可以在其中查看参数值以及记录的信号数据。您可以使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB® 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素进行访问。
 
 ## 参数
 
@@ -119,10 +149,6 @@ states = [state1 state2];
 | **Values:** `'Top'` | `'Bottom'` | `'Hide'` |
 | **Default:** `'Top'` |
 
-## 所属库
-
-Simulink / Dashboard
-
 ## 模块特性
 
 |  |  |
@@ -212,35 +238,3 @@ Dashboard 模块在代码生成时会被忽略。
 ### R2019a: 以编程方式添加和配置 dashboard 模块
 
 从 R2019a 开始，您可以使用 `add_block` 和 `set_param` 等函数在模型中创建和配置 Dashboard 库中的模块。
-
-## 版本历史
-
-R2025b 官方文档未提供。
-
-## 描述
-
-切换旋钮开关所设置的参数值
-
-Rotary Switch 在仿真期间将所连接模块参数的值更改为多个指定值。例如，您可以将 Rotary Switch 模块连接到模型中输入信号的 amplitude 或 frequency，并在仿真期间更改其特性。将 Rotary Switch 模块与其他 Dashboard 模块一起使用，以创建交互式 dashboard 来控制您的模型。
-
-在仿真期间且选中该模块时，双击 Rotary Switch 模块不会打开其对话框。要编辑模块的参数，可以使用 **Property Inspector**，或者右键单击该模块，然后从上下文菜单中选择 **Block Parameters**。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口连接到模型元素。要连接 dashboard 模块，请使用 connect mode。要在未连接的模块上进入 connect mode，请将鼠标悬停在要连接的模块上，然后单击 Connect 按钮 。要在已连接的模块上进入 connect mode，请选择该模块，将鼠标悬停在出现的省略号 (…) 上，然后在展开的操作菜单中单击 Connect 按钮。
-
-要将控制模块连接到模型中的参数，或更改控制模块的连接，请进入 connect mode。选择要将其参数连接到的模块。在出现的列表中，选择要连接到的参数。然后，将鼠标悬停在 dashboard 模块上，并单击 Done Connecting 按钮 。
-
-在更新模型图之前，控制模块无法连接到由变量定义的参数。若要连接到由变量定义的参数，或在仿真未运行时修改定义所连接参数值的变量值，请按 **Ctrl+D** 更新模型图。
-
-您可以连接到具有标量值的参数，或连接到矩阵或结构体的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
-
-您还可以将 dashboard 模块连接到 Stateflow® 图表。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画显示如何将 Rotary Switch 模块连接到您的模型。
-
-未连接的 Rotary Switch 模块连接到 Gain 模块的 Gain 参数。
-
-### 参数记录
-
-连接到 dashboard 模块的可调参数会记录到 Simulation Data Inspector，您可以在其中查看参数值以及记录的信号数据。您可以使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB® 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素进行访问。

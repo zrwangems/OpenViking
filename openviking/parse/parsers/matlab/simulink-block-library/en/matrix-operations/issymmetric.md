@@ -10,6 +10,17 @@ language: en
 
 # IsSymmetric
 
+Check if matrix is symmetric or skew-symmetric
+
+## Libraries
+
+Simulink / Matrix Operations
+
+## Description
+
+The IsSymmetric block determines if the input is a symmetric or
+skew-symmetric matrix.
+
 ## Ports
 
 ### Input
@@ -43,10 +54,6 @@ Identify the matrix as `Symmetric` or
 | **Values:** `'Symmetric'` | `'Skew-Symmetric'` |
 | **Default:** `'Symmetric'` |
 
-## Libraries
-
-Simulink / Matrix Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -67,10 +74,3 @@ Simulink / Matrix Operations
 ## Version History
 
 **Introduced in R2021b**
-
-## Description
-
-Check if matrix is symmetric or skew-symmetric
-
-The IsSymmetric block determines if the input is a symmetric or
-skew-symmetric matrix.

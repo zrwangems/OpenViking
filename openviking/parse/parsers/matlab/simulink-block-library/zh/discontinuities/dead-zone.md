@@ -11,6 +11,22 @@ chinese_source: official
 
 # Dead Zone
 
+提供零值输出区域
+
+## 所属库
+
+Simulink / Discontinuities HDL Coder / Discontinuities
+
+## 描述
+
+Dead Zone 模块在指定的区域内生成零值输出，此区域称为死区。您可以通过**死区起点**和**死区终点**参数指定死区的下限 (`LL`) 和上限 (`UL`)。模块输出取决于输入 (`U`) 以及上限和下限的值。
+
+| 输入 | 输出 |
+| --- | --- |
+| `U >= LL` 和 `U <= UL` | 零 |
+| `U > UL` | `U` – `UL` |
+| `U < LL` | `U` – `LL` |
+
 ## 端口
 
 ### 输入
@@ -127,10 +143,6 @@ Simulink® 软件中的线性化命令将此模块视为状态空间中的增益
 | **参数:** | `SampleTime` |
 | **值:** | `"-1"` (默认) | scalar or vector in quotes |
 
-## 所属库
-
-Simulink / Discontinuities HDL Coder / Discontinuities
-
 ## 模块特性
 
 |  |  |
@@ -163,18 +175,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-提供零值输出区域
-
-Dead Zone 模块在指定的区域内生成零值输出，此区域称为死区。您可以通过**死区起点**和**死区终点**参数指定死区的下限 (`LL`) 和上限 (`UL`)。模块输出取决于输入 (`U`) 以及上限和下限的值。
-
-| 输入 | 输出 |
-| --- | --- |
-| `U >= LL` 和 `U <= UL` | 零 |
-| `U > UL` | `U` – `UL` |
-| `U < LL` | `U` – `LL` |

@@ -10,6 +10,19 @@ language: en
 
 # Increment Stored Integer
 
+Increase stored integer value of signal by one
+
+## Libraries
+
+Simulink / Additional Math & Discrete / Additional Math: Increment - Decrement HDL Coder / Math Operations
+
+## Description
+
+The Increment Stored Integer block increases the stored integer value
+of a signal by one.
+
+Floating-point signals also increase by one, and overflows always wrap.
+
 ## Ports
 
 ### Input
@@ -29,14 +42,6 @@ wrap. The output has the same data type and dimensions as the
 input.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
-## Parameters
-
-Not documented in R2025b.
-
-## Libraries
-
-Simulink / Additional Math & Discrete / Additional Math: Increment - Decrement HDL Coder / Math Operations
 
 ## Block Characteristics
 
@@ -80,12 +85,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Increase stored integer value of signal by one
-
-The Increment Stored Integer block increases the stored integer value
-of a signal by one.
-
-Floating-point signals also increase by one, and overflows always wrap.

@@ -11,6 +11,18 @@ chinese_source: official
 
 # Bit Set
 
+将存储整数的指定位设置为 1
+
+## 所属库
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
+## 描述
+
+Bit Set 模块将存储整数的指定位设置为 1。忽略定标。
+
+您可以使用**位的索引**参数指定要设置为 1 的位，其中位 0 是最低有效位。
+
 ## 端口
 
 ### 输入
@@ -42,10 +54,6 @@ chinese_source: official
 | **类型**：字符向量 |
 | **值**：正整数 |
 | **默认值**：`'0'` |
-
-## 所属库
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
 
 ## 模块特性
 
@@ -84,14 +92,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-将存储整数的指定位设置为 1
-
-Bit Set 模块将存储整数的指定位设置为 1。忽略定标。
-
-您可以使用**位的索引**参数指定要设置为 1 的位，其中位 0 是最低有效位。

@@ -11,106 +11,13 @@ chinese_source: official
 
 # S-Function
 
-## 端口
-
-### 输入
-
-### **In** — S-Function 模块的信号输入 标量 | 向量 | 矩阵
-
-您可以使用 `mdlInitializeSizes` 回调函数来配置输入端口。使用 `mdlInitializeSizes` 函数指定输入端口的数量、输入信号的维度、每个端口的采样时间以及端口是否为直接馈通。
-
-**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-### 输出
-
-### **Out** — S-Function 模块的信号输出 标量 | 向量 | 矩阵
-
-您可以使用 `mdlInitializeSizes` 回调函数来配置输出端口。使用 `mdlInitializeSizes` 函数指定输出端口的数量、输出信号的维度以及每个端口的采样时间。
-
-**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
-## 参数
-
-### **S-Function 名称** — S-Function 的名称 `system` (默认) | S-Function 名称
-
-使用此参数指定 S-Function 的名称。
-
-#### 编程用法
-
-要以编程方式设置模块参数值，请使用 `set_param` 函数。
-
-|  |  |
-| --- | --- |
-| **参数:** | `FunctionName` |
-| **值:** | `'system'` (默认) | S-function name in quotes |
-
-### **S-Function 参数** — 其他 S-Function 参数。 MATLAB 表达式 | 以逗号分隔的变量
-
-指定其他 S-Function 参数。
-
-函数参数可以指定为 MATLAB 表达式或以逗号分隔的变量。例如：
-
-```
-A, B, C, D, [eye(2,2);zeros(2,2)]
-```
-
-尽管单个参数可以用括号括起来，但参数列表一定不能用括号括起来。
-
-#### 编程用法
-
-|  |  |
-| --- | --- |
-| **参数:** | `Parameters` |
-| **值:** | `''` (默认) | S-function parameters in quotes |
-
-### **S-Function 模块** — 用于代码生成的其他文件 `''` (默认) | 文件名
-
-仅当此模块代表 C MEX S-Function，并且您打算使用 Simulink Coder™ 软件从包含该模块的模型中生成代码时，此参数才适用。如果您使用此参数，当您准备好生成代码时，必须按照Control Regeneration of Top Model Code (Simulink Coder)中所述，强制代码生成器重新生成顶层模型。
-
-有关使用此参数的详细信息，请参阅为 S-Function 指定其他源文件 (Simulink Coder)。
-
-#### 编程用法
-
-|  |  |
-| --- | --- |
-| **参数:** | `SFunctionModules` |
-| **值:** | `''` (默认) | filenames in quotes |
+在模型中包含 S-Function
 
 ## 所属库
 
 Simulink / User-Defined Functions
 
-## 模块特性
-
-|  |  |
-| --- | --- |
-| **数据类型** | `Booleana` | `busa` | `doublea` | `fixed pointa` | `halfa` | `integera` | `singlea` | `stringa` |
-| **直接馈通** | `是a` |
-| **多维信号** | `是a` |
-| **可变大小信号** | `是a` |
-| **过零检测** | `是a` |
-|  |  |
-| --- | --- |
-| a 实际支持的数据类型或功能取决于模块实施。 | |
-
-## 扩展功能
-
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
-
-- 实际代码生成支持取决于模块实现。
-- 调用 MATLAB 的 S-Function 不支持代码生成。
-
-### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
-
-- 实际数据类型支持取决于模块实现。
-- 有关在 S-Function 中使用定点数据类型的详细信息，请参阅集成外部代码 (Fixed-Point Designer)。
-
-## 版本历史
-
-**在 R2006a 之前推出**
-
 ## 描述
-
-在模型中包含 S-Function
 
 S-Function 模块允许您将用 C、C++ 或 Fortran® 编写的 S-Function 或系统函数算法（称为 C MEX S-Function）集成到 Simulink 模型中。您可以使用该模块来实现 1 级或 2 级 C MEX S-Function。要将您的 S-Function 合并到一个模型中，请在编译 C MEX S-Function 后执行以下操作：
 
@@ -179,3 +86,96 @@ S-Function 模块显示指定的 S-Function 的名称，以及该 S-Function 指
 **注意**
 
 使用 Level-2 MATLAB S-Function 模块，在模块图中包含一个 2 级 MATLAB S-Function。
+
+## 端口
+
+### 输入
+
+### **In** — S-Function 模块的信号输入 标量 | 向量 | 矩阵
+
+您可以使用 `mdlInitializeSizes` 回调函数来配置输入端口。使用 `mdlInitializeSizes` 函数指定输入端口的数量、输入信号的维度、每个端口的采样时间以及端口是否为直接馈通。
+
+**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
+### 输出
+
+### **Out** — S-Function 模块的信号输出 标量 | 向量 | 矩阵
+
+您可以使用 `mdlInitializeSizes` 回调函数来配置输出端口。使用 `mdlInitializeSizes` 函数指定输出端口的数量、输出信号的维度以及每个端口的采样时间。
+
+**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+
+## 参数
+
+### **S-Function 名称** — S-Function 的名称 `system` (默认) | S-Function 名称
+
+使用此参数指定 S-Function 的名称。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数:** | `FunctionName` |
+| **值:** | `'system'` (默认) | S-function name in quotes |
+
+### **S-Function 参数** — 其他 S-Function 参数。 MATLAB 表达式 | 以逗号分隔的变量
+
+指定其他 S-Function 参数。
+
+函数参数可以指定为 MATLAB 表达式或以逗号分隔的变量。例如：
+
+```
+A, B, C, D, [eye(2,2);zeros(2,2)]
+```
+
+尽管单个参数可以用括号括起来，但参数列表一定不能用括号括起来。
+
+#### 编程用法
+
+|  |  |
+| --- | --- |
+| **参数:** | `Parameters` |
+| **值:** | `''` (默认) | S-function parameters in quotes |
+
+### **S-Function 模块** — 用于代码生成的其他文件 `''` (默认) | 文件名
+
+仅当此模块代表 C MEX S-Function，并且您打算使用 Simulink Coder™ 软件从包含该模块的模型中生成代码时，此参数才适用。如果您使用此参数，当您准备好生成代码时，必须按照Control Regeneration of Top Model Code (Simulink Coder)中所述，强制代码生成器重新生成顶层模型。
+
+有关使用此参数的详细信息，请参阅为 S-Function 指定其他源文件 (Simulink Coder)。
+
+#### 编程用法
+
+|  |  |
+| --- | --- |
+| **参数:** | `SFunctionModules` |
+| **值:** | `''` (默认) | filenames in quotes |
+
+## 模块特性
+
+|  |  |
+| --- | --- |
+| **数据类型** | `Booleana` | `busa` | `doublea` | `fixed pointa` | `halfa` | `integera` | `singlea` | `stringa` |
+| **直接馈通** | `是a` |
+| **多维信号** | `是a` |
+| **可变大小信号** | `是a` |
+| **过零检测** | `是a` |
+|  |  |
+| --- | --- |
+| a 实际支持的数据类型或功能取决于模块实施。 | |
+
+## 扩展功能
+
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+
+- 实际代码生成支持取决于模块实现。
+- 调用 MATLAB 的 S-Function 不支持代码生成。
+
+### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
+
+- 实际数据类型支持取决于模块实现。
+- 有关在 S-Function 中使用定点数据类型的详细信息，请参阅集成外部代码 (Fixed-Point Designer)。
+
+## 版本历史记录
+
+**在 R2006a 之前推出**

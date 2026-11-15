@@ -10,6 +10,20 @@ language: en
 
 # Compare To Zero
 
+Determine how signal compares to zero
+
+## Libraries
+
+Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
+
+## Description
+
+The Compare To Zero block compares an input signal to zero. Specify how the input is
+compared to zero with the **Operator** parameter.
+
+The output is `0` if the comparison is false, and
+`1` if it is true.
+
 ## Ports
 
 ### Input
@@ -100,10 +114,6 @@ Select to enable zero-crossing detection. For more information, see Zero-Crossin
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'on'` |
 
-## Libraries
-
-Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -146,13 +156,3 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Determine how signal compares to zero
-
-The Compare To Zero block compares an input signal to zero. Specify how the input is
-compared to zero with the **Operator** parameter.
-
-The output is `0` if the comparison is false, and
-`1` if it is true.

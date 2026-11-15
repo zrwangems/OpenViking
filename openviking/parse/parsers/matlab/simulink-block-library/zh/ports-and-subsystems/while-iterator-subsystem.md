@@ -11,6 +11,29 @@ chinese_source: official
 
 # While Iterator Subsystem
 
+当逻辑表达式为 true 时，在仿真时间步中重复执行子系统
+
+## 所属库
+
+Simulink / Ports & Subsystems
+
+## 描述
+
+While Iterator Subsystem 模块是一个预先配置的 Subsystem 模块，可以作为一个起点，用于创建在仿真时间步期间逻辑条件为 `true` 时对输入信号的每个元素或子数组重复执行的子系统。其执行由子系统内部的 While Iterator 模块控制。有关示例，请参阅 `ex_while_iterator_block`。
+
+**注意**
+
+要在模型的仿真停止时间之前中断循环并手动终止仿真，请按 **Ctrl + C**。
+
+使用 While Iterator Subsystem 模块可以建模：
+
+- 等效于程序中的 `while` 或 `do-while` 循环的模块图。
+- 在多次迭代后收敛于更精确解的迭代算法。
+
+当使用简化的初始化模式时，如果您在 While Iterator Subsystem 模块中放置需要经过一段时间才能得到结果的模块（例如 Discrete-Time Integrator 模块），Simulink® 会显示错误。
+
+如果 While Iterator Subsystem 模块的输出信号是函数调用信号，则在您仿真模型或更新图时，Simulink 会显示错误。
+
 ## 端口
 
 ### 输入
@@ -504,10 +527,6 @@ chinese_source: official
 | **参数:** | `RTWMemSecDataParameters` |
 | **值:** | `'Inherit from model'` (默认) | `'Default'` | model memory section in quotes |
 
-## 所属库
-
-Simulink / Ports & Subsystems
-
 ## 模块特性
 
 |  |  |
@@ -531,7 +550,7 @@ Simulink / Ports & Subsystems
 
 实际数据类型支持取决于模块实现。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
 
@@ -548,22 +567,3 @@ Simulink / Ports & Subsystems
 相同位置的端口值标签现在显示迭代序号。在以前的版本中，这些位置的端口值标签显示 `inaccessible`。
 
 有关示例，请参阅Debug Simulation of Iterator Subsystem。
-
-## 描述
-
-当逻辑表达式为 true 时，在仿真时间步中重复执行子系统
-
-While Iterator Subsystem 模块是一个预先配置的 Subsystem 模块，可以作为一个起点，用于创建在仿真时间步期间逻辑条件为 `true` 时对输入信号的每个元素或子数组重复执行的子系统。其执行由子系统内部的 While Iterator 模块控制。有关示例，请参阅 `ex_while_iterator_block`。
-
-**注意**
-
-要在模型的仿真停止时间之前中断循环并手动终止仿真，请按 **Ctrl + C**。
-
-使用 While Iterator Subsystem 模块可以建模：
-
-- 等效于程序中的 `while` 或 `do-while` 循环的模块图。
-- 在多次迭代后收敛于更精确解的迭代算法。
-
-当使用简化的初始化模式时，如果您在 While Iterator Subsystem 模块中放置需要经过一段时间才能得到结果的模块（例如 Discrete-Time Integrator 模块），Simulink® 会显示错误。
-
-如果 While Iterator Subsystem 模块的输出信号是函数调用信号，则在您仿真模型或更新图时，Simulink 会显示错误。

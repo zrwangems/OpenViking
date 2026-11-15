@@ -10,6 +10,85 @@ language: en
 
 # From File
 
+Load data from MAT file into Simulink model
+
+## Libraries
+
+Simulink / Sources
+
+## Description
+
+The From File block reads data into a Simulink® model from a MAT file and provides the data as a signal or nonvirtual bus
+at the block output. You can load data from a MAT file that is on or off the MATLAB® path. A model can contain multiple From File blocks that
+load data from the same MAT file.
+
+You can specify how the block constructs the output from the data in the file, including the
+sample time for the output, interpolation and extrapolation behavior, and whether to use
+zero-crossing detection.
+
+The From File block icon shows the name of the MAT file that supplies the
+data to the block. For example, if you use the From File block to load
+data from the file `myData.mat`, the block displays
+`myData.mat`.
+
+### MAT File Data
+
+The From File block can load data from a MAT file that is stored in
+a `timeseries` object or in an array where the first row contains
+time data and subsequent rows contain data for a scalar or vector signal. Loading
+data stored in a `timeseries` object supports a wider range of data
+and output types and requires that the MAT file is Version 7.3.
+
+| Data Consideration | `timeseries` Format | Array Format |
+| --- | --- | --- |
+| Time data requirements | - Data type must be `double` - Values must increase monotonically | - Data type must be `double` - Values must increase monotonically |
+| Supported signal data types | - Any built-in data types except   `half`, `int64`, and   `uint64` - Enumerated data type - Fixed-point data type with up to a 32-bit word   length | `double` |
+| Signal data complexity | Real or complex | Real |
+| Signal data requirements | Must not contain `NaN`, `Inf`, or `-Inf` values | Must not contain `NaN`, `Inf`, or `-Inf` values |
+| Type of output | - Scalar, vector, or multidimensional signal - Bus | Scalar or vector signal |
+| MAT file version | Version 7.3 | All versions |
+
+The From File block loads data from only one variable in the MAT file,
+regardless of the number of variables the MAT file contains. When you load data from
+a Version 7.3 MAT file that contains multiple variables, the From
+File block loads the data in the variable that is first alphabetically.
+The ordering algorithm used by Version 7.0 and earlier MAT files is more
+complicated, so ensure that the MAT file only contains data for a single variable
+when you load data from a Version 7.0 or earlier MAT file.
+
+**Note**
+
+Logging outputs, states, or a signal connected to a To
+Workspace block using the `Array` format
+generates an array in a different format than the From File block
+expects. In the `Array` format for logging, the first
+column contains time values, and in the array format for the From
+File block, the first row contains time values. The From
+File block and To File block use the same array
+format.
+
+### MAT File Version
+
+The version of the MAT file also affects how the From File block
+loads the data. When you load data from a Version 7.3 MAT file, data is loaded
+incrementally during simulation. When you load data from a Version 7.0 or earlier
+MAT file, all the data is loaded into memory at the start of simulation.
+
+To convert a MAT file to Version 7.3, use the `load` function to load the data in
+the Version 7.0 or earlier MAT file into the base workspace. Then, save the data to
+a Version 7.3 MAT file using the `save` function with the version
+specified as `'-v7.3'`. For example, these commands convert the
+file `myData.mat` that contains the variable
+`inputData` to Version
+7.3.
+
+```
+load("myData.mat");
+save("myData.mat","inputData","-v7.3");
+```
+
+For more information, see MAT-File Versions.
+
 ## Ports
 
 ### Output
@@ -352,10 +431,6 @@ block named `From File` in the model
 `mdl` to disable zero-crossing
 detection.
 
-## Libraries
-
-Simulink / Sources
-
 ## Block Characteristics
 
 |  |  |
@@ -399,78 +474,3 @@ The From File block supports fixed-point data types up to 32 bits.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Load data from MAT file into Simulink model
-
-The From File block reads data into a Simulink® model from a MAT file and provides the data as a signal or nonvirtual bus
-at the block output. You can load data from a MAT file that is on or off the MATLAB® path. A model can contain multiple From File blocks that
-load data from the same MAT file.
-
-You can specify how the block constructs the output from the data in the file, including the
-sample time for the output, interpolation and extrapolation behavior, and whether to use
-zero-crossing detection.
-
-The From File block icon shows the name of the MAT file that supplies the
-data to the block. For example, if you use the From File block to load
-data from the file `myData.mat`, the block displays
-`myData.mat`.
-
-### MAT File Data
-
-The From File block can load data from a MAT file that is stored in
-a `timeseries` object or in an array where the first row contains
-time data and subsequent rows contain data for a scalar or vector signal. Loading
-data stored in a `timeseries` object supports a wider range of data
-and output types and requires that the MAT file is Version 7.3.
-
-| Data Consideration | `timeseries` Format | Array Format |
-| --- | --- | --- |
-| Time data requirements | - Data type must be `double` - Values must increase monotonically | - Data type must be `double` - Values must increase monotonically |
-| Supported signal data types | - Any built-in data types except   `half`, `int64`, and   `uint64` - Enumerated data type - Fixed-point data type with up to a 32-bit word   length | `double` |
-| Signal data complexity | Real or complex | Real |
-| Signal data requirements | Must not contain `NaN`, `Inf`, or `-Inf` values | Must not contain `NaN`, `Inf`, or `-Inf` values |
-| Type of output | - Scalar, vector, or multidimensional signal - Bus | Scalar or vector signal |
-| MAT file version | Version 7.3 | All versions |
-
-The From File block loads data from only one variable in the MAT file,
-regardless of the number of variables the MAT file contains. When you load data from
-a Version 7.3 MAT file that contains multiple variables, the From
-File block loads the data in the variable that is first alphabetically.
-The ordering algorithm used by Version 7.0 and earlier MAT files is more
-complicated, so ensure that the MAT file only contains data for a single variable
-when you load data from a Version 7.0 or earlier MAT file.
-
-**Note**
-
-Logging outputs, states, or a signal connected to a To
-Workspace block using the `Array` format
-generates an array in a different format than the From File block
-expects. In the `Array` format for logging, the first
-column contains time values, and in the array format for the From
-File block, the first row contains time values. The From
-File block and To File block use the same array
-format.
-
-### MAT File Version
-
-The version of the MAT file also affects how the From File block
-loads the data. When you load data from a Version 7.3 MAT file, data is loaded
-incrementally during simulation. When you load data from a Version 7.0 or earlier
-MAT file, all the data is loaded into memory at the start of simulation.
-
-To convert a MAT file to Version 7.3, use the `load` function to load the data in
-the Version 7.0 or earlier MAT file into the base workspace. Then, save the data to
-a Version 7.3 MAT file using the `save` function with the version
-specified as `'-v7.3'`. For example, these commands convert the
-file `myData.mat` that contains the variable
-`inputData` to Version
-7.3.
-
-```
-load("myData.mat");
-save("myData.mat","inputData","-v7.3");
-```
-
-For more information, see MAT-File Versions.

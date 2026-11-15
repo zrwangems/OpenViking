@@ -10,6 +10,21 @@ language: en
 
 # Algebraic Constraint
 
+Constrain input signal
+
+## Libraries
+
+Simulink / Math Operations
+
+## Description
+
+The Algebraic Constraint block constrains the input signal f(*z*)
+to *z* or 0 and outputs an algebraic state *z*.
+The block outputs a value that produces 0 or *z* at the input. The
+output must affect the input through a direct feedback path. In other words, the
+feedback path only contains blocks with direct feedthrough. For example, you can specify
+algebraic equations for index 1 differential-algebraic systems (DAEs).
+
 ## Ports
 
 ### Input
@@ -95,10 +110,6 @@ loop solver. By default, this value is set to 0
 | **Values:** scalar |
 | **Default:** `'0'` |
 
-## Libraries
-
-Simulink / Math Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -118,14 +129,3 @@ Not recommended for production code.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Constrain input signal
-
-The Algebraic Constraint block constrains the input signal f(*z*)
-to *z* or 0 and outputs an algebraic state *z*.
-The block outputs a value that produces 0 or *z* at the input. The
-output must affect the input through a direct feedback path. In other words, the
-feedback path only contains blocks with direct feedthrough. For example, you can specify
-algebraic equations for index 1 differential-algebraic systems (DAEs).

@@ -10,6 +10,67 @@ language: en
 
 # Logical Operator
 
+Perform specified logical operation on input
+
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Logic and Bit Operations HDL Coder / Commonly Used Blocks HDL Coder / Logic and Bit Operations
+
+## Description
+
+The Logical Operator block performs the specified logical operation on its
+inputs. An input value is true (`1`) if it is nonzero and false
+(`0`) if it is zero.
+
+You select the Boolean operation connecting the inputs with the
+**Operator** parameter list. If you select
+`rectangular` as the **Icon shape**
+property, the name of the selected operator displays on the block icon. If you select
+`distinctive` as the **Icon shape**
+property, the name of the selected operator does not display on the block icon. This
+table shows supported operations:
+
+| Operation | Description |
+| --- | --- |
+| AND | TRUE if all inputs are TRUE |
+| OR | TRUE if at least one input is TRUE |
+| NAND | TRUE if at least one input is FALSE |
+| NOR | TRUE when no inputs are TRUE |
+| XOR | TRUE if an odd number of inputs are TRUE |
+| NXOR | TRUE if an even number of inputs are TRUE |
+| NOT | TRUE if the input is FALSE |
+
+If you select `distinctive` as the **Icon shape**,
+the block appearance indicates its function. Simulink® software displays a distinctive shape for the selected operator,
+conforming to the IEEE® Standard Graphic Symbols for Logic Functions.
+
+To specify the number of input ports, use the **Number of input ports**
+parameter. The output type is specified using the **Output data type**
+parameter. An output value is `1` if TRUE and `0` if
+FALSE.
+
+**Note**
+
+The output data type should represent zero exactly. Data types that satisfy this condition include signed and unsigned integers, and any floating-point data type.
+
+The size of the output depends on input vector size and the selected operator:
+
+- If the block has more than one input, any nonscalar inputs must have the same dimensions. For example, if any input is a 2-by-2 array, all other nonscalar inputs must also be 2-by-2 arrays.
+
+  Scalar inputs are expanded to have the same dimensions as the nonscalar inputs.
+
+  If the block has more than one input, the output has the same dimensions as the inputs
+  (after scalar expansion) and each output element is the result of applying the
+  specified logical operation to the corresponding input elements. For example, if
+  the specified operation is AND and the inputs are 2-by-2 arrays, the output is a
+  2-by-2 array whose top left element is the result of applying AND to the top
+  left elements of the inputs, and so on.
+- For a single vector input, the block applies the operation (except the NOT operator) to all elements of the vector. The output is always a scalar.
+- The NOT operator accepts only one input, which can be a scalar or a vector. If the input is a vector, the output is a vector of the same size containing the logical complements of the input vector elements.
+
+When configured as a multi-input XOR gate, this block performs an addition modulo two
+operation as mandated by the IEEE Standard for Logic Elements.
+
 ## Ports
 
 ### Input
@@ -284,10 +345,6 @@ To enable this parameter, click the **Show data type
 assistant** button and set **Mode** to
 `Fixed point`.
 
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Logic and Bit Operations HDL Coder / Commonly Used Blocks HDL Coder / Logic and Bit Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -326,60 +383,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Perform specified logical operation on input
-
-The Logical Operator block performs the specified logical operation on its
-inputs. An input value is true (`1`) if it is nonzero and false
-(`0`) if it is zero.
-
-You select the Boolean operation connecting the inputs with the
-**Operator** parameter list. If you select
-`rectangular` as the **Icon shape**
-property, the name of the selected operator displays on the block icon. If you select
-`distinctive` as the **Icon shape**
-property, the name of the selected operator does not display on the block icon. This
-table shows supported operations:
-
-| Operation | Description |
-| --- | --- |
-| AND | TRUE if all inputs are TRUE |
-| OR | TRUE if at least one input is TRUE |
-| NAND | TRUE if at least one input is FALSE |
-| NOR | TRUE when no inputs are TRUE |
-| XOR | TRUE if an odd number of inputs are TRUE |
-| NXOR | TRUE if an even number of inputs are TRUE |
-| NOT | TRUE if the input is FALSE |
-
-If you select `distinctive` as the **Icon shape**,
-the block appearance indicates its function. Simulink® software displays a distinctive shape for the selected operator,
-conforming to the IEEE® Standard Graphic Symbols for Logic Functions.
-
-To specify the number of input ports, use the **Number of input ports**
-parameter. The output type is specified using the **Output data type**
-parameter. An output value is `1` if TRUE and `0` if
-FALSE.
-
-**Note**
-
-The output data type should represent zero exactly. Data types that satisfy this condition include signed and unsigned integers, and any floating-point data type.
-
-The size of the output depends on input vector size and the selected operator:
-
-- If the block has more than one input, any nonscalar inputs must have the same dimensions. For example, if any input is a 2-by-2 array, all other nonscalar inputs must also be 2-by-2 arrays.
-
-  Scalar inputs are expanded to have the same dimensions as the nonscalar inputs.
-
-  If the block has more than one input, the output has the same dimensions as the inputs
-  (after scalar expansion) and each output element is the result of applying the
-  specified logical operation to the corresponding input elements. For example, if
-  the specified operation is AND and the inputs are 2-by-2 arrays, the output is a
-  2-by-2 array whose top left element is the result of applying AND to the top
-  left elements of the inputs, and so on.
-- For a single vector input, the block applies the operation (except the NOT operator) to all elements of the vector. The output is always a scalar.
-- The NOT operator accepts only one input, which can be a scalar or a vector. If the input is a vector, the output is a vector of the same size containing the logical complements of the input vector elements.
-
-When configured as a multi-input XOR gate, this block performs an addition modulo two
-operation as mandated by the IEEE Standard for Logic Elements.

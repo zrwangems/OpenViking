@@ -11,6 +11,16 @@ chinese_source: official
 
 # Interval Test
 
+确定信号是否在指定区间中
+
+## 所属库
+
+Simulink / Logic and Bit Operations
+
+## 描述
+
+如果输入介于**下限**和**上限**指定的值之间，Interval Test 模块将输出 true (`1`)。如果输入在这些值的范围之外，模块将输出 false (`0`)。当输入等于**下限**或**上限**时，模块的输出取决于您是选中**左半闭区间**还是**右半闭区间**复选框。
+
 ## 端口
 
 ### 输入
@@ -99,10 +109,6 @@ chinese_source: official
 | **值：**`'boolean' | 'uint8'` |
 | **默认值：**`'boolean'` |
 
-## 所属库
-
-Simulink / Logic and Bit Operations
-
 ## 模块特性
 
 |  |  |
@@ -169,12 +175,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-确定信号是否在指定区间中
-
-如果输入介于**下限**和**上限**指定的值之间，Interval Test 模块将输出 true (`1`)。如果输入在这些值的范围之外，模块将输出 false (`0`)。当输入等于**下限**或**上限**时，模块的输出取决于您是选中**左半闭区间**还是**右半闭区间**复选框。

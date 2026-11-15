@@ -10,6 +10,48 @@ language: en
 
 # Trigger-Based Linearization
 
+Generate linear models in base workspace when triggered
+
+## Libraries
+
+Simulink / Model-Wide Utilities
+
+## Description
+
+When triggered, this block calls `linmod` or `dlinmod` to create a linear model for the system at the current operating point. No trimming is performed. The linear model is stored in the base workspace as a structure, along with information about the operating point at which the snapshot was taken. Multiple snapshots are appended to form an array of structures.
+
+**Note**
+
+`linmod` and `dlinmod` provide only basic
+linearization functionality. For full linearization functionality, use Simulink®
+Control Design™ software. For more information, see Choose Linearization Tools (Simulink Control Design).
+
+The block sets the following model parameters to the indicated values:
+
+- `BufferReuse = 'off'`
+- `BlockReductionOpt = 'off'`
+
+The name of the structure used to save the snapshots is the
+name of the model appended by `_Trigger_Based_Linearization`,
+for example, `vdp_Trigger_Based_Linearization`. The structure has the following fields:
+
+| Field | Description |
+| --- | --- |
+| `a` | The A matrix of the linearization |
+| `b` | The B matrix of the linearization |
+| `c` | The C matrix of the linearization |
+| `d` | The D matrix of the linearization |
+| `StateName` | Names of the model's states |
+| `OutputName` | Names of the model's output ports |
+| `InputName` | Names of the model's input ports |
+| `OperPoin`t | A structure that specifies the operating point of the linearization. The structure specifies the value of the model's states (`OperPoint.x`) and inputs (`OperPoint.u`) at the operating point time (`OperPoint.t`). |
+| `Ts` | The sample time of the linearization for a discrete linearization |
+
+**Tip**
+
+Use the Timed-Based Linearization block to
+generate linear models at predetermined times.
+
 ## Ports
 
 ### Input
@@ -72,10 +114,6 @@ positive sample time.
 | **Values:** scalar | vector |
 | **Default:** `'0'` |
 
-## Libraries
-
-Simulink / Model-Wide Utilities
-
 ## Block Characteristics
 
 |  |  |
@@ -93,41 +131,3 @@ Simulink / Model-Wide Utilities
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Generate linear models in base workspace when triggered
-
-When triggered, this block calls `linmod` or `dlinmod` to create a linear model for the system at the current operating point. No trimming is performed. The linear model is stored in the base workspace as a structure, along with information about the operating point at which the snapshot was taken. Multiple snapshots are appended to form an array of structures.
-
-**Note**
-
-`linmod` and `dlinmod` provide only basic
-linearization functionality. For full linearization functionality, use Simulink®
-Control Design™ software. For more information, see Choose Linearization Tools (Simulink Control Design).
-
-The block sets the following model parameters to the indicated values:
-
-- `BufferReuse = 'off'`
-- `BlockReductionOpt = 'off'`
-
-The name of the structure used to save the snapshots is the
-name of the model appended by `_Trigger_Based_Linearization`,
-for example, `vdp_Trigger_Based_Linearization`. The structure has the following fields:
-
-| Field | Description |
-| --- | --- |
-| `a` | The A matrix of the linearization |
-| `b` | The B matrix of the linearization |
-| `c` | The C matrix of the linearization |
-| `d` | The D matrix of the linearization |
-| `StateName` | Names of the model's states |
-| `OutputName` | Names of the model's output ports |
-| `InputName` | Names of the model's input ports |
-| `OperPoin`t | A structure that specifies the operating point of the linearization. The structure specifies the value of the model's states (`OperPoint.x`) and inputs (`OperPoint.u`) at the operating point time (`OperPoint.t`). |
-| `Ts` | The sample time of the linearization for a discrete linearization |
-
-**Tip**
-
-Use the Timed-Based Linearization block to
-generate linear models at predetermined times.

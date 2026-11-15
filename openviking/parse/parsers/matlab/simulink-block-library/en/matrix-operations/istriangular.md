@@ -10,6 +10,17 @@ language: en
 
 # IsTriangular
 
+Check if matrix is upper or lower triangular
+
+## Libraries
+
+Simulink / Matrix Operations
+
+## Description
+
+The IsTriangular block determines if the input is an upper triangular or
+lower triangular matrix.
+
 ## Ports
 
 ### Input
@@ -44,10 +55,6 @@ Identify the matrix as `Upper` or
 | **Values:** `'Upper'` | `'Lower'` |
 | **Default:** `'Upper'` |
 
-## Libraries
-
-Simulink / Matrix Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -65,10 +72,3 @@ Simulink / Matrix Operations
 ## Version History
 
 **Introduced in R2021b**
-
-## Description
-
-Check if matrix is upper or lower triangular
-
-The IsTriangular block determines if the input is an upper triangular or
-lower triangular matrix.

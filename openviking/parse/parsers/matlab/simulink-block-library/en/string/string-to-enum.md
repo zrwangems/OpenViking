@@ -10,6 +10,21 @@ language: en
 
 # String to Enum
 
+Input string signal to enumerated signal
+
+## Libraries
+
+Simulink / String
+
+## Description
+
+The String To Enum block converts the input string signal to an enumerated
+signal. To use this block, create an enumeration class in the current folder and use
+that class name in the **Output data type** parameter.
+
+The String to Enum block generates efficient code for enumerations by generating a shared
+function for each enumeration type. For more information on enumerations, see Simulink Enumerations.
+
 ## Ports
 
 ### Input
@@ -65,10 +80,6 @@ Use a data type object, for example,
 Clicking the **Show data type assistant** button
 enables this parameter.
 
-## Libraries
-
-Simulink / String
-
 ## Block Characteristics
 
 |  |  |
@@ -92,14 +103,3 @@ Simulink / String
 The String to Enum block now generates more efficient code for enumerations by
 generating a shared function for each enumeration type. Prior to R2025a, this block
 generated inlined code for enumerations.
-
-## Description
-
-Input string signal to enumerated signal
-
-The String To Enum block converts the input string signal to an enumerated
-signal. To use this block, create an enumeration class in the current folder and use
-that class name in the **Output data type** parameter.
-
-The String to Enum block generates efficient code for enumerations by generating a shared
-function for each enumeration type. For more information on enumerations, see Simulink Enumerations.

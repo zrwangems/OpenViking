@@ -10,6 +10,34 @@ language: en
 
 # Pixel Processing Subsystem
 
+Create algorithm that converts multichannel image data to single-channel
+
+## Libraries
+
+Simulink / Matrix Operations
+
+## Description
+
+The Pixel Processing Subsystem block is a Neighborhood Processing Subsystem block that takes a
+3-dimensional input matrix. The Pixel Processing Subsystem block applies the
+neighborhood pattern to the input matrix by processing 1-by-1-by-*`n`*
+neighborhood matrices around elements of the input matrix, where *`n`*
+is the size of the third dimension of the input matrix. The Pixel Processing
+Subsystem block behaves in a way that is equivalent to a Neighborhood
+Processing Subsystem block for which you set the **Neighborhood
+size** parameter to `[1,1,n]` and the
+**Padding option** parameter to `Valid`.
+
+The Pixel Processing Subsystem block produces a 2-dimensional output matrix
+that has the same first and second dimensions as the input matrix. Use the Pixel
+Processing Subsystem to convert multichannel image data to single-channel image
+data. At each iteration step, the subsystem processes a 1-by-1-by*`n`*
+neighborhood that represents the channel values of one pixel from the input image and derives
+a single value to place in the corresponding pixel in the output matrix.
+
+The Pixel Processing Subsystem contains a Pixel Processing
+block that acts as the control block for the subsystem.
+
 ## Ports
 
 ### Input
@@ -727,10 +755,6 @@ the `set_param` function.
 | **Parameter:** | `RTWMemSecDataParameters` |
 | **Values:** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
 
-## Libraries
-
-Simulink / Matrix Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -753,27 +777,3 @@ Simulink / Matrix Operations
 
 You can use MATLAB Function blocks inside a Pixel
 Processing Subsystem block.
-
-## Description
-
-Create algorithm that converts multichannel image data to single-channel
-
-The Pixel Processing Subsystem block is a Neighborhood Processing Subsystem block that takes a
-3-dimensional input matrix. The Pixel Processing Subsystem block applies the
-neighborhood pattern to the input matrix by processing 1-by-1-by-*`n`*
-neighborhood matrices around elements of the input matrix, where *`n`*
-is the size of the third dimension of the input matrix. The Pixel Processing
-Subsystem block behaves in a way that is equivalent to a Neighborhood
-Processing Subsystem block for which you set the **Neighborhood
-size** parameter to `[1,1,n]` and the
-**Padding option** parameter to `Valid`.
-
-The Pixel Processing Subsystem block produces a 2-dimensional output matrix
-that has the same first and second dimensions as the input matrix. Use the Pixel
-Processing Subsystem to convert multichannel image data to single-channel image
-data. At each iteration step, the subsystem processes a 1-by-1-by*`n`*
-neighborhood that represents the channel values of one pixel from the input image and derives
-a single value to place in the corresponding pixel in the output matrix.
-
-The Pixel Processing Subsystem contains a Pixel Processing
-block that acts as the control block for the subsystem.

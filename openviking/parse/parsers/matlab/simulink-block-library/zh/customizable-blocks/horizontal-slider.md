@@ -11,13 +11,84 @@ chinese_source: worker-translation
 
 # Horizontal Slider
 
-## 端口
 
-R2025b 官方文档未提供。
+
+使用具有可自定义外观的 Horizontal Slider 更改参数或变量值
+
+## 库
+
+Simulink / Dashboard / Customizable Blocks
+
+## 说明
+
+使用 Horizontal Slider 模块在仿真期间调整变量或模块参数的值。您可以自定义 Horizontal Slider 模块的外观，使其看起来像真实系统中的控件。您可以调整刻度范围和刻度值，以适合要调整的值的所需范围。将 Horizontal Slider 模块与其他 dashboard 模块一起使用，以创建交互式 dashboard 来控制模型。
+
+要在仿真运行时调整值，使用指针将手柄拖到要连接变量或模块参数设置为的刻度值。要在仿真未运行时调整值，点击 Horizontal Slider 模块以选择该模块，然后将手柄拖到要连接变量或模块参数设置为的刻度值。
+
+**注意**
+
+- 在仿真期间或点击已连接的 Horizontal Slider 模块后，双击该模块不会打开 Block Parameters 对话框。要打开 Block Parameters 对话框，请按 **Shift**，然后双击该模块。
+- 在仿真期间点击已连接的 Horizontal Slider 模块会同时选择该模块并移动滑块手柄。要在不移动滑块手柄的情况下选择该模块，请按 **Shift**，然后点击该模块。
+
+### 自定义 Horizontal Slider 模块
+
+将 Horizontal Slider 模块添加到模型时，该模块预配置为默认设计。您可以使用默认设计使用该模块，也可以自定义该模块的外观。
+
+要自定义模块外观，请使用设计模式。选择该模块后，可以通过以下三种方式之一进入设计模式：
+
+- 在 Simulink® Toolstrip 中，在该模块特定的选项卡上，在 **设计** 下，点击 **编辑**。
+- 在 Property Inspector 中，在 **设计** 选项卡上，点击 **编辑**。
+- 暂停在模块上方出现的省略号上，然后点击 Edit Custom Block 按钮。
+
+在设计模式中，可以使用模块上方的工具栏自定义圆形仪表。要访问其他自定义选项或输入设计设置的精确值，请使用 Property Inspector 中的 **设计** 选项卡。
+
+处于设计模式的 Horizontal Slider 模块，工具栏和 Property Inspector 中的 **设计** 选项卡可见。
+
+**设计模式操作**
+
+| 操作 | 在工具栏中可用 | 在 **设计** 选项卡中可用 |
+| --- | --- | --- |
+| 上传手柄图像。 | Yes | Yes |
+| 上传背景图像。 | Yes | Yes |
+| 设置纯色背景色。 | No | Yes |
+| 上传前景图像。 | No | Yes |
+| 指定值条增长所依据的原点位置。 | No | Yes |
+| 更改刻度线、刻度标签或值条的颜色和不透明度。 | Yes | Yes |
+| 将刻度方向指定为从左到右或从右到左。 | No | Yes |
+| 更改刻度和手柄的大小。 | No | Yes |
+| 更改刻度和手柄的位置。 | No | Yes |
+
+要使用工具栏更改刻度线、刻度标签或值条的颜色和不透明度，请在工具栏从左数第二部分中，选择要更改颜色的组件。要更改颜色，请点击色轮。要更改不透明度，请移动滑块。
+
+除了使用工具栏和 **设计** 选项卡自定义模块设计外，还可以在画布中交互式调整组件大小和位置。
+
+完成设计编辑后，要退出设计模式，请点击画布右上角的 **X**。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口连接到模型元素。要连接 dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后点击 Connect 按钮。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
+
+要将控制模块连接到模型中的参数，或更改控制模块的连接，请进入连接模式。选择要将其参数连接到的模块。在出现的列表中，选择要连接到的参数。然后，暂停在 dashboard 模块上，并点击 Done Connecting 按钮。
+
+在更新模型图之前，控制模块无法连接到由变量定义的参数。要连接到由变量定义的参数，或在仿真未运行时修改定义所连接参数值的变量值，请按 **Ctrl+D** 更新模型图。
+
+您可以连接到具有标量值的参数，也可以连接到矩阵或结构体的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
+
+您还可以将 dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画演示如何将 Horizontal Gauge 模块连接到模型。
+
+未连接的 Horizontal Slider 模块连接到 Constant 模块。
+
+### 参数记录
+
+连接到 dashboard 模块的可调参数会记录到 Simulation Data Inspector，您可以在其中查看参数值以及记录的信号数据。您可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB® 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素访问。
 
 ## 参数
 
 使用 Property Inspector 和 Block Parameters 对话框指定模块参数的值。要设置 dashboard 模块的核心参数，请使用 Block Parameters 对话框或 Property Inspector 中的 **参数** 选项卡。要自定义模块，请使用 Property Inspector 中的 **设计** 选项卡。要为模块打开 Block Parameters 对话框，请双击该模块。要打开 Property Inspector，请在 **建模** 选项卡上，在 **设计** 下，选择 **Property Inspector**。
+
+## 参数
 
 要设置 dashboard 模块的核心参数，请打开 Property Inspector 并点击 **参数** 选项卡。
 
@@ -388,10 +459,6 @@ Dashboard 模块不使用端口连接到模型元素。要将 dashboard 模块�
 
 选择此参数以在使用 Property Inspector 调整图像大小时保持纵横比。
 
-## 所属库
-
-Simulink / Dashboard / Customizable Blocks
-
 ## 模块特性
 
 |  |  |
@@ -545,70 +612,3 @@ Dashboard 模块在代码生成时会被忽略。
 ### R2022a: 调整前景图像大小和位置
 
 Customizable Blocks 库中的模块具有将前景图像添加为模块设计一部分的选项。从 R2022a 开始，您可以在模块设计中旋转、调整大小和重新定位前景图像。
-
-## 描述
-
-使用具有可自定义外观的 Horizontal Slider 更改参数或变量值
-
-使用 Horizontal Slider 模块在仿真期间调整变量或模块参数的值。您可以自定义 Horizontal Slider 模块的外观，使其看起来像真实系统中的控件。您可以调整刻度范围和刻度值，以适合要调整的值的所需范围。将 Horizontal Slider 模块与其他 dashboard 模块一起使用，以创建交互式 dashboard 来控制模型。
-
-要在仿真运行时调整值，使用指针将手柄拖到要连接变量或模块参数设置为的刻度值。要在仿真未运行时调整值，点击 Horizontal Slider 模块以选择该模块，然后将手柄拖到要连接变量或模块参数设置为的刻度值。
-
-**注意**
-
-- 在仿真期间或点击已连接的 Horizontal Slider 模块后，双击该模块不会打开 Block Parameters 对话框。要打开 Block Parameters 对话框，请按 **Shift**，然后双击该模块。
-- 在仿真期间点击已连接的 Horizontal Slider 模块会同时选择该模块并移动滑块手柄。要在不移动滑块手柄的情况下选择该模块，请按 **Shift**，然后点击该模块。
-
-### 自定义 Horizontal Slider 模块
-
-将 Horizontal Slider 模块添加到模型时，该模块预配置为默认设计。您可以使用默认设计使用该模块，也可以自定义该模块的外观。
-
-要自定义模块外观，请使用设计模式。选择该模块后，可以通过以下三种方式之一进入设计模式：
-
-- 在 Simulink® Toolstrip 中，在该模块特定的选项卡上，在 **设计** 下，点击 **编辑**。
-- 在 Property Inspector 中，在 **设计** 选项卡上，点击 **编辑**。
-- 暂停在模块上方出现的省略号上，然后点击 Edit Custom Block 按钮。
-
-在设计模式中，可以使用模块上方的工具栏自定义圆形仪表。要访问其他自定义选项或输入设计设置的精确值，请使用 Property Inspector 中的 **设计** 选项卡。
-
-处于设计模式的 Horizontal Slider 模块，工具栏和 Property Inspector 中的 **设计** 选项卡可见。
-
-**设计模式操作**
-
-| 操作 | 在工具栏中可用 | 在 **设计** 选项卡中可用 |
-| --- | --- | --- |
-| 上传手柄图像。 | Yes | Yes |
-| 上传背景图像。 | Yes | Yes |
-| 设置纯色背景色。 | No | Yes |
-| 上传前景图像。 | No | Yes |
-| 指定值条增长所依据的原点位置。 | No | Yes |
-| 更改刻度线、刻度标签或值条的颜色和不透明度。 | Yes | Yes |
-| 将刻度方向指定为从左到右或从右到左。 | No | Yes |
-| 更改刻度和手柄的大小。 | No | Yes |
-| 更改刻度和手柄的位置。 | No | Yes |
-
-要使用工具栏更改刻度线、刻度标签或值条的颜色和不透明度，请在工具栏从左数第二部分中，选择要更改颜色的组件。要更改颜色，请点击色轮。要更改不透明度，请移动滑块。
-
-除了使用工具栏和 **设计** 选项卡自定义模块设计外，还可以在画布中交互式调整组件大小和位置。
-
-完成设计编辑后，要退出设计模式，请点击画布右上角的 **X**。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口连接到模型元素。要连接 dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请暂停在要连接的模块上，然后点击 Connect 按钮。要在已连接的模块上进入连接模式，请选择该模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
-
-要将控制模块连接到模型中的参数，或更改控制模块的连接，请进入连接模式。选择要将其参数连接到的模块。在出现的列表中，选择要连接到的参数。然后，暂停在 dashboard 模块上，并点击 Done Connecting 按钮。
-
-在更新模型图之前，控制模块无法连接到由变量定义的参数。要连接到由变量定义的参数，或在仿真未运行时修改定义所连接参数值的变量值，请按 **Ctrl+D** 更新模型图。
-
-您可以连接到具有标量值的参数，也可以连接到矩阵或结构体的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
-
-您还可以将 dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画演示如何将 Horizontal Gauge 模块连接到模型。
-
-未连接的 Horizontal Slider 模块连接到 Constant 模块。
-
-### 参数记录
-
-连接到 dashboard 模块的可调参数会记录到 Simulation Data Inspector，您可以在其中查看参数值以及记录的信号数据。您可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB® 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素访问。

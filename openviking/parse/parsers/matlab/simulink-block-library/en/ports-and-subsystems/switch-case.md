@@ -10,6 +10,41 @@ language: en
 
 # Switch Case
 
+Select subsystem execution using logic similar to switch statement
+
+## Libraries
+
+Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
+
+## Description
+
+The Switch Case block with
+Switch
+Case Action Subsystem blocks containing
+Action
+Port blocks, implements switch logic to control subsystem execution. For an
+example that uses the Switch Case block, see Select Subsystem Execution.
+
+Model ex\_switch\_case\_block
+
+A Switch Case block has a single input. To select a case, define the
+input value using the **Case conditions** parameter. The cases are evaluated
+top down starting with the first case.
+
+Each case is associated with an output port that is attached to a Switch Case
+Action Subsystem block. When a case is selected, the associated output port
+sends an action signal to execute the subsystem.
+
+A `default` case is selected after all of the other case conditions
+evaluate to false. Providing a `default` case is optional, even if the
+other case conditions do not exhaust every possible input value.
+
+Cases for the Switch Case block contain an implied break after a
+Switch Case Action Subsystem block is executed. Therefore, there is
+no fall through behavior for the Simulink®
+Switch Case block as found in standard C `switch`
+statements.
+
 ## Ports
 
 ### Input
@@ -119,10 +154,6 @@ off
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'on'` |
 
-## Libraries
-
-Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
-
 ## Block Characteristics
 
 |  |  |
@@ -162,34 +193,3 @@ Subsystem block.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Select subsystem execution using logic similar to switch statement
-
-The Switch Case block with
-Switch
-Case Action Subsystem blocks containing
-Action
-Port blocks, implements switch logic to control subsystem execution. For an
-example that uses the Switch Case block, see Select Subsystem Execution.
-
-Model ex\_switch\_case\_block
-
-A Switch Case block has a single input. To select a case, define the
-input value using the **Case conditions** parameter. The cases are evaluated
-top down starting with the first case.
-
-Each case is associated with an output port that is attached to a Switch Case
-Action Subsystem block. When a case is selected, the associated output port
-sends an action signal to execute the subsystem.
-
-A `default` case is selected after all of the other case conditions
-evaluate to false. Providing a `default` case is optional, even if the
-other case conditions do not exhaust every possible input value.
-
-Cases for the Switch Case block contain an implied break after a
-Switch Case Action Subsystem block is executed. Therefore, there is
-no fall through behavior for the Simulink®
-Switch Case block as found in standard C `switch`
-statements.

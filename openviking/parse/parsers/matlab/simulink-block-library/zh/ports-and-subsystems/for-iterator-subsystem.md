@@ -11,6 +11,22 @@ chinese_source: official
 
 # For Iterator Subsystem
 
+在仿真时间步内重复执行指定迭代次数的子系统
+
+## 所属库
+
+Simulink / Ports & Subsystems
+
+## 描述
+
+For Iterator Subsystem 模块是一个预先配置的 Subsystem 模块，可以作为一个起点，用于创建在仿真时间步期间重复执行指定的迭代次数的子系统。迭代次数由子系统内部的 For Iterator 模块控制。有关示例，请参阅 `ex_for_iterator_block`。
+
+**注意**
+
+要在模型的仿真停止时间之前中断循环并手动终止仿真，请按 **Ctrl + C**。
+
+当使用简化的初始化模式时，如果您在 For Iterator Subsystem 模块中放置需要经过一段时间才能得到结果的模块（例如 Discrete-Time Integrator 模块），Simulink® 会显示错误。
+
 ## 端口
 
 ### 输入
@@ -498,10 +514,6 @@ chinese_source: official
 | **参数:** | `RTWMemSecDataParameters` |
 | **值:** | `'Inherit from model'` (默认) | `'Default'` | model memory section in quotes |
 
-## 所属库
-
-Simulink / Ports & Subsystems
-
 ## 模块特性
 
 |  |  |
@@ -525,7 +537,7 @@ Simulink / Ports & Subsystems
 
 实际数据类型支持取决于模块实现。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
 
@@ -542,15 +554,3 @@ Simulink / Ports & Subsystems
 相同位置的端口值标签现在显示迭代序号。在以前的版本中，这些位置的端口值标签显示 `inaccessible`。
 
 有关示例，请参阅Debug Simulation of Iterator Subsystem。
-
-## 描述
-
-在仿真时间步内重复执行指定迭代次数的子系统
-
-For Iterator Subsystem 模块是一个预先配置的 Subsystem 模块，可以作为一个起点，用于创建在仿真时间步期间重复执行指定的迭代次数的子系统。迭代次数由子系统内部的 For Iterator 模块控制。有关示例，请参阅 `ex_for_iterator_block`。
-
-**注意**
-
-要在模型的仿真停止时间之前中断循环并手动终止仿真，请按 **Ctrl + C**。
-
-当使用简化的初始化模式时，如果您在 For Iterator Subsystem 模块中放置需要经过一段时间才能得到结果的模块（例如 Discrete-Time Integrator 模块），Simulink® 会显示错误。

@@ -10,6 +10,45 @@ language: en
 
 # Bus Creator
 
+Group input signals, buses, or messages into bus
+
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Signal Routing
+
+## Description
+
+The Bus Creator block combines input signals, buses, or messages into a bus,
+which retains the separate identities of the signals, nested buses, and messages. By
+default, the Bus Creator block creates a *virtual
+bus*, which is analogous to a bundle of wires held together by tie wraps.
+Alternatively, the block can create a *nonvirtual bus*, which is
+analogous to a structure in C code.
+
+Elements of a bus must have unique names. By default, each element of the bus inherits
+the name of the element connected to the Bus Creator block. If duplicate
+names are present, the Bus Creator block appends the port number to all
+input element names. For elements that do not have names, the Bus Creator
+block generates names in the form `signaln`, where `n`
+is the port number connected to the element. You can refer to elements by name when you
+search for their sources or select elements for connection to other blocks. For element
+naming guidelines, see Signal Names and Labels.
+
+To extract elements from the bus by name, use a Bus
+Selector block.
+
+To create a bus that contains other buses, connect the other buses to the Bus
+Creator block input ports.
+
+**Tip**
+
+For buses at subsystem and model interfaces, use Out
+Bus Element blocks instead of a Bus Creator block with an
+Outport block. Out Bus Element blocks:
+
+- Reduce line complexity and clutter in a block diagram.
+- Allow you to more easily change the interface incrementally.
+
 ## Ports
 
 ### Input
@@ -282,10 +321,6 @@ the `set_param` function.
 
 **Example:** `set_param(gcb, NonVirtualBus="on")`
 
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Signal Routing
-
 ## Block Characteristics
 
 |  |  |
@@ -434,38 +469,3 @@ This enhancement allows you to use variable-size input signals when the upper
 bounds of input signals are not equal to the upper bounds of variable-size signals
 that the corresponding Bus Creator block input ports can
 accept.
-
-## Description
-
-Group input signals, buses, or messages into bus
-
-The Bus Creator block combines input signals, buses, or messages into a bus,
-which retains the separate identities of the signals, nested buses, and messages. By
-default, the Bus Creator block creates a *virtual
-bus*, which is analogous to a bundle of wires held together by tie wraps.
-Alternatively, the block can create a *nonvirtual bus*, which is
-analogous to a structure in C code.
-
-Elements of a bus must have unique names. By default, each element of the bus inherits
-the name of the element connected to the Bus Creator block. If duplicate
-names are present, the Bus Creator block appends the port number to all
-input element names. For elements that do not have names, the Bus Creator
-block generates names in the form `signaln`, where `n`
-is the port number connected to the element. You can refer to elements by name when you
-search for their sources or select elements for connection to other blocks. For element
-naming guidelines, see Signal Names and Labels.
-
-To extract elements from the bus by name, use a Bus
-Selector block.
-
-To create a bus that contains other buses, connect the other buses to the Bus
-Creator block input ports.
-
-**Tip**
-
-For buses at subsystem and model interfaces, use Out
-Bus Element blocks instead of a Bus Creator block with an
-Outport block. Out Bus Element blocks:
-
-- Reduce line complexity and clutter in a block diagram.
-- Allow you to more easily change the interface incrementally.

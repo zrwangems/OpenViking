@@ -11,6 +11,16 @@ chinese_source: official
 
 # Transfer Fcn First Order
 
+实现离散时间一阶传递函数
+
+## 所属库
+
+Simulink / Discrete
+
+## 描述
+
+Transfer Fcn First Order 模块实现输入的离散时间一阶传递函数。传递函数具有一个单位 DC 增益。
+
 ## 端口
 
 ### 输入
@@ -86,10 +96,6 @@ chinese_source: official
 | **值：**`'off' | 'on'` |
 | **默认值：**`'off'` |
 
-## 所属库
-
-Simulink / Discrete
-
 ## 模块特性
 
 |  |  |
@@ -108,12 +114,6 @@ Simulink / Discrete
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-实现离散时间一阶传递函数
-
-Transfer Fcn First Order 模块实现输入的离散时间一阶传递函数。传递函数具有一个单位 DC 增益。

@@ -10,6 +10,87 @@ language: en
 
 # Relational Operator
 
+Perform specified relational operation on inputs
+
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Logic and Bit Operations HDL Coder / Commonly Used Blocks HDL Coder / HDL Floating Point Operations HDL Coder / Logic and Bit Operations
+
+## Description
+
+The Relational Operator block performs the specified relational operation on
+the input. The value you choose for the **Relational operator**
+parameter determines whether the block accepts one or two input signals.
+
+### Two-Input Mode
+
+By default, the Relational Operator block compares two inputs using the
+**Relational operator** parameter that you specify. The first
+input corresponds to the top input port and the second input to the bottom input
+port. (See Identify Port Location on Rotated or Flipped Block
+for a description of the port order for various block orientations.)
+
+You can specify one of the following operations in two-input mode:
+
+| Operation | Description |
+| --- | --- |
+| `==` | True if the first input is equal to the second input |
+| `~=` | True if the first input is not equal to the second input |
+| `<` | True if the first input is less than the second input |
+| `<=` | True if the first input is less than or equal to the second input |
+| `>=` | True if the first input is greater than or equal to the second input |
+| `>` | True if the first input is greater than the second input |
+
+You can specify inputs as scalars, arrays, or a combination of a scalar and an array.
+
+| For... | The output is... |
+| --- | --- |
+| Scalar inputs | A scalar |
+| Array inputs | An array of the same dimensions, where each element is the result of an element-by-element comparison of the input arrays |
+| Mixed scalar and array inputs | An array, where each element is the result of a comparison between the scalar and the corresponding array element |
+
+If the relational operation can be efficiently and accurately represented on the
+hardware board, this efficient representation is used. Otherwise, both operands are
+cast to a common type using overflow saturation and the specified rounding
+mode.
+
+You can specify the output data type using the **Output data type**
+parameter. The output equals `1` for true and `0`
+for false.
+
+**Tip**
+
+Select an output data type that represents zero exactly. Data types that satisfy this condition include signed and unsigned integers and any floating-point data type.
+
+### One-Input Mode
+
+When you select one of the following operations
+for **Relational operator**, the block switches to one-input mode.
+
+| Operation | Description |
+| --- | --- |
+| `isInf` | True if the input is `Inf` |
+| `isNaN` | True if the input is `NaN` |
+| `isFinite` | True if the input is finite |
+
+For an input that is not floating point, the block produces the following output.
+
+| Data Type | Operation | Block Output |
+| --- | --- | --- |
+| - Fixed point - Boolean - Built-in integer | `isInf` | False |
+| `isNaN` | False |
+| `isFinite` | True |
+
+### Rules for Data Type Propagation
+
+The following rules apply for data type propagation when your block has one or more input ports with unspecified data types.
+
+| When the block is in... | And... | The block uses... |
+| --- | --- | --- |
+| Two-input mode | Both input ports have unspecified data types | `double` as the default data type for both inputs |
+| One input port has an unspecified data type | The data type from the specified input port as the default data type of the other port |
+| One-input mode | The input port has an unspecified data type | `double` as the default data type for the input |
+
 ## Ports
 
 ### Input
@@ -325,10 +406,6 @@ To enable this parameter, click the **Show data type
 assistant** button and set **Mode** to
 `Fixed point`.
 
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Logic and Bit Operations HDL Coder / Commonly Used Blocks HDL Coder / HDL Floating Point Operations HDL Coder / Logic and Bit Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -377,80 +454,3 @@ and code generation.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Perform specified relational operation on inputs
-
-The Relational Operator block performs the specified relational operation on
-the input. The value you choose for the **Relational operator**
-parameter determines whether the block accepts one or two input signals.
-
-### Two-Input Mode
-
-By default, the Relational Operator block compares two inputs using the
-**Relational operator** parameter that you specify. The first
-input corresponds to the top input port and the second input to the bottom input
-port. (See Identify Port Location on Rotated or Flipped Block
-for a description of the port order for various block orientations.)
-
-You can specify one of the following operations in two-input mode:
-
-| Operation | Description |
-| --- | --- |
-| `==` | True if the first input is equal to the second input |
-| `~=` | True if the first input is not equal to the second input |
-| `<` | True if the first input is less than the second input |
-| `<=` | True if the first input is less than or equal to the second input |
-| `>=` | True if the first input is greater than or equal to the second input |
-| `>` | True if the first input is greater than the second input |
-
-You can specify inputs as scalars, arrays, or a combination of a scalar and an array.
-
-| For... | The output is... |
-| --- | --- |
-| Scalar inputs | A scalar |
-| Array inputs | An array of the same dimensions, where each element is the result of an element-by-element comparison of the input arrays |
-| Mixed scalar and array inputs | An array, where each element is the result of a comparison between the scalar and the corresponding array element |
-
-If the relational operation can be efficiently and accurately represented on the
-hardware board, this efficient representation is used. Otherwise, both operands are
-cast to a common type using overflow saturation and the specified rounding
-mode.
-
-You can specify the output data type using the **Output data type**
-parameter. The output equals `1` for true and `0`
-for false.
-
-**Tip**
-
-Select an output data type that represents zero exactly. Data types that satisfy this condition include signed and unsigned integers and any floating-point data type.
-
-### One-Input Mode
-
-When you select one of the following operations
-for **Relational operator**, the block switches to one-input mode.
-
-| Operation | Description |
-| --- | --- |
-| `isInf` | True if the input is `Inf` |
-| `isNaN` | True if the input is `NaN` |
-| `isFinite` | True if the input is finite |
-
-For an input that is not floating point, the block produces the following output.
-
-| Data Type | Operation | Block Output |
-| --- | --- | --- |
-| - Fixed point - Boolean - Built-in integer | `isInf` | False |
-| `isNaN` | False |
-| `isFinite` | True |
-
-### Rules for Data Type Propagation
-
-The following rules apply for data type propagation when your block has one or more input ports with unspecified data types.
-
-| When the block is in... | And... | The block uses... |
-| --- | --- | --- |
-| Two-input mode | Both input ports have unspecified data types | `double` as the default data type for both inputs |
-| One input port has an unspecified data type | The data type from the specified input port as the default data type of the other port |
-| One-input mode | The input port has an unspecified data type | `double` as the default data type for the input |

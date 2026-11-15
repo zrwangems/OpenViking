@@ -10,6 +10,17 @@ language: en
 
 # IsHermitian
 
+Check if matrix is Hermitian or skew-Hermitian
+
+## Libraries
+
+Simulink / Matrix Operations
+
+## Description
+
+The IsHermitian block determines if the input is a Hermitian or a
+skew-Hermitian matrix.
+
 ## Ports
 
 ### Input
@@ -43,10 +54,6 @@ Identify the matrix as `Hermitian` or
 | **Values:** `'Hermitian'` | `'Skew-Hermitian'` |
 | **Default:** `'Hermitian'` |
 
-## Libraries
-
-Simulink / Matrix Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -67,10 +74,3 @@ Simulink / Matrix Operations
 ## Version History
 
 **Introduced in R2022a**
-
-## Description
-
-Check if matrix is Hermitian or skew-Hermitian
-
-The IsHermitian block determines if the input is a Hermitian or a
-skew-Hermitian matrix.

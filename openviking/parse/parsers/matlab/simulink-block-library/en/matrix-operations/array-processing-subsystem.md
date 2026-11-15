@@ -10,6 +10,30 @@ language: en
 
 # Array Processing Subsystem
 
+Apply algorithm to each element of a matrix
+
+## Libraries
+
+Simulink / Matrix Operations
+
+## Description
+
+The Array Processing Subsystem block is a Neighborhood Processing Subsystem block that uses a scalar
+neighborhood to apply an algorithm to each element of an input matrix. At each iteration step,
+the inport inside the subsystem receives one element from the input matrix. The outport inside
+the subsystem receives a scalar value which the subsystem uses for the value of the
+corresponding element in the output matrix. The output matrix represents the result of
+applying the algorithm inside the subsystem to each element of the input matrix, similarly to
+the `arrayfun`
+function and the For Each Subsystem block.
+
+The Array Processing Subsystem block is optimized for large input matrices
+such as image data. Use the Array Processing Subsystem block for
+high-performance element-wise operations such as image processing tasks.
+
+The Array Processing Subsystem block contains an Array Processing
+block that acts as the control block for the subsystem.
+
 ## Ports
 
 ### Input
@@ -727,10 +751,6 @@ the `set_param` function.
 | **Parameter:** | `RTWMemSecDataParameters` |
 | **Values:** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
 
-## Libraries
-
-Simulink / Matrix Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -768,23 +788,3 @@ Processing Subsystem block.
 
 If you have an HDL Coder™ license, you can generate HDL code for an Array Processing
 Subsystem block.
-
-## Description
-
-Apply algorithm to each element of a matrix
-
-The Array Processing Subsystem block is a Neighborhood Processing Subsystem block that uses a scalar
-neighborhood to apply an algorithm to each element of an input matrix. At each iteration step,
-the inport inside the subsystem receives one element from the input matrix. The outport inside
-the subsystem receives a scalar value which the subsystem uses for the value of the
-corresponding element in the output matrix. The output matrix represents the result of
-applying the algorithm inside the subsystem to each element of the input matrix, similarly to
-the `arrayfun`
-function and the For Each Subsystem block.
-
-The Array Processing Subsystem block is optimized for large input matrices
-such as image data. Use the Array Processing Subsystem block for
-high-performance element-wise operations such as image processing tasks.
-
-The Array Processing Subsystem block contains an Array Processing
-block that acts as the control block for the subsystem.

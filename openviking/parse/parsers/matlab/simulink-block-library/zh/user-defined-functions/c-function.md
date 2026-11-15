@@ -11,6 +11,132 @@ chinese_source: worker-translation
 
 # C Function
 
+
+
+从 Simulink 模型集成并调用外部 C/C++ 代码
+
+## 库
+
+Simulink / User-Defined Functions
+
+## 描述
+
+C Function block 从 Simulink® 模型集成并调用外部 C/C++ 代码。使用此模块定义外部代码，并通过预处理或后处理数据来自定义代码集成。此外，您可以为仿真和 C 代码生成指定自定义代码。您可以有条件地调用代码中定义的函数，还可以在一个模块中调用多个函数。使用此模块，您可以初始化持久性数据并将其传递给外部函数。
+
+C Function block 支持从模块对话框中初始化持久性数据并调用外部函数。持久性数据可以包括在自定义代码中定义的 C++ 类的对象。请参阅 Interface with C++ Classes Using C Function Block。该模块仅支持初始化和终止持久性数据。该模块不支持在仿真期间更新数据。要对具有连续状态的动态系统建模，请使用 S-Function block。要了解有关 S-function 的更多信息，请参阅 What Is an S-Function?。
+
+**注意**
+
+C99 是支持将自定义 C 代码集成到 Simulink 中的 C 语言标准版本。
+
+### 指定自定义代码
+
+*自 R2024a 起*
+
+从 R2024a 开始，该模块提供了一系列选项来为该模块指定自定义 C/C++ 代码。
+
+- 您可以在模块本地指定自定义代码，从而集成完全包含在单个模块中的代码组件。例如，如果您希望 C Function block 的行为像使用外部 C/C++ 代码定义的自定义滤波器，请在模块本地指定自定义代码。
+- 您可以将自定义代码与模型中的其他模块共享，或跨多个模型共享。要跨多个模型共享自定义代码，您必须在 Simulink 库模型的 Configuration Parameters 对话框中定义自定义代码。然后，在库中的模块内使用该代码，并在其他模型中从该库获取该模块。
+
+有关详细信息，请参阅 **Configure custom code settings**。
+
+### 调用 C 库函数
+
+您可以直接从 C Function block 调用这些 C Math Library 函数。
+
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| `abs` | `acos` | `asin` | `atan` | `atan2` | `ceil` |
+| `cos` | `cosh` | `exp` | `fabs` | `floor` | `fmod` |
+| `labs` | `ldexp` | `log` | `log10` | `pow` | `sin` |
+| `sinh` | `sqrt` | `tan` | `tanh` |  |  |
+
+当您调用这些函数时，除非所有输入参数都显式为单精度，否则适用双精度。当发生类型不匹配时，输入参数将被强制转换为预期类型，以替换原始参数。例如，如果您使用整数参数调用 `sin` 函数，则输入参数会被强制转换为类型为 `double` 的浮点数，以替换原始参数。
+
+从 R2025a 开始，您可以在 C function block 内调用这些字符串库函数。
+
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| `strlen` | `strncpy` | `strncat` | `strcmp` | `strncmp` | `strstr` |
+
+有关详细信息，请参阅 Use Simulink Strings inside C Function Block to Model Scrolling Display。
+
+要调用其他 C 库函数，请创建并调用一个外部包装函数，该函数调用该 C 库函数。
+
+**调用 `abs`、`fabs` 和 `labs` 函数**
+
+C Function block 中对 `abs`、`fabs` 和 `labs` 函数的解释超出了标准 C 版本，包括整数和浮点参数：
+
+- 如果 `x` 是整数，则标准 C 函数 `abs` 适用于 `x`，即 `abs(x)`。
+- 如果 `x` 是 double，则标准 C 函数 `labs` 适用于 `x`，即 `labs(x)`。
+- 如果 `x` 是 single，则标准 C 函数 `fabs` 适用于 `x`，即 `fabs(x)`。
+
+**基于类型的 Code Replacement Library (CRL)**
+
+对函数的调用应根据传入函数的数据类型调用正确的 CRL。如果未指定 CRL，则对函数的调用应调用类型特定的库。C99 的 CRL 会生成类型特定的函数。例如：
+
+| 传入的类型 | 代码生成调用 |
+| --- | --- |
+| `sin(doubleIn)` | `sin(doubleIn)` |
+| `sin(floatIn)` | `sinf(floatIn)` |
+
+您可以在 C Function block 中调用 `printf`、`memcpy` 和 `memset` 函数。*（自 R2023a 起）*
+
+### 在 Simulink 中报告运行时错误和警告
+
+*自 R2024a 起*
+
+在您在 C Function block 中指定的自定义 C 代码中，使用 `slError` 和 `slWarning` 函数分别报告运行时错误和警告。错误会终止仿真，并且必须在仿真继续之前解决。警告表示代码可能存在潜在问题，但不会终止仿真。
+
+`slError` 和 `slWarning` 函数都支持不同的数据类型格式说明符（例如，`%d` 用于整数，`%f` 用于浮点数），这些说明符与 C 类似。
+
+示例：
+
+- `slError("Error message");`
+- `slError("Input %f should be non-negative", x);`
+- `slWarning("Warning message");`
+- `slWarning("Input %d should be non-zero", y);`
+
+以下代码在仿真开始时执行。如果数据存储在仿真开始时初始化失败，它将使用 `slError` 函数发出错误消息。
+
+C Function block 使用 slError 在仿真开始时报告错误消息。
+
+### 在自定义代码中指定行主序和列主序数组布局
+
+*自 R2024a 起*
+
+使用 `slSetRowMajor` 和 `slSetColumnMajor` 函数分别指定行主序和列主序数组布局。在 Configuration Parameters 对话框的 **Simulation Target** 窗格中，使用模块对话框中的 **Use Configuration Parameters Custom Code** 参数指定这些函数。
+
+对于行主序布局，矩阵的行元素在内存中连续存储。类似地，对于列主序布局，矩阵的列元素在内存中连续存储。有关详细信息，请参阅 Row-Major and Column-Major Array Layouts (MATLAB Coder)。
+
+函数原型：
+
+- `void slSetRowMajor(const char* functionName)`
+- `void slSetColumnMajor(const char* functionName)`
+
+`functionName` 必须是字符串字面量且完全限定。
+
+例如，考虑以下代码：
+
+```
+namespace NS1 {
+	class ACLASS{
+		public:
+			void foo_row();
+	};
+	namespace NS2{
+		void foo_col(double*, double*);
+	}
+}
+```
+
+对于完全限定的函数名。
+
+- 如果函数位于命名空间内，则所有嵌套命名空间都应包含在函数名字符串中。基于以上代码，对于列主序函数 `foo_col`，在 configuration parameters custom code 中使用 `slSetColumnMajor("NS1::NS2::foo_col")`。
+- 对于所有类成员，类名以及任何嵌套命名空间都应包含在函数名字符串中。基于以上代码，对于行主序函数 `foo_row`，在 configuration parameters custom code 中使用 `slSetRowMajor("NS1::ACLASS::foo_row")`。
+
+对于使用类的 C Function block，如果构造函数接受 majority，则必须在 **Start** 代码中指定 majority。
+
 ## 端口
 
 ### 输入
@@ -525,10 +651,6 @@ chinese_source: worker-translation
 | **值：** linker flags |
 | **默认值：** `''` |
 
-## 所属库
-
-Simulink / User-Defined Functions
-
 ## 模块特性
 
 |  |  |
@@ -547,10 +669,6 @@ Simulink / User-Defined Functions
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 实际数据类型或能力支持取决于模块实现。
-
-## 扩展功能
-
-R2025b 官方文档未提供。
 
 ## 版本历史
 
@@ -583,123 +701,3 @@ R2025b 官方文档未提供。
 ### R2023a：支持 `printf`、`memcpy` 和 `memset` C 库函数
 
 您可以在 C Function block 的 **Start**、**Initialize Conditions** 和 **Terminate** 代码中使用 `printf`、`memcpy` 和 `memset` 函数。
-
-## 描述
-
-从 Simulink 模型集成并调用外部 C/C++ 代码
-
-C Function block 从 Simulink® 模型集成并调用外部 C/C++ 代码。使用此模块定义外部代码，并通过预处理或后处理数据来自定义代码集成。此外，您可以为仿真和 C 代码生成指定自定义代码。您可以有条件地调用代码中定义的函数，还可以在一个模块中调用多个函数。使用此模块，您可以初始化持久性数据并将其传递给外部函数。
-
-C Function block 支持从模块对话框中初始化持久性数据并调用外部函数。持久性数据可以包括在自定义代码中定义的 C++ 类的对象。请参阅 Interface with C++ Classes Using C Function Block。该模块仅支持初始化和终止持久性数据。该模块不支持在仿真期间更新数据。要对具有连续状态的动态系统建模，请使用 S-Function block。要了解有关 S-function 的更多信息，请参阅 What Is an S-Function?。
-
-**注意**
-
-C99 是支持将自定义 C 代码集成到 Simulink 中的 C 语言标准版本。
-
-### 指定自定义代码
-
-*自 R2024a 起*
-
-从 R2024a 开始，该模块提供了一系列选项来为该模块指定自定义 C/C++ 代码。
-
-- 您可以在模块本地指定自定义代码，从而集成完全包含在单个模块中的代码组件。例如，如果您希望 C Function block 的行为像使用外部 C/C++ 代码定义的自定义滤波器，请在模块本地指定自定义代码。
-- 您可以将自定义代码与模型中的其他模块共享，或跨多个模型共享。要跨多个模型共享自定义代码，您必须在 Simulink 库模型的 Configuration Parameters 对话框中定义自定义代码。然后，在库中的模块内使用该代码，并在其他模型中从该库获取该模块。
-
-有关详细信息，请参阅 **Configure custom code settings**。
-
-### 调用 C 库函数
-
-您可以直接从 C Function block 调用这些 C Math Library 函数。
-
-|  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- |
-| `abs` | `acos` | `asin` | `atan` | `atan2` | `ceil` |
-| `cos` | `cosh` | `exp` | `fabs` | `floor` | `fmod` |
-| `labs` | `ldexp` | `log` | `log10` | `pow` | `sin` |
-| `sinh` | `sqrt` | `tan` | `tanh` |  |  |
-
-当您调用这些函数时，除非所有输入参数都显式为单精度，否则适用双精度。当发生类型不匹配时，输入参数将被强制转换为预期类型，以替换原始参数。例如，如果您使用整数参数调用 `sin` 函数，则输入参数会被强制转换为类型为 `double` 的浮点数，以替换原始参数。
-
-从 R2025a 开始，您可以在 C function block 内调用这些字符串库函数。
-
-|  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- |
-| `strlen` | `strncpy` | `strncat` | `strcmp` | `strncmp` | `strstr` |
-
-有关详细信息，请参阅 Use Simulink Strings inside C Function Block to Model Scrolling Display。
-
-要调用其他 C 库函数，请创建并调用一个外部包装函数，该函数调用该 C 库函数。
-
-**调用 `abs`、`fabs` 和 `labs` 函数**
-
-C Function block 中对 `abs`、`fabs` 和 `labs` 函数的解释超出了标准 C 版本，包括整数和浮点参数：
-
-- 如果 `x` 是整数，则标准 C 函数 `abs` 适用于 `x`，即 `abs(x)`。
-- 如果 `x` 是 double，则标准 C 函数 `labs` 适用于 `x`，即 `labs(x)`。
-- 如果 `x` 是 single，则标准 C 函数 `fabs` 适用于 `x`，即 `fabs(x)`。
-
-**基于类型的 Code Replacement Library (CRL)**
-
-对函数的调用应根据传入函数的数据类型调用正确的 CRL。如果未指定 CRL，则对函数的调用应调用类型特定的库。C99 的 CRL 会生成类型特定的函数。例如：
-
-| 传入的类型 | 代码生成调用 |
-| --- | --- |
-| `sin(doubleIn)` | `sin(doubleIn)` |
-| `sin(floatIn)` | `sinf(floatIn)` |
-
-您可以在 C Function block 中调用 `printf`、`memcpy` 和 `memset` 函数。*（自 R2023a 起）*
-
-### 在 Simulink 中报告运行时错误和警告
-
-*自 R2024a 起*
-
-在您在 C Function block 中指定的自定义 C 代码中，使用 `slError` 和 `slWarning` 函数分别报告运行时错误和警告。错误会终止仿真，并且必须在仿真继续之前解决。警告表示代码可能存在潜在问题，但不会终止仿真。
-
-`slError` 和 `slWarning` 函数都支持不同的数据类型格式说明符（例如，`%d` 用于整数，`%f` 用于浮点数），这些说明符与 C 类似。
-
-示例：
-
-- `slError("Error message");`
-- `slError("Input %f should be non-negative", x);`
-- `slWarning("Warning message");`
-- `slWarning("Input %d should be non-zero", y);`
-
-以下代码在仿真开始时执行。如果数据存储在仿真开始时初始化失败，它将使用 `slError` 函数发出错误消息。
-
-C Function block 使用 slError 在仿真开始时报告错误消息。
-
-### 在自定义代码中指定行主序和列主序数组布局
-
-*自 R2024a 起*
-
-使用 `slSetRowMajor` 和 `slSetColumnMajor` 函数分别指定行主序和列主序数组布局。在 Configuration Parameters 对话框的 **Simulation Target** 窗格中，使用模块对话框中的 **Use Configuration Parameters Custom Code** 参数指定这些函数。
-
-对于行主序布局，矩阵的行元素在内存中连续存储。类似地，对于列主序布局，矩阵的列元素在内存中连续存储。有关详细信息，请参阅 Row-Major and Column-Major Array Layouts (MATLAB Coder)。
-
-函数原型：
-
-- `void slSetRowMajor(const char* functionName)`
-- `void slSetColumnMajor(const char* functionName)`
-
-`functionName` 必须是字符串字面量且完全限定。
-
-例如，考虑以下代码：
-
-```
-namespace NS1 {
-	class ACLASS{
-		public:
-			void foo_row();
-	};
-	namespace NS2{
-		void foo_col(double*, double*);
-	}
-}
-```
-
-对于完全限定的函数名。
-
-- 如果函数位于命名空间内，则所有嵌套命名空间都应包含在函数名字符串中。基于以上代码，对于列主序函数 `foo_col`，在 configuration parameters custom code 中使用 `slSetColumnMajor("NS1::NS2::foo_col")`。
-- 对于所有类成员，类名以及任何嵌套命名空间都应包含在函数名字符串中。基于以上代码，对于行主序函数 `foo_row`，在 configuration parameters custom code 中使用 `slSetRowMajor("NS1::ACLASS::foo_row")`。
-
-对于使用类的 C Function block，如果构造函数接受 majority，则必须在 **Start** 代码中指定 majority。

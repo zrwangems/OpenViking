@@ -11,9 +11,31 @@ chinese_source: worker-translation
 
 # Quarter Gauge
 
-## 端口
 
-R2025b 官方文档未提供。
+
+在象限刻度上显示输入值
+
+## 库
+
+Simulink / Dashboard
+
+## 描述
+
+Quarter Gauge 模块在仿真期间在象限刻度上显示连接的信号。您可以将 Quarter Gauge 模块与其他 Dashboard 模块一起使用，为模型构建交互式 Dashboard，其中包含控件和指示器。Quarter Gauge 模块在整个仿真过程中提供连接信号的瞬时值指示。您可以修改 Quarter Gauge 模块的范围以适合您的数据。您还可以自定义 Quarter Gauge 模块的外观，以提供有关信号的更多信息。例如，您可以为符合规格和不符合规格的范围进行颜色编码。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要从未连接的模块进入连接模式，请暂停在要连接的模块上，然后点击 Connect 按钮 。要在已连接的模块上进入连接模式，请选择模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
+
+要将显示模块连接到模型中的信号，或更改显示模块的连接，请进入连接模式。选择要连接的信号线。从出现的列表中，选择要连接的信号。然后，暂停在 Dashboard 模块上，并点击 Done Connecting 按钮 。要查看 Dashboard 模块显示所连接模块的值，请运行仿真。
+
+有关连接 Dashboard 模块的详细信息，请参阅将 Dashboard 模块连接到 Simulink 模型。
+
+您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅将 Dashboard 模块连接到 Stateflow (Stateflow)。
+
+此动画展示如何将 Quarter Gauge 模块连接到您的模型。
+
+未连接的 Quarter Gauge 模块连接到 Sine Wave 模块发送到 Display 模块的信号。
 
 ## 参数
 
@@ -198,10 +220,6 @@ scaleRanges = [range1 range2];
 | **模块参数：** `FontColor` |
 | **类型：** `[r g b]` vector |
 
-## 所属库
-
-Simulink / Dashboard
-
 ## 模块特性
 
 |  |  |
@@ -221,23 +239,3 @@ Dashboard 模块在代码生成时会被忽略。
 ## 版本历史
 
 **在 R2015a 中引入**
-
-## 描述
-
-在象限刻度上显示输入值
-
-Quarter Gauge 模块在仿真期间在象限刻度上显示连接的信号。您可以将 Quarter Gauge 模块与其他 Dashboard 模块一起使用，为模型构建交互式 Dashboard，其中包含控件和指示器。Quarter Gauge 模块在整个仿真过程中提供连接信号的瞬时值指示。您可以修改 Quarter Gauge 模块的范围以适合您的数据。您还可以自定义 Quarter Gauge 模块的外观，以提供有关信号的更多信息。例如，您可以为符合规格和不符合规格的范围进行颜色编码。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要从未连接的模块进入连接模式，请暂停在要连接的模块上，然后点击 Connect 按钮 。要在已连接的模块上进入连接模式，请选择模块，暂停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
-
-要将显示模块连接到模型中的信号，或更改显示模块的连接，请进入连接模式。选择要连接的信号线。从出现的列表中，选择要连接的信号。然后，暂停在 Dashboard 模块上，并点击 Done Connecting 按钮 。要查看 Dashboard 模块显示所连接模块的值，请运行仿真。
-
-有关连接 Dashboard 模块的详细信息，请参阅将 Dashboard 模块连接到 Simulink 模型。
-
-您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅将 Dashboard 模块连接到 Stateflow (Stateflow)。
-
-此动画展示如何将 Quarter Gauge 模块连接到您的模型。
-
-未连接的 Quarter Gauge 模块连接到 Sine Wave 模块发送到 Display 模块的信号。

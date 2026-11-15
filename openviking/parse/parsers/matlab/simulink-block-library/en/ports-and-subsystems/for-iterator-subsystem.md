@@ -10,6 +10,28 @@ language: en
 
 # For Iterator Subsystem
 
+Repeat subsystem execution during simulation time step for specified number of iterations
+
+## Libraries
+
+Simulink / Ports & Subsystems
+
+## Description
+
+The For Iterator Subsystem block is a Subsystem block preconfigured as a starting point for creating a subsystem
+that repeats the execution during a simulation time step for a specified number of
+iterations. The number of iterations is controlled by a For Iterator block inside the
+subsystem. For an example, see `ex_for_iterator_block`.
+
+**Note**
+
+To break a loop and terminate the simulation manually before the simulation stop
+time of a model, press **Ctrl + C**.
+
+When using simplified initialization mode, if you place a block that needs elapsed
+time (such as a Discrete-Time Integrator block) in a For Iterator
+Subsystem block, Simulink® displays an error.
+
 ## Ports
 
 ### Input
@@ -727,10 +749,6 @@ the `set_param` function.
 | **Parameter:** | `RTWMemSecDataParameters` |
 | **Values:** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
 
-## Libraries
-
-Simulink / Ports & Subsystems
-
 ## Block Characteristics
 
 |  |  |
@@ -773,21 +791,3 @@ did not pause the simulation and appeared as invalid in the block diagram.
 Port value labels at the same locations now display the iteration number. In previous releases, port value labels at these locations showed `inaccessible`.
 
 For an example, see Debug Simulation of Iterator Subsystem.
-
-## Description
-
-Repeat subsystem execution during simulation time step for specified number of iterations
-
-The For Iterator Subsystem block is a Subsystem block preconfigured as a starting point for creating a subsystem
-that repeats the execution during a simulation time step for a specified number of
-iterations. The number of iterations is controlled by a For Iterator block inside the
-subsystem. For an example, see `ex_for_iterator_block`.
-
-**Note**
-
-To break a loop and terminate the simulation manually before the simulation stop
-time of a model, press **Ctrl + C**.
-
-When using simplified initialization mode, if you place a block that needs elapsed
-time (such as a Discrete-Time Integrator block) in a For Iterator
-Subsystem block, Simulink® displays an error.

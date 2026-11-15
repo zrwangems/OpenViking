@@ -10,6 +10,29 @@ language: en
 
 # Trigger
 
+Add trigger or function port to subsystem or model
+
+## Libraries
+
+Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
+
+## Description
+
+The Trigger block adds an external signal or message port to control
+the execution of a subsystem or a model. To enable this functionality, add this block to
+a Subsystem block or at the root level of a model that is referenced in a
+Model block.
+
+Then, configure the Trigger block to execute a subsystem or
+model:
+
+- Once at each time step, when the value of the control signal changes in a way
+  that you specify.
+- Multiple times during a time step, when the control signal is a function-call
+  event from a Stateflow® chart, Function-Call Generator block, or
+  S-Function block.
+- Based on messages received at the control port.
+
 ## Ports
 
 ### Output
@@ -858,10 +881,6 @@ type** to `rising`,
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'on'` |
 
-## Libraries
-
-Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
-
 ## Block Characteristics
 
 |  |  |
@@ -900,22 +919,3 @@ type** set to `function-call` or
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Add trigger or function port to subsystem or model
-
-The Trigger block adds an external signal or message port to control
-the execution of a subsystem or a model. To enable this functionality, add this block to
-a Subsystem block or at the root level of a model that is referenced in a
-Model block.
-
-Then, configure the Trigger block to execute a subsystem or
-model:
-
-- Once at each time step, when the value of the control signal changes in a way
-  that you specify.
-- Multiple times during a time step, when the control signal is a function-call
-  event from a Stateflow® chart, Function-Call Generator block, or
-  S-Function block.
-- Based on messages received at the control port.

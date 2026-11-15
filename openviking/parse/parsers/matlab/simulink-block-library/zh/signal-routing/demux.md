@@ -11,6 +11,16 @@ chinese_source: official
 
 # Demux
 
+提取并输出虚拟向量信号的元素
+
+## 所属库
+
+Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Commonly Used Blocks HDL Coder / Signal Routing
+
+## 描述
+
+Demux 模块提取输入向量信号的分量，再将它们输出为单独的信号。输出信号端口从上到下排列。
+
 ## 端口
 
 ### 输入
@@ -81,10 +91,6 @@ Demux 模块从中选择标量信号或更小向量的向量输入信号。
 
 **示例:** `set_param(gcb,'DisplayOption','none')`
 
-## 所属库
-
-Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Commonly Used Blocks HDL Coder / Signal Routing
-
 ## 模块特性
 
 |  |  |
@@ -127,12 +133,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 实际数据类型或功能支持取决于模块实现。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-提取并输出虚拟向量信号的元素
-
-Demux 模块提取输入向量信号的分量，再将它们输出为单独的信号。输出信号端口从上到下排列。

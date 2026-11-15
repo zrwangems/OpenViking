@@ -10,6 +10,42 @@ language: en
 
 # Function Element Call
 
+Specify function call to be issued via invoking function port
+
+## Libraries
+
+Simulink / Ports & Subsystems
+
+## Description
+
+The Function Element Call block allows a Function Caller block
+in a referenced model to call a Simulink® function in another referenced model. The Function Element
+Call block, when placed at the root level of a model referenced by a
+Model block, creates an invoking function port in the
+Model block. When the invoking function port is connected to an
+exporting function port of another Model block, a Function
+Caller block in the Model block can issue function calls to
+Simulink functions in that other Model block and receive return
+values through the respective function ports of the Model blocks.
+
+Simulink canvas showing 2 referenced models with function ports and a line connecting them.
+
+Simulink canvas showing Function Element Call block and Function-Call Subsystem block, with a Function Caller block inside the subsystem.
+
+By using multiple Function Element Call blocks, multiple Function
+Caller blocks in a referenced model can issue function calls through a
+single invoking function port. All Function Element Call blocks that use
+the same port share a dialog box. A model can have more than one invoking function
+port.
+
+A Function Element Call block must be placed at the root level of model
+designated as an export-function model. See Export-Function Models Overview.
+For each Function Element Call block, a Function-Call
+Subsystem block should also be placed at the root level of the model, and a
+Function Caller block should be placed inside the subsystem,
+designating the function to call through the Function Element Call
+block.
+
 ## Ports
 
 ### Output
@@ -170,10 +206,6 @@ and the port name.
 OutDataTypeStr="Bus:
 ServiceInterface")`
 
-## Libraries
-
-Simulink / Ports & Subsystems
-
 ## Block Characteristics
 
 |  |  |
@@ -236,35 +268,3 @@ These actions now consistently create a port:
 
 In previous releases, these actions create a port, add an element to a port, or
 duplicate a block.
-
-## Description
-
-Specify function call to be issued via invoking function port
-
-The Function Element Call block allows a Function Caller block
-in a referenced model to call a Simulink® function in another referenced model. The Function Element
-Call block, when placed at the root level of a model referenced by a
-Model block, creates an invoking function port in the
-Model block. When the invoking function port is connected to an
-exporting function port of another Model block, a Function
-Caller block in the Model block can issue function calls to
-Simulink functions in that other Model block and receive return
-values through the respective function ports of the Model blocks.
-
-Simulink canvas showing 2 referenced models with function ports and a line connecting them.
-
-Simulink canvas showing Function Element Call block and Function-Call Subsystem block, with a Function Caller block inside the subsystem.
-
-By using multiple Function Element Call blocks, multiple Function
-Caller blocks in a referenced model can issue function calls through a
-single invoking function port. All Function Element Call blocks that use
-the same port share a dialog box. A model can have more than one invoking function
-port.
-
-A Function Element Call block must be placed at the root level of model
-designated as an export-function model. See Export-Function Models Overview.
-For each Function Element Call block, a Function-Call
-Subsystem block should also be placed at the root level of the model, and a
-Function Caller block should be placed inside the subsystem,
-designating the function to call through the Function Element Call
-block.

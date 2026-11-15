@@ -11,6 +11,16 @@ chinese_source: official
 
 # Squeeze
 
+从多维信号中删除单一维度
+
+## 所属库
+
+Simulink / Math Operations
+
+## 描述
+
+Squeeze 模块删除其多维输入信号中的单一维度。单一维度是其大小为 1 的任何维度。Squeeze 模块仅对维数大于 2 的信号进行操作。标量、向量和矩阵信号在通过 Squeeze 模块时保持不变。
+
 ## 端口
 
 ### 输入
@@ -27,14 +37,6 @@ chinese_source: official
 没有单一维度的输出信号。例如，大小为 3×1×2 的多维数组会变为 3×2 信号。如果输入中没有单一维度，则输入信号会一直传递到输出而保持不变。
 
 **数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
-## 参数
-
-R2025b 官方文档未提供。
-
-## 所属库
-
-Simulink / Math Operations
 
 ## 模块特性
 
@@ -54,12 +56,6 @@ Simulink / Math Operations
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2007b 中推出**
-
-## 描述
-
-从多维信号中删除单一维度
-
-Squeeze 模块删除其多维输入信号中的单一维度。单一维度是其大小为 1 的任何维度。Squeeze 模块仅对维数大于 2 的信号进行操作。标量、向量和矩阵信号在通过 Squeeze 模块时保持不变。

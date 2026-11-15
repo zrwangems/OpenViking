@@ -10,6 +10,62 @@ language: en
 
 # Rate Limiter
 
+Limit rate of change of signal
+
+## Libraries
+
+Simulink / Discontinuities
+
+## Description
+
+The Rate Limiter block limits the first derivative of the signal passing through it.
+The output changes no faster than the specified limit. The derivative is calculated
+using this equation:
+
+rate=u(i)−y(i−1)t(i)−t(i−1)
+
+where *u(i)* and *t(i)* are the current block input
+and time, and *y(i-1)* and *t(i-1))* are the
+output and time at the previous step. The output is determined by comparing
+*rate* to the **Rising slew rate** and
+**Falling slew rate** parameters:
+
+- If *rate* is greater than the **Rising
+  slew rate** parameter (*R*), the output is
+  calculated as
+
+  y(i)=Δt⋅R+y(i−1).
+- If *rate* is less than the **Falling slew
+  rate** parameter (*F*), the output is calculated as
+
+  y(i)=Δt⋅F+y(i−1).
+- If *rate* is between the bounds of *R* and
+  *F*, the change in output is equal to the change in input:
+
+  y(i)=u(i)
+
+When the block is running in continuous mode (for example, **Sample time
+mode** is `inherited` and **Sample
+time** of the driving block is zero), the **Initial
+condition** is ignored. The block output at `t = 0` is
+equal to the initial input:
+
+y(0)=u(0)
+
+When the block is running in discrete mode (for example, **Sample time
+mode** is `inherited` and **Sample
+time** of the driving block is nonzero), the **Initial
+condition** is preserved:
+
+y(−1)=Ic
+
+where *Ic* is the initial condition. The block output at `t =
+0` is calculated as if *rate* is outside the bounds of
+*R* and *F*. For `t = 0`,
+*rate* is calculated as follows:
+
+rate=u(0)−y(−1)sample time
+
 ## Ports
 
 ### Input
@@ -100,10 +156,6 @@ to have the commands treat the gain as 0.
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'on'` |
 
-## Libraries
-
-Simulink / Discontinuities
-
 ## Block Characteristics
 
 |  |  |
@@ -127,55 +179,3 @@ Cannot be used inside a triggered subsystem hierarchy.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Limit rate of change of signal
-
-The Rate Limiter block limits the first derivative of the signal passing through it.
-The output changes no faster than the specified limit. The derivative is calculated
-using this equation:
-
-rate=u(i)−y(i−1)t(i)−t(i−1)
-
-where *u(i)* and *t(i)* are the current block input
-and time, and *y(i-1)* and *t(i-1))* are the
-output and time at the previous step. The output is determined by comparing
-*rate* to the **Rising slew rate** and
-**Falling slew rate** parameters:
-
-- If *rate* is greater than the **Rising
-  slew rate** parameter (*R*), the output is
-  calculated as
-
-  y(i)=Δt⋅R+y(i−1).
-- If *rate* is less than the **Falling slew
-  rate** parameter (*F*), the output is calculated as
-
-  y(i)=Δt⋅F+y(i−1).
-- If *rate* is between the bounds of *R* and
-  *F*, the change in output is equal to the change in input:
-
-  y(i)=u(i)
-
-When the block is running in continuous mode (for example, **Sample time
-mode** is `inherited` and **Sample
-time** of the driving block is zero), the **Initial
-condition** is ignored. The block output at `t = 0` is
-equal to the initial input:
-
-y(0)=u(0)
-
-When the block is running in discrete mode (for example, **Sample time
-mode** is `inherited` and **Sample
-time** of the driving block is nonzero), the **Initial
-condition** is preserved:
-
-y(−1)=Ic
-
-where *Ic* is the initial condition. The block output at `t =
-0` is calculated as if *rate* is outside the bounds of
-*R* and *F*. For `t = 0`,
-*rate* is calculated as follows:
-
-rate=u(0)−y(−1)sample time

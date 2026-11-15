@@ -11,6 +11,18 @@ chinese_source: worker-translation
 
 # Float Extract Bits
 
+
+
+从浮点输入样本中提取位
+
+## 库
+
+Simulink / Logic and Bit Operations
+
+## 说明
+
+Float Extract Bits 模块接受包含浮点数据的信号，并输出包含该数据的二进制表示的信号。有关此二进制表示的详细信息，请参阅 IEEE Standard for Floating Point Arithmetic。
+
 ## 端口
 
 ### 输入
@@ -63,10 +75,6 @@ Float Extract Bits 基于 **输出模式** 参数计算定点输出。
 | **值**：`'[0 15]'` | vector |
 | **默认值**：`'[0 15]'` |
 
-## 所属库
-
-Simulink / Logic and Bit Operations
-
 ## 模块特性
 
 |  |  |
@@ -84,9 +92,3 @@ Simulink / Logic and Bit Operations
 ## 版本历史
 
 **在 R2023a 中引入**
-
-## 描述
-
-从浮点输入样本中提取位
-
-Float Extract Bits 模块接受包含浮点数据的信号，并输出包含该数据的二进制表示的信号。有关此二进制表示的详细信息，请参阅 IEEE Standard for Floating Point Arithmetic。

@@ -10,6 +10,30 @@ language: en
 
 # Divide
 
+Divide one input by another
+
+## Libraries
+
+Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
+
+## Description
+
+The Divide block outputs the result of dividing its first input by its
+second. The inputs can be scalars, a scalar and a nonscalar, or two nonscalars that have
+the same dimensions. This block supports only complex input values at division ports
+when all ports have the same single or double data type.
+
+The Divide block is functionally a Product block that has two block
+parameter values preset:
+
+- **Multiplication —**
+  `Element-wise(.*)`
+- **Number of Inputs —**
+  `*/`
+
+Setting nondefault values for either of those parameters can change a Divide
+block to be functionally equivalent to a Product block or a Product of Elements block.
+
 ## Ports
 
 ### Input
@@ -657,10 +681,6 @@ information, see Specifying a Fixed-Point Data Type.
 To enable this parameter, set **Scaling** to
 `Slope and bias`.
 
-## Libraries
-
-Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -911,23 +931,3 @@ and lower performance. The shift-add architecture uses pipelined architecture th
 breaks the computation into stages. This pipelined design introduces latency in HDL
 implementation. To implement the block without latency, set
 **LatencyStrategy** to `Zero`.
-
-## Description
-
-Divide one input by another
-
-The Divide block outputs the result of dividing its first input by its
-second. The inputs can be scalars, a scalar and a nonscalar, or two nonscalars that have
-the same dimensions. This block supports only complex input values at division ports
-when all ports have the same single or double data type.
-
-The Divide block is functionally a Product block that has two block
-parameter values preset:
-
-- **Multiplication —**
-  `Element-wise(.*)`
-- **Number of Inputs —**
-  `*/`
-
-Setting nondefault values for either of those parameters can change a Divide
-block to be functionally equivalent to a Product block or a Product of Elements block.

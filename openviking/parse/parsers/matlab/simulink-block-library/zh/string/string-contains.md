@@ -11,6 +11,20 @@ chinese_source: worker-translation
 
 # String Contains
 
+
+
+确定字符串是否包含模式、以模式开头或以模式结尾
+
+## 库
+
+Simulink / String
+
+## 描述
+
+String Contains、String Starts With 和 String Ends With 模块确定字符串（**str**）是否包含模式（**sub**）、以模式（**sub**）开头或以模式（**sub**）结尾。
+
+String Contains、String Starts With 和 String Ends With 模块完全相同。当 **Function** 设置为 `Contains` 时，模块确定字符串是否包含指定模式。当 **Function** 设置为 `Starts with` 时，模块确定字符串是否以指定模式开头。当 **Function** 设置为 `Ends with` 时，模块确定字符串是否以指定模式结尾。
+
 ## 端口
 
 ### 输入
@@ -78,10 +92,6 @@ off
 | **值：** `'Contains'` | `'Starts with'` | `'Ends with'` |
 | **默认值**：`'Contains'` 适用于 String Contains 模块，`'Starts with'` 适用于 String Starts With 模块，`'Ends with'` 适用于 String Ends With 模块 |
 
-## 所属库
-
-Simulink / String
-
 ## 模块特性
 
 |  |  |
@@ -100,11 +110,3 @@ Simulink / String
 ## 版本历史
 
 **在 R2020a 中引入**
-
-## 描述
-
-确定字符串是否包含模式、以模式开头或以模式结尾
-
-String Contains、String Starts With 和 String Ends With 模块确定字符串（**str**）是否包含模式（**sub**）、以模式（**sub**）开头或以模式（**sub**）结尾。
-
-String Contains、String Starts With 和 String Ends With 模块完全相同。当 **Function** 设置为 `Contains` 时，模块确定字符串是否包含指定模式。当 **Function** 设置为 `Starts with` 时，模块确定字符串是否以指定模式开头。当 **Function** 设置为 `Ends with` 时，模块确定字符串是否以指定模式结尾。

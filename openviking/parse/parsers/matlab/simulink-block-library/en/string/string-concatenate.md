@@ -10,6 +10,18 @@ language: en
 
 # String Concatenate
 
+Concatenate input strings to form one output string
+
+## Libraries
+
+Simulink / String
+
+## Description
+
+The String Concatenate block concatenates multiple input strings, in
+order of their input, to form one output string. Use this block if you want to combine
+multiple strings into a single string.
+
 ## Ports
 
 ### Input
@@ -83,10 +95,6 @@ Use the `stringtype` function, for example,
 Clicking the **Show data type assistant** button
 enables this parameter.
 
-## Libraries
-
-Simulink / String
-
 ## Block Characteristics
 
 |  |  |
@@ -104,11 +112,3 @@ Simulink / String
 ## Version History
 
 **Introduced in R2018a**
-
-## Description
-
-Concatenate input strings to form one output string
-
-The String Concatenate block concatenates multiple input strings, in
-order of their input, to form one output string. Use this block if you want to combine
-multiple strings into a single string.

@@ -11,8 +11,17 @@ chinese_source: worker-translation
 
 # Permute Matrix
 
-## 端口
 
+
+重排矩阵的行或列
+
+## 库
+Simulink / Matrix Operations
+
+## 描述
+Permute Matrix 模块根据索引输入 `P` 的指定，重排 *M*×*N* 输入矩阵 `A` 的行或列。
+
+## 端口
 ### 输入
 ### **A** — 输入矩阵 标量 | 向量 | 矩阵
 输入矩阵，指定为标量、向量或矩阵。
@@ -30,7 +39,6 @@ chinese_source: worker-translation
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
 
 ## 参数
-
 ### **Permute** — 排列方法 `Columns`（默认） | `Rows`
 通过排列输入的行或列来构造输出矩阵的方法。
 
@@ -104,10 +112,6 @@ chinese_source: worker-translation
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
 
-## 所属库
-
-Simulink / Matrix Operations
-
 ## 模块特性
 
 |  |  |
@@ -134,9 +138,3 @@ Permute Matrix 模块现在支持行主序算法以及针对行主序数组布�
 
 ### R2021b：创建 Permute Matrix 模块已移至 Simulink Matrix Operations 库
 Permute Matrix 模块已从 **DSP System Toolbox** > **Math Functions** > **Matrices and Linear Algebra** > **Matrix Operations** 库移至 **Simulink** > **Matrix Operations** 库。所有现有模型仍可正常工作。
-
-## 描述
-
-重排矩阵的行或列
-
-Permute Matrix 模块根据索引输入 `P` 的指定，重排 *M*×*N* 输入矩阵 `A` 的行或列。

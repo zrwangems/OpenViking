@@ -10,6 +10,111 @@ language: en
 
 # Outport
 
+Create output port for subsystem or external output
+
+## Libraries
+
+Simulink / Commonly Used Blocks Simulink / Ports & Subsystems Simulink / Sinks HDL Coder / Commonly Used Blocks HDL Coder / Ports & Subsystems HDL Coder / Sinks
+
+## Description
+
+Outport blocks link signals from a system to a destination outside of
+the system. They can connect signals flowing from a subsystem to other parts of the
+model. They can also supply external outputs at the top level of a model
+hierarchy.
+
+Outport block port numbers are assigned according to these rules:
+
+- Outport blocks within a root-level system or subsystem are
+  numbered sequentially, starting with 1.
+- If you add an Outport block, it is assigned the next available
+  number.
+- If you delete an Outport block, other port numbers are
+  automatically renumbered to ensure that the Outport blocks are in
+  sequence and that no numbers are omitted.
+
+### Outport Blocks in a Subsystem
+
+Outport blocks in a subsystem represent outputs from the subsystem. A signal
+arriving at an Outport block in a subsystem flows out of the
+associated output port on that Subsystem block. The Outport block
+associated with an output port is the block whose **Port
+number** parameter matches the relative position of the output port on
+the Subsystem block. For example, the Outport block whose **Port number** parameter is `1` sends its
+signal to the block connected to the topmost output port on the
+Subsystem block.
+
+If you renumber the **Port number** of an
+Outport block, the block becomes connected to a different output
+port. The block continues to send the signal to the same block outside the
+subsystem.
+
+You can directly edit port labels on a Subsystem block. For more
+information, see Edit Port Labels on Subsystem Blocks.
+
+**Tip**
+
+For models that include buses composed of many bus elements, consider using In Bus
+Element and Out Bus Element blocks. These
+blocks:
+
+- Reduce signal line complexity and clutter in a block diagram.
+- Make it easier to change the interface incrementally.
+- Allow access to a bus element closer to the point of usage, avoiding
+  the use of a Bus Selector and Goto block
+  configuration.
+
+The In Bus Element block is of block type Inport
+and the Out Bus Element block is of block type
+Outport.
+
+### Top-Level Outport Block in a Model Hierarchy
+
+Outport blocks at the top level of a model hierarchy have two uses. They can
+supply external outputs to the base MATLAB® workspace, and they provide a means for the `linmod`
+and `trim` analysis functions to obtain output from the
+system.
+
+To supply external outputs to the workspace, use the **Configuration Parameters** > **Data Import/Export** pane (see Exporting Output Data to
+the MATLAB Workspace) or the `sim` command. For example, if a system has more than one
+Outport block and the save format is array, this command
+
+```
+[t,x,y] = sim(...);
+```
+
+writes `y` as a matrix, with each column containing data for a
+different Outport block. The column order matches the order of the
+port numbers for the Outport blocks.
+
+If you specify more than one variable name after the second (state) argument, data
+from each Outport block is written to a different variable. For
+example, if the system has two Outport blocks, to save data from
+Outport block 1 to `speed` and the data from
+Outport block 2 to `dist`, specify this
+command:
+
+```
+[t,x,speed,dist] = sim(...);
+```
+
+### Connecting Buses to Root-Level Outports
+
+A root-level Outport block in a model can accept a virtual bus only if all
+elements of the bus have the same data type. The Outport block
+automatically unifies the bus to a vector having the same number of elements as the
+bus, and provides that vector as output.
+
+If you want a root-level Outport block of a model to accept a bus that
+contains mixed types, set the Outport block **Data
+type** to `Bus: <object name>`. If the bus is
+virtual, it is converted to nonvirtual, as described in Virtual and Nonvirtual Bus Conversions.
+
+### Associate Root-Level Outport Block with `Simulink.Signal` Object
+
+To associate a root-level Outport block with a
+`Simulink.Signal` object, use the Model Data Editor. See For Signals.
+
 ## Ports
 
 ### Input
@@ -611,10 +716,6 @@ within the model.
 | **Values:** scalar |
 | **Default:** `'-1'` |
 
-## Libraries
-
-Simulink / Commonly Used Blocks Simulink / Ports & Subsystems Simulink / Sinks HDL Coder / Commonly Used Blocks HDL Coder / Ports & Subsystems HDL Coder / Sinks
-
 ## Block Characteristics
 
 |  |  |
@@ -681,104 +782,3 @@ inherited from the input signal of the subsystem. The software sets the
 In normal and accelerator mode simulations, the Outport block supports
 logging unbounded variable-size signals. Logging is not supported for nonvirtual
 buses that contain unbounded variable-size signals.
-
-## Description
-
-Create output port for subsystem or external output
-
-Outport blocks link signals from a system to a destination outside of
-the system. They can connect signals flowing from a subsystem to other parts of the
-model. They can also supply external outputs at the top level of a model
-hierarchy.
-
-Outport block port numbers are assigned according to these rules:
-
-- Outport blocks within a root-level system or subsystem are
-  numbered sequentially, starting with 1.
-- If you add an Outport block, it is assigned the next available
-  number.
-- If you delete an Outport block, other port numbers are
-  automatically renumbered to ensure that the Outport blocks are in
-  sequence and that no numbers are omitted.
-
-### Outport Blocks in a Subsystem
-
-Outport blocks in a subsystem represent outputs from the subsystem. A signal
-arriving at an Outport block in a subsystem flows out of the
-associated output port on that Subsystem block. The Outport block
-associated with an output port is the block whose **Port
-number** parameter matches the relative position of the output port on
-the Subsystem block. For example, the Outport block whose **Port number** parameter is `1` sends its
-signal to the block connected to the topmost output port on the
-Subsystem block.
-
-If you renumber the **Port number** of an
-Outport block, the block becomes connected to a different output
-port. The block continues to send the signal to the same block outside the
-subsystem.
-
-You can directly edit port labels on a Subsystem block. For more
-information, see Edit Port Labels on Subsystem Blocks.
-
-**Tip**
-
-For models that include buses composed of many bus elements, consider using In Bus
-Element and Out Bus Element blocks. These
-blocks:
-
-- Reduce signal line complexity and clutter in a block diagram.
-- Make it easier to change the interface incrementally.
-- Allow access to a bus element closer to the point of usage, avoiding
-  the use of a Bus Selector and Goto block
-  configuration.
-
-The In Bus Element block is of block type Inport
-and the Out Bus Element block is of block type
-Outport.
-
-### Top-Level Outport Block in a Model Hierarchy
-
-Outport blocks at the top level of a model hierarchy have two uses. They can
-supply external outputs to the base MATLAB® workspace, and they provide a means for the `linmod`
-and `trim` analysis functions to obtain output from the
-system.
-
-To supply external outputs to the workspace, use the **Configuration Parameters** > **Data Import/Export** pane (see Exporting Output Data to
-the MATLAB Workspace) or the `sim` command. For example, if a system has more than one
-Outport block and the save format is array, this command
-
-```
-[t,x,y] = sim(...);
-```
-
-writes `y` as a matrix, with each column containing data for a
-different Outport block. The column order matches the order of the
-port numbers for the Outport blocks.
-
-If you specify more than one variable name after the second (state) argument, data
-from each Outport block is written to a different variable. For
-example, if the system has two Outport blocks, to save data from
-Outport block 1 to `speed` and the data from
-Outport block 2 to `dist`, specify this
-command:
-
-```
-[t,x,speed,dist] = sim(...);
-```
-
-### Connecting Buses to Root-Level Outports
-
-A root-level Outport block in a model can accept a virtual bus only if all
-elements of the bus have the same data type. The Outport block
-automatically unifies the bus to a vector having the same number of elements as the
-bus, and provides that vector as output.
-
-If you want a root-level Outport block of a model to accept a bus that
-contains mixed types, set the Outport block **Data
-type** to `Bus: <object name>`. If the bus is
-virtual, it is converted to nonvirtual, as described in Virtual and Nonvirtual Bus Conversions.
-
-### Associate Root-Level Outport Block with `Simulink.Signal` Object
-
-To associate a root-level Outport block with a
-`Simulink.Signal` object, use the Model Data Editor. See For Signals.

@@ -11,9 +11,31 @@ chinese_source: worker-translation
 
 # Half Gauge
 
-## 端口
 
-R2025b 官方文档未提供。
+
+在半圆形刻度上显示输入值
+
+## 库
+
+Simulink / Dashboard
+
+## 描述
+
+Half Gauge 模块在仿真期间以半圆形刻度显示连接的信号。您可以将 Half Gauge 模块与其他 Dashboard 模块一起使用，为模型构建由控件和指示器组成的交互式仪表板。Half Gauge 模块在整个仿真过程中提供连接信号的瞬时值指示。您可以修改 Half Gauge 模块的范围以适合您的数据。您还可以自定义 Half Gauge 模块的外观，以提供有关信号的更多信息。例如，您可以用颜色区分符合规格和不符合规格的范围。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标悬停在要连接的模块上，然后单击 Connect 按钮。要在已连接的模块上进入连接模式，请选择该模块，将鼠标悬停在出现的省略号 (…) 上，然后在展开的操作菜单中单击 Connect 按钮。
+
+要将显示模块连接到模型中的信号，或更改显示模块的连接，请进入连接模式。选择要连接的信号线。从出现的列表中，选择要连接的信号。然后，将鼠标悬停在 Dashboard 模块上，并单击 Done Connecting 按钮。要查看 Dashboard 模块显示所连接模块的值，请运行仿真。
+
+有关连接 Dashboard 模块的详细信息，请参阅将 Dashboard 模块连接到 Simulink 模型。
+
+您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅将 Dashboard 模块连接到 Stateflow (Stateflow)。
+
+此动画显示如何将 Half Gauge 模块连接到您的模型。
+
+未连接的 Half Gauge 模块会连接到 Sine Wave 模块发送到 Display 模块的信号。
 
 ## 参数
 
@@ -196,10 +218,6 @@ Dashboard 模块不使用端口连接到模型元素。要将 Dashboard 模块�
 | **模块参数：** `FontColor` |
 | **类型：** `[r g b]` 向量 |
 
-## 所属库
-
-Simulink / Dashboard
-
 ## 模块特性
 
 |  |  |
@@ -219,23 +237,3 @@ Dashboard 模块在代码生成时会被忽略。
 ## 版本历史
 
 **在 R2015a 中引入**
-
-## 描述
-
-在半圆形刻度上显示输入值
-
-Half Gauge 模块在仿真期间以半圆形刻度显示连接的信号。您可以将 Half Gauge 模块与其他 Dashboard 模块一起使用，为模型构建由控件和指示器组成的交互式仪表板。Half Gauge 模块在整个仿真过程中提供连接信号的瞬时值指示。您可以修改 Half Gauge 模块的范围以适合您的数据。您还可以自定义 Half Gauge 模块的外观，以提供有关信号的更多信息。例如，您可以用颜色区分符合规格和不符合规格的范围。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标悬停在要连接的模块上，然后单击 Connect 按钮。要在已连接的模块上进入连接模式，请选择该模块，将鼠标悬停在出现的省略号 (…) 上，然后在展开的操作菜单中单击 Connect 按钮。
-
-要将显示模块连接到模型中的信号，或更改显示模块的连接，请进入连接模式。选择要连接的信号线。从出现的列表中，选择要连接的信号。然后，将鼠标悬停在 Dashboard 模块上，并单击 Done Connecting 按钮。要查看 Dashboard 模块显示所连接模块的值，请运行仿真。
-
-有关连接 Dashboard 模块的详细信息，请参阅将 Dashboard 模块连接到 Simulink 模型。
-
-您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅将 Dashboard 模块连接到 Stateflow (Stateflow)。
-
-此动画显示如何将 Half Gauge 模块连接到您的模型。
-
-未连接的 Half Gauge 模块会连接到 Sine Wave 模块发送到 Display 模块的信号。

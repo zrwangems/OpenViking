@@ -10,6 +10,28 @@ language: en
 
 # PWM
 
+Generate ideal pulse width modulated signal corresponding to input duty cycle
+
+## Libraries
+
+Simulink / Discontinuities
+
+## Description
+
+Use the PWM block to generate an ideal pulse width modulated signal.
+
+Pulse-width modulation (PWM) is a technique for encoding an analog signal using square
+pulses. This encoding is achieved by controlling the fraction of one period of the
+square wave that is set to high. This fraction is the duty cycle of the signal. The
+relationship between the modulated signal and the input duty cycle can be simply
+described as:
+
+y¯=Dymax+​(1−D)ymin
+
+where *ymax* and *ymin* are the upper and lower bounds of the output signal, respectively. For
+the PWM block, the duty cycle is constrained to `[0,1]`.
+The ideal PWM signal is proportional to the duty cycle *D*.
+
 ## Ports
 
 ### Input
@@ -135,10 +157,6 @@ intervals**.
 | **Values:** numeric scalar |
 | **Default:** `0.1` |
 
-## Libraries
-
-Simulink / Discontinuities
-
 ## Block Characteristics
 
 |  |  |
@@ -165,21 +183,3 @@ fixed time intervals** parameter must be selected.
 ## Version History
 
 **Introduced in R2020b**
-
-## Description
-
-Generate ideal pulse width modulated signal corresponding to input duty cycle
-
-Use the PWM block to generate an ideal pulse width modulated signal.
-
-Pulse-width modulation (PWM) is a technique for encoding an analog signal using square
-pulses. This encoding is achieved by controlling the fraction of one period of the
-square wave that is set to high. This fraction is the duty cycle of the signal. The
-relationship between the modulated signal and the input duty cycle can be simply
-described as:
-
-y¯=Dymax+​(1−D)ymin
-
-where *ymax* and *ymin* are the upper and lower bounds of the output signal, respectively. For
-the PWM block, the duty cycle is constrained to `[0,1]`.
-The ideal PWM signal is proportional to the duty cycle *D*.

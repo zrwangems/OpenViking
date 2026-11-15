@@ -11,6 +11,16 @@ chinese_source: official
 
 # Terminator
 
+终止未连接的输出端口
+
+## 所属库
+
+Simulink / Commonly Used Blocks Simulink / Sinks HDL Coder / Sinks
+
+## 描述
+
+使用 Terminator 模块终止输出端口未连接其他模块的模块。如果您运行的仿真中有一些模块的输出端口未连接任何模块，Simulink® 将发出警告消息。使用 Terminator 模块终止这些模块，可以防止出现此类警告消息。
+
 ## 端口
 
 ### 输入
@@ -20,14 +30,6 @@ chinese_source: official
 使用此端口来处理仿真过程中并不连接到其他端口的输出端口的信号。该端口接受所有数据类型的实信号或复信号。
 
 **数据类型:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
-## 参数
-
-R2025b 官方文档未提供。
-
-## 所属库
-
-Simulink / Commonly Used Blocks Simulink / Sinks HDL Coder / Sinks
 
 ## 模块特性
 
@@ -63,12 +65,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-终止未连接的输出端口
-
-使用 Terminator 模块终止输出端口未连接其他模块的模块。如果您运行的仿真中有一些模块的输出端口未连接任何模块，Simulink® 将发出警告消息。使用 Terminator 模块终止这些模块，可以防止出现此类警告消息。

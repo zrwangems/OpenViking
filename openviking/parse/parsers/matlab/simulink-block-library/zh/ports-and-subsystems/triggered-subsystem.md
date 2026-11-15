@@ -11,6 +11,22 @@ chinese_source: official
 
 # Triggered Subsystem
 
+由外部输入触发执行的子系统
+
+## 所属库
+
+Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
+
+## 描述
+
+Triggered Subsystem 模块是一个预先配置的 Subsystem 模块，您可基于它创建一个每当控制信号具有触发值就会执行的子系统。
+
+使用 Triggered Subsystem 模块可以建模：
+
+- 与触发器值检测一起运行的任务。
+- 来自 I/O 硬件的中断。
+- 处理异常或错误的处理器请求。
+
 ## 端口
 
 ### 输入
@@ -546,10 +562,6 @@ chinese_source: official
 | **值:** | `''` (默认) | subsystem filename in quotes |
 | **数据类型:** | `char` | `string` |
 
-## 所属库
-
-Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
-
 ## 模块特性
 
 |  |  |
@@ -615,18 +627,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。有�
 
 实际数据类型支持取决于模块实现。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-由外部输入触发执行的子系统
-
-Triggered Subsystem 模块是一个预先配置的 Subsystem 模块，您可基于它创建一个每当控制信号具有触发值就会执行的子系统。
-
-使用 Triggered Subsystem 模块可以建模：
-
-- 与触发器值检测一起运行的任务。
-- 来自 I/O 硬件的中断。
-- 处理异常或错误的处理器请求。

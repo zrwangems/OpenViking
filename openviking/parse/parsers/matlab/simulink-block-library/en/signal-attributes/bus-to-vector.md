@@ -10,6 +10,23 @@ language: en
 
 # Bus to Vector
 
+Convert virtual bus to vector
+
+## Libraries
+
+Simulink / Signal Attributes HDL Coder / Signal Attributes
+
+## Description
+
+The Bus to Vector block converts a virtual bus to a vector. Use the
+Bus to Vector block only to replace an implicit bus-to-vector conversion with
+an explicit conversion.
+
+Blocks that do not accept buses may implicitly convert buses to vectors. When a bus is
+treated as a vector, bus elements become inaccessible. To identify and correct buses
+used as vectors, use the Model Advisor check Check bus signals treated as
+vectors or the function `Simulink.BlockDiagram.addBusToVector`.
+
 ## Ports
 
 ### Input
@@ -32,14 +49,6 @@ vector, respectively. Otherwise, the output is a 1-D vector.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
 **Complex Number Support:** Yes
-
-## Parameters
-
-Not documented in R2025b.
-
-## Libraries
-
-Simulink / Signal Attributes HDL Coder / Signal Attributes
 
 ## Block Characteristics
 
@@ -83,16 +92,3 @@ Actual data type or capability support depends on block implementation.
 ## Version History
 
 **Introduced in R2007a**
-
-## Description
-
-Convert virtual bus to vector
-
-The Bus to Vector block converts a virtual bus to a vector. Use the
-Bus to Vector block only to replace an implicit bus-to-vector conversion with
-an explicit conversion.
-
-Blocks that do not accept buses may implicitly convert buses to vectors. When a bus is
-treated as a vector, bus elements become inaccessible. To identify and correct buses
-used as vectors, use the Model Advisor check Check bus signals treated as
-vectors or the function `Simulink.BlockDiagram.addBusToVector`.

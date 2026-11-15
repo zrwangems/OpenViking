@@ -11,6 +11,16 @@ chinese_source: official
 
 # Wrap To Zero
 
+如果输入大于阈值，将输出设置为零
+
+## 所属库
+
+Simulink / Discontinuities HDL Coder / Discontinuities
+
+## 描述
+
+当输入大于**阈值**值时，Wrap To Zero 模块将输出设置为零。当输入小于或等于**阈值**时，输出等于输入。
+
 ## 端口
 
 ### 输入
@@ -48,10 +58,6 @@ chinese_source: official
 | **类型**：字符向量 |
 | **值**：`scalar` |
 | **默认值**：`'255'` |
-
-## 所属库
-
-Simulink / Discontinuities HDL Coder / Discontinuities
 
 ## 模块特性
 
@@ -91,12 +97,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-如果输入大于阈值，将输出设置为零
-
-当输入大于**阈值**值时，Wrap To Zero 模块将输出设置为零。当输入小于或等于**阈值**时，输出等于输入。

@@ -10,6 +10,53 @@ language: en
 
 # Prelookup
 
+Compute index and fraction for Interpolation Using Prelookup block
+
+## Libraries
+
+Simulink / Lookup Tables HDL Coder / Lookup Tables
+
+## Description
+
+The Prelookup block calculates the index and interval fraction that specify how its
+input value `u` relates to the breakpoint data set. The Prelookup block
+works best with the Interpolation Using Prelookup block. Feed
+the resulting index and fraction values into an Interpolation Using Prelookup block to
+interpolate an *n*-dimensional table. These two blocks have
+distributed algorithms. When combined together, they perform the same operation as the
+integrated algorithm in the n-D Lookup Table block. However, the
+Prelookup and Interpolation Using Prelookup blocks offer
+greater flexibility and more efficient simulation and code generation than the
+n-D Lookup Table block. For more information, see Efficiency of Performance.
+
+### Supported Block Operations
+
+To use the Prelookup block, you must specify a set of breakpoint values. You
+choose whether to specify the breakpoint values directly on the dialog box or by
+feeding the values to a `bp` input port by setting the
+**Source** parameter to `Dialog` or
+`Input port`. Typically, this breakpoint data set
+corresponds to one dimension of the table data in an Interpolation Using Prelookup
+block. The Prelookup block generates a pair of outputs for each input value
+`u` by calculating:
+
+- The index of the breakpoint set element that is less than or equal to
+  `u` and forms an interval containing
+  `u`
+- The interval fraction in the range 0 ≤ f < 1, representing the
+  normalized position of `u` on the breakpoint interval
+  between the index and the next index value for in-range input
+
+For example, if the breakpoint data set is `[0 5 10 20 50 100]`
+and the input value `u` is 55, the index is 4 and the fractional
+value is 0.1. Labels for the index and interval fraction appear as
+**k** and **f** on the Prelookup block icon.
+The index value is zero based.
+
+The interval fraction can be negative or greater than `1` for
+out-of-range input. See the **Extrapolation method** block
+parameter for more information.
+
 ## Ports
 
 ### Input
@@ -914,10 +961,6 @@ the `set_param` function.
 | **Parameter:** | `RndMeth` |
 | **Values:** | `'Floor'` (default) | `'Ceiling'` | `'Convergent'` | `'Nearest'` | `'Round'` | `'Simplest'` | `'Zero'` |
 
-## Libraries
-
-Simulink / Lookup Tables HDL Coder / Lookup Tables
-
 ## Block Characteristics
 
 |  |  |
@@ -1021,46 +1064,3 @@ model from a release prior to R2025a and cannot migrate to a later release, set 
 **Diagnostic for out-of-range input** parameter to
 `Error`. The next time you run the model, an error is generated
 when the input is out-of-range.
-
-## Description
-
-Compute index and fraction for Interpolation Using Prelookup block
-
-The Prelookup block calculates the index and interval fraction that specify how its
-input value `u` relates to the breakpoint data set. The Prelookup block
-works best with the Interpolation Using Prelookup block. Feed
-the resulting index and fraction values into an Interpolation Using Prelookup block to
-interpolate an *n*-dimensional table. These two blocks have
-distributed algorithms. When combined together, they perform the same operation as the
-integrated algorithm in the n-D Lookup Table block. However, the
-Prelookup and Interpolation Using Prelookup blocks offer
-greater flexibility and more efficient simulation and code generation than the
-n-D Lookup Table block. For more information, see Efficiency of Performance.
-
-### Supported Block Operations
-
-To use the Prelookup block, you must specify a set of breakpoint values. You
-choose whether to specify the breakpoint values directly on the dialog box or by
-feeding the values to a `bp` input port by setting the
-**Source** parameter to `Dialog` or
-`Input port`. Typically, this breakpoint data set
-corresponds to one dimension of the table data in an Interpolation Using Prelookup
-block. The Prelookup block generates a pair of outputs for each input value
-`u` by calculating:
-
-- The index of the breakpoint set element that is less than or equal to
-  `u` and forms an interval containing
-  `u`
-- The interval fraction in the range 0 ≤ f < 1, representing the
-  normalized position of `u` on the breakpoint interval
-  between the index and the next index value for in-range input
-
-For example, if the breakpoint data set is `[0 5 10 20 50 100]`
-and the input value `u` is 55, the index is 4 and the fractional
-value is 0.1. Labels for the index and interval fraction appear as
-**k** and **f** on the Prelookup block icon.
-The index value is zero based.
-
-The interval fraction can be negative or greater than `1` for
-out-of-range input. See the **Extrapolation method** block
-parameter for more information.

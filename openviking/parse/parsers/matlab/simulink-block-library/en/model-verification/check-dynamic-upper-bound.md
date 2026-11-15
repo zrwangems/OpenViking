@@ -10,6 +10,32 @@ language: en
 
 # Check Dynamic Upper Bound
 
+Check that one signal is always greater than another signal
+
+## Libraries
+
+Simulink / Model Verification HDL Coder / Model Verification
+
+## Description
+
+The Check Dynamic Upper Bound block checks if the reference signal,
+**max**, is greater than the amplitude of an input signal,
+**u**, at each time step and executes an assertion after
+comparison. If **max** is greater than **u**, the
+assertion is `true (1)` and the block does nothing. If not, the block
+halts the simulation and returns an error message by default.
+
+The input signals can be scalars, vectors, or matrices. Both input signals must be the
+same data type. The block compares the value of **u** to
+**max** differently depending on the signal.
+
+- When comparing scalars to vectors or matrices, the block compares the
+  scalar signal to each element of the non-scalar signal.
+- When comparing a vector or matrix signal to another vector or matrix
+  signal, the block checks the signals element-by-element.
+- For models with an input signal and bound that are both vectors or
+  matrices, the input signal and bound must have the same dimensions.
+
 ## Ports
 
 ### Input
@@ -128,10 +154,6 @@ the assertion condition.
 | **Values:** `"graphic"` | `"text"` |
 | **Default:** `"graphic"` |
 
-## Libraries
-
-Simulink / Model Verification HDL Coder / Model Verification
-
 ## Block Characteristics
 
 |  |  |
@@ -173,25 +195,3 @@ implementation and synthesized logic.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Check that one signal is always greater than another signal
-
-The Check Dynamic Upper Bound block checks if the reference signal,
-**max**, is greater than the amplitude of an input signal,
-**u**, at each time step and executes an assertion after
-comparison. If **max** is greater than **u**, the
-assertion is `true (1)` and the block does nothing. If not, the block
-halts the simulation and returns an error message by default.
-
-The input signals can be scalars, vectors, or matrices. Both input signals must be the
-same data type. The block compares the value of **u** to
-**max** differently depending on the signal.
-
-- When comparing scalars to vectors or matrices, the block compares the
-  scalar signal to each element of the non-scalar signal.
-- When comparing a vector or matrix signal to another vector or matrix
-  signal, the block checks the signals element-by-element.
-- For models with an input signal and bound that are both vectors or
-  matrices, the input signal and bound must have the same dimensions.

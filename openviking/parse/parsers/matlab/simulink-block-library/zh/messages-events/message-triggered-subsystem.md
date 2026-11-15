@@ -11,6 +11,42 @@ chinese_source: worker-translation
 
 # Message Triggered Subsystem
 
+
+
+其执行由消息输入控制的 Subsystem
+
+## 库
+
+Simulink / Messages & Events
+
+## 描述
+
+此模块是一个 Subsystem 模块，已预配置为创建基于消息输入执行的子系统的起点。该模块根据执行时机具有不同名称。
+
+- Message Triggered Subsystem 模块每当控制端口有消息可用时执行，与模块采样时间无关。
+- Message Polling Subsystem 模块定期检查消息，并在控制端口有消息可用时执行。
+
+在子系统内部，Trigger 模块显示一个输出端口，该端口输出承载消息负载的数据信号。
+
+### Message Triggered Subsystem
+
+Message Triggered Subsystem 模块启用基于事件的消息触发。该模块每当控制端口有消息可用时执行，与采样时间无关。该模块包含一个 Trigger 模块，其 **Trigger type** 设置为 `message`，**Trigger time** 设置为 `on message available`。
+
+该模块以两种模式运行：scheduled 和 immediate。
+
+- 在 *scheduled 模式* 下，可以在 Schedule Editor 中安排子系统的执行顺序，以对异步行为建模。你可以将子系统执行推迟到遵循特定 Simulink® 任务，同时保持在同一时间步。trigger 端口前面的 Queue 模块可以在消息进入子系统之前缓冲消息。当消息到达 Queue 模块时，它会引发一个事件，该事件触发子系统根据计划从 Queue 模块拉取消息。如果消息源和 trigger 端口之间没有 Queue 模块，Simulink 将 trigger 端口视为具有容量为 1 的内部覆盖型队列，类似于 Receive 模块。trigger 端口可以连接到根级 Inport 模块，以对软件组件建模。Message-trigger subsystem 可以放在 export-function 模型中，例如 function-call subsystem。
+
+  要使用 scheduled 模式，请在 Trigger 模块中选中 **Schedule as aperiodic partition** 复选框。
+- 在 *immediate 模式* 下，子系统一旦在控制端口有消息可用就执行，这会将消息推送到子系统，而无需队列缓冲消息。
+
+  要使用 immediate 模式，请在 Trigger 模块中清除 **Schedule as aperiodic partition** 复选框。
+
+### Message Polling Subsystem
+
+Message Polling Subsystem 模块根据控制端口是否有消息可用，在每个时间步有条件地执行。该模块包含一个 Trigger 模块，其 **Trigger type** 设置为 `message`，**Trigger time** 设置为 `on sample time hit`。
+
+该模块在每个时间步尝试从控制端口前面的队列中拉取一条消息。如果消息源和控制端口之间没有 Queue 模块，Simulink 将控制端口视为具有容量为 1 的内部覆盖型队列，类似于 Receive 模块。如果队列不为空，则拉取一条消息并执行子系统，消息负载作为输入。每个时间步只拉取一条消息。如果当前时间步队列中有多条消息，则在下一个时间步拉取下一条消息。如果队列为空，则子系统在该时间步不执行。你可以在 Message Polling Subsystem 模块的模块对话框中设置采样时间。请参阅 Sample time。
+
 ## 端口
 
 ### 输入
@@ -566,10 +602,6 @@ chinese_source: worker-translation
 | **值：** | `''` (default) | 带引号的子系统文件名 |
 | **数据类型：** | `char` | `string` |
 
-## 所属库
-
-Simulink / Messages & Events
-
 ## 模块特性
 
 |  |  |
@@ -596,33 +628,3 @@ Simulink / Messages & Events
 ## 版本历史
 
 **R2022a 中引入**
-
-## 描述
-
-其执行由消息输入控制的 Subsystem
-
-此模块是一个 Subsystem 模块，已预配置为创建基于消息输入执行的子系统的起点。该模块根据执行时机具有不同名称。
-
-- Message Triggered Subsystem 模块每当控制端口有消息可用时执行，与模块采样时间无关。
-- Message Polling Subsystem 模块定期检查消息，并在控制端口有消息可用时执行。
-
-在子系统内部，Trigger 模块显示一个输出端口，该端口输出承载消息负载的数据信号。
-
-### Message Triggered Subsystem
-
-Message Triggered Subsystem 模块启用基于事件的消息触发。该模块每当控制端口有消息可用时执行，与采样时间无关。该模块包含一个 Trigger 模块，其 **Trigger type** 设置为 `message`，**Trigger time** 设置为 `on message available`。
-
-该模块以两种模式运行：scheduled 和 immediate。
-
-- 在 *scheduled 模式* 下，可以在 Schedule Editor 中安排子系统的执行顺序，以对异步行为建模。你可以将子系统执行推迟到遵循特定 Simulink® 任务，同时保持在同一时间步。trigger 端口前面的 Queue 模块可以在消息进入子系统之前缓冲消息。当消息到达 Queue 模块时，它会引发一个事件，该事件触发子系统根据计划从 Queue 模块拉取消息。如果消息源和 trigger 端口之间没有 Queue 模块，Simulink 将 trigger 端口视为具有容量为 1 的内部覆盖型队列，类似于 Receive 模块。trigger 端口可以连接到根级 Inport 模块，以对软件组件建模。Message-trigger subsystem 可以放在 export-function 模型中，例如 function-call subsystem。
-
-  要使用 scheduled 模式，请在 Trigger 模块中选中 **Schedule as aperiodic partition** 复选框。
-- 在 *immediate 模式* 下，子系统一旦在控制端口有消息可用就执行，这会将消息推送到子系统，而无需队列缓冲消息。
-
-  要使用 immediate 模式，请在 Trigger 模块中清除 **Schedule as aperiodic partition** 复选框。
-
-### Message Polling Subsystem
-
-Message Polling Subsystem 模块根据控制端口是否有消息可用，在每个时间步有条件地执行。该模块包含一个 Trigger 模块，其 **Trigger type** 设置为 `message`，**Trigger time** 设置为 `on sample time hit`。
-
-该模块在每个时间步尝试从控制端口前面的队列中拉取一条消息。如果消息源和控制端口之间没有 Queue 模块，Simulink 将控制端口视为具有容量为 1 的内部覆盖型队列，类似于 Receive 模块。如果队列不为空，则拉取一条消息并执行子系统，消息负载作为输入。每个时间步只拉取一条消息。如果当前时间步队列中有多条消息，则在下一个时间步拉取下一条消息。如果队列为空，则子系统在该时间步不执行。你可以在 Message Polling Subsystem 模块的模块对话框中设置采样时间。请参阅 Sample time。

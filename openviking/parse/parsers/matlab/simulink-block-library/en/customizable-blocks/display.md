@@ -10,9 +10,85 @@ language: en
 
 # Display
 
-## Ports
+Display signal value during simulation with customizable appearance
 
-Not documented in R2025b.
+## Libraries
+
+Simulink / Dashboard / Customizable Blocks
+
+## Description
+
+The Display block connects to a signal in your model and displays the
+signal value during simulation. The Display block can display scalar signals.
+When you use the Display block in the Customizable Blocks library, you can customize the
+appearance of the block to look like a real display in your system. Use the
+Display block with other dashboard blocks to build an interactive dashboard
+of controls and indicators for your model.
+
+### Customize Display Blocks
+
+When you add a Display block to your model, the block is preconfigured
+with a default design. You can use the block with the default design or customize the
+appearance of the block.
+
+To customize the appearance of the block, use design mode.
+After selecting the block, you can enter design mode in one of three ways:
+
+- In the Simulink® Toolstrip, on the block-specific tab, under
+  **Design**, click **Edit**.
+- In the Property Inspector, on the **Design** tab, click
+  **Edit**.
+- Pause on the ellipsis that appears over the block and click the Edit Custom Block
+  button .
+
+In design mode, you can use the toolbar above the block to customize the display. To
+access additional customization options or to enter exact values for design settings, use
+the **Design** tab in the Property Inspector.
+
+Customizable Display block in design mode with the toolbar and the Design tab in the Property Inspector visible.
+
+**Design Mode Actions**
+
+| Action | Available in Toolbar | Available in **Design** Tab |
+| --- | --- | --- |
+| Change the font. Choose from a list of WYSIWYG (what you see is what you get) fonts that look the same on all platforms. | Yes | Yes |
+| Change the font size. | Yes | Yes |
+| Change the text color. | Yes | Yes |
+| Make the text bold, italic, or underlined. | Yes | Yes |
+| Upload a background image. | Yes | Yes |
+| Set a solid background color. | No | Yes |
+| Upload a foreground image. | No | Yes |
+| Change the position of the text within the block. | No | Yes |
+
+In addition to customizing the block design using the toolbar and
+**Design** tab, you can also reposition the text interactively in the
+canvas.
+
+When you finish editing the design, to exit design mode, click the
+**X** in the upper right of the canvas.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
+use connect mode. To enter connect mode on an unconnected block, pause on the block you want
+to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a display block to a signal in your model or change the connection of a display
+block, enter connect mode. Select the signal line to which you want to connect. From the
+list that appears, select the signal to which you want to connect. Then, pause on the
+dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
+connected block, run the simulation.
+
+For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+An unconnected Display block connects to the signal that a Sine Wave block sends to
+an Outport block.
+
+An unconnected Half Gauge block connects to the signal that a Sine Wave block sends to a Display block.
 
 ## Parameters
 
@@ -325,10 +401,6 @@ Specify the height of the foreground image as a ratio of the block height.
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
 
-## Libraries
-
-Simulink / Dashboard / Customizable Blocks
-
 ## Block Characteristics
 
 |  |  |
@@ -394,79 +466,3 @@ To return the panel to the model canvas, in the panel window toolstrip, click Op
 canvas .
 
 For more information about opening a panel in a new window, see Open Panels in New Window.
-
-## Description
-
-Display signal value during simulation with customizable appearance
-
-The Display block connects to a signal in your model and displays the
-signal value during simulation. The Display block can display scalar signals.
-When you use the Display block in the Customizable Blocks library, you can customize the
-appearance of the block to look like a real display in your system. Use the
-Display block with other dashboard blocks to build an interactive dashboard
-of controls and indicators for your model.
-
-### Customize Display Blocks
-
-When you add a Display block to your model, the block is preconfigured
-with a default design. You can use the block with the default design or customize the
-appearance of the block.
-
-To customize the appearance of the block, use design mode.
-After selecting the block, you can enter design mode in one of three ways:
-
-- In the Simulink® Toolstrip, on the block-specific tab, under
-  **Design**, click **Edit**.
-- In the Property Inspector, on the **Design** tab, click
-  **Edit**.
-- Pause on the ellipsis that appears over the block and click the Edit Custom Block
-  button .
-
-In design mode, you can use the toolbar above the block to customize the display. To
-access additional customization options or to enter exact values for design settings, use
-the **Design** tab in the Property Inspector.
-
-Customizable Display block in design mode with the toolbar and the Design tab in the Property Inspector visible.
-
-**Design Mode Actions**
-
-| Action | Available in Toolbar | Available in **Design** Tab |
-| --- | --- | --- |
-| Change the font. Choose from a list of WYSIWYG (what you see is what you get) fonts that look the same on all platforms. | Yes | Yes |
-| Change the font size. | Yes | Yes |
-| Change the text color. | Yes | Yes |
-| Make the text bold, italic, or underlined. | Yes | Yes |
-| Upload a background image. | Yes | Yes |
-| Set a solid background color. | No | Yes |
-| Upload a foreground image. | No | Yes |
-| Change the position of the text within the block. | No | Yes |
-
-In addition to customizing the block design using the toolbar and
-**Design** tab, you can also reposition the text interactively in the
-canvas.
-
-When you finish editing the design, to exit design mode, click the
-**X** in the upper right of the canvas.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
-use connect mode. To enter connect mode on an unconnected block, pause on the block you want
-to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a display block to a signal in your model or change the connection of a display
-block, enter connect mode. Select the signal line to which you want to connect. From the
-list that appears, select the signal to which you want to connect. Then, pause on the
-dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
-connected block, run the simulation.
-
-For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-An unconnected Display block connects to the signal that a Sine Wave block sends to
-an Outport block.
-
-An unconnected Half Gauge block connects to the signal that a Sine Wave block sends to a Display block.

@@ -11,6 +11,16 @@ chinese_source: official
 
 # Difference
 
+计算一个时间步内的信号变化
+
+## 所属库
+
+Simulink / Discrete
+
+## 描述
+
+Difference 模块输出当前输入值减去上一输入值的差值。
+
 ## 端口
 
 ### 输入
@@ -190,10 +200,6 @@ chinese_source: official
 | **值：**`'off' | 'on'` |
 | **默认值：**`'off'` |
 
-## 所属库
-
-Simulink / Discrete
-
 ## 模块特性
 
 |  |  |
@@ -233,12 +239,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-计算一个时间步内的信号变化
-
-Difference 模块输出当前输入值减去上一输入值的差值。

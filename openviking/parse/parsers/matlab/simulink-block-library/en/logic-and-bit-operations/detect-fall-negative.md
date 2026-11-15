@@ -10,6 +10,19 @@ language: en
 
 # Detect Fall Negative
 
+Detect falling edge when signal value decreases to strictly negative value, and its previous value was nonnegative
+
+## Libraries
+
+Simulink / Logic and Bit Operations
+
+## Description
+
+The Detect Fall Negative block determines if the input is less than
+zero, and its previous value is greater than or equal to zero.
+
+This block supports only discrete sample times.
+
 ## Ports
 
 ### Input
@@ -89,10 +102,6 @@ Set the output data type to `boolean` or
 | **Values**: `'boolean'` | `'uint8'` |
 | **Default**: `'boolean'` |
 
-## Libraries
-
-Simulink / Logic and Bit Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -134,12 +143,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Detect falling edge when signal value decreases to strictly negative value, and its previous value was nonnegative
-
-The Detect Fall Negative block determines if the input is less than
-zero, and its previous value is greater than or equal to zero.
-
-This block supports only discrete sample times.

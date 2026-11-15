@@ -10,69 +10,13 @@ language: en
 
 # Timed-Based Linearization
 
-## Ports
-
-Not documented in R2025b.
-
-## Parameters
-
-### **Linearization time** — Time at which to generate a linear model `1` (default) | scalar | vector
-
-Time at which you want the block to generate a linear model. Enter a
-vector of times if you want the block to generate linear models at more than
-one time step.
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter:** `LinearizationTime` |
-| **Type:** character vector |
-| **Values:** scalar | vector |
-| **Default:** `'1'` |
-
-### **Sample time (of linearized model)** — Sample time `0` (default) | scalar | vector
-
-Specify a sample time for the linear model. To create a continuous-time model using
-`linmod`, specify a sample
-time of `0`. Otherwise, to create a discrete-time model
-using `dlinmod`, specify a
-positive sample time.
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter:** `SampleTime` |
-| **Type:** character vector |
-| **Values:** scalar | vector |
-| **Default:** `'0'` |
+Generate linear models in base workspace at specific times
 
 ## Libraries
 
 Simulink / Model-Wide Utilities
 
-## Block Characteristics
-
-|  |  |
-| --- | --- |
-| **Data Types** |  |
-| **Direct Feedthrough** | `no` |
-| **Multidimensional Signals** | `no` |
-| **Variable-Size Signals** | `no` |
-| **Zero-Crossing Detection** | `no` |
-
-## Extended Capabilities
-
-Not documented in R2025b.
-
-## Version History
-
-**Introduced in R2010a**
-
 ## Description
-
-Generate linear models in base workspace at specific times
 
 This block calls `linmod` or `dlinmod` to create a linear model for the system when the simulation
 clock reaches the time specified by the **Linearization
@@ -113,3 +57,51 @@ fields:
 
 To generate models conditionally, use the Trigger-Based Linearization
 block.
+
+## Parameters
+
+### **Linearization time** — Time at which to generate a linear model `1` (default) | scalar | vector
+
+Time at which you want the block to generate a linear model. Enter a
+vector of times if you want the block to generate linear models at more than
+one time step.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `LinearizationTime` |
+| **Type:** character vector |
+| **Values:** scalar | vector |
+| **Default:** `'1'` |
+
+### **Sample time (of linearized model)** — Sample time `0` (default) | scalar | vector
+
+Specify a sample time for the linear model. To create a continuous-time model using
+`linmod`, specify a sample
+time of `0`. Otherwise, to create a discrete-time model
+using `dlinmod`, specify a
+positive sample time.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `SampleTime` |
+| **Type:** character vector |
+| **Values:** scalar | vector |
+| **Default:** `'0'` |
+
+## Block Characteristics
+
+|  |  |
+| --- | --- |
+| **Data Types** |  |
+| **Direct Feedthrough** | `no` |
+| **Multidimensional Signals** | `no` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
+
+## Version History
+
+**Introduced in R2010a**

@@ -11,6 +11,30 @@ chinese_source: worker-translation
 
 # Matrix Square
 
+
+
+计算输入矩阵的平方
+
+## 库
+
+Simulink / Matrix Operations
+
+## 说明
+
+Matrix Square 模块通过使用 Hermitian 转置进行左乘，计算 *M*×*N* 输入矩阵 *u* 的平方。等效的 MATLAB® 代码为：
+
+    y = u' * u
+
+该模块将长度为 *M* 的未定向向量输入视为 *M*×1 矩阵。当输入为 *M*×*N* 矩阵时，模块的输出为 *N*×*N* 矩阵。
+
+### 应用
+
+Matrix Square 模块可用于多种应用：
+
+- 一般矩阵平方 — Matrix Square 模块计算输出矩阵 *y*，而无需显式构造 *u'*。因此，它比其他计算矩阵平方的方法更高效。
+- 平方和 — 当输入为列向量（*N*=1）时，模块的操作等效于乘加（MAC）过程，或内积。输出是输入的平方和，并且始终为实数标量。
+- 相关矩阵 — 当输入为行向量（*M*=1）时，输出 *y* 是对称自相关矩阵，或外积。
+
 ## 端口
 
 ### 输入
@@ -189,10 +213,6 @@ Simulink® 检查的用于范围检查的最大输出值。Simulink 软件使用
 - **Mode** 为 `Fixed point`
 - **Scaling** 为 `Binary point`
 
-## 所属库
-
-Simulink / Matrix Operations
-
 ## 模块特性
 
 |  |  |
@@ -218,21 +238,3 @@ Simulink / Matrix Operations
 ### R2021b：Matrix Square 模块已移至 Simulink Matrix Operations 库
 
 Matrix Square 模块已从 **DSP System Toolbox** > **Math Functions** > **Matrices and Linear Algebra** > **Matrix Operations** 移至 **Simulink** > **Matrix Operations**。所有现有模型继续工作。
-
-## 描述
-
-计算输入矩阵的平方
-
-Matrix Square 模块通过使用 Hermitian 转置进行左乘，计算 *M*×*N* 输入矩阵 *u* 的平方。等效的 MATLAB® 代码为：
-
-    y = u' * u
-
-该模块将长度为 *M* 的未定向向量输入视为 *M*×1 矩阵。当输入为 *M*×*N* 矩阵时，模块的输出为 *N*×*N* 矩阵。
-
-### 应用
-
-Matrix Square 模块可用于多种应用：
-
-- 一般矩阵平方 — Matrix Square 模块计算输出矩阵 *y*，而无需显式构造 *u'*。因此，它比其他计算矩阵平方的方法更高效。
-- 平方和 — 当输入为列向量（*N*=1）时，模块的操作等效于乘加（MAC）过程，或内积。输出是输入的平方和，并且始终为实数标量。
-- 相关矩阵 — 当输入为行向量（*M*=1）时，输出 *y* 是对称自相关矩阵，或外积。

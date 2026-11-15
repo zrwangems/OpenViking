@@ -11,6 +11,24 @@ chinese_source: official
 
 # Level-2 MATLAB S-Function
 
+在模型中使用 2 级 MATLAB S-Function
+
+## 所属库
+
+Simulink / User-Defined Functions
+
+## 描述
+
+此模块允许您在模型中使用 2 级 MATLAB® S-Function（请参阅编写 2 级 MATLAB S-Function）。为此，请在模型中创建此模块的实例。然后，在模块参数对话框的 **S-Function 名称**字段中输入 2 级 MATLAB S-Function 的名称。
+
+**注意**
+
+使用 S-Function 模块在模块中包含 1 级 MATLAB S-Function。
+
+如果 2 级 MATLAB S-Function 定义了其他参数，您可以在模块参数对话框的**参数**字段中输入它们。将参数输入为 MATLAB 表达式，以按照 MATLAB S-Function 定义的顺序计算它们的值。使用逗号分隔每个表达式。
+
+如果模型中包含 Level-2 MATLAB S-Function 模块，而 S-Function 中发生错误，则 Level-2 MATLAB S-Function 模块将在对话框中显示该错误的 MATLAB 堆栈跟踪信息。点击**确定**关闭此对话框。
+
 ## 端口
 
 ### 输入
@@ -56,10 +74,6 @@ S-Function 返回的 Level-2 MATLAB S-Function 模块的信号输出。您可以
 | **值：**模块参数的值 |
 | **默认值：**`' '` |
 
-## 所属库
-
-Simulink / User-Defined Functions
-
 ## 模块特性
 
 |  |  |
@@ -85,20 +99,6 @@ Simulink / User-Defined Functions
 
 1 级 MATLAB S-Function 仅支持 `double` 数据类型。Level-2 MATLAB S-functions 支持 Simulink 支持的所有数据类型。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2010b 中推出**
-
-## 描述
-
-在模型中使用 2 级 MATLAB S-Function
-
-此模块允许您在模型中使用 2 级 MATLAB® S-Function（请参阅编写 2 级 MATLAB S-Function）。为此，请在模型中创建此模块的实例。然后，在模块参数对话框的 **S-Function 名称**字段中输入 2 级 MATLAB S-Function 的名称。
-
-**注意**
-
-使用 S-Function 模块在模块中包含 1 级 MATLAB S-Function。
-
-如果 2 级 MATLAB S-Function 定义了其他参数，您可以在模块参数对话框的**参数**字段中输入它们。将参数输入为 MATLAB 表达式，以按照 MATLAB S-Function 定义的顺序计算它们的值。使用逗号分隔每个表达式。
-
-如果模型中包含 Level-2 MATLAB S-Function 模块，而 S-Function 中发生错误，则 Level-2 MATLAB S-Function 模块将在对话框中显示该错误的 MATLAB 堆栈跟踪信息。点击**确定**关闭此对话框。

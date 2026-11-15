@@ -11,6 +11,18 @@ chinese_source: official
 
 # Detect Fall Negative
 
+当信号值下降到严格值时检测下降沿，并且其先前的值非负
+
+## 所属库
+
+Simulink / Logic and Bit Operations
+
+## 描述
+
+Detect Fall Negative 模块确定输入是否小于零，以及其先前的值是否大于或等于零。
+
+此模块仅支持离散采样时间。
+
 ## 端口
 
 ### 输入
@@ -80,10 +92,6 @@ chinese_source: official
 | **值**：`'boolean'` | `'uint8'` |
 | **默认值**：`'boolean'` |
 
-## 所属库
-
-Simulink / Logic and Bit Operations
-
 ## 模块特性
 
 |  |  |
@@ -120,14 +128,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-当信号值下降到严格值时检测下降沿，并且其先前的值非负
-
-Detect Fall Negative 模块确定输入是否小于零，以及其先前的值是否大于或等于零。
-
-此模块仅支持离散采样时间。

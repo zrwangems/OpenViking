@@ -11,6 +11,26 @@ chinese_source: official
 
 # Switch Case
 
+使用类似于 switch 语句的逻辑选择子系统执行
+
+## 所属库
+
+Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
+
+## 描述
+
+Switch Case 模块以及包含 Action Port 模块的 Switch Case Action Subsystem 模块，实现 switch 逻辑来控制子系统的执行。有关使用 Switch Case 模块的示例，请参阅选择子系统执行。
+
+Model ex\_switch\_case\_block
+
+Switch Case 模块具有单个输入。要选择一个 case，请使用 **Case 条件**参数定义输入值。计算顺序为从第一种情况开始由上往下进行。
+
+每个 case 都与一个连接到 Switch Case Action Subsystem 模块的输出端口相关联。当选择一个 case 时，相关联的输出端口发送动作信号来执行子系统。
+
+在所有其他 case 条件的计算结果都为 false 时，会选择 `default` case。提供 `default` case 是可选的，即使其他 case 条件没有用完每个可能的输入值也是如此。
+
+Switch Case 模块的 case 在 Switch Case Action Subsystem 模块执行后包含一个隐含的中断。因此，Simulink® Switch Case 模块没有标准 C 语言的 `switch` 语句中存在的 fall-through（落空）行为。
+
 ## 端口
 
 ### 输入
@@ -94,10 +114,6 @@ off
 | **值：**`'on'` | `'off'` |
 | **默认值：**`'on'` |
 
-## 所属库
-
-Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
-
 ## 模块特性
 
 |  |  |
@@ -132,22 +148,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 当在 For Each Subsystem 模块中使用此模块时，不支持代码生成。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-使用类似于 switch 语句的逻辑选择子系统执行
-
-Switch Case 模块以及包含 Action Port 模块的 Switch Case Action Subsystem 模块，实现 switch 逻辑来控制子系统的执行。有关使用 Switch Case 模块的示例，请参阅选择子系统执行。
-
-Model ex\_switch\_case\_block
-
-Switch Case 模块具有单个输入。要选择一个 case，请使用 **Case 条件**参数定义输入值。计算顺序为从第一种情况开始由上往下进行。
-
-每个 case 都与一个连接到 Switch Case Action Subsystem 模块的输出端口相关联。当选择一个 case 时，相关联的输出端口发送动作信号来执行子系统。
-
-在所有其他 case 条件的计算结果都为 false 时，会选择 `default` case。提供 `default` case 是可选的，即使其他 case 条件没有用完每个可能的输入值也是如此。
-
-Switch Case 模块的 case 在 Switch Case Action Subsystem 模块执行后包含一个隐含的中断。因此，Simulink® Switch Case 模块没有标准 C 语言的 `switch` 语句中存在的 fall-through（落空）行为。

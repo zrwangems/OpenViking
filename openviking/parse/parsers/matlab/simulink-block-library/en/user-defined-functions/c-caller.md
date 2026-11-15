@@ -10,6 +10,31 @@ language: en
 
 # C Caller
 
+Integrate C code in Simulink
+
+## Libraries
+
+Simulink / User-Defined Functions
+
+## Description
+
+The C Caller block integrates your external C code into Simulink®. This block imports and lists the functions in your external C code, and enables
+you to select your resolved C functions to integrate in your Simulink models. The C Caller block standalone supports code generation.
+For more complex models, code generation depends on the capabilities of your Simulink model.
+
+To use the C Caller block, define your source code and any supporting files
+using **Simulation Target** under **Configuration
+Parameters**. Then, bring a C Caller block to the Simulink canvas, using **Library Browser** > **Simulink** > **User Defined Functions**. To change the defined source code file and its dependencies, go to
+**Simulation Target** tab in **Configuration
+Parameters** by clicking the Configure custom code settings button. from the block dialog. After changing your source code or any
+of its dependencies, refresh the list of functions by clicking the Refresh custom code button. on the block dialog. To browse the function definitions in
+your source code, use the Go to function button. icon to access your source files.
+
+You can use the `addGlobalArg`
+function to add global variables from custom code as global arguments to the block, or use the
+`deleteGlobalArg`
+function to delete global arguments from the block. *(since R2024b)*
+
 ## Ports
 
 ### Input
@@ -157,10 +182,6 @@ and Specify Sample Time.
 | **Type**: string scalar or character vector |
 | **Default**: `"-1"` |
 
-## Libraries
-
-Simulink / User-Defined Functions
-
 ## Block Characteristics
 
 |  |  |
@@ -195,24 +216,3 @@ Actual data type or capability support depends on block implementation.
   to the block as global arguments or delete existing global arguments from the block.
   This enhancement enables you to more directly control the behavior of global variables
   in the custom code called by the block.
-
-## Description
-
-Integrate C code in Simulink
-
-The C Caller block integrates your external C code into Simulink®. This block imports and lists the functions in your external C code, and enables
-you to select your resolved C functions to integrate in your Simulink models. The C Caller block standalone supports code generation.
-For more complex models, code generation depends on the capabilities of your Simulink model.
-
-To use the C Caller block, define your source code and any supporting files
-using **Simulation Target** under **Configuration
-Parameters**. Then, bring a C Caller block to the Simulink canvas, using **Library Browser** > **Simulink** > **User Defined Functions**. To change the defined source code file and its dependencies, go to
-**Simulation Target** tab in **Configuration
-Parameters** by clicking the Configure custom code settings button. from the block dialog. After changing your source code or any
-of its dependencies, refresh the list of functions by clicking the Refresh custom code button. on the block dialog. To browse the function definitions in
-your source code, use the Go to function button. icon to access your source files.
-
-You can use the `addGlobalArg`
-function to add global variables from custom code as global arguments to the block, or use the
-`deleteGlobalArg`
-function to delete global arguments from the block. *(since R2024b)*

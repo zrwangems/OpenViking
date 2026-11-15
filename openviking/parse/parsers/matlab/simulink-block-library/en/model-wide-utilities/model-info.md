@@ -10,9 +10,19 @@ language: en
 
 # Model Info
 
-## Ports
+Display model properties and text in model
 
-Not documented in R2025b.
+## Libraries
+
+Simulink / Model-Wide Utilities HDL Coder / Model-Wide Utilities
+
+## Description
+
+The Model Info block displays model properties and text about a model on the
+mask of the block. Use the Model Info block dialog box to specify the
+content and format of the text that the block displays. You can select model properties
+to display on the block. In the text displayed on the block mask, the software replaces
+the property name with the current value of the property in the model.
 
 ## Parameters
 
@@ -56,10 +66,6 @@ Specify where to align the text on the block mask horizontally.
 
 Specify whether to display the block frame, which is a border around the
 block mask.
-
-## Libraries
-
-Simulink / Model-Wide Utilities HDL Coder / Model-Wide Utilities
 
 ## Block Characteristics
 
@@ -107,13 +113,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Display model properties and text in model
-
-The Model Info block displays model properties and text about a model on the
-mask of the block. Use the Model Info block dialog box to specify the
-content and format of the text that the block displays. You can select model properties
-to display on the block. In the text displayed on the block mask, the software replaces
-the property name with the current value of the property in the model.

@@ -10,9 +10,130 @@ language: en
 
 # Callback Button
 
-## Ports
+Execute MATLAB code using button with customizable appearance
 
-Not documented in R2025b.
+## Libraries
+
+Simulink / Dashboard / Customizable Blocks
+
+## Description
+
+The Callback Button block runs MATLAB® code in response to a click (immediate release of the pointer) or a press
+(delayed release of the pointer). You can specify different code for the click than the press.
+When you press the button, the code either executes after a time span or at time intervals
+that you specify. You can customize the appearance of the Callback Button block
+to look like a button in a real system. Use the Callback Button block with
+other dashboard blocks to create an interactive dashboard to control your model.
+
+When a Callback Button block is *active*, you can
+interact with the gadget the block represents. Clicking an active Callback
+Button block pushes a virtual button. While you press your pointer, the button is
+pushed. When you release your pointer, you release the button. Callback Button
+blocks are active when the simulation is running, the block is in a panel that is open in its
+own window or docked and unlocked, or at least one of the callbacks triggered by a click or
+press has a nonempty value. To select an active Callback Button block without
+pushing the button, press **Shift**, and then click the block. To open the Block
+Parameters dialog box of an active Callback Button block, press
+**Shift**, and then double-click the block.
+
+When a block is inactive, you can only interact with the block, for example, taking
+actions such as resizing or dragging the block. To temporarily activate an inactive
+Callback Button block, click the block. When you deselect the Callback
+Button block, the block becomes inactive again.
+
+Specify what you want pushing the button to do using callback functions:
+
+- `PressFcn` functions run while the button is pushed. You can
+  configure the button to run the `PressFcn` function only once while the
+  button is pushed, or you can specify a repeat interval. To run the function only once,
+  specify a repeat interval of `0`.
+- `ClickFcn` functions run when you release the button.
+
+You can configure the button to remain pushed when you release the pointer by setting the
+**Button Type** to `Latched`. When you choose the
+latched button type:
+
+- To latch the button, click the button.
+- To unlatch the button, click the button again.
+
+The `PressFcn` function runs while the button is latched. The
+`ClickFcn` function runs once when you latch the button and once when you
+unlatch the button.
+
+You can use states to specify how the appearance of the Callback Button
+block changes when you interact with the button:
+
+- While you push the button, the block is in the `Pressed`
+  state.
+- When the button is latched and you are not pushing it, the block is in the
+  `Latched` state.
+- When the button is latched and you are pushing it, the block is in the
+  `Latched and Pressed` state.
+- When the block is not in any of these three states, it is in the
+  `Default` state.
+
+A state pairs pointer actions with:
+
+- A state label
+- A state icon
+- A state image
+
+### Customize Callback Button Blocks
+
+When you add a Callback Button block to your model, the block is
+preconfigured with a default design. You can use the block with the default design or
+customize the appearance of the block.
+
+To customize the appearance of the block, use design mode.
+After selecting the block, you can enter design mode in one of three ways:
+
+- In the Simulink® Toolstrip, on the block-specific tab, under
+  **Design**, click **Edit**.
+- In the Property Inspector, on the **Design** tab, click
+  **Edit**.
+- Pause on the ellipsis that appears over the block and click the Edit Custom Block
+  button .
+
+In design mode, you can use the toolbar above the block to customize the callback
+button. To access additional customization options or to enter exact values for design
+settings, use the **Design** tab in the Property Inspector.
+
+Customizable Callback Button block in design mode with the toolbar and the Design tab in the Property Inspector visible.
+
+When you customize a Callback Button block, you configure the block
+appearance for each state. When you configure the **Block Type** as
+`Momentary`, the block has two states. When you configure the
+**Block Type** as `Latch`, the block has four.
+To select a state to customize, use the drop-down list in the toolbar. Alternatively, on
+the **Design** tab, select the **States** component and
+then select from the **Select State** list.
+
+**Design Mode Actions that Customize the Selected State**
+
+| Action | Available in Toolbar | Available in **Design** Tab |
+| --- | --- | --- |
+| Specify the state label text. | No | Yes |
+| Specify the color and opacity of the state label text. | Yes | Yes |
+| Upload a state image. | Yes | Yes |
+| Upload a state icon. | Yes | Yes |
+| Change the size of the state image and state icon. | No | Yes |
+| Change the position of the state label, state image, and state icon. | No | Yes |
+
+In addition to customizing the block design using the toolbar and
+**Design** tab, you can also resize and reposition components
+interactively in the canvas. To resize a component specific to a state, such as the state
+image, select the state in the toolbar, and then resize or reposition the component.
+
+**Design Mode Actions that Apply to All States**
+
+| Action | Available in Toolbar | Available in **Design** Tab |
+| --- | --- | --- |
+| Upload a background image. | No | Yes |
+| Set a solid background color. | No | Yes |
+| Upload a foreground image. | No | Yes |
+
+When you finish editing the design, to exit design mode, click the
+**X** in the upper right of the canvas.
 
 ## Parameters
 
@@ -510,10 +631,6 @@ Specify the height of the foreground image as a ratio of the block height.
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
 
-## Libraries
-
-Simulink / Dashboard / Customizable Blocks
-
 ## Block Characteristics
 
 |  |  |
@@ -654,124 +771,3 @@ tab provides these options:
 The blocks in the Customizable Blocks library have an option to add a foreground image
 as part of the design for a block. Starting in R2022a, you can rotate, resize, and
 reposition the foreground image within the block design.
-
-## Description
-
-Execute MATLAB code using button with customizable appearance
-
-The Callback Button block runs MATLAB® code in response to a click (immediate release of the pointer) or a press
-(delayed release of the pointer). You can specify different code for the click than the press.
-When you press the button, the code either executes after a time span or at time intervals
-that you specify. You can customize the appearance of the Callback Button block
-to look like a button in a real system. Use the Callback Button block with
-other dashboard blocks to create an interactive dashboard to control your model.
-
-When a Callback Button block is *active*, you can
-interact with the gadget the block represents. Clicking an active Callback
-Button block pushes a virtual button. While you press your pointer, the button is
-pushed. When you release your pointer, you release the button. Callback Button
-blocks are active when the simulation is running, the block is in a panel that is open in its
-own window or docked and unlocked, or at least one of the callbacks triggered by a click or
-press has a nonempty value. To select an active Callback Button block without
-pushing the button, press **Shift**, and then click the block. To open the Block
-Parameters dialog box of an active Callback Button block, press
-**Shift**, and then double-click the block.
-
-When a block is inactive, you can only interact with the block, for example, taking
-actions such as resizing or dragging the block. To temporarily activate an inactive
-Callback Button block, click the block. When you deselect the Callback
-Button block, the block becomes inactive again.
-
-Specify what you want pushing the button to do using callback functions:
-
-- `PressFcn` functions run while the button is pushed. You can
-  configure the button to run the `PressFcn` function only once while the
-  button is pushed, or you can specify a repeat interval. To run the function only once,
-  specify a repeat interval of `0`.
-- `ClickFcn` functions run when you release the button.
-
-You can configure the button to remain pushed when you release the pointer by setting the
-**Button Type** to `Latched`. When you choose the
-latched button type:
-
-- To latch the button, click the button.
-- To unlatch the button, click the button again.
-
-The `PressFcn` function runs while the button is latched. The
-`ClickFcn` function runs once when you latch the button and once when you
-unlatch the button.
-
-You can use states to specify how the appearance of the Callback Button
-block changes when you interact with the button:
-
-- While you push the button, the block is in the `Pressed`
-  state.
-- When the button is latched and you are not pushing it, the block is in the
-  `Latched` state.
-- When the button is latched and you are pushing it, the block is in the
-  `Latched and Pressed` state.
-- When the block is not in any of these three states, it is in the
-  `Default` state.
-
-A state pairs pointer actions with:
-
-- A state label
-- A state icon
-- A state image
-
-### Customize Callback Button Blocks
-
-When you add a Callback Button block to your model, the block is
-preconfigured with a default design. You can use the block with the default design or
-customize the appearance of the block.
-
-To customize the appearance of the block, use design mode.
-After selecting the block, you can enter design mode in one of three ways:
-
-- In the Simulink® Toolstrip, on the block-specific tab, under
-  **Design**, click **Edit**.
-- In the Property Inspector, on the **Design** tab, click
-  **Edit**.
-- Pause on the ellipsis that appears over the block and click the Edit Custom Block
-  button .
-
-In design mode, you can use the toolbar above the block to customize the callback
-button. To access additional customization options or to enter exact values for design
-settings, use the **Design** tab in the Property Inspector.
-
-Customizable Callback Button block in design mode with the toolbar and the Design tab in the Property Inspector visible.
-
-When you customize a Callback Button block, you configure the block
-appearance for each state. When you configure the **Block Type** as
-`Momentary`, the block has two states. When you configure the
-**Block Type** as `Latch`, the block has four.
-To select a state to customize, use the drop-down list in the toolbar. Alternatively, on
-the **Design** tab, select the **States** component and
-then select from the **Select State** list.
-
-**Design Mode Actions that Customize the Selected State**
-
-| Action | Available in Toolbar | Available in **Design** Tab |
-| --- | --- | --- |
-| Specify the state label text. | No | Yes |
-| Specify the color and opacity of the state label text. | Yes | Yes |
-| Upload a state image. | Yes | Yes |
-| Upload a state icon. | Yes | Yes |
-| Change the size of the state image and state icon. | No | Yes |
-| Change the position of the state label, state image, and state icon. | No | Yes |
-
-In addition to customizing the block design using the toolbar and
-**Design** tab, you can also resize and reposition components
-interactively in the canvas. To resize a component specific to a state, such as the state
-image, select the state in the toolbar, and then resize or reposition the component.
-
-**Design Mode Actions that Apply to All States**
-
-| Action | Available in Toolbar | Available in **Design** Tab |
-| --- | --- | --- |
-| Upload a background image. | No | Yes |
-| Set a solid background color. | No | Yes |
-| Upload a foreground image. | No | Yes |
-
-When you finish editing the design, to exit design mode, click the
-**X** in the upper right of the canvas.

@@ -10,6 +10,34 @@ language: en
 
 # Enabled Subsystem
 
+Subsystem whose execution is enabled by external input
+
+## Libraries
+
+Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
+
+## Description
+
+Enabled Subsystem block is a Subsystem block that executes based on an external signal when the signal
+has a positive value. An enabled subsystem executes when an external signal at the
+Enable port crosses zero from the
+negative to positive direction.
+
+The Enabled Subsystem block is configured by placing an Enable
+block inside a Subsystem block. Execution of the enabled subsystem is
+controlled by the **Enable** port of the Enabled Subsystem
+block.
+
+Contents of an Enabled Subsystem block.
+
+Use Enabled Subsystem block to model:
+
+- discontinuities in the execution of the blocks inside the subsystem. For
+  example, the counter circuit in Counters Using Conditionally Executed Subsystems increments while the
+  subsystem is enabled and holds its output when the subsystem is disabled.
+- multiple enabled subsystems that execute when those subsystems receive
+  positive control signal at the **Enable** ports. For example, see Implement Control Algorithm Using Enabled Subsystem, Control Block States and Output of Enabled Subsystem and Merging Signals.
+
 ## Ports
 
 ### Input
@@ -781,10 +809,6 @@ the `set_param` function.
 | **Values:** | `''` (default) | subsystem filename in quotes |
 | **Data Types:** | `char` | `string` |
 
-## Libraries
-
-Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
-
 ## Block Characteristics
 
 |  |  |
@@ -921,27 +945,3 @@ Actual data type support depends on block implementation.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Subsystem whose execution is enabled by external input
-
-Enabled Subsystem block is a Subsystem block that executes based on an external signal when the signal
-has a positive value. An enabled subsystem executes when an external signal at the
-Enable port crosses zero from the
-negative to positive direction.
-
-The Enabled Subsystem block is configured by placing an Enable
-block inside a Subsystem block. Execution of the enabled subsystem is
-controlled by the **Enable** port of the Enabled Subsystem
-block.
-
-Contents of an Enabled Subsystem block.
-
-Use Enabled Subsystem block to model:
-
-- discontinuities in the execution of the blocks inside the subsystem. For
-  example, the counter circuit in Counters Using Conditionally Executed Subsystems increments while the
-  subsystem is enabled and holds its output when the subsystem is disabled.
-- multiple enabled subsystems that execute when those subsystems receive
-  positive control signal at the **Enable** ports. For example, see Implement Control Algorithm Using Enabled Subsystem, Control Block States and Output of Enabled Subsystem and Merging Signals.

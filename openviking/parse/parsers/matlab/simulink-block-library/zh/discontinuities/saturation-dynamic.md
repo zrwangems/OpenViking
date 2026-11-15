@@ -11,6 +11,22 @@ chinese_source: official
 
 # Saturation Dynamic
 
+将输入信号限制在动态饱和上限和下限值之间
+
+## 所属库
+
+Simulink / Discontinuities HDL Coder / Discontinuities
+
+## 描述
+
+Saturation Dynamic 模块产生输出信号，该信号是以来自输入端口 `up` 和 `lo` 的饱和值为界的输入信号的值。
+
+| 输入 | 输出 |
+| --- | --- |
+| `lo` ≤ 输入值 ≤ `up` | 输入值 |
+| 输入值 < `lo` | 下限 |
+| 输入值 > `up` | 上限 |
+
 ## 端口
 
 ### 输入
@@ -186,10 +202,6 @@ chinese_source: official
 | **值：**`'off' | 'on'` |
 | **默认值：**`'off'` |
 
-## 所属库
-
-Simulink / Discontinuities HDL Coder / Discontinuities
-
 ## 模块特性
 
 |  |  |
@@ -227,18 +239,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-将输入信号限制在动态饱和上限和下限值之间
-
-Saturation Dynamic 模块产生输出信号，该信号是以来自输入端口 `up` 和 `lo` 的饱和值为界的输入信号的值。
-
-| 输入 | 输出 |
-| --- | --- |
-| `lo` ≤ 输入值 ≤ `up` | 输入值 |
-| 输入值 < `lo` | 下限 |
-| 输入值 > `up` | 上限 |

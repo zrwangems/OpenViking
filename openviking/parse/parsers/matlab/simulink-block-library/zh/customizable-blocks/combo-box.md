@@ -11,13 +11,83 @@ chinese_source: worker-translation
 
 # Combo Box
 
-## 端口
 
-R2025b 官方文档未提供。
+
+使用具有可自定义外观的 Combo Box 在仿真期间更改参数或变量值
+
+## 库
+
+Simulink / Dashboard / Customizable Blocks
+
+## 描述
+
+使用 Combo Box 模块在仿真前或仿真期间更改所连接参数或变量的值。当您在 Customizable Blocks 库中使用 Combo Box 模块时，可以自定义该模块的外观，例如，使该模块看起来像您正在设计的数字用户界面中的组合框。将 Combo Box 模块与其他 Dashboard 模块一起使用，可为您的模型构建由控件和指示器组成的交互式仪表板。
+
+Combo Box 下拉列表中的每个选项都对应于 Combo Box 模块的一个状态。状态具有一个标签和一个值。状态标签是下拉列表中标识该选项的文本。当您选择一个选项时，Combo Box 模块进入关联状态，并将状态值赋给所连接的参数。要在仿真期间选择选项，请点击 Combo Box 模块以展开下拉列表，然后选择该选项。要在仿真未运行时选择选项，请点击 Combo Box 模块以选择该模块，再次点击该模块以展开下拉列表，然后选择该选项。
+
+要自定义状态标签或值，请打开属性检查器的 **Parameters** 选项卡或模块参数对话框。
+
+**注意**
+
+- 在仿真期间或点击已连接的 Combo Box 模块后双击该模块，不会打开模块参数对话框。要打开模块参数对话框，请按 **Shift**，然后双击该模块。
+- 在仿真期间点击已连接的 Combo Box 模块会同时选择该模块并展开 Combo Box 下拉列表。要在不展开列表的情况下选择该模块，请按 **Shift**，然后点击该模块。
+
+### 自定义 Combo Box 模块
+
+当您将 Combo Box 模块添加到模型时，该模块已预配置为默认设计。您可以使用默认设计的模块，也可以自定义该模块的外观。
+
+要自定义模块的外观，请使用设计模式。选择模块后，您可以通过以下三种方式之一进入设计模式：
+
+- 在 Simulink® Toolstrip 中，在模块特定选项卡上的 **Design** 下，点击 **Edit**。
+- 在属性检查器中，在 **Design** 选项卡上，点击 **Edit**。
+- 将鼠标悬停在模块上出现的省略号上，然后点击 Edit Custom Block 按钮 。
+
+在设计模式中，您可以使用模块上方的工具栏自定义 Combo Box。要访问其他自定义选项或为设计设置输入精确值，请使用属性检查器中的 **Design** 选项卡。
+
+处于设计模式的 Customizable Combo Box 模块，其中工具栏和属性检查器中的 Design 选项卡可见。
+
+**设计模式操作**
+
+| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
+| --- | --- | --- |
+| 更改每个选项赋给所连接参数的值。 | No | Yes |
+| 更改选项标签的文本。 | No | Yes |
+| 添加或删除选项。 | Yes | Yes |
+| 更改下拉列表的 V 形图标。 | No | Yes |
+| 更改下拉列表中可见条目的数量。 | No | Yes |
+| 更改下拉列表的背景色和边框颜色。 | No | Yes |
+| 更改下拉列表中高亮条目的背景色、边框色和字体颜色。 | No | Yes |
+| 上传背景图像。 | No | Yes |
+| 设置纯色背景色。 | No | Yes |
+| 上传前景图像。 | No | Yes |
+
+完成设计编辑后，要退出设计模式，请点击画布右上角的 **X**。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标悬停在要连接的模块上，然后点击 Connect 按钮 。要在已连接的模块上进入连接模式，请选择该模块，将鼠标悬停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
+
+要将控制模块连接到模型中的参数或更改控制模块的连接，请进入连接模式。选择要连接到其参数的模块。从出现的列表中，选择要连接到的参数。然后，将鼠标悬停在 Dashboard 模块上，并点击 Done Connecting 按钮 。
+
+在更新模型图之前，控制模块无法连接到由变量定义的参数。要连接到由变量定义的参数，或在仿真未运行时修改定义所连接参数值的变量的值，请按 **Ctrl+D** 更新模型图。
+
+您可以连接到具有标量值的参数，也可以连接到矩阵或结构体的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
+
+您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画展示了如何将 Combo Box 模块连接到您的模型。
+
+未连接的 Combo Box 模块会连接到 Constant 模块。
+
+### 参数记录
+
+连接到 Dashboard 模块的可调参数会记录到 Simulation Data Inspector，您可以在其中查看参数值以及记录的信号数据。您可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB® 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素进行访问。
 
 ## 参数
 
 使用属性检查器和模块参数对话框指定模块参数的值。要设置 Dashboard 模块的核心参数，请使用模块参数对话框或属性检查器中的 **Parameters** 选项卡。要自定义模块，请使用属性检查器中的 **Design** 选项卡。要打开模块的模块参数对话框，请双击该模块。要打开属性检查器，请在 **Modeling** 选项卡上的 **Design** 下，选择 **Property Inspector**。
+
+## 参数
 
 要设置 Dashboard 模块的核心参数，请打开属性检查器，然后点击 **Parameters** 选项卡。
 
@@ -290,10 +360,6 @@ Combo Box 下拉列表中的每个选项都对应于 Combo Box 模块的一个�
 
 选择此参数可在使用属性检查器调整图像大小时保持纵横比。
 
-## 所属库
-
-Simulink / Dashboard / Customizable Blocks
-
 ## 模块特性
 
 |  |  |
@@ -319,69 +385,3 @@ Dashboard 模块在代码生成时会被忽略。
 当来自 Dashboard 或 Customizable Blocks 库的 Simulink 模块处于 *活动* 状态时，您可以与该模块所代表的小工具进行交互。例如，您可以按下按钮或拨动开关。当模块处于非活动状态时，您只能与该模块进行交互。例如，您可以移动或调整模块大小。默认情况下，来自 Dashboard 和 Customizable Blocks 库的所有模块在仿真期间都处于活动状态。提升到 Dashboard 面板的模块在该面板在其自身窗口中打开或停靠且未锁定时也处于活动状态。对于 Callback Button 模块，如果按下按钮所触发的至少一个回调具有非空值，则该模块始终处于活动状态。要与非活动模块所代表的小工具进行交互，您可以通过点击该模块来临时激活它。当您取消选择该模块时，该模块会再次变为非活动状态。
 
 点击活动的 Callback Button 模块或来自 Dashboard 或 Customizable Blocks 库且连接到参数或变量值的活动模块，会同时选择该模块并与该模块所代表的小工具进行交互。例如，点击未选中的活动已连接 Push Button 模块会同时选择该模块并按下按钮。从 R2025a 开始，您可以通过按 **Shift** 然后点击该模块来选择该模块，而无需与小工具交互。同样，您可以通过按 **Shift** 然后双击该模块来打开模块参数对话框。
-
-## 描述
-
-使用具有可自定义外观的 Combo Box 在仿真期间更改参数或变量值
-
-使用 Combo Box 模块在仿真前或仿真期间更改所连接参数或变量的值。当您在 Customizable Blocks 库中使用 Combo Box 模块时，可以自定义该模块的外观，例如，使该模块看起来像您正在设计的数字用户界面中的组合框。将 Combo Box 模块与其他 Dashboard 模块一起使用，可为您的模型构建由控件和指示器组成的交互式仪表板。
-
-Combo Box 下拉列表中的每个选项都对应于 Combo Box 模块的一个状态。状态具有一个标签和一个值。状态标签是下拉列表中标识该选项的文本。当您选择一个选项时，Combo Box 模块进入关联状态，并将状态值赋给所连接的参数。要在仿真期间选择选项，请点击 Combo Box 模块以展开下拉列表，然后选择该选项。要在仿真未运行时选择选项，请点击 Combo Box 模块以选择该模块，再次点击该模块以展开下拉列表，然后选择该选项。
-
-要自定义状态标签或值，请打开属性检查器的 **Parameters** 选项卡或模块参数对话框。
-
-**注意**
-
-- 在仿真期间或点击已连接的 Combo Box 模块后双击该模块，不会打开模块参数对话框。要打开模块参数对话框，请按 **Shift**，然后双击该模块。
-- 在仿真期间点击已连接的 Combo Box 模块会同时选择该模块并展开 Combo Box 下拉列表。要在不展开列表的情况下选择该模块，请按 **Shift**，然后点击该模块。
-
-### 自定义 Combo Box 模块
-
-当您将 Combo Box 模块添加到模型时，该模块已预配置为默认设计。您可以使用默认设计的模块，也可以自定义该模块的外观。
-
-要自定义模块的外观，请使用设计模式。选择模块后，您可以通过以下三种方式之一进入设计模式：
-
-- 在 Simulink® Toolstrip 中，在模块特定选项卡上的 **Design** 下，点击 **Edit**。
-- 在属性检查器中，在 **Design** 选项卡上，点击 **Edit**。
-- 将鼠标悬停在模块上出现的省略号上，然后点击 Edit Custom Block 按钮 。
-
-在设计模式中，您可以使用模块上方的工具栏自定义 Combo Box。要访问其他自定义选项或为设计设置输入精确值，请使用属性检查器中的 **Design** 选项卡。
-
-处于设计模式的 Customizable Combo Box 模块，其中工具栏和属性检查器中的 Design 选项卡可见。
-
-**设计模式操作**
-
-| 操作 | 在工具栏中可用 | 在 **Design** 选项卡中可用 |
-| --- | --- | --- |
-| 更改每个选项赋给所连接参数的值。 | No | Yes |
-| 更改选项标签的文本。 | No | Yes |
-| 添加或删除选项。 | Yes | Yes |
-| 更改下拉列表的 V 形图标。 | No | Yes |
-| 更改下拉列表中可见条目的数量。 | No | Yes |
-| 更改下拉列表的背景色和边框颜色。 | No | Yes |
-| 更改下拉列表中高亮条目的背景色、边框色和字体颜色。 | No | Yes |
-| 上传背景图像。 | No | Yes |
-| 设置纯色背景色。 | No | Yes |
-| 上传前景图像。 | No | Yes |
-
-完成设计编辑后，要退出设计模式，请点击画布右上角的 **X**。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标悬停在要连接的模块上，然后点击 Connect 按钮 。要在已连接的模块上进入连接模式，请选择该模块，将鼠标悬停在出现的省略号 (…) 上，然后在展开的操作菜单中点击 Connect 按钮。
-
-要将控制模块连接到模型中的参数或更改控制模块的连接，请进入连接模式。选择要连接到其参数的模块。从出现的列表中，选择要连接到的参数。然后，将鼠标悬停在 Dashboard 模块上，并点击 Done Connecting 按钮 。
-
-在更新模型图之前，控制模块无法连接到由变量定义的参数。要连接到由变量定义的参数，或在仿真未运行时修改定义所连接参数值的变量的值，请按 **Ctrl+D** 更新模型图。
-
-您可以连接到具有标量值的参数，也可以连接到矩阵或结构体的元素。有关详细信息，请参阅 Connect Dashboard Blocks to Simulink Model。
-
-您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅 Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画展示了如何将 Combo Box 模块连接到您的模型。
-
-未连接的 Combo Box 模块会连接到 Constant 模块。
-
-### 参数记录
-
-连接到 Dashboard 模块的可调参数会记录到 Simulation Data Inspector，您可以在其中查看参数值以及记录的信号数据。您可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从 Simulation Data Inspector 导出参数数据，从而在 MATLAB® 工作区中访问记录的参数数据。有关使用 Simulation Data Inspector UI 导出数据的详细信息，请参阅 Export Data to Workspace or File。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素进行访问。

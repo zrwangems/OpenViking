@@ -10,6 +10,116 @@ language: en
 
 # Math Function
 
+Perform mathematical function
+
+## Libraries
+
+Simulink / Math Operations HDL Coder / Math Operations
+
+## Description
+
+The Math Function block performs many common mathematical functions.
+
+You can select one of these functions from the **Function** parameter list
+in Math Function block.
+
+| Function | Description | Mathematical Expression | MATLAB® Equivalent |
+| --- | --- | --- | --- |
+| `exp` | Exponential | `eu` | `exp` |
+| `log` | Natural logarithm | `ln u` | `log` |
+| `2^u` | Power of base 2 | `2u` | `2.^u`  (see `power`) |
+| `10^u` | Power of base 10 | `10u` | `10.^u`  (see `power`) |
+| `log10` | Common (base 10) logarithm | `log u` | `log10` |
+| `magnitude^2` | Complex modulus | `|u|2` | `real(u).^2 + imag(u).^2`   (see `real`, `imag`, and `power`) |
+| `square` | Power 2 | `u2` | `u.^2`  (see `power`) |
+| `pow` | Power | - With **Signed power** selected and   **Output signal type** set to   `real`, the expression is   `sign(u)*|u|v`. - With **Signed power** cleared or   **Output signal type** set to   `complex`, the expression is   `uv`. - When **Output signal type** is set to   `auto`, the expression depends on the   complexity type that the software compiles. | `power` |
+| `conj` | Complex conjugate | `ū` | `conj` |
+| `reciprocal` with Exact method | Reciprocal | `1/u` | `1./u`  (see `rdivide`) |
+| `reciprocal` with Newton-Raphson method | Reciprocal | See Newton-Raphson Reciprocal Algorithm Method | None |
+| `hypot` | Square root of sum squares | `(u2+v2)0.5` | `hypot` |
+| `rem` | Remainder after division | — | `rem` |
+| `mod` | Modulus after division | — | `mod` |
+| `transpose` | Transpose | `uT` | `u.'`  (see Array vs. Matrix Operations) |
+| `hermitian` | Complex conjugate transpose | `uH` | `u'`  (see Array vs. Matrix Operations) |
+
+**Tip**
+
+To perform square root calculations, use the Sqrt block.
+
+The block output is the result of the operation of the function on the input or inputs. The
+functions support these types of operations.
+
+| Function | Scalar Operations | Element-Wise Vector and Matrix Operations | Vector and Matrix Operations |
+| --- | --- | --- | --- |
+| `exp` | Yes | Yes | Not applicable |
+| `log` | Yes | Yes | Not applicable |
+| `2^u` | Yes | Yes | Not applicable |
+| `10^u` | Yes | Yes | Not applicable |
+| `log10` | Yes | Yes | Not applicable |
+| `magnitude^2` | Yes | Yes | Not applicable |
+| `square` | Yes | Yes | Not applicable |
+| `pow` | Yes | Yes | Not applicable |
+| `conj` | Yes | Yes | Not applicable |
+| `reciprocal` with Exact method | Yes | Yes | Not applicable |
+| `reciprocal` with Newton-Raphson method | Yes | Yes | Not applicable |
+| `hypot` | Yes, on two inputs | Yes, on two inputs (two vectors or two matrices of the same size, a scalar and a vector, or a scalar and a matrix) | — |
+| `rem` | Yes, on two inputs | Yes, on two inputs (two vectors or two matrices of the same size, a scalar and a vector, or a scalar and a matrix) | Not applicable |
+| `mod` | Yes, on two inputs | Yes, on two inputs (two vectors or two matrices of the same size, a scalar and a vector, or a scalar and a matrix) | Not applicable |
+| `transpose` | Yes | — | Yes |
+| `hermitian` | Yes | — | Yes |
+
+The name of the function and the appropriate number of input ports appear on the block.
+
+**Tip**
+
+Use the Math Function block when you want vector or matrix output.
+
+### Newton-Raphson Reciprocal Algorithm Method
+
+The `reciprocal` function that has the Newton-Raphson algorithm method
+calculates the reciprocal by using the Newton-Raphson approximation method. The
+function uses recursive approximation to find better approximations to the roots of
+a real-value function.
+
+The reciprocal of a real number a is defined as a zero of the function:
+
+f(x)=1x−a.
+
+Simulink® chooses an initial estimate in the range 0<x0<2a, because this is the domain of convergence for the
+function.
+
+To successively calculate the roots of the function, specify the **Number of
+iterations** parameter. The process is repeated as follows:
+
+xi+1=xi−f(xi)f'(xi)=xi+(xi−axi2)=xi.(2−axi)
+
+f'(x) is the derivative of the function f(x).
+
+### Data Type Support
+
+This table lists the input data types that each function of the block can support.
+
+| Function | Single | Double | Half\* | Boolean | Built-In Integer | Fixed Point |
+| --- | --- | --- | --- | --- | --- | --- |
+| `exp` | Yes | Yes | Yes | — | — | — |
+| `log` | Yes | Yes | Yes | — | — | — |
+| `2^u` | Yes | Yes | Yes | — | — | — |
+| `10^u` | Yes | Yes | Yes | — | — | — |
+| `log10` | Yes | Yes | Yes | — | — | — |
+| `magnitude^2` | Yes | Yes | Yes | — | Yes | Yes |
+| `square` | Yes | Yes | Yes | — | Yes | Yes |
+| `pow` | Yes | Yes | Yes | — | — | — |
+| `conj` | Yes | Yes | Yes | — | Yes | Yes |
+| `reciprocal` with Exact method | Yes | Yes | Yes | — | Yes | Yes |
+| `reciprocal` with Newton-Raphson method (for more information, see Output) | Yes | Yes | — | — | Yes | Yes |
+| `hypot` | Yes | Yes | Yes | — | — | — |
+| `rem` | Yes | Yes | Yes | — | Yes | — |
+| `mod` | Yes | Yes | Yes | — | Yes | — |
+| `transpose` | Yes | Yes | Yes | Yes | Yes | Yes |
+| `hermitian` | Yes | Yes | Yes | — | Yes | Yes |
+
+For more information on half-precision arithmetic operations, see The Half-Precision Data Type in Simulink (Fixed-Point Designer).
+
 ## Ports
 
 ### Input
@@ -394,10 +504,6 @@ To enable this parameter, set the **Function** to
 | **Value**: `'off'` | `'on'` |
 | **Default**: `'on'` |
 
-## Libraries
-
-Simulink / Math Operations HDL Coder / Math Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -525,109 +631,3 @@ configurations. For more information, see the Block Support Table.
 
 The Math Function block now supports the
 `2^u` function. The MATLAB equivalent is `2.^u` (see `power`).
-
-## Description
-
-Perform mathematical function
-
-The Math Function block performs many common mathematical functions.
-
-You can select one of these functions from the **Function** parameter list
-in Math Function block.
-
-| Function | Description | Mathematical Expression | MATLAB® Equivalent |
-| --- | --- | --- | --- |
-| `exp` | Exponential | `eu` | `exp` |
-| `log` | Natural logarithm | `ln u` | `log` |
-| `2^u` | Power of base 2 | `2u` | `2.^u`  (see `power`) |
-| `10^u` | Power of base 10 | `10u` | `10.^u`  (see `power`) |
-| `log10` | Common (base 10) logarithm | `log u` | `log10` |
-| `magnitude^2` | Complex modulus | `|u|2` | `real(u).^2 + imag(u).^2`   (see `real`, `imag`, and `power`) |
-| `square` | Power 2 | `u2` | `u.^2`  (see `power`) |
-| `pow` | Power | - With **Signed power** selected and   **Output signal type** set to   `real`, the expression is   `sign(u)*|u|v`. - With **Signed power** cleared or   **Output signal type** set to   `complex`, the expression is   `uv`. - When **Output signal type** is set to   `auto`, the expression depends on the   complexity type that the software compiles. | `power` |
-| `conj` | Complex conjugate | `ū` | `conj` |
-| `reciprocal` with Exact method | Reciprocal | `1/u` | `1./u`  (see `rdivide`) |
-| `reciprocal` with Newton-Raphson method | Reciprocal | See Newton-Raphson Reciprocal Algorithm Method | None |
-| `hypot` | Square root of sum squares | `(u2+v2)0.5` | `hypot` |
-| `rem` | Remainder after division | — | `rem` |
-| `mod` | Modulus after division | — | `mod` |
-| `transpose` | Transpose | `uT` | `u.'`  (see Array vs. Matrix Operations) |
-| `hermitian` | Complex conjugate transpose | `uH` | `u'`  (see Array vs. Matrix Operations) |
-
-**Tip**
-
-To perform square root calculations, use the Sqrt block.
-
-The block output is the result of the operation of the function on the input or inputs. The
-functions support these types of operations.
-
-| Function | Scalar Operations | Element-Wise Vector and Matrix Operations | Vector and Matrix Operations |
-| --- | --- | --- | --- |
-| `exp` | Yes | Yes | Not applicable |
-| `log` | Yes | Yes | Not applicable |
-| `2^u` | Yes | Yes | Not applicable |
-| `10^u` | Yes | Yes | Not applicable |
-| `log10` | Yes | Yes | Not applicable |
-| `magnitude^2` | Yes | Yes | Not applicable |
-| `square` | Yes | Yes | Not applicable |
-| `pow` | Yes | Yes | Not applicable |
-| `conj` | Yes | Yes | Not applicable |
-| `reciprocal` with Exact method | Yes | Yes | Not applicable |
-| `reciprocal` with Newton-Raphson method | Yes | Yes | Not applicable |
-| `hypot` | Yes, on two inputs | Yes, on two inputs (two vectors or two matrices of the same size, a scalar and a vector, or a scalar and a matrix) | — |
-| `rem` | Yes, on two inputs | Yes, on two inputs (two vectors or two matrices of the same size, a scalar and a vector, or a scalar and a matrix) | Not applicable |
-| `mod` | Yes, on two inputs | Yes, on two inputs (two vectors or two matrices of the same size, a scalar and a vector, or a scalar and a matrix) | Not applicable |
-| `transpose` | Yes | — | Yes |
-| `hermitian` | Yes | — | Yes |
-
-The name of the function and the appropriate number of input ports appear on the block.
-
-**Tip**
-
-Use the Math Function block when you want vector or matrix output.
-
-### Newton-Raphson Reciprocal Algorithm Method
-
-The `reciprocal` function that has the Newton-Raphson algorithm method
-calculates the reciprocal by using the Newton-Raphson approximation method. The
-function uses recursive approximation to find better approximations to the roots of
-a real-value function.
-
-The reciprocal of a real number a is defined as a zero of the function:
-
-f(x)=1x−a.
-
-Simulink® chooses an initial estimate in the range 0<x0<2a, because this is the domain of convergence for the
-function.
-
-To successively calculate the roots of the function, specify the **Number of
-iterations** parameter. The process is repeated as follows:
-
-xi+1=xi−f(xi)f'(xi)=xi+(xi−axi2)=xi.(2−axi)
-
-f'(x) is the derivative of the function f(x).
-
-### Data Type Support
-
-This table lists the input data types that each function of the block can support.
-
-| Function | Single | Double | Half\* | Boolean | Built-In Integer | Fixed Point |
-| --- | --- | --- | --- | --- | --- | --- |
-| `exp` | Yes | Yes | Yes | — | — | — |
-| `log` | Yes | Yes | Yes | — | — | — |
-| `2^u` | Yes | Yes | Yes | — | — | — |
-| `10^u` | Yes | Yes | Yes | — | — | — |
-| `log10` | Yes | Yes | Yes | — | — | — |
-| `magnitude^2` | Yes | Yes | Yes | — | Yes | Yes |
-| `square` | Yes | Yes | Yes | — | Yes | Yes |
-| `pow` | Yes | Yes | Yes | — | — | — |
-| `conj` | Yes | Yes | Yes | — | Yes | Yes |
-| `reciprocal` with Exact method | Yes | Yes | Yes | — | Yes | Yes |
-| `reciprocal` with Newton-Raphson method (for more information, see Output) | Yes | Yes | — | — | Yes | Yes |
-| `hypot` | Yes | Yes | Yes | — | — | — |
-| `rem` | Yes | Yes | Yes | — | Yes | — |
-| `mod` | Yes | Yes | Yes | — | Yes | — |
-| `transpose` | Yes | Yes | Yes | Yes | Yes | Yes |
-| `hermitian` | Yes | Yes | Yes | — | Yes | Yes |
-
-For more information on half-precision arithmetic operations, see The Half-Precision Data Type in Simulink (Fixed-Point Designer).

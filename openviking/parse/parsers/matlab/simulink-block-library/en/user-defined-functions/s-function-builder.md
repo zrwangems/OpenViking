@@ -10,6 +10,36 @@ language: en
 
 # S-Function Builder
 
+Integrate C or C++ code to create S-functions
+
+## Libraries
+
+Simulink / User-Defined Functions
+
+## Description
+
+The S-function Builder block integrates new or existing C or C++ code
+and creates a C MEX S-function (system-function) from specifications you provide. A C
+MEX S-function is a computer language description of a Simulink® block written in C or C++. S-functions use a special calling syntax called
+the S-function API that enables you to interact with the Simulink engine. This interaction is very similar to the interaction that takes
+place between the engine and built-in Simulink blocks. To learn more about C MEX S-functions, see What Is an S-Function?.
+To learn more about building C MEX S-Functions using the S-function
+Builder block, see Build S-Functions Automatically Using S-Function Builder. For an example with a step-by-step procedure,
+see Use a Bus with S-Function Builder to Create an S-Function.
+
+Instances of the S-Function Builder block also serve as wrappers for
+generated S-functions in Simulink models. When simulating a model that contains instances of an
+S-Function Builder block, Simulink invokes the generated C MEX S-function to call your C or C++ code in the
+instances of `mdlStart`, `mdlOutputs`,
+`mdlDerivatives`, `mdlUpdate` and
+`mdlTerminate` methods. To learn how Simulink engine interacts with S-functions, see Simulink Engine Interaction with C S-Functions.
+
+**Note**
+
+The S-Function Builder block does not support masking. However, you
+can mask a Subsystem block that contains an
+S-Function Builder block. For more information, see Create Library Blocks Using Self-Modifiable Masks and Variant Blocks.
+
 ## Ports
 
 ### Input
@@ -98,10 +128,6 @@ For more information on using this parameter, see Specify Additional Source File
 | **Parameter:** | `SFunctionModules` |
 | **Values:** | `''` (default) | filenames in quotes |
 
-## Libraries
-
-Simulink / User-Defined Functions
-
 ## Block Characteristics
 
 |  |  |
@@ -123,29 +149,3 @@ S-functions that call into MATLAB are not supported for code generation.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Integrate C or C++ code to create S-functions
-
-The S-function Builder block integrates new or existing C or C++ code
-and creates a C MEX S-function (system-function) from specifications you provide. A C
-MEX S-function is a computer language description of a Simulink® block written in C or C++. S-functions use a special calling syntax called
-the S-function API that enables you to interact with the Simulink engine. This interaction is very similar to the interaction that takes
-place between the engine and built-in Simulink blocks. To learn more about C MEX S-functions, see What Is an S-Function?.
-To learn more about building C MEX S-Functions using the S-function
-Builder block, see Build S-Functions Automatically Using S-Function Builder. For an example with a step-by-step procedure,
-see Use a Bus with S-Function Builder to Create an S-Function.
-
-Instances of the S-Function Builder block also serve as wrappers for
-generated S-functions in Simulink models. When simulating a model that contains instances of an
-S-Function Builder block, Simulink invokes the generated C MEX S-function to call your C or C++ code in the
-instances of `mdlStart`, `mdlOutputs`,
-`mdlDerivatives`, `mdlUpdate` and
-`mdlTerminate` methods. To learn how Simulink engine interacts with S-functions, see Simulink Engine Interaction with C S-Functions.
-
-**Note**
-
-The S-Function Builder block does not support masking. However, you
-can mask a Subsystem block that contains an
-S-Function Builder block. For more information, see Create Library Blocks Using Self-Modifiable Masks and Variant Blocks.

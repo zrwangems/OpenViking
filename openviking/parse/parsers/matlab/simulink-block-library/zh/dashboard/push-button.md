@@ -11,9 +11,50 @@ chinese_source: official
 
 # Push Button
 
-## 端口
+使用按钮更改参数或变量值
 
-R2025b 官方文档未提供。
+## 所属库
+
+Simulink / Dashboard
+
+## 描述
+
+在仿真之前或仿真期间，使用 Push Button 模块更改所连接的变量或参数的值。您可以将按钮配置为仅在按下按钮时更改值，或在再次点击按钮前锁存值变化。将 Push Button 模块与其他 Dashboard 模块结合使用，可以创建交互式仪表板来控制您的模型。
+
+在仿真期间或 Push Button 模块处于选中状态时，双击该模块不会打开其对话框。要编辑模块参数，您可以使用**属性检查器**或通过以下方式打开模块对话框：
+
+- 当未选择模块且模型未仿真时，双击模块。
+- 右键点击模块并从上下文菜单中选择**模块参数**。
+
+### 普通按钮图标
+
+您可以向 Push Button 模块添加图标，它会显示在普通按钮文本旁边。您可以从包括基本形状、汽车指示灯和无线图标的预定义集中选择一个图标，也可以上传自己的自定义图标。有关详细信息，包括内置图标的完整列表，请参阅图标。
+
+当您向 Push Button 模块添加图标时，您可以为图标配置一种打开颜色和一种关闭颜色，以便其颜色随着模块的状态而变化，并指定图标相对于普通按钮文本的对齐方式。例如，下图中的 Push Button 模块配置为使用圆形图标，且将表示打开状态的颜色指定为亮绿色，图标与按钮文本的左侧对齐。
+
+Push button block with a green circle icon to the left of the button text.
+
+您可以使用 Push Button 模块的图标设置在模型中配置模块的外观。如果您要进一步自定义模块的外观，请考虑使用 Customizable Blocks 库中的 Push Button 模块。Customizable Blocks 库中的 Push Button 模块支持添加自定义图标，但不包含任何内置图标。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口来连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标在要连接的模块上暂停并点击连接按钮 。要在已连接的模块上进入连接模式，请选择该模块，在显示的省略号 (…) 上暂停，然后在展开的操作菜单中点击连接按钮。
+
+要将控制模块连接到模型中的参数或更改控制模块的连接，请进入连接模式。选择要连接到其参数的模块。从出现的列表中，选择要连接的参数。然后，请在 Dashboard 模块上悬停并点击完成连接按钮 。
+
+在更新模型图之前，控制模块无法连接到由变量定义的参数。要在仿真未运行时连接到由变量定义的参数或修改定义所连接的参数值的变量值，请按 **Ctrl+D** 更新模型图。
+
+您可以连接到具有标量值的参数，或连接到矩阵或结构体的元素。有关详细信息，请参阅Connect Dashboard Blocks to Simulink Model。
+
+您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画说明如何将 Push Button 模块连接到您的模型。
+
+An unconnected Push Button block connects to the Value parameter of a constant block.
+
+### 参数记录
+
+连接到 Dashboard 模块的可调参数数据会记录到仿真数据检查器，您可以在其中查看参数值以及记录的信号数据。您可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从仿真数据检查器导出参数数据来访问 MATLAB® 工作区中记录的参数数据。有关使用仿真数据检查器 UI 导出数据的详细信息，请参阅将数据导出到工作区或文件。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素来访问。
 
 ## 参数
 
@@ -336,10 +377,6 @@ Dashboard 模块不使用端口来连接到模型元素。要将 Dashboard 模�
 | **模块参数**：`IconOffColor` |
 | **类型：**`[r g b]` 向量 |
 
-## 所属库
-
-Simulink / Dashboard
-
 ## 模块特性
 
 |  |  |
@@ -356,7 +393,7 @@ Simulink / Dashboard
 
 Dashboard 模块在代码生成中会被忽略。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2015a 中推出**
 
@@ -441,44 +478,3 @@ Dashboard 模块在代码生成中会被忽略。
 ### R2019a: 以编程方式添加和配置 Dashboard 模块
 
 从 R2019a 开始，您可以使用 `add_block` 和 `set_param` 等函数从模型中的 Dashboard 库创建和配置模块。
-
-## 描述
-
-使用按钮更改参数或变量值
-
-在仿真之前或仿真期间，使用 Push Button 模块更改所连接的变量或参数的值。您可以将按钮配置为仅在按下按钮时更改值，或在再次点击按钮前锁存值变化。将 Push Button 模块与其他 Dashboard 模块结合使用，可以创建交互式仪表板来控制您的模型。
-
-在仿真期间或 Push Button 模块处于选中状态时，双击该模块不会打开其对话框。要编辑模块参数，您可以使用**属性检查器**或通过以下方式打开模块对话框：
-
-- 当未选择模块且模型未仿真时，双击模块。
-- 右键点击模块并从上下文菜单中选择**模块参数**。
-
-### 普通按钮图标
-
-您可以向 Push Button 模块添加图标，它会显示在普通按钮文本旁边。您可以从包括基本形状、汽车指示灯和无线图标的预定义集中选择一个图标，也可以上传自己的自定义图标。有关详细信息，包括内置图标的完整列表，请参阅图标。
-
-当您向 Push Button 模块添加图标时，您可以为图标配置一种打开颜色和一种关闭颜色，以便其颜色随着模块的状态而变化，并指定图标相对于普通按钮文本的对齐方式。例如，下图中的 Push Button 模块配置为使用圆形图标，且将表示打开状态的颜色指定为亮绿色，图标与按钮文本的左侧对齐。
-
-Push button block with a green circle icon to the left of the button text.
-
-您可以使用 Push Button 模块的图标设置在模型中配置模块的外观。如果您要进一步自定义模块的外观，请考虑使用 Customizable Blocks 库中的 Push Button 模块。Customizable Blocks 库中的 Push Button 模块支持添加自定义图标，但不包含任何内置图标。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口来连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标在要连接的模块上暂停并点击连接按钮 。要在已连接的模块上进入连接模式，请选择该模块，在显示的省略号 (…) 上暂停，然后在展开的操作菜单中点击连接按钮。
-
-要将控制模块连接到模型中的参数或更改控制模块的连接，请进入连接模式。选择要连接到其参数的模块。从出现的列表中，选择要连接的参数。然后，请在 Dashboard 模块上悬停并点击完成连接按钮 。
-
-在更新模型图之前，控制模块无法连接到由变量定义的参数。要在仿真未运行时连接到由变量定义的参数或修改定义所连接的参数值的变量值，请按 **Ctrl+D** 更新模型图。
-
-您可以连接到具有标量值的参数，或连接到矩阵或结构体的元素。有关详细信息，请参阅Connect Dashboard Blocks to Simulink Model。
-
-您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画说明如何将 Push Button 模块连接到您的模型。
-
-An unconnected Push Button block connects to the Value parameter of a constant block.
-
-### 参数记录
-
-连接到 Dashboard 模块的可调参数数据会记录到仿真数据检查器，您可以在其中查看参数值以及记录的信号数据。您可以通过使用 UI 或 `Simulink.sdi.exportRun` 函数从仿真数据检查器导出参数数据来访问 MATLAB® 工作区中记录的参数数据。有关使用仿真数据检查器 UI 导出数据的详细信息，请参阅将数据导出到工作区或文件。参数数据存储在 `Simulink.SimulationData.Parameter` 对象中，可作为导出的 `Simulink.SimulationData.Dataset` 中的元素来访问。

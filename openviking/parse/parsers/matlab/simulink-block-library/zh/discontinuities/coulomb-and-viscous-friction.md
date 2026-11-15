@@ -11,6 +11,29 @@ chinese_source: official
 
 # Coulomb and Viscous Friction
 
+对值为零时的不连续性以及非零时的线性增益建模
+
+## 所属库
+
+Simulink / Discontinuities HDL Coder / Discontinuities
+
+## 描述
+
+Coulomb and Viscous Friction 模块用于对库仑（静态）摩擦和粘性（动态）摩擦进行建模。此模块可以对值为零时的不连续性以及非零时的线性增益进行建模。
+
+模块输出匹配以下公式的 MATLAB® 结果：
+
+```
+y = sign(x) .* (Gain .* abs(x) + Offset)
+```
+
+其中 `y` 是输出，`x` 是输入，`Gain` 是非零输入值的信号增益，`Offset` 是库仑摩擦。
+
+此模块接受一个输入并生成一个输出。输入可以是标量、向量或包含实数和复数元素的矩阵。
+
+- 对于标量输入，`Gain` 和 `Offset` 的维度可以不同于输入。输出是标量、向量或矩阵，具体取决于 `Gain` 和 `Offset` 的维度。
+- 对于向量或矩阵输入，`Gain` 和 `Offset` 必须为标量或与输入具有相同的维度。输出是向量或与输入具有相同维度的矩阵。
+
 ## 端口
 
 ### 输入
@@ -58,10 +81,6 @@ chinese_source: official
 | **值**：实数值 |
 | **默认值**：`'1'` |
 
-## 所属库
-
-Simulink / Discontinuities HDL Coder / Discontinuities
-
 ## 模块特性
 
 |  |  |
@@ -100,25 +119,6 @@ HDL 代码生成不支持复数输入。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-对值为零时的不连续性以及非零时的线性增益建模
-
-Coulomb and Viscous Friction 模块用于对库仑（静态）摩擦和粘性（动态）摩擦进行建模。此模块可以对值为零时的不连续性以及非零时的线性增益进行建模。
-
-模块输出匹配以下公式的 MATLAB® 结果：
-
-```
-y = sign(x) .* (Gain .* abs(x) + Offset)
-```
-
-其中 `y` 是输出，`x` 是输入，`Gain` 是非零输入值的信号增益，`Offset` 是库仑摩擦。
-
-此模块接受一个输入并生成一个输出。输入可以是标量、向量或包含实数和复数元素的矩阵。
-
-- 对于标量输入，`Gain` 和 `Offset` 的维度可以不同于输入。输出是标量、向量或矩阵，具体取决于 `Gain` 和 `Offset` 的维度。
-- 对于向量或矩阵输入，`Gain` 和 `Offset` 必须为标量或与输入具有相同的维度。输出是向量或与输入具有相同维度的矩阵。

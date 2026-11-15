@@ -10,9 +10,123 @@ language: en
 
 # Lamp
 
-## Ports
+Display color that reflects signal value on lamp with customizable appearance
 
-Not documented in R2025b.
+## Libraries
+
+Simulink / Dashboard / Customizable Blocks
+
+## Description
+
+The Lamp block displays a color that reflects the value of the connected
+signal. When you use the Lamp block in the Customizable Blocks library, you can
+modify the appearance of the block so it looks like a real indicator lamp in your system. Use
+the Lamp block with other dashboard blocks to build an interactive dashboard of
+controls and indicators for your model.
+
+To configure the Lamp block, specify one or more states. A state pairs a
+state value with a color for the Lamp block to display. When the value of the
+connected signal is the same as the state value, the Lamp block displays the
+color. You can also specify the state value as a range, such that the block displays the color
+when the value of the connected signal falls into the specified range.
+
+### Customize Lamp Blocks
+
+When you add a Lamp block to your model, the block is preconfigured with
+a default design. You can use the block with the default design or customize the appearance
+of the block.
+
+To customize the appearance of the block, use design mode.
+After selecting the block, you can enter design mode in one of three ways:
+
+- In the Simulink® Toolstrip, on the block-specific tab, under
+  **Design**, click **Edit**.
+- In the Property Inspector, on the **Design** tab, click
+  **Edit**.
+- Pause on the ellipsis that appears over the block and click the Edit Custom Block
+  button .
+
+In design mode, you can use the toolbar above the block to customize the lamp. To access
+additional customization options or to enter exact values for design settings, use the
+**Design** tab in the Property Inspector.
+
+Customizable Lamp block in design mode with the toolbar and the Design tab in the Property Inspector visible.
+
+When you customize a Lamp block, you configure the block appearance for
+each state. To select a state to customize, use the drop-down list in the toolbar.
+Alternatively, on the **Design** tab, select the
+**States** component, and then select from the **Select
+State** list. To add a state, in the toolbar, click the Add State button
+. To delete a state, click the Remove State button
+.
+
+**Design Mode Actions that Customize the Selected State**
+
+| Action | Available in Toolbar | Available in **Design** Tab |
+| --- | --- | --- |
+| Specify the state value as a number or a range. | No | Yes |
+| Add or remove states. | Yes | Yes |
+| Select a shape for the region whose color reflects the signal value. | Yes | Yes |
+| Select the color of the shape. | Yes | Yes |
+| Select from an icon set that includes wireless icons and automotive indicator lamps, or upload a custom icon. | Yes | Yes |
+| Specify how to combine the shape and the icon. | Yes | Yes |
+| Change the size of the shape and icon. | No | Yes |
+| Change the position of the shape and icon. | No | Yes |
+
+In addition to customizing the block design using the toolbar and
+**Design** tab, you can also resize and reposition components
+interactively in the canvas. To resize a component specific to a state, such as the icon,
+select the state in the toolbar, and then resize or reposition the component.
+
+To combine the shape and icon, in the third section of the toolbar from the left, choose
+one of these combination styles:
+
+- Simple — Overlay the icon on top of the shape.
+- Intersect — Retain the intersection of the shape and icon as the area whose color
+  reflects the signal value.
+- Subtract — Retain the shape with the icon cut out of it as the area that changes
+  color.
+
+Three Lamp blocks, each configured for one of the three ways you can combine the shape and icon: simple, intersect, or subtract.
+
+**Tip**
+
+The intersect and subtract combination styles use transparency in the icon asset to
+produce the area that changes color. For custom icons, consider using image formats that
+support transparency, such as SVG or PNG.
+
+**Design Mode Actions that Apply to All States**
+
+| Action | Available in Toolbar | Available in **Design** Tab |
+| --- | --- | --- |
+| Upload a background image. | No | Yes |
+| Set a solid background color. | No | Yes |
+| Upload a foreground image. | No | Yes |
+
+When you finish editing the design, to exit design mode, click the
+**X** in the upper right of the canvas.
+
+### Connect Dashboard Blocks
+
+Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
+use connect mode. To enter connect mode on an unconnected block, pause on the block you want
+to connect and click the Connect button . To enter connect mode on a connected block, select the
+block, pause on the ellipsis that appears (…), and in the action menu that expands, click
+the Connect button.
+
+To connect a display block to a signal in your model or change the connection of a display
+block, enter connect mode. Select the signal line to which you want to connect. From the
+list that appears, select the signal to which you want to connect. Then, pause on the
+dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
+connected block, run the simulation.
+
+For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
+
+You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
+
+This animation shows how to connect the Lamp block to your model.
+
+An unconnected Lamp block connects to the signal that a Constant block sends to an Outport block.
 
 ## Parameters
 
@@ -633,10 +747,6 @@ Specify the height of the foreground image as a ratio of the block height.
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
 
-## Libraries
-
-Simulink / Dashboard / Customizable Blocks
-
 ## Block Characteristics
 
 |  |  |
@@ -808,117 +918,3 @@ state color.
 The blocks in the Customizable Blocks library have an option to add a foreground image
 as part of the design for a block. Starting in R2022a, you can rotate, resize, and
 reposition the foreground image within the block design.
-
-## Description
-
-Display color that reflects signal value on lamp with customizable appearance
-
-The Lamp block displays a color that reflects the value of the connected
-signal. When you use the Lamp block in the Customizable Blocks library, you can
-modify the appearance of the block so it looks like a real indicator lamp in your system. Use
-the Lamp block with other dashboard blocks to build an interactive dashboard of
-controls and indicators for your model.
-
-To configure the Lamp block, specify one or more states. A state pairs a
-state value with a color for the Lamp block to display. When the value of the
-connected signal is the same as the state value, the Lamp block displays the
-color. You can also specify the state value as a range, such that the block displays the color
-when the value of the connected signal falls into the specified range.
-
-### Customize Lamp Blocks
-
-When you add a Lamp block to your model, the block is preconfigured with
-a default design. You can use the block with the default design or customize the appearance
-of the block.
-
-To customize the appearance of the block, use design mode.
-After selecting the block, you can enter design mode in one of three ways:
-
-- In the Simulink® Toolstrip, on the block-specific tab, under
-  **Design**, click **Edit**.
-- In the Property Inspector, on the **Design** tab, click
-  **Edit**.
-- Pause on the ellipsis that appears over the block and click the Edit Custom Block
-  button .
-
-In design mode, you can use the toolbar above the block to customize the lamp. To access
-additional customization options or to enter exact values for design settings, use the
-**Design** tab in the Property Inspector.
-
-Customizable Lamp block in design mode with the toolbar and the Design tab in the Property Inspector visible.
-
-When you customize a Lamp block, you configure the block appearance for
-each state. To select a state to customize, use the drop-down list in the toolbar.
-Alternatively, on the **Design** tab, select the
-**States** component, and then select from the **Select
-State** list. To add a state, in the toolbar, click the Add State button
-. To delete a state, click the Remove State button
-.
-
-**Design Mode Actions that Customize the Selected State**
-
-| Action | Available in Toolbar | Available in **Design** Tab |
-| --- | --- | --- |
-| Specify the state value as a number or a range. | No | Yes |
-| Add or remove states. | Yes | Yes |
-| Select a shape for the region whose color reflects the signal value. | Yes | Yes |
-| Select the color of the shape. | Yes | Yes |
-| Select from an icon set that includes wireless icons and automotive indicator lamps, or upload a custom icon. | Yes | Yes |
-| Specify how to combine the shape and the icon. | Yes | Yes |
-| Change the size of the shape and icon. | No | Yes |
-| Change the position of the shape and icon. | No | Yes |
-
-In addition to customizing the block design using the toolbar and
-**Design** tab, you can also resize and reposition components
-interactively in the canvas. To resize a component specific to a state, such as the icon,
-select the state in the toolbar, and then resize or reposition the component.
-
-To combine the shape and icon, in the third section of the toolbar from the left, choose
-one of these combination styles:
-
-- Simple — Overlay the icon on top of the shape.
-- Intersect — Retain the intersection of the shape and icon as the area whose color
-  reflects the signal value.
-- Subtract — Retain the shape with the icon cut out of it as the area that changes
-  color.
-
-Three Lamp blocks, each configured for one of the three ways you can combine the shape and icon: simple, intersect, or subtract.
-
-**Tip**
-
-The intersect and subtract combination styles use transparency in the icon asset to
-produce the area that changes color. For custom icons, consider using image formats that
-support transparency, such as SVG or PNG.
-
-**Design Mode Actions that Apply to All States**
-
-| Action | Available in Toolbar | Available in **Design** Tab |
-| --- | --- | --- |
-| Upload a background image. | No | Yes |
-| Set a solid background color. | No | Yes |
-| Upload a foreground image. | No | Yes |
-
-When you finish editing the design, to exit design mode, click the
-**X** in the upper right of the canvas.
-
-### Connect Dashboard Blocks
-
-Dashboard blocks do not use ports to connect to model elements. To connect a dashboard block,
-use connect mode. To enter connect mode on an unconnected block, pause on the block you want
-to connect and click the Connect button . To enter connect mode on a connected block, select the
-block, pause on the ellipsis that appears (…), and in the action menu that expands, click
-the Connect button.
-
-To connect a display block to a signal in your model or change the connection of a display
-block, enter connect mode. Select the signal line to which you want to connect. From the
-list that appears, select the signal to which you want to connect. Then, pause on the
-dashboard block and click the Done Connecting button . To see the dashboard block display the value of the
-connected block, run the simulation.
-
-For more information about connecting dashboard blocks, see Connect Dashboard Blocks to Simulink Model.
-
-You can also connect dashboard blocks to a Stateflow® chart. For more information, see Connect Dashboard Blocks to Stateflow (Stateflow).
-
-This animation shows how to connect the Lamp block to your model.
-
-An unconnected Lamp block connects to the signal that a Constant block sends to an Outport block.

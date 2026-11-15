@@ -11,6 +11,24 @@ chinese_source: official
 
 # Dead Zone Dynamic
 
+提供零输出的动态区域
+
+## 所属库
+
+Simulink / Discontinuities HDL Coder / Discontinuities
+
+## 描述
+
+Dead Zone Dynamic 模块根据指定上限和下限的动态输入信号生成零输出区域。模块输出取决于输入 **u** 以及输入信号 **up** 和 **lo** 的值。
+
+| 输入 | 输出 |
+| --- | --- |
+| `u >= lo` 和 `u <= up` | 零 |
+| `u > up` | `u` – `up` |
+| `u < lo` | `u` – `lo` |
+
+Dead Zone Dynamic 模块是封装子系统，没有任何参数。
+
 ## 端口
 
 ### 输入
@@ -39,14 +57,6 @@ chinese_source: official
 对输入信号应用动态死区算法后的输出信号。
 
 **数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
-## 参数
-
-R2025b 官方文档未提供。
-
-## 所属库
-
-Simulink / Discontinuities HDL Coder / Discontinuities
 
 ## 模块特性
 
@@ -82,20 +92,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-提供零输出的动态区域
-
-Dead Zone Dynamic 模块根据指定上限和下限的动态输入信号生成零输出区域。模块输出取决于输入 **u** 以及输入信号 **up** 和 **lo** 的值。
-
-| 输入 | 输出 |
-| --- | --- |
-| `u >= lo` 和 `u <= up` | 零 |
-| `u > up` | `u` – `up` |
-| `u < lo` | `u` – `lo` |
-
-Dead Zone Dynamic 模块是封装子系统，没有任何参数。

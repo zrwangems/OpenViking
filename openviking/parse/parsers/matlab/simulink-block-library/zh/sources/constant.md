@@ -11,6 +11,43 @@ chinese_source: official
 
 # Constant
 
+常量值
+
+## 所属库
+
+Simulink / Commonly Used Blocks Simulink / Sources DSP System Toolbox / Sources HDL Coder / Commonly Used Blocks HDL Coder / Sources
+
+## 描述
+
+Constant 模块生成实数或复数常量值信号。使用此模块提供常量信号输入。此模块是生成标量、向量还是混合输出要取决于：
+
+- **常量值**参数的维度
+- **将向量参数解释为一维向量**参数的设置
+
+此模块的输出与**常量值**参数具有相同的维度和元素。如果为此参数指定向量，即您希望模块将其解析为向量，请选中**将向量参数解释为一维向量**复选框。否则，如果为**常量值**参数指定了向量，模块会将该向量视为一个矩阵。
+
+**提示**
+
+要输出常量枚举值，请考虑改用 Enumerated Constant 模块。Constant 模块提供不适用于枚举类型的模块参数，例如**输出最小值**和**输出最大值**。
+
+### 使用总线对象作为输出数据类型
+
+Constant 模块支持使用非虚拟总线作为输出数据类型。使用总线对象作为输出数据类型可以帮助简化您的模型。如果使用总线对象作为输出数据类型，请将**常量值**设置为 `0` 或者与该总线对象匹配的 MATLAB® 结构体。
+
+### 对总线的常量值使用结构体
+
+您指定的结构体中必须为总线对象所代表的总线中的每个元素包含一个值。模块输出为非虚拟总线信号。
+
+您可以使用 `Simulink.Bus.createMATLABStruct` 创建一个与总线对应的完全结构体。
+
+也可以使用 `Simulink.Bus.createObject` 从 MATLAB 结构体中创建一个总线对象。
+
+如果输出总线中的信号元素使用除 `double` 之外的其他数字数据类型，则您可以通过使用定型表达式（例如 `uint16(37)`）或非定型表达式（例如 `37`）来指定结构体字段。要控制字段数据类型，您可以使用总线对象作为 `Simulink.Parameter` 对象的数据类型。要决定是使用定型表达式还是非定型表达式，请参阅Control Data Types of Initial Condition Structure Fields。
+
+### 设置配置参数以支持使用总线对象数据类型
+
+要允许使用总线对象作为输出数据类型，请在开始仿真之前，将**配置参数** > **诊断** > **数据有效性** > **高级参数** > **欠定初始化检测**设置为**简化**。有关详细信息，请参阅 Underspecified initialization detection。
+
 ## 端口
 
 ### 输出
@@ -302,10 +339,6 @@ chinese_source: official
 
 要启用此参数，请将**定标**设置为**斜率和偏置**。
 
-## 所属库
-
-Simulink / Commonly Used Blocks Simulink / Sources DSP System Toolbox / Sources HDL Coder / Commonly Used Blocks HDL Coder / Sources
-
 ## 模块特性
 
 |  |  |
@@ -362,7 +395,7 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
 
@@ -389,36 +422,3 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 Constant 模块不使用值类型的描述。
 
 有关值类型的详细信息，请参阅Specify Common Set of Signal Properties as Value Type。
-
-## 描述
-
-常量值
-
-Constant 模块生成实数或复数常量值信号。使用此模块提供常量信号输入。此模块是生成标量、向量还是混合输出要取决于：
-
-- **常量值**参数的维度
-- **将向量参数解释为一维向量**参数的设置
-
-此模块的输出与**常量值**参数具有相同的维度和元素。如果为此参数指定向量，即您希望模块将其解析为向量，请选中**将向量参数解释为一维向量**复选框。否则，如果为**常量值**参数指定了向量，模块会将该向量视为一个矩阵。
-
-**提示**
-
-要输出常量枚举值，请考虑改用 Enumerated Constant 模块。Constant 模块提供不适用于枚举类型的模块参数，例如**输出最小值**和**输出最大值**。
-
-### 使用总线对象作为输出数据类型
-
-Constant 模块支持使用非虚拟总线作为输出数据类型。使用总线对象作为输出数据类型可以帮助简化您的模型。如果使用总线对象作为输出数据类型，请将**常量值**设置为 `0` 或者与该总线对象匹配的 MATLAB® 结构体。
-
-### 对总线的常量值使用结构体
-
-您指定的结构体中必须为总线对象所代表的总线中的每个元素包含一个值。模块输出为非虚拟总线信号。
-
-您可以使用 `Simulink.Bus.createMATLABStruct` 创建一个与总线对应的完全结构体。
-
-也可以使用 `Simulink.Bus.createObject` 从 MATLAB 结构体中创建一个总线对象。
-
-如果输出总线中的信号元素使用除 `double` 之外的其他数字数据类型，则您可以通过使用定型表达式（例如 `uint16(37)`）或非定型表达式（例如 `37`）来指定结构体字段。要控制字段数据类型，您可以使用总线对象作为 `Simulink.Parameter` 对象的数据类型。要决定是使用定型表达式还是非定型表达式，请参阅Control Data Types of Initial Condition Structure Fields。
-
-### 设置配置参数以支持使用总线对象数据类型
-
-要允许使用总线对象作为输出数据类型，请在开始仿真之前，将**配置参数** > **诊断** > **数据有效性** > **高级参数** > **欠定初始化检测**设置为**简化**。有关详细信息，请参阅 Underspecified initialization detection。

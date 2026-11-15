@@ -10,6 +10,44 @@ language: en
 
 # Fixed-Point State-Space
 
+Implement discrete-time state space
+
+## Libraries
+
+Simulink / Additional Math & Discrete / Additional Discrete
+
+## Description
+
+The Fixed-Point State-Space block implements the system described by
+
+y(n)=Cx(n)+Du(n)
+
+x(n+1)=Ax(n)+Bu(n)
+
+where *u* is the input, *x* is the state, and
+*y* is the output. Both equations have the same data type.
+
+- **A** must be an *n*-by-*n*
+  matrix, where *n* is the number of states.
+- **B** must be an *n*-by-*m*
+  matrix, where *m* is the number of inputs.
+- **C** must be an *r*-by-*n*
+  matrix, where *r* is the number of outputs.
+- **D** must be an *r*-by-*m*
+  matrix.
+
+In addition:
+
+- The state x must be an *n*-by-1 vector.
+- The input u must be an *m*-by-1 vector.
+- The output y must be an *r*-by-1 vector.
+
+The block accepts one input and generates one output. The width of the input vector is
+the number of columns in the **B** and **D** matrices.
+The width of the output vector is the number of rows in the **C** and
+**D** matrices. To define the initial state vector, use the
+**Initial conditions** parameter.
+
 ## Ports
 
 ### Input
@@ -214,10 +252,6 @@ saturation code.
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
-## Libraries
-
-Simulink / Additional Math & Discrete / Additional Discrete
-
 ## Block Characteristics
 
 |  |  |
@@ -257,37 +291,3 @@ By default, the following HDL block property is available.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Implement discrete-time state space
-
-The Fixed-Point State-Space block implements the system described by
-
-y(n)=Cx(n)+Du(n)
-
-x(n+1)=Ax(n)+Bu(n)
-
-where *u* is the input, *x* is the state, and
-*y* is the output. Both equations have the same data type.
-
-- **A** must be an *n*-by-*n*
-  matrix, where *n* is the number of states.
-- **B** must be an *n*-by-*m*
-  matrix, where *m* is the number of inputs.
-- **C** must be an *r*-by-*n*
-  matrix, where *r* is the number of outputs.
-- **D** must be an *r*-by-*m*
-  matrix.
-
-In addition:
-
-- The state x must be an *n*-by-1 vector.
-- The input u must be an *m*-by-1 vector.
-- The output y must be an *r*-by-1 vector.
-
-The block accepts one input and generates one output. The width of the input vector is
-the number of columns in the **B** and **D** matrices.
-The width of the output vector is the number of rows in the **C** and
-**D** matrices. To define the initial state vector, use the
-**Initial conditions** parameter.

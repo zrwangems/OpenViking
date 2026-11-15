@@ -10,6 +10,48 @@ language: en
 
 # Magnitude-Angle to Complex
 
+Convert magnitude and/or a phase angle signal to complex signal
+
+## Libraries
+
+Simulink / Math Operations HDL Coder / HDL Floating Point Operations
+
+## Description
+
+### Supported Operations
+
+The Magnitude-Angle to Complex block converts magnitude and phase angle
+inputs to a complex output. The angle input must be in rad.
+
+When there are two block inputs, the block supports these combinations of input
+dimensions:
+
+- Two inputs of equal dimensions
+- One scalar input and the other an n-dimensional array
+
+If the block input is an array, the output is an array of complex signals. The elements of a magnitude input vector map to the magnitudes of the corresponding complex output elements. Similarly, the elements of an angle input vector map to the angles of the corresponding complex output elements. If one input is a scalar, it maps to the corresponding component (magnitude or angle) of all the complex output signals.
+
+### Effect of Out-of-Range Input on CORDIC Approximations
+
+If you use the CORDIC approximation method [1],
+the block input for phase angle has these restrictions:
+
+- For signed fixed-point types, the input angle must fall within the range
+  [–2π, 2π) rad.
+- For unsigned fixed-point types, the input angle must fall within the range
+  [0, 2π) rad.
+
+This table summarizes the effects of an out-of-range input:
+
+| Block Usage | Effect of Out-of-Range Input |
+| --- | --- |
+| Simulation modes | An error appears. |
+| Generated code | Undefined behavior occurs. |
+
+When you use the CORDIC approximation, ensure that you use an in-range input for the
+Magnitude-Angle to Complex block. Avoid relying on undefined
+behavior for generated code or accelerator modes.
+
 ## Ports
 
 ### Input
@@ -263,10 +305,6 @@ the `set_param` function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
 
-## Libraries
-
-Simulink / Math Operations HDL Coder / HDL Floating Point Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -352,41 +390,3 @@ parameter to `CORDIC`. When using the CORDIC approximation
 method, you can also enable **Scale output by reciprocal of gain
 factor** to scale the real and imaginary parts of the complex output by
 a gain factor.
-
-## Description
-
-Convert magnitude and/or a phase angle signal to complex signal
-
-### Supported Operations
-
-The Magnitude-Angle to Complex block converts magnitude and phase angle
-inputs to a complex output. The angle input must be in rad.
-
-When there are two block inputs, the block supports these combinations of input
-dimensions:
-
-- Two inputs of equal dimensions
-- One scalar input and the other an n-dimensional array
-
-If the block input is an array, the output is an array of complex signals. The elements of a magnitude input vector map to the magnitudes of the corresponding complex output elements. Similarly, the elements of an angle input vector map to the angles of the corresponding complex output elements. If one input is a scalar, it maps to the corresponding component (magnitude or angle) of all the complex output signals.
-
-### Effect of Out-of-Range Input on CORDIC Approximations
-
-If you use the CORDIC approximation method [1],
-the block input for phase angle has these restrictions:
-
-- For signed fixed-point types, the input angle must fall within the range
-  [–2π, 2π) rad.
-- For unsigned fixed-point types, the input angle must fall within the range
-  [0, 2π) rad.
-
-This table summarizes the effects of an out-of-range input:
-
-| Block Usage | Effect of Out-of-Range Input |
-| --- | --- |
-| Simulation modes | An error appears. |
-| Generated code | Undefined behavior occurs. |
-
-When you use the CORDIC approximation, ensure that you use an in-range input for the
-Magnitude-Angle to Complex block. Avoid relying on undefined
-behavior for generated code or accelerator modes.

@@ -11,6 +11,22 @@ chinese_source: official
 
 # Data Type Duplicate
 
+强制所有输入为相同数据类型
+
+## 所属库
+
+Simulink / Signal Attributes HDL Coder / Signal Attributes
+
+## 描述
+
+Data Type Duplicate 模块强制所有输入具有相同的数据类型。输入信号的其他属性，例如维度、复杂度和采样时间，都是独立的。
+
+您可以使用 Data Type Duplicate 模块来检查模块之间数据类型的一致性。如果所有信号不具有相同的数据类型，则该模块返回错误消息。
+
+Data Type Duplicate 模块的典型用法是，一个到该模块的信号控制所有其他模块的数据类型。其他模块设置为通过反向传播继承其数据类型。
+
+该模块在用户创建的库中也很有用。这些库模块可以放置在任何模型中，并且所有库模块的数据类型都是根据模型中的用途进行配置的。要创建具有比复制更复杂的数据类型规则的库模块，请使用 Data Type Propagation 模块。
+
 ## 端口
 
 ### 输入
@@ -42,10 +58,6 @@ chinese_source: official
 | **值:** 实值正整数 |
 | **默认值：**`'2'` |
 
-## 所属库
-
-Simulink / Signal Attributes HDL Coder / Signal Attributes
-
 ## 模块特性
 
 |  |  |
@@ -72,18 +84,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-强制所有输入为相同数据类型
-
-Data Type Duplicate 模块强制所有输入具有相同的数据类型。输入信号的其他属性，例如维度、复杂度和采样时间，都是独立的。
-
-您可以使用 Data Type Duplicate 模块来检查模块之间数据类型的一致性。如果所有信号不具有相同的数据类型，则该模块返回错误消息。
-
-Data Type Duplicate 模块的典型用法是，一个到该模块的信号控制所有其他模块的数据类型。其他模块设置为通过反向传播继承其数据类型。
-
-该模块在用户创建的库中也很有用。这些库模块可以放置在任何模型中，并且所有库模块的数据类型都是根据模型中的用途进行配置的。要创建具有比复制更复杂的数据类型规则的库模块，请使用 Data Type Propagation 模块。

@@ -10,6 +10,29 @@ language: en
 
 # Combinatorial Logic
 
+Implement truth table
+
+## Libraries
+
+Simulink / Logic and Bit Operations
+
+## Description
+
+The Combinatorial Logic block implements a standard truth table for
+modeling programmable logic arrays (PLAs), logic circuits, decision tables, and other
+Boolean expressions. You can use this block in conjunction with Memory blocks to implement finite-state machines or flip-flops.
+
+**Tip**
+
+To programmatically add this block to a model named `untitled`,
+use a command such as:
+
+```
+open_system(new_system);
+add_block(sprintf('simulink/Logic and Bit\nOperations/Combinatorial \nLogic'),...
+'untitled/Combinatorial Logic');
+```
+
 ## Ports
 
 ### Input
@@ -77,10 +100,6 @@ u(1)*2`m-1
 | **Values**: matrix |
 | **Default**: `'[0 0;0 1;0 1;1 0;0 1;1 0;1 0;1 1]'` |
 
-## Libraries
-
-Simulink / Logic and Bit Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -98,22 +117,3 @@ Simulink / Logic and Bit Operations
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Implement truth table
-
-The Combinatorial Logic block implements a standard truth table for
-modeling programmable logic arrays (PLAs), logic circuits, decision tables, and other
-Boolean expressions. You can use this block in conjunction with Memory blocks to implement finite-state machines or flip-flops.
-
-**Tip**
-
-To programmatically add this block to a model named `untitled`,
-use a command such as:
-
-```
-open_system(new_system);
-add_block(sprintf('simulink/Logic and Bit\nOperations/Combinatorial \nLogic'),...
-'untitled/Combinatorial Logic');
-```

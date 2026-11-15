@@ -10,6 +10,18 @@ language: en
 
 # Resettable Delay
 
+Delay input signal by variable sample period and reset with external signal
+
+## Libraries
+
+Simulink / Discrete HDL Coder / Discrete
+
+## Description
+
+The Resettable Delay block is a variant of the Delay block that has the source of the
+initial condition set to `Input port` and the external
+reset algorithm set to `Rising`, by default.
+
 ## Ports
 
 ### Input
@@ -399,10 +411,6 @@ To enable this parameter, specify a value for **State name**. This parameter app
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
-## Libraries
-
-Simulink / Discrete HDL Coder / Discrete
-
 ## Block Characteristics
 
 |  |  |
@@ -435,11 +443,3 @@ Delay page.
 ## Version History
 
 **Introduced in R2012b**
-
-## Description
-
-Delay input signal by variable sample period and reset with external signal
-
-The Resettable Delay block is a variant of the Delay block that has the source of the
-initial condition set to `Input port` and the external
-reset algorithm set to `Rising`, by default.

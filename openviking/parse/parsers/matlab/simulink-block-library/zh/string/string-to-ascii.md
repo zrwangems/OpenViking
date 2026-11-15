@@ -11,6 +11,16 @@ chinese_source: official
 
 # String to ASCII
 
+将字符串信号转换为 uint8 向量
+
+## 所属库
+
+Simulink / String
+
+## 描述
+
+String To ASCII 模块将字符串信号转换为 uint8 向量。该模块将字符串中的每个字符转换为其对应的 ASCII 值。例如，该模块将输入字符串 `"Hello"` 转换为 `[72 101 108 108 111]`。
+
 ## 端口
 
 ### 输入
@@ -43,10 +53,6 @@ chinese_source: official
 | **值：**标量 |
 | **默认值：**`'31'` |
 
-## 所属库
-
-Simulink / String
-
 ## 模块特性
 
 |  |  |
@@ -61,16 +67,10 @@ Simulink / String
 
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2018a 中推出**
 
 ### R2024b: String to ASCII 模块输出维度变化
 
 String to ASCII 模块输出维度已从 2D 行向量（例如 2×*N* 向量）更改为 1D 向量 *N*。*N* 是元素的数量。
-
-## 描述
-
-将字符串信号转换为 uint8 向量
-
-String To ASCII 模块将字符串信号转换为 uint8 向量。该模块将字符串中的每个字符转换为其对应的 ASCII 值。例如，该模块将输入字符串 `"Hello"` 转换为 `[72 101 108 108 111]`。

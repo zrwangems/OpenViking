@@ -11,6 +11,18 @@ chinese_source: official
 
 # Transfer Fcn Lead or Lag
 
+实现离散时间超前或滞后补偿器
+
+## 所属库
+
+Simulink / Discrete
+
+## 描述
+
+Transfer Fcn Lead or Lag 模块实现输入的离散时间超前或滞后补偿器。补偿器的即时增益为 1，DC 增益等于 `(1-z)/(1-p)`，其中 `z` 是零，`p` 是补偿器的极点。
+
+该模块在 `0<z<p<1` 时实现一个超前补偿器，在 `0<p<z<1` 时实现一个滞后补偿器。
+
 ## 端口
 
 ### 输入
@@ -112,10 +124,6 @@ chinese_source: official
 | **值：**`'off' | 'on'` |
 | **默认值：**`'off'` |
 
-## 所属库
-
-Simulink / Discrete
-
 ## 模块特性
 
 |  |  |
@@ -137,14 +145,6 @@ Simulink / Discrete
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-实现离散时间超前或滞后补偿器
-
-Transfer Fcn Lead or Lag 模块实现输入的离散时间超前或滞后补偿器。补偿器的即时增益为 1，DC 增益等于 `(1-z)/(1-p)`，其中 `z` 是零，`p` 是补偿器的极点。
-
-该模块在 `0<z<p<1` 时实现一个超前补偿器，在 `0<p<z<1` 时实现一个滞后补偿器。

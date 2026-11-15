@@ -11,6 +11,24 @@ chinese_source: worker-translation
 
 # Message Merge
 
+
+
+合并消息路径
+
+## 库
+
+Simulink / Messages & Events
+
+## 描述
+
+Message Merge 模块以图形方式将多条消息线合并为单条消息线。合并消息线不会改变消息本身。您可以指定要合并的消息线数量。
+
+当您想要合并多个传入消息并输出到单个目标（例如队列或消息存储模块）时，请使用此模块。
+
+**注意**
+
+Message Merge 模块在 AUTOSAR 模式下不支持代码生成。
+
 ## 端口
 
 ### 输入
@@ -49,10 +67,6 @@ chinese_source: worker-translation
 | **值**: `'2'` | scalar |
 | **默认值**: `'2'` |
 
-## 所属库
-
-Simulink / Messages & Events
-
 ## 模块特性
 
 |  |  |
@@ -70,15 +84,3 @@ Simulink / Messages & Events
 ## 版本历史
 
 **在 R2021a 中引入**
-
-## 描述
-
-合并消息路径
-
-Message Merge 模块以图形方式将多条消息线合并为单条消息线。合并消息线不会改变消息本身。您可以指定要合并的消息线数量。
-
-当您想要合并多个传入消息并输出到单个目标（例如队列或消息存储模块）时，请使用此模块。
-
-**注意**
-
-Message Merge 模块在 AUTOSAR 模式下不支持代码生成。

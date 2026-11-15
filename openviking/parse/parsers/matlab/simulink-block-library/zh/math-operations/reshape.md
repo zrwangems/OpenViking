@@ -11,6 +11,16 @@ chinese_source: official
 
 # Reshape
 
+更改信号的维度
+
+## 所属库
+
+Simulink / Math Operations HDL Coder / Math Operations
+
+## 描述
+
+Reshape 模块可以使用**输出维度**参数，将输入信号的维度更改为您指定的维度。例如，您可以使用该模块将 *N* 元素向量更改为 1×*N* 或 *N*×1 矩阵信号。
+
 ## 端口
 
 ### 输入
@@ -68,10 +78,6 @@ chinese_source: official
 | **值**：`'[1,1]'` | `'integer'` | `'[integer,integer]'` |
 | **默认值**：`'[1,1]'` |
 
-## 所属库
-
-Simulink / Math Operations HDL Coder / Math Operations
-
 ## 模块特性
 
 |  |  |
@@ -116,12 +122,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-更改信号的维度
-
-Reshape 模块可以使用**输出维度**参数，将输入信号的维度更改为您指定的维度。例如，您可以使用该模块将 *N* 元素向量更改为 1×*N* 或 *N*×1 矩阵信号。

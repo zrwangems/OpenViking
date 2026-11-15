@@ -11,13 +11,88 @@ chinese_source: worker-translation
 
 # Callback Button
 
-## 端口
 
-R2025b 官方文档未提供。
+
+使用按钮执行 MATLAB 代码
+
+## 库
+
+Simulink / Dashboard
+
+## 描述
+
+Callback Button 模块响应单击（立即释放指针）或按下（延迟释放指针）运行 MATLAB® 代码。您可以为单击指定与按下不同的代码。当您按下按钮时，代码要么在您指定的时间段后执行，要么按您指定的时间间隔执行。您可以自定义 Callback Button 模块的外观，使其看起来像实际系统中的按钮。将 Callback Button 模块与其他 dashboard 模块一起使用，创建交互式 dashboard 以控制您的模型。
+
+当 Callback Button 模块处于*活动*状态时，您可以与该模块表示的 gadget 交互。单击活动的 Callback Button 模块会按下虚拟按钮。当您按住指针时，按钮被按下。当您释放指针时，按钮被释放。当仿真正在运行、模块位于在其自己的窗口中打开或已停靠且未锁定的 panel 中，或者由单击或按下触发的至少一个回调具有非空值时，Callback Button 模块处于活动状态。要选择活动的 Callback Button 模块而不按下按钮，请按 **Shift**，然后单击该模块。要打开活动的 Callback Button 模块的 Block Parameters 对话框，请按 **Shift**，然后双击该模块。
+
+当模块处于非活动状态时，您只能与该模块交互，例如执行调整大小或拖动模块等操作。要临时激活非活动的 Callback Button 模块，请单击该模块。当您取消选择 Callback Button 模块时，该模块再次变为非活动状态。
+
+使用回调函数指定按下按钮时要执行的操作：
+
+- `PressFcn` 函数在按钮被按下时运行。您可以将按钮配置为在按钮被按下时仅运行 `PressFcn` 函数一次，也可以指定重复间隔。要仅运行一次，请将重复间隔指定为 `0`。
+- `ClickFcn` 函数在您释放按钮时运行。
+
+您可以通过将 **Button Type** 设置为 `Latched`，将按钮配置为在释放指针后仍保持按下。当您选择 latched 按钮类型时：
+
+- 要锁存按钮，请单击该按钮。
+- 要取消锁存按钮，请再次单击该按钮。
+
+`PressFcn` 函数在按钮被锁存时运行。`ClickFcn` 函数在您锁存按钮时运行一次，并在您取消锁存按钮时运行一次。
+
+您可以使用状态指定 Callback Button 模块的外观在您与按钮交互时如何变化：
+
+- 当您按下按钮时，模块处于 `Pressed` 状态。
+- 当按钮被锁存且您未按下它时，模块处于 `Latched` 状态。
+- 当按钮被锁存且您正在按下它时，模块处于 `Latched and Pressed` 状态。
+- 当模块不处于这三种状态中的任何一种时，它处于 `Default` 状态。
+
+状态将指针操作与以下内容配对：
+
+- 状态标签
+- 状态图标
+- 状态图像
+
+### 自定义 Callback Button 模块
+
+当您将 Callback Button 模块添加到模型时，该模块预配置为默认设计。您可以按默认设计使用该模块，也可以自定义该模块的外观。
+
+要自定义模块的外观，请使用设计模式。选择该模块后，您可以通过以下三种方式之一进入设计模式：
+
+- 在 Simulink® Toolstrip 中，在模块特定的选项卡上，在 **Design** 下，单击 **Edit**。
+- 在 Property Inspector 中，在 **Design** 选项卡上，单击 **Edit**。
+- 暂停在模块上方出现的省略号上，然后单击 Edit Custom Block 按钮 。
+
+Callback Button 模块处于设计模式，工具栏和 Property Inspector 中的 Design 选项卡可见。
+
+设计 Callback Button 模块时，您为每个可能的状态配置模块外观。当您将 **Block Type** 配置为 `Momentary` 时，模块有两个状态。当您将 **Block Type** 配置为 `Latch` 时，模块有四个。
+
+您可以使用模块上方的工具栏切换状态。对于每个状态，您可以：
+
+- 上传状态图像。
+- 上传状态图标并指定图标相对于状态标签的位置。
+- 指定 State Label 文本、颜色、不透明度和位置。
+
+您还可以上传前景或背景图像，或设置纯色背景颜色。前景和背景应用于所有状态。
+
+使用模块上方的工具栏配置图像、图标以及 State Label 的颜色和不透明度。
+
+您可以使用 Property Inspector 中的 **Design** 选项卡精细控制模块设计，并为设计设置输入精确值。
+
+使用 **Design** 选项卡可以：
+
+- 指定 State Label 文本和位置。
+- 指定图标位置。
+- 上传前景图像。
+- 上传背景图像。
+- 设置纯色背景颜色。
+
+完成设计编辑后，要退出设计模式，请单击画布右上角的 **X**。
 
 ## 参数
 
 使用 Property Inspector 和 Block Parameters 对话框指定模块参数的值。要设置 dashboard 模块的核心参数，请使用 Block Parameters 对话框或 Property Inspector 中的 **Parameters** 选项卡。要自定义模块，请使用 Property Inspector 中的 **Design** 选项卡。要打开模块的 Block Parameters 对话框，请双击该模块。要打开 Property Inspector，请在 **Modeling** 选项卡上，在 **Design** 下，选择 **Property Inspector**。
+
+## 参数
 
 要设置 dashboard 模块的核心参数，请打开 Property Inspector 并单击 **Parameters** 选项卡。
 
@@ -372,10 +447,6 @@ R2025b 官方文档未提供。
 
 选择此参数以在使用 Property Inspector 调整图像大小时保持宽高比。
 
-## 所属库
-
-Simulink / Dashboard
-
 ## 模块特性
 
 |  |  |
@@ -391,10 +462,6 @@ Simulink / Dashboard
 ### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 dashboard 模块在代码生成时被忽略。
-
-## 扩展功能
-
-R2025b 官方文档未提供。
 
 ## 版本历史
 
@@ -483,74 +550,3 @@ R2025b 官方文档未提供。
 ### R2019a: 以编程方式添加和配置 dashboard 模块
 
 从 R2019a 开始，您可以使用 `add_block` 和 `set_param` 等函数在模型中创建和配置来自 Dashboard 库的模块。
-
-## 描述
-
-使用按钮执行 MATLAB 代码
-
-Callback Button 模块响应单击（立即释放指针）或按下（延迟释放指针）运行 MATLAB® 代码。您可以为单击指定与按下不同的代码。当您按下按钮时，代码要么在您指定的时间段后执行，要么按您指定的时间间隔执行。您可以自定义 Callback Button 模块的外观，使其看起来像实际系统中的按钮。将 Callback Button 模块与其他 dashboard 模块一起使用，创建交互式 dashboard 以控制您的模型。
-
-当 Callback Button 模块处于*活动*状态时，您可以与该模块表示的 gadget 交互。单击活动的 Callback Button 模块会按下虚拟按钮。当您按住指针时，按钮被按下。当您释放指针时，按钮被释放。当仿真正在运行、模块位于在其自己的窗口中打开或已停靠且未锁定的 panel 中，或者由单击或按下触发的至少一个回调具有非空值时，Callback Button 模块处于活动状态。要选择活动的 Callback Button 模块而不按下按钮，请按 **Shift**，然后单击该模块。要打开活动的 Callback Button 模块的 Block Parameters 对话框，请按 **Shift**，然后双击该模块。
-
-当模块处于非活动状态时，您只能与该模块交互，例如执行调整大小或拖动模块等操作。要临时激活非活动的 Callback Button 模块，请单击该模块。当您取消选择 Callback Button 模块时，该模块再次变为非活动状态。
-
-使用回调函数指定按下按钮时要执行的操作：
-
-- `PressFcn` 函数在按钮被按下时运行。您可以将按钮配置为在按钮被按下时仅运行 `PressFcn` 函数一次，也可以指定重复间隔。要仅运行一次，请将重复间隔指定为 `0`。
-- `ClickFcn` 函数在您释放按钮时运行。
-
-您可以通过将 **Button Type** 设置为 `Latched`，将按钮配置为在释放指针后仍保持按下。当您选择 latched 按钮类型时：
-
-- 要锁存按钮，请单击该按钮。
-- 要取消锁存按钮，请再次单击该按钮。
-
-`PressFcn` 函数在按钮被锁存时运行。`ClickFcn` 函数在您锁存按钮时运行一次，并在您取消锁存按钮时运行一次。
-
-您可以使用状态指定 Callback Button 模块的外观在您与按钮交互时如何变化：
-
-- 当您按下按钮时，模块处于 `Pressed` 状态。
-- 当按钮被锁存且您未按下它时，模块处于 `Latched` 状态。
-- 当按钮被锁存且您正在按下它时，模块处于 `Latched and Pressed` 状态。
-- 当模块不处于这三种状态中的任何一种时，它处于 `Default` 状态。
-
-状态将指针操作与以下内容配对：
-
-- 状态标签
-- 状态图标
-- 状态图像
-
-### 自定义 Callback Button 模块
-
-当您将 Callback Button 模块添加到模型时，该模块预配置为默认设计。您可以按默认设计使用该模块，也可以自定义该模块的外观。
-
-要自定义模块的外观，请使用设计模式。选择该模块后，您可以通过以下三种方式之一进入设计模式：
-
-- 在 Simulink® Toolstrip 中，在模块特定的选项卡上，在 **Design** 下，单击 **Edit**。
-- 在 Property Inspector 中，在 **Design** 选项卡上，单击 **Edit**。
-- 暂停在模块上方出现的省略号上，然后单击 Edit Custom Block 按钮 。
-
-Callback Button 模块处于设计模式，工具栏和 Property Inspector 中的 Design 选项卡可见。
-
-设计 Callback Button 模块时，您为每个可能的状态配置模块外观。当您将 **Block Type** 配置为 `Momentary` 时，模块有两个状态。当您将 **Block Type** 配置为 `Latch` 时，模块有四个。
-
-您可以使用模块上方的工具栏切换状态。对于每个状态，您可以：
-
-- 上传状态图像。
-- 上传状态图标并指定图标相对于状态标签的位置。
-- 指定 State Label 文本、颜色、不透明度和位置。
-
-您还可以上传前景或背景图像，或设置纯色背景颜色。前景和背景应用于所有状态。
-
-使用模块上方的工具栏配置图像、图标以及 State Label 的颜色和不透明度。
-
-您可以使用 Property Inspector 中的 **Design** 选项卡精细控制模块设计，并为设计设置输入精确值。
-
-使用 **Design** 选项卡可以：
-
-- 指定 State Label 文本和位置。
-- 指定图标位置。
-- 上传前景图像。
-- 上传背景图像。
-- 设置纯色背景颜色。
-
-完成设计编辑后，要退出设计模式，请单击画布右上角的 **X**。

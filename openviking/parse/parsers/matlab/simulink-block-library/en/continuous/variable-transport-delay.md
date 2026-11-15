@@ -10,6 +10,62 @@ language: en
 
 # Variable Transport Delay
 
+Delay input by variable amount of time
+
+## Libraries
+
+Simulink / Continuous
+
+## Description
+
+The Variable Transport Delay and Variable Time
+Delay blocks appear as two blocks in the Simulink® block library. However, they are the same Simulink block with different settings for the **Select delay
+type** parameter. Use this parameter to specify the mode in which the block
+operates.
+
+### Variable Transport Delay
+
+In this mode, the block output at the current time step is equal to the value of its data
+(top, or left) input at an earlier time step equal to the current time minus a
+transport delay.
+
+y(t)=u(t−td(t))
+
+Simulink software finds the transport delay, td(t), by solving the following equation:
+
+∫t−td(t)t1ti(τ)dτ=1
+
+This equation involves an instantaneous time delay, ti(t), given by the time delay (bottom, or right) input.
+
+Suppose that you want to use this block to model the fluid flow through a pipe where the fluid
+speed varies with time. In this case, the time delay input to the block is
+
+ti(t)=Lvi(t)
+
+where `L` is the length of the pipe and vi(t) is the speed of the fluid.
+
+### Variable Time Delay
+
+In this mode, the block has a data input, a time delay input, and a data output. (See Identify Port Location on Rotated or Flipped Block for a description of the port order for various block orientations.) The output at the current time step equals the value of its data input at a previous time step. This time step is the current simulation time minus a delay time specified by the time delay input.
+
+y(t)=u(t−t0)=u(t−τ(t))
+
+During the simulation, the block stores time and input value pairs in an internal buffer. At the start of simulation, the block outputs the value of the **Initial output** parameter until the simulation time exceeds the time delay input. Then, at each simulation step, the block outputs the signal at the time that corresponds to the current simulation time minus the delay time.
+
+If you want the output at a time between input storing times and the solver is a continuous
+solver, the block interpolates linearly between points. If the time delay is smaller than
+the step size, the block extrapolates an output point from a previous point. For example,
+consider a fixed-step simulation with a step size of `1` and the current
+time at `t = 5`. If the delay is `0.5`, the block must
+generate a point at `t = 4.5`, but the most recent stored time value is at
+`t = 4`. Thus, the block extrapolates the input at
+`4.5` from the input at `4` and uses the extrapolated
+value as its output at `t = 5`.
+
+Extrapolating forward from the previous time step can produce a less accurate result than extrapolating back from the current time step. However, the block cannot use the current input to calculate its output value because the input port does not have direct feedthrough.
+
+If the model specifies a discrete solver, the block does not interpolate between time steps. Instead, it returns the nearest stored value that precedes the required value.
+
 ## Ports
 
 ### Input
@@ -288,10 +344,6 @@ To enable this parameter, set **Select delay type** to `Variable transport delay
 | **Values:** `' '` | user-defined character vector, user-defined string |
 | **Default:** `' '` |
 
-## Libraries
-
-Simulink / Continuous
-
 ## Block Characteristics
 
 |  |  |
@@ -322,55 +374,3 @@ approximate discretization.
 ## Version History
 
 **Introduced in R2007a**
-
-## Description
-
-Delay input by variable amount of time
-
-The Variable Transport Delay and Variable Time
-Delay blocks appear as two blocks in the Simulink® block library. However, they are the same Simulink block with different settings for the **Select delay
-type** parameter. Use this parameter to specify the mode in which the block
-operates.
-
-### Variable Transport Delay
-
-In this mode, the block output at the current time step is equal to the value of its data
-(top, or left) input at an earlier time step equal to the current time minus a
-transport delay.
-
-y(t)=u(t−td(t))
-
-Simulink software finds the transport delay, td(t), by solving the following equation:
-
-∫t−td(t)t1ti(τ)dτ=1
-
-This equation involves an instantaneous time delay, ti(t), given by the time delay (bottom, or right) input.
-
-Suppose that you want to use this block to model the fluid flow through a pipe where the fluid
-speed varies with time. In this case, the time delay input to the block is
-
-ti(t)=Lvi(t)
-
-where `L` is the length of the pipe and vi(t) is the speed of the fluid.
-
-### Variable Time Delay
-
-In this mode, the block has a data input, a time delay input, and a data output. (See Identify Port Location on Rotated or Flipped Block for a description of the port order for various block orientations.) The output at the current time step equals the value of its data input at a previous time step. This time step is the current simulation time minus a delay time specified by the time delay input.
-
-y(t)=u(t−t0)=u(t−τ(t))
-
-During the simulation, the block stores time and input value pairs in an internal buffer. At the start of simulation, the block outputs the value of the **Initial output** parameter until the simulation time exceeds the time delay input. Then, at each simulation step, the block outputs the signal at the time that corresponds to the current simulation time minus the delay time.
-
-If you want the output at a time between input storing times and the solver is a continuous
-solver, the block interpolates linearly between points. If the time delay is smaller than
-the step size, the block extrapolates an output point from a previous point. For example,
-consider a fixed-step simulation with a step size of `1` and the current
-time at `t = 5`. If the delay is `0.5`, the block must
-generate a point at `t = 4.5`, but the most recent stored time value is at
-`t = 4`. Thus, the block extrapolates the input at
-`4.5` from the input at `4` and uses the extrapolated
-value as its output at `t = 5`.
-
-Extrapolating forward from the previous time step can produce a less accurate result than extrapolating back from the current time step. However, the block cannot use the current input to calculate its output value because the input port does not have direct feedthrough.
-
-If the model specifies a discrete solver, the block does not interpolate between time steps. Instead, it returns the nearest stored value that precedes the required value.

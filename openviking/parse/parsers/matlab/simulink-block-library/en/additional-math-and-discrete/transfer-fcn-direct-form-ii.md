@@ -10,6 +10,21 @@ language: en
 
 # Transfer Fcn Direct Form II
 
+Implement Direct Form II realization of transfer function
+
+## Libraries
+
+Simulink / Additional Math & Discrete / Additional Discrete
+
+## Description
+
+The Transfer Fcn Direct Form II block implements a Direct Form II realization
+of the transfer function that the **Numerator coefficients** and
+**Denominator coefficients excluding lead** parameters specify. The
+block supports only single input-single output (SISO) transfer functions.
+
+The block automatically selects the data types and scalings of the output, the coefficients, and any temporary variables.
+
 ## Ports
 
 ### Input
@@ -102,10 +117,6 @@ saturation code.
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
-## Libraries
-
-Simulink / Additional Math & Discrete / Additional Discrete
-
 ## Block Characteristics
 
 |  |  |
@@ -133,14 +144,3 @@ unit by selecting the **Treat as atomic unit** option.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Implement Direct Form II realization of transfer function
-
-The Transfer Fcn Direct Form II block implements a Direct Form II realization
-of the transfer function that the **Numerator coefficients** and
-**Denominator coefficients excluding lead** parameters specify. The
-block supports only single input-single output (SISO) transfer functions.
-
-The block automatically selects the data types and scalings of the output, the coefficients, and any temporary variables.

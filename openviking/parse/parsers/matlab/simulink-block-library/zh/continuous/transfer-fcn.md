@@ -11,6 +11,79 @@ chinese_source: official
 
 # Transfer Fcn
 
+将线性系统建模为传递函数
+
+## 所属库
+
+Simulink / Continuous
+
+## 描述
+
+Transfer Fcn 模块通过拉普拉斯域变量 *`s`* 的传递函数为线性系统建模。此模块可为单输入单输出 (SISO) 和单输入多输出 (SIMO) 系统建模。
+
+### 使用此模块的条件
+
+Transfer Fcn 模块假定满足以下条件：
+
+- 传递函数的格式为
+
+  H(s)=y(s)u(s)=num(s)den(s)=num(1)snn−1+num(2)snn−2+…+num(nn)den(1)snd−1+den(2)snd−2+…+den(nd),
+
+  其中 *u* 和 *y* 分别代表系统输入和输出，*nn* 和 *nd* 分别是分子和分母系数。*num(s)* 和 *den(s)* 包含分子和分母的 *s* 降幂系数。
+- 分母的阶必须大于或等于分子的阶。
+- 对于多输出系统，所有传递函数具有相同的分母，而所有分子具有相同的阶次。
+
+### 为单输出系统建模
+
+对于单输出系统，模块的输入和输出是标量时域信号。要为此系统建模，请执行以下操作：
+
+1. 在**分子系数**字段中输入传递函数的分子系数向量。
+2. 在**分母系数**字段中输入传递函数的分母系数向量。
+
+### 为多输出系统建模
+
+对于多输出系统，模块输入为标量，输出为向量，其中每个元素都是系统的一个输出。要为此系统建模，请执行以下操作：
+
+1. 在**分子系数**字段中输入矩阵。
+
+   此矩阵的每一*行*包含确定一个模块输出的传递函数的分子系数。
+2. 在**分母系数**字段中输入系统所有传递函数的公分母系数向量。
+
+### 指定初始条件
+
+传递函数描述了输入和输出在拉普拉斯（频率）域中的关系。具体而言，它被定义为零初始条件的系统对冲激输入的响应（输出）的拉普拉斯变换。
+
+传递函数的乘法和除法等运算依赖于零初始状态。例如，您可以将一个复杂的传递函数分解为一系列简单的传递函数。按顺序应用它们可获得与原始传递函数相同的响应。如果其中一个传递函数采用非零初始状态，结果将不正确。而且，一个传递函数有无限多个时域实现，大多数状态并没有任何物理意义。
+
+由于这些原因，Simulink® 将 Transfer Fcn 模块的初始条件预设为零。要指定给定传递函数的初始条件，请使用 `tf2ss` 将传递函数转换为可控制的典型状态空间实现。然后，使用 State-Space 模块。`tf2ss` 实用工具为系统提供了 `A`、`B`、`C` 和 `D` 矩阵。
+
+有关详细信息，请键入 `help tf2ss`，或者参阅 Control System Toolbox™ 文档。
+
+### 传递函数在模块上的显示
+
+Transfer Fcn 模块根据指定的分子和分母参数来显示传递函数。
+
+- 如果这两个参数指定为表达式或向量，该模块将使用 *s* 的幂的指定系数显示传递函数。如果在括号中指定变量，模块将计算变量。
+
+  例如，如果您将**分子系数**参数值指定为 `[3 2 1]`，将**分母系数**参数值指定为 `(den)`，其中 `den` 是工作区变量，其值为 `[7 5 3 1]`，则模块将使用指定的值显示方程。
+
+  Transfer Fcn block that displays the numerator and denominator of the transfer function both as a polynomial function of s.
+
+  **提示**
+
+  当模块大小太小而无法容纳完整的分子或分母时，模块图标将分子显示为 `num(s)`，分母显示为 `den(s)`。
+
+  A Transfer Fcn block that is not wide enough to display the equation.
+
+  如果您要模块显示它实现的传递函数的方程，请通过拖动角来调整模块的大小。
+
+  A pointer is positioned to drag the lower-right corner of the Transfer Fcn block, resizing the block so it is wide enough to display the equation that represents the transfer function.
+- 如果将这两个参数指定为变量，模块将显示后跟 `(s)` 的变量名称。
+
+  例如，如果将**分子系数**参数指定为 `num`，将**分母系数**参数指定为 `den`，则模块图标将传递函数的分子显示为 `num(s)`，分母显示为 `den(s)`。
+
+  Transfer Fcn block with the Numerator coefficients parameter specified as num and the Denominator coefficients parameter specified as den.
+
 ## 端口
 
 ### 输入
@@ -134,10 +207,6 @@ chinese_source: official
 
 **示例:** `set_param("MyModel/Descriptor State-Space",ContinuousStateAttributes={'position','velocity'})`
 
-## 所属库
-
-Simulink / Continuous
-
 ## 模块特性
 
 |  |  |
@@ -159,75 +228,6 @@ Simulink / Continuous
 
 通常，考虑使用 Simulink 模型离散化器将连续模块映射到支持生产代码生成的离散等效模块。要启动模型离散化器，请在 Simulink 编辑器中，在 **App** 选项卡上，在 **App** 下，在**控制系统**下，点击**模型离散化器**。一个例外是 Second-Order Integrator 模块，因为对于该模块，模型离散化器产生近似离散化。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-将线性系统建模为传递函数
-
-Transfer Fcn 模块通过拉普拉斯域变量 *`s`* 的传递函数为线性系统建模。此模块可为单输入单输出 (SISO) 和单输入多输出 (SIMO) 系统建模。
-
-### 使用此模块的条件
-
-Transfer Fcn 模块假定满足以下条件：
-
-- 传递函数的格式为
-
-  H(s)=y(s)u(s)=num(s)den(s)=num(1)snn−1+num(2)snn−2+…+num(nn)den(1)snd−1+den(2)snd−2+…+den(nd),
-
-  其中 *u* 和 *y* 分别代表系统输入和输出，*nn* 和 *nd* 分别是分子和分母系数。*num(s)* 和 *den(s)* 包含分子和分母的 *s* 降幂系数。
-- 分母的阶必须大于或等于分子的阶。
-- 对于多输出系统，所有传递函数具有相同的分母，而所有分子具有相同的阶次。
-
-### 为单输出系统建模
-
-对于单输出系统，模块的输入和输出是标量时域信号。要为此系统建模，请执行以下操作：
-
-1. 在**分子系数**字段中输入传递函数的分子系数向量。
-2. 在**分母系数**字段中输入传递函数的分母系数向量。
-
-### 为多输出系统建模
-
-对于多输出系统，模块输入为标量，输出为向量，其中每个元素都是系统的一个输出。要为此系统建模，请执行以下操作：
-
-1. 在**分子系数**字段中输入矩阵。
-
-   此矩阵的每一*行*包含确定一个模块输出的传递函数的分子系数。
-2. 在**分母系数**字段中输入系统所有传递函数的公分母系数向量。
-
-### 指定初始条件
-
-传递函数描述了输入和输出在拉普拉斯（频率）域中的关系。具体而言，它被定义为零初始条件的系统对冲激输入的响应（输出）的拉普拉斯变换。
-
-传递函数的乘法和除法等运算依赖于零初始状态。例如，您可以将一个复杂的传递函数分解为一系列简单的传递函数。按顺序应用它们可获得与原始传递函数相同的响应。如果其中一个传递函数采用非零初始状态，结果将不正确。而且，一个传递函数有无限多个时域实现，大多数状态并没有任何物理意义。
-
-由于这些原因，Simulink® 将 Transfer Fcn 模块的初始条件预设为零。要指定给定传递函数的初始条件，请使用 `tf2ss` 将传递函数转换为可控制的典型状态空间实现。然后，使用 State-Space 模块。`tf2ss` 实用工具为系统提供了 `A`、`B`、`C` 和 `D` 矩阵。
-
-有关详细信息，请键入 `help tf2ss`，或者参阅 Control System Toolbox™ 文档。
-
-### 传递函数在模块上的显示
-
-Transfer Fcn 模块根据指定的分子和分母参数来显示传递函数。
-
-- 如果这两个参数指定为表达式或向量，该模块将使用 *s* 的幂的指定系数显示传递函数。如果在括号中指定变量，模块将计算变量。
-
-  例如，如果您将**分子系数**参数值指定为 `[3 2 1]`，将**分母系数**参数值指定为 `(den)`，其中 `den` 是工作区变量，其值为 `[7 5 3 1]`，则模块将使用指定的值显示方程。
-
-  Transfer Fcn block that displays the numerator and denominator of the transfer function both as a polynomial function of s.
-
-  **提示**
-
-  当模块大小太小而无法容纳完整的分子或分母时，模块图标将分子显示为 `num(s)`，分母显示为 `den(s)`。
-
-  A Transfer Fcn block that is not wide enough to display the equation.
-
-  如果您要模块显示它实现的传递函数的方程，请通过拖动角来调整模块的大小。
-
-  A pointer is positioned to drag the lower-right corner of the Transfer Fcn block, resizing the block so it is wide enough to display the equation that represents the transfer function.
-- 如果将这两个参数指定为变量，模块将显示后跟 `(s)` 的变量名称。
-
-  例如，如果将**分子系数**参数指定为 `num`，将**分母系数**参数指定为 `den`，则模块图标将传递函数的分子显示为 `num(s)`，分母显示为 `den(s)`。
-
-  Transfer Fcn block with the Numerator coefficients parameter specified as num and the Denominator coefficients parameter specified as den.

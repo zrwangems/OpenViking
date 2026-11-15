@@ -10,6 +10,18 @@ language: en
 
 # Submatrix
 
+Select subset of elements (submatrix) from matrix input
+
+## Libraries
+
+Simulink / Matrix Operations
+
+## Description
+
+The Submatrix block extracts a contiguous submatrix, *y*,
+from the *M*-by-*N* input matrix `u`.
+For more information about selecting the rows and columns to extract, see Range Specification Options.
+
 ## Ports
 
 ### Input
@@ -239,10 +251,6 @@ To enable this parameter, set **Ending column** to
 `Offset from middle` or `Offset
 from last`.
 
-## Libraries
-
-Simulink / Matrix Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -270,11 +278,3 @@ conditions.
 ### R2021b: Create Submatrix Block Moved to Simulink Matrix Operations Library
 
 The Submatrix block has been moved from the **DSP System Toolbox** > **Math Functions** > **Matrices and Linear Algebra** > **Matrix Operations** library to the **Simulink** > **Matrix Operations**library. All existing models continue to work.
-
-## Description
-
-Select subset of elements (submatrix) from matrix input
-
-The Submatrix block extracts a contiguous submatrix, *y*,
-from the *M*-by-*N* input matrix `u`.
-For more information about selecting the rows and columns to extract, see Range Specification Options.

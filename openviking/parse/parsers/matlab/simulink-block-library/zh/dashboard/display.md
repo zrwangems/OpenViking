@@ -11,9 +11,29 @@ chinese_source: official
 
 # Display
 
-## 端口
+在仿真期间显示信号值
 
-R2025b 官方文档未提供。
+## 所属库
+
+Simulink / Dashboard
+
+## 描述
+
+Display 模块连接到模型中的信号，并在仿真期间显示信号值。您可以配置 Display 模块的外观和格式，以直观显示数据值。您可以在仿真过程中编辑 Display 模块的参数。Display 模块可以显示复信号、向量信号和二维矩阵信号。将 Display 模块与其他 Dashboard 模块结合使用，为您的模型构建包含各种控件和指示器的交互式仪表板。
+
+### 连接 Dashboard 模块
+
+Dashboard 模块不使用端口来连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标在要连接的模块上暂停并点击连接按钮 。要在已连接的模块上进入连接模式，请选择该模块，在显示的省略号 (…) 上暂停，然后在展开的操作菜单中点击连接按钮。
+
+要将显示模块连接到模型中的信号或更改显示模块的连接，请进入连接模式。选择要连接的信号线。从出现的列表中，选择您要连接的信号。然后，请在 Dashboard 模块上悬停并点击完成连接按钮 。要查看 Dashboard 模块显示连接模块的值，请运行仿真。
+
+有关连接 Dashboard 模块的详细信息，请参阅Connect Dashboard Blocks to Simulink Model。
+
+您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅Connect Dashboard Blocks to Stateflow (Stateflow)。
+
+此动画说明如何将 Display 模块连接到您的模型。
+
+An unconnected Display block connects to the signal that a Ramp block sends to a Terminator block.
 
 ## 参数
 
@@ -210,10 +230,6 @@ Display 模块中的文本对齐。
 | **类型：**`[r g b]` 向量 |
 | **默认值**：`[0.502 0.502 0.502]` |
 
-## 所属库
-
-Simulink / Dashboard
-
 ## 模块特性
 
 |  |  |
@@ -230,26 +246,6 @@ Simulink / Dashboard
 
 Dashboard 模块在代码生成中会被忽略。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2017b 中推出**
-
-## 描述
-
-在仿真期间显示信号值
-
-Display 模块连接到模型中的信号，并在仿真期间显示信号值。您可以配置 Display 模块的外观和格式，以直观显示数据值。您可以在仿真过程中编辑 Display 模块的参数。Display 模块可以显示复信号、向量信号和二维矩阵信号。将 Display 模块与其他 Dashboard 模块结合使用，为您的模型构建包含各种控件和指示器的交互式仪表板。
-
-### 连接 Dashboard 模块
-
-Dashboard 模块不使用端口来连接到模型元素。要连接 Dashboard 模块，请使用连接模式。要在未连接的模块上进入连接模式，请将鼠标在要连接的模块上暂停并点击连接按钮 。要在已连接的模块上进入连接模式，请选择该模块，在显示的省略号 (…) 上暂停，然后在展开的操作菜单中点击连接按钮。
-
-要将显示模块连接到模型中的信号或更改显示模块的连接，请进入连接模式。选择要连接的信号线。从出现的列表中，选择您要连接的信号。然后，请在 Dashboard 模块上悬停并点击完成连接按钮 。要查看 Dashboard 模块显示连接模块的值，请运行仿真。
-
-有关连接 Dashboard 模块的详细信息，请参阅Connect Dashboard Blocks to Simulink Model。
-
-您还可以将 Dashboard 模块连接到 Stateflow® 图。有关详细信息，请参阅Connect Dashboard Blocks to Stateflow (Stateflow)。
-
-此动画说明如何将 Display 模块连接到您的模型。
-
-An unconnected Display block connects to the signal that a Ramp block sends to a Terminator block.

@@ -10,6 +10,21 @@ language: en
 
 # Complex to Magnitude-Angle
 
+Compute magnitude and/or phase angle of complex signal
+
+## Libraries
+
+Simulink / Math Operations
+
+## Description
+
+The Complex to Magnitude-Angle block outputs the magnitude and/or phase angle of the
+input signal, depending on the setting of the **Output** parameter. The
+outputs are real values of the same data type as the block input. The input can be an
+array of complex signals, in which case the output signals are also arrays. The
+magnitude signal array contains the magnitudes of the corresponding complex input
+elements. The angle output similarly contains the angles of the input elements.
+
 ## Ports
 
 ### Input
@@ -137,10 +152,6 @@ the `set_param` function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
 
-## Libraries
-
-Simulink / Math Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -172,14 +183,3 @@ Number of iterations, lets you define the number of iterations for the CORDIC
 algorithm.
 
 Complex to Magnitude-Angle block icon with CORDIC approximation method input
-
-## Description
-
-Compute magnitude and/or phase angle of complex signal
-
-The Complex to Magnitude-Angle block outputs the magnitude and/or phase angle of the
-input signal, depending on the setting of the **Output** parameter. The
-outputs are real values of the same data type as the block input. The input can be an
-array of complex signals, in which case the output signals are also arrays. The
-magnitude signal array contains the magnitudes of the corresponding complex input
-elements. The angle output similarly contains the angles of the input elements.

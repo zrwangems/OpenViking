@@ -11,6 +11,18 @@ chinese_source: worker-translation
 
 # Expand Scalar
 
+
+
+使用标量扩展从标量创建矩阵
+
+## 库
+
+Simulink / Matrix Operations
+
+## 描述
+
+Expand Scalar 模块输出一个标量扩展矩阵，其中矩阵中的每个元素都具有相同的值。
+
 ## 端口
 
 ### 输出
@@ -156,10 +168,6 @@ chinese_source: worker-translation
 | **值：** | `'1'`（默认）| 标量 |
 | **数据类型：** | `char` |
 
-## 所属库
-
-Simulink / Matrix Operations
-
 ## 模块特性
 
 |  |  |
@@ -181,9 +189,3 @@ Simulink / Matrix Operations
 ### R2024b：Expand Scalar 模块支持 `struct` 扩展
 
 Expand Scalar 模块现在支持使用 Simulink 总线数据类型的 MATLAB® `struct` 扩展。
-
-## 描述
-
-使用标量扩展从标量创建矩阵
-
-Expand Scalar 模块输出一个标量扩展矩阵，其中矩阵中的每个元素都具有相同的值。

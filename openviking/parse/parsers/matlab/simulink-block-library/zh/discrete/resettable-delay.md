@@ -11,6 +11,16 @@ chinese_source: official
 
 # Resettable Delay
 
+按可变采样周期延迟输入信号，并用外部信号重置
+
+## 所属库
+
+Simulink / Discrete HDL Coder / Discrete
+
+## 描述
+
+Resettable Delay 模块是 Delay 模块的变体，默认情况下，初始条件的来源设置为 `Input port`，外部重置算法设置为 `Rising`。
+
 ## 端口
 
 ### 输入
@@ -320,10 +330,6 @@ Simulink® 使用舍入到最邻近值运算和饱和处理，将**初始条件*
 | **值：**`'off' | 'on'` |
 | **默认值：**`'off'` |
 
-## 所属库
-
-Simulink / Discrete HDL Coder / Discrete
-
 ## 模块特性
 
 |  |  |
@@ -347,12 +353,6 @@ Simulink / Discrete HDL Coder / Discrete
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2012b 中推出**
-
-## 描述
-
-按可变采样周期延迟输入信号，并用外部信号重置
-
-Resettable Delay 模块是 Delay 模块的变体，默认情况下，初始条件的来源设置为 `Input port`，外部重置算法设置为 `Rising`。

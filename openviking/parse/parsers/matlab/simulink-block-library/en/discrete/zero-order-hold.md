@@ -10,109 +10,13 @@ language: en
 
 # Zero-Order Hold
 
-## Ports
-
-### Input
-
-### **Port\_1** — Input signal scalar | vector
-
-Input signal that the block holds by one sample period.
-
-**Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-### Output
-
-### **Port\_1** — Output signal scalar | vector
-
-Output signal that is the input held by one sample period.
-
-**Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
-## Parameters
-
-### **Sample time (-1 for inherited)** — Discrete interval between sample time hits `-1` (default) | `scalar`
-
-Specify the time interval between samples. To inherit the sample time, set this parameter
-to `-1`. See Specify Sample Time for
-more information.
-
-Do not specify a continuous sample time (`0` or
-`[0,0]`). This block supports only discrete sample times.
-When this parameter is `-1`, the inherited sample time must
-be discrete and not continuous.
-
-#### Programmatic Use
-
-To set the block parameter value programmatically, use
-the `set_param` function.
-
-To get the block parameter value
-programmatically, use the `get_param` function.
-
-|  |  |
-| --- | --- |
-| **Parameter:** | `SampleTime` |
-| **Values:** | `-1` (default) | positive scalar number |
-| **Data Types:** | `char` | `string` |
-
-**Example:** `set_param("mdl/Zero-Order
-Hold","SampleTime","0.1")` specifies a discrete sample
-time of `0.1` for the Zero-Order
-Hold block named `Zero-Order Hold` in
-the model named `mdl`.
+Implement zero-order hold sample period
 
 ## Libraries
 
 Simulink / Discrete HDL Coder / Discrete
 
-## Block Characteristics
-
-|  |  |
-| --- | --- |
-| **Data Types** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `integer` | `single` |
-| **Direct Feedthrough** | `yes` |
-| **Multidimensional Signals** | `no` |
-| **Variable-Size Signals** | `no` |
-| **Zero-Crossing Detection** | `no` |
-
-## Extended Capabilities
-
-### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
-
-Generated code relies on `memcpy` or `memset`
-functions (`strong.h`) under certain conditions.
-
-### HDL Code Generation Generate VHDL, Verilog and SystemVerilog code for FPGA and ASIC designs using HDL Coder™.
-
-HDL Coder™ provides additional configuration options that affect HDL
-implementation and synthesized logic.
-
-**HDL Architecture**
-
-This block has one default HDL architecture.
-
-**HDL Block Properties**
-
-|  |  |
-| --- | --- |
-| **ConstrainedOutputPipeline** | Number of registers to place at the outputs by moving existing delays within your design. Distributed pipelining does not redistribute these registers. The default is `0`. For more details, see ConstrainedOutputPipeline (HDL Coder). |
-| **InputPipeline** | Number of input pipeline stages to insert in the generated code. Distributed pipelining and constrained output pipelining can move these registers. The default is `0`. For more details, see InputPipeline (HDL Coder). |
-| **OutputPipeline** | Number of output pipeline stages to insert in the generated code. Distributed pipelining and constrained output pipelining can move these registers. The default is `0`. For more details, see OutputPipeline (HDL Coder). |
-
-**Complex Data Support**
-
-This block supports code generation for complex signals.
-
-### PLC Code Generation Generate Structured Text code using Simulink® PLC Coder™.
-
-### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
-
-## Version History
-
-**Introduced before R2006a**
-
 ## Description
-
-Implement zero-order hold sample period
 
 The Zero-Order Hold block holds its input for the sample period you
 specify. If the input is a vector, the block holds all elements of the vector for the
@@ -163,3 +67,99 @@ Each block has the following capabilities.
 | Specification of sample time | No, because the block can only inherit sample time from the driving block or the solver used for the entire model. | Yes | Yes |
 | Support for frame-based signals | No | Yes | Yes |
 | Support for state logging | No | Yes | No |
+
+## Ports
+
+### Input
+
+### **Port\_1** — Input signal scalar | vector
+
+Input signal that the block holds by one sample period.
+
+**Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+### Output
+
+### **Port\_1** — Output signal scalar | vector
+
+Output signal that is the input held by one sample period.
+
+**Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+
+## Parameters
+
+### **Sample time (-1 for inherited)** — Discrete interval between sample time hits `-1` (default) | `scalar`
+
+Specify the time interval between samples. To inherit the sample time, set this parameter
+to `-1`. See Specify Sample Time for
+more information.
+
+Do not specify a continuous sample time (`0` or
+`[0,0]`). This block supports only discrete sample times.
+When this parameter is `-1`, the inherited sample time must
+be discrete and not continuous.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+To get the block parameter value
+programmatically, use the `get_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `SampleTime` |
+| **Values:** | `-1` (default) | positive scalar number |
+| **Data Types:** | `char` | `string` |
+
+**Example:** `set_param("mdl/Zero-Order
+Hold","SampleTime","0.1")` specifies a discrete sample
+time of `0.1` for the Zero-Order
+Hold block named `Zero-Order Hold` in
+the model named `mdl`.
+
+## Block Characteristics
+
+|  |  |
+| --- | --- |
+| **Data Types** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `integer` | `single` |
+| **Direct Feedthrough** | `yes` |
+| **Multidimensional Signals** | `no` |
+| **Variable-Size Signals** | `no` |
+| **Zero-Crossing Detection** | `no` |
+
+## Extended Capabilities
+
+### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
+
+Generated code relies on `memcpy` or `memset`
+functions (`strong.h`) under certain conditions.
+
+### HDL Code Generation Generate VHDL, Verilog and SystemVerilog code for FPGA and ASIC designs using HDL Coder™.
+
+HDL Coder™ provides additional configuration options that affect HDL
+implementation and synthesized logic.
+
+**HDL Architecture**
+
+This block has one default HDL architecture.
+
+**HDL Block Properties**
+
+|  |  |
+| --- | --- |
+| **ConstrainedOutputPipeline** | Number of registers to place at the outputs by moving existing delays within your design. Distributed pipelining does not redistribute these registers. The default is `0`. For more details, see ConstrainedOutputPipeline (HDL Coder). |
+| **InputPipeline** | Number of input pipeline stages to insert in the generated code. Distributed pipelining and constrained output pipelining can move these registers. The default is `0`. For more details, see InputPipeline (HDL Coder). |
+| **OutputPipeline** | Number of output pipeline stages to insert in the generated code. Distributed pipelining and constrained output pipelining can move these registers. The default is `0`. For more details, see OutputPipeline (HDL Coder). |
+
+**Complex Data Support**
+
+This block supports code generation for complex signals.
+
+### PLC Code Generation Generate Structured Text code using Simulink® PLC Coder™.
+
+### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
+
+## Version History
+
+**Introduced before R2006a**

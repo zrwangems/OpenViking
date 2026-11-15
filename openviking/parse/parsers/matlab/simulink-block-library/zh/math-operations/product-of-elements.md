@@ -11,6 +11,31 @@ chinese_source: official
 
 # Product of Elements
 
+复制或求一个标量输入的倒数，或者缩减一个非标量输入
+
+## 所属库
+
+Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
+
+## 描述
+
+Product of Elements 模块输入一个标量、向量或矩阵。您可以使用此模块：
+
+- 原样复制标量输入
+- 求标量输入的倒数（用 1 除以它）
+- 通过将所有元素相乘或者对元素进行连续逆变，将向量或矩阵缩减为标量
+- 使用以下选项之一将矩阵缩减为向量：
+
+  - 将每一行或每一列的元素相乘
+  - 对每一行或每一列的元素进行连续逆变
+
+Product of Elements 模块在功能上相当于预设了两个模块参数值的 Product 模块：
+
+- **乘法**：**按元素(.\*)**
+- **输入数目**：**\***
+
+将这两个参数之一设置为非默认值即可将 Product of Elements 模块更改为在功能上等效于 Product 模块或 Divide 模块。
+
 ## 端口
 
 ### 输入
@@ -424,10 +449,6 @@ chinese_source: official
 
 要启用此参数，请将**定标**设置为**斜率和偏置**。
 
-## 所属库
-
-Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
-
 ## 模块特性
 
 |  |  |
@@ -491,27 +512,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-复制或求一个标量输入的倒数，或者缩减一个非标量输入
-
-Product of Elements 模块输入一个标量、向量或矩阵。您可以使用此模块：
-
-- 原样复制标量输入
-- 求标量输入的倒数（用 1 除以它）
-- 通过将所有元素相乘或者对元素进行连续逆变，将向量或矩阵缩减为标量
-- 使用以下选项之一将矩阵缩减为向量：
-
-  - 将每一行或每一列的元素相乘
-  - 对每一行或每一列的元素进行连续逆变
-
-Product of Elements 模块在功能上相当于预设了两个模块参数值的 Product 模块：
-
-- **乘法**：**按元素(.\*)**
-- **输入数目**：**\***
-
-将这两个参数之一设置为非默认值即可将 Product of Elements 模块更改为在功能上等效于 Product 模块或 Divide 模块。

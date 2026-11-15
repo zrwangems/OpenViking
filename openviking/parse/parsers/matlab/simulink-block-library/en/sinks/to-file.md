@@ -10,6 +10,51 @@ language: en
 
 # To File
 
+Write data to file
+
+## Libraries
+
+Simulink / Sinks HDL Coder / Sinks
+
+## Description
+
+The To File block writes input signal data into a MAT file.
+The block writes to the output file incrementally, with minimal memory overhead during
+simulation. If the output file exists when the simulation starts, the block overwrites
+the file. The file automatically closes when you pause the simulation or the simulation
+completes. If simulation terminates abnormally, the To File block saves
+the data it has logged up until the point of the abnormal termination.
+
+The To File block icon shows the name of the output file.
+
+### Control Amount of Data Saved
+
+If you specify data logging intervals with the **Configuration Parameters** >  **Data Import/Export** >  **Logging intervals** parameter, the To File block logs only data inside of
+the intervals. For example, the block logs no data if the intervals are empty
+(`[]`). The block stores the logged data in the file associated
+with the block instead of in the variable that you specify for the **Single
+simulation output** parameter.
+
+For variable-step solvers, to control the amount of data available to the
+To File block, use the **Configuration Parameters** >  **Data Import/Export** >  **Additional parameters** >  **Output options** parameter. For example, to write data at identical time points over
+multiple simulations, select the `Produce specified output only`
+option.
+
+Block parameters also control the amount of data saved. See Decimation and Sample time.
+
+### Pause Simulation
+
+After pausing a simulation, do not alter any file that a To File
+block logs into. For example, do not save such a file with the MATLAB®
+`save` command. Altering the file can cause an error when you
+resume the simulation. If you want to alter the file after pausing, copy the file
+and work with the copy of the file.
+
+If you pause using the Simulation Stepper, the To File block
+captures the simulation data up to the point of the pause. When you step back, the
+To File data file no longer contains any simulation data past the
+new reduced time of the last output.
+
 ## Ports
 
 ### Input
@@ -160,10 +205,6 @@ block to inherit the sample time from the driving block. See Specify Sample Time
 | **Values:** scalar | vector |
 | **Default:** `'-1'` |
 
-## Libraries
-
-Simulink / Sinks HDL Coder / Sinks
-
 ## Block Characteristics
 
 |  |  |
@@ -221,44 +262,3 @@ Supports up to 32-bit fixed-point data types.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Write data to file
-
-The To File block writes input signal data into a MAT file.
-The block writes to the output file incrementally, with minimal memory overhead during
-simulation. If the output file exists when the simulation starts, the block overwrites
-the file. The file automatically closes when you pause the simulation or the simulation
-completes. If simulation terminates abnormally, the To File block saves
-the data it has logged up until the point of the abnormal termination.
-
-The To File block icon shows the name of the output file.
-
-### Control Amount of Data Saved
-
-If you specify data logging intervals with the **Configuration Parameters** >  **Data Import/Export** >  **Logging intervals** parameter, the To File block logs only data inside of
-the intervals. For example, the block logs no data if the intervals are empty
-(`[]`). The block stores the logged data in the file associated
-with the block instead of in the variable that you specify for the **Single
-simulation output** parameter.
-
-For variable-step solvers, to control the amount of data available to the
-To File block, use the **Configuration Parameters** >  **Data Import/Export** >  **Additional parameters** >  **Output options** parameter. For example, to write data at identical time points over
-multiple simulations, select the `Produce specified output only`
-option.
-
-Block parameters also control the amount of data saved. See Decimation and Sample time.
-
-### Pause Simulation
-
-After pausing a simulation, do not alter any file that a To File
-block logs into. For example, do not save such a file with the MATLAB®
-`save` command. Altering the file can cause an error when you
-resume the simulation. If you want to alter the file after pausing, copy the file
-and work with the copy of the file.
-
-If you pause using the Simulation Stepper, the To File block
-captures the simulation data up to the point of the pause. When you step back, the
-To File data file no longer contains any simulation data past the
-new reduced time of the last output.

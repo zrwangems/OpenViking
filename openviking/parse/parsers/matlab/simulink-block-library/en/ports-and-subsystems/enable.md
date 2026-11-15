@@ -10,6 +10,25 @@ language: en
 
 # Enable
 
+Add enable port to subsystem or model
+
+## Libraries
+
+Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
+
+## Description
+
+The Enable block allows an external signal to control execution of a
+subsystem or a model. To enable this functionality, add the block to a
+Subsystem block or at the root level of a model that is referenced by a
+Model block.
+
+If you use an enable port at the root-level of a model:
+
+- For multi-rate models, set the solver to single-tasking.
+- For models with a fixed-step size, at least one block in the model must run at
+  the specified fixed-step size rate.
+
 ## Ports
 
 ### Output
@@ -330,10 +349,6 @@ off
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'on'` |
 
-## Libraries
-
-Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
-
 ## Block Characteristics
 
 |  |  |
@@ -366,18 +381,3 @@ This block has one default HDL architecture.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Add enable port to subsystem or model
-
-The Enable block allows an external signal to control execution of a
-subsystem or a model. To enable this functionality, add the block to a
-Subsystem block or at the root level of a model that is referenced by a
-Model block.
-
-If you use an enable port at the root-level of a model:
-
-- For multi-rate models, set the solver to single-tasking.
-- For models with a fixed-step size, at least one block in the model must run at
-  the specified fixed-step size rate.

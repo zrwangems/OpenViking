@@ -11,6 +11,22 @@ chinese_source: official
 
 # S-Function Builder
 
+集成 C 或 C++ 代码以创建 S-Function
+
+## 所属库
+
+Simulink / User-Defined Functions
+
+## 描述
+
+S-function Builder 模块集成新的或现有 C 或 C++ 代码，并根据您提供的设定创建 C MEX S-Function（系统函数）。C MEX S-Function 是用 C 或 C++ 编写的 Simulink® 模块的计算机语言描述。S-Function 使用一种称为 S-Function API 的特殊调用语法，使您能够与 Simulink 引擎进行交互。这种交互与该引擎和内置 Simulink 模块之间发生的交互非常相似。要了解有关 C MEX S-Function 的更多信息，请参阅什么是 S-Function。要了解有关使用 S-function Builder 模块编译 C MEX S-Function 的更多信息，请参阅Build S-Functions Automatically Using S-Function Builder。有关使用分步过程的示例，请参阅Use a Bus with S-Function Builder to Create an S-Function。
+
+S-Function Builder 模块实例还作为 Simulink 模型中生成的 S-Function 的包装器。当对包含 S-Function Builder 模块实例的模型进行仿真时，Simulink 会调用生成的 C MEX S-Function，以调用 `mdlStart`、`mdlOutputs`、`mdlDerivatives`、`mdlUpdate` 和 `mdlTerminate` 方法实例中的 C 或 C++ 代码。要了解 Simulink 引擎如何与 S-Function 交互，请参阅 Simulink Engine Interaction with C S-Functions。
+
+**注意**
+
+S-Function Builder 模块不支持封装。但是，您可以封装包含 S-Function Builder 模块的 Subsystem 模块。有关详细信息，请参阅Create Library Blocks Using Self-Modifiable Masks and Variant Blocks。
+
 ## 端口
 
 ### 输入
@@ -85,10 +101,6 @@ A, B, C, D, [eye(2,2);zeros(2,2)]
 | **参数:** | `SFunctionModules` |
 | **值:** | `''` (默认) | filenames in quotes |
 
-## 所属库
-
-Simulink / User-Defined Functions
-
 ## 模块特性
 
 |  |  |
@@ -107,18 +119,6 @@ Simulink / User-Defined Functions
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-集成 C 或 C++ 代码以创建 S-Function
-
-S-function Builder 模块集成新的或现有 C 或 C++ 代码，并根据您提供的设定创建 C MEX S-Function（系统函数）。C MEX S-Function 是用 C 或 C++ 编写的 Simulink® 模块的计算机语言描述。S-Function 使用一种称为 S-Function API 的特殊调用语法，使您能够与 Simulink 引擎进行交互。这种交互与该引擎和内置 Simulink 模块之间发生的交互非常相似。要了解有关 C MEX S-Function 的更多信息，请参阅什么是 S-Function。要了解有关使用 S-function Builder 模块编译 C MEX S-Function 的更多信息，请参阅Build S-Functions Automatically Using S-Function Builder。有关使用分步过程的示例，请参阅Use a Bus with S-Function Builder to Create an S-Function。
-
-S-Function Builder 模块实例还作为 Simulink 模型中生成的 S-Function 的包装器。当对包含 S-Function Builder 模块实例的模型进行仿真时，Simulink 会调用生成的 C MEX S-Function，以调用 `mdlStart`、`mdlOutputs`、`mdlDerivatives`、`mdlUpdate` 和 `mdlTerminate` 方法实例中的 C 或 C++ 代码。要了解 Simulink 引擎如何与 S-Function 交互，请参阅 Simulink Engine Interaction with C S-Functions。
-
-**注意**
-
-S-Function Builder 模块不支持封装。但是，您可以封装包含 S-Function Builder 模块的 Subsystem 模块。有关详细信息，请参阅Create Library Blocks Using Self-Modifiable Masks and Variant Blocks。

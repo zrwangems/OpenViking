@@ -11,6 +11,28 @@ chinese_source: official
 
 # Interpreted MATLAB Function
 
+（将删除）对输入应用 MATLAB 函数或表达式
+
+## 所属库
+
+Simulink / User-Defined Functions
+
+## 描述
+
+Interpreted MATLAB Function 模块用于将指定的 MATLAB® 函数或表达式应用于输入。函数的输出必须与模块的输出维度相匹配。请仅在当前工作区中使用 Interpreted MATLAB Function 模块。
+
+针对此模块的部分有效表达式包括：
+
+```
+sin
+atan2(u(1), u(2))
+u(1)^u(2)
+```
+
+**注意**
+
+此模块很慢，因为它在每个积分步中都会调用 MATLAB 解析器。请考虑改用内置模块（如 Math Function 模块）。或者，您可以编写 MEX 文件 S-Function 形式的函数，然后使用 S-Function 模块访问该函数。
+
 ## 端口
 
 ### 输入
@@ -58,10 +80,6 @@ Interpreted MATLAB Function 模块接受一个 `double` 类型的实数或复数
 
 此参数在模块对话框中不可见，除非将其显式设置为 `-1` 以外的值。要了解详细信息，请参阅不建议设置采样时间的模块。
 
-## 所属库
-
-Simulink / User-Defined Functions
-
 ## 模块特性
 
 |  |  |
@@ -72,32 +90,10 @@ Simulink / User-Defined Functions
 | **可变大小信号** | `否` |
 | **过零检测** | `否` |
 
-## 扩展功能
-
-R2025b 官方文档未提供。
-
-## 版本历史
+## 版本历史记录
 
 **在 R2011a 中推出**
 
 ### R2022b: 将删除
 
 在以后的版本中将会删除 Interpreted MATLAB Function 模块。推荐改用内置模块。如果建模需要 MATLAB 代码，请使用 MATLAB Function 模块。您还可以考虑将该函数编写为 MEX 文件 S-Function，并使用 S-Function 模块来实现它。
-
-## 描述
-
-（将删除）对输入应用 MATLAB 函数或表达式
-
-Interpreted MATLAB Function 模块用于将指定的 MATLAB® 函数或表达式应用于输入。函数的输出必须与模块的输出维度相匹配。请仅在当前工作区中使用 Interpreted MATLAB Function 模块。
-
-针对此模块的部分有效表达式包括：
-
-```
-sin
-atan2(u(1), u(2))
-u(1)^u(2)
-```
-
-**注意**
-
-此模块很慢，因为它在每个积分步中都会调用 MATLAB 解析器。请考虑改用内置模块（如 Math Function 模块）。或者，您可以编写 MEX 文件 S-Function 形式的函数，然后使用 S-Function 模块访问该函数。

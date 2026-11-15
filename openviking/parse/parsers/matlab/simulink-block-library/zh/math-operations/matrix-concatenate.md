@@ -11,6 +11,22 @@ chinese_source: official
 
 # Matrix Concatenate
 
+串联相同数据类型的输入矩阵以进行迭代处理
+
+## 所属库
+
+Simulink / Math Operations Simulink / Matrix Operations DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations HDL Coder / Math Operations
+
+## 描述
+
+Matrix Concatenate 模块会串联输入信号以创建一个非标量信号，您可以使用子系统（例如，For Each、While Iterator 或 For Iterator 子系统）对其进行迭代处理。
+
+您可以使用多个 Matrix Concatenate 模块分多个阶段创建输出信号，但结果沿每个串联维度上都是平面结构，就像您只使用一个模块串联信号一样。
+
+输出信号中信号的显示顺序与沿串联维度的模块的输入信号相同。有关各种模块方向的端口顺序的描述，请参阅标识旋转或翻转模块上的端口位置。
+
+您必须使用 Vector Concatenate 或 Matrix Concatenate 模块来定义总线数组。有关详细信息，请参阅 使用总线数组组合非虚拟总线。
+
 ## 端口
 
 ### 输入
@@ -115,10 +131,6 @@ chinese_source: official
 
 **示例:** `set_param(gcb,'ConcatenateDimension','2')`
 
-## 所属库
-
-Simulink / Math Operations Simulink / Matrix Operations DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations HDL Coder / Math Operations
-
 ## 模块特性
 
 |  |  |
@@ -185,18 +197,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2009b 中推出**
-
-## 描述
-
-串联相同数据类型的输入矩阵以进行迭代处理
-
-Matrix Concatenate 模块会串联输入信号以创建一个非标量信号，您可以使用子系统（例如，For Each、While Iterator 或 For Iterator 子系统）对其进行迭代处理。
-
-您可以使用多个 Matrix Concatenate 模块分多个阶段创建输出信号，但结果沿每个串联维度上都是平面结构，就像您只使用一个模块串联信号一样。
-
-输出信号中信号的显示顺序与沿串联维度的模块的输入信号相同。有关各种模块方向的端口顺序的描述，请参阅标识旋转或翻转模块上的端口位置。
-
-您必须使用 Vector Concatenate 或 Matrix Concatenate 模块来定义总线数组。有关详细信息，请参阅 使用总线数组组合非虚拟总线。

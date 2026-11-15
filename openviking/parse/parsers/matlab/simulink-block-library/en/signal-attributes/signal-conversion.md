@@ -10,6 +10,22 @@ language: en
 
 # Signal Conversion
 
+Convert signal to new type without altering signal values
+
+## Libraries
+
+Simulink / Signal Attributes HDL Coder / Signal Attributes
+
+## Description
+
+The Signal Conversion block converts a signal from one type to another. To
+select the type of conversion to perform, use the **Output**
+parameter or one of the preconfigured Signal Conversion blocks:
+
+- Signal Copy block
+- To Virtual Bus block
+- To Nonvirtual Bus block
+
 ## Ports
 
 ### Input
@@ -146,10 +162,6 @@ the `set_param` function.
 
 **Example:** `set_param(gcb,'OverrideOpt','on')`
 
-## Libraries
-
-Simulink / Signal Attributes HDL Coder / Signal Attributes
-
 ## Block Characteristics
 
 |  |  |
@@ -192,15 +204,3 @@ This block supports code generation for complex signals.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Convert signal to new type without altering signal values
-
-The Signal Conversion block converts a signal from one type to another. To
-select the type of conversion to perform, use the **Output**
-parameter or one of the preconfigured Signal Conversion blocks:
-
-- Signal Copy block
-- To Virtual Bus block
-- To Nonvirtual Bus block

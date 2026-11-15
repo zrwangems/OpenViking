@@ -10,6 +10,82 @@ language: en
 
 # Pulse Generator
 
+Generate square wave pulses at regular intervals
+
+## Libraries
+
+Simulink / Sources
+
+## Description
+
+The Pulse Generator block generates square wave pulses at regular intervals.
+The block waveform parameters, **Amplitude**, **Pulse
+Width**, **Period**, and **Phase delay**,
+determine the shape of the output waveform. The following diagram shows how each
+parameter affects the waveform.
+
+The Pulse Generator block can emit scalar, vector, or
+matrix signals of any real data type. To emit a scalar signal, use scalars to specify
+the waveform parameters. To emit a vector or matrix signal, use vectors or matrices,
+respectively, to specify the waveform parameters. Each element of the waveform
+parameters affects the corresponding element of the output signal. For example, the
+first element of a vector amplitude parameter determines the amplitude of the first
+element of a vector output pulse. All the waveform parameters must have the same
+dimensions after scalar expansion. The data type of the output is the same as the data
+type of the **Amplitude** parameter.
+
+The block output can be generated in time-based or sample-based modes, determined by the
+**Pulse type** parameter.
+
+### Time-Based Mode
+
+In time-based mode, Simulink® computes the block output only at times when the output actually
+changes. This approach results in fewer computations for the block output over the
+simulation time period. Activate this mode by setting the **Pulse
+type** parameter to `Time based`.
+
+The block does not support a time-based configuration that results in a constant
+output signal. Simulink returns an error if the parameters **Pulse Width**
+and **Period** satisfy either of these conditions:
+
+Period​\*PulseWidth100=0Period​\*PulseWidth100=Period
+
+Depending on the pulse waveform characteristics, the intervals between changes in
+the block output can vary. For this reason, a time-based Pulse Generator block has a
+variable sample time. The sample time color of such blocks is brown (see View Sample Time Information
+for more information).
+
+Simulink cannot use a fixed-step solver to compute the output of a time-based
+pulse generator. If you specify a fixed-step solver for models that contain
+time-based pulse generators, Simulink computes a fixed sample time for the time-based pulse generators. Then
+the time-based pulse generators simulate as sample based.
+
+If you use a fixed-step solver and the **Pulse type** is `Time based`, choose the step size such that the
+period, phase delay, and pulse width (in seconds) are integer multiples of the
+solver step size. For example, suppose that the period is `4`
+seconds, the pulse width is `75%` (that is, `3`
+s), and the phase delay is `1` s. In this case, the computed sample
+time is `1` s. Therefore, choose a fixed-step size of
+`1` or a number that divides `1` exactly (for
+example, `0.25`). To ensure this setting, select
+`auto` on the **Solver** pane of the
+Configuration Parameters dialog box.
+
+### Sample-Based Mode
+
+In sample-based mode, the block computes its outputs at fixed intervals that you
+specify. Activate this mode by setting the **Pulse type** parameter
+to `Sample based`.
+
+An important difference between the time-based and sample-based modes is that in time-based
+mode, the block output is based on simulation time, and in sample-based mode, the
+block output depends only on the simulation start, regardless of elapsed simulation
+time.
+
+This block supports reset semantics in sample-based mode. For example, if a Pulse
+Generator block is in a resettable subsystem that hits a reset trigger,
+the block output resets to its initial condition.
+
 ## Ports
 
 ### Output
@@ -162,10 +238,6 @@ For more information on how this parameter is used, see Determine the Output Dim
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
 
-## Libraries
-
-Simulink / Sources
-
 ## Block Characteristics
 
 |  |  |
@@ -205,75 +277,3 @@ subsystem.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Generate square wave pulses at regular intervals
-
-The Pulse Generator block generates square wave pulses at regular intervals.
-The block waveform parameters, **Amplitude**, **Pulse
-Width**, **Period**, and **Phase delay**,
-determine the shape of the output waveform. The following diagram shows how each
-parameter affects the waveform.
-
-The Pulse Generator block can emit scalar, vector, or
-matrix signals of any real data type. To emit a scalar signal, use scalars to specify
-the waveform parameters. To emit a vector or matrix signal, use vectors or matrices,
-respectively, to specify the waveform parameters. Each element of the waveform
-parameters affects the corresponding element of the output signal. For example, the
-first element of a vector amplitude parameter determines the amplitude of the first
-element of a vector output pulse. All the waveform parameters must have the same
-dimensions after scalar expansion. The data type of the output is the same as the data
-type of the **Amplitude** parameter.
-
-The block output can be generated in time-based or sample-based modes, determined by the
-**Pulse type** parameter.
-
-### Time-Based Mode
-
-In time-based mode, Simulink® computes the block output only at times when the output actually
-changes. This approach results in fewer computations for the block output over the
-simulation time period. Activate this mode by setting the **Pulse
-type** parameter to `Time based`.
-
-The block does not support a time-based configuration that results in a constant
-output signal. Simulink returns an error if the parameters **Pulse Width**
-and **Period** satisfy either of these conditions:
-
-Period​\*PulseWidth100=0Period​\*PulseWidth100=Period
-
-Depending on the pulse waveform characteristics, the intervals between changes in
-the block output can vary. For this reason, a time-based Pulse Generator block has a
-variable sample time. The sample time color of such blocks is brown (see View Sample Time Information
-for more information).
-
-Simulink cannot use a fixed-step solver to compute the output of a time-based
-pulse generator. If you specify a fixed-step solver for models that contain
-time-based pulse generators, Simulink computes a fixed sample time for the time-based pulse generators. Then
-the time-based pulse generators simulate as sample based.
-
-If you use a fixed-step solver and the **Pulse type** is `Time based`, choose the step size such that the
-period, phase delay, and pulse width (in seconds) are integer multiples of the
-solver step size. For example, suppose that the period is `4`
-seconds, the pulse width is `75%` (that is, `3`
-s), and the phase delay is `1` s. In this case, the computed sample
-time is `1` s. Therefore, choose a fixed-step size of
-`1` or a number that divides `1` exactly (for
-example, `0.25`). To ensure this setting, select
-`auto` on the **Solver** pane of the
-Configuration Parameters dialog box.
-
-### Sample-Based Mode
-
-In sample-based mode, the block computes its outputs at fixed intervals that you
-specify. Activate this mode by setting the **Pulse type** parameter
-to `Sample based`.
-
-An important difference between the time-based and sample-based modes is that in time-based
-mode, the block output is based on simulation time, and in sample-based mode, the
-block output depends only on the simulation start, regardless of elapsed simulation
-time.
-
-This block supports reset semantics in sample-based mode. For example, if a Pulse
-Generator block is in a resettable subsystem that hits a reset trigger,
-the block output resets to its initial condition.

@@ -11,6 +11,28 @@ chinese_source: official
 
 # Sign
 
+指示输入的符号
+
+## 所属库
+
+Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
+
+## 描述
+
+对于实数输入，Sign 模块将输出输入的符号：
+
+| 输入 | 输出 |
+| --- | --- |
+| 大于零 | 1 |
+| 等于零 | 0 |
+| 小于零 | -1 |
+
+当输入 `u` 为复数标量时，模块输出与 MATLAB® 结果匹配：
+
+|  |  |
+| --- | --- |
+| `sign(u) = u./ abs(u)` | **(1)** |
+
 ## 端口
 
 ### 输入
@@ -64,10 +86,6 @@ chinese_source: official
 | **参数:** | `SampleTime` |
 | **值:** | `"-1"` (默认) | scalar or vector in quotes |
 
-## 所属库
-
-Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
-
 ## 模块特性
 
 |  |  |
@@ -106,24 +124,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-指示输入的符号
-
-对于实数输入，Sign 模块将输出输入的符号：
-
-| 输入 | 输出 |
-| --- | --- |
-| 大于零 | 1 |
-| 等于零 | 0 |
-| 小于零 | -1 |
-
-当输入 `u` 为复数标量时，模块输出与 MATLAB® 结果匹配：
-
-|  |  |
-| --- | --- |
-| `sign(u) = u./ abs(u)` | **(1)** |

@@ -10,6 +10,26 @@ language: en
 
 # Stop Simulation
 
+Stop simulation when input is nonzero
+
+## Libraries
+
+Simulink / Sinks HDL Coder / Sinks
+
+## Description
+
+The Stop Simulation block stops the simulation when the input is
+nonzero. The simulation completes the current time step before terminating. If the block
+input is a vector, any nonzero vector element causes the simulation to stop.
+
+When you use the Stop Simulation block in a For Iterator subsystem, the stop action
+occurs after execution of *all* iterations in the subsystem during a
+time step. The stop action does not interrupt execution until the start of the next time
+step.
+
+You cannot use the Stop Simulation block to pause the simulation. To
+create a block that pauses the simulation, see Pause Simulation Using Assertion Blocks.
+
 ## Ports
 
 ### Input
@@ -21,14 +41,6 @@ signals of `double` or `Boolean` data
 types.
 
 **Data Types:** `double` | `Boolean`
-
-## Parameters
-
-Not documented in R2025b.
-
-## Libraries
-
-Simulink / Sinks HDL Coder / Sinks
 
 ## Block Characteristics
 
@@ -73,19 +85,3 @@ Generated code stops executing when the stop condition is true.
 ## Version History
 
 **Introduced before R2006a**
-
-## Description
-
-Stop simulation when input is nonzero
-
-The Stop Simulation block stops the simulation when the input is
-nonzero. The simulation completes the current time step before terminating. If the block
-input is a vector, any nonzero vector element causes the simulation to stop.
-
-When you use the Stop Simulation block in a For Iterator subsystem, the stop action
-occurs after execution of *all* iterations in the subsystem during a
-time step. The stop action does not interrupt execution until the start of the next time
-step.
-
-You cannot use the Stop Simulation block to pause the simulation. To
-create a block that pauses the simulation, see Pause Simulation Using Assertion Blocks.

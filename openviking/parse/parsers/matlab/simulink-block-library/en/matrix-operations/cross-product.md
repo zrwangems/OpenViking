@@ -10,6 +10,17 @@ language: en
 
 # Cross Product
 
+Cross product of two vectors
+
+## Libraries
+
+Simulink / Matrix Operations
+
+## Description
+
+The Cross Product block returns the cross product, or vector product, of
+two 3-by-1 vectors.
+
 ## Ports
 
 ### Input
@@ -33,14 +44,6 @@ Cross product of input vectors, returned as a 3-element vector.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 
-## Parameters
-
-Not documented in R2025b.
-
-## Libraries
-
-Simulink / Matrix Operations
-
 ## Block Characteristics
 
 |  |  |
@@ -58,10 +61,3 @@ Simulink / Matrix Operations
 ## Version History
 
 **Introduced in R2021b**
-
-## Description
-
-Cross product of two vectors
-
-The Cross Product block returns the cross product, or vector product, of
-two 3-by-1 vectors.

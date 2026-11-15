@@ -11,6 +11,16 @@ chinese_source: official
 
 # Unary Minus
 
+对输入求反
+
+## 所属库
+
+Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
+
+## 描述
+
+Unary Minus 模块对输入进行求反。
+
 ## 端口
 
 ### 输入
@@ -69,10 +79,6 @@ chinese_source: official
 | **参数:** | `SampleTime` |
 | **值:** | `"-1"` (默认) | scalar or vector in quotes |
 
-## 所属库
-
-Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations
-
 ## 模块特性
 
 |  |  |
@@ -116,12 +122,6 @@ HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
 
 此模块仅支持有符号定点数据类型。
 
-## 版本历史
+## 版本历史记录
 
 **在 R2006a 之前推出**
-
-## 描述
-
-对输入求反
-
-Unary Minus 模块对输入进行求反。
