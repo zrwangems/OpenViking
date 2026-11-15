@@ -297,7 +297,18 @@ def _slug(value: str) -> str:
 
 
 def _mermaid_text(value: str) -> str:
-    return value.replace('"', "'").replace("\n", " ").replace("\r", "")
+    # Mermaid treats a literal ``\\n`` as label text and HTML ``<br>`` labels
+    # currently break Studio's strict SVG/XML parser. Keep generated labels
+    # single-line and escape the edge-label delimiter.
+    return (
+        value.replace('"', "'")
+        .replace("\\n", " ")
+        .replace("\n", " ")
+        .replace("\r", "")
+        .replace("|", "&#124;")
+        .replace("(", "&#40;")
+        .replace(")", "&#41;")
+    )
 
 
 def _system_path(system: System) -> str:
@@ -535,7 +546,7 @@ def _render_system(system: System, directory: str, is_root: bool) -> str:
         shape_left, shape_right = (
             ("([", "])") if block.block_type in {"Inport", "Outport"} else ("[", "]")
         )
-        label = f"{block.name}\\n{block.block_type}"
+        label = f"{block.name} / {block.block_type}"
         lines.append(f'  {node}{shape_left}"{_mermaid_text(label)}"{shape_right}')
     for edge in system.edges:
         source_sid, source_port = _endpoint(edge.source)

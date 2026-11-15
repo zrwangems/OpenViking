@@ -1,6 +1,8 @@
 # Copyright (c) 2026 Beijing Volcano Engine Technology Co., Ltd.
 # SPDX-License-Identifier: AGPL-3.0
 
+import csv
+import io
 import json
 import zipfile
 from pathlib import Path
@@ -12,7 +14,7 @@ from openviking.parse.parsers.directory import DirectoryParser
 from openviking.parse.parsers.matlab._zip import read_xml_member
 from openviking.parse.parsers.matlab.catalog import find_block
 from openviking.parse.parsers.matlab.formats import parse_additional
-from openviking.parse.parsers.matlab.mat import parse_mat
+from openviking.parse.parsers.matlab.mat import parse_mat, parse_mat_documents
 from openviking.parse.parsers.matlab.parser import MatlabParser
 from openviking.parse.parsers.matlab.scripts import parse_m_file, parse_mlx
 from openviking.parse.parsers.matlab.sldd import parse_sldd
@@ -133,7 +135,7 @@ def test_zip_xml_member_limit(tmp_path):
             read_xml_member(archive, "simulink/blockdiagram.xml", max_bytes=16)
 
 
-def test_mat_v73_hdf5_metadata_and_preview(tmp_path):
+def test_mat_v73_hdf5_full_array_export(tmp_path):
     h5py = pytest.importorskip("h5py")
     path = tmp_path / "large.mat"
     with h5py.File(path, "w") as handle:
@@ -141,7 +143,16 @@ def test_mat_v73_hdf5_metadata_and_preview(tmp_path):
     content, warnings = parse_mat(path)
     assert "MAT v7.3 (HDF5)" in content
     assert "| trajectory | 2 × 2 |" in content
-    assert "[[1. 2.]" in content
+    documents, warnings = parse_mat_documents(path)
+    csv_path = next(name for name in documents if name.endswith(".csv"))
+    rows = list(csv.reader(io.StringIO(documents[csv_path])))
+    assert rows == [
+        ["row", "column", "value"],
+        ["1", "1", "1"],
+        ["1", "2", "2"],
+        ["2", "1", "3"],
+        ["2", "2", "4"],
+    ]
     assert not warnings
 
 
@@ -158,9 +169,17 @@ def test_mat_shapes_struct_fields_and_m_source():
     assert "| WLTC | 1800 × 2 |" in content
     assert not warnings
 
+    documents, warnings = parse_mat_documents(SAMPLE / "DriveCycle" / "WLTC.mat")
+    csv_path = next(name for name in documents if name.endswith(".csv"))
+    rows = list(csv.reader(io.StringIO(documents[csv_path])))
+    assert len(rows) == 3601
+    assert rows[0] == ["row", "column", "value"]
+    assert rows[-1][:2] == ["1800", "2"]
+    assert not warnings
+
     opaque, _ = parse_mat(SAMPLE / "Result" / "DRLEMSagent.mat")
     assert "DRLEMSagent" in opaque
-    assert "_ObjectMetadata" in opaque
+    assert "MATLAB opaque 对象" in opaque
 
     source = parse_m_file(SAMPLE / "Eng" / "Eng_param_Handle.m")
     assert "type: matlab-code" in source
@@ -185,6 +204,11 @@ async def test_builtin_parser_writes_real_nested_artifact(tmp_path):
     assert "after(0.1, sec)" in timer.read_text(encoding="utf-8")
     assert (root / ".artifact_manifest.json").is_file()
     assert result.parser_name == "MatlabParser"
+    assert not (root / "DRLHevIps" / "DRLHevIps.slx").exists()
+    for document in root.rglob("*.md"):
+        content = document.read_text(encoding="utf-8")
+        if "```mermaid" in content:
+            assert "\\n" not in content
 
 
 @pytest.mark.asyncio
@@ -199,26 +223,28 @@ async def test_whole_joint_project_upload_including_p_code(tmp_path):
     assert len(list(root.rglob("index.md"))) == 86
     assert (root / "DRLHevIps5_4" / "DriveCycle" / "WLTC.mat.md").is_file()
     assert (root / "DRLHevIps5_4" / "RunSACEMS.mlx.md").is_file()
-    # Same-stem source files need separate generated pages.
-    assert (root / "DRLHevIps5_4" / "Eng" / "Eng_param.m.md").stat().st_size > 250_000
     assert "P_max_kW" in (root / "DRLHevIps5_4" / "Eng" / "Eng_param.mat.md").read_text(
         encoding="utf-8"
     )
-    # P-code remains opaque, but both its original bytes and a compilable boundary page exist.
-    pcode = root / "DRLHevIps5_4" / "VCU_Mode_Change"
-    assert (pcode / "VCU_Mode_Change.p").read_bytes() == (SAMPLE / "VCU_Mode_Change.p").read_bytes()
-    assert "parse_status: opaque" in (pcode / "index.md").read_text(encoding="utf-8")
+    # M source remains a code resource, without a duplicate generated MD page.
+    assert (root / "DRLHevIps5_4" / "Eng" / "Eng_param.m").is_file()
+    assert not (root / "DRLHevIps5_4" / "Eng" / "Eng_param.m.md").exists()
+    assert not (root / "DRLHevIps5_4" / "Eng" / "Eng_param.mat").exists()
+    wltc = root / "DRLHevIps5_4" / "DriveCycle"
+    csv_path = next((wltc / "data").glob("*.csv"))
+    with csv_path.open(encoding="utf-8", newline="") as stream:
+        rows = list(csv.reader(stream))
+    assert len(rows) == 3601
 
-    # Parsing must not discard the only complete copy of a model, array or script.
+    # Binary containers and opaque P-code are represented only by parsed artifacts.
+    pcode = root / "DRLHevIps5_4" / "VCU_Mode_Change"
+    assert not (pcode / "VCU_Mode_Change.p").exists()
+    assert "parse_status: opaque" in (pcode / "index.md").read_text(encoding="utf-8")
     sources = [path for path in SAMPLE.rglob("*") if path.is_file()]
     assert len(sources) == 23
     for source in sources:
-        relative = source.relative_to(SAMPLE)
-        if source.suffix.lower() in {".slx", ".p"}:
-            original = root / "DRLHevIps5_4" / relative.parent / source.stem / source.name
-        else:
-            original = root / "DRLHevIps5_4" / relative
-        assert original.read_bytes() == source.read_bytes(), relative
+        if source.suffix.lower() not in {".m"}:
+            assert not list(root.rglob(source.name)), source.name
 
 
 def test_registry_routes_all_matlab_extensions():

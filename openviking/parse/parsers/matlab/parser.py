@@ -19,7 +19,7 @@ from openviking.parse.parsers.matlab.formats import (
     is_additional_format,
     parse_additional,
 )
-from openviking.parse.parsers.matlab.mat import parse_mat
+from openviking.parse.parsers.matlab.mat import parse_mat_documents
 from openviking.parse.parsers.matlab.scripts import parse_m_file, parse_mlx, parse_p_file
 from openviking.parse.parsers.matlab.sldd import parse_sldd
 from openviking.parse.parsers.matlab.slx import parse_slx, system_documents
@@ -70,9 +70,6 @@ class MatlabParser(BaseParser):
                         "## 子系统", section + "## 子系统", 1
                     )
                 root_dir = path.stem
-                await writer.write_bytes(
-                    f"{root_dir}/{path.name}", await asyncio.to_thread(path.read_bytes)
-                )
                 for name, content in documents.items():
                     await writer.write_text(f"{root_dir}/{name}", content)
                 await writer.write_text(
@@ -87,14 +84,13 @@ class MatlabParser(BaseParser):
                     "stateflow_chart_count": len(charts),
                     "stateflow_state_count": sum(len(chart.states) for chart in charts),
                     "stateflow_transition_count": sum(len(chart.transitions) for chart in charts),
-                    "original_preserved": True,
+                    "original_preserved": False,
                 }
                 title = path.stem
             elif suffix == ".p":
                 content = await asyncio.to_thread(parse_p_file, path)
                 await writer.write_text(f"{path.stem}/index.md", content)
-                await writer.write_bytes(f"{path.stem}/{path.name}", path.read_bytes())
-                meta = {"matlab_format": "p", "parse_status": "opaque", "original_preserved": True}
+                meta = {"matlab_format": "p", "parse_status": "opaque", "original_preserved": False}
                 title = path.stem
             else:
                 if suffix == ".sldd":
@@ -102,21 +98,26 @@ class MatlabParser(BaseParser):
                 elif suffix == ".mlx":
                     content = await asyncio.to_thread(parse_mlx, path)
                 elif suffix == ".mat":
-                    content, mat_warnings = await asyncio.to_thread(parse_mat, path)
+                    mat_documents, mat_warnings = await asyncio.to_thread(parse_mat_documents, path)
+                    for name, document in mat_documents.items():
+                        await writer.write_text(name, document)
                     warnings.extend(mat_warnings)
+                    content = mat_documents[f"{path.name}.md"]
                 elif suffix == ".m":
                     content = await asyncio.to_thread(parse_m_file, path)
                 elif is_additional_format(suffix):
                     content, _ = await asyncio.to_thread(parse_additional, path)
                 else:
                     raise ValueError(f"Unsupported MATLAB extension: {suffix}")
-                # Include the suffix in generated names so same-stem files such as
-                # Eng_param.m and Eng_param.mat cannot overwrite each other's pages.
-                await writer.write_text(f"{path.name}.md", content)
-                await writer.write_bytes(path.name, await asyncio.to_thread(path.read_bytes))
+                # Plain MATLAB source stays a code resource. Containers become
+                # parsed Markdown/data only; never expose their binary as text.
+                if suffix in {".m", ".asv", ".ssc", ".tlc"}:
+                    await writer.write_bytes(path.name, await asyncio.to_thread(path.read_bytes))
+                elif suffix != ".mat":
+                    await writer.write_text(f"{path.name}.md", content)
                 meta = {
                     "matlab_format": suffix.removeprefix("."),
-                    "original_preserved": True,
+                    "original_preserved": suffix in {".m", ".asv", ".ssc", ".tlc"},
                 }
                 title = path.stem
 

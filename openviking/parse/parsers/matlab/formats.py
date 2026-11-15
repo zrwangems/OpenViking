@@ -193,7 +193,7 @@ def parse_additional(path: str | Path) -> tuple[str, str]:
             # FIG permits versioned MATLAB handle objects that SciPy cannot
             # deserialize. Keep the asset importable without inventing a figure.
             content = _opaque(path, spec)
-            content += f"\nFIG 静态 MAT 提取未完成：`{type(exc).__name__}`。原始 FIG 已保留。\n"
+            content += f"\nFIG 静态 MAT 提取未完成：`{type(exc).__name__}`。原始 FIG 二进制未作为文本资源入库。\n"
             return content, "fig"
         return _replace_type(content, "matlab-figure", spec), "fig"
     if suffix == ".mdl" and not zipfile.is_zipfile(path):
@@ -327,7 +327,7 @@ def _opaque(path: Path, spec: FormatSpec) -> str:
             [
                 "## 解析边界",
                 "",
-                f"{spec.handling}。原始文件已保留；不得由文件名或文件头补写内部逻辑。",
+                f"{spec.handling}。原始二进制未作为文本资源重复入库；不得由文件名或文件头补写内部逻辑。",
                 "",
             ]
         )

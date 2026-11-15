@@ -81,7 +81,7 @@ def parse_p_file(path: str | Path) -> str:
             f"# {path.name}",
             "",
             "MATLAB P-code 是内容混淆的可执行格式。MathWorks 没有公开用于恢复 M 源码或 AST 的容器规范，"
-            "因此本页只记录可验证元数据，原始 `.p` 文件与本页一起保留。",
+            "因此本页只记录可验证元数据；原始 `.p` 二进制不作为文本资源重复入库。",
             "",
             f"- 字节数：`{len(raw)}`",
             f"- SHA-256：`{hashlib.sha256(raw).hexdigest()}`",
