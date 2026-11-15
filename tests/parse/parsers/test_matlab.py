@@ -15,7 +15,6 @@ from openviking.parse.parsers.directory import DirectoryParser
 from openviking.parse.parsers.matlab._zip import read_xml_member
 from openviking.parse.parsers.matlab.catalog import find_block
 from openviking.parse.parsers.matlab.formats import parse_additional
-from openviking.parse.parsers.matlab.library import section
 from openviking.parse.parsers.matlab.mat import parse_mat, parse_mat_documents
 from openviking.parse.parsers.matlab.parser import MatlabParser
 from openviking.parse.parsers.matlab.scripts import parse_m_file, parse_mlx
@@ -320,10 +319,16 @@ def test_scraped_block_knowledge_is_local_and_complete():
         / "matlab"
         / "block_templates.json"
     ).exists()
-    documents = [path for path in root.glob("*/*.md") if path.name != "index.md"]
-    assert len(documents) == 341
+    english = root / "en"
+    chinese = root / "zh"
+    documents = [path for path in english.glob("*/*.md") if path.name != "index.md"]
+    chinese_documents = [path for path in chinese.glob("*/*.md") if path.name != "index.md"]
+    assert len(documents) == len(chinese_documents) == 341
     assert len({path.parent.name for path in documents}) == 20
-    assert not any("https://" in path.read_text(encoding="utf-8") for path in documents)
+    assert not any(
+        "https://" in path.read_text(encoding="utf-8")
+        for path in [*documents, *chinese_documents]
+    )
     manifest = json.loads(
         (
             Path(__file__).parents[3] / "scripts" / "matlab" / "simulink-block-manifest.json"
@@ -337,16 +342,19 @@ def test_scraped_block_knowledge_is_local_and_complete():
         ).strip("-")
         while "--" in slug:
             slug = slug.replace("--", "-")
-        page = root / family / f"{slug}.md"
-        assert page.is_file(), entry
+        page = english / family / f"{slug}.md"
+        chinese_page = chinese / family / f"{slug}.md"
+        assert page.is_file() and chinese_page.is_file(), entry
         text = page.read_text(encoding="utf-8")
+        chinese_text = chinese_page.read_text(encoding="utf-8")
         assert "documentation_release: R2025b" in text
-        assert "languages: [en, zh-CN]" in text
-        assert "## 中文" in text
-        assert re.search(r"[\u4e00-\u9fff]", section(text, "中文"))
+        assert "language: en" in text
+        assert "## 中文" not in text
+        assert "language: zh-CN" in chinese_text
+        assert re.search(r"[\u4e00-\u9fff]", chinese_text)
         assert "## Description" in text or "## Ports" in text or "## Parameters" in text
 
-    logical = (root / "logic-and-bit-operations" / "logical-operator.md").read_text(
+    logical = (english / "logic-and-bit-operations" / "logical-operator.md").read_text(
         encoding="utf-8"
     )
     assert "Perform specified logical operation on input" in logical
@@ -356,21 +364,21 @@ def test_scraped_block_knowledge_is_local_and_complete():
     assert "## Block Characteristics" in logical
 
     # Alternative configurations point to the real Sum documentation, not a guessed page.
-    total = (root / "math-operations" / "sum.md").read_text(encoding="utf-8")
+    total = (english / "math-operations" / "sum.md").read_text(encoding="utf-8")
     assert "documentation_page: 'sum'" in total
     assert "Add, Subtract, Sum of Elements" in total
     assert "Add or subtract inputs" in total
 
-    dashboard = root / "dashboard" / "knob.md"
-    strings = root / "string" / "string-constant.md"
-    additional = root / "additional-math-and-discrete" / "increment-real-world.md"
+    dashboard = english / "dashboard" / "knob.md"
+    strings = english / "string" / "string-constant.md"
+    additional = english / "additional-math-and-discrete" / "increment-real-world.md"
     assert dashboard.is_file()
     assert strings.is_file()
     assert additional.is_file()
-    assert "# Continuous" in (root / "continuous" / "index.md").read_text(encoding="utf-8")
+    assert "# Continuous" in (english / "continuous" / "index.md").read_text(encoding="utf-8")
     assert "documentation_release: R2025b" in logical
     assert not (root / "datetime").exists()
-    assert "# Messages & Events" in (root / "messages-events" / "index.md").read_text(
+    assert "# Messages & Events" in (english / "messages-events" / "index.md").read_text(
         encoding="utf-8"
     )
 

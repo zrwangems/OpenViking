@@ -9,7 +9,6 @@ from openviking.parse.parsers.matlab.library import (
     front_matter,
     read_block_document,
     section,
-    subsection,
 )
 
 
@@ -26,14 +25,13 @@ def render_block_template(
     if not match:
         return None
     family, name = match
-    document = read_block_document(family, name)
+    chinese = str(language).lower().startswith("zh")
+    document = read_block_document(family, name, language=language)
     category = front_matter(document, "official_category")
     page = front_matter(document, "documentation_page")
     release = front_matter(document, "documentation_release")
-    chinese = str(language).lower().startswith("zh")
     if chinese:
-        localized = section(document, "中文")
-        summary = localized.split("### ", 1)[0].strip()
+        summary = document.split(f"# {name}\n", 1)[1].split("## ", 1)[0].strip()
         lines = [
             f"官方目录：`{category}`；文档页标识：`{page}`；基线：`{release}`。",
             "",
@@ -41,7 +39,7 @@ def render_block_template(
             "",
         ]
         for title in ("所属库", "库", "描述", "说明", "端口", "参数"):
-            content = subsection(localized, title)
+            content = section(document, title)
             if content:
                 display_title = {"库": "所属库", "参数": "参数说明"}.get(title, title)
                 lines.extend([f"#### {display_title}", "", content, ""])

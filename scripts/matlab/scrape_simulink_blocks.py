@@ -129,10 +129,6 @@ def localized_content(html: bytes, entry: dict[str, str], language: str) -> tupl
             rendered.append(markdownify(str(fragment), heading_style="ATX", bullets="-"))
         markdown = re.sub(r"\n{3,}", "\n\n", "\n".join(rendered)).strip()
         markdown = "\n".join(line.rstrip() for line in markdown.splitlines())
-        if language == "zh-CN":
-            # Chinese sections are nested under H3 in the bilingual page; nested
-            # documentation headings must become H4 to retain the hierarchy.
-            markdown = re.sub(r"^(#{3,6}) ", r"#\1 ", markdown, flags=re.MULTILINE)
         if markdown:
             sections.append((title, markdown))
     return subtitle, sections
@@ -143,49 +139,62 @@ def html_to_markdown(
     entry: dict[str, str],
     chinese_html: bytes,
     translated_chinese: str | None = None,
-) -> str:
+) -> tuple[str, str]:
     subtitle, sections = localized_content(html, entry, "en")
     chinese_subtitle, chinese_sections = localized_content(chinese_html, entry, "zh-CN")
     chinese_official = bool(re.search(r"[\u4e00-\u9fff]", chinese_subtitle))
     if not chinese_official and translated_chinese is None:
         raise ValueError(f"Chinese documentation needs worker translation: {entry['path']}")
+    if not sections:
+        raise ValueError(f"No usable documentation sections for {entry['name']}")
     family = slug(entry["category"])
-    lines = [
+    metadata = [
         "---",
         "type: simulink-block",
         f"title: {entry['name']!r}",
         f"family: {family}",
-        "languages: [en, zh-CN]",
-        f"chinese_source: {'official' if chinese_official else 'worker-translation'}",
         f"documentation_release: {RELEASE}",
         f"official_category: {entry['category']!r}",
         f"documentation_page: {Path(entry['path']).stem!r}",
+    ]
+    english_lines = [
+        *metadata,
+        "language: en",
         "---",
         "",
         f"# {entry['name']}",
         "",
         subtitle,
         "",
-        "## 中文",
+    ]
+    for title, content in sections:
+        english_lines.extend([f"## {title}", "", content, ""])
+
+    chinese_lines = [
+        *metadata,
+        "language: zh-CN",
+        f"chinese_source: {'official' if chinese_official else 'worker-translation'}",
+        "---",
+        "",
+        f"# {entry['name']}",
+        "",
+        chinese_subtitle if chinese_official else "",
         "",
     ]
     if chinese_official:
-        lines.extend([chinese_subtitle, ""])
         for title, content in chinese_sections:
-            lines.extend([f"### {title}", "", content, ""])
+            chinese_lines.extend([f"## {title}", "", content, ""])
     else:
         top_level = {"所属库", "库", "描述", "说明", "端口", "参数", "模块特性", "扩展功能", "版本历史"}
-        translated_lines = []
         for line in translated_chinese.strip().splitlines():
-            if line.startswith("### ") and line[4:].strip() not in top_level:
-                line = "#" + line
-            translated_lines.append(line)
-        lines.extend(["\n".join(translated_lines), ""])
-    for title, content in sections:
-        lines.extend([f"## {title}", "", content, ""])
-    if not sections:
-        raise ValueError(f"No usable documentation sections for {entry['name']}")
-    return "\n".join(lines).strip() + "\n"
+            if line.startswith("### ") and line[4:].strip() in top_level:
+                line = line[1:]
+            chinese_lines.append(line)
+        chinese_lines.append("")
+    return (
+        "\n".join(english_lines).strip() + "\n",
+        "\n".join(chinese_lines).strip() + "\n",
+    )
 
 
 def main() -> None:
@@ -239,16 +248,17 @@ def main() -> None:
             translated = (
                 translation_path.read_text(encoding="utf-8") if translation_path.is_file() else None
             )
-            markdown = html_to_markdown(
+            documents = html_to_markdown(
                 fetched[(entry["path"], "en")].read_bytes(),
                 entry,
                 fetched[(entry["path"], "zh-CN")].read_bytes(),
                 translated,
             )
             family = slug(entry["category"])
-            target = args.output / family / f"{slug(entry['name'])}.md"
-            target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_text(markdown, encoding="utf-8")
+            for language, markdown in zip(("en", "zh"), documents, strict=True):
+                target = args.output / language / family / f"{slug(entry['name'])}.md"
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text(markdown, encoding="utf-8")
             written += 1
         except Exception as exc:
             render_failures.append((entry, str(exc)))
@@ -258,7 +268,14 @@ def main() -> None:
             f"Refusing to write an incomplete catalog: {len(render_failures)} render failures"
         )
 
-    export_catalog(args.output)
+    export_catalog(args.output / "en")
+    export_catalog(args.output / "zh")
+    (args.output / "index.md").write_text(
+        "# Simulink Block Library\n\n"
+        "- [English](en/index.md)\n"
+        "- [中文](zh/index.md)\n",
+        encoding="utf-8",
+    )
     if failures:
         report = ["# 未完成抓取", ""] + [f"- {path}: {error}" for path, error in failures]
         (args.output / "scrape-failures.md").write_text("\n".join(report) + "\n", encoding="utf-8")

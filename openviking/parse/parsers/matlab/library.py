@@ -18,21 +18,15 @@ def slug(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
 
-@lru_cache(maxsize=512)
-def read_block_document(family: str, name: str) -> str:
-    return (library_root() / family / f"{slug(name)}.md").read_text(encoding="utf-8")
+@lru_cache(maxsize=1024)
+def read_block_document(family: str, name: str, language: str = "en") -> str:
+    localized = "zh" if str(language).lower().startswith("zh") else "en"
+    return (library_root() / localized / family / f"{slug(name)}.md").read_text(encoding="utf-8")
 
 
 def section(document: str, name: str) -> str:
     match = re.search(
         rf"^## {re.escape(name)}\n(.*?)(?=^## |\Z)", document, re.MULTILINE | re.DOTALL
-    )
-    return match.group(1).strip() if match else ""
-
-
-def subsection(document: str, name: str) -> str:
-    match = re.search(
-        rf"^### {re.escape(name)}\n(.*?)(?=^### |\Z)", document, re.MULTILINE | re.DOTALL
     )
     return match.group(1).strip() if match else ""
 
@@ -46,7 +40,7 @@ def front_matter(document: str, name: str) -> str:
 def catalog_entries() -> tuple[tuple[str, str, str, str], ...]:
     """Build ``(family, category, block name, summary)`` from Markdown files."""
     entries = []
-    root = library_root()
+    root = library_root() / "en"
     if not root.is_dir():
         raise FileNotFoundError(f"Packaged Simulink block library is missing: {root}")
     for family_directory in sorted(root.iterdir()):
