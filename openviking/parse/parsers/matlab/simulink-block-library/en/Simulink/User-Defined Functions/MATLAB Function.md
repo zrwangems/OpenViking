@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'MATLAB Function'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / User-Defined Functions'
+official_category: 'User-Defined Functions'
 documentation_page: 'matlabfunction'
-documentation_source_path: 'slref/matlabfunction.html'
+documentation_source_path: '../simulink/slref/matlabfunction.html'
 language: en
 ---
 

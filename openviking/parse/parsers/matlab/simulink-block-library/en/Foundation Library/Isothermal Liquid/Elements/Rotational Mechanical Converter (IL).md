@@ -1,0 +1,256 @@
+---
+type: simulink-block
+title: 'Rotational Mechanical Converter (IL)'
+family: 'simscape'
+product_id: 'simscape'
+product_name: 'Foundation Library'
+documentation_release: R2025b
+official_category: 'Isothermal Liquid / Elements'
+documentation_page: 'rotationalmechanicalconverteril'
+documentation_source_path: 'ref/rotationalmechanicalconverteril.html'
+language: en
+---
+
+# Rotational Mechanical Converter (IL)
+
+## Ports
+
+### Input
+
+### **q** — Rotation of port R relative to port C, rad physical signal
+
+Input physical signal that passes the position information from a Simscape™
+Multibody™ joint. Connect this port to the position sensing port
+**q** of the joint. For more information, see Connecting Simscape Networks to Simscape Multibody Joints.
+
+#### Dependencies
+
+To enable this port, set the **Interface rotation** parameter
+to `Provide input signal from Multibody joint`.
+### Conserving
+
+### **A** — Converter inlet isothermal liquid
+
+Isothermal liquid conserving port associated with the converter inlet.
+
+### **R** — Rod mechanical rotational
+
+Mechanical rotational conserving port associated with the moving interface.
+
+### **C** — Case mechanical rotational
+
+Mechanical rotational conserving port associated with the converter casing.
+
+## Parameters
+
+### **Mechanical orientation** — Select the converter orientation `Pressure at A causes positive rotation of R relative to C` (default) | `Pressure at A causes negative rotation of R relative to C`
+
+Select the alignment of moving interface with respect to the fluid pressure:
+
+- `Pressure at A causes positive rotation of R relative to
+  C` — Increase in the fluid pressure results in a positive
+  rotation of port **R** relative to port
+  **C**.
+- `Pressure at A causes negative rotation of R relative to
+  C` — Increase in the fluid pressure results in a negative
+  rotation of port **R** relative to port
+  **C**.
+
+### **Interface rotation** — Select method to determine relative port positions `Calculate from angular velocity of port R relative to port C` (default) | `Provide input signal from Multibody joint`
+
+Select method to determine rotation of port **R** relative to port
+**C**:
+
+- `Calculate from angular velocity of port R relative to port
+  C` — Calculate rotation from relative port angular velocities,
+  based on the mass balance equations. This is the default method.
+- `Provide input signal from Multibody joint` —
+  Enable the input physical signal port **q** to pass the rotation
+  information from a Multibody joint. Use this method only when you connect the
+  converter to a Multibody joint by using a Rotational Multibody
+  Interface block. For more information, see How to Pass Position Information.
+
+### **Initial interface rotation** — Rotational offset of port R relative to port C at the start of simulation `0 rad` (default) | scalar
+
+Rotational offset of port **R** relative to port
+**C** at the start of simulation. A value of 0 corresponds to an
+initial liquid volume equal to **Dead volume**.
+
+#### Dependencies
+
+Enabled when the **Interface rotation** parameter is set to
+`Calculate from angular velocity of port R relative to port
+C`.
+
+- If **Mechanical orientation** is `Pressure at A
+  causes positive rotation of R relative to C`, the parameter value
+  must be greater than or equal to 0.
+- If **Mechanical orientation** is `Pressure at A
+  causes negative rotation of R relative to C`, the parameter value
+  must be less than or equal to 0.
+
+### **Interface volume displacement** — Displaced liquid volume per unit rotation `0.001 m^3/rad` (default) | positive scalar
+
+Displaced liquid volume per unit rotation of the moving interface.
+
+### **Dead volume** — Volume of liquid when the interface rotation is 0 `1e-5 m^3` (default) | positive scalar
+
+Volume of liquid when the interface rotation is 0.
+
+### **Cross-sectional area at port A** — Area normal to flow path at the converter inlet `0.01 m^2` (default) | positive scalar
+
+The cross-sectional area of the converter inlet, in the direction normal to the flow
+path.
+
+### **Environment pressure specification** — Select a specification method for the environment pressure `Atmospheric pressure` (default) | `Specified pressure`
+
+Select a specification method for the pressure outside the converter:
+
+- `Atmospheric pressure` — Use the atmospheric
+  pressure, specified by the Thermal Liquid Settings
+  (TL) or Thermal Liquid Properties
+  (TL) block connected to the circuit.
+- `Specified pressure` — Specify a value by using
+  the **Environment pressure** parameter.
+
+### **Environment pressure** — Pressure outside the converter `0.101325 MPa` (default) | positive scalar
+
+Pressure outside the converter acting against the pressure of the converter liquid
+volume. A value of 0 indicates that the converter expands into vacuum.
+
+#### Dependencies
+
+Enabled when the **Environment pressure specification** parameter
+is set to `Specified pressure`.
+
+### **Enable dynamic compressibility** — Select whether to model fluid dynamic compressibility `On` (default) | `Off`
+
+Select whether to account for the dynamic compressibility of the liquid. Dynamic
+compressibility gives the liquid density a dependence on pressure and temperature,
+impacting the transient response of the system at small time scales.
+
+### **Initial liquid pressure** — Liquid pressure at time zero `0.101325 MPa` (default) | positive scalar
+
+Liquid pressure in the converter at the start of simulation.
+
+#### Dependencies
+
+To enable this parameter, select the **Enable dynamic
+compressibility** check box.
+
+### **Nominal liquid pressure** — Liquid pressure at nominal operating conditions `0.101325 MPa` (default)
+
+Thermal liquid pressure at nominal operating conditions. The block uses this value
+to calculate the nominal density to use in the mass conservation equation when dynamic
+compressibility is disabled.
+
+#### Dependencies
+
+To enable this parameter, clear the **Enable dynamic
+compressibility** check box.
+
+## Libraries
+
+Simscape / Foundation Library / Isothermal Liquid / Elements
+
+## Block Characteristics
+
+Not documented in R2025b.
+
+## Extended Capabilities
+
+### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
+
+## Version History
+
+**Introduced in R2020a**
+
+## Description
+
+Interface between isothermal liquid and mechanical rotational networks
+
+The Rotational Mechanical Converter (IL) block models an
+interface between an isothermal liquid network and a mechanical rotational network. The block
+converts isothermal liquid pressure into mechanical torque and vice versa. It can be used as a
+building block for rotary actuators.
+
+The converter contains a variable volume of liquid. If the **Enable dynamic
+compressibility** check box is selected, then the pressure evolves based on the
+dynamic compressibility of the liquid volume. The **Mechanical orientation**
+parameter lets you specify whether an increase in the liquid volume results in a positive or
+negative rotation of port **R** relative to port **C**.
+
+Port **A** is the isothermal liquid conserving port associated with the
+converter inlet. Ports **R** and **C** are the mechanical
+rotational conserving ports associated with the moving interface and converter casing,
+respectively.
+
+### Mass Balance
+
+The mass conservation equations in the mechanical converter volume are
+
+m˙A={ε ρID ω,if fluid dynamic compressibility is offε ρID ω+1βIdpIdtρIV,if fluid dynamic compressibility is onω=dθdtω=ωR−ωCV=Vdead+εDθ
+
+where:
+
+- m˙A is the mass flow rate into the converter through port
+  **A**.
+- *ε* is the mechanical orientation of the converter
+  (`1` if increase in fluid pressure causes positive rotation of R
+  relative to C, `-1` if increase in fluid pressure causes negative
+  rotation of R relative to C).
+- *ρ*I is the fluid density inside the
+  converter.
+- *β*I is the fluid bulk modulus inside the
+  converter.
+- *D* is the converter volume displacement, that is, fluid volume
+  needed to rotate the shaft per angle unit.
+- *ω* is the angular velocity of the converter interface.
+- *ω*R and
+  *ω*C are the angular velocities of ports
+  **R** and **C**, respectively.
+- *θ* is the converter interface rotation.
+- *V* is the liquid volume inside the converter.
+- *V*dead is the dead volume, that is, volume
+  of liquid when the interface rotation is 0.
+- *p*I is the pressure inside the
+  converter.
+
+If you connect the converter to a Multibody joint, use the physical signal input port
+**q** to specify the rotation of port **R** relative to
+port **C**. Otherwise, the block calculates the interface rotation from
+relative port angular velocities, according to the equations above. The interface rotation
+is zero when the liquid volume is equal to the dead volume. Then, depending on the
+**Mechanical orientation** parameter value:
+
+- If `Pressure at A causes positive rotation of R relative to
+  C`, the interface rotation increases when the liquid volume increases
+  from dead volume.
+- If `Pressure at A causes negative rotation of R relative to
+  C`, the interface rotation decreases when the liquid volume increases
+  from dead volume.
+
+Equations used to compute the fluid mixture density and bulk modulus depend on the
+selected isothermal liquid model. For detailed information, see Isothermal Liquid Modeling Options.
+
+### Momentum Balance
+
+The momentum conservation equation in the mechanical converter volume is
+
+τ=ε(penv−p)D,
+
+where:
+
+- *τ* is the torque the liquid exerts on the converter
+  interface.
+- *p*env is the environment pressure outside
+  the converter.
+
+### Assumptions and Limitations
+
+- Converter walls are perfectly rigid.
+- The converter contains no mechanical hard stops. To include hard stops, use the
+  Rotational Hard Stop block.
+- The flow resistance between the inlet and the interior of the converter is
+  negligible.
+- The kinetic energy of the fluid in the converter is negligible.

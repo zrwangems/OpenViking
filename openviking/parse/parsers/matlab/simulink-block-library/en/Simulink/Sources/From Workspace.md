@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'From Workspace'
-family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+family: 'simulink'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Signal Generation, Manipulation, and Analysis / Signal Import and Export'
+official_category: 'Sources'
 documentation_page: 'fromworkspace'
-documentation_source_path: '../simulink/slref/fromworkspace.html'
+documentation_source_path: 'slref/fromworkspace.html'
 language: en
 ---
 

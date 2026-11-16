@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Merge'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Signal Routing'
+official_category: 'Ports & Subsystems'
 documentation_page: 'merge'
-documentation_source_path: 'slref/merge.html'
+documentation_source_path: '../simulink/slref/merge.html'
 language: zh-CN
 chinese_source: official
 ---

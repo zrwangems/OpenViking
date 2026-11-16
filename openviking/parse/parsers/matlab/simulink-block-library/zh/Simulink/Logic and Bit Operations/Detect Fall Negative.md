@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Detect Fall Negative'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Logic and Bit Operations'
+official_category: 'Logic and Bit Operations'
 documentation_page: 'detectfallnegative'
-documentation_source_path: 'slref/detectfallnegative.html'
+documentation_source_path: '../simulink/slref/detectfallnegative.html'
 language: zh-CN
 chinese_source: official
 ---

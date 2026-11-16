@@ -1,6 +1,4 @@
 # AUTOSAR Blockset
 
-- [Software Component Modeling](Software Component Modeling/index.md)
-- [Adaptive Software Component Modeling](Adaptive Software Component Modeling/index.md)
-- [Composition and ECU Software Simulation](Composition and ECU Software Simulation/index.md)
-- [Software Architecture Modeling](Software Architecture Modeling/index.md)
+- [Adaptive Platform](Adaptive Platform/index.md)
+- [Classic Platform](Classic Platform/index.md)

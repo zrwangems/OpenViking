@@ -1,4 +1,9 @@
 # Motor Control Blockset
 
-- [Motor Parameter Estimation and Plant Modeling](Motor Parameter Estimation and Plant Modeling/index.md)
-- [Control Algorithm Design](Control Algorithm Design/index.md)
+- [Controls](Controls/index.md)
+- [Electrical Systems](Electrical Systems/index.md)
+- [Parameter Estimation](Parameter Estimation/index.md)
+- [Protection and Diagnostics](Protection and Diagnostics/index.md)
+- [Sensor Decoders](Sensor Decoders/index.md)
+- [Sensorless Estimators](Sensorless Estimators/index.md)
+- [Signal Management](Signal Management/index.md)

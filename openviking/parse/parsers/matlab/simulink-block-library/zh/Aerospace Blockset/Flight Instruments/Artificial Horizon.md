@@ -1,0 +1,94 @@
+---
+type: simulink-block
+title: 'Artificial Horizon'
+family: 'aeroblks'
+product_id: 'aeroblks'
+product_name: 'Aerospace Blockset'
+documentation_release: R2025b
+official_category: 'Flight Instruments'
+documentation_page: 'artificialhorizon'
+documentation_source_path: 'artificialhorizon.html'
+language: zh-CN
+chinese_source: worker-translation
+---
+
+# Artificial Horizon
+
+## 端口
+
+R2025b 中未记录。
+
+## 参数
+
+### **连接** — 连接到信号 信号名称 | 2 元素信号
+
+连接到要显示的 2 元素信号，从信号名称列表中选择。该 2 元素信号由 roll 和 pitch 在 Mux 模块中组合而成，单位为 degrees。您连接并显示此组合信号。此输入不能是总线信号。
+
+要查看来自信号的数据，请在模型中选择一个信号。该信号将出现在 **连接** 表中。选择要显示的信号旁边的选项按钮。点击 **应用** 以连接该信号。
+
+该表包含连接到模块的信号所在的行。如果模型中没有选择任何信号，或者模块没有连接到任何信号，则该表为空。
+
+要查看来自信号的数据，请在模型中选择一个信号。该信号将出现在 **连接** 表中。选择要显示的信号旁边的选项按钮。点击 **应用** 以连接该信号。
+
+该表包含连接到模块的信号所在的行。如果模型中没有选择任何信号，或者模块没有连接到任何信号，则该表为空。
+
+### **标签** — 模块标签位置 `Top` (默认) | `Bottom` | `Hide`
+
+模块标签，显示在模块的顶部或底部，或隐藏。
+
+- `Top`
+
+  在模块顶部显示标签。
+- `Bottom`
+
+  在模块底部显示标签。
+- `Hide`
+
+  当模块未连接时，不显示标签或说明性文本。
+
+#### 编程使用
+
+|  |
+| --- |
+| **模块参数**: `LabelPosition` |
+| **类型**: character vector |
+| **值**: `'Top'` | `'Bottom'` | `'Hide'` |
+| **默认值**: `'Top'` |
+
+## 所属库
+
+Aerospace Blockset / Flight Instruments
+
+## 模块特性
+
+R2025b 中未记录。
+
+## 扩展功能
+
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+
+## 版本历史
+
+**在 R2016a 中引入**
+
+## 描述
+
+表示飞机相对于地平线的姿态
+
+Artificial Horizon 模块表示飞机相对于地平线的姿态，并以 degrees 为单位显示 roll 和 pitch：
+
+- roll 的值不能超过 +/– 90 degrees。
+- pitch 的值不能超过 +/– 30 degrees。
+
+如果值超过最大值，则仪表的最大值和最小值不会改变。
+
+roll 值的变化会影响仪表的半圆以及位于黑色弧线上的刻度，使其相应转动。pitch 值的变化会影响刻度和半圆的分布。
+
+按以下顺序在 Mux 模块中合并 roll 和 pitch 信号：
+
+1. Roll
+2. Pitch
+
+**提示**
+
+为了便于理解和调试您的模型，您可以在 normal 和 accelerator 模式仿真期间修改模型中的仪表模块连接。

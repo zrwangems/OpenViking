@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Data Type Conversion'
-family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Signal Generation, Manipulation, and Analysis / Signal Attributes and Indexing'
+official_category: 'Commonly Used Blocks'
 documentation_page: 'datatypeconversion'
 documentation_source_path: '../simulink/slref/datatypeconversion.html'
 language: en

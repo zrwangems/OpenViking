@@ -1,5 +1,6 @@
 # Deep Learning Toolbox
 
-- [Applications](Applications/index.md)
-- [Deep Learning with Simulink](Deep Learning with Simulink/index.md)
-- [Import and Build Deep Neural Networks](Import and Build Deep Neural Networks/index.md)
+- [Deep Learning Layers](Deep Learning Layers/index.md)
+- [Deep Neural Networks](Deep Neural Networks/index.md)
+- [Python Neural Networks](Python Neural Networks/index.md)
+- [Shallow Neural Networks](Shallow Neural Networks/index.md)

@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Check Static Gap'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Model Verification'
+official_category: 'Model Verification'
 documentation_page: 'checkstaticgap'
-documentation_source_path: 'slref/checkstaticgap.html'
+documentation_source_path: '../simulink/slref/checkstaticgap.html'
 language: en
 ---
 

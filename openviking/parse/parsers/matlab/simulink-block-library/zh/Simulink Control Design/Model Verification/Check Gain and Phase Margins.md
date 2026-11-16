@@ -5,7 +5,7 @@ family: 'slcontrol'
 product_id: 'slcontrol'
 product_name: 'Simulink Control Design'
 documentation_release: R2025b
-official_category: 'Linearization / Visualization During Simulation'
+official_category: 'Linear Analysis Plots'
 documentation_page: 'gainandphasemarginplot'
 documentation_source_path: 'ug/gainandphasemarginplot.html'
 language: zh-CN

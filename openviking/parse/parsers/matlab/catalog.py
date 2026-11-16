@@ -38,8 +38,8 @@ _ALIASES = {
     "Logic": "Logical Operator",
     "RelationalOperator": "Relational Operator",
     "SubSystem": "Subsystem",
-    "Inport": "Inport",
-    "Outport": "Outport",
+    "Inport": "In1",
+    "Outport": "Out1",
     "Reference": "",
     "S-Function": "S-Function",
     "MATLABSystem": "MATLAB System",
@@ -74,7 +74,9 @@ def find_block_reference(block_type: str, source_block: str = "") -> BlockRefere
     ``full_document``. Product and category components disambiguate duplicate
     names such as Sinks/Display and Dashboard/Display.
     """
-    candidates = [source_block.rsplit("/", 1)[-1], _ALIASES.get(block_type, ""), block_type]
+    # Prefer the established block-type alias (Inport -> local In1) over a
+    # same-named Quick Insert variant; the source path then disambiguates.
+    candidates = [_ALIASES.get(block_type, ""), source_block.rsplit("/", 1)[-1], block_type]
     source_parts = [_normalize(part) for part in source_block.split("/")[:-1]]
     source_parts = [part for part in source_parts if part]
     known_products = {_normalize(ref.product_id) for ref in block_references()} | {

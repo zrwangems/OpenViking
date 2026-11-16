@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Discrete FIR Filter'
-family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Filter Implementation / Single-Rate Filters / FIR'
+official_category: 'Discrete'
 documentation_page: 'discretefirfilter'
 documentation_source_path: '../simulink/slref/discretefirfilter.html'
 language: en

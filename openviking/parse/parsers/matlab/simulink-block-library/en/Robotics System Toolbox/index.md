@@ -1,10 +1,8 @@
 # Robotics System Toolbox
 
-- [Robot Modeling](Robot Modeling/index.md)
-- [Inverse Kinematics](Inverse Kinematics/index.md)
-- [Motion and Path Planning](Motion and Path Planning/index.md)
-- [Robot Simulation](Robot Simulation/index.md)
 - [Collision Detection](Collision Detection/index.md)
-- [Coordinate Transformations](Coordinate Transformations/index.md)
-- [Offroad Autonomy for Heavy Machinery](Offroad Autonomy for Heavy Machinery/index.md)
-- [Robotics System Toolbox Supported Hardware](Robotics System Toolbox Supported Hardware/index.md)
+- [Gazebo Co-Simulation](Gazebo Co-Simulation/index.md)
+- [Manipulator Algorithms](Manipulator Algorithms/index.md)
+- [Mobile Robot Algorithms](Mobile Robot Algorithms/index.md)
+- [Simulation 3D](Simulation 3D/index.md)
+- [Utilities](Utilities/index.md)

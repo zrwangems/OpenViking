@@ -29,7 +29,7 @@ def render_block_template(
         return None
     chinese = str(language).lower().startswith("zh")
     name = reference.name
-    if not reference.full_document:
+    if not reference.full_document and reference.documentation_path:
         location = " / ".join(reference.library_path)
         if chinese:
             return name, (
@@ -48,9 +48,7 @@ def render_block_template(
     if not reference.resource_path("en"):
         return None
     if reference.product_id == "simulink" and "Commonly Used Blocks" in source_block.split("/"):
-        document = read_block_document(
-            "simulink/commonly-used-blocks", name, language=language
-        )
+        document = read_block_document("simulink/commonly-used-blocks", name, language=language)
     else:
         document = read_reference_document(reference, language=language)
     category = front_matter(document, "official_category")

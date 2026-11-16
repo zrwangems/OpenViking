@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Discontinuities'
+official_category: 'Discontinuities'
 documentation_page: 'variablepulsegenerator'
 documentation_source_path: 'slref/variablepulsegenerator.html'
 language: en

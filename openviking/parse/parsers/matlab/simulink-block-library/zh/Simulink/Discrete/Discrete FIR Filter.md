@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Discrete FIR Filter'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Discrete'
+official_category: 'Discrete'
 documentation_page: 'discretefirfilter'
-documentation_source_path: 'slref/discretefirfilter.html'
+documentation_source_path: '../simulink/slref/discretefirfilter.html'
 language: zh-CN
 chinese_source: official
 ---

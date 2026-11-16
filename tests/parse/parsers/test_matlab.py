@@ -329,7 +329,7 @@ def test_standard_library_and_external_library_matching():
     assert find_block("Reference", "autolibdcdc/Bidirectional DC-DC") is None
     assert find_block_reference("Reference", "autolibdcdc/Bidirectional DC-DC") is None
     assert find_block("Display", "simulink/Sinks/Display") == ("simulink/sinks", "Display")
-    assert find_block("Inport", "simulink/Sources/Inport") == ("simulink/sources", "Inport")
+    assert find_block("Inport", "simulink/Sources/Inport") == ("simulink/sources", "In1")
     assert find_block("Gain", "simulink/Commonly Used Blocks/Gain") == (
         "simulink/commonly-used-blocks",
         "Gain",
@@ -340,65 +340,59 @@ def test_standard_library_and_external_library_matching():
     )
 
 
+def test_tree_only_block_keeps_real_location_without_inventing_documentation():
+    reference = find_block_reference("Network", "simulink/Dashboard/Wireless Icons/Network")
+    assert reference is not None
+    assert reference.library_path == ("Dashboard", "Wireless Icons")
+    assert not reference.full_document
+    name, page = render_block_template(
+        "Network", "simulink/Dashboard/Wireless Icons/Network", language="en"
+    )
+    assert name == "Network"
+    assert "local R2025b Library Browser tree" in page
+    assert "Not documented in R2025b." in page
+
+
 def test_library_browser_manifest_counts_and_canonical_layout():
     root = Path(__file__).parents[3] / "openviking/parse/parsers/matlab/simulink-block-library"
     manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
     assert manifest["release"] == "R2025b"
+    assert manifest["tree_source"] == "scripts/matlab/tree_full.md"
     totals = manifest["totals"]
-    assert totals["products"] == 60
-    assert totals["products_with_blocks"] == 60
-    assert totals["products_without_block_library"] == 0
-    assert totals["block_occurrences"] == 3899
-    assert totals["unique_product_document_paths"] == 3404
-    assert totals["full_document_occurrences"] == {"en": 3899, "zh": 3899}
-    assert totals["full_documents"] == {"en": 3404, "zh": 3404}
+    assert totals["products"] == 75
+    assert totals["products_with_blocks"] == 75
+    assert totals["block_occurrences"] == 4792
+    assert totals["unique_product_document_paths"] == 3648
+    assert totals["full_document_occurrences"] == {"en": 3993, "zh": 3993}
+    assert totals["full_documents"] == {"en": 3648, "zh": 3648}
     assert totals["pending_documents"] == {"en": 0, "zh": 0}
-    assert not (root / "scrape-failures.json").exists()
-    assert not (root / "translation-failures.json").exists()
-    assert not (root / "library-browser-reconciliation.md").exists()
+    assert totals["tree_only_occurrences"] == 799
+    assert manifest["reconciliation"]["tree_directories"] == 741
+    assert manifest["reconciliation"]["matched_blocks"] == 3993
+    assert manifest["reconciliation"]["tree_only_blocks"] == 799
     assert not (root / "browser").exists()
     assert not (root / "catalog").exists()
+    assert not (root / "products").exists()
     assert (root / "README.md").is_file()
     products = {product["id"]: product for product in manifest["products"]}
-    assert products["simulink"]["block_occurrences"] == 341
-    assert products["stateflow"]["block_occurrences"] == 10
-    assert products["simscape"]["block_occurrences"] == 276
+    assert products["simulink"]["block_occurrences"] == 576
+    assert products["stateflow"]["block_occurrences"] == 4
+    assert products["simscape"]["block_occurrences"] == 272
+    assert products["simscape-root"]["block_occurrences"] == 7
+    assert products["simscape-battery"]["block_occurrences"] == 45
+    assert products["sps"]["block_occurrences"] == 405
     assert "matlab" not in products
-    common = root / "en/Simulink/Commonly Used Blocks"
-    assert len(list(common.glob("*.md"))) == 24  # 23 blocks plus index
-    assert not (root / "zh/Simulink/Quick Insert").exists()
-    assert (root / "zh/DDS Blockset/Model DDS Applications in Simulink/index.md").is_file()
-    for directory in (
-        "Get Started with DDS Blockset",
-        "Create DDS Definitions",
-        "Deploy Applications to DDS Network",
-    ):
-        assert not (root / "zh/DDS Blockset" / directory).exists()
-    loop_shaping = root / (
-        "zh/Control System Toolbox/Control System Design and Tuning/"
-        "Multiloop, Multiobjective Tuning/Loop-Shaping Design"
-    )
-    assert not loop_shaping.exists()
-    normal_category = root / (
-        "zh/Control System Toolbox/Control System Design and Tuning/index.md"
-    )
-    assert "[Gain Scheduling](Gain Scheduling/index.md)" in normal_category.read_text(
-        encoding="utf-8"
-    )
-    for language, obsolete_text in (("en", "No fixed block entries."), ("zh", "无固定块条目。")):
-        for index in (root / language).rglob("index.md"):
-            text = index.read_text(encoding="utf-8")
-            assert obsolete_text not in text, index
-            assert len(text.splitlines()) >= 3, index
-            assert "- [" in text, index
-    assert len(list((root / "en").rglob("*.md"))) == 4899
-    assert len(list((root / "zh").rglob("*.md"))) == 4899
+    assert len(list((root / "en/Simulink/Commonly Used Blocks").glob("*.md"))) == 24
+    assert (root / "zh/Simulink/Quick Insert/index.md").is_file()
+    assert (root / "zh/DDS Blockset/Take DDS Sample.md").is_file()
+    assert not (root / "zh/DDS Blockset/Model DDS Applications in Simulink").exists()
 
     for language in ("en", "zh"):
         browser = root / language
+        assert len(list(browser.rglob("*.md"))) == 5609
         root_index = (browser / "index.md").read_text(encoding="utf-8")
         entries = re.findall(r"^- \[(.*?)\]", root_index, re.MULTILINE)
-        assert len(entries) == 60
+        assert len(entries) == 75
         assert entries[:3] == ["Simulink", "Aerospace Blockset", "Audio Toolbox"]
         assert entries[-3:] == [
             "Vehicle Network Toolbox",
@@ -406,42 +400,50 @@ def test_library_browser_manifest_counts_and_canonical_layout():
             "Wireless HDL Toolbox",
         ]
         assert "5G Toolbox" not in entries
-        assert (browser / "Aerospace Blockset/index.md").is_file()
-        assert not (browser / "aeroblks").exists()
-        for empty_entry in (
+        for local_entry in (
             "Communications Toolbox HDL Support",
             "DSP System Toolbox HDL Support",
             "Fixed-Point Designer HDL Support",
             "Motor Control Blockset HDL Support",
             "Report Generator",
             "Simulink Extras",
+            "Battery",
+            "Electrical",
+            "Foundation Library",
+            "Utilities",
+            "libsb2sl",
         ):
-            assert not (browser / empty_entry).exists()
+            assert (browser / local_entry / "index.md").is_file()
+        assert not (browser / "aeroblks").exists()
         assert not (browser / "5g").exists()
+        for index in browser.rglob("index.md"):
+            text = index.read_text(encoding="utf-8")
+            assert len(text.splitlines()) >= 3, index
+            assert "- [" in text or "0 blocks" in text or "0 块" in text, index
     assert "# Simulink 库浏览器" in (root / "zh/index.md").read_text()
-    assert (
-        sum(
-            len(library["blocks"])
-            for product in products.values()
-            for library in product["libraries"]
-        )
-        == 3899
-    )
+
     unique_documents = set()
+    tree_only_occurrences = 0
     for product in products.values():
         for library in product["libraries"]:
             for block in library["blocks"]:
                 for language in ("en", "zh"):
                     document = block["documents"][language]
+                    resource = root / block["resource_paths"][language]
+                    assert resource.is_file()
+                    if not block["documentation_path"]:
+                        tree_only_occurrences += 1
+                        assert document["status"] == "tree_only"
+                        assert "documentation_status: tree_only" in resource.read_text(
+                            encoding="utf-8"
+                        )
+                        continue
                     assert document["status"] == "available"
                     path = root / document["path"]
                     assert path.is_file()
                     unique_documents.add(path)
-                    resource = root / block.get("resource_paths", {}).get(
-                        language, document["path"]
-                    )
-                    assert resource.is_file()
-    # Repeated Browser occurrences share the owning product's canonical document.
+                    assert resource.read_bytes() == path.read_bytes()
+    assert tree_only_occurrences == 2 * totals["tree_only_occurrences"]
     assert len(unique_documents) == 2 * totals["unique_product_document_paths"]
 
 
@@ -463,10 +465,7 @@ def test_toolbox_matching_uses_original_product_and_library_path():
 
     spectrum = find_block_reference("Spectrum Analyzer", "dsp/Sinks/Spectrum Analyzer")
     assert spectrum.product_id == "dsp"
-    assert find_block("Chart", "stateflow/Chart") == (
-        "stateflow/chart-programming/chart-programming-basics/stateflow-charts",
-        "Chart",
-    )
+    assert find_block("Chart", "stateflow/Chart") == ("stateflow", "Chart")
     chart_page = render_block_template("Chart", "stateflow/Chart", language="zh-CN")[1]
     assert "用有限状态机实现控制逻辑" in chart_page
     assert "完整中英文正文尚未抓取" not in chart_page
@@ -500,8 +499,8 @@ def test_scraped_block_knowledge_is_local_and_complete():
     chinese = root / "zh"
     documents = [path for path in english.rglob("*.md") if path.name != "index.md"]
     chinese_documents = [path for path in chinese.rglob("*.md") if path.name != "index.md"]
-    assert len(documents) == len(chinese_documents) == 3922
-    assert len(list(english.glob("*/index.md"))) == 60
+    assert len(documents) == len(chinese_documents) == 4792
+    assert len(list(english.glob("*/index.md"))) == 75
     for page in documents:
         relative = page.relative_to(english)
         chinese_page = chinese / relative
@@ -523,20 +522,21 @@ def test_scraped_block_knowledge_is_local_and_complete():
     assert "## Block Characteristics" in logical
 
     # Alternative configurations point to the real Sum documentation, not a guessed page.
-    total = (english / "Simulink/Math Operations/Sum.md").read_text(encoding="utf-8")
+    total = (english / "Simulink/Math Operations/Add.md").read_text(encoding="utf-8")
     assert "documentation_page: 'sum'" in total
     assert "Add, Subtract, Sum of Elements" in total
     assert "Add or subtract inputs" in total
 
     dashboard = english / "Simulink/Dashboard/Knob.md"
     strings = english / "Simulink/String/String Constant.md"
-    additional = english / "Simulink/Additional Math and Discrete/Increment Real World.md"
+    additional = english / (
+        "Simulink/Additional Math & Discrete/Additional Math: Increment - Decrement/"
+        "Increment Real World.md"
+    )
     assert dashboard.is_file()
     assert strings.is_file()
     assert additional.is_file()
-    assert "# Continuous" in (english / "Simulink/Continuous/index.md").read_text(
-        encoding="utf-8"
-    )
+    assert "# Continuous" in (english / "Simulink/Continuous/index.md").read_text(encoding="utf-8")
     assert "documentation_release: R2025b" in logical
     assert not (root / "datetime").exists()
     assert "# Messages & Events" in (english / "Simulink/Messages & Events/index.md").read_text(

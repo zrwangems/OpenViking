@@ -5,7 +5,7 @@ family: 'aeroblks'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b
-official_category: 'Standard Workflow Procedures / Coordinate Systems / Axes Transformations / Transformation Utilities'
+official_category: 'Environment / Celestial Phenomena'
 documentation_page: 'deltaut1'
 documentation_source_path: 'deltaut1.html'
 language: zh-CN

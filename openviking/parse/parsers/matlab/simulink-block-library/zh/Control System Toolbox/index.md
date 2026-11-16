@@ -1,5 +1,6 @@
 # Control System Toolbox
 
-- [Dynamic System Models](Dynamic System Models/index.md)
-- [Linear Analysis](Linear Analysis/index.md)
-- [Control System Design and Tuning](Control System Design and Tuning/index.md)
+- [Linear Parameter Varying](Linear Parameter Varying/index.md)
+- [State Estimation](State Estimation/index.md)
+- [LTI System](LTI System.md)
+- [Sparse Second Order](Sparse Second Order.md)

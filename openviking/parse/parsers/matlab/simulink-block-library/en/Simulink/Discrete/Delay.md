@@ -1,17 +1,17 @@
 ---
 type: simulink-block
-title: 'Variable Integer Delay'
-family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+title: 'Delay'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Signal Generation, Manipulation, and Analysis / Signal Operations / Delay'
+official_category: 'Commonly Used Blocks'
 documentation_page: 'delay'
 documentation_source_path: '../simulink/slref/delay.html'
 language: en
 ---
 
-# Variable Integer Delay
+# Delay
 
 ## Ports
 

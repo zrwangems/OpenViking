@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Product of Elements'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Math Operations'
+official_category: 'HDL Floating Point Operations'
 documentation_page: 'productofelements'
-documentation_source_path: 'slref/productofelements.html'
+documentation_source_path: '../simulink/slref/productofelements.html'
 language: zh-CN
 chinese_source: official
 ---

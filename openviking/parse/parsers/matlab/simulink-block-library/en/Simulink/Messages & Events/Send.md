@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Messages & Events'
+official_category: 'Messages & Events'
 documentation_page: 'send'
 documentation_source_path: 'slref/send.html'
 language: en

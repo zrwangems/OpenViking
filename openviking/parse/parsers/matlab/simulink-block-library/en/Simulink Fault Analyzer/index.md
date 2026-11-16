@@ -1,3 +1,4 @@
 # Simulink Fault Analyzer
 
-- [Fault Modeling](Fault Modeling/index.md)
+- [Fault Port Blocks](Fault Port Blocks/index.md)
+- [Fault Subsystem](Fault Subsystem.md)

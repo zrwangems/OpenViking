@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Terminator'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Sinks'
+official_category: 'Sinks'
 documentation_page: 'terminator'
-documentation_source_path: 'slref/terminator.html'
+documentation_source_path: '../simulink/slref/terminator.html'
 language: en
 ---
 

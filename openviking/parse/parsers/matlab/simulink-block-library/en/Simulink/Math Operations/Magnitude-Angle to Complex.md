@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Magnitude-Angle to Complex'
-family: 'fixedpoint'
-product_id: 'fixedpoint'
-product_name: 'Fixed-Point Designer'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Embedded Implementation / Fixed-Point Math Operations in MATLAB and Simulink / Complex Numbers'
+official_category: 'Math Operations'
 documentation_page: 'magnitudeangletocomplex'
 documentation_source_path: '../simulink/slref/magnitudeangletocomplex.html'
 language: en

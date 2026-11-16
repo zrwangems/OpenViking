@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Compare To Zero'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Logic and Bit Operations'
+official_category: 'Logic and Bit Operations'
 documentation_page: 'comparetozero'
-documentation_source_path: 'slref/comparetozero.html'
+documentation_source_path: '../simulink/slref/comparetozero.html'
 language: en
 ---
 

@@ -1,0 +1,17 @@
+# Transfer Functions
+
+- [elliot2sig](elliot2sig.md)
+- [elliotsig](elliotsig.md)
+- [hardlim](hardlim.md)
+- [hardlims](hardlims.md)
+- [logsig](logsig.md)
+- [netinv](netinv.md)
+- [poslin](poslin.md)
+- [purelin](purelin.md)
+- [radbas](radbas.md)
+- [radbasn](radbasn.md)
+- [satlin](satlin.md)
+- [satlins](satlins.md)
+- [softmax](softmax.md)
+- [tansig](tansig.md)
+- [tribas](tribas.md)

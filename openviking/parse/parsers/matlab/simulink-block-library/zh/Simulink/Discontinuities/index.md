@@ -1,7 +1,7 @@
 # Discontinuities
 
 - [Backlash](Backlash.md)
-- [Coulomb and Viscous Friction](Coulomb and Viscous Friction.md)
+- [Coulomb & Viscous Friction](Coulomb & Viscous Friction.md)
 - [Dead Zone](Dead Zone.md)
 - [Dead Zone Dynamic](Dead Zone Dynamic.md)
 - [Hit Crossing](Hit Crossing.md)

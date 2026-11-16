@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Signal Attributes'
+official_category: 'Signal Attributes'
 documentation_page: 'datatypeconversioninherited'
 documentation_source_path: 'slref/datatypeconversioninherited.html'
 language: zh-CN

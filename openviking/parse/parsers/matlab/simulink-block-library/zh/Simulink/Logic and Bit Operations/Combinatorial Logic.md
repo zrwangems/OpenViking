@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Logic and Bit Operations'
+official_category: 'Logic and Bit Operations'
 documentation_page: 'combinatoriallogic'
 documentation_source_path: 'slref/combinatoriallogic.html'
 language: zh-CN

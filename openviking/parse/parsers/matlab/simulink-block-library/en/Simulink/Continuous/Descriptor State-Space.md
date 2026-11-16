@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Descriptor State-Space'
-family: 'control'
-product_id: 'control'
-product_name: 'Control System Toolbox'
+family: 'simulink'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Dynamic System Models / Linear System Representation / Sparse State-Space Models'
+official_category: 'Continuous'
 documentation_page: 'descriptorstatespace'
-documentation_source_path: '../simulink/slref/descriptorstatespace.html'
+documentation_source_path: 'slref/descriptorstatespace.html'
 language: en
 ---
 

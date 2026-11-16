@@ -1,5 +1,5 @@
 # Simulink Coder
 
-- [Architecture and Component Design](Architecture and Component Design/index.md)
-- [Deployment, Integration, and Supported Hardware](Deployment, Integration, and Supported Hardware/index.md)
-- [Code and Tool Customization](Code and Tool Customization/index.md)
+- [Asynchronous](Asynchronous/index.md)
+- [Custom Code](Custom Code/index.md)
+- [S-Function Target](S-Function Target/index.md)

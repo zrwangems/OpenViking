@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Model-Wide Utilities'
+official_category: 'Model-Wide Utilities'
 documentation_page: 'blocksupporttable'
 documentation_source_path: 'slref/blocksupporttable.html'
 language: en

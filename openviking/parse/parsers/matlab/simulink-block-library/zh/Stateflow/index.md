@@ -1,4 +1,6 @@
 # Stateflow
 
-- [Chart Programming](Chart Programming/index.md)
-- [Simulation in Simulink](Simulation in Simulink/index.md)
+- [Chart](Chart.md)
+- [Sequence Viewer](Sequence Viewer.md)
+- [State Transition Table](State Transition Table.md)
+- [Truth Table](Truth Table.md)

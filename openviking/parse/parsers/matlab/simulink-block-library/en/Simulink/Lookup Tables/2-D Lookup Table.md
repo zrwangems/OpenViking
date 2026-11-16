@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: '2-D Lookup Table'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Lookup Tables'
+official_category: 'Lookup Tables'
 documentation_page: '2dlookuptable'
-documentation_source_path: 'slref/2dlookuptable.html'
+documentation_source_path: '../simulink/slref/2dlookuptable.html'
 language: en
 ---
 

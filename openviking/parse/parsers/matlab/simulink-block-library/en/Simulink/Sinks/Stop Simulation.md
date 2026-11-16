@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Stop Simulation'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Sinks'
+official_category: 'Sinks'
 documentation_page: 'stopsimulation'
-documentation_source_path: 'slref/stopsimulation.html'
+documentation_source_path: '../simulink/slref/stopsimulation.html'
 language: en
 ---
 

@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Check Discrete Gradient'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Model Verification'
+official_category: 'Model Verification'
 documentation_page: 'checkdiscretegradient'
-documentation_source_path: 'slref/checkdiscretegradient.html'
+documentation_source_path: '../simulink/slref/checkdiscretegradient.html'
 language: en
 ---
 

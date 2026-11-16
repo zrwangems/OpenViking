@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Matrix Operations'
+official_category: 'Matrix Operations'
 documentation_page: 'ishermitian'
 documentation_source_path: 'slref/ishermitian.html'
 language: zh-CN
@@ -13,18 +13,6 @@ chinese_source: worker-translation
 ---
 
 # IsHermitian
-
-
-
-检查矩阵是 Hermitian 还是 skew-Hermitian
-
-## 库
-
-Simulink / Matrix Operations
-
-## 说明
-
-IsHermitian 模块确定输入是 Hermitian 矩阵还是 skew-Hermitian 矩阵。
 
 ## 端口
 
@@ -37,18 +25,17 @@ IsHermitian 模块确定输入是 Hermitian 矩阵还是 skew-Hermitian 矩阵�
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 ### 输出
 
-### **Port\_1** — Hermitian 或 skew-Hermitian 矩阵，实数标量 Boolean
+### **Port\_1** — Hermitian 或 skew-Hermitian 矩阵 real scalar Boolean
 
-一个 Hermitian 或 skew-Hermitian 矩阵，以实数标量 Boolean 返回。
+一个 Hermitian 或 skew-Hermitian 矩阵，以 real scalar Boolean 形式返回。
 
 **数据类型：** `Boolean`
 
 ## 参数
 
-### **Mode** — 矩阵是 Hermitian 还是 skew-Hermitian `Hermitian` (默认) | `Skew-Hermitian`
+### **Mode** — 矩阵是 Hermitian 还是 skew-Hermitian `Hermitian`（默认） | `Skew-Hermitian`
 
-将矩阵标识为 `Hermitian` 或
-`Skew-Hermitian`。
+将矩阵标识为 `Hermitian` 或 `Skew-Hermitian`。
 
 #### 编程用法
 
@@ -56,8 +43,12 @@ IsHermitian 模块确定输入是 Hermitian 矩阵还是 skew-Hermitian 矩阵�
 | --- |
 | **模块参数：** `Mode` |
 | **类型：** character vector |
-| **值：** `'Hermitian'` | `'Skew-Hermitian'` |
+| **取值：** `'Hermitian'` | `'Skew-Hermitian'` |
 | **默认值：** `'Hermitian'` |
+
+## 所属库
+
+Simulink / Matrix Operations
 
 ## 模块特性
 
@@ -70,7 +61,7 @@ IsHermitian 模块确定输入是 Hermitian 矩阵还是 skew-Hermitian 矩阵�
 | **过零检测** | `no` |
 |  |  |
 | --- | --- |
-| a 此模块仅支持 skew-symmetric 模式的有符号整数类型。 | |
+| a 此模块仅对 skew-symmetric 模式支持有符号整数类型。 | |
 
 ## 扩展功能
 
@@ -79,3 +70,9 @@ IsHermitian 模块确定输入是 Hermitian 矩阵还是 skew-Hermitian 矩阵�
 ## 版本历史
 
 **在 R2022a 中引入**
+
+## 描述
+
+检查矩阵是否为 Hermitian 或 skew-Hermitian
+
+IsHermitian 模块确定输入是否为 Hermitian 或 skew-Hermitian 矩阵。

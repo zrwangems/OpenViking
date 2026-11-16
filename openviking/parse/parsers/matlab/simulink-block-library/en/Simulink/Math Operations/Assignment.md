@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Assignment'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Math Operations'
+official_category: 'Math Operations'
 documentation_page: 'assignment'
-documentation_source_path: 'slref/assignment.html'
+documentation_source_path: '../simulink/slref/assignment.html'
 language: en
 ---
 

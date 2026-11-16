@@ -12,12 +12,12 @@ from __future__ import annotations
 import argparse
 import collections
 import json
-import posixpath
 import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from scrape_r2025b_all_blocks import render_page, unique_entries
+from align_r2025b_browser_tree import parse_tree
+from scrape_r2025b_all_blocks import document_source, render_page, unique_entries
 from translate_r2025b_all_blocks import table_shapes
 
 
@@ -114,6 +114,11 @@ def main() -> None:
         / "openviking/parse/parsers/matlab/simulink-block-library/manifest.json",
     )
     parser.add_argument("--xml-cache", type=Path, default=Path("/tmp/r2025b-products"))
+    parser.add_argument(
+        "--tree",
+        type=Path,
+        default=Path(__file__).with_name("tree_full.md"),
+    )
     parser.add_argument("--html-cache", type=Path, default=Path("/tmp/r2025b-block-docs"))
     parser.add_argument("--report", type=Path)
     parser.add_argument("--skip-source-render", action="store_true")
@@ -125,6 +130,7 @@ def main() -> None:
     occurrences = []
     official_compared = 0
     worker_compared = 0
+    retained_source_documents = 0
 
     for product in manifest["products"]:
         for library in product["libraries"]:
@@ -139,25 +145,52 @@ def main() -> None:
                 for language in ("en", "zh"):
                     document = block["documents"][language]
                     key = (product["id"], block["documentation_path"], language)
-                    if document["status"] != "available" or not document["path"]:
+                    if not block["documentation_path"]:
+                        if document["status"] != "tree_only":
+                            failures["invalid_tree_only_status"].append(key)
+                    elif document["status"] != "available" or not document["path"]:
                         failures["unavailable_document"].append(key)
                     elif key in documents and documents[key] != document["path"]:
                         failures["inconsistent_document_mapping"].append(key)
                     else:
                         documents[key] = document["path"]
-        expected = xml_occurrences(
-            product,
-            args.xml_cache,
-            simulink_block_libraries_only=(
-                product["id"] == "simulink" and manifest["scope"].startswith("the 66-entry")
-            ),
+    expected_tree = parse_tree(args.tree)
+    actual_tree = [
+        {
+            "name": product["name"],
+            "directories": [library["path"] for library in product["libraries"] if library["path"]],
+            "blocks": [
+                (library["path"], block["name"])
+                for library in product["libraries"]
+                for block in library["blocks"]
+            ],
+        }
+        for product in manifest["products"]
+    ]
+    expected_flat = [
+        {
+            "name": product["name"],
+            "directories": [directory["path"] for directory in product["directories"]],
+            "blocks": [(block["path"], block["name"]) for block in product["blocks"]],
+        }
+        for product in expected_tree
+    ]
+    actual_structure = [(product["name"], product["directories"]) for product in actual_tree]
+    expected_structure = [(product["name"], product["directories"]) for product in expected_flat]
+    actual_blocks = collections.Counter(
+        (product["name"], tuple(path), name)
+        for product in actual_tree
+        for path, name in product["blocks"]
+    )
+    expected_blocks = collections.Counter(
+        (product["name"], tuple(path), name)
+        for product in expected_flat
+        for path, name in product["blocks"]
+    )
+    if actual_structure != expected_structure or actual_blocks != expected_blocks:
+        failures["tree_full_mismatch"].append(
+            "products, ordered directories, or complete block paths differ from tree_full.md"
         )
-        if expected:
-            actual = [item for item in occurrences if item[0] == product["id"]]
-            if collections.Counter(actual) != collections.Counter(expected):
-                failures["xml_occurrence_mismatch"].append(product["id"])
-        elif product["status"] == "enumerated":
-            failures["missing_xml_cache"].append(product["id"])
 
     for (_product_id, _documentation_path, language), relative in documents.items():
         path = root / relative
@@ -183,32 +216,20 @@ def main() -> None:
             failures["pending_placeholder"].append(relative)
 
     if not args.skip_source_render:
-        canonical_entries = {}
-        source_entries = {}
-        for product in manifest["products"]:
-            if product["status"] != "enumerated":
-                continue
-            for entry in unique_entries(product):
-                if ".." not in Path(entry["documentation_path"]).parts:
-                    source_entries[(product["id"], entry["documentation_path"])] = (
-                        product,
-                        entry,
-                    )
-                relative = entry["documents"]["zh"]["path"]
-                if (
-                    ".." not in Path(relative).parts
-                    and ".." not in Path(entry["documentation_path"]).parts
-                ):
-                    canonical_entries[(root / relative).resolve()] = (product, entry)
         for product in manifest["products"]:
             if product["status"] != "enumerated":
                 continue
             for entry in unique_entries(product):
                 english = root / entry["documents"]["en"]["path"]
                 chinese = root / entry["documents"]["zh"]["path"]
-                source_path = (
-                    args.html_cache / product["id"] / "en" / f"{entry['documentation_path']}.html"
-                )
+                source_product, source_document = document_source(product, entry)
+                source_path = args.html_cache / source_product / "en" / f"{source_document}.html"
+                if not source_path.is_file():
+                    # A previously captured full page remains valid when the
+                    # external HTML cache is incomplete; do not call it a
+                    # source-render mismatch.
+                    retained_source_documents += 1
+                    continue
                 try:
                     expected, _ = render_page(source_path.read_bytes(), entry, product, "en")
                     if content_lines(english.read_text(encoding="utf-8")) != content_lines(
@@ -222,29 +243,11 @@ def main() -> None:
                         [product["id"], entry["documentation_path"], str(exc)]
                     )
                 if "chinese_source: official" in chinese.read_text(encoding="utf-8"):
-                    documentation_path = entry["documentation_path"]
-                    if ".." in Path(documentation_path).parts:
-                        normalized = posixpath.normpath(documentation_path)
-                        while normalized.startswith("../"):
-                            normalized = normalized[3:]
-                        owner, owner_path = normalized.split("/", 1)
-                        source_product, source_entry = source_entries.get(
-                            (owner, owner_path), (product, entry)
-                        )
-                    else:
-                        source_product, source_entry = canonical_entries.get(
-                            chinese.resolve(), (product, entry)
-                        )
                     source_path = (
-                        args.html_cache
-                        / source_product["id"]
-                        / "zh"
-                        / f"{source_entry['documentation_path']}.html"
+                        args.html_cache / source_product / "zh" / f"{source_document}.html"
                     )
                     try:
-                        expected, _ = render_page(
-                            source_path.read_bytes(), source_entry, source_product, "zh"
-                        )
+                        expected, _ = render_page(source_path.read_bytes(), entry, product, "zh")
                         if content_lines(chinese.read_text(encoding="utf-8")) != content_lines(
                             expected
                         ):
@@ -274,6 +277,14 @@ def main() -> None:
             for block in library["blocks"]:
                 for language, relative in block.get("resource_paths", {}).items():
                     browser = root / relative
+                    if not block["documentation_path"]:
+                        if (
+                            not browser.is_file()
+                            or "documentation_status: tree_only"
+                            not in browser.read_text(encoding="utf-8")
+                        ):
+                            failures["invalid_tree_only_page"].append(relative)
+                        continue
                     source = root / block["documents"][language]["path"]
                     if not browser.is_file() or browser.read_bytes() != source.read_bytes():
                         failures["browser_copy_mismatch"].append(relative)
@@ -281,7 +292,8 @@ def main() -> None:
     report = {
         "release": "R2025b",
         "scope": manifest["scope"],
-        "xml_occurrences_checked": len(occurrences),
+        "tree_occurrences_checked": len(occurrences),
+        "retained_documents_without_cached_html": retained_source_documents,
         "unique_bilingual_documents_checked": len(documents) // 2,
         "official_chinese_source_renders_checked": official_compared,
         "worker_translation_structures_checked": worker_compared,

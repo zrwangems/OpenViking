@@ -5,7 +5,7 @@ family: 'dsp'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b
-official_category: 'Filter Implementation / Single-Rate Filters / FIR'
+official_category: 'Filtering / Filter Implementations'
 documentation_page: 'discretefilter'
 documentation_source_path: '../simulink/slref/discretefilter.html'
 language: en

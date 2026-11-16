@@ -22,7 +22,7 @@ from extract_r2025b_block_manifest import (
     report,
     write_browser_tree,
 )
-from scrape_r2025b_all_blocks import unique_entries
+from scrape_r2025b_all_blocks import document_source, unique_entries
 
 
 def source_parts(markdown: str) -> tuple[list[str], str]:
@@ -111,7 +111,8 @@ def split_source(source: str, limit: int = 16000) -> list[str]:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", type=Path, required=True)
+    parser.add_argument("--config", type=Path)
+    parser.add_argument("--offline", action="store_true", help="Only use cached translations")
     parser.add_argument("--product", action="append")
     parser.add_argument("--path", action="append", help="Only this documentation path; repeatable")
     parser.add_argument(
@@ -135,7 +136,13 @@ def main() -> None:
     )
     parser.add_argument("--cache", type=Path, default=Path("/tmp/r2025b-block-translations"))
     args = parser.parse_args()
-    config = json.loads(args.config.read_text(encoding="utf-8"))["vlm"]
+    if not args.offline and not args.config:
+        parser.error("--config is required unless --offline is used")
+    config = (
+        json.loads(args.config.read_text(encoding="utf-8"))["vlm"]
+        if args.config
+        else {"api_base": "offline:", "api_key": "", "model": "offline"}
+    )
     url = config["api_base"].rstrip("/") + "/chat/completions"
     headers = {
         "Authorization": f"Bearer {config['api_key']}",
@@ -178,10 +185,13 @@ def main() -> None:
             f"zh/products/{product['id']}/{Path(entry['documentation_path']).with_suffix('.md')}"
         )
         target = args.manifest.parent / relative
-        cached = args.cache / product["id"] / Path(entry["documentation_path"]).with_suffix(".md")
+        source_product, source_path = document_source(product, entry)
+        cached = args.cache / source_product / Path(source_path).with_suffix(".md")
         if cached.exists() and cached.stat().st_size > 100:
             translated = cached.read_text(encoding="utf-8").strip()
         else:
+            if args.offline:
+                raise FileNotFoundError(f"Offline translation is missing: {cached}")
 
             def translate_chunk(chunk: str) -> str:
                 prompt = (
@@ -282,10 +292,11 @@ def main() -> None:
     (args.cache / "scrape-failures.json").write_text(
         json.dumps(remaining, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    docs = Path(__file__).parents[2] / "docs"
+    coverage = Path(__file__).with_name("r2025b-block-coverage")
+    coverage.mkdir(parents=True, exist_ok=True)
     en, zh = report(manifest)
-    (docs / "en/reference/matlab-block-library-coverage.md").write_text(en, encoding="utf-8")
-    (docs / "zh/reference/matlab-block-library-coverage.md").write_text(zh, encoding="utf-8")
+    (coverage / "index.md").write_text(en, encoding="utf-8")
+    (coverage / "index.zh-CN.md").write_text(zh, encoding="utf-8")
     (args.cache / "translation-failures.json").write_text(
         json.dumps(failures, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )

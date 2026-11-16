@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'DocBlock'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Model-Wide Utilities'
+official_category: 'Model-Wide Utilities'
 documentation_page: 'docblock'
-documentation_source_path: 'slref/docblock.html'
+documentation_source_path: '../simulink/slref/docblock.html'
 language: en
 ---
 

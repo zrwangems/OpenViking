@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Check Dynamic Range'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Model Verification'
+official_category: 'Model Verification'
 documentation_page: 'checkdynamicrange'
-documentation_source_path: 'slref/checkdynamicrange.html'
+documentation_source_path: '../simulink/slref/checkdynamicrange.html'
 language: en
 ---
 

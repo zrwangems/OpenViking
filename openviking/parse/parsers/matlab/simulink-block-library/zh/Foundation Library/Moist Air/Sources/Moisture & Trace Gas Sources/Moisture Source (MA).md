@@ -1,0 +1,155 @@
+---
+type: simulink-block
+title: 'Moisture Source (MA)'
+family: 'simscape'
+product_id: 'simscape'
+product_name: 'Foundation Library'
+documentation_release: R2025b
+official_category: 'Moist Air / Sources / Moisture & Trace Gas Sources'
+documentation_page: 'moisturesourcema'
+documentation_source_path: 'ref/moisturesourcema.html'
+language: zh-CN
+chinese_source: worker-translation
+---
+
+# Moisture Source (MA)
+
+## 端口
+
+### 输入
+
+### **M** — 质量流量控制信号，kg/s 物理信号
+
+输入物理信号，用于指定通过源的水蒸气或水滴质量流量。
+
+#### 依赖关系
+
+要启用此端口，请将 **Source type** 参数设置为 `Controlled`。
+
+### **T** — 添加湿气的温度，K 物理信号
+
+输入物理信号，用于指定添加湿气的温度。模块仅使用此值计算添加湿气的比焓。移除湿气的比焓基于所连接湿空气容积的温度。
+
+#### 依赖关系
+
+要启用此端口，请将 **Source type** 参数设置为 `Controlled`。
+
+### 守恒
+
+### **S** — 注入或提取湿度或水滴的湿空气源
+
+将此端口连接到具有有限湿空气容积的模块的端口 **S**，以通过该模块添加或移除湿度或水滴。
+
+## 参数
+
+### **Source type** — 选择湿气质量流量和温度在仿真期间是否可以变化 `Controlled`（默认） | `Constant`
+
+选择湿气质量流量和温度在仿真期间是否可以变化：
+
+- `Controlled` — 湿气质量流量和温度是可变的，由输入物理信号控制。选择此选项会显示输入端口 **M** 和 **T**。
+- `Constant` — 湿气质量流量和温度在仿真期间恒定，由模块参数指定。选择此选项会启用这些参数。
+
+### **Moisture added or removed** — 选择模块以水蒸气还是水滴形式添加或移除湿气 `Water vapor`（默认） | `Water droplets`
+
+选择模块以水蒸气还是水滴形式添加或移除湿气。
+
+### **Water vapor evaporated from liquid or condensed to liquid** — 模块如何添加或移除水蒸气 `off`（默认） | `on`
+
+选择模块如何添加或移除水蒸气。如果清除此复选框，则添加或移除湿气的焓对应于水蒸气的焓，该值大于液态水的焓。
+
+如果选中此复选框，则添加或移除湿气的焓对应于液态水的焓，该值小于水蒸气的焓。添加水蒸气时，它从液体蒸发，潜热由所连接的流体容积提供。移除水蒸气时，它凝结为液体，潜热释放到所连接的流体容积。
+
+#### 依赖关系
+
+要启用此参数，请将 **Moisture added or removed** 设置为 `Water vapor`。
+
+### **Rate of moisture added** — 通过模块的恒定质量流量 `0 kg/s`（默认）
+
+通过模块的水蒸气或水滴质量流量。正值向所连接的湿空气容积添加湿气。负值从该容积提取湿气。
+
+#### 依赖关系
+
+要启用此参数，请将 **Source type** 设置为 `Constant`。
+
+### **Added moisture temperature specification** — 选择添加湿气温度的规格方法 `Atmospheric temperature`（默认） | `Specified temperature`
+
+选择湿气温度的规格方法：
+
+- `Atmospheric temperature` — 使用由连接到回路的 Moist Air Properties (MA) 模块指定的大气温度。
+- `Specified temperature` — 使用 **Temperature of added moisture** 参数指定一个值。
+
+#### 依赖关系
+
+要启用此参数，请将 **Source type** 设置为 `Constant`。
+
+### **Temperature of added moisture** — 湿气温度 `293.15 K`（默认）
+
+输入所需的添加湿气温度。此温度在仿真期间保持恒定。模块仅使用此值计算添加湿气的比焓。移除湿气的比焓基于所连接湿空气容积的温度。
+
+#### 依赖关系
+
+要启用此参数，请将 **Source type** 设置为 `Constant`，并将 **Added moisture temperature specification** 设置为 `Specified temperature`。
+
+## 所属库
+
+Simscape / Foundation Library / Moist Air / Sources / Moisture & Trace Gas Sources
+
+## 模块特性
+
+未在 R2025b 中记录。
+
+## 扩展功能
+
+### C/C++ 代码生成
+
+使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+
+## 版本历史
+
+**在 R2018a 中引入**
+
+### R2024b: 对悬浮在湿空气流中的水滴建模
+
+湿空气域中的模块现在可以对悬浮在湿空气流中的水滴建模。要对水滴建模，请在连接到湿空气网络的 Moist Air Properties (MA) 模块中选择 **Enable entrained water droplets**。
+
+### R2023b: 湿空气源可用性增强
+
+在 R2023b 中，单独的 Moisture Source (MA) 和 Controlled Moisture Source (MA) 模块已合并为单个 Moisture Source (MA) 模块，允许您在恒定的或时变的湿气源或汇之间选择。
+
+当您在模型中使用这些 Foundation library 模块时，此更改不会影响兼容性。当您打开现有模型时，Controlled Moisture Source (MA) 模块会自动替换为具有暴露输入端口的 Moisture Source (MA) 模块。
+
+但是，如果您在自定义复合组件中使用这些模块，则需要更新复合组件代码。
+
+| 要更新的源模块 | 旧语法 | 新语法 |
+| --- | --- | --- |
+| Controlled Moisture Source (MA) | `source = foundation.moist_air.sources.moisture_trace_gas.moisture_source_controlled;` | `source = foundation.moist_air.sources.moisture_trace_gas.moisture_source;` |
+| Moisture Source (MA) | `source = foundation.moist_air.sources.moisture_trace_gas.moisture_source;` | `source = foundation.moist_air.sources.moisture_trace_gas.moisture_source(source_type=foundation.enum.constant_controlled.constant);` |
+
+## 描述
+
+以恒定或时变速率注入或提取湿气
+
+Moisture Source (MA) 模块表示所连接湿空气容积的恒定或时变湿度或水滴源或汇。正的或负的湿气质量流量分别导致添加或移除湿气。
+
+对于时变源，两个物理信号输入端口 **M** 和 **T** 分别提供质量流量和温度值。或者，您可以将恒定质量流量和温度指定为模块参数。
+
+当 **Moisture added or removed** 参数为 `Water vapor` 时，**Water vapor evaporated from liquid or condensed to liquid** 参数控制蒸气如何离开或进入模块。当您清除 **Water vapor evaporated from liquid or condensed to liquid** 时，模块以指定速率从流体容积移除水蒸气。当您选中 **Water vapor evaporated from liquid or condensed to liquid** 时，模块假定进入流体容积的蒸气源自蒸发的水，而离开该容积的蒸气凝结为液体。在此情况下，模块还会对任一过程的潜热变化建模。
+
+当您清除 **Water vapor evaporated from liquid or condensed to liquid** 复选框时，与添加或移除的蒸气相关的能量为
+
+Φs={m˙specified⋅hw(Tspecified),if m˙specified≥0m˙specified⋅hw(Ts),if m˙specified<0
+
+其中：
+
+- m˙specified 是由端口 **M** 的输入物理信号或 **Rate of added moisture** 参数指定的水蒸气质量流量。
+- *h*w 是水蒸气比焓。
+- *T*specified 是添加湿气的温度，由端口 **T** 的输入物理信号或模块参数指定。模块仅使用此值计算添加湿气的比焓。移除湿气的比焓基于所连接湿空气容积的温度。
+- *T*s 是端口 **S** 处的温度，与所连接湿空气容积的温度相同。
+
+当您选中 **Water vapor evaporated from liquid or condensed to liquid** 时，与添加或移除的蒸气相关的能量为
+
+Φs={m˙specified⋅(hw(Tspecified)−Δhvap(Tspecified)),if m˙specified≥0m˙specified⋅(hw(Ts)−Δhvap(Ts)),if m˙specified<0
+
+其中 *Δh*vap 是水的汽化比焓。
+
+端口 **S** 是湿空气源守恒端口。将此端口连接到具有有限湿空气容积的模块的端口 **S**，以通过该模块添加或移除湿气。有关详细信息，请参阅 Using Moisture and Trace Gas Sources。

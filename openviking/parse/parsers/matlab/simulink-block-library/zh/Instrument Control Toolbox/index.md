@@ -1,4 +1,12 @@
 # Instrument Control Toolbox
 
-- [Interface-Based Instrument Communication](Interface-Based Instrument Communication/index.md)
-- [Direct Interface Communication in Simulink](Direct Interface Communication in Simulink/index.md)
+- [Query Instrument](Query Instrument.md)
+- [Serial Configuration](Serial Configuration.md)
+- [Serial Receive](Serial Receive.md)
+- [Serial Send](Serial Send.md)
+- [TCP/IP Receive](TCP／IP Receive.md)
+- [TCP/IP Send](TCP／IP Send.md)
+- [To Instrument](To Instrument.md)
+- [UDP Receive](UDP Receive.md)
+- [UDP Send](UDP Send.md)
+- [VISA](VISA.md)

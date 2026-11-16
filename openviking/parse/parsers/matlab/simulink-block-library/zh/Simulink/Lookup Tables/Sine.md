@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Lookup Tables'
+official_category: 'Lookup Tables'
 documentation_page: 'sine'
 documentation_source_path: 'slref/sine.html'
 language: zh-CN

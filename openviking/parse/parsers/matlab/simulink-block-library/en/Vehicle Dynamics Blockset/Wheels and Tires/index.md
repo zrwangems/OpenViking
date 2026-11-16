@@ -1,9 +1,11 @@
 # Wheels and Tires
 
+- [Combined Slip Wheel 2DOF](Combined Slip Wheel 2DOF.md)
 - [Combined Slip Wheel CPI](Combined Slip Wheel CPI.md)
 - [Combined Slip Wheel STI](Combined Slip Wheel STI.md)
-- [Combined Slip Wheel 2DOF](Combined Slip Wheel 2DOF.md)
 - [Dugoff Wheel 2DOF](Dugoff Wheel 2DOF.md)
 - [Fiala Wheel 2DOF](Fiala Wheel 2DOF.md)
-- [Longitudinal Wheel](Longitudinal Wheel.md)
-- [Rotational Brake](Rotational Brake.md)
+- [Longitudinal Wheel - Disc Brake](Longitudinal Wheel - Disc Brake.md)
+- [Longitudinal Wheel - Drum Brake](Longitudinal Wheel - Drum Brake.md)
+- [Longitudinal Wheel - Mapped Brake](Longitudinal Wheel - Mapped Brake.md)
+- [Longitudinal Wheel - No Brake](Longitudinal Wheel - No Brake.md)

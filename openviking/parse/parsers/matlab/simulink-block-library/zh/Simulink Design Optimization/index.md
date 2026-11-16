@@ -1,5 +1,6 @@
 # Simulink Design Optimization
 
-- [Response Optimization](Response Optimization/index.md)
-- [Optimization-Based Control Design](Optimization-Based Control Design/index.md)
-- [Lookup Table Tuning](Lookup Table Tuning/index.md)
+- [Adaptive Lookup Tables](Adaptive Lookup Tables/index.md)
+- [Model Verification](Model Verification/index.md)
+- [RMS Blocks](RMS Blocks/index.md)
+- [Signal Constraints](Signal Constraints/index.md)

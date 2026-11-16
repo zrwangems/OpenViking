@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Dashboard'
+official_category: 'Dashboard'
 documentation_page: 'rotaryswitch'
 documentation_source_path: 'slref/rotaryswitch.html'
 language: en

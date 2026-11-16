@@ -1,3 +1,4 @@
 # DDS Blockset
 
-- [Model DDS Applications in Simulink](Model DDS Applications in Simulink/index.md)
+- [Take DDS Sample](Take DDS Sample.md)
+- [Write DDS Sample](Write DDS Sample.md)

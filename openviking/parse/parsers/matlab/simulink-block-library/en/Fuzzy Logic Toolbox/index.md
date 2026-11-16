@@ -1,4 +1,7 @@
 # Fuzzy Logic Toolbox
 
-- [Fuzzy Logic in Simulink](Fuzzy Logic in Simulink/index.md)
-- [Deployment](Deployment/index.md)
+- [Membership Functions](Membership Functions/index.md)
+- [FIS Tree](FIS Tree.md)
+- [Fuzzy Logic Controller](Fuzzy Logic Controller.md)
+- [Fuzzy Logic Controller with Ruleviewer](Fuzzy Logic Controller with Ruleviewer.md)
+- [Fuzzy PID Controller](Fuzzy PID Controller.md)

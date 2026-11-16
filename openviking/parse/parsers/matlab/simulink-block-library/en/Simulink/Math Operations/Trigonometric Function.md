@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Trigonometric Function'
-family: 'fixedpoint'
-product_id: 'fixedpoint'
-product_name: 'Fixed-Point Designer'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Embedded Implementation / Fixed-Point Math Operations in MATLAB and Simulink / Trigonometric Functions'
+official_category: 'Math Operations'
 documentation_page: 'trigonometricfunction'
 documentation_source_path: '../simulink/slref/trigonometricfunction.html'
 language: en

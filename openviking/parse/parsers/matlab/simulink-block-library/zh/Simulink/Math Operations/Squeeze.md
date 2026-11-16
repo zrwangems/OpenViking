@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Math Operations'
+official_category: 'Math Operations'
 documentation_page: 'squeeze'
 documentation_source_path: 'slref/squeeze.html'
 language: zh-CN

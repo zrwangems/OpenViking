@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Discrete PID Controller'
-family: 'slcontrol'
-product_id: 'slcontrol'
-product_name: 'Simulink Control Design'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Control System Design and Tuning / PID Controller Tuning / Model-Based PID Controller Tuning'
+official_category: 'Discrete'
 documentation_page: 'discretepidcontroller'
 documentation_source_path: '../simulink/slref/discretepidcontroller.html'
 language: en

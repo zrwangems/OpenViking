@@ -18,7 +18,6 @@ import hashlib
 import json
 import posixpath
 import re
-import shutil
 import time
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -43,11 +42,6 @@ EXPECTED = {
 
 def slug(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
-
-
-def resource_component(value: str) -> str:
-    """Keep the official display name; only path separators need substitution."""
-    return value.replace("/", "／").replace("\x00", "")
 
 
 def local_name(tag: str) -> str:
@@ -215,13 +209,13 @@ def canonicalize_cross_product_documents(manifest: dict) -> None:
         for library in product["libraries"]:
             for block in library["blocks"]:
                 path = block["documentation_path"]
-                if ".." not in Path(path).parts:
+                if path and ".." not in Path(path).parts:
                     owners[(product["id"], path)] = block["documents"]
     for product in manifest["products"]:
         for library in product["libraries"]:
             for block in library["blocks"]:
                 path = block["documentation_path"]
-                if ".." not in Path(path).parts:
+                if not path or ".." not in Path(path).parts:
                     continue
                 normalized = posixpath.normpath(path)
                 while normalized.startswith("../"):
@@ -260,7 +254,8 @@ def existing_document_index(path: Path, product_id: str) -> dict:
         if product["id"] == product_id
         for library in product["libraries"]
         for block in library["blocks"]
-        if all(block["documents"][language]["path"] for language in ("en", "zh"))
+        if block["documentation_path"]
+        and all(block["documents"][language]["path"] for language in ("en", "zh"))
     }
 
 
@@ -285,6 +280,7 @@ def refresh_totals(manifest: dict) -> None:
         for library in product["libraries"]
         for block in library["blocks"]
         for language in ("en", "zh")
+        if block["documentation_path"]
     }
     available_paths = {
         (product["id"], block["documentation_path"], language)
@@ -307,6 +303,7 @@ def refresh_totals(manifest: dict) -> None:
         language: sum(key[2] == language for key in all_paths - available_paths)
         for language in ("en", "zh")
     }
+    totals["tree_only_occurrences"] = sum(not block["documentation_path"] for block in occurrences)
     manifest["totals"] = totals
 
 
@@ -318,6 +315,8 @@ def manifest_failures(manifest: dict) -> list[dict]:
             for block in library["blocks"]:
                 for language in ("en", "zh"):
                     document = block["documents"][language]
+                    if not block["documentation_path"]:
+                        continue
                     key = (product["id"], block["documentation_path"], language)
                     if document["status"] == "available" or key in seen:
                         continue
@@ -385,8 +384,8 @@ def report(manifest: dict) -> tuple[str, str]:
     return "\n".join(english) + "\n", "\n".join(chinese) + "\n"
 
 
-# Top-level order from the requester's R2025b Library Browser. The two
-# canonical language directories contain only this installation profile.
+# MathWorks documentation product IDs for local Browser display names.
+# Layout and ordering come from tree_full.md, not from this mapping.
 BROWSER_PRODUCTS = [
     ("Simulink", "simulink"),
     ("Aerospace Blockset", "aeroblks"),
@@ -456,219 +455,12 @@ BROWSER_PRODUCTS = [
     ("Wireless HDL Toolbox", "wireless-hdl"),
 ]
 
-BROWSER_ALIASES = {
-    "Communications Toolbox HDL Support": (
-        "Communications Toolbox HDL Support",
-        "Wireless HDL Toolbox",
-    ),
-    "DSP System Toolbox HDL Support": ("DSP System Toolbox HDL Support", "DSP HDL Toolbox"),
-    "Fixed-Point Designer HDL Support": ("Fixed-Point Designer HDL Support", "HDL Coder"),
-    "Motor Control Blockset HDL Support": (
-        "Motor Control Blockset HDL Support",
-        "Motor Control Blockset",
-    ),
-}
-
-# These entries are visible in the local Browser but have no independent
-# referencelist_block_cat.xml in the public R2025b catalog. Do not invent a
-# block list: a local MATLAB enumeration is required to populate their children.
-BROWSER_LOCAL_ONLY = {"Report Generator", "Simulink Extras"}
-
-
-COMMON_BLOCKS = [
-    "Bus Creator",
-    "Bus Selector",
-    "Constant",
-    "Data Type Conversion",
-    "Delay",
-    "Demux",
-    "Discrete-Time Integrator",
-    "Gain",
-    "Ground",
-    "Inport",
-    "Integrator",
-    "Logical Operator",
-    "Mux",
-    "Outport",
-    "Product, Matrix Multiply",
-    "Relational Operator",
-    "Saturation",
-    "Scope",
-    "Subsystem",
-    "Sum",
-    "Switch",
-    "Terminator",
-    "Vector Concatenate",
-]
-
 
 def write_browser_tree(manifest: dict, root: Path) -> None:
-    """Materialize the Simulink Library Browser hierarchy with full block pages."""
-    by_id = {p["id"]: p for p in manifest["products"]}
-    browser_ids = {directory for _, directory in BROWSER_PRODUCTS}
-    products = [
-        by_id[directory]
-        for _, directory in BROWSER_PRODUCTS
-        if directory in by_id and by_id[directory]["status"] == "enumerated"
-    ]
-    for product in products:
-        if product["id"] == "simulink":
-            product["libraries"] = [
-                library
-                for library in product["libraries"]
-                if tuple(library["path"][:2])
-                == ("Simulink Environment Fundamentals", "Block Libraries")
-            ]
-        product["block_occurrences"] = sum(
-            len(library["blocks"]) for library in product["libraries"]
-        )
-        product["unique_document_paths"] = len(
-            {
-                block["documentation_path"]
-                for library in product["libraries"]
-                for block in library["blocks"]
-            }
-        )
-    manifest["products"] = products
-    manifest["scope"] = "the 66-entry local R2025b Library Browser installation profile"
-    refresh_totals(manifest)
-    if len(BROWSER_PRODUCTS) != 66 or len(browser_ids) != 66:
-        raise ValueError("The installed Browser profile must contain 66 unique top-level entries")
-    # Scraper staging files and previous Browser trees are both valid inputs.
-    # Load them before replacing either canonical language directory.
-    source_documents = {
-        (id(block), language): (root / document["path"]).read_text(encoding="utf-8")
-        for product in products
-        for library in product["libraries"]
-        for block in library["blocks"]
-        for language, document in block["documents"].items()
-        if document["status"] == "available" and document["path"]
-    }
-    canonical_document_paths = {}
-    for language in ("en", "zh"):
-        browser_root = root / language
-        shutil.rmtree(browser_root, ignore_errors=True)
-        browser_root.mkdir(parents=True, exist_ok=True)
-        root_index = [
-            "# Simulink Library Browser" if language == "en" else "# Simulink 库浏览器",
-            "",
-        ]
-        root_entries = []
-        for product in products:
-            libraries = product["libraries"]
-            if product["id"] == "simulink":
-                prefix = ("Simulink Environment Fundamentals", "Block Libraries")
-                libraries = [
-                    library for library in libraries if tuple(library["path"][:2]) == prefix
-                ]
-            nodes = {}
-            for library in libraries:
-                # The block catalog also contains tutorials, deployment workflows and
-                # other categories without blocks. They are not block-library pages.
-                # Ancestors of real blocks are still created by the loop below.
-                if not library["blocks"]:
-                    continue
-                relative_parts = (
-                    library["path"][2:] if product["id"] == "simulink" else library["path"]
-                )
-                if not relative_parts:
-                    continue
-                parts = [product["name"], *(resource_component(part) for part in relative_parts)]
-                for depth in range(1, len(parts) + 1):
-                    key = tuple(parts[:depth])
-                    display = product["name"] if depth == 1 else relative_parts[depth - 2]
-                    nodes.setdefault(key, {"name": display, "blocks": []})
-                nodes[tuple(parts)]["blocks"].extend(library["blocks"])
-                name_counts = {}
-                for block in library["blocks"]:
-                    key = resource_component(block["name"])
-                    name_counts[key] = name_counts.get(key, 0) + 1
-                for block in library["blocks"]:
-                    filename = resource_component(block["name"])
-                    if name_counts[filename] > 1:
-                        filename += "-" + resource_component(Path(block["documentation_path"]).stem)
-                    filename += ".md"
-                    block["resource_name"] = filename
-                    target = browser_root.joinpath(*parts, filename)
-                    target.parent.mkdir(parents=True, exist_ok=True)
-                    document = block["documents"][language]
-                    if document["status"] == "available" and document["path"]:
-                        content = source_documents[(id(block), language)]
-                    else:
-                        content = f"# {block['name']}\n\n{block['summary']}\n\n" + (
-                            "完整中英文正文待补。\n"
-                            if language == "zh"
-                            else "Full English and Chinese documentation is pending.\n"
-                        )
-                    target.write_text(content, encoding="utf-8")
-                    relative = target.relative_to(root).as_posix()
-                    block.setdefault("resource_paths", {})[language] = relative
-                    key = (product["id"], block["documentation_path"], language)
-                    document["path"] = canonical_document_paths.setdefault(key, relative)
-            if product["id"] == "simulink":
-                common_key = ("Simulink", "Commonly Used Blocks")
-                nodes.setdefault(("Simulink",), {"name": "Simulink", "blocks": []})
-                nodes[common_key] = {"name": "Commonly Used Blocks", "blocks": []}
-                by_name = {}
-                for library in product["libraries"]:
-                    for block in library["blocks"]:
-                        by_name.setdefault(block["name"], block)
-                for name in COMMON_BLOCKS:
-                    block = by_name[name]
-                    nodes[common_key]["blocks"].append(block)
-                    content = source_documents[(id(block), language)]
-                    target = (
-                        browser_root
-                        / "Simulink/Commonly Used Blocks"
-                        / f"{resource_component(name)}.md"
-                    )
-                    target.parent.mkdir(parents=True, exist_ok=True)
-                    target.write_text(content, encoding="utf-8")
-            for key, node in nodes.items():
-                directory = browser_root.joinpath(*key)
-                directory.mkdir(parents=True, exist_ok=True)
-                # dict insertion order is the official XML traversal order.
-                children = [
-                    candidate
-                    for candidate in nodes
-                    if len(candidate) == len(key) + 1 and candidate[:-1] == key
-                ]
-                lines = [f"# {node['name']}", ""]
-                lines.extend(
-                    f"- [{nodes[child]['name']}]({child[-1]}/index.md)" for child in children
-                )
-                for block in node["blocks"]:
-                    filename = block.get("resource_name", resource_component(block["name"]) + ".md")
-                    lines.append(f"- [{block['name']}]({filename})")
-                (directory / "index.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-        root_entries = [
-            (product["name"], resource_component(product["name"])) for product in products
-        ]
-        root_index.extend(f"- [{name}]({directory}/index.md)" for name, directory in root_entries)
-        (browser_root / "index.md").write_text("\n".join(root_index) + "\n", encoding="utf-8")
-    totals = manifest["totals"]
-    (root / "README.md").write_text(
-        "# Simulink Block Library\n\n"
-        "MATLAB/Simulink R2025b 资源添加时使用的本地块参考库。"
-        "`zh/` 和 `en/` 是正式 Library Browser 目录，按产品、子库和块组织；"
-        "解析器按块原始名称及 `SourceBlock` 匹配文档，无需联网。\n\n"
-        "- [中文块库](zh/index.md)\n"
-        "- [English block library](en/index.md)\n\n"
-        f"当前包含 {totals['block_occurrences']} 个库中块条目，中英文正文均已生成。"
-        "`manifest.json` 是解析器和离线生成脚本使用的机器元数据，不是 OV 资源页面。"
-        "重新生成使用 `scripts/matlab/` 下的 R2025b 脚本；抓取缓存和失败日志保存在库目录之外。\n",
-        encoding="utf-8",
-    )
-    (root / "index.md").unlink(missing_ok=True)
-    for redundant in ("browser", "catalog"):
-        shutil.rmtree(root / redundant, ignore_errors=True)
-    for report_name in (
-        "library-browser-reconciliation.md",
-        "scrape-failures.json",
-        "scrape-failures.md",
-        "translation-failures.json",
-    ):
-        (root / report_name).unlink(missing_ok=True)
+    """Materialize the already aligned local Browser tree."""
+    from browser_tree_writer import write_browser_tree as write_aligned_tree
+
+    write_aligned_tree(manifest, root)
 
 
 def main() -> None:
@@ -733,6 +525,9 @@ def main() -> None:
             raise SystemExit(
                 f"Official R2025b snapshot changed; review before updating: {differences}"
             )
+    from align_r2025b_browser_tree import TREE_PATH, align_manifest
+
+    manifest = align_manifest(manifest, TREE_PATH)
     write_browser_tree(manifest, args.output.parent)
     # Browser generation assigns the canonical document paths; persist them.
     args.output.write_text(

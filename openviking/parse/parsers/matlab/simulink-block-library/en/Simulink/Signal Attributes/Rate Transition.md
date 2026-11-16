@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Rate Transition'
-family: 'rtw'
-product_id: 'rtw'
-product_name: 'Simulink Coder'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Architecture and Component Design / Timers and Scheduling / Data Transfers'
+official_category: 'Signal Attributes'
 documentation_page: 'ratetransition'
 documentation_source_path: '../simulink/slref/ratetransition.html'
 language: en

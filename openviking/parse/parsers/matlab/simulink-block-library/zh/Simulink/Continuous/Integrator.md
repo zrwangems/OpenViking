@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Continuous'
+official_category: 'Commonly Used Blocks'
 documentation_page: 'integrator'
 documentation_source_path: 'slref/integrator.html'
 language: zh-CN

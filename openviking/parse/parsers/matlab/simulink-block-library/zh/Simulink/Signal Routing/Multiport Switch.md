@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Multiport Switch'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Signal Routing'
+official_category: 'Signal Routing'
 documentation_page: 'multiportswitch'
-documentation_source_path: 'slref/multiportswitch.html'
+documentation_source_path: '../simulink/slref/multiportswitch.html'
 language: zh-CN
 chinese_source: official
 ---

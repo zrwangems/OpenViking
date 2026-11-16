@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Reshape'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Math Operations'
+official_category: 'Math Operations'
 documentation_page: 'reshape'
-documentation_source_path: 'slref/reshape.html'
+documentation_source_path: '../simulink/slref/reshape.html'
 language: zh-CN
 chinese_source: official
 ---

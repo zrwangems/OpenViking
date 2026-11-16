@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Assertion'
-family: 'sltest'
-product_id: 'sltest'
-product_name: 'Simulink Test'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Test Authoring / Assessments, Criteria, and Verification'
+official_category: 'Model Verification'
 documentation_page: 'assertion'
 documentation_source_path: '../simulink/slref/assertion.html'
 language: en

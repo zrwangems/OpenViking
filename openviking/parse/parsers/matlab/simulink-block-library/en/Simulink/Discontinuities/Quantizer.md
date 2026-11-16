@@ -5,7 +5,7 @@ family: 'dsp'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b
-official_category: 'Fixed-Point Design / Quantizers'
+official_category: 'Quantizers'
 documentation_page: 'quantizer'
 documentation_source_path: '../simulink/slref/quantizer.html'
 language: en

@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / User-Defined Functions'
+official_category: 'User-Defined Functions'
 documentation_page: 'initializefunction'
 documentation_source_path: 'slref/initializefunction.html'
 language: zh-CN

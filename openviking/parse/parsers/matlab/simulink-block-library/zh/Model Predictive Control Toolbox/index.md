@@ -1,9 +1,10 @@
 # Model Predictive Control Toolbox
 
-- [MPC Design](MPC Design/index.md)
-- [Explicit MPC Design](Explicit MPC Design/index.md)
-- [Adaptive MPC Design](Adaptive MPC Design/index.md)
-- [Gain-Scheduled MPC Design](Gain-Scheduled MPC Design/index.md)
-- [Nonlinear MPC Design](Nonlinear MPC Design/index.md)
-- [Code Generation](Code Generation/index.md)
-- [Applications](Applications/index.md)
+- [Automated Driving](Automated Driving/index.md)
+- [Adaptive MPC Controller](Adaptive MPC Controller.md)
+- [Explicit MPC Controller](Explicit MPC Controller.md)
+- [MPC Controller](MPC Controller.md)
+- [Multiple Explicit MPC Controllers](Multiple Explicit MPC Controllers.md)
+- [Multiple MPC Controllers](Multiple MPC Controllers.md)
+- [Multistage Nonlinear MPC](Multistage Nonlinear MPC.md)
+- [Nonlinear MPC Controller](Nonlinear MPC Controller.md)

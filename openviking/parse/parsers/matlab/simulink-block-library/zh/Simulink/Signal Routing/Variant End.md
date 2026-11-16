@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Signal Routing'
+official_category: 'Signal Routing'
 documentation_page: 'variantend'
 documentation_source_path: 'slref/variantend.html'
 language: zh-CN
@@ -14,31 +14,19 @@ chinese_source: worker-translation
 
 # Variant End
 
-
-
-定义有界区域的终点
-
-## 库
-
-Simulink / Signal Routing
-
-## 描述
-
-Variant End 模块定义有界区域的终点，使您能够限制变体条件传播，而无需引入层级。使用 Variant Start 模块定义有界区域的起点。对于每个 Variant Start 模块，都有一个唯一对应的 Variant End 模块。当您在 Variant Start 模块上指定变体条件时，对应的 Variant End 模块会在编译时基于唯一的 **Variant Start End Tag** 继承这些条件和其他参数。
-
 ## 端口
 
 ### 输入
 
 ### **Port\_1** — 输入分支 标量 | 向量 | 矩阵
 
-与对应 Variant Start 模块一起定义有界区域终点的输入分支。
+与对应的 Variant Start 模块一起定义有界区域结束的输入分支。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
 
 ### **Port\_N** — 与第 *N* 个分支关联的输入端口 标量 | 向量 | 矩阵
 
-与第 *N* 个分支关联的输入端口，该分支与对应 Variant Start 模块一起定义有界区域终点。
+与第 *N* 个分支关联的输入端口，该端口与对应的 Variant Start 模块一起定义有界区域的结束。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
 ### 输出
@@ -51,31 +39,35 @@ Variant End 模块定义有界区域的终点，使您能够限制变体条件�
 
 ## 参数
 
-### **Variant Start End Tag** — 有界区域的唯一标识符 `A`（默认） | 有效的 MATLAB® 标识符
+### **Variant Start End Tag** — 有界区域的唯一标识符 `A` （默认） | 有效 MATLAB® 标识符
 
-用于标识组成有界区域的正确 Variant Start 和 Variant End 对的唯一标识符，指定为有效的 MATLAB 标识符。有效的 MATLAB 标识符是由字母数字（A–Z、a–z、0–9）和下划线组成的 character vector，其中第一个字符必须是字母，并且 character vector 的长度小于或等于 `namelengthmax`。
+用于标识形成有界区域的正确 Variant Start 和 Variant End 对的唯一标识符，指定为有效 MATLAB 标识符。有效 MATLAB 标识符是由字母数字（A–Z、a–z、0–9）和下划线组成的 character vector，其中第一个字符必须是字母，并且 character vector 的长度必须小于或等于 `namelengthmax`。
 
-#### 编程使用
+#### 编程用法
 
 |  |
 | --- |
 | **模块参数：** `VariantStartEndTag` |
 | **类型：** character vector |
-| **取值：** `'A'` | 有效的 MATLAB 标识符 |
+| **值：** `'A'` | 有效 MATLAB 标识符 |
 | **默认值：** `'A'` |
 
-### **Variant Paired Block** — 用于高亮配对的 Variant Start 模块的选项 `off`（默认） | `on`
+### **Variant Paired Block** — 用于高亮显示配对的 Variant Start 模块的选项 `off` （默认） | `on`
 
-选择此参数可高亮显示与 Variant End 具有相同 **Variant Start End Tag** 的 Variant Start。如果存在多个具有相同 **Variant Start End Tag** 的 Variant Start 模块，则高亮显示找到的第一个模块。
+选择此参数可高亮显示与 Variant End 具有相同 **Variant Start End Tag** 的 Variant Start。如果有多个 Variant Start 模块具有相同的 **Variant Start End Tag**，则会高亮显示找到的第一个模块。
 
-#### 编程使用
+#### 编程用法
 
 |  |
 | --- |
 | **模块参数：** `VariantPairedBlock` |
 | **类型：** character vector |
-| **取值：** `'off'` | `'on'` |
+| **值：** `'off'` | `'on'` |
 | **默认值：** `'off'` |
+
+## 所属库
+
+Simulink / Signal Routing
 
 ## 模块特性
 
@@ -96,3 +88,9 @@ Variant End 模块定义有界区域的终点，使您能够限制变体条件�
 ## 版本历史
 
 **在 R2024a 中引入**
+
+## 描述
+
+定义有界区域的结束
+
+Variant End 模块定义有界区域的结束，该有界区域允许你在不引入层级的情况下限制变体条件传播。使用 Variant Start 模块定义有界区域的开始。对于每个 Variant Start 模块，都有一个对应的 Variant End 模块。当你在 Variant Start 模块上指定变体条件时，对应的 Variant End 模块会在编译时基于唯一的 **Variant Start End Tag** 继承这些条件和其他参数。

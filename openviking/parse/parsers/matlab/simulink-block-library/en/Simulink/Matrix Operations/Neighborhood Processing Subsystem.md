@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Neighborhood Processing Subsystem'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'simulink'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'HDL Code Generation from Simulink / Speed and Area Optimization / I/O Optimization'
+official_category: 'Matrix Operations'
 documentation_page: 'neighborhoodprocessingsubsystem'
-documentation_source_path: '../simulink/slref/neighborhoodprocessingsubsystem.html'
+documentation_source_path: 'slref/neighborhoodprocessingsubsystem.html'
 language: en
 ---
 

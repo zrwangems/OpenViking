@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Discrete'
+official_category: 'Discrete'
 documentation_page: 'difference'
 documentation_source_path: 'slref/difference.html'
 language: en

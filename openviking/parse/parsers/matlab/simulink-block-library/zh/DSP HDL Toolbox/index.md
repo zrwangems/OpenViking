@@ -1,3 +1,7 @@
 # DSP HDL Toolbox
 
-- [HDL-Optimized Filters and Transforms](HDL-Optimized Filters and Transforms/index.md)
+- [Filtering](Filtering/index.md)
+- [Math Functions](Math Functions/index.md)
+- [Signal Operations](Signal Operations/index.md)
+- [Sources](Sources/index.md)
+- [Transforms](Transforms/index.md)

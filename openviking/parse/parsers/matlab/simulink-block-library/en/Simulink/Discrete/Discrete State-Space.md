@@ -5,7 +5,7 @@ family: 'hdlcoder'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Real-Time Hardware Deployment / RCP and HIL Blocks'
+official_category: 'RCP and HIL'
 documentation_page: 'discretestatespace'
 documentation_source_path: '../simulink/slref/discretestatespace.html'
 language: en

@@ -1,7 +1,9 @@
 # Powertrain Blockset
 
-- [Virtual Vehicles](Virtual Vehicles/index.md)
-- [Drivetrain and Transmission](Drivetrain and Transmission/index.md)
-- [Energy Storage](Energy Storage/index.md)
+- [Drivetrain](Drivetrain/index.md)
+- [Energy Storage and Auxiliary Drive](Energy Storage and Auxiliary Drive/index.md)
 - [Propulsion](Propulsion/index.md)
-- [Vehicle Dynamics and Scenarios](Vehicle Dynamics and Scenarios/index.md)
+- [Transmission](Transmission/index.md)
+- [Utilities](Utilities/index.md)
+- [Vehicle Dynamics](Vehicle Dynamics/index.md)
+- [Vehicle Scenario Builder](Vehicle Scenario Builder/index.md)

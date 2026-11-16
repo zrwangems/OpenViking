@@ -1,6 +1,11 @@
 # Phased Array System Toolbox
 
-- [Phased Array Design and Analysis](Phased Array Design and Analysis/index.md)
-- [Beamforming and Direction of Arrival Estimation](Beamforming and Direction of Arrival Estimation/index.md)
-- [Detection, Range and Doppler Estimation](Detection, Range and Doppler Estimation/index.md)
-- [Waveform Design and Signal Synthesis](Waveform Design and Signal Synthesis/index.md)
+- [Beamforming](Beamforming/index.md)
+- [Detection](Detection/index.md)
+- [Direction of Arrival](Direction of Arrival/index.md)
+- [Environment and Target](Environment and Target/index.md)
+- [Sinks](Sinks/index.md)
+- [Space-Time Adaptive Processing](Space-Time Adaptive Processing/index.md)
+- [Transmitters and Receivers](Transmitters and Receivers/index.md)
+- [Waveforms](Waveforms/index.md)
+- [Copyright](Copyright.md)

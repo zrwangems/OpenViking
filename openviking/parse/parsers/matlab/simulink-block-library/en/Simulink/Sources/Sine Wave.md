@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Sine Wave'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'dsp-system-toolbox-hdl-support'
+product_id: 'dsp-system-toolbox-hdl-support'
+product_name: 'DSP System Toolbox HDL Support'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Sources'
+official_category: 'Sources'
 documentation_page: 'sinewave'
-documentation_source_path: 'slref/sinewave.html'
+documentation_source_path: '../simulink/slref/sinewave.html'
 language: en
 ---
 

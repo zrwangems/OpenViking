@@ -11,12 +11,14 @@ from __future__ import annotations
 import argparse
 import concurrent.futures
 import json
+import posixpath
 import re
 import threading
 import time
 from pathlib import Path
 
 import requests
+from browser_tree_writer import normalize_block_document
 from extract_r2025b_block_manifest import (
     RELEASE,
     manifest_failures,
@@ -25,8 +27,6 @@ from extract_r2025b_block_manifest import (
     write_browser_tree,
 )
 from scrape_simulink_blocks import localized_content
-
-from openviking.parse.parsers.matlab.library import normalize_block_document
 
 _PRINT_LOCK = threading.Lock()
 
@@ -90,10 +90,25 @@ def unique_entries(product: dict) -> list[dict]:
     entries = {}
     for library in product["libraries"]:
         for block in library["blocks"]:
+            if not block["documentation_path"]:
+                continue
             entries.setdefault(
-                block["documentation_path"], {**block, "library_path": library["path"]}
+                block["documentation_path"],
+                {
+                    **block,
+                    "name": block.get("documented_as", block["name"]),
+                    "library_path": library["path"],
+                },
             )
     return list(entries.values())
+
+
+def document_source(product: dict, entry: dict) -> tuple[str, str]:
+    """Resolve relative XML targets without letting .. cancel the cache language."""
+    combined = posixpath.normpath(f"{product['id']}/{entry['documentation_path']}")
+    while combined.startswith("../"):
+        combined = combined[3:]
+    return combined.split("/", 1)
 
 
 def process(
@@ -105,15 +120,14 @@ def process(
 ) -> tuple[dict, list[dict]]:
     statuses = {}
     failures = []
+    source_product, source_path = document_source(product, entry)
     for language in ("en", "zh"):
         relative = (
             f"{language}/products/{product['id']}/"
             f"{Path(entry['documentation_path']).with_suffix('.md')}"
         )
         try:
-            html = fetch(
-                product["id"], entry["documentation_path"], language, cache, offline
-            ).read_bytes()
+            html = fetch(source_product, source_path, language, cache, offline).read_bytes()
             markdown, _ = render_page(html, entry, product, language)
             target = root / relative
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -121,6 +135,19 @@ def process(
             statuses[language] = {"status": "available", "path": relative}
         except Exception as exc:
             reason = str(exc)
+            existing = entry.get("documents", {}).get(language, {})
+            existing_path = root / existing["path"] if existing.get("path") else None
+            if existing_path and existing_path.is_file():
+                content = existing_path.read_text(encoding="utf-8")
+                if (
+                    "Full English and Chinese documentation is pending" not in content
+                    and "完整中英文正文待补" not in content
+                ):
+                    target = root / relative
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_text(content, encoding="utf-8")
+                    statuses[language] = {"status": "available", "path": relative}
+                    continue
             status = reason.split(":", 1)[0]
             if status not in {
                 "missing",
@@ -219,10 +246,11 @@ def main() -> None:
     failure_path.write_text(
         json.dumps(all_failures, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    docs = Path(__file__).parents[2] / "docs"
+    coverage = Path(__file__).with_name("r2025b-block-coverage")
+    coverage.mkdir(parents=True, exist_ok=True)
     en, zh = report(manifest)
-    (docs / "en/reference/matlab-block-library-coverage.md").write_text(en, encoding="utf-8")
-    (docs / "zh/reference/matlab-block-library-coverage.md").write_text(zh, encoding="utf-8")
+    (coverage / "index.md").write_text(en, encoding="utf-8")
+    (coverage / "index.zh-CN.md").write_text(zh, encoding="utf-8")
     print(json.dumps(manifest["totals"], ensure_ascii=False, indent=2))
     if all_failures:
         print(f"Explicit gaps: {failure_path}")

@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / User-Defined Functions'
+official_category: 'User-Defined Functions'
 documentation_page: 'level2matlabsfunction'
 documentation_source_path: 'slref/level2matlabsfunction.html'
 language: zh-CN

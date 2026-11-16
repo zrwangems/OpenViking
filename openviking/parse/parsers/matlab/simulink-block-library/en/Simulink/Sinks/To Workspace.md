@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'To Workspace'
-family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Signal Generation, Manipulation, and Analysis / Signal Import and Export'
+official_category: 'Sinks'
 documentation_page: 'toworkspace'
 documentation_source_path: '../simulink/slref/toworkspace.html'
 language: en

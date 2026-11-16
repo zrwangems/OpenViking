@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Bus Assignment'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Signal Routing'
+official_category: 'Signal Routing'
 documentation_page: 'busassignment'
-documentation_source_path: 'slref/busassignment.html'
+documentation_source_path: '../simulink/slref/busassignment.html'
 language: en
 ---
 

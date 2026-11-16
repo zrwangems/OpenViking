@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Selector'
-family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Signal Generation, Manipulation, and Analysis / Signal Attributes and Indexing'
+official_category: 'Signal Routing'
 documentation_page: 'selector'
 documentation_source_path: '../simulink/slref/selector.html'
 language: en

@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Sinks'
+official_category: 'Sinks'
 documentation_page: 'record'
 documentation_source_path: 'slref/record.html'
 language: en

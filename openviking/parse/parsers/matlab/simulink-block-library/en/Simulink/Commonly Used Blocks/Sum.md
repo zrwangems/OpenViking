@@ -1,17 +1,17 @@
 ---
 type: simulink-block
-title: 'Matrix Sum'
-family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+title: 'Sum'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Statistics and Linear Algebra / Array and Matrix Mathematics / Matrix Operations'
+official_category: 'Commonly Used Blocks'
 documentation_page: 'sum'
 documentation_source_path: '../simulink/slref/sum.html'
 language: en
 ---
 
-# Matrix Sum
+# Sum
 
 ## Ports
 

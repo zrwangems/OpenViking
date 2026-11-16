@@ -9,11 +9,14 @@ import pytest
 SCRIPTS = Path(__file__).parents[3] / "scripts" / "matlab"
 sys.path.insert(0, str(SCRIPTS))
 
+from align_r2025b_browser_tree import (  # noqa: E402
+    BLOCK_ALIASES,
+    SOURCE_PRODUCT_IDS,
+    parse_tree,
+)
+from browser_tree_writer import resource_component  # noqa: E402
 from extract_r2025b_block_manifest import (  # noqa: E402
-    BROWSER_ALIASES,
-    BROWSER_LOCAL_ONLY,
     canonicalize_cross_product_documents,
-    resource_component,
     write_browser_tree,
 )
 from scrape_simulink_blocks import localized_content  # noqa: E402
@@ -105,9 +108,13 @@ def test_browser_resource_names_keep_official_spelling():
     assert resource_component("And/Or") == "And／Or"
 
 
-def test_library_browser_screenshot_only_entries_are_explicit():
-    assert "Motor Control Blockset HDL Support" in BROWSER_ALIASES
-    assert {"Report Generator", "Simulink Extras"} <= BROWSER_LOCAL_ONLY
+def test_local_tree_entries_and_document_aliases_are_explicit():
+    products = {product["name"]: product for product in parse_tree()}
+    assert len(products["Motor Control Blockset HDL Support"]["blocks"]) == 29
+    assert len(products["Report Generator"]["blocks"]) == 3
+    assert len(products["Simulink Extras"]["blocks"]) == 34
+    assert BLOCK_ALIASES["In1"] == "Inport"
+    assert SOURCE_PRODUCT_IDS["Motor Control Blockset HDL Support"] == "mcb"
 
 
 def test_browser_generation_omits_categories_without_blocks(tmp_path):

@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Gain'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Math Operations'
+official_category: 'Commonly Used Blocks'
 documentation_page: 'gain'
-documentation_source_path: 'slref/gain.html'
+documentation_source_path: '../simulink/slref/gain.html'
 language: zh-CN
 chinese_source: official
 ---

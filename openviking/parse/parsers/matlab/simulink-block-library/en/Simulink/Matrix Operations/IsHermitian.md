@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / Matrix Operations'
+official_category: 'Matrix Operations'
 documentation_page: 'ishermitian'
 documentation_source_path: 'slref/ishermitian.html'
 language: en

@@ -1,0 +1,92 @@
+---
+type: simulink-block
+title: 'Byte Unpack'
+family: 'ecoder'
+product_id: 'ecoder'
+product_name: 'Embedded Coder'
+documentation_release: R2025b
+official_category: 'Embedded Targets / Host Communication'
+documentation_page: 'byteunpack'
+documentation_source_path: 'ref/byteunpack.html'
+language: zh-CN
+chinese_source: official
+---
+
+# Byte Unpack
+
+## 端口
+
+### 输入
+
+### **Port\_1** — 要转换的信号 向量
+
+`uint8` 类型的输入向量。
+
+**数据类型:** `uint8`
+### 输出
+
+### **Port\_1** — 转换后的信号数据 `double` 类型的信号 (默认) | 信号数据数组
+
+一种或多种数据类型的输入信号数组。
+
+**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+
+## 参数
+
+### **输出端口维度（元胞数组）** — 模块输出信号的维度 {[1]} (默认) | 由数据维度设定组成的元胞数组
+
+以元胞数组形式指定模块输出的输出信号的维度。数组中的每个元素指定 MATLAB® `size` 函数为对应信号返回的维度。指定与模型中对应 Byte Pack 模块所转换的数据对齐的维度。
+
+例如，假设对应的 Byte Pack 模块指定以下输入端口数据类型：
+
+```
+ {'uint32','uint32','uint16','double','uint8','double','single'}
+```
+
+要指定标量和矩阵输出，您可以将**输出端口维度(元胞数组)** 参数设置为：
+
+```
+ {1,1,[2,4],[4,4],[2,2],1,[3,3]}
+```
+
+要对输出信号应用相同的维度，可以指定一个维度值。
+
+### **输出端口数据类型(元胞数组)** — 模块输出信号的数据类型 {'double'} (默认) | 由 Simulink 数据类型组成的元胞数组
+
+以元胞数组形式指定模型中对应 Byte Pack 模块接收的单个输入信号的 Simulink 数据类型。
+
+例如，如果对应的 Byte Pack 模块指定以下输入端口数据类型，请为此参数指定相同的元胞数组。
+
+```
+ {'uint32','uint32','uint16','double','uint8','double','single'}
+```
+
+要对每个输出信号应用相同的数据类型，只需指定一次数据类型。
+
+### **字节对齐方式** — 数据类型对齐方式的字节边界 1 (默认) | 2 | 4 | 8
+
+指定如何对齐输出数据的数据类型，以形成以字节为单位的 `uint8` 向量输入。指定与为模型中对应 Byte Pack 模块指定的值匹配的对齐值。
+
+例如，如果对应的 Byte Pack 模块将字节对齐设置为 2，则将此参数设置为 2。
+
+## 所属库
+
+Embedded Coder / Embedded Targets / Host Communication
+
+## 模块特性
+
+R2025b 官方文档未提供。
+
+## 扩展功能
+
+R2025b 官方文档未提供。
+
+## 版本历史
+
+**在 R2011a 中推出**
+
+## 描述
+
+将 uint8 向量转换为输入信号
+
+Byte Unpack 模块接收 `uint8` 向量，并基于输入向量的内容将该向量转换为不同 Simulink® 数据类型的输出信号。您可以使用模块参数来指定输出信号的维度和数据类型，以及模块输出的各个向量中的数据对齐方式。由于 UDP 协议以 `uint8` 格式传输数据，因此您可以将此模块的输入连接到 UDP Send 模块的输出，以使用此模块来重新格式化作为 UDP 数据包接收的数据，以便在模型中使用。

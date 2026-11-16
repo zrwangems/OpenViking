@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Integer to Bit Converter'
-family: 'comm'
-product_id: 'comm'
-product_name: 'Communications Toolbox'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'PHY Components / Signal Operations'
+official_category: 'Logic and Bit Operations'
 documentation_page: 'integertobitconverter'
 documentation_source_path: '../simulink/slref/integertobitconverter.html'
 language: en

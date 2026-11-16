@@ -16,11 +16,9 @@ import re
 from pathlib import Path
 
 import requests
+from browser_tree_writer import normalize_block_document
 from bs4 import BeautifulSoup
 from markdownify import markdownify
-
-from openviking.parse.parsers.matlab.catalog import export_catalog
-from openviking.parse.parsers.matlab.library import normalize_block_document
 
 RELEASE = "R2025b"
 SECTIONS = {
@@ -300,6 +298,8 @@ def main() -> None:
         raise SystemExit(
             f"Refusing to write an incomplete catalog: {len(render_failures)} render failures"
         )
+
+    from openviking.parse.parsers.matlab.catalog import export_catalog
 
     export_catalog(args.output / "en")
     export_catalog(args.output / "zh")

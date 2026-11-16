@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Reshape'
-family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Signal Generation, Manipulation, and Analysis / Signal Attributes and Indexing'
+official_category: 'Math Operations'
 documentation_page: 'reshape'
 documentation_source_path: '../simulink/slref/reshape.html'
 language: en

@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Simulink Environment Fundamentals / Block Libraries / String'
+official_category: 'String'
 documentation_page: 'stringtosingle'
 documentation_source_path: 'slref/stringtosingle.html'
 language: zh-CN

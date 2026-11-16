@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Initialize Function'
-family: 'rtw'
-product_id: 'rtw'
-product_name: 'Simulink Coder'
+family: 'simulink'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Architecture and Component Design / Timers and Scheduling / Data Transfers'
+official_category: 'User-Defined Functions'
 documentation_page: 'initializefunction'
-documentation_source_path: '../simulink/slref/initializefunction.html'
+documentation_source_path: 'slref/initializefunction.html'
 language: en
 ---
 

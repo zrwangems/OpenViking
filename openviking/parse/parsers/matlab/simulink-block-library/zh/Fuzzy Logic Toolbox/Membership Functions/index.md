@@ -1,0 +1,17 @@
+# Membership Functions
+
+- [Diff. Sigmoidal MF](Diff. Sigmoidal MF.md)
+- [Gaussian MF](Gaussian MF.md)
+- [Gaussian2 MF](Gaussian2 MF.md)
+- [Generalized Bell MF](Generalized Bell MF.md)
+- [Linear S-shaped MF](Linear S-shaped MF.md)
+- [Linear Z-shaped MF](Linear Z-shaped MF.md)
+- [Pi-shaped MF](Pi-shaped MF.md)
+- [Probabilistic OR](Probabilistic OR.md)
+- [Probabilistic Rule Agg](Probabilistic Rule Agg.md)
+- [Prod. Sigmoidal MF](Prod. Sigmoidal MF.md)
+- [S-shaped MF](S-shaped MF.md)
+- [Sigmoidal MF](Sigmoidal MF.md)
+- [Trapezoidal MF](Trapezoidal MF.md)
+- [Triangular MF](Triangular MF.md)
+- [Z-shaped MF](Z-shaped MF.md)

@@ -1,0 +1,569 @@
+---
+type: simulink-block
+title: 'Surface Mount PMSM'
+family: 'autoblks'
+product_id: 'autoblks'
+product_name: 'Powertrain Blockset'
+documentation_release: R2025b
+official_category: 'Propulsion / Electric Motors and Inverters'
+documentation_page: 'surfacemountpmsm'
+documentation_source_path: 'ref/surfacemountpmsm.html'
+language: en
+---
+
+# Surface Mount PMSM
+
+## Ports
+
+### Input
+
+### **LdTrq** — Load torque on motor `scalar`
+
+Load torque on the motor shaft,
+*Tm*, in N·m.
+
+#### Dependencies
+
+To create this port, select `Torque` for
+the **Mechanical input configuration**
+parameter.
+
+### **Spd** — Motor shaft speed `scalar`
+
+Angular velocity of the motor,
+*ωm*, in rad/s.
+
+#### Dependencies
+
+To create this port, select `Speed` for
+the **Mechanical input configuration**
+parameter.
+
+### **PhaseVolt** — Stator terminal voltages `1`-by-`3` array
+
+Stator terminal voltages,
+*Va*,
+*Vb*, and
+*Vc*, in V.
+### Output
+
+### **Info** — Bus signal bus
+
+The bus signal contains these block calculations.
+
+| Signal | | | Description | Variable | Units |
+| --- | --- | --- | --- | --- | --- |
+| `IaStator` | | | Stator phase current A | *ia* | A |
+| `IbStator` | | | Stator phase current B | *ib* | A |
+| `IcStator` | | | Stator phase current C | *ic* | A |
+| `IdSync` | | | Direct axis current | *id* | A |
+| `IqSync` | | | Quadrature axis current | *iq* | A |
+| `VdSync` | | | Direct axis voltage | *vd* | V |
+| `VqSync` | | | Quadrature axis voltage | *vq* | V |
+| `MtrSpd` | | | Angular mechanical velocity of the motor | *ωm* | rad/s |
+| `MtrPos` | | | Motor mechanical angular position | *θm* | rad |
+| `MtrTrq` | | | Electromagnetic torque | *Te* | N·m |
+| `PwrInfo` | `PwrTrnsfrd` | `PwrMtr` | Mechanical power | *Pmot* | W |
+| `PwrBus` | Electrical power | *Pbus* | W |
+| `PwrNotTrnsfrd` | `PwrElecLoss` | Resistive power loss | *Pelec* | W |
+| `PwrMechLoss` | Mechanical power loss | *Pmech* | W |
+| `PwrStored` | `PwrMtrStored` | Stored motor power | *Pstr* | W |
+
+### **PhaseCurr** — Phase a, b, c current `1`-by-`3` array
+
+Phase a, b, c current, *ia*,
+*ib*, and
+*ic*, in A.
+
+### **MtrTrq** — Motor torque `scalar`
+
+Motor torque, *Tmtr*, in
+N·m.
+
+#### Dependencies
+
+To create this port, select `Speed` for
+the **Mechanical input configuration**
+parameter.
+
+### **MtrSpd** — Motor speed `scalar`
+
+Angular speed of the motor,
+*ωmtr*, in rad/s.
+
+#### Dependencies
+
+To create this port, select `Torque` for
+the **Mechanical input configuration**
+parameter.
+
+## Parameters
+
+#### Block Options
+
+### **Mechanical input configuration** — Select port configuration `Torque` (default) | `Speed`
+
+This table summarizes the port configurations.
+
+| Port Configuration | Creates Input Port | Creates Output Port |
+| --- | --- | --- |
+| `Torque` | `LdTrq` | `MtrSpd` |
+| `Speed` | `Spd` | `MtrTrq` |
+
+#### Programmatic Use
+
+To set the block parameter value
+programmatically, use the `set_param` function.
+
+To get the block parameter value
+programmatically, use the `get_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `port_config` |
+| **Values:** | `Torque` (default) | `Speed` |
+| **Data Types:** | `character vector` |
+
+### **Simulation type** — Select simulation type `Continuous` (default) | `Discrete`
+
+By default, the block uses a continuous sample time during simulation. If you want to generate code for single-precision targets, considering setting the parameter to `Discrete`.
+
+#### Programmatic Use
+
+To set the block parameter value
+programmatically, use the `set_param` function.
+
+To get the block parameter value
+programmatically, use the `get_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `sim_type` |
+| **Values:** | `Continuous` (default) | `Discrete` |
+| **Data Types:** | `character vector` |
+
+#### Dependencies
+
+Setting **Simulation type** to `Discrete` creates the **Sample Time, Ts** parameter.
+
+### **Sample Time (Ts)** — Sample time for discrete integration `0.001` (default) | `scalar`
+
+Integration sample time for discrete
+simulation, in s.
+
+#### Programmatic Use
+
+To set the block
+parameter value programmatically, use the `set_param`
+function.
+
+To get the block
+parameter value programmatically, use the `get_param`
+function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `Ts` |
+| **Values:** | `0.001` (default) | `scalar` |
+| **Data Types:** | `double` |
+
+#### Dependencies
+
+Setting **Simulation type** to
+`Discrete` creates the **Sample
+Time, Ts** parameter.
+
+#### Parameters
+
+### **Number of pole pairs (P)** — Pole pairs `4` (default) | `scalar`
+
+Motor pole pairs, *P*.
+
+#### Programmatic Use
+
+To set the block
+parameter value programmatically, use the `set_param`
+function.
+
+To get the block
+parameter value programmatically, use the `get_param`
+function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `P` |
+| **Values:** | `4` (default) | `scalar` |
+| **Data Types:** | `double` |
+
+### **Stator resistance per phase (Rs)** — Resistance `.2` (default) | `scalar`
+
+Stator phase resistance per phase,
+*Rs*, in ohm.
+
+#### Programmatic Use
+
+To set the block
+parameter value programmatically, use the `set_param`
+function.
+
+To get the block
+parameter value programmatically, use the `get_param`
+function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `Rs` |
+| **Values:** | `.2` (default) | `scalar` |
+| **Data Types:** | `double` |
+
+### **Stator d-axis inductance (Ldq\_)** — Inductance `3.752e-4` (default) | `scalar`
+
+Stator inductance, *Ldq*, in
+H.
+
+#### Programmatic Use
+
+To set the block
+parameter value programmatically, use the `set_param`
+function.
+
+To get the block
+parameter value programmatically, use the `get_param`
+function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `Ldq_` |
+| **Values:** | `3.752e-4` (default) | `scalar` |
+| **Data Types:** | `double` |
+
+### **Permanent flux linkage constant (lambda\_pm)** — Flux `0.1194` (default) | `scalar`
+
+Permanent flux linkage constant,
+*λpm*, in Wb.
+
+#### Programmatic Use
+
+To set the block
+parameter value programmatically, use the `set_param`
+function.
+
+To get the block
+parameter value programmatically, use the `get_param`
+function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `lambda_pm` |
+| **Values:** | `0.1194` (default) | `scalar` |
+| **Data Types:** | `double` |
+
+### **Back-emf constant (Ke)** — Back electromotive force `159.9771` (default) | `scalar`
+
+Back electromotive force, EMF,
+*Ke*, in peak Vpk\_LL/krpm.
+Vpk\_LL is the peak voltage line-to-line measurement.
+
+To calculate the permanent flux linkage constant, the block implements
+this equation.
+
+λpm=13⋅Ke1000P⋅602π
+
+#### Programmatic Use
+
+To set the block
+parameter value programmatically, use the `set_param`
+function.
+
+To get the block
+parameter value programmatically, use the `get_param`
+function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `Ke` |
+| **Values:** | `159.9771` (default) | `scalar` |
+| **Data Types:** | `double` |
+
+### **Torque constant (Kt)** — Torque constant `1.323` (default) | `scalar`
+
+Torque constant, *Kt*, in
+N·m/A.
+
+*Kt* = Rated torque of motor /
+*Ia\_peak\_rated*, where *Ia\_peak\_rated*
+is the peak amplitude of phase-*a* at rated current
+operation.
+
+To calculate the permanent flux linkage constant, the block implements
+this equation.
+
+λpm=23⋅KtP
+
+#### Programmatic Use
+
+To set the block
+parameter value programmatically, use the `set_param`
+function.
+
+To get the block
+parameter value programmatically, use the `get_param`
+function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `Kt` |
+| **Values:** | `1.323` (default) | `scalar` |
+| **Data Types:** | `double` |
+
+### **Physical inertia, viscous damping, static friction (mechanical)** — Inertia, damping, friction `[0.002700,4.924e-4,0]` (default) | `vector`
+
+Mechanical properties of the motor:
+
+- Inertia, *J*, in kg.m^2
+- Viscous damping, *F*, in N·m/(rad/s)
+- Static friction, *Tf*,
+  in N·m
+
+#### Programmatic Use
+
+To set the block
+parameter value programmatically, use the `set_param`
+function.
+
+To get the block
+parameter value programmatically, use the `get_param`
+function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `mechanical` |
+| **Values:** | `[0.002700,4.924e-4,0]` (default) | `vector` |
+| **Data Types:** | `double` |
+
+#### Dependencies
+
+To enable this parameter, set the **Mechanical input
+configuration** parameter to
+`Torque`.
+
+#### Initial Values
+
+### **Initial d-axis and q-axis current (idq0)** — Current `[0 0]` (default) | `vector`
+
+Initial q- and d-axis currents, *iq,
+id*, in A.
+
+#### Programmatic Use
+
+To set the block
+parameter value programmatically, use the `set_param`
+function.
+
+To get the block
+parameter value programmatically, use the `get_param`
+function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `idq0` |
+| **Values:** | `[0 0]` (default) | `vector` |
+| **Data Types:** | `double` |
+
+### **Initial mechanical position (theta\_init)** — Angle `0` (default) | `scalar`
+
+Initial motor angular position,
+*θm0*, in rad.
+
+#### Programmatic Use
+
+To set the block
+parameter value programmatically, use the `set_param`
+function.
+
+To get the block
+parameter value programmatically, use the `get_param`
+function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `theta_init` |
+| **Values:** | `0` (default) | `scalar` |
+| **Data Types:** | `double` |
+
+### **Initial mechanical speed (omega\_init)** — Speed `0` (default) | `scalar`
+
+Initial angular velocity of the motor,
+*ωm0*, in rad/s.
+
+#### Programmatic Use
+
+To set the block
+parameter value programmatically, use the `set_param`
+function.
+
+To get the block
+parameter value programmatically, use the `get_param`
+function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `omega_init` |
+| **Values:** | `0` (default) | `scalar` |
+| **Data Types:** | `double` |
+
+#### Dependencies
+
+To enable this parameter, set the **Mechanical input
+configuration** parameter to
+`Torque`.
+
+## Libraries
+
+Powertrain Blockset / Propulsion / Electric Motors and Inverters Motor Control Blockset / Electrical Systems / Motors
+
+## Block Characteristics
+
+Not documented in R2025b.
+
+## Extended Capabilities
+
+### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
+
+## Version History
+
+**Introduced in R2017a**
+
+## Description
+
+Three-phase exterior permanent magnet synchronous motor with sinusoidal back electromotive force
+
+The Surface Mount PMSM block implements a three-phase exterior
+permanent magnet synchronous motor (PMSM) with sinusoidal back electromotive force. The
+block uses the three-phase input voltages to regulate the individual phase currents,
+allowing control of the motor torque or speed.
+
+By default, the block sets the **Simulation
+type** parameter to `Continuous` to use a
+continuous sample time during simulation. If you want to generate code for fixed-step
+double- and single-precision targets, considering setting the parameter to
+`Discrete`. Then specify a **Sample Time,
+Ts** parameter.
+
+On the **Parameters** tab, if you select
+`Back-emf constant (Ke)` or `Torque constant
+(Kt)`, the block implements one of these equations to calculate the permanent
+flux linkage constant.
+
+| Setting | Equation |
+| --- | --- |
+| `Back-emf constant (Ke)` | λpm=13⋅Ke1000P⋅602π |
+| `Torque constant (Kt)` | λpm=23⋅KtP |
+
+### Motor Construction
+
+This figure shows the motor construction with a single pole pair on the rotor.
+
+PMSM surface mount motor with a two-pole rotor
+
+The motor magnetic field due to the permanent magnets creates a sinusoidal rate of change of
+flux with motor angle.
+
+For the axes convention, the *a*-phase and permanent magnet fluxes are
+aligned when motor angle *θr* is zero.
+
+### Three-Phase Sinusoidal Model Electrical System
+
+The block implements these equations, expressed in the motor flux reference frame
+(dq frame). All quantities in the motor reference frame are referred to the stator.
+
+ωe=Pωmddtid=1Ldvd−RLdid+LqLdPωmiq
+
+ddtiq=1Lqvq−RLqiq−LdLqPωmid−λpmPωmLq
+
+Te=1.5P[λpmiq+(Ld−Lq)idiq]
+
+The *Lq* and
+*Ld* inductances represent the
+relation between the phase inductance and the motor position due to the saliency of
+the motor magnets. For the surface mount PMSM, Ld=Lq.
+
+The equations use these variables.
+
+|  |  |
+| --- | --- |
+| *Lq*,*Ld* | q- and d-axis inductances (H) |
+| *R* | Resistance of the stator windings (ohm) |
+| *iq*,*id* | q- and d-axis currents (A) |
+| *vq*, *vd* | q- and d-axis voltages (V) |
+| *ωm* | Angular mechanical velocity of the motor (rad/s) |
+| *ωe* | Angular electrical velocity of the motor (rad/s) |
+| *λpm* | Permanent magnet flux linkage (Wb) |
+| *Ke* | Back electromotive force (EMF) (Vpk\_LL/krpm, where Vpk\_LL is the peak voltage line-to-line measurement) |
+| *Kt* | Torque constant (N·m/A)  *Kt* = Rated torque of motor / *Ia\_peak\_rated*, where *Ia\_peak\_rated* is the peak amplitude of phase-*a* at rated current operation. |
+| *P* | Number of pole pairs |
+| *Te* | Electromagnetic torque (Nm) |
+| *Θe* | Electrical angle (rad) |
+
+### Mechanical System
+
+The motor angular velocity is given by:
+
+ddtωm=1J(Te−Tf−Fωm−Tm)dθmdt=ωm
+
+The equations use these variables.
+
+|  |  |
+| --- | --- |
+| *J* | Combined inertia of motor and load (kgm^2) |
+| *F* | Combined viscous friction of motor and load (N·m/(rad/s)) |
+| *θm* | Motor mechanical angular position (rad) |
+| *Tm* | Motor shaft torque (Nm) |
+| *Te* | Electromagnetic torque (Nm) |
+| *Tf* | Motor shaft static friction torque (Nm) |
+| *ωm* | Angular mechanical velocity of the motor (rad/s) |
+
+### Power Accounting
+
+For the power accounting, the block implements these equations.
+
+| Bus Signal | | | Description | Variable | Equations |
+| --- | --- | --- | --- | --- | --- |
+| `PwrInfo` | `PwrTrnsfrd` — Power transferred between blocks  - Positive signals indicate flow into block - Negative signals indicate flow out of block | `PwrMtr` | Mechanical power | *Pmot* | Pmot= −ωmTe |
+| `PwrBus` | Electrical power | *Pbus* | Pbus= vania+ vbnib+vcnic |
+| `PwrNotTrnsfrd` — Power crossing the block boundary, but not transferred  - Positive signals indicate an input - Negative signals indicate a loss | `PwrElecLoss` | Resistive power loss | *Pelec* | Pelec= −32(Rsisd2+Rsisq2) |
+| `PwrMechLoss` | Mechanical power loss | *Pmech* | When **Mechanical input configuration** is set to `Torque`:  Pmech= −(ωm2F+ |ωm|Tf)  When **Mechanical input configuration** is set to `Speed`:  Pmech= 0 |
+| `PwrStored` — Stored energy rate of change  - Positive signals indicate an increase - Negative signals indicate a decrease | `PwrMtrStored` | Stored motor power | *Pstr* | Pstr= Pbus+ Pmot+ Pelec + Pmech |
+
+The equations use these variables.
+
+|  |  |
+| --- | --- |
+| *Rs* | Stator resistance (ohm) |
+| *ia*,*ib*,*ic* | Stator phase a, b, and c current (A) |
+| *isq*,*isd* | Stator q- and d-axis currents (A) |
+| *van*, *vbn*, *vcn* | Stator phase a, b, and c voltage (V) |
+| *ωm* | Angular mechanical velocity of the motor (rad/s) |
+| *F* | Combined motor and load viscous damping N·m/(rad/s) |
+| *Te* | Electromagnetic torque (Nm) |
+| *Tf* | Combined motor and load friction torque (Nm) |
+
+### Amplitude Invariant *dq* Transformation
+
+The block uses these equations to implement amplitude invariant
+*dq* transformation to ensure that the *dq*
+and three phase amplitudes are equal.
+
+[vsdvsq]= 23 [cos(Θda)cos(Θda−2π3)cos(Θda+2π3)−sin(Θda)−sin(Θda−2π3)−sin(Θda+2π3)][vavbvc]
+
+[iaibic]=   [cos(Θda)−sin(Θda)cos(Θda−2π3)cos(Θda+2π3)−sin(Θda−2π3)−sin(Θda+2π3)][isdisq]
+
+The equations use these variables.
+
+|  |  |
+| --- | --- |
+| *Θda* | *dq* stator electrical angle with respect to the rotor *a*-axis (rad) |
+| *vsq*, *vsd* | Stator *q*- and *d*-axis voltages (V) |
+| *isq*,*isd* | Stator *q*- and *d*-axis currents (A) |
+| *va*,*vb*,*vc* | Stator voltage phases *a*, *b*, *c* (V) |
+| *ia*, *ib*, *ic* | Stator currents phases *a*, *b*, *c* (A) |
