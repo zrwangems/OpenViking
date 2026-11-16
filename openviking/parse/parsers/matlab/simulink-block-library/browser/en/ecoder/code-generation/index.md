@@ -1,8 +1,8 @@
 # Code Generation
 
 - [Code Interface Configuration](code-interface-configuration/index.md)
-- [Generated Code Compilation](generated-code-compilation/index.md)
 - [Model Readiness for Code Generation](model-readiness-for-code-generation/index.md)
-- [Report Generation](report-generation/index.md)
-- [Shared Libraries and Utility Code](shared-libraries-and-utility-code/index.md)
 - [Source Code Generation](source-code-generation/index.md)
+- [Generated Code Compilation](generated-code-compilation/index.md)
+- [Shared Libraries and Utility Code](shared-libraries-and-utility-code/index.md)
+- [Report Generation](report-generation/index.md)

@@ -1,8 +1,8 @@
 # Rate Conversion
 
+- [Downsample](downsample.md)
 - [Digital Down-Converter](digital-down-converter.md)
 - [Digital Up-Converter](digital-up-converter.md)
-- [Downsample](downsample.md)
 - [Farrow Rate Converter](farrow-rate-converter.md)
 - [Interpolation](interpolation.md)
 - [Repeat](repeat.md)

@@ -1,7 +1,7 @@
 # Digital Baseband Modulation
 
-- [Amplitude and Phase Modulation](amplitude-and-phase-modulation/index.md)
 - [Amplitude Modulation](amplitude-modulation/index.md)
+- [Amplitude and Phase Modulation](amplitude-and-phase-modulation/index.md)
 - [Continuous Phase Modulation](continuous-phase-modulation/index.md)
 - [Frequency Modulation](frequency-modulation/index.md)
 - [OFDM Modulation](ofdm-modulation/index.md)

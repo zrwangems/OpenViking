@@ -2,9 +2,9 @@
 
 - [Array Plot](array-plot.md)
 - [Display](display.md)
-- [Filter Visualizer](filter-visualizer.md)
-- [Matrix Viewer](matrix-viewer.md)
 - [Spectrum Analyzer](spectrum-analyzer.md)
 - [Time Scope](time-scope.md)
+- [Filter Visualizer](filter-visualizer.md)
 - [To Workspace](to-workspace.md)
 - [Triggered To Workspace](triggered-to-workspace.md)
+- [Matrix Viewer](matrix-viewer.md)

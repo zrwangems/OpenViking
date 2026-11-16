@@ -1,5 +1,5 @@
 # Communications Toolbox HDL Support
 
-这是 Library Browser 支持库入口，块文档复用对应产品库，不重复生成不一致的副本。
+这是本机 Library Browser 支持库入口。公开 R2025b 目录没有它的独立块库 XML，以下链接只用于查阅关联产品文档，不代表已枚举该支持库的全部块。
 
-[打开对应产品库](../wireless-hdl/index.md)
+[打开关联产品文档](../wireless-hdl/index.md)

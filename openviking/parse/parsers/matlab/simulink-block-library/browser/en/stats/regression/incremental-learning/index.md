@@ -1,8 +1,8 @@
 # Incremental Learning
 
-- [Detect Drift](detect-drift.md)
+- [IncrementalRegressionLinear Predict](incrementalregressionlinear-predict.md)
+- [IncrementalRegressionLinear Fit](incrementalregressionlinear-fit.md)
 - [IncrementalRegressionKernel Fit](incrementalregressionkernel-fit.md)
 - [IncrementalRegressionKernel Predict](incrementalregressionkernel-predict.md)
-- [IncrementalRegressionLinear Fit](incrementalregressionlinear-fit.md)
-- [IncrementalRegressionLinear Predict](incrementalregressionlinear-predict.md)
+- [Detect Drift](detect-drift.md)
 - [Update Metrics](update-metrics.md)

@@ -1,4 +1,4 @@
 # Task Management
 
-- [Event Source](event-source.md)
 - [Task Manager](task-manager.md)
+- [Event Source](event-source.md)

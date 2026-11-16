@@ -1,5 +1,5 @@
 # System Core
 
-- [Digital Port Read](digital-port-read.md)
 - [Digital Port Write](digital-port-write.md)
+- [Digital Port Read](digital-port-read.md)
 - [Hardware Interrupt](hardware-interrupt.md)

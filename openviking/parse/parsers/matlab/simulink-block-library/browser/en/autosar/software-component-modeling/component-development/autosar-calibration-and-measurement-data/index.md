@@ -5,5 +5,5 @@
 - [Map](map.md)
 - [Map Using Prelookup](map-using-prelookup.md)
 - [Prelookup](prelookup.md)
-- [Ramp](ramp.md)
 - [Single Point Interpolation](single-point-interpolation.md)
+- [Ramp](ramp.md)

@@ -6,6 +6,6 @@
 - [Perfect Insulator](perfect-insulator.md)
 - [Radiative Heat Transfer](radiative-heat-transfer.md)
 - [Thermal Mass](thermal-mass.md)
-- [Thermal Reference](thermal-reference.md)
 - [Thermal Resistance](thermal-resistance.md)
+- [Thermal Reference](thermal-reference.md)
 - [Variable Thermal Resistance](variable-thermal-resistance.md)

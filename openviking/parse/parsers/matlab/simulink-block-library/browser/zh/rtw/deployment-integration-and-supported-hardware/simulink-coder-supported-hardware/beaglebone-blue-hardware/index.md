@@ -1,6 +1,6 @@
 # BeagleBone Blue Hardware
 
-- [Deployment](deployment/index.md)
-- [Modeling](modeling/index.md)
-- [Performance](performance/index.md)
 - [Setup and Configuration](setup-and-configuration/index.md)
+- [Modeling](modeling/index.md)
+- [Deployment](deployment/index.md)
+- [Performance](performance/index.md)

@@ -205,6 +205,23 @@ def old_document_index(path: Path) -> dict:
     }
 
 
+def existing_document_index(path: Path, product_id: str) -> dict:
+    """Preserve canonical document paths without crossing product boundaries."""
+    if not path.exists():
+        return {}
+    manifest = json.loads(path.read_text(encoding="utf-8"))
+    return {
+        (block["documentation_path"], block["name"]): {
+            language: block["documents"][language]["path"] for language in ("en", "zh")
+        }
+        for product in manifest.get("products", [])
+        if product["id"] == product_id
+        for library in product["libraries"]
+        for block in library["blocks"]
+        if all(block["documents"][language]["path"] for language in ("en", "zh"))
+    }
+
+
 def refresh_totals(manifest: dict) -> None:
     products = manifest["products"]
     totals = {
@@ -395,11 +412,89 @@ def write_catalog(manifest: dict, root: Path) -> None:
         (target / "index.md").write_text("\n".join(index) + "\n", encoding="utf-8")
 
 
+# Top-level order from the requester's R2025b Library Browser. This is an
+# installation profile, not the public MathWorks product catalog. The latter
+# remains available under catalog/ and products/.
+BROWSER_PRODUCTS = [
+    ("Simulink", "simulink"),
+    ("Aerospace Blockset", "aeroblks"),
+    ("Audio Toolbox", "audio"),
+    ("Automated Driving Toolbox", "driving"),
+    ("AUTOSAR Blockset", "autosar"),
+    ("C2000 Microcontroller Blockset", "ti-c2000"),
+    ("Communications Toolbox", "comm"),
+    ("Communications Toolbox HDL Support", "communications-toolbox-hdl-support"),
+    ("Computer Vision Toolbox", "vision"),
+    ("Control System Toolbox", "control"),
+    ("Data Acquisition Toolbox", "daq"),
+    ("DDS Blockset", "dds"),
+    ("Deep Learning Toolbox", "deeplearning"),
+    ("DSP HDL Toolbox", "dsphdl"),
+    ("DSP System Toolbox", "dsp"),
+    ("DSP System Toolbox HDL Support", "dsp-system-toolbox-hdl-support"),
+    ("Embedded Coder", "ecoder"),
+    ("Fixed-Point Designer", "fixedpoint"),
+    ("Fixed-Point Designer HDL Support", "fixed-point-designer-hdl-support"),
+    ("Fuzzy Logic Toolbox", "fuzzy"),
+    ("HDL Coder", "hdlcoder"),
+    ("HDL Verifier", "hdlverifier"),
+    ("Image Acquisition Toolbox", "imaq"),
+    ("Industrial Communication Toolbox", "icomm"),
+    ("Instrument Control Toolbox", "instrument"),
+    ("Lidar Toolbox", "lidar"),
+    ("Mixed-Signal Blockset", "msblks"),
+    ("Model Predictive Control Toolbox", "mpc"),
+    ("Motor Control Blockset", "mcb"),
+    ("Motor Control Blockset HDL Support", "motor-control-blockset-hdl-support"),
+    ("Navigation Toolbox", "nav"),
+    ("Phased Array System Toolbox", "phased"),
+    ("Powertrain Blockset", "autoblks"),
+    ("Radar Toolbox", "radar"),
+    ("Reinforcement Learning Toolbox", "reinforcement-learning"),
+    ("Report Generator", "report-generator"),
+    ("Requirements Toolbox", "slrequirements"),
+    ("RF Blockset", "simrf"),
+    ("Robotics System Toolbox", "robotics"),
+    ("Robust Control Toolbox", "robust"),
+    ("ROS Toolbox", "ros"),
+    ("Satellite Communications Toolbox", "satcom"),
+    ("Sensor Fusion and Tracking Toolbox", "fusion"),
+    ("SerDes Toolbox", "serdes"),
+    ("Signal Integrity Toolbox", "signal-integrity"),
+    ("SimEvents", "simevents"),
+    ("Simscape", "simscape"),
+    ("Simulink 3D Animation", "sl3d"),
+    ("Simulink Coder", "rtw"),
+    ("Simulink Control Design", "slcontrol"),
+    ("Simulink Design Optimization", "sldo"),
+    ("Simulink Design Verifier", "sldv"),
+    ("Simulink Desktop Real-Time", "sldrt"),
+    ("Simulink Extras", "simulink-extras"),
+    ("Simulink Fault Analyzer", "fault-analyzer"),
+    ("Simulink Real-Time", "slrealtime"),
+    ("Simulink Test", "sltest"),
+    ("SoC Blockset", "soc"),
+    ("Stateflow", "stateflow"),
+    ("Statistics and Machine Learning Toolbox", "stats"),
+    ("System Identification Toolbox", "ident"),
+    ("UAV Toolbox", "uav"),
+    ("Vehicle Dynamics Blockset", "vdynblks"),
+    ("Vehicle Network Toolbox", "vnt"),
+    ("Vision HDL Toolbox", "visionhdl"),
+    ("Wireless HDL Toolbox", "wireless-hdl"),
+]
+
 BROWSER_ALIASES = {
     "Communications Toolbox HDL Support": ("communications-toolbox-hdl-support", "wireless-hdl"),
     "DSP System Toolbox HDL Support": ("dsp-system-toolbox-hdl-support", "dsphdl"),
     "Fixed-Point Designer HDL Support": ("fixed-point-designer-hdl-support", "hdlcoder"),
+    "Motor Control Blockset HDL Support": ("motor-control-blockset-hdl-support", "mcb"),
 }
+
+# These entries are visible in the local Browser but have no independent
+# referencelist_block_cat.xml in the public R2025b catalog. Do not invent a
+# block list: a local MATLAB enumeration is required to populate their children.
+BROWSER_LOCAL_ONLY = {"Report Generator", "Simulink Extras"}
 
 
 COMMON_BLOCKS = [
@@ -431,10 +526,15 @@ COMMON_BLOCKS = [
 
 def write_browser_tree(manifest: dict, root: Path) -> None:
     """Materialize the Simulink Library Browser hierarchy with full block pages."""
-    products = sorted(
-        (p for p in manifest["products"] if p["status"] == "enumerated"),
-        key=lambda p: (p["id"] != "simulink", p["name"].lower()),
-    )
+    by_id = {p["id"]: p for p in manifest["products"]}
+    browser_ids = {directory for _, directory in BROWSER_PRODUCTS}
+    products = [
+        by_id[directory]
+        for _, directory in BROWSER_PRODUCTS
+        if directory in by_id and by_id[directory]["status"] == "enumerated"
+    ]
+    if len(BROWSER_PRODUCTS) != 66 or len(browser_ids) != 66:
+        raise ValueError("The installed Browser profile must contain 66 unique top-level entries")
     for language in ("en", "zh"):
         browser_root = root / "browser" / language
         shutil.rmtree(browser_root, ignore_errors=True)
@@ -443,7 +543,7 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
             "# Simulink Library Browser" if language == "en" else "# Simulink 库浏览器",
             "",
         ]
-        root_entries = [(product["name"], product["id"]) for product in products]
+        root_entries = []
         for product in products:
             libraries = product["libraries"]
             if product["id"] == "simulink":
@@ -518,19 +618,17 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
             for key, node in nodes.items():
                 directory = browser_root.joinpath(*key)
                 directory.mkdir(parents=True, exist_ok=True)
-                children = sorted(
-                    (
-                        candidate
-                        for candidate in nodes
-                        if len(candidate) == len(key) + 1 and candidate[:-1] == key
-                    ),
-                    key=lambda candidate: nodes[candidate]["name"].lower(),
-                )
+                # dict insertion order is the official XML traversal order.
+                children = [
+                    candidate
+                    for candidate in nodes
+                    if len(candidate) == len(key) + 1 and candidate[:-1] == key
+                ]
                 lines = [f"# {node['name']}", ""]
                 lines.extend(
                     f"- [{nodes[child]['name']}]({child[-1]}/index.md)" for child in children
                 )
-                for block in sorted(node["blocks"], key=lambda block: block["name"].lower()):
+                for block in node["blocks"]:
                     filename = block.get("resource_name", slug(block["name"]) + ".md")
                     lines.append(f"- [{block['name']}]({filename})")
                 if len(lines) == 2:
@@ -539,22 +637,52 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                     )
                 (directory / "index.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
         for name, (directory, target_product) in BROWSER_ALIASES.items():
-            root_entries.append((name, directory))
             alias = browser_root / directory
             alias.mkdir(parents=True, exist_ok=True)
             (alias / "index.md").write_text(
                 f"# {name}\n\n"
                 + (
-                    "这是 Library Browser 支持库入口，块文档复用对应产品库，不重复生成不一致的副本。\n\n"
+                    "这是本机 Library Browser 支持库入口。公开 R2025b 目录没有它的独立块库 XML，以下链接只用于查阅关联产品文档，不代表已枚举该支持库的全部块。\n\n"
                     if language == "zh"
-                    else "This Library Browser support-library entry reuses the owning product's block documentation instead of creating inconsistent copies.\n\n"
+                    else "This support-library entry is visible in the local Library Browser. The public R2025b catalog has no independent block XML for it; the associated product below is reference documentation, not a claim that every support-library block has been enumerated.\n\n"
                 )
-                + f"[{'打开对应产品库' if language == 'zh' else 'Open the owning product library'}](../{target_product}/index.md)\n",
+                + f"[{'打开关联产品文档' if language == 'zh' else 'Open associated product documentation'}](../{target_product}/index.md)\n",
                 encoding="utf-8",
             )
-        root_entries.sort(key=lambda item: (item[0] != "Simulink", item[0].lower()))
+        for name in BROWSER_LOCAL_ONLY:
+            directory = dict(BROWSER_PRODUCTS)[name]
+            local = browser_root / directory
+            local.mkdir(parents=True, exist_ok=True)
+            (local / "index.md").write_text(
+                f"# {name}\n\n"
+                + (
+                    "该入口来自用户本机 R2025b Library Browser。公开产品目录没有对应的独立块库 XML，因此这里没有虚构子库或块；需要从该 MATLAB 安装实例导出本机库树后补齐。\n"
+                    if language == "zh"
+                    else "This entry comes from the user's local R2025b Library Browser. The public product catalog has no corresponding independent block XML, so no children are fabricated; enumerate the local MATLAB installation to populate them.\n"
+                ),
+                encoding="utf-8",
+            )
+        root_entries = BROWSER_PRODUCTS
         root_index.extend(f"- [{name}]({directory}/index.md)" for name, directory in root_entries)
         (browser_root / "index.md").write_text("\n".join(root_index) + "\n", encoding="utf-8")
+        reference_index = root / language / "index.md"
+        reference_index.write_text(
+            (
+                "# R2025b 块文档参考存储\n\n"
+                "这里保存去重正文和旧基础 Simulink 分类，**不是 Library Browser 顶层目录**。"
+                "请从 [中文 Library Browser](../browser/zh/index.md) 按本机产品树浏览；"
+                "`products/<产品>/ref/` 是完整正文，`commonly-used-blocks` 等旧目录只保留基础 Simulink 的 341 个参考条目。\n\n"
+                "完整产品清单见 [全产品目录](../catalog/zh/index.md)。\n"
+                if language == "zh"
+                else "# R2025b block-document reference storage\n\n"
+                "This directory stores deduplicated documents and legacy base-Simulink categories; "
+                "**it is not the Library Browser root**. Use the [English Library Browser](../browser/en/index.md) "
+                "for the installed product tree. `products/<product>/ref/` stores full documents; "
+                "legacy categories such as `commonly-used-blocks` contain only the 341 base-Simulink reference entries.\n\n"
+                "See the [all-product catalog](../catalog/en/index.md) for the complete public catalog.\n"
+            ),
+            encoding="utf-8",
+        )
     totals = manifest["totals"]
     (root / "index.md").write_text(
         "# Simulink Block Library\n\n"
@@ -566,8 +694,48 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
         f"Official catalog: {totals['products']} products, {totals['products_with_blocks']} with block libraries, "
         f"{totals['block_occurrences']} occurrences and {totals['unique_product_document_paths']} unique document paths. "
         f"Full English pages: {totals['full_documents']['en']}; full Chinese pages: {totals['full_documents']['zh']}. "
-        "Browser pages follow the Library Browser hierarchy; product/ref pages are deduplicated document storage. "
+        "The Browser root mirrors the requester's 66-entry local R2025b installation profile in screenshot order. "
+        "The all-product catalog retains other public MathWorks products. product/ref pages are deduplicated document storage, not the Browser hierarchy. "
+        "Report Generator and Simulink Extras have no independent public block XML and require local enumeration. "
         "Third-party and machine-local support packages require separate enumeration.\n",
+        encoding="utf-8",
+    )
+    selected_products = {p["id"] for p in products}
+    public_only = [
+        p["name"]
+        for p in manifest["products"]
+        if p["status"] == "enumerated" and p["id"] not in selected_products
+    ]
+    simulink = by_id["simulink"]
+    hardware_paths = {
+        block["documentation_path"]
+        for library in simulink["libraries"]
+        if library["path"][0] == "Simulink Supported Hardware"
+        for block in library["blocks"]
+    }
+    hardware_occurrences = sum(
+        len(library["blocks"])
+        for library in simulink["libraries"]
+        if library["path"][0] == "Simulink Supported Hardware"
+    )
+    (root / "library-browser-reconciliation.md").write_text(
+        "# R2025b Library Browser 对账\n\n"
+        "## 数量口径\n\n"
+        f"- 公共目录有块库 XML 的产品：{totals['products_with_blocks']}；产品→库→块出现条目：{totals['block_occurrences']}。\n"
+        f"- 产品内去重文档路径：{totals['unique_product_document_paths']}，英文和中文各 {totals['full_documents']['en']} 份完整正文。此前的 4609 是错误数字，实际为 {totals['unique_product_document_paths']}。\n"
+        "- 4603 不是用户本机全部块数，也不是全局不同块名数；同一块可属于多个库，同一文档路径也可被多个块引用。\n"
+        "- 用户截图有 66 个本机顶层入口。旧生成器有 77 个：63 个相同，14 个仅属于公共目录，漏掉 3 个本机入口。现在 Browser 根目录严格保留截图的 66 项及其顺序。\n\n"
+        "## 旧目录真实差异\n\n"
+        "| 差异 | 数量 | 项目 |\n| --- | ---: | --- |\n"
+        f"| 旧 Browser 有、截图无 | {len(public_only)} | {', '.join(public_only)} |\n"
+        "| 截图有、旧 Browser 无 | 3 | Motor Control Blockset HDL Support、Report Generator、Simulink Extras |\n"
+        "| 两边都有 | 63 | 60 个公共产品库及 Communications/DSP System/Fixed-Point Designer 3 个 HDL Support 入口 |\n\n"
+        "## 本机与公开文档边界\n\n"
+        "- 截图只能证明这 66 个顶层入口，不能证明隐藏子库、第三方自定义库或未展开硬件支持包的完整性。截图中没有可识别的第三方自定义库，不能据此写成第三方库为 0。\n"
+        "- Motor Control Blockset HDL Support 是本机支持库入口；公开目录没有独立 XML。当前只链接关联产品参考文档，不把关联产品块冒充支持库全量。\n"
+        "- Report Generator、Simulink Extras 同样没有独立公共块库 XML，保留入口并明确等待本机枚举。\n"
+        f"- 公共 Simulink XML 还含硬件支持文档：{hardware_occurrences} 个出现条目、{len(hardware_paths)} 个独立文档路径。它们计入 4603 的公共正文范围，但不因此断言已经安装在用户本机，也不混入截图的 Simulink 基础库目录。\n"
+        "- `zh/`、`en/` 是正文参考存储及旧基础分类；`browser/zh/`、`browser/en/` 才是按截图组织的产品树。`catalog/` 保留所有公共产品，`products/*/ref/` 保存去重正文。\n",
         encoding="utf-8",
     )
 
@@ -614,7 +782,13 @@ def main() -> None:
             },
         },
         "products": [
-            parse_product(product, args.cache, old, args.output.parent) for product in products
+            parse_product(
+                product,
+                args.cache,
+                {**old, **existing_document_index(args.output, product["id"])},
+                args.output.parent,
+            )
+            for product in products
         ],
     }
     refresh_totals(manifest)
@@ -627,11 +801,12 @@ def main() -> None:
             raise SystemExit(
                 f"Official R2025b snapshot changed; review before updating: {differences}"
             )
+    write_catalog(manifest, args.output.parent)
+    write_browser_tree(manifest, args.output.parent)
+    # Browser generation assigns resource_paths; persist them in the same run.
     args.output.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    write_catalog(manifest, args.output.parent)
-    write_browser_tree(manifest, args.output.parent)
     args.coverage_directory.mkdir(parents=True, exist_ok=True)
     en, zh = report(manifest)
     (args.coverage_directory / "index.md").write_text(en, encoding="utf-8")

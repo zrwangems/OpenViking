@@ -5,6 +5,6 @@
 - [Drive Cycle Source](drive-cycle-source.md)
 - [Fishhook](fishhook.md)
 - [Lane Change](lane-change.md)
-- [Sine With Dwell](sine-with-dwell.md)
 - [Slowly Increasing Steer](slowly-increasing-steer.md)
 - [Swept Sine](swept-sine.md)
+- [Sine With Dwell](sine-with-dwell.md)
