@@ -1,16 +1,17 @@
 ---
 type: simulink-block
-title: 'removerows\\_reverse'
+title: 'removerows'
 family: 'deeplearning'
 product_id: 'deeplearning'
 product_name: 'Deep Learning Toolbox'
 documentation_release: R2025b
-official_category: 'Deep Learning Toolbox / Shallow Neural Networks / Processing Functions'
+official_category: 'Shallow Neural Networks / Processing Functions'
+documentation_page: 'removerows'
+documentation_source_path: 'ref/removerows.html'
 language: en
-documentation_status: tree_only
 ---
 
-# removerows\_reverse
+# removerows
 
 ## Ports
 
@@ -34,8 +35,54 @@ Not documented in R2025b.
 
 ## Version History
 
-Not documented in R2025b.
+**Introduced in R2006a**
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Process matrices by removing rows with specified indices
+
+`removerows` processes matrices by removing rows with the specified
+indices.
+
+`[Y,PS] = removerows(X,'ind',ind)` takes `X` and an
+optional parameter,
+
+|  |  |
+| --- | --- |
+| `X` | `N`-by-`Q` matrix |
+| `ind` | Vector of row indices to remove (default is `[]`) |
+
+and returns
+
+|  |  |
+| --- | --- |
+| `Y` | `M`-by-`Q` matrix, where `M == N-length(ind)` |
+| `PS` | Process settings that allow consistent processing of values |
+
+`[Y,PS] = removerows(X,FP)` takes parameters as a struct:
+`FP.ind`.
+
+`Y = removerows('apply',X,PS)` returns `Y`, given
+`X` and settings `PS`.
+
+`X = removerows('reverse',Y,PS)` returns `X`, given
+`Y` and settings `PS`.
+
+`dx_dy = removerows('dx',X,Y,PS)` returns the
+`M`-by-`N`-by-`Q` derivative of
+`Y` with respect to `X`.
+
+`dx_dy = removerows('dx',X,[],PS)` returns the derivative, less
+efficiently.
+
+`name = removerows('name')` returns the name of this process
+method.
+
+`fp = removerows('pdefaults')` returns the default process parameter
+structure.
+
+`names = removerows('pdesc')` returns the process parameter
+descriptions.
+
+`removerows('pcheck',FP)` throws an error if any parameter is
+illegal.

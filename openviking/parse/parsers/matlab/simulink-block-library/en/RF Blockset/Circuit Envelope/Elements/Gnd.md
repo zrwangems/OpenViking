@@ -1,16 +1,17 @@
 ---
 type: simulink-block
-title: 'Gnd'
+title: 'Ground'
 family: 'simrf'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b
-official_category: 'RF Blockset / Circuit Envelope / Elements'
+official_category: 'Circuit Envelope / Elements'
+documentation_page: 'ground'
+documentation_source_path: 'ref/ground.html'
 language: en
-documentation_status: tree_only
 ---
 
-# Gnd
+# Ground
 
 ## Ports
 
@@ -18,11 +19,15 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+The Ground block has no parameters.
+
+All models in the RF Blockset documentation contain a Ground block.
+See Model an RF Mixer for
+an introduction to circuit envelope simulation.
 
 ## Libraries
 
-Not documented in R2025b.
+RF Blockset / Circuit Envelope / Elements
 
 ## Block Characteristics
 
@@ -34,8 +39,19 @@ Not documented in R2025b.
 
 ## Version History
 
-Not documented in R2025b.
+**Introduced in R2016b**
+
+### R2021b: Ground block icon updated
+
+Starting in R2021b, the Ground block icon has updated. When you
+open a model created before R2021b containing a Ground block, the
+software replaces the block icon with the R2021b version.
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Simulate connection to electrical ground
+
+The Ground block represents an electrical ground
+in a RF Blockset™ circuit envelope simulation environment. Connect
+at least one Ground to the RF Blockset environment;
+otherwise, models with RF Blockset blocks do not run.

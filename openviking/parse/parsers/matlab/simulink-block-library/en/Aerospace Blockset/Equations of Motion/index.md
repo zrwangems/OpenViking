@@ -2,4 +2,3 @@
 
 - [3DOF ](3DOF /index.md)
 - [Point Mass](Point Mass/index.md)
-- [6DOF](6DOF.md)

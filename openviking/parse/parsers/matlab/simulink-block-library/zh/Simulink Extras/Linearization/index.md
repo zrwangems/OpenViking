@@ -1,4 +1,3 @@
 # Linearization
 
-- [Switched derivative for linearization](Switched derivative for linearization.md)
-- [Switched transport delay for linearization](Switched transport delay for linearization.md)
+- 实机 R2025b 树中的空目录（0 块）。

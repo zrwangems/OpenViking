@@ -1,12 +1,3 @@
 # SNG
 
-- [CNormalRandom](CNormalRandom.md)
-- [CUniformRandom](CUniformRandom.md)
-- [DNormalRandom](DNormalRandom.md)
-- [DUniformRandom](DUniformRandom.md)
-- [GenWaveform](GenWaveform.md)
-- [LimRamp](LimRamp.md)
-- [PulseTrain](PulseTrain.md)
-- [SinusoidGen](SinusoidGen.md)
-- [SquareWave](SquareWave.md)
-- [StepFcn](StepFcn.md)
+- 实机 R2025b 树中的空目录（0 块）。

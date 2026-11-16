@@ -1,16 +1,17 @@
 ---
 type: simulink-block
-title: 'Info'
+title: 'info'
 family: 'vision'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
-documentation_release: R2025b
-official_category: 'Computer Vision Toolbox'
+documentation_release: R2023b
+official_category: ''
+documentation_page: 'labeldefinitioncreator.info'
+documentation_source_path: 'ref/labeldefinitioncreator.info.html'
 language: en
-documentation_status: tree_only
 ---
 
-# Info
+# info
 
 ## Ports
 
@@ -34,8 +35,8 @@ Not documented in R2025b.
 
 ## Version History
 
-Not documented in R2025b.
+**Introduced in R2018b**
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Display information about a label, sublabel, or attribute stored in label definition creator object

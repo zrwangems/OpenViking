@@ -1,41 +1,43 @@
 ---
 type: simulink-block
-title: 'Info'
+title: 'info'
 family: 'driving'
 product_id: 'driving'
 product_name: 'Automated Driving Toolbox'
-documentation_release: R2025b
-official_category: 'Automated Driving Toolbox'
+documentation_release: R2023b
+official_category: ''
+documentation_page: 'labeldefinitioncreatormultisignal.info'
+documentation_source_path: 'ref/labeldefinitioncreatormultisignal.info.html'
 language: zh-CN
-documentation_status: tree_only
+chinese_source: worker-translation
 ---
 
-# Info
+# info
 
 ## 端口
 
-R2025b 官方文档未提供。
+在 R2025b 中未记录。
 
 ## 参数
 
-R2025b 官方文档未提供。
+在 R2025b 中未记录。
 
 ## 所属库
 
-R2025b 官方文档未提供。
+在 R2025b 中未记录。
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+在 R2025b 中未记录。
 
 ## 扩展功能
 
-R2025b 官方文档未提供。
+在 R2025b 中未记录。
 
 ## 版本历史
 
-R2025b 官方文档未提供。
+**在 R2020a 中引入**
 
 ## 描述
 
-该块存在于本机 R2025b Library Browser 树中，但没有可安全复用的独立官方参考正文。
+显示存储在 label definition creator 对象中的标签、子标签或属性信息，用于 multisignal 工作流

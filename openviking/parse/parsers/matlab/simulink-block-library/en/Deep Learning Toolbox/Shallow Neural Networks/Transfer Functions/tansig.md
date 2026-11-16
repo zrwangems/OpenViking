@@ -5,9 +5,10 @@ family: 'deeplearning'
 product_id: 'deeplearning'
 product_name: 'Deep Learning Toolbox'
 documentation_release: R2025b
-official_category: 'Deep Learning Toolbox / Shallow Neural Networks / Transfer Functions'
+official_category: 'Shallow Neural Networks / Transfer Functions'
+documentation_page: 'tansig'
+documentation_source_path: 'ref/tansig.html'
 language: en
-documentation_status: tree_only
 ---
 
 # tansig
@@ -34,8 +35,8 @@ Not documented in R2025b.
 
 ## Version History
 
-Not documented in R2025b.
+**Introduced before R2006a**
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Hyperbolic tangent sigmoid transfer function

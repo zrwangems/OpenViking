@@ -5,7 +5,7 @@ family: 'hdlcoder'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Math Operations'
+official_category: 'HDL Floating Point Operations'
 documentation_page: 'minmax'
 documentation_source_path: '../simulink/slref/minmax.html'
 language: en

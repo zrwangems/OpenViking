@@ -1,16 +1,17 @@
 ---
 type: simulink-block
-title: 'AnalogIO Output'
+title: 'C2802x/C2803x/C2806x/F28M3x AnalogIO Output'
 family: 'ti-c2000'
 product_id: 'ti-c2000'
 product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
-official_category: 'C2000 Microcontroller Blockset / C2806x'
+official_category: 'C2802x'
+documentation_page: 'c2802xc2803xc2806xf28m3xanalogiooutput'
+documentation_source_path: 'ref/c2802xc2803xc2806xf28m3xanalogiooutput.html'
 language: en
-documentation_status: tree_only
 ---
 
-# AnalogIO Output
+# C2802x/C2803x/C2806x/F28M3x AnalogIO Output
 
 ## Ports
 
@@ -18,7 +19,15 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Parameters (Output Pins)**
+:   Select the analog output pins. Selecting **Toggle**
+    inverts the output voltage levels of the pins if the input of the block
+    is True.
+
+**Parameters (Output Pins)**
+:   Select the analog output pins. Selecting **Toggle**
+    inverts the output voltage levels of the pins if the input of the block
+    is True.
 
 ## Libraries
 
@@ -38,4 +47,19 @@ Not documented in R2025b.
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Configure Analog IO to output analog signals on specific pins
+
+# C2802x/C2803x/C2806x/F28M3x AnalogIO Output
+
+Configure Analog IO to output analog signals on specific pins
+
+Use this block to drive the output voltage of Analog IO pins.
+
+In regular mode, a value of True at the input of the block pulls the Analog IO pin
+high while a value of False grounds the pin.
+
+In toggle mode, a value of True at the input of the block switches the actual
+output level of the Analog IO pin while a value of False does not alter the output
+level of the Analog IO pin.
+
+- C2802x/C2803x/C2806x/F28M3x AnalogIO Output block

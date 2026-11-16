@@ -1,41 +1,74 @@
 ---
 type: simulink-block
-title: 'fixunknowns\\_reverse'
+title: 'fixunknowns'
 family: 'deeplearning'
 product_id: 'deeplearning'
 product_name: 'Deep Learning Toolbox'
 documentation_release: R2025b
-official_category: 'Deep Learning Toolbox / Shallow Neural Networks / Processing Functions'
+official_category: 'Shallow Neural Networks / Processing Functions'
+documentation_page: 'fixunknowns'
+documentation_source_path: 'ref/fixunknowns.html'
 language: zh-CN
-documentation_status: tree_only
+chinese_source: worker-translation
 ---
 
-# fixunknowns\_reverse
+# fixunknowns
 
 ## 端口
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 参数
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 所属库
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 版本历史
 
-R2025b 官方文档未提供。
+**在 R2006a 中引入**
 
 ## 描述
 
-该块存在于本机 R2025b Library Browser 树中，但没有可安全复用的独立官方参考正文。
+通过标记包含未知值的行来处理数据
+
+`fixunknowns` 通过将每个包含未知值（由 `NaN` 表示）的行替换为两行信息来处理矩阵。
+
+第一行包含原始行，其中 `NaN` 值被替换为该行的均值。第二行包含 1 和 0 值，分别指示第一行中的哪些值是已知或未知的。
+
+`[y,ps] = fixunknowns(X)` 接受以下输入：
+
+|  |  |
+| --- | --- |
+| `X` | `N`×`Q` 矩阵 |
+
+并返回
+
+|  |  |
+| --- | --- |
+| `Y` | 添加了 `M - N` 行的 `M`×`Q` 矩阵 |
+| `PS` | 允许对值进行一致处理的处理设置 |
+
+`[y,ps] = fixunknowns(X,FP)` 接受一个参数的空 struct `FP`。
+
+`Y = fixunknowns('apply',X,PS)` 在给定 `X` 和设置 `PS` 的情况下返回 `Y`。
+
+`X = fixunknowns('reverse',Y,PS)` 在给定 `Y` 和设置 `PS` 的情况下返回 `X`。
+
+`name = fixunknowns('name')` 返回此处理方法的名称。
+
+`fp = fixunknowns('pdefaults')` 返回默认处理参数结构体。
+
+`pd = fixunknowns('pdesc')` 返回处理参数描述。
+
+`fixunknowns('pcheck',fp)` 在任一参数非法时抛出错误。

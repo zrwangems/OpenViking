@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Discrete Transfer Fcn'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'simulink-extras'
+product_id: 'simulink-extras'
+product_name: 'Simulink Extras'
 documentation_release: R2025b
-official_category: 'Discrete'
+official_category: 'Additional Discrete'
 documentation_page: 'discretetransferfcn'
 documentation_source_path: '../simulink/slref/discretetransferfcn.html'
 language: zh-CN

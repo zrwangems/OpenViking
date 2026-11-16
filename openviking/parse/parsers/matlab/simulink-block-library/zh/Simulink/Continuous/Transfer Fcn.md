@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Transfer Fcn'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'simulink-extras'
+product_id: 'simulink-extras'
+product_name: 'Simulink Extras'
 documentation_release: R2025b
-official_category: 'Continuous'
+official_category: 'Additional Linear'
 documentation_page: 'transferfcn'
-documentation_source_path: 'slref/transferfcn.html'
+documentation_source_path: '../simulink/slref/transferfcn.html'
 language: zh-CN
 chinese_source: official
 ---

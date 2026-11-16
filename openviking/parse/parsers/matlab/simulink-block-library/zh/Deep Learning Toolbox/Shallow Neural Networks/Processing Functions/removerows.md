@@ -5,9 +5,11 @@ family: 'deeplearning'
 product_id: 'deeplearning'
 product_name: 'Deep Learning Toolbox'
 documentation_release: R2025b
-official_category: 'Deep Learning Toolbox / Shallow Neural Networks / Processing Functions'
+official_category: 'Shallow Neural Networks / Processing Functions'
+documentation_page: 'removerows'
+documentation_source_path: 'ref/removerows.html'
 language: zh-CN
-documentation_status: tree_only
+chinese_source: official
 ---
 
 # removerows
@@ -34,8 +36,8 @@ R2025b 官方文档未提供。
 
 ## 版本历史
 
-R2025b 官方文档未提供。
+**在 R2006a 中推出**
 
 ## 描述
 
-该块存在于本机 R2025b Library Browser 树中，但没有可安全复用的独立官方参考正文。
+通过删除具有指定索引的行来处理矩阵

@@ -1,16 +1,17 @@
 ---
 type: simulink-block
-title: 'Info'
+title: 'info'
 family: 'driving'
 product_id: 'driving'
 product_name: 'Automated Driving Toolbox'
-documentation_release: R2025b
-official_category: 'Automated Driving Toolbox'
+documentation_release: R2023b
+official_category: ''
+documentation_page: 'labeldefinitioncreatormultisignal.info'
+documentation_source_path: 'ref/labeldefinitioncreatormultisignal.info.html'
 language: en
-documentation_status: tree_only
 ---
 
-# Info
+# info
 
 ## Ports
 
@@ -34,8 +35,8 @@ Not documented in R2025b.
 
 ## Version History
 
-Not documented in R2025b.
+**Introduced in R2020a**
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Display label, sublabel, or attribute information stored in label definition creator object for multisignal workflow

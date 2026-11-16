@@ -5,37 +5,49 @@ family: 'simscape'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b
-official_category: 'Foundation Library / Hydraulic / Hydraulic Elements'
+official_category: 'Hydraulic / Hydraulic Elements'
+documentation_page: 'infinitehydraulicresistance'
+documentation_source_path: 'ref/infinitehydraulicresistance.html'
 language: zh-CN
-documentation_status: tree_only
+chinese_source: worker-translation
 ---
 
 # Infinite Hydraulic Resistance
 
 ## 端口
 
-R2025b 官方文档未提供。
+该模块具有两个液压守恒端口。
 
 ## 参数
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 所属库
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+R2025b 中未记录。
 
 ## 扩展功能
 
-R2025b 官方文档未提供。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
-R2025b 官方文档未提供。
+**在 R2014b 中引入**
+
+### R2023a: 将删除
+
+Hydraulic 库将在未来版本中删除。请改用 Isothermal Liquid 库。Isothermal Liquid 库中的模块提供更高的精度、可用性和数值性能。
+
+有关更新模型的详细信息，请参阅 Upgrading Hydraulic Models to Use Isothermal Liquid Blocks。
 
 ## 描述
 
-该块存在于本机 R2025b Library Browser 树中，但没有可安全复用的独立官方参考正文。
+(将删除) 用于设置两个节点之间初始压力差的 Hydraulic 元件
+
+Infinite Hydraulic Resistance 模块表示液压网络中的一个断点。流体不流经该断点。但是，由连接到回路的 Custom Hydraulic Fluid 模块指定的流体属性在断点两侧相同。使用此模块可为端口 **A** 和端口 **B** 之间的压力差设置优先级和初始目标值。
+
+**Variables** 选项卡允许你在仿真之前为 **Pressure difference** 变量设置优先级和初始目标值。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。

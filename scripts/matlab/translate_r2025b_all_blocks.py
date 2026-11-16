@@ -181,12 +181,16 @@ def main() -> None:
         english_relative = entry["documents"]["en"]["path"]
         english_path = args.manifest.parent / english_relative
         metadata, source = source_parts(english_path.read_text(encoding="utf-8"))
+        source_release = entry.get("source_release", "R2025b")
+        release_prefix = "" if source_release == "R2025b" else f"{source_release}/"
         relative = (
-            f"zh/products/{product['id']}/{Path(entry['documentation_path']).with_suffix('.md')}"
+            f"zh/products/{release_prefix}{product['id']}/"
+            f"{Path(entry['documentation_path']).with_suffix('.md')}"
         )
         target = args.manifest.parent / relative
         source_product, source_path = document_source(product, entry)
-        cached = args.cache / source_product / Path(source_path).with_suffix(".md")
+        cache_root = args.cache if source_release == "R2025b" else args.cache / source_release
+        cached = cache_root / source_product / Path(source_path).with_suffix(".md")
         if cached.exists() and cached.stat().st_size > 100:
             translated = cached.read_text(encoding="utf-8").strip()
         else:
@@ -261,7 +265,9 @@ def main() -> None:
                 status, _, size = future.result()
                 for library in product["libraries"]:
                     for block in library["blocks"]:
-                        if block["documentation_path"] == entry["documentation_path"]:
+                        if block["documentation_path"] == entry["documentation_path"] and block.get(
+                            "source_release", "R2025b"
+                        ) == entry.get("source_release", "R2025b"):
                             block["documents"]["zh"] = status
                 completed += 1
                 if completed % 10 == 0 or completed == len(work):

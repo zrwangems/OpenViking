@@ -1,3 +1,3 @@
 # Adaptive Platform
 
-- [Signal Routing](Signal Routing.md)
+- Empty directory in the local R2025b tree (0 blocks).

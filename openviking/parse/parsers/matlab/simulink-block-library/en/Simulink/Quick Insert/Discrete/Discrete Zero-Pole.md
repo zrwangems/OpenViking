@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Discrete Zero-Pole'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'simulink-extras'
+product_id: 'simulink-extras'
+product_name: 'Simulink Extras'
 documentation_release: R2025b
-official_category: 'Discrete'
+official_category: 'Additional Discrete'
 documentation_page: 'discretezeropole'
-documentation_source_path: 'slref/discretezeropole.html'
+documentation_source_path: '../simulink/slref/discretezeropole.html'
 language: en
 ---
 

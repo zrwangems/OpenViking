@@ -1,16 +1,17 @@
 ---
 type: simulink-block
-title: 'IQN x IQN'
+title: 'C2000 IQN x IQN'
 family: 'ti-c2000'
 product_id: 'ti-c2000'
 product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
-official_category: 'C2000 Microcontroller Blockset / Optimization / C28x IQmath'
+official_category: 'Optimization / C28x IQmath'
+documentation_page: 'c2000iqnxiqn'
+documentation_source_path: 'ref/c2000iqnxiqn.html'
 language: en
-documentation_status: tree_only
 ---
 
-# IQN x IQN
+# C2000 IQN x IQN
 
 ## Ports
 
@@ -18,7 +19,25 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Multiply option**
+:   Type of multiplication to perform:
+
+    - `Multiply` — Multiply the numbers.
+    - `Multiply with Rounding` — Multiply the
+      numbers and round the result.
+    - `Multiply with Rounding and Saturation` —
+      Multiply the numbers and round and saturate the result to the maximum
+      value.
+
+**Multiply option**
+:   Type of multiplication to perform:
+
+    - `Multiply` — Multiply the numbers.
+    - `Multiply with Rounding` — Multiply the
+      numbers and round the result.
+    - `Multiply with Rounding and Saturation` —
+      Multiply the numbers and round and saturate the result to the maximum
+      value.
 
 ## Libraries
 
@@ -38,4 +57,20 @@ Not documented in R2025b.
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Multiply IQ numbers with same Q format
+
+# C2000 IQN x IQN
+
+Multiply IQ numbers with same Q format
+
+This block multiplies two IQ numbers. Optionally, it can also round and saturate
+the result.
+
+**Note**
+
+The implementation of this block does not call the corresponding Texas Instruments® library function during code generation. The TI function uses a global Q
+setting and the MathWorks® code used by this block dynamically adjusts the Q format based on the block
+input. See Using the IQmath Library for more
+information.
+
+- C2000 IQN x IQN block

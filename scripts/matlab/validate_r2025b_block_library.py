@@ -16,8 +16,13 @@ import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from align_r2025b_browser_tree import parse_tree
-from scrape_r2025b_all_blocks import document_source, render_page, unique_entries
+from align_r2025b_browser_tree import EXCLUDED_ENTRIES, entry_key, parse_tree
+from scrape_r2025b_all_blocks import (
+    cached_source_path,
+    document_source,
+    render_page,
+    unique_entries,
+)
 from translate_r2025b_all_blocks import table_shapes
 
 
@@ -144,10 +149,14 @@ def main() -> None:
                 occurrences.append(item)
                 for language in ("en", "zh"):
                     document = block["documents"][language]
-                    key = (product["id"], block["documentation_path"], language)
+                    key = (
+                        product["id"],
+                        block["documentation_path"],
+                        block.get("source_release", "R2025b"),
+                        language,
+                    )
                     if not block["documentation_path"]:
-                        if document["status"] != "tree_only":
-                            failures["invalid_tree_only_status"].append(key)
+                        failures["unexpected_tree_only_entry"].append(key)
                     elif document["status"] != "available" or not document["path"]:
                         failures["unavailable_document"].append(key)
                     elif key in documents and documents[key] != document["path"]:
@@ -171,7 +180,11 @@ def main() -> None:
         {
             "name": product["name"],
             "directories": [directory["path"] for directory in product["directories"]],
-            "blocks": [(block["path"], block["name"]) for block in product["blocks"]],
+            "blocks": [
+                (block["path"], block["name"])
+                for block in product["blocks"]
+                if entry_key(product["name"], block["path"], block["name"]) not in EXCLUDED_ENTRIES
+            ],
         }
         for product in expected_tree
     ]
@@ -192,7 +205,12 @@ def main() -> None:
             "products, ordered directories, or complete block paths differ from tree_full.md"
         )
 
-    for (_product_id, _documentation_path, language), relative in documents.items():
+    for (
+        _product_id,
+        _documentation_path,
+        _source_release,
+        language,
+    ), relative in documents.items():
         path = root / relative
         if not path.is_file():
             failures["missing_file"].append(relative)
@@ -203,7 +221,7 @@ def main() -> None:
         except ValueError as exc:
             failures["invalid_front_matter"].append([relative, str(exc)])
             continue
-        if "documentation_release: R2025b" not in markdown:
+        if not re.search(r"documentation_release: R20\d\d[ab]", markdown):
             failures["wrong_release"].append(relative)
         if not re.match(r"^# \S.+", body) or len(body) < 40:
             failures["empty_body"].append(relative)
@@ -223,7 +241,10 @@ def main() -> None:
                 english = root / entry["documents"]["en"]["path"]
                 chinese = root / entry["documents"]["zh"]["path"]
                 source_product, source_document = document_source(product, entry)
-                source_path = args.html_cache / source_product / "en" / f"{source_document}.html"
+                source_release = entry.get("source_release", "R2025b")
+                source_path = cached_source_path(
+                    args.html_cache, source_product, source_document, "en", source_release
+                )
                 if not source_path.is_file():
                     # A previously captured full page remains valid when the
                     # external HTML cache is incomplete; do not call it a
@@ -243,8 +264,8 @@ def main() -> None:
                         [product["id"], entry["documentation_path"], str(exc)]
                     )
                 if "chinese_source: official" in chinese.read_text(encoding="utf-8"):
-                    source_path = (
-                        args.html_cache / source_product / "zh" / f"{source_document}.html"
+                    source_path = cached_source_path(
+                        args.html_cache, source_product, source_document, "zh", source_release
                     )
                     try:
                         expected, _ = render_page(source_path.read_bytes(), entry, product, "zh")

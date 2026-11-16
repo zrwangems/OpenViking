@@ -119,7 +119,12 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                     relative = target.relative_to(root).as_posix()
                     block.setdefault("resource_paths", {})[language] = relative
                     if block["documentation_path"]:
-                        key = (product["id"], block["documentation_path"], language)
+                        key = (
+                            product["id"],
+                            block["documentation_path"],
+                            block.get("source_release", "R2025b"),
+                            language,
+                        )
                         document["path"] = canonical_document_paths.setdefault(key, relative)
             for key, node in nodes.items():
                 directory = browser_root.joinpath(*key)
@@ -156,10 +161,11 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
         "`scripts/matlab/tree_full.md`；解析器按块原始名称及 `SourceBlock` 匹配文档，无需联网。\n\n"
         "- [中文块库](zh/index.md)\n"
         "- [English block library](en/index.md)\n\n"
-        f"当前包含 {totals['products']} 个顶层库、{totals['block_occurrences']} 个块条目。"
-        f"其中 {totals['full_document_occurrences']['en']} 个条目复用完整官方正文，"
-        f"其余 {totals['tree_only_occurrences']} 个为本机树中有条目、但没有可安全复用独立正文的块，"
-        "保留真实名称与目录并明确标为 `tree_only`，不猜写端口或参数。\n\n"
+        f"当前包含 {totals['products']} 个顶层库、{totals['block_occurrences']} 个块条目，"
+        "所有保留块都有完整中英文官方正文或经结构校验的中文工作译本。"
+        "实机树中的示例、启动器、产品链接及查无官方块页的条目已按 "
+        "`r2025b-block-exclusions.json` 剔除，目录层级保持不变。"
+        "预配置变体复用对应基础块官方页；少数支持包老块使用页面标注的实际旧版官方文档。\n\n"
         "`manifest.json` 是解析器和离线生成脚本使用的机器元数据，不是 OV 资源页面。"
         "重新生成使用 `scripts/matlab/` 下的 R2025b 脚本；缓存和失败日志保存在库目录之外。\n",
         encoding="utf-8",

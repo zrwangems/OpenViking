@@ -31,20 +31,34 @@ from scrape_simulink_blocks import localized_content
 _PRINT_LOCK = threading.Lock()
 
 
-def source_url(product: str, path: str, language: str) -> str:
+def source_url(product: str, path: str, language: str, release: str = RELEASE) -> str:
     host = "ww2.mathworks.cn" if language == "zh" else "www.mathworks.com"
-    return f"https://{host}/help/releases/{RELEASE}/{product}/{path}"
+    return f"https://{host}/help/releases/{release}/{product}/{path}"
 
 
-def fetch(product: str, path: str, language: str, cache: Path, offline: bool) -> Path:
-    target = cache / product / language / f"{path}.html"
+def cached_source_path(
+    cache: Path, product: str, path: str, language: str, release: str = RELEASE
+) -> Path:
+    base = cache if release == RELEASE else cache / release
+    return base / product / language / f"{path}.html"
+
+
+def fetch(
+    product: str,
+    path: str,
+    language: str,
+    cache: Path,
+    offline: bool,
+    release: str = RELEASE,
+) -> Path:
+    target = cached_source_path(cache, product, path, language, release)
     if target.exists():
         return target
     if offline:
         raise FileNotFoundError(f"Offline HTML is missing: {target}")
     target.parent.mkdir(parents=True, exist_ok=True)
     for attempt in range(7):
-        response = requests.get(source_url(product, path, language), timeout=60)
+        response = requests.get(source_url(product, path, language, release), timeout=60)
         if response.ok:
             target.write_bytes(response.content)
             return target
@@ -72,7 +86,7 @@ def render_page(html: bytes, entry: dict, product: dict, language: str) -> tuple
         f"family: {product['id']!r}",
         f"product_id: {product['id']!r}",
         f"product_name: {product['name']!r}",
-        f"documentation_release: {RELEASE}",
+        f"documentation_release: {entry.get('source_release', RELEASE)}",
         f"official_category: {' / '.join(entry['library_path'])!r}",
         f"documentation_page: {Path(entry['documentation_path']).stem!r}",
         f"documentation_source_path: {entry['documentation_path']!r}",
@@ -93,7 +107,7 @@ def unique_entries(product: dict) -> list[dict]:
             if not block["documentation_path"]:
                 continue
             entries.setdefault(
-                block["documentation_path"],
+                (block["documentation_path"], block.get("source_release", RELEASE)),
                 {
                     **block,
                     "name": block.get("documented_as", block["name"]),
@@ -121,13 +135,17 @@ def process(
     statuses = {}
     failures = []
     source_product, source_path = document_source(product, entry)
+    source_release = entry.get("source_release", RELEASE)
     for language in ("en", "zh"):
+        release_prefix = "" if source_release == RELEASE else f"{source_release}/"
         relative = (
-            f"{language}/products/{product['id']}/"
+            f"{language}/products/{release_prefix}{product['id']}/"
             f"{Path(entry['documentation_path']).with_suffix('.md')}"
         )
         try:
-            html = fetch(source_product, source_path, language, cache, offline).read_bytes()
+            html = fetch(
+                source_product, source_path, language, cache, offline, source_release
+            ).read_bytes()
             markdown, _ = render_page(html, entry, product, language)
             target = root / relative
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -222,7 +240,9 @@ def main() -> None:
             all_failures.extend(failures)
             for library in product["libraries"]:
                 for block in library["blocks"]:
-                    if block["documentation_path"] == entry["documentation_path"]:
+                    if block["documentation_path"] == entry["documentation_path"] and block.get(
+                        "source_release", RELEASE
+                    ) == entry.get("source_release", RELEASE):
                         block["documents"].update(statuses)
             completed += 1
             if completed % 10 == 0 or completed == len(work):

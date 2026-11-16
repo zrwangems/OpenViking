@@ -1,6 +1,6 @@
 ---
 type: simulink-block
-title: 'Message Triggered Subsystem'
+title: 'Message Triggered Subsystem, Message Polling Subsystem'
 family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
@@ -11,7 +11,7 @@ documentation_source_path: 'slref/messagetriggeredsubsystem.html'
 language: en
 ---
 
-# Message Triggered Subsystem
+# Message Triggered Subsystem, Message Polling Subsystem
 
 ## Ports
 

@@ -5,4 +5,3 @@
 - [Electric Motor Controllers](Electric Motor Controllers/index.md)
 - [Electric Motors and Inverters](Electric Motors and Inverters/index.md)
 - [Supervisory Controllers](Supervisory Controllers/index.md)
-- [Combustion Engines](Combustion Engines.md)

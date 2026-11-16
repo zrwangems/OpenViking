@@ -5,16 +5,48 @@ family: 'simulink-extras'
 product_id: 'simulink-extras'
 product_name: 'Simulink Extras'
 documentation_release: R2025b
-official_category: 'Simulink Extras / Transformations'
+official_category: 'Transformations'
+documentation_page: 'polartocartesian'
+documentation_source_path: '../simulink/ref_extras/polartocartesian.html'
 language: en
-documentation_status: tree_only
 ---
 
 # Polar to Cartesian
 
 ## Ports
 
-Not documented in R2025b.
+### Input
+
+### **Port\_1** — *r* polar coordinate input scalar
+
+Input signal specifying the *r* coordinate of the Polar coordinates
+*(r,theta)*. Both inputs must be real scalars of
+the same data type.
+
+**Data Types:** `single` | `double`
+
+### **Port\_2** — *theta* polar coordinate input scalar
+
+Input signal specifying the *theta* coordinate of the Polar coordinates
+*(r,theta)*. Both inputs must be real scalars of
+the same data type.
+
+**Data Types:** `single` | `double`
+### Output
+
+### **Port\_1** — *x* coordinate output scalar
+
+Output signal specifying the *x* value in the
+Cartesian coordinates *(x,y)*.
+
+**Data Types:** `single` | `double`
+
+### **Port\_2** — *y* Cartesian coordinate output scalar
+
+Output signal specifying the *y* value in the
+Cartesian coordinates *(x,y)*.
+
+**Data Types:** `single` | `double`
 
 ## Parameters
 
@@ -22,7 +54,7 @@ Not documented in R2025b.
 
 ## Libraries
 
-Not documented in R2025b.
+Simulink Extras / Transformations
 
 ## Block Characteristics
 
@@ -34,8 +66,30 @@ Not documented in R2025b.
 
 ## Version History
 
-Not documented in R2025b.
+**Introduced in R2008b**
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Convert polar coordinates to Cartesian coordinates
+
+The Polar to Cartesian block transforms the polar coordinates
+(*r*, *theta*) to the Cartesian coordinates
+(*x*, *y*).
+
+The first and second inputs correspond to *r* and *theta*,
+respectively. The angle *theta* is in radians. The first and second
+outputs correspond to *x* and *y*,
+respectively.
+
+The polar coordinates (*r*, *theta*) describe a point
+where *r* is the distance from the origin, and *theta*
+is the counterclockwise angle in radians from the positive *x*-axis.
+The Cartesian coordinates (*x*, *y*) describe the same
+point with respect to the *x*-axis and
+*y*-axis.
+
+*x* = *r* ×
+cos(*theta*)
+
+*y* = *r* ×
+sin(*theta*)

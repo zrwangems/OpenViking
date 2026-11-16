@@ -1,16 +1,17 @@
 ---
 type: simulink-block
-title: 'L'
+title: 'Inductor'
 family: 'simrf'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b
-official_category: 'RF Blockset / Circuit Envelope / Elements'
+official_category: 'Circuit Envelope / Elements'
+documentation_page: 'inductor'
+documentation_source_path: 'ref/inductor.html'
 language: en
-documentation_status: tree_only
 ---
 
-# L
+# Inductor
 
 ## Ports
 
@@ -18,11 +19,18 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+### **Inductance** — Inductance value `1e-9 H` (default) | real number
+
+Inductance value, specified as a real number. Specify the units
+of the capacitance from the corresponding drop-down menu.
+
+If you set this parameter to a value between `0` and `1e-18` `H`,
+the block uses a value equal to `1e-18` `H` during
+simulation. By default, the value is `1e-9` `H`.
 
 ## Libraries
 
-Not documented in R2025b.
+RF Blockset / Circuit Envelope / Elements
 
 ## Block Characteristics
 
@@ -34,8 +42,15 @@ Not documented in R2025b.
 
 ## Version History
 
-Not documented in R2025b.
+### R2021b: Inductor block icon updated
+
+Starting in R2021b, the Inductor block icon has updated. When you
+open a model created before R2021b containing an Inductor block, the
+software replaces the block icon with the R2021b version.
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Model inductor for circuit envelope analysis
+
+The Inductor block models an inductor in circuit
+envelope environment.

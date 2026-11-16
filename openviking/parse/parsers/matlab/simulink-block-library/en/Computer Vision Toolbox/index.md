@@ -11,7 +11,4 @@
 - [Text & Graphics](Text & Graphics/index.md)
 - [Transforms](Transforms/index.md)
 - [Utilities](Utilities/index.md)
-- [Demos](Demos.md)
 - [Info](Info.md)
-- [Subsystem](Subsystem.md)
-- [Subsystem1](Subsystem1.md)

@@ -210,7 +210,9 @@ def canonicalize_cross_product_documents(manifest: dict) -> None:
             for block in library["blocks"]:
                 path = block["documentation_path"]
                 if path and ".." not in Path(path).parts:
-                    owners[(product["id"], path)] = block["documents"]
+                    owners[(product["id"], path, block.get("source_release", "R2025b"))] = block[
+                        "documents"
+                    ]
     for product in manifest["products"]:
         for library in product["libraries"]:
             for block in library["blocks"]:
@@ -221,7 +223,9 @@ def canonicalize_cross_product_documents(manifest: dict) -> None:
                 while normalized.startswith("../"):
                     normalized = normalized[3:]
                 owner, documentation_path = normalized.split("/", 1)
-                documents = owners.get((owner, documentation_path))
+                documents = owners.get(
+                    (owner, documentation_path, block.get("source_release", "R2025b"))
+                )
                 if documents:
                     block["documents"] = {
                         language: dict(document) for language, document in documents.items()
@@ -275,7 +279,12 @@ def refresh_totals(manifest: dict) -> None:
         for block in library["blocks"]
     ]
     all_paths = {
-        (product["id"], block["documentation_path"], language)
+        (
+            product["id"],
+            block["documentation_path"],
+            block.get("source_release", "R2025b"),
+            language,
+        )
         for product in products
         for library in product["libraries"]
         for block in library["blocks"]
@@ -283,7 +292,12 @@ def refresh_totals(manifest: dict) -> None:
         if block["documentation_path"]
     }
     available_paths = {
-        (product["id"], block["documentation_path"], language)
+        (
+            product["id"],
+            block["documentation_path"],
+            block.get("source_release", "R2025b"),
+            language,
+        )
         for product in products
         for library in product["libraries"]
         for block in library["blocks"]
@@ -297,10 +311,10 @@ def refresh_totals(manifest: dict) -> None:
         for language in ("en", "zh")
     }
     totals["full_documents"] = {
-        language: sum(key[2] == language for key in available_paths) for language in ("en", "zh")
+        language: sum(key[3] == language for key in available_paths) for language in ("en", "zh")
     }
     totals["pending_documents"] = {
-        language: sum(key[2] == language for key in all_paths - available_paths)
+        language: sum(key[3] == language for key in all_paths - available_paths)
         for language in ("en", "zh")
     }
     totals["tree_only_occurrences"] = sum(not block["documentation_path"] for block in occurrences)

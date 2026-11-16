@@ -7,8 +7,3 @@
 - [Morphological Operations](Morphological Operations/index.md)
 - [Statistics](Statistics/index.md)
 - [Utilities](Utilities/index.md)
-- [Examples](Examples.md)
-- [I/O Interfaces](I／O Interfaces.md)
-- [Info](Info.md)
-- [Subsystem](Subsystem.md)
-- [Subsystem1](Subsystem1.md)

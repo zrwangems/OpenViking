@@ -3,7 +3,6 @@
 - [Composite Entity Creator](Composite Entity Creator.md)
 - [Composite Entity Splitter](Composite Entity Splitter.md)
 - [Conveyor System](Conveyor System.md)
-- [Design Patterns](Design Patterns.md)
 - [Discrete-Event Chart](Discrete-Event Chart.md)
 - [Entity Input Switch](Entity Input Switch.md)
 - [Entity Output Switch](Entity Output Switch.md)

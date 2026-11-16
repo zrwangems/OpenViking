@@ -9,6 +9,3 @@
 - [Sinks](Sinks/index.md)
 - [Sources](Sources/index.md)
 - [User-Defined Functions](User-Defined Functions/index.md)
-- [Demos](Demos.md)
-- [Info](Info.md)
-- [Subsystem](Subsystem.md)

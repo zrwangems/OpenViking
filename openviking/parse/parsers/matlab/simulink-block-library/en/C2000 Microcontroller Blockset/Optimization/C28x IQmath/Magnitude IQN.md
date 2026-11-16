@@ -1,16 +1,17 @@
 ---
 type: simulink-block
-title: 'Magnitude IQN'
+title: 'C2000 Magnitude IQN'
 family: 'ti-c2000'
 product_id: 'ti-c2000'
 product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
-official_category: 'C2000 Microcontroller Blockset / Optimization / C28x IQmath'
+official_category: 'Optimization / C28x IQmath'
+documentation_page: 'c2000magnitudeiqn'
+documentation_source_path: 'ref/c2000magnitudeiqn.html'
 language: en
-documentation_status: tree_only
 ---
 
-# Magnitude IQN
+# C2000 Magnitude IQN
 
 ## Ports
 
@@ -38,4 +39,23 @@ Not documented in R2025b.
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Magnitude of two orthogonal IQ numbers
+
+# C2000 Magnitude IQN
+
+Magnitude of two orthogonal IQ numbers
+
+This block calculates the magnitude of two IQ numbers using
+
+a2+b2
+
+The output is an IQ number in the same Q format as the input.
+
+**Note**
+
+The implementation of this block does not call the corresponding Texas Instruments® library function during code generation. The TI function uses a global Q
+setting and the MathWorks® code used by this block dynamically adjusts the Q format based on the block
+input. See Using the IQmath Library for more
+information.
+
+- C2000 Magnitude IQN block

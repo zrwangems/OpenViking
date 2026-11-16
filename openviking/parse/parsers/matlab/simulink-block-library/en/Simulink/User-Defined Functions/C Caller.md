@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'User-Defined Functions'
+official_category: 'Quick Insert / User-Defined Functions'
 documentation_page: 'ccaller'
 documentation_source_path: 'slref/ccaller.html'
 language: en

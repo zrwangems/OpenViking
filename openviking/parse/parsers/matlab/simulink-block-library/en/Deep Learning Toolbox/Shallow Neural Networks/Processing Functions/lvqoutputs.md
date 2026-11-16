@@ -5,9 +5,10 @@ family: 'deeplearning'
 product_id: 'deeplearning'
 product_name: 'Deep Learning Toolbox'
 documentation_release: R2025b
-official_category: 'Deep Learning Toolbox / Shallow Neural Networks / Processing Functions'
+official_category: 'Shallow Neural Networks / Processing Functions'
+documentation_page: 'lvqoutputs'
+documentation_source_path: 'ref/lvqoutputs.html'
 language: en
-documentation_status: tree_only
 ---
 
 # lvqoutputs
@@ -34,8 +35,18 @@ Not documented in R2025b.
 
 ## Version History
 
-Not documented in R2025b.
+**Introduced in R2010b**
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+LVQ outputs processing function
+
+`[X,settings] = lvqoutputs(X)` returns its argument unchanged, but
+stores the ratio of target classes in the settings for use by `initlvq` to initialize weights.
+
+`X = lvqoutputs('apply',X,PS)` returns `X`.
+
+`X = lvqoutputs('reverse',X,PS)` returns `X`.
+
+`dx_dy = lvqoutputs('dx_dy',X,X,PS)` returns the identity
+derivative.

@@ -5,7 +5,7 @@ family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Sources'
+official_category: 'Quick Insert / Sources'
 documentation_page: 'pulsegenerator'
 documentation_source_path: 'slref/pulsegenerator.html'
 language: en

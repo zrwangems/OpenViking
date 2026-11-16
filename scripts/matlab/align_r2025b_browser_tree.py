@@ -4,8 +4,9 @@
 The public product XML catalogs supply documentation, not the Browser layout.
 The checked-in tree_full.md is the sole authority for products, directories,
 block display names and ordering. Public documentation is reused only when a
-name match is exact or an unambiguous alias is known; other local blocks stay
-visible with an explicit tree_only status instead of invented documentation.
+name match is exact or an unambiguous alias is known. Verified overrides cover
+preconfigured variants and older support-package pages. Browser entries without
+an official block reference are explicitly excluded and recorded for review.
 """
 
 from __future__ import annotations
@@ -31,6 +32,22 @@ from extract_r2025b_block_manifest import (
 )
 
 TREE_PATH = Path(__file__).with_name("tree_full.md")
+OVERRIDES_PATH = Path(__file__).with_name("r2025b-block-doc-overrides.json")
+EXCLUSIONS_PATH = Path(__file__).with_name("r2025b-block-exclusions.json")
+
+
+def entry_key(product: str, path: list[str], name: str) -> tuple[str, tuple[str, ...], str]:
+    return product, tuple(path), name
+
+
+DOCUMENT_OVERRIDES = {
+    entry_key(item["product"], item["path"], item["name"]): item
+    for item in json.loads(OVERRIDES_PATH.read_text(encoding="utf-8"))
+}
+EXCLUDED_ENTRIES = {
+    entry_key(item["product"], item["path"], item["name"]): item
+    for item in json.loads(EXCLUSIONS_PATH.read_text(encoding="utf-8"))
+}
 
 # The local Browser splits several Simscape products into their own top-level
 # libraries. These IDs keep their established SourceBlock/document ownership.
@@ -194,6 +211,7 @@ def align_manifest(full_manifest: dict, tree_path: Path = TREE_PATH) -> dict:
 
     products = []
     conflicts = []
+    removed = []
     for tree_product in tree:
         name = tree_product["name"]
         product_id = PRODUCT_IDS.get(name, slug(name))
@@ -220,6 +238,10 @@ def align_manifest(full_manifest: dict, tree_path: Path = TREE_PATH) -> dict:
             libraries[()] = {"path": [], "targets": [], "blocks": []}
         for tree_block in tree_product["blocks"]:
             block_name = tree_block["name"]
+            key = entry_key(name, tree_block["path"], block_name)
+            if key in EXCLUDED_ENTRIES:
+                removed.append(EXCLUDED_ENTRIES[key])
+                continue
             candidates = by_name.get(block_name, [])
             match_kind = "exact"
             if not candidates and block_name in BLOCK_ALIASES:
@@ -241,7 +263,28 @@ def align_manifest(full_manifest: dict, tree_path: Path = TREE_PATH) -> dict:
                         {"product": name, **tree_block, "candidates": sorted(identities)}
                     )
                 candidates = []
-            if candidates:
+            override = DOCUMENT_OVERRIDES.get(key) if not candidates else None
+            if override:
+                source_product_id = override["source_product"]
+                source_path = override["source_path"]
+                documentation_path = source_path
+                if source_product_id != product_id:
+                    documentation_path = f"../{source_product_id}/{source_path}"
+                block = {
+                    "name": block_name,
+                    "type": "block",
+                    "documentation_path": documentation_path,
+                    "summary": "",
+                    "introduced": None,
+                    "updated": [],
+                    "documented_as": override["title"],
+                    "source_release": override["release"],
+                    "match_kind": "verified_override",
+                    "documents": {
+                        language: {"status": "pending", "path": None} for language in ("en", "zh")
+                    },
+                }
+            elif candidates:
                 source_product, _source_library, source_block = _best_candidate(
                     candidates, name, tree_block["path"]
                 )
@@ -270,9 +313,12 @@ def align_manifest(full_manifest: dict, tree_path: Path = TREE_PATH) -> dict:
             libraries[tuple(tree_block["path"])]["blocks"].append(block)
         # Dict insertion follows tree order; root blocks, when present, come first.
         product["libraries"] = list(libraries.values())
+        product["block_occurrences"] = sum(
+            len(library["blocks"]) for library in product["libraries"]
+        )
         product["unique_document_paths"] = len(
             {
-                block["documentation_path"]
+                (block["documentation_path"], block.get("source_release", RELEASE))
                 for library in product["libraries"]
                 for block in library["blocks"]
                 if block["documentation_path"]
@@ -329,6 +375,13 @@ def align_manifest(full_manifest: dict, tree_path: Path = TREE_PATH) -> dict:
             for library in product["libraries"]
             for block in library["blocks"]
         ),
+        "verified_override_blocks": sum(
+            block["match_kind"] == "verified_override"
+            for product in products
+            for library in product["libraries"]
+            for block in library["blocks"]
+        ),
+        "excluded_non_block_entries": removed,
         "ambiguous_non_exact_matches_retained_as_tree_only": conflicts,
     }
     return manifest

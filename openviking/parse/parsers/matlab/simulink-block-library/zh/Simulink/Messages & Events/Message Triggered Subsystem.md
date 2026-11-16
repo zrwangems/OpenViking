@@ -1,6 +1,6 @@
 ---
 type: simulink-block
-title: 'Message Triggered Subsystem'
+title: 'Message Triggered Subsystem, Message Polling Subsystem'
 family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'

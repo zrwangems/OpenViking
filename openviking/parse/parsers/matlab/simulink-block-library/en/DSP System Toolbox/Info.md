@@ -1,16 +1,17 @@
 ---
 type: simulink-block
-title: 'Info'
+title: 'info'
 family: 'dsp'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b
-official_category: 'DSP System Toolbox'
+official_category: ''
+documentation_page: 'dsp.allpassfilter.info'
+documentation_source_path: 'ref/dsp.allpassfilter.info.html'
 language: en
-documentation_status: tree_only
 ---
 
-# Info
+# info
 
 ## Ports
 
@@ -34,8 +35,25 @@ Not documented in R2025b.
 
 ## Version History
 
-Not documented in R2025b.
+**Introduced in R2011a**
+
+### R2024b: `dsp.BiquadFilter` object warns
+
+The `dsp.BiquadFilter` object issues a warning and will be removed
+in a future release. Use the `dsp.SOSFilter` object instead. For more information on how to replace
+your existing code, see the **Compatibility Considerations**
+section in the `dsp.BiquadFilter` reference page.
+
+### R2023b: Support for `dsp.ParallelFilter` and `dsp.Delay` Objects
+
+Starting in R2023b, the `info` analysis function supports the
+`dsp.ParallelFilter` and the `dsp.Delay` objects.
+
+### R2023b: `dsp.BiquadFilter` object will be removed
+
+The `dsp.BiquadFilter` object will be removed in a future release.
+Use the `dsp.SOSFilter` object instead.
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Information about filter System object

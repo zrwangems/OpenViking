@@ -1,41 +1,51 @@
 ---
 type: simulink-block
-title: 'Gnd'
+title: 'Ground'
 family: 'simrf'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b
-official_category: 'RF Blockset / Circuit Envelope / Elements'
+official_category: 'Circuit Envelope / Elements'
+documentation_page: 'ground'
+documentation_source_path: 'ref/ground.html'
 language: zh-CN
-documentation_status: tree_only
+chinese_source: worker-translation
 ---
 
-# Gnd
+# Ground
 
 ## 端口
 
-R2025b 官方文档未提供。
+在 R2025b 中未提供文档。
 
 ## 参数
 
-R2025b 官方文档未提供。
+Ground 模块没有任何参数。
+
+RF Blockset 文档中的所有模型均包含一个 Ground 模块。有关电路包络仿真的介绍，请参阅对 RF 混频器进行建模。
 
 ## 所属库
 
-R2025b 官方文档未提供。
+RF Blockset / Circuit Envelope / Elements
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+在 R2025b 中未提供文档。
 
 ## 扩展功能
 
-R2025b 官方文档未提供。
+在 R2025b 中未提供文档。
 
 ## 版本历史
 
-R2025b 官方文档未提供。
+**于 R2016b 中引入**
+
+### R2021b：Ground 模块图标已更新
+
+从 R2021b 开始，Ground 模块图标已更新。当您打开在 R2021b 之前创建且包含 Ground 模块的模型时，软件会将该模块图标替换为 R2021b 版本。
 
 ## 描述
 
-该块存在于本机 R2025b Library Browser 树中，但没有可安全复用的独立官方参考正文。
+仿真与电气接地的连接
+
+Ground 模块表示 RF Blockset™ 电路包络仿真环境中的电气接地。至少将一个 Ground 模块连接到 RF Blockset 环境；否则，包含 RF Blockset 模块的模型将无法运行。

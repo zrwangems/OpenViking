@@ -6,6 +6,5 @@
 - [Differential Encoder](Differential Encoder.md)
 - [Mu-Law Compressor](Mu-Law Compressor.md)
 - [Mu-Law Expander](Mu-Law Expander.md)
-- [Quantizers Library Link](Quantizers Library Link.md)
 - [Quantizing Decoder](Quantizing Decoder.md)
 - [Quantizing Encoder](Quantizing Encoder.md)

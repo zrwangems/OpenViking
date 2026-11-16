@@ -4,7 +4,6 @@
 - [Backscatter Pedestrian](Backscatter Pedestrian.md)
 - [Barrage Jammer](Barrage Jammer.md)
 - [Constant Gamma Clutter](Constant Gamma Clutter.md)
-- [Copyright](Copyright.md)
 - [DBSCAN Clustering](DBSCAN Clustering.md)
 - [Detection Concatenation](Detection Concatenation.md)
 - [GPU Constant Gamma Clutter](GPU Constant Gamma Clutter.md)

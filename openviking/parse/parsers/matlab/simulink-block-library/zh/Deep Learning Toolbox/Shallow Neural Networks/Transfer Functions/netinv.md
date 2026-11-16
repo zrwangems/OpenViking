@@ -5,9 +5,11 @@ family: 'deeplearning'
 product_id: 'deeplearning'
 product_name: 'Deep Learning Toolbox'
 documentation_release: R2025b
-official_category: 'Deep Learning Toolbox / Shallow Neural Networks / Transfer Functions'
+official_category: 'Shallow Neural Networks / Transfer Functions'
+documentation_page: 'netinv'
+documentation_source_path: 'ref/netinv.html'
 language: zh-CN
-documentation_status: tree_only
+chinese_source: official
 ---
 
 # netinv
@@ -34,8 +36,8 @@ R2025b 官方文档未提供。
 
 ## 版本历史
 
-R2025b 官方文档未提供。
+**在 R2006a 中推出**
 
 ## 描述
 
-该块存在于本机 R2025b Library Browser 树中，但没有可安全复用的独立官方参考正文。
+逆传递函数

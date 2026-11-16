@@ -1,41 +1,282 @@
 ---
 type: simulink-block
-title: 'CMPSS'
+title: 'F2807x/F2837xD/F2837xS/F28004x/F2838x/F2800xx CMPSS'
 family: 'ti-c2000'
 product_id: 'ti-c2000'
 product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
-official_category: 'C2000 Microcontroller Blockset / F2837xS'
+official_category: 'F280013x'
+documentation_page: 'f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss'
+documentation_source_path: 'ref/f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss.html'
 language: zh-CN
-documentation_status: tree_only
+chinese_source: worker-translation
 ---
 
-# CMPSS
+# F2807x/F2837xD/F2837xS/F28004x/F2838x/F2800xx CMPSS
 
 ## 端口
 
-R2025b 官方文档未提供。
+### 输入
+
+### **DAC** — DAC 模块 `scalar`
+
+12-bit DAC 参考值用于比较器的第二个输入引脚。
+
+DAC 范围在 0 到 4095 之间。任何超出该范围的值都会被饱和。
+
+#### 依赖关系
+
+DAC 端口仅在以下参数条件下出现：
+
+- **Second input** 设置为 **Internal DAC**
+- **DAC source select** 设置为 **DAC module**
+- **Specify DAC/RAMP parameter(s) Via** 设置为 **Input port**
+
+### **REF** — RAMP 参考值 `scalar`
+
+RAMP 生成器使用的 RAMP 参考值，用于为比较器的第二个输入引脚生成 RAMP 参考电压。
+
+REF 值应在 0 到 65535 范围内。任何超出该范围的值都会被饱和。
+
+#### 依赖关系
+
+REF 端口仅在以下参数条件下出现：
+
+- **Second input** 设置为 **Internal DAC**
+- **DAC source select** 设置为 **RAMP module**
+- **Specify DAC/RAMP parameter(s) Via** 设置为 **Input port**
+- 此端口仅适用于 COMPH 模块。
+
+### **DEC** — RAMP 递减值 `scalar`
+
+RAMP 生成器使用的 RAMP 递减值，用于为比较器的第二个输入引脚生成 RAMP 参考电压。
+
+DEC 范围在 0 到 65535 之间。任何超出该范围的值都会被饱和。
+
+#### 依赖关系
+
+DEC 端口仅在以下参数条件下出现：
+
+- **Second input** 设置为 **Internal DAC**
+- **DAC source select** 设置为 **RAMP module**
+- **Specify DAC/RAMP parameter(s) Via** 设置为 **Input port**
+- 此端口仅适用于 COMPH 模块。
+
+### **DLY** — RAMP 延迟值 `scalar`
+
+RAMP 生成器使用的 RAMP 延迟值，用于为比较器的第二个输入引脚生成 RAMP 参考电压。
+
+DLY 范围在 0 到 8192 之间。任何超出该范围的值都会被饱和。
+
+#### 依赖关系
+
+DLY 端口仅在以下参数条件下出现：
+
+- **Second input** 设置为 **Internal DAC**
+- **DAC source select** 设置为 **RAMP module**
+- **Specify DAC/RAMP parameter(s) Via** 设置为 **Input port**
+- 此端口仅适用于 COMPH 模块。
+
+### **LCLR** — Latch clear `scalar`
+
+用于清除比较器锁存输出的信号。任何大于 0 的值都将清除锁存输出。
+
+#### 依赖关系
+
+仅当选择 **Enable latch clear** 参数时，latch clear 端口才会出现。
+
+### 输出
+
+### **STS** — 比较器状态输出 `scalar`
+
+如果第一个输入引脚上的电压大于第二个输入引脚，则比较器模块输出 1。否则，输出 0。
+
+### **LTH** — 比较器锁存 `scalar`
+
+比较器锁存输出是 CMPSS 比较器经过数字化并由数字滤波器限定后的触发状态。
+
+锁存值可以由软件或 PWMSYNC 清除。
+
+#### 依赖关系
+
+要启用此端口，请选择 **Enable latch output** 参数。
 
 ## 参数
 
-R2025b 官方文档未提供。
+### **Comparator module** — 指示要使用哪个模块 `CMPSS1_COMPH`（默认） | `CMPSSx_COMPL` | `CMPSSx_COMPH` | `where x ranges from 1 to 8`
+
+选择应配置哪个比较器模块来输出比较结果。
+
+**注意**
+
+可用的模块数量因不同的处理器而异。
+
+### **Second input** — 第二个输入引脚的来源 `External pin`（默认） | `Internal DAC`
+
+第二个输入引脚（负输入引脚）的电压源，指定为 External pin 或 Internal DAC。
+
+### **DAC source select** — 内部 DAC 的来源 `DAC module`（默认） | `RAMP module`
+
+选择内部 DAC 的来源，以便为负输入引脚生成电压，指定为 DAC module 或 RAMP module。
+
+#### 依赖关系
+
+此参数仅适用于 COMPH 模块。
+
+### **Specify DAC/RAMP parameter(s) via** — 配置 DAC/RAMP 值来源 `Dialog`（默认） | `Input port`
+
+选择 DAC 或 RAMP 值是通过输入端口指定，还是从对话框指定。
+
+当您选择 Input port 时，该模块会为比较器模块生成输入端口。
+
+当您将 **DAC source select** 参数设置为 **DAC module** 时，该模块会生成 **DAC** 端口；当 DAC source select 设置为 RAMP module 时，它会生成 **REF**、**DEC** 和 **DLY** 端口。
+
+#### 参数依赖关系
+
+此参数仅适用于 COMPH 模块。
+
+### **DAC value (DACH)** — 指定 DAC 值 `0`（默认）
+
+指定内部 DAC 的 DAC 值，以在负输入上生成电压。
+
+### **DAC initial value** — 指定 DAC 初始值 `0`（默认）
+
+指定内部 DAC 的 DAC 初始值，以在负输入上生成电压。
+
+#### 依赖关系
+
+DAC 端口仅在以下参数条件下出现：
+
+- **Second input** 设置为 **Internal DAC**
+- **DAC source select** 设置为 **DAC module**
+- **Specify DAC/RAMP parameter(s) Via** 设置为 **Input port**
+
+### **RAMP reference value** — 指定 RAMP 参考值 `0`（默认）
+
+RAMP 参考值在 0 到 65535 范围内。任何超出该范围的值都会被饱和。
+
+RAMP 生成器从参考值开始递减。
+
+#### 依赖关系
+
+REF 端口仅在以下参数条件下出现：
+
+- **Second input** 设置为 **Internal DAC**
+- **DAC source select** 设置为 **RAMP module**
+- **Specify DAC/RAMP parameter(s) Via** 设置为 **Dialog**
+- 此端口仅适用于 COMPH 模块。
+
+### **RAMP decrement value** — 指定 RAMP 递减值 `0`（默认）
+
+RAMP 递减值在 0 到 65535 范围内。任何超出该范围的值都会被饱和。
+
+RAMP 生成器按递减值步进递减 RAMP 参考值。
+
+#### 依赖关系
+
+DEC 端口仅在以下参数条件下出现：
+
+- **Second input** 设置为 **Internal DAC**
+- **DAC source select** 设置为 **RAMP module**
+- **Specify DAC/RAMP parameter(s) Via** 设置为 **Dialog**
+- 此端口仅适用于 COMPH 模块。
+
+### **RAMP delay value** — 指定 RAMP 延迟值 `0`（默认）
+
+RAMP 延迟值在 0 到 8192 范围内。任何超出该范围的值都会被饱和。
+
+RAMP 生成器等待延迟值后，才开始按 RAMP 递减值步进递减 RAMP 参考值。
+
+#### 依赖关系
+
+DLY 端口仅在以下参数条件下出现：
+
+- **Second input** 设置为 **Internal DAC**
+- **DAC source select** 设置为 **RAMP module**
+- **Specify DAC/RAMP parameter(s) via** 设置为 **Dialog**
+- 此端口仅适用于 COMPH 模块。
+
+### **RAMP initial reference value** — 指定 RAMP 初始参考值 `0`（默认）
+
+RAMP 初始参考值在 0 到 65535 范围内。任何超出该范围的值都会被饱和。
+
+RAMP 生成器从参考值开始递减。
+
+#### 依赖关系
+
+REF 端口仅在以下参数条件下出现：
+
+- **Second input** 设置为 **Internal DAC**
+- **DAC source select** 设置为 **RAMP module**
+- **Specify DAC/RAMP parameter(s) Via** 设置为 **Input port**
+- 此端口仅适用于 COMPH 模块。
+
+### **RAMP initial decrement value** — 指定 RAMP 递减值 `0`（默认）
+
+RAMP 初始递减值在 0 到 65535 范围内。任何超出该范围的值都会被饱和。
+
+RAMP 生成器按递减值步进递减 RAMP 参考值。
+
+#### 依赖关系
+
+DEC 端口仅在以下参数条件下出现：
+
+- **Second input** 设置为 **Internal DAC**
+- **DAC source select** 设置为 **RAMP module**
+- **Specify DAC/RAMP parameter(s) Via** 设置为 **Input port**
+- 此端口仅适用于 COMPH 模块。
+
+### **RAMP initial delay value** — 指定 RAMP 延迟值 `0`（默认）
+
+RAMP 初始延迟值在 0 到 8192 范围内。任何超出该范围的值都会被饱和。
+
+RAMP 生成器等待延迟值后，才开始按 RAMP 递减值步进递减 RAMP 参考值。
+
+#### 依赖关系
+
+DLY 端口仅在以下参数条件下出现：
+
+- **Second input** 设置为 **Internal DAC**
+- **DAC source select** 设置为 **RAMP module**
+- **Specify DAC/RAMP parameter(s) via** 设置为 **Input port**
+- 此端口仅适用于 COMPH 模块。
+
+### **Enable latch output** — 比较器锁存输出 `off`（默认） | `on`
+
+比较器的数字滤波器输出的锁存值。
+
+选择此参数以启用 LTH 端口。
+
+### **Enable latch clear** — 清除比较器锁存值 `off`（默认） | on
+
+Latch clear 信号用于清除比较器锁存状态信号。任何大于 0 的值都将清除锁存信号。
+
+选择此参数以启用 LCLR 端口。
+
+### **Sample time** — 从比较器读取数据的频率 `0.1`（默认）
+
+使用此参数指定采样之间的时间间隔。要从上游模块继承采样时间，请将此参数设置为 -1。
 
 ## 所属库
 
-R2025b 官方文档未提供。
+C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+在 R2025b 中未记录。
 
 ## 扩展功能
 
-R2025b 官方文档未提供。
+在 R2025b 中未记录。
 
 ## 版本历史
 
-R2025b 官方文档未提供。
+**在 R2020a 中引入**
 
 ## 描述
 
-该块存在于本机 R2025b Library Browser 树中，但没有可安全复用的独立官方参考正文。
+对比较器引脚上的两个输入电压进行比较
+
+Comparator Subsystem 由两个模块组成：Comparator High（COMPH）和 Comparator Low（COMPH）。当第一个输入引脚（正输入）上的电压大于第二个输入引脚（负输入）上的电压时，每个模块都会生成高数字输出。当第一个输入引脚（正输入）上的电压小于第二个输入引脚（负输入）上的电压时，每个模块都会生成低数字输出。
+
+第二个输入引脚可以是外部引脚或 DAC 模块。

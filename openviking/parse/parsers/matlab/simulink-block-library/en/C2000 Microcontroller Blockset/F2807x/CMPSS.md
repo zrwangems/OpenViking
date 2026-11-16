@@ -1,28 +1,328 @@
 ---
 type: simulink-block
-title: 'CMPSS'
+title: 'F2807x/F2837xD/F2837xS/F28004x/F2838x/F2800xx CMPSS'
 family: 'ti-c2000'
 product_id: 'ti-c2000'
 product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
-official_category: 'C2000 Microcontroller Blockset / F2807x'
+official_category: 'F280013x'
+documentation_page: 'f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss'
+documentation_source_path: 'ref/f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss.html'
 language: en
-documentation_status: tree_only
 ---
 
-# CMPSS
+# F2807x/F2837xD/F2837xS/F28004x/F2838x/F2800xx CMPSS
 
 ## Ports
 
-Not documented in R2025b.
+### Input
+
+### **DAC** — DAC module `scalar`
+
+12-bit DAC reference value is used for the second input pin of the comparator.
+
+The DAC range is between 0 to 4095. Any value outside the range is
+saturated.
+
+#### Dependencies
+
+The DAC port appears only when parameter:
+
+- **Second input** is set to **Internal
+  DAC**
+- **DAC source select** is set to **DAC
+  module**
+- **Specify DAC/RAMP parameter(s) Via** is set to
+  **Input port**
+
+### **REF** — Ramp reference value `scalar`
+
+Ramp reference value used by the ramp generator to create a ramp reference
+voltage for the second input pin of the comparator.
+
+The REF value should be in the range 0 to 65535. Any value outside the range is
+saturated.
+
+#### Dependencies
+
+The REF port appears only when parameter:
+
+- **Second input** is set to **Internal
+  DAC**
+- **DAC source select** is set to **RAMP
+  module**
+- **Specify DAC/RAMP parameter(s) Via** is set to
+  **Input port**
+- This port is available only for the COMPH module.
+
+### **DEC** — RAMP decrement value `scalar`
+
+Ramp decrement value used by the ramp generator to create a ramp reference
+voltage for the second input pin of the comparator.
+
+DEC range is between 0 to 65535. Any value outside the range is
+saturated.
+
+#### Dependencies
+
+The DEC port appears only when parameter:
+
+- **Second input** is set to **Internal
+  DAC**
+- **DAC source select** is set to **RAMP
+  module**
+- **Specify DAC/RAMP parameter(s) Via** is set to
+  **Input port**
+- This port is available only for the COMPH module.
+
+### **DLY** — RAMP delay value `scalar`
+
+Ramp delay value used by the ramp generator to create a ramp reference voltage
+for the second input pin of the comparator.
+
+DLY range is between 0 to 8192. Any value outside the range is saturated.
+
+#### Dependencies
+
+The DLY port appears only when parameter:
+
+- **Second input** is set to **Internal
+  DAC**
+- **DAC source select** is set to **RAMP
+  module**
+- **Specify DAC/RAMP parameter(s) Via** is set to
+  **Input port**
+- This port is available only for the COMPH module.
+
+### **LCLR** — Latch clear `scalar`
+
+Signal to clear the comparator latched output. Any value greater than 0 will
+clear the latch output.
+
+#### Dependencies
+
+The latch clear port appears only when  **Enable latch
+clear** parameter is selected.
+### Output
+
+### **STS** — Comparator status output `scalar`
+
+The comparator module outputs 1, if the voltage on the first input pin is
+greater than the second input pin. Otherwise, it outputs 0.
+
+### **LTH** — Comparator latch `scalar`
+
+The comparator latch output is the tripped state of the CMPSS comparator after
+it is digitized and qualified by a digital filter.
+
+The latched value can either be cleared by the software or PWMSYNC.
+
+#### Dependencies
+
+To enable this port, select the **Enable latch output**
+parameter.
 
 ## Parameters
 
-Not documented in R2025b.
+### **Comparator module** — Indicates which module to use `CMPSS1_COMPH` (default) | `CMPSSx_COMPL` | `CMPSSx_COMPH` | `where x ranges from 1 to 8`
+
+Select which comparator module should be configured to output the comparison result.
+
+**Note**
+
+Number of modules available will vary for different processors.
+
+### **Second input** — Source of second input pin `External pin` (default) | `Internal DAC`
+
+The voltage source of second input pin (negative input pin), specified as either
+External pin or Internal DAC.
+
+### **DAC source select** — Source of internal DAC `DAC module` (default) | `RAMP module`
+
+Select source of the internal DAC to generate voltage for the negative input pin,
+specified as either DAC module or RAMP module.
+
+#### Dependencies
+
+This parameter is available only for the COMPH module.
+
+### **Specify DAC/RAMP parameter(s) via** — Configure source DAC/RAMP value source `Dialog` (default) | `Input port`
+
+Select if the DAC or RAMP values are to be specified via the input port or from
+the dialog.
+
+When you select input port, the block generates input ports for the comparator
+module.
+
+When you set **DAC source select** parameter to **DAC
+module**, the block generates **DAC** port and when DAC
+source select is set to RAMP module it generates **REF**,
+**DEC**, and **DLY** port.
+
+#### Parameter dependency
+
+This parameter is available only for the COMPH module.
+
+### **DAC value (DACH)** — Specify DAC value `0` (default)
+
+Specify the DAC value for internal DAC to generate the voltage on the negative
+input.
+
+### **DAC initial value** — Specify DAC initial value `0` (default)
+
+Specify the DAC initial value for internal DAC to generate the voltage on the
+negative input.
+
+#### Dependencies
+
+The DAC port appears only when parameter:
+
+- **Second input** is set to **Internal
+  DAC**
+- **DAC source select** is set to **DAC
+  module**
+- **Specify DAC/RAMP parameter(s) Via** is set to
+  **Input port**
+
+### **RAMP reference value** — Specify RAMP reference value `0` (default)
+
+The RAMP reference value is in the range 0 to 65535. Any value outside the range
+is saturated.
+
+The RAMP generator starts to decrement from the reference value.
+
+#### Dependencies
+
+The REF port appears only when parameter:
+
+- **Second input** is set to **Internal
+  DAC**
+- **DAC source select** is set to **RAMP
+  module**
+- **Specify DAC/RAMP parameter(s) Via** is set to
+  **Dialog**
+- This port is available only for the COMPH module.
+
+### **RAMP decrement value** — Specify RAMP decrement value `0` (default)
+
+The RAMP decrement value is in range 0 to 65535. Any value outside the range is
+saturated.
+
+The RAMP generator decrements the RAMP reference value in steps of decrement
+value.
+
+#### Dependencies
+
+The DEC port appears only when parameter:
+
+- **Second input** is set to **Internal
+  DAC**
+- **DAC source select** is set to **RAMP
+  module**
+- **Specify DAC/RAMP parameter(s) Via** is set to
+  **Dialog**
+- This port is available only for the COMPH module.
+
+### **RAMP delay value** — Specify RAMP delay value `0` (default)
+
+The RAMP delay value is in range 0 to 8192. Any value outside the range is
+saturated.
+
+The RAMP generator waits for the delay value before it starts to decrement the
+RAMP reference value in steps of RAMP decrement value.
+
+#### Dependencies
+
+The DLY port appears only when parameter:
+
+- **Second input** is set to **Internal
+  DAC**
+- **DAC source select** is set to **RAMP
+  module**
+- **Specify DAC/RAMP parameter(s) via** is set to
+  **Dialog**
+- This port is available only for the COMPH module.
+
+### **RAMP initial reference value** — Specify RAMP initial reference value `0` (default)
+
+The RAMP initial reference value is in the range 0 to 65535. Any value outside the
+range is saturated.
+
+The RAMP generator starts to decrement from the reference value.
+
+#### Dependencies
+
+The REF port appears only when parameter:
+
+- **Second input** is set to **Internal
+  DAC**
+- **DAC source select** is set to **RAMP
+  module**
+- **Specify DAC/RAMP parameter(s) Via** is set to
+  **Input port**
+- This port is available only for the COMPH module.
+
+### **RAMP initial decrement value** — Specify RAMP decrement value `0` (default)
+
+The RAMP initial decrement value is in range 0 to 65535. Any value outside the
+range is saturated.
+
+The RAMP generator decrements the RAMP reference value in steps of decrement
+value.
+
+#### Dependencies
+
+The DEC port appears only when parameter:
+
+- **Second input** is set to **Internal
+  DAC**
+- **DAC source select** is set to **RAMP
+  module**
+- **Specify DAC/RAMP parameter(s) Via** is set to
+  **Input port**
+- This port is available only for the COMPH module.
+
+### **RAMP initial delay value** — Specify RAMP delay value `0` (default)
+
+The RAMP initial delay value is in range 0 to 8192. Any value outside the range is
+saturated.
+
+The RAMP generator waits for the delay value before it starts to decrement the
+RAMP reference value in steps of RAMP decrement value.
+
+#### Dependencies
+
+The DLY port appears only when parameter:
+
+- **Second input** is set to **Internal
+  DAC**
+- **DAC source select** is set to **RAMP
+  module**
+- **Specify DAC/RAMP parameter(s) via** is set to
+  **Input port**
+- This port is available only for the COMPH module.
+
+### **Enable latch output** — Comparator latch output `off` (default) | `on`
+
+The latched value of the digital filter output of the comparator.
+
+Select this parameter to enable the LTH port.
+
+### **Enable latch clear** — Clear comparator latch value `off` (default) | on
+
+Latch clear signals to clear the comparator latch status signal. Any value greater
+than 0 will clear the latch signal.
+
+Select this parameter to enable the LCLR port.
+
+### **Sample time** — Frequency at which data is read from comparator `0.1` (default)
+
+Use this parameter to specify the time interval between samples. To inherit sample
+time from an upstream block, set this parameter to -1.
 
 ## Libraries
 
-Not documented in R2025b.
+C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x
 
 ## Block Characteristics
 
@@ -34,8 +334,16 @@ Not documented in R2025b.
 
 ## Version History
 
-Not documented in R2025b.
+**Introduced in R2020a**
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Compare two input voltages on comparator pins
+
+The Comparator Subsystem consists of two modules, Comparator High (COMPH) and Comparator
+Low (COMPH). Each module generates a high digital output when the voltage on the first input
+pin (positive input) is greater than the voltage on the second input pin (negative input).
+And each module generates a low digital output when the voltage on the first input pin
+(positive input) is less than the voltage on the second input pin (negative input).
+
+The second input pin can either be the external pin or the DAC module.

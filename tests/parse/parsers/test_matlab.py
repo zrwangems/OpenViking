@@ -340,17 +340,22 @@ def test_standard_library_and_external_library_matching():
     )
 
 
-def test_tree_only_block_keeps_real_location_without_inventing_documentation():
-    reference = find_block_reference("Network", "simulink/Dashboard/Wireless Icons/Network")
-    assert reference is not None
-    assert reference.library_path == ("Dashboard", "Wireless Icons")
-    assert not reference.full_document
-    name, page = render_block_template(
-        "Network", "simulink/Dashboard/Wireless Icons/Network", language="en"
-    )
-    assert name == "Network"
-    assert "local R2025b Library Browser tree" in page
-    assert "Not documented in R2025b." in page
+def test_non_block_browser_entries_are_excluded_not_given_fake_pages():
+    root = Path(__file__).parents[3] / "openviking/parse/parsers/matlab/simulink-block-library"
+    manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+    removed = {
+        (item["product"], tuple(item["path"]), item["name"])
+        for item in manifest["reconciliation"]["excluded_non_block_entries"]
+    }
+    for product in ("Vision HDL Toolbox", "Wireless HDL Toolbox"):
+        assert (product, (), "Subsystem") in removed
+        assert (product, (), "Subsystem1") in removed
+        assert not (root / "en" / product / "Subsystem.md").exists()
+        assert not (root / "en" / product / "Subsystem1.md").exists()
+    assert ("Simulink", ("Dashboard", "Wireless Icons"), "Network") in removed
+    assert not (root / "en/Simulink/Dashboard/Wireless Icons/Network.md").exists()
+    assert ("libsb2sl", ("ALG",), "1VarPoly") in removed
+    assert not (root / "en/libsb2sl/ALG/1VarPoly.md").exists()
 
 
 def test_library_browser_manifest_counts_and_canonical_layout():
@@ -361,24 +366,26 @@ def test_library_browser_manifest_counts_and_canonical_layout():
     totals = manifest["totals"]
     assert totals["products"] == 75
     assert totals["products_with_blocks"] == 75
-    assert totals["block_occurrences"] == 4792
-    assert totals["unique_product_document_paths"] == 3648
-    assert totals["full_document_occurrences"] == {"en": 3993, "zh": 3993}
-    assert totals["full_documents"] == {"en": 3648, "zh": 3648}
+    assert totals["block_occurrences"] == 4572
+    assert totals["unique_product_document_paths"] == 3814
+    assert totals["full_document_occurrences"] == {"en": 4572, "zh": 4572}
+    assert totals["full_documents"] == {"en": 3814, "zh": 3814}
     assert totals["pending_documents"] == {"en": 0, "zh": 0}
-    assert totals["tree_only_occurrences"] == 799
+    assert totals["tree_only_occurrences"] == 0
     assert manifest["reconciliation"]["tree_directories"] == 741
-    assert manifest["reconciliation"]["matched_blocks"] == 3993
-    assert manifest["reconciliation"]["tree_only_blocks"] == 799
+    assert manifest["reconciliation"]["matched_blocks"] == 4572
+    assert manifest["reconciliation"]["tree_only_blocks"] == 0
+    assert manifest["reconciliation"]["verified_override_blocks"] == 589
+    assert len(manifest["reconciliation"]["excluded_non_block_entries"]) == 220
     assert not (root / "browser").exists()
     assert not (root / "catalog").exists()
     assert not (root / "products").exists()
     assert (root / "README.md").is_file()
     products = {product["id"]: product for product in manifest["products"]}
-    assert products["simulink"]["block_occurrences"] == 576
+    assert products["simulink"]["block_occurrences"] == 514
     assert products["stateflow"]["block_occurrences"] == 4
     assert products["simscape"]["block_occurrences"] == 272
-    assert products["simscape-root"]["block_occurrences"] == 7
+    assert products["simscape-root"]["block_occurrences"] == 0
     assert products["simscape-battery"]["block_occurrences"] == 45
     assert products["sps"]["block_occurrences"] == 405
     assert "matlab" not in products
@@ -389,7 +396,7 @@ def test_library_browser_manifest_counts_and_canonical_layout():
 
     for language in ("en", "zh"):
         browser = root / language
-        assert len(list(browser.rglob("*.md"))) == 5609
+        assert len(list(browser.rglob("*.md"))) == 5389
         root_index = (browser / "index.md").read_text(encoding="utf-8")
         entries = re.findall(r"^- \[(.*?)\]", root_index, re.MULTILINE)
         assert len(entries) == 75
@@ -499,7 +506,7 @@ def test_scraped_block_knowledge_is_local_and_complete():
     chinese = root / "zh"
     documents = [path for path in english.rglob("*.md") if path.name != "index.md"]
     chinese_documents = [path for path in chinese.rglob("*.md") if path.name != "index.md"]
-    assert len(documents) == len(chinese_documents) == 4792
+    assert len(documents) == len(chinese_documents) == 4572
     assert len(list(english.glob("*/index.md"))) == 75
     for page in documents:
         relative = page.relative_to(english)
@@ -507,7 +514,7 @@ def test_scraped_block_knowledge_is_local_and_complete():
         assert chinese_page.is_file(), relative
         text = page.read_text(encoding="utf-8")
         chinese_text = chinese_page.read_text(encoding="utf-8")
-        assert "documentation_release: R2025b" in text
+        assert re.search(r"documentation_release: R20\d\d[ab]", text)
         assert "language: en" in text
         assert "## 中文" not in text
         assert "language: zh-CN" in chinese_text

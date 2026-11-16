@@ -1,41 +1,112 @@
 ---
 type: simulink-block
-title: 'String Ends With'
+title: 'String Contains, String Starts With, String Ends With'
 family: 'simulink'
 product_id: 'simulink'
 product_name: 'Simulink'
-documentation_release: R2025b
-official_category: 'Simulink / String'
+documentation_release: R2023b
+official_category: 'String'
+documentation_page: 'stringcontains'
+documentation_source_path: 'slref/stringcontains.html'
 language: zh-CN
-documentation_status: tree_only
+chinese_source: worker-translation
 ---
 
-# String Ends With
+# String Contains, String Starts With, String Ends With
 
 ## 端口
 
-R2025b 官方文档未提供。
+### 输入
+
+### **str** — 要搜索的字符串标量
+
+要在其中搜索模式的字符串，指定为标量。
+
+**数据类型：** `string`
+
+### **sub** — 要搜索的字符串模式标量
+
+要在字符串中搜索的字符串模式，指定为标量。
+
+**数据类型：** `string`
+### 输出
+
+### **T/F** — 检测到字符串模式 `1` | `0`
+
+是否检测到字符串模式，返回为检测到 (`1`) 或未检测到 (`0`)。
+
+**数据类型：** `Boolean`
 
 ## 参数
 
-R2025b 官方文档未提供。
+### **Case sensitive** — 区分大小写 on（默认） | off
+
+模式检测的区分大小写设置：
+
+on
+:   搜索模式时考虑字符串大小写。
+
+off
+:   搜索模式时不考虑字符串大小写。
+
+#### 编程用法
+
+|  |
+| --- |
+| **模块参数**: `CaseSensitive` |
+| **类型**: character vector |
+| **取值:** `'on'` | `'off'` |
+| **默认值**: `'on'` |
+
+### **Function** — 模式搜索函数 `Contains` | `Starts with` | `Ends with`
+
+模式搜索函数，指定为：
+
+- `Contains`
+
+  在字符串中的任意位置搜索模式。这是 String Contains 模块的默认值。
+- `Starts with`
+
+  仅在字符串开头搜索模式。这是 String Starts With 模块的默认值。
+- `Ends with`
+
+  仅在字符串末尾搜索模式。这是 String Ends With 模块的默认值。
+
+#### 编程用法
+
+|  |
+| --- |
+| **模块参数**: `Function` |
+| **类型**: character vector |
+| **取值:** `'Contains'` | `'Starts with'` | `'Ends with'` |
+| **默认值**: 对于 String Contains 模块为 `'Contains'`，对于 String Starts With 模块为 `'Starts with'`，对于 String Ends With 模块为 `'Ends with'` |
 
 ## 所属库
 
-R2025b 官方文档未提供。
+Simulink / String
 
 ## 模块特性
 
-R2025b 官方文档未提供。
+|  |
+| --- |
+| **数据类型** | `Boolean` | `string` |
+| **直接馈通** | `yes` |
+| **多维信号** | `no` |
+| **可变大小信号** | `no` |
+| **过零检测** | `no` |
 
 ## 扩展功能
 
-R2025b 官方文档未提供。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
 
 ## 版本历史
 
-R2025b 官方文档未提供。
+**在 R2020a 中引入**
 
 ## 描述
 
-该块存在于本机 R2025b Library Browser 树中，但没有可安全复用的独立官方参考正文。
+确定字符串是否包含、以某模式开头或以某模式结尾
+
+String Contains、String Starts With 和 String Ends With 模块确定字符串（**str**）是否包含、以某模式（**sub**）开头或以某模式结尾。
+
+String Contains、String Starts With 和 String Ends With 模块完全相同。当 **Function** 设置为 `Contains` 时，模块确定字符串是否包含指定模式。当 **Function** 设置为 `Starts with` 时，模块确定字符串是否以指定模式开头。当 **Function** 设置为 `Ends with` 时，模块确定字符串是否以指定模式结尾。

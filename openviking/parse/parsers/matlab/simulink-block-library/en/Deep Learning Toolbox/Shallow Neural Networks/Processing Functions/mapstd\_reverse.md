@@ -1,16 +1,17 @@
 ---
 type: simulink-block
-title: 'mapstd\\_reverse'
+title: 'mapstd'
 family: 'deeplearning'
 product_id: 'deeplearning'
 product_name: 'Deep Learning Toolbox'
 documentation_release: R2025b
-official_category: 'Deep Learning Toolbox / Shallow Neural Networks / Processing Functions'
+official_category: 'Shallow Neural Networks / Processing Functions'
+documentation_page: 'mapstd'
+documentation_source_path: 'ref/mapstd.html'
 language: en
-documentation_status: tree_only
 ---
 
-# mapstd\_reverse
+# mapstd
 
 ## Ports
 
@@ -34,8 +35,38 @@ Not documented in R2025b.
 
 ## Version History
 
-Not documented in R2025b.
+**Introduced in R2006a**
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Process matrices by mapping each row’s means to 0 and deviations to 1
+
+`mapstd` processes matrices by transforming the mean and standard
+deviation of each row to `ymean` and `ystd`.
+
+`[Y,PS] = mapstd(X,ymean,ystd)` takes `X` and optional
+parameters,
+
+|  |  |
+| --- | --- |
+| `X` | `N`-by-`Q` matrix |
+| `ymean` | Mean value for each row of `Y` (default is 0) |
+| `ystd` | Standard deviation for each row of `Y` (default is 1) |
+
+and returns
+
+|  |  |
+| --- | --- |
+| `Y` | `N`-by-`Q` matrix |
+| `PS` | Process settings that allow consistent processing of values |
+
+`[Y,PS] = mapstd(X,FP)` takes parameters as a struct:
+`FP.ymean`, `FP.ystd`.
+
+`Y = mapstd('apply',X,PS)` returns `Y`, given
+`X` and settings `PS`.
+
+`X = mapstd('reverse',Y,PS)` returns `X`, given
+`Y` and settings `PS`.
+
+`dx_dy = mapstd('dx_dy',X,Y,PS)` returns the reverse derivative.

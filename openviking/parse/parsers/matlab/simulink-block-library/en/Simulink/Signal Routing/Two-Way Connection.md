@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Two-Way Connection'
-family: 'vdynblks'
-product_id: 'vdynblks'
-product_name: 'Vehicle Dynamics Blockset'
+family: 'simulink'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Powertrain'
+official_category: 'Signal Routing'
 documentation_page: 'twowayconnection'
-documentation_source_path: '../simulink/ref_extras/twowayconnection.html'
+documentation_source_path: '../autoblks/../simulink/ref_extras/twowayconnection.html'
 language: en
 ---
 

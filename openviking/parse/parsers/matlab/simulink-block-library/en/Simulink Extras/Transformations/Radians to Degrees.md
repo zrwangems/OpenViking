@@ -5,16 +5,30 @@ family: 'simulink-extras'
 product_id: 'simulink-extras'
 product_name: 'Simulink Extras'
 documentation_release: R2025b
-official_category: 'Simulink Extras / Transformations'
+official_category: 'Transformations'
+documentation_page: 'radianstodegrees'
+documentation_source_path: '../simulink/ref_extras/radianstodegrees.html'
 language: en
-documentation_status: tree_only
 ---
 
 # Radians to Degrees
 
 ## Ports
 
-Not documented in R2025b.
+### Input
+
+### **Port\_1** — Input angle in radians scalar
+
+Input signal specifying the angle in radians.
+
+**Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
+### Output
+
+### **Port\_1** — Output angle in degrees scalar
+
+Output signal specifying the angle converted to degrees.
+
+**Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 
 ## Parameters
 
@@ -22,7 +36,7 @@ Not documented in R2025b.
 
 ## Libraries
 
-Not documented in R2025b.
+Simulink Extras / Transformations
 
 ## Block Characteristics
 
@@ -34,8 +48,17 @@ Not documented in R2025b.
 
 ## Version History
 
-Not documented in R2025b.
+**Introduced in R2008b**
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Convert radians to degrees
+
+The Radians to Degrees block computes the output angle in degrees from the
+input angle in radians.
+
+*degrees* = (180/ *n* ) ×
+*radians*
+
+*degrees* is the angle in degrees and *radians* is the
+angle in radians.

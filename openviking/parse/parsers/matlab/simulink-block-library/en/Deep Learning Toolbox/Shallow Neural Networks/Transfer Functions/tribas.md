@@ -5,9 +5,10 @@ family: 'deeplearning'
 product_id: 'deeplearning'
 product_name: 'Deep Learning Toolbox'
 documentation_release: R2025b
-official_category: 'Deep Learning Toolbox / Shallow Neural Networks / Transfer Functions'
+official_category: 'Shallow Neural Networks / Transfer Functions'
+documentation_page: 'tribas'
+documentation_source_path: 'ref/tribas.html'
 language: en
-documentation_status: tree_only
 ---
 
 # tribas
@@ -34,8 +35,42 @@ Not documented in R2025b.
 
 ## Version History
 
-Not documented in R2025b.
+**Introduced before R2006a**
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Triangular basis transfer function
+
+`tribas` is a neural transfer function. Transfer functions calculate a
+layer’s output from its net input.
+
+`A = tribas(N,FP)` takes `N` and optional function
+parameters,
+
+|  |  |
+| --- | --- |
+| `N` | `S`-by-`Q` matrix of net input (column) vectors |
+| `FP` | Struct of function parameters (ignored) |
+
+and returns `A`, an `S`-by-`Q` matrix of
+the triangular basis function applied to each element of `N`.
+
+`info = tribas('code')` can take the following
+forms to return specific information:
+
+`tribas('name')` returns the name of this function.
+
+`tribas('output',FP)` returns the `[min max]` output
+range.
+
+`tribas('active',FP)` returns the `[min max]` active
+input range.
+
+`tribas('fullderiv')` returns 1 or 0, depending on whether
+`dA_dN` is
+`S`-by-`S`-by-`Q` or
+`S`-by-`Q`.
+
+`tribas('fpnames')` returns the names of the function parameters.
+
+`tribas('fpdefaults')` returns the default function parameters.

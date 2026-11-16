@@ -1,0 +1,7316 @@
+[
+  {
+    "product": "Simulink",
+    "path": [
+      "Messages & Events"
+    ],
+    "name": "Message Polling Subsystem",
+    "source_product": "simulink",
+    "source_path": "slref/messagetriggeredsubsystem.html",
+    "release": "R2025b",
+    "title": "Message Triggered Subsystem, Message Polling Subsystem",
+    "method": "search_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Ports & Subsystems"
+    ],
+    "name": "Subsystem Examples",
+    "source_product": "simulink",
+    "source_path": "slref/subsystem.html",
+    "release": "R2025b",
+    "title": "Subsystem",
+    "method": "search_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Ports & Subsystems"
+    ],
+    "name": "Subsystem Reference",
+    "source_product": "simulink",
+    "source_path": "slref/subsystem.html",
+    "release": "R2025b",
+    "title": "Subsystem",
+    "method": "search_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Discrete"
+    ],
+    "name": "Delay One Step",
+    "source_product": "simulink",
+    "source_path": "slref/delay.html",
+    "release": "R2025b",
+    "title": "Delay",
+    "method": "search_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Minus",
+    "source_product": "simulink",
+    "source_path": "slref/unaryminus.html",
+    "release": "R2023b",
+    "title": "Unary Minus",
+    "method": "old_search"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Multiply",
+    "source_product": "simulink",
+    "source_path": "slref/product.html",
+    "release": "R2025b",
+    "title": "Product, Matrix Multiply",
+    "method": "search_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Square",
+    "source_product": "simulink",
+    "source_path": "slref/matrixsquare.html",
+    "release": "R2023b",
+    "title": "Matrix Square",
+    "method": "old_search"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Signal Attributes"
+    ],
+    "name": "Probe Complexity",
+    "source_product": "simulink",
+    "source_path": "slref/probe.html",
+    "release": "R2025b",
+    "title": "Probe",
+    "method": "search_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Signal Attributes"
+    ],
+    "name": "Probe Dimension",
+    "source_product": "simulink",
+    "source_path": "slref/probe.html",
+    "release": "R2025b",
+    "title": "Probe",
+    "method": "search_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Signal Attributes"
+    ],
+    "name": "Probe Sample Time",
+    "source_product": "simulink",
+    "source_path": "slref/probe.html",
+    "release": "R2025b",
+    "title": "Probe",
+    "method": "search_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Signal Attributes"
+    ],
+    "name": "Probe Width",
+    "source_product": "simulink",
+    "source_path": "slref/probe.html",
+    "release": "R2025b",
+    "title": "Probe",
+    "method": "search_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Signal Attributes"
+    ],
+    "name": "Data Type Propagation Examples",
+    "source_product": "simulink",
+    "source_path": "slref/datatypepropagation.html",
+    "release": "R2025b",
+    "title": "Data Type Propagation",
+    "method": "search_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Sinks"
+    ],
+    "name": "XY Graph",
+    "source_product": "simulink",
+    "source_path": "slref/record.html",
+    "release": "R2023b",
+    "title": "Record, XY Graph",
+    "method": "old_search"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "String"
+    ],
+    "name": "String Ends With",
+    "source_product": "simulink",
+    "source_path": "slref/stringcontains.html",
+    "release": "R2023b",
+    "title": "String Contains, String Starts With, String Ends With",
+    "method": "old_search"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "User-Defined Functions"
+    ],
+    "name": "S-Function Examples",
+    "source_product": "simulink",
+    "source_path": "slref/sfunction.html",
+    "release": "R2025b",
+    "title": "S-Function",
+    "method": "search_variant"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Environment",
+      "Wind"
+    ],
+    "name": "Dryden Wind Turbulence Model (Continuous (+q +r))",
+    "source_product": "aeroblks",
+    "source_path": "drydenwindturbulencemodelcontinuous.html",
+    "release": "R2025b",
+    "title": "Dryden Wind Turbulence Model (Continuous)",
+    "method": "search_variant"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Environment",
+      "Wind"
+    ],
+    "name": "Dryden Wind Turbulence Model (Discrete (+q +r))",
+    "source_product": "aeroblks",
+    "source_path": "drydenwindturbulencemodeldiscrete.html",
+    "release": "R2025b",
+    "title": "Dryden Wind Turbulence Model (Discrete)",
+    "method": "search_variant"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Environment",
+      "Wind"
+    ],
+    "name": "Von Karman Wind Turbulence Model (Continuous (+q +r))",
+    "source_product": "aeroblks",
+    "source_path": "vonkarmanwindturbulencemodelcontinuous.html",
+    "release": "R2025b",
+    "title": "Von Karman Wind Turbulence Model (Continuous)",
+    "method": "search_variant"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Flight Instruments"
+    ],
+    "name": "EGT Indicator",
+    "source_product": "aeroblks",
+    "source_path": "exhaustgastemperatureegtindicator.html",
+    "release": "R2023b",
+    "title": "Exhaust Gas Temperature (EGT) Indicator",
+    "method": "old_search"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Flight Instruments"
+    ],
+    "name": "RPM Indicator",
+    "source_product": "aeroblks",
+    "source_path": "revolutionsperminuterpmindicator.html",
+    "release": "R2023b",
+    "title": "Revolutions Per Minute (RPM) Indicator",
+    "method": "old_search"
+  },
+  {
+    "product": "Automated Driving Toolbox",
+    "path": [
+      "Driving Scenario and Sensor Modeling"
+    ],
+    "name": "Bicycle Model - Force Input",
+    "source_product": "driving",
+    "source_path": "ref/bicyclemodel.html",
+    "release": "R2025b",
+    "title": "Bicycle Model",
+    "method": "search_variant"
+  },
+  {
+    "product": "Automated Driving Toolbox",
+    "path": [
+      "Driving Scenario and Sensor Modeling"
+    ],
+    "name": "Bicycle Model - Velocity Input",
+    "source_product": "driving",
+    "source_path": "ref/bicyclemodel.html",
+    "release": "R2025b",
+    "title": "Bicycle Model",
+    "method": "search_variant"
+  },
+  {
+    "product": "Automated Driving Toolbox",
+    "path": [],
+    "name": "Info",
+    "source_product": "driving",
+    "source_path": "ref/labeldefinitioncreatormultisignal.info.html",
+    "release": "R2023b",
+    "title": "info",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2802x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype12.html",
+    "release": "R2025b",
+    "title": "ADC Type 1-2",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2802x"
+    ],
+    "name": "AnalogIO Input",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xanalogioinput.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x AnalogIO Input",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2802x"
+    ],
+    "name": "AnalogIO Output",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xanalogiooutput.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x AnalogIO Output",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2802x"
+    ],
+    "name": "COMP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xcomp.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x COMP",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2802x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2802x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2802x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2802x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2802x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2802x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2802x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype12.html",
+    "release": "R2025b",
+    "title": "ADC Type 1-2",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "AnalogIO Input",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xanalogioinput.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x AnalogIO Input",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "AnalogIO Output",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xanalogiooutput.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x AnalogIO Output",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "CLA Task",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xclatask.html",
+    "release": "R2025b",
+    "title": "C28x CLA Task",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "COMP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xcomp.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x COMP",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "LIN Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2803xlinreceive.html",
+    "release": "R2025b",
+    "title": "C2803x LIN Receive",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "LIN Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2803xlintransmit.html",
+    "release": "R2025b",
+    "title": "C2803x LIN Transmit",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2803x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2805x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype12.html",
+    "release": "R2025b",
+    "title": "ADC Type 1-2",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2805x"
+    ],
+    "name": "CLA Task",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xclatask.html",
+    "release": "R2025b",
+    "title": "C28x CLA Task",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2805x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2805x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2805x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2805x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2805x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2805x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2805x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2805x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2806x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype12.html",
+    "release": "R2025b",
+    "title": "ADC Type 1-2",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2806x"
+    ],
+    "name": "AnalogIO Input",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xanalogioinput.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x AnalogIO Input",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2806x"
+    ],
+    "name": "AnalogIO Output",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xanalogiooutput.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x AnalogIO Output",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2806x"
+    ],
+    "name": "CLA Task",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xclatask.html",
+    "release": "R2025b",
+    "title": "C28x CLA Task",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2806x"
+    ],
+    "name": "COMP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xcomp.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x COMP",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2806x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2806x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2806x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2806x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2806x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2806x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2806x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2806x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C280x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype0.html",
+    "release": "R2025b",
+    "title": "ADC Type 0",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C280x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C280x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C280x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C280x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C280x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C280x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C280x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C280x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C281x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype0.html",
+    "release": "R2025b",
+    "title": "ADC Type 0",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C281x"
+    ],
+    "name": "CAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c281xcap.html",
+    "release": "R2025b",
+    "title": "C281x CAP",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C281x"
+    ],
+    "name": "QEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c281xqep.html",
+    "release": "R2025b",
+    "title": "C281x QEP",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C281x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C281x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C281x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2833x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype0.html",
+    "release": "R2025b",
+    "title": "ADC Type 0",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2833x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2833x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2833x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2833x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2833x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2833x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2833x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2833x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2834x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2834x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2834x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2834x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2834x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2834x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2834x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "C2834x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280013x"
+    ],
+    "name": "CMPSS",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss.html",
+    "release": "R2025b",
+    "title": "F2807x/F2837xD/F2837xS/F28004x/F2838x/F2800xx CMPSS",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280013x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280013x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280013x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280013x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280013x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280013x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280013x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280015x"
+    ],
+    "name": "CMPSS",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss.html",
+    "release": "R2025b",
+    "title": "F2807x/F2837xD/F2837xS/F28004x/F2838x/F2800xx CMPSS",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280015x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280015x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280015x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280015x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280015x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280015x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280015x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28002x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype35.html",
+    "release": "R2025b",
+    "title": "ADC Type 3-5",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28002x"
+    ],
+    "name": "CMPSS",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss.html",
+    "release": "R2025b",
+    "title": "C2000 CMPSS",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28002x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28002x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28002x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28002x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28002x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28002x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28002x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28002x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28003x"
+    ],
+    "name": "CLA Task",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xclatask.html",
+    "release": "R2025b",
+    "title": "C28x CLA Task",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28003x"
+    ],
+    "name": "CMPSS",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss.html",
+    "release": "R2025b",
+    "title": "F2807x/F2837xD/F2837xS/F28004x/F2838x/F2800xx CMPSS",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28003x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28003x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28003x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28003x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28003x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28003x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28003x"
+    ],
+    "name": "SDFM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf28003xf2838xf28p65xsdfm.html",
+    "release": "R2025b",
+    "title": "F2807x/F2837xD/F2837xS/F28004x/F28003x/F2838x/F28p65x SDFM",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28003x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28004x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype35.html",
+    "release": "R2025b",
+    "title": "ADC Type 3-5",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28004x"
+    ],
+    "name": "CLA Task",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xclatask.html",
+    "release": "R2025b",
+    "title": "C28x CLA Task",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28004x"
+    ],
+    "name": "CMPSS",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss.html",
+    "release": "R2025b",
+    "title": "C2000 CMPSS",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28004x"
+    ],
+    "name": "DAC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xdac.html",
+    "release": "R2025b",
+    "title": "C28x DAC",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28004x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28004x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28004x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28004x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28004x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28004x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28004x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28004x"
+    ],
+    "name": "SDFM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf28003xf2838xf28p65xsdfm.html",
+    "release": "R2025b",
+    "title": "C2000 SDFM",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28004x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2807x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype35.html",
+    "release": "R2025b",
+    "title": "ADC Type 3-5",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2807x"
+    ],
+    "name": "CLA Task",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xclatask.html",
+    "release": "R2025b",
+    "title": "C28x CLA Task",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2807x"
+    ],
+    "name": "CMPSS",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss.html",
+    "release": "R2025b",
+    "title": "C2000 CMPSS",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2807x"
+    ],
+    "name": "DAC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xdac.html",
+    "release": "R2025b",
+    "title": "C28x DAC",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2807x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2807x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2807x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2807x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2807x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2807x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2807x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2807x"
+    ],
+    "name": "SDFM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf28003xf2838xf28p65xsdfm.html",
+    "release": "R2025b",
+    "title": "C2000 SDFM",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2807x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype35.html",
+    "release": "R2025b",
+    "title": "ADC Type 3-5",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "CLA Task",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xclatask.html",
+    "release": "R2025b",
+    "title": "C28x CLA Task",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "CMPSS",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss.html",
+    "release": "R2025b",
+    "title": "C2000 CMPSS",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "DAC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xdac.html",
+    "release": "R2025b",
+    "title": "C28x DAC",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "IPC Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2837xdf2838xf2838xm4ipcreceive.html",
+    "release": "R2025b",
+    "title": "F2837xD/F2838x/F2838x-M4 IPC Receive",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "IPC Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2837xdf2838xf2838xm4ipctransmit.html",
+    "release": "R2025b",
+    "title": "F2837xD/F2838x/F2838x-M4 IPC Transmit",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "SDFM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf28003xf2838xf28p65xsdfm.html",
+    "release": "R2025b",
+    "title": "C2000 SDFM",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xD"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xS"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype35.html",
+    "release": "R2025b",
+    "title": "ADC Type 3-5",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xS"
+    ],
+    "name": "CLA Task",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xclatask.html",
+    "release": "R2025b",
+    "title": "C28x CLA Task",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xS"
+    ],
+    "name": "CMPSS",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss.html",
+    "release": "R2025b",
+    "title": "C2000 CMPSS",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xS"
+    ],
+    "name": "DAC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xdac.html",
+    "release": "R2025b",
+    "title": "C28x DAC",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xS"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xS"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xS"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xS"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xS"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xS"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xS"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xS"
+    ],
+    "name": "SDFM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf28003xf2838xf28p65xsdfm.html",
+    "release": "R2025b",
+    "title": "C2000 SDFM",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2837xS"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype35.html",
+    "release": "R2025b",
+    "title": "ADC Type 3-5",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "CLA Task",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xclatask.html",
+    "release": "R2025b",
+    "title": "C28x CLA Task",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "CMPSS",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss.html",
+    "release": "R2025b",
+    "title": "C2000 CMPSS",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "DAC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xdac.html",
+    "release": "R2025b",
+    "title": "C28x DAC",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "IPC Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2837xdf2838xf2838xm4ipcreceive.html",
+    "release": "R2025b",
+    "title": "F2837xD/F2838x/F2838x-M4 IPC Receive",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "IPC Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2837xdf2838xf2838xm4ipctransmit.html",
+    "release": "R2025b",
+    "title": "F2837xD/F2838x/F2838x-M4 IPC Transmit",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "SDFM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf28003xf2838xf28p65xsdfm.html",
+    "release": "R2025b",
+    "title": "C2000 SDFM",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "C28x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "M4"
+    ],
+    "name": "IPC Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2837xdf2838xf2838xm4ipcreceive.html",
+    "release": "R2025b",
+    "title": "F2837xD/F2838x/F2838x-M4 IPC Receive",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "M4"
+    ],
+    "name": "IPC Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2837xdf2838xf2838xm4ipctransmit.html",
+    "release": "R2025b",
+    "title": "F2837xD/F2838x/F2838x-M4 IPC Transmit",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "M4"
+    ],
+    "name": "UART Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2838xm4uartreceive.html",
+    "release": "R2025b",
+    "title": "F2838x-M4 UART Receive",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F2838x",
+      "M4"
+    ],
+    "name": "UART Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2838xm4uarttransmit.html",
+    "release": "R2025b",
+    "title": "F2838x-M4 UART Transmit",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M35x",
+      "C28x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M35x",
+      "C28x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M35x",
+      "C28x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M35x",
+      "C28x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M35x",
+      "C28x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M35x",
+      "C28x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M35x",
+      "C28x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M35x",
+      "M3"
+    ],
+    "name": "UART Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f28m35xf28m36xuartreceive.html",
+    "release": "R2025b",
+    "title": "F28M35x/F28M36x UART Receive",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M35x",
+      "M3"
+    ],
+    "name": "UART Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f28m35xf28m36xuarttransmit.html",
+    "release": "R2025b",
+    "title": "F28M35x/F28M36x UART Transmit",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M36x",
+      "C28x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M36x",
+      "C28x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M36x",
+      "C28x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M36x",
+      "C28x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M36x",
+      "C28x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M36x",
+      "C28x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M36x",
+      "C28x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M36x",
+      "M3"
+    ],
+    "name": "UART Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f28m35xf28m36xuartreceive.html",
+    "release": "R2025b",
+    "title": "F28M35x/F28M36x UART Receive",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M36x",
+      "M3"
+    ],
+    "name": "UART Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f28m35xf28m36xuarttransmit.html",
+    "release": "R2025b",
+    "title": "F28M35x/F28M36x UART Transmit",
+    "method": "old_search"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p55x"
+    ],
+    "name": "CLA Task",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xclatask.html",
+    "release": "R2025b",
+    "title": "C28x CLA Task",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p55x"
+    ],
+    "name": "CMPSS",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss.html",
+    "release": "R2025b",
+    "title": "F2807x/F2837xD/F2837xS/F28004x/F2838x/F2800xx CMPSS",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p55x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p55x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p55x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p55x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p55x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p55x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p55x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "CLA Task",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xclatask.html",
+    "release": "R2025b",
+    "title": "C28x CLA Task",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "CMPSS",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf2838xf2800xxcmpss.html",
+    "release": "R2025b",
+    "title": "F2807x/F2837xD/F2837xS/F28004x/F2838x/F2800xx CMPSS",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "eCAP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xecap.html",
+    "release": "R2025b",
+    "title": "C28x eCAP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "eQEP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xeqep.html",
+    "release": "R2025b",
+    "title": "C28x eQEP",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "I2C Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2creceive.html",
+    "release": "R2025b",
+    "title": "C28x I2C Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "I2C Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xi2ctransmit.html",
+    "release": "R2025b",
+    "title": "C28x I2C Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "IPC Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2837xdf2838xf2838xm4ipcreceive.html",
+    "release": "R2025b",
+    "title": "F2837xD/F2838x/F2838x-M4 IPC Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "IPC Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2837xdf2838xf2838xm4ipctransmit.html",
+    "release": "R2025b",
+    "title": "F2837xD/F2838x/F2838x-M4 IPC Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "SCI Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscireceive.html",
+    "release": "R2025b",
+    "title": "C28x SCI Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "SCI Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xscitransmit.html",
+    "release": "R2025b",
+    "title": "C28x SCI Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "SDFM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/f2807xf2837xdf2837xsf28004xf28003xf2838xf28p65xsdfm.html",
+    "release": "R2025b",
+    "title": "F2807x/F2837xD/F2837xS/F28004x/F28003x/F2838x/F28p65x SDFM",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "Software Interrupt Trigger",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xsoftwareinterrupttrigger.html",
+    "release": "R2025b",
+    "title": "C28x Software Interrupt Trigger",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F29H85x"
+    ],
+    "name": "UART Receive",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c29xuartreceiveblock.html",
+    "release": "R2025b",
+    "title": "C29x UART Receive",
+    "method": "search_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F29H85x"
+    ],
+    "name": "UART Transmit",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c29xuarttransmitblock.html",
+    "release": "R2025b",
+    "title": "C29x UART Transmit",
+    "method": "search_variant"
+  },
+  {
+    "product": "Computer Vision Toolbox",
+    "path": [],
+    "name": "Info",
+    "source_product": "vision",
+    "source_path": "ref/labeldefinitioncreator.info.html",
+    "release": "R2023b",
+    "title": "info",
+    "method": "old_search"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Net Input Functions"
+    ],
+    "name": "netprod",
+    "source_product": "deeplearning",
+    "source_path": "ref/netprod.html",
+    "release": "R2025b",
+    "title": "netprod",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Processing Functions"
+    ],
+    "name": "lvqoutputs",
+    "source_product": "deeplearning",
+    "source_path": "ref/lvqoutputs.html",
+    "release": "R2025b",
+    "title": "lvqoutputs",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Processing Functions"
+    ],
+    "name": "mapminmax",
+    "source_product": "deeplearning",
+    "source_path": "ref/mapminmax.html",
+    "release": "R2025b",
+    "title": "mapminmax",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Processing Functions"
+    ],
+    "name": "mapminmax\\_reverse",
+    "source_product": "deeplearning",
+    "source_path": "ref/mapminmax.html",
+    "release": "R2025b",
+    "title": "mapminmax",
+    "method": "search_variant"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Processing Functions"
+    ],
+    "name": "mapstd",
+    "source_product": "deeplearning",
+    "source_path": "ref/mapstd.html",
+    "release": "R2025b",
+    "title": "mapstd",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Processing Functions"
+    ],
+    "name": "processpca",
+    "source_product": "deeplearning",
+    "source_path": "ref/processpca.html",
+    "release": "R2025b",
+    "title": "processpca",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Processing Functions"
+    ],
+    "name": "removeconstantrows",
+    "source_product": "deeplearning",
+    "source_path": "ref/removeconstantrows.html",
+    "release": "R2025b",
+    "title": "removeconstantrows",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Processing Functions"
+    ],
+    "name": "removerows",
+    "source_product": "deeplearning",
+    "source_path": "ref/removerows.html",
+    "release": "R2025b",
+    "title": "removerows",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "elliot2sig",
+    "source_product": "deeplearning",
+    "source_path": "ref/elliot2sig.html",
+    "release": "R2025b",
+    "title": "elliot2sig",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "elliotsig",
+    "source_product": "deeplearning",
+    "source_path": "ref/elliotsig.html",
+    "release": "R2025b",
+    "title": "elliotsig",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "hardlim",
+    "source_product": "deeplearning",
+    "source_path": "ref/hardlim.html",
+    "release": "R2025b",
+    "title": "hardlim",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "hardlims",
+    "source_product": "deeplearning",
+    "source_path": "ref/hardlims.html",
+    "release": "R2025b",
+    "title": "hardlims",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "logsig",
+    "source_product": "deeplearning",
+    "source_path": "ref/logsig.html",
+    "release": "R2025b",
+    "title": "logsig",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "netinv",
+    "source_product": "deeplearning",
+    "source_path": "ref/netinv.html",
+    "release": "R2025b",
+    "title": "netinv",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "poslin",
+    "source_product": "deeplearning",
+    "source_path": "ref/poslin.html",
+    "release": "R2025b",
+    "title": "poslin",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "purelin",
+    "source_product": "deeplearning",
+    "source_path": "ref/purelin.html",
+    "release": "R2025b",
+    "title": "purelin",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "radbas",
+    "source_product": "deeplearning",
+    "source_path": "ref/radbas.html",
+    "release": "R2025b",
+    "title": "radbas",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "radbasn",
+    "source_product": "deeplearning",
+    "source_path": "ref/radbasn.html",
+    "release": "R2025b",
+    "title": "radbasn",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "satlin",
+    "source_product": "deeplearning",
+    "source_path": "ref/satlin.html",
+    "release": "R2025b",
+    "title": "satlin",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "satlins",
+    "source_product": "deeplearning",
+    "source_path": "ref/satlins.html",
+    "release": "R2025b",
+    "title": "satlins",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "softmax",
+    "source_product": "deeplearning",
+    "source_path": "ref/softmax.html",
+    "release": "R2025b",
+    "title": "softmax",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "tansig",
+    "source_product": "deeplearning",
+    "source_path": "ref/tansig.html",
+    "release": "R2025b",
+    "title": "tansig",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Transfer Functions"
+    ],
+    "name": "tribas",
+    "source_product": "deeplearning",
+    "source_path": "ref/tribas.html",
+    "release": "R2025b",
+    "title": "tribas",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Weight Functions"
+    ],
+    "name": "dist",
+    "source_product": "deeplearning",
+    "source_path": "ref/dist.html",
+    "release": "R2025b",
+    "title": "dist",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Weight Functions"
+    ],
+    "name": "negdist",
+    "source_product": "deeplearning",
+    "source_path": "ref/negdist.html",
+    "release": "R2025b",
+    "title": "negdist",
+    "method": "direct"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Weight Functions"
+    ],
+    "name": "normprod",
+    "source_product": "deeplearning",
+    "source_path": "ref/normprod.html",
+    "release": "R2025b",
+    "title": "normprod",
+    "method": "direct"
+  },
+  {
+    "product": "DSP System Toolbox",
+    "path": [],
+    "name": "Info",
+    "source_product": "dsp",
+    "source_path": "ref/dsp.allpassfilter.info.html",
+    "release": "R2025b",
+    "title": "info",
+    "method": "search_exact"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Elements"
+    ],
+    "name": "Constant Area Hydraulic Orifice",
+    "source_product": "simscape",
+    "source_path": "ref/constantareahydraulicorifice.html",
+    "release": "R2025b",
+    "title": "Constant Area Hydraulic Orifice",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Elements"
+    ],
+    "name": "Constant Volume Hydraulic Chamber",
+    "source_product": "simscape",
+    "source_path": "ref/constantvolumehydraulicchamber.html",
+    "release": "R2025b",
+    "title": "Constant Volume Hydraulic Chamber",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Elements"
+    ],
+    "name": "Fluid Inertia",
+    "source_product": "simscape",
+    "source_path": "ref/fluidinertia.html",
+    "release": "R2025b",
+    "title": "Fluid Inertia",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Elements"
+    ],
+    "name": "Hydraulic Cap",
+    "source_product": "simscape",
+    "source_path": "ref/hydrauliccap.html",
+    "release": "R2025b",
+    "title": "Hydraulic Cap",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Elements"
+    ],
+    "name": "Hydraulic Piston Chamber",
+    "source_product": "simscape",
+    "source_path": "ref/hydraulicpistonchamber.html",
+    "release": "R2025b",
+    "title": "Hydraulic Piston Chamber",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Elements"
+    ],
+    "name": "Hydraulic Resistive Tube",
+    "source_product": "simscape",
+    "source_path": "ref/hydraulicresistivetube.html",
+    "release": "R2025b",
+    "title": "Hydraulic Resistive Tube",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Elements"
+    ],
+    "name": "Infinite Hydraulic Resistance",
+    "source_product": "simscape",
+    "source_path": "ref/infinitehydraulicresistance.html",
+    "release": "R2025b",
+    "title": "Infinite Hydraulic Resistance",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Elements"
+    ],
+    "name": "Linear Hydraulic Resistance",
+    "source_product": "simscape",
+    "source_path": "ref/linearhydraulicresistance.html",
+    "release": "R2025b",
+    "title": "Linear Hydraulic Resistance",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Elements"
+    ],
+    "name": "Rotational Hydro-Mechanical Converter",
+    "source_product": "simscape",
+    "source_path": "ref/rotationalhydromechanicalconverter.html",
+    "release": "R2025b",
+    "title": "Rotational Hydro-Mechanical Converter",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Elements"
+    ],
+    "name": "Translational Hydro-Mechanical Converter",
+    "source_product": "simscape",
+    "source_path": "ref/translationalhydromechanicalconverter.html",
+    "release": "R2025b",
+    "title": "Translational Hydro-Mechanical Converter",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Elements"
+    ],
+    "name": "Variable Area Hydraulic Orifice",
+    "source_product": "simscape",
+    "source_path": "ref/variableareahydraulicorifice.html",
+    "release": "R2025b",
+    "title": "Variable Area Hydraulic Orifice",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Elements"
+    ],
+    "name": "Variable Hydraulic Chamber",
+    "source_product": "simscape",
+    "source_path": "ref/variablehydraulicchamber.html",
+    "release": "R2025b",
+    "title": "Variable Hydraulic Chamber",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Sensors"
+    ],
+    "name": "Hydraulic Flow Rate Sensor",
+    "source_product": "simscape",
+    "source_path": "ref/hydraulicflowratesensor.html",
+    "release": "R2025b",
+    "title": "Hydraulic Flow Rate Sensor",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Sensors"
+    ],
+    "name": "Hydraulic Pressure Sensor",
+    "source_product": "simscape",
+    "source_path": "ref/hydraulicpressuresensor.html",
+    "release": "R2025b",
+    "title": "Hydraulic Pressure Sensor",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Sources"
+    ],
+    "name": "Hydraulic Constant Flow Rate Source",
+    "source_product": "simscape",
+    "source_path": "ref/hydraulicconstantflowratesource.html",
+    "release": "R2025b",
+    "title": "Hydraulic Constant Flow Rate Source",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Sources"
+    ],
+    "name": "Hydraulic Constant Mass Flow Rate Source",
+    "source_product": "simscape",
+    "source_path": "ref/hydraulicconstantmassflowratesource.html",
+    "release": "R2025b",
+    "title": "Hydraulic Constant Mass Flow Rate Source",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Sources"
+    ],
+    "name": "Hydraulic Constant Pressure Source",
+    "source_product": "simscape",
+    "source_path": "ref/hydraulicconstantpressuresource.html",
+    "release": "R2025b",
+    "title": "Hydraulic Constant Pressure Source",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Sources"
+    ],
+    "name": "Hydraulic Flow Rate Source",
+    "source_product": "simscape",
+    "source_path": "ref/hydraulicflowratesource.html",
+    "release": "R2025b",
+    "title": "Hydraulic Flow Rate Source",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Sources"
+    ],
+    "name": "Hydraulic Mass Flow Rate Source",
+    "source_product": "simscape",
+    "source_path": "ref/hydraulicmassflowratesource.html",
+    "release": "R2025b",
+    "title": "Hydraulic Mass Flow Rate Source",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Sources"
+    ],
+    "name": "Hydraulic Pressure Source",
+    "source_product": "simscape",
+    "source_path": "ref/hydraulicpressuresource.html",
+    "release": "R2025b",
+    "title": "Hydraulic Pressure Source",
+    "method": "direct"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Utilities"
+    ],
+    "name": "Custom Hydraulic Fluid",
+    "source_product": "simscape",
+    "source_path": "ref/customhydraulicfluid.html",
+    "release": "R2025b",
+    "title": "Custom Hydraulic Fluid",
+    "method": "direct"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "Lookup Tables"
+    ],
+    "name": "Cosine HDL Optimized",
+    "source_product": "hdlcoder",
+    "source_path": "ref/sinehdloptimizedandcosinehdloptimized.html",
+    "release": "R2023b",
+    "title": "Sine HDL Optimized and Cosine HDL Optimized",
+    "method": "old_search"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "Lookup Tables"
+    ],
+    "name": "Sine HDL Optimized",
+    "source_product": "hdlcoder",
+    "source_path": "ref/sinehdloptimizedandcosinehdloptimized.html",
+    "release": "R2023b",
+    "title": "Sine HDL Optimized and Cosine HDL Optimized",
+    "method": "old_search"
+  },
+  {
+    "product": "Motor Control Blockset",
+    "path": [
+      "Parameter Estimation",
+      "ACIM Parameter Estimation"
+    ],
+    "name": "Mechanical Parameter Estimator",
+    "source_product": "mcb",
+    "source_path": "ref/acimmechanicalparameterestimator.html",
+    "release": "R2025b",
+    "title": "ACIM Mechanical Parameter Estimator",
+    "method": "search_variant"
+  },
+  {
+    "product": "Motor Control Blockset",
+    "path": [
+      "Parameter Estimation",
+      "ACIM Parameter Estimation"
+    ],
+    "name": "Parameter Estimation Configurator",
+    "source_product": "mcb",
+    "source_path": "ref/acimparameterestimationconfigurator.html",
+    "release": "R2025b",
+    "title": "ACIM Parameter Estimation Configurator",
+    "method": "search_variant"
+  },
+  {
+    "product": "Motor Control Blockset",
+    "path": [
+      "Parameter Estimation",
+      "ACIM Parameter Estimation"
+    ],
+    "name": "Rs Estimator",
+    "source_product": "mcb",
+    "source_path": "ref/acimrsestimator.html",
+    "release": "R2025b",
+    "title": "ACIM Rs Estimator",
+    "method": "search_variant"
+  },
+  {
+    "product": "Motor Control Blockset",
+    "path": [
+      "Parameter Estimation",
+      "PMSM Parameter Estimation"
+    ],
+    "name": "Mechanical Parameter Estimator",
+    "source_product": "mcb",
+    "source_path": "ref/pmsmmechanicalparameterestimator.html",
+    "release": "R2025b",
+    "title": "PMSM Mechanical Parameter Estimator",
+    "method": "search_variant"
+  },
+  {
+    "product": "Motor Control Blockset",
+    "path": [
+      "Parameter Estimation",
+      "PMSM Parameter Estimation"
+    ],
+    "name": "Parameter Estimation Configurator",
+    "source_product": "mcb",
+    "source_path": "ref/pmsmparameterestimationconfigurator.html",
+    "release": "R2025b",
+    "title": "PMSM Parameter Estimation Configurator",
+    "method": "search_variant"
+  },
+  {
+    "product": "Motor Control Blockset",
+    "path": [
+      "Parameter Estimation",
+      "PMSM Parameter Estimation"
+    ],
+    "name": "Rs Estimator",
+    "source_product": "mcb",
+    "source_path": "ref/pmsmrsestimator.html",
+    "release": "R2025b",
+    "title": "PMSM Rs Estimator",
+    "method": "search_variant"
+  },
+  {
+    "product": "Navigation Toolbox",
+    "path": [
+      "Control Algorithms"
+    ],
+    "name": "Timed Elastic Band (TEB)",
+    "source_product": "nav",
+    "source_path": "ref/timedelasticband.html",
+    "release": "R2025b",
+    "title": "Timed Elastic Band",
+    "method": "search_variant"
+  },
+  {
+    "product": "Phased Array System Toolbox",
+    "path": [
+      "Detection"
+    ],
+    "name": "Range Angle Response",
+    "source_product": "phased",
+    "source_path": "ref/rangeangleresponse.html",
+    "release": "R2025b",
+    "title": "Range Angle Response",
+    "method": "direct"
+  },
+  {
+    "product": "Phased Array System Toolbox",
+    "path": [
+      "Space-Time Adaptive Processing"
+    ],
+    "name": "Cube Slicer",
+    "source_product": "phased",
+    "source_path": "ref/datacubeslicer.html",
+    "release": "R2023b",
+    "title": "Data Cube Slicer",
+    "method": "old_search"
+  },
+  {
+    "product": "Powertrain Blockset",
+    "path": [
+      "Drivetrain",
+      "Wheels"
+    ],
+    "name": "Longitudinal Wheel - Disc Brake",
+    "source_product": "autoblks",
+    "source_path": "ref/longitudinalwheel.html",
+    "release": "R2025b",
+    "title": "Longitudinal Wheel",
+    "method": "search_variant"
+  },
+  {
+    "product": "Powertrain Blockset",
+    "path": [
+      "Drivetrain",
+      "Wheels"
+    ],
+    "name": "Longitudinal Wheel - Drum Brake",
+    "source_product": "autoblks",
+    "source_path": "ref/longitudinalwheel.html",
+    "release": "R2025b",
+    "title": "Longitudinal Wheel",
+    "method": "search_variant"
+  },
+  {
+    "product": "Powertrain Blockset",
+    "path": [
+      "Drivetrain",
+      "Wheels"
+    ],
+    "name": "Longitudinal Wheel - Mapped Brake",
+    "source_product": "autoblks",
+    "source_path": "ref/longitudinalwheel.html",
+    "release": "R2025b",
+    "title": "Longitudinal Wheel",
+    "method": "search_variant"
+  },
+  {
+    "product": "Powertrain Blockset",
+    "path": [
+      "Drivetrain",
+      "Wheels"
+    ],
+    "name": "Longitudinal Wheel - No Brake",
+    "source_product": "autoblks",
+    "source_path": "ref/longitudinalwheel.html",
+    "release": "R2025b",
+    "title": "Longitudinal Wheel",
+    "method": "search_variant"
+  },
+  {
+    "product": "RF Blockset",
+    "path": [
+      "Idealized Baseband"
+    ],
+    "name": "Sparameters",
+    "source_product": "simrf",
+    "source_path": "ref/sparameters.html",
+    "release": "R2025b",
+    "title": "S-Parameters",
+    "method": "search_exact"
+  },
+  {
+    "product": "ROS Toolbox",
+    "path": [
+      "ROS"
+    ],
+    "name": "Write Point Cloud",
+    "source_product": "ros",
+    "source_path": "ref/writepointcloudblock.html",
+    "release": "R2025b",
+    "title": "ROS Write Point Cloud, ROS 2 Write Point Cloud",
+    "method": "search_variant"
+  },
+  {
+    "product": "ROS Toolbox",
+    "path": [
+      "ROS 2"
+    ],
+    "name": "Write Point Cloud",
+    "source_product": "ros",
+    "source_path": "ref/writepointcloudblock.html",
+    "release": "R2025b",
+    "title": "ROS Write Point Cloud, ROS 2 Write Point Cloud",
+    "method": "search_variant"
+  },
+  {
+    "product": "Simulink Design Verifier",
+    "path": [
+      "Objectives and Constraints"
+    ],
+    "name": "Assumption",
+    "source_product": "sldv",
+    "source_path": "ref/proofassumption.html",
+    "release": "R2023b",
+    "title": "Proof Assumption",
+    "method": "old_search"
+  },
+  {
+    "product": "Simulink Desktop Real-Time",
+    "path": [],
+    "name": "Real-Time Synchronization",
+    "source_product": "sldrt",
+    "source_path": "ref/realtimesync.html",
+    "release": "R2025b",
+    "title": "Real-Time Sync",
+    "method": "search_variant"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Additional Linear"
+    ],
+    "name": "Zero-Pole (with initial outputs)",
+    "source_product": "simulink",
+    "source_path": "slref/zeropole.html",
+    "release": "R2025b",
+    "title": "Zero-Pole",
+    "method": "search_variant"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Additional Lookup Tables"
+    ],
+    "name": "Matrix Interpolation",
+    "source_product": "simulink",
+    "source_path": "ref_extras/matrixinterpolation.html",
+    "release": "R2025b",
+    "title": "Matrix Interpolation",
+    "method": "direct"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Flip Flops"
+    ],
+    "name": "J-K Flip-Flop",
+    "source_product": "simulink",
+    "source_path": "ref_extras/jkflipflop.html",
+    "release": "R2025b",
+    "title": "J-K Flip-Flop",
+    "method": "direct"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Flip Flops"
+    ],
+    "name": "S-R Flip-Flop",
+    "source_product": "simulink",
+    "source_path": "ref_extras/srflipflop.html",
+    "release": "R2025b",
+    "title": "S-R Flip-Flop",
+    "method": "direct"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Transformations"
+    ],
+    "name": "Cartesian to Polar",
+    "source_product": "simulink",
+    "source_path": "ref_extras/cartesiantopolar.html",
+    "release": "R2025b",
+    "title": "Cartesian to Polar",
+    "method": "direct"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Transformations"
+    ],
+    "name": "Cartesian to Spherical",
+    "source_product": "simulink",
+    "source_path": "ref_extras/cartesiantospherical.html",
+    "release": "R2025b",
+    "title": "Cartesian to Spherical",
+    "method": "direct"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Transformations"
+    ],
+    "name": "Celsius to Fahrenheit",
+    "source_product": "simulink",
+    "source_path": "ref_extras/celsiustofahrenheit.html",
+    "release": "R2025b",
+    "title": "Celsius to Fahrenheit",
+    "method": "direct"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Transformations"
+    ],
+    "name": "Degrees to Radians",
+    "source_product": "simulink",
+    "source_path": "ref_extras/degreestoradians.html",
+    "release": "R2025b",
+    "title": "Degrees to Radians",
+    "method": "direct"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Transformations"
+    ],
+    "name": "Fahrenheit to Celsius",
+    "source_product": "simulink",
+    "source_path": "ref_extras/fahrenheittocelsius.html",
+    "release": "R2025b",
+    "title": "Fahrenheit to Celsius",
+    "method": "direct"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Transformations"
+    ],
+    "name": "Polar to Cartesian",
+    "source_product": "simulink",
+    "source_path": "ref_extras/polartocartesian.html",
+    "release": "R2025b",
+    "title": "Polar to Cartesian",
+    "method": "direct"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Transformations"
+    ],
+    "name": "Radians to Degrees",
+    "source_product": "simulink",
+    "source_path": "ref_extras/radianstodegrees.html",
+    "release": "R2025b",
+    "title": "Radians to Degrees",
+    "method": "direct"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Transformations"
+    ],
+    "name": "Spherical to Cartesian",
+    "source_product": "simulink",
+    "source_path": "ref_extras/sphericaltocartesian.html",
+    "release": "R2025b",
+    "title": "Spherical to Cartesian",
+    "method": "direct"
+  },
+  {
+    "product": "Simulink Real-Time",
+    "path": [
+      "RS232",
+      "Mainboard"
+    ],
+    "name": "Setup",
+    "source_product": "slrealtime",
+    "source_path": "io_ref/legacyserialsetup.html",
+    "release": "R2023b",
+    "title": "Legacy Serial Setup",
+    "method": "old_search"
+  },
+  {
+    "product": "Simulink Real-Time",
+    "path": [
+      "Target Management"
+    ],
+    "name": "Overload Options",
+    "source_product": "slrealtime",
+    "source_path": "io_ref/slrtoverloadoptions.html",
+    "release": "R2023b",
+    "title": "SLRT Overload Options",
+    "method": "old_search"
+  },
+  {
+    "product": "Vehicle Dynamics Blockset",
+    "path": [
+      "Vehicle Body"
+    ],
+    "name": "Bicycle Model - Force Input",
+    "source_product": "vdynblks",
+    "source_path": "ref/bicyclemodel.html",
+    "release": "R2025b",
+    "title": "Bicycle Model",
+    "method": "search_variant"
+  },
+  {
+    "product": "Vehicle Dynamics Blockset",
+    "path": [
+      "Vehicle Body"
+    ],
+    "name": "Bicycle Model - Velocity Input",
+    "source_product": "vdynblks",
+    "source_path": "ref/bicyclemodel.html",
+    "release": "R2025b",
+    "title": "Bicycle Model",
+    "method": "search_variant"
+  },
+  {
+    "product": "Vehicle Dynamics Blockset",
+    "path": [
+      "Vehicle Body"
+    ],
+    "name": "Vehicle Body 3DOF Dual Track",
+    "source_product": "vdynblks",
+    "source_path": "ref/vehiclebody3dof.html",
+    "release": "R2025b",
+    "title": "Vehicle Body 3DOF",
+    "method": "search_variant"
+  },
+  {
+    "product": "Vehicle Dynamics Blockset",
+    "path": [
+      "Vehicle Body"
+    ],
+    "name": "Vehicle Body 3DOF Single Track",
+    "source_product": "vdynblks",
+    "source_path": "ref/vehiclebody3dof.html",
+    "release": "R2025b",
+    "title": "Vehicle Body 3DOF",
+    "method": "search_variant"
+  },
+  {
+    "product": "Vehicle Dynamics Blockset",
+    "path": [
+      "Vehicle Scenarios"
+    ],
+    "name": "Driver",
+    "source_product": "vdynblks",
+    "source_path": "ref/longitudinaldriver.html",
+    "release": "R2023b",
+    "title": "Longitudinal Driver",
+    "method": "old_search"
+  },
+  {
+    "product": "Vehicle Dynamics Blockset",
+    "path": [
+      "Wheels and Tires"
+    ],
+    "name": "Longitudinal Wheel - Disc Brake",
+    "source_product": "vdynblks",
+    "source_path": "ref/longitudinalwheel.html",
+    "release": "R2025b",
+    "title": "Longitudinal Wheel",
+    "method": "search_variant"
+  },
+  {
+    "product": "Vehicle Dynamics Blockset",
+    "path": [
+      "Wheels and Tires"
+    ],
+    "name": "Longitudinal Wheel - Drum Brake",
+    "source_product": "vdynblks",
+    "source_path": "ref/longitudinalwheel.html",
+    "release": "R2025b",
+    "title": "Longitudinal Wheel",
+    "method": "search_variant"
+  },
+  {
+    "product": "Vehicle Dynamics Blockset",
+    "path": [
+      "Wheels and Tires"
+    ],
+    "name": "Longitudinal Wheel - Mapped Brake",
+    "source_product": "vdynblks",
+    "source_path": "ref/longitudinalwheel.html",
+    "release": "R2025b",
+    "title": "Longitudinal Wheel",
+    "method": "search_variant"
+  },
+  {
+    "product": "Vehicle Dynamics Blockset",
+    "path": [
+      "Wheels and Tires"
+    ],
+    "name": "Longitudinal Wheel - No Brake",
+    "source_product": "vdynblks",
+    "source_path": "ref/longitudinalwheel.html",
+    "release": "R2025b",
+    "title": "Longitudinal Wheel",
+    "method": "search_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Discrete"
+    ],
+    "name": "Accumulator",
+    "source_product": "simulink",
+    "source_path": "slref/delay.html",
+    "release": "R2025b",
+    "title": "Delay",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "Bitwise AND",
+    "source_product": "simulink",
+    "source_path": "slref/logicaloperator.html",
+    "release": "R2025b",
+    "title": "Logical Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "Bitwise NAND",
+    "source_product": "simulink",
+    "source_path": "slref/logicaloperator.html",
+    "release": "R2025b",
+    "title": "Logical Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "Bitwise NOR",
+    "source_product": "simulink",
+    "source_path": "slref/logicaloperator.html",
+    "release": "R2025b",
+    "title": "Logical Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "Bitwise NOT",
+    "source_product": "simulink",
+    "source_path": "slref/logicaloperator.html",
+    "release": "R2025b",
+    "title": "Logical Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "Bitwise OR",
+    "source_product": "simulink",
+    "source_path": "slref/logicaloperator.html",
+    "release": "R2025b",
+    "title": "Logical Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "Bitwise XOR",
+    "source_product": "simulink",
+    "source_path": "slref/logicaloperator.html",
+    "release": "R2025b",
+    "title": "Logical Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "Equal",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "GreaterThan",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "GreaterThanOrEqual",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "GT",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "GTE",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "IsFinite",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "IsInf",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "IsNaN",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "IsNegative",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "IsNonNegative",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "IsNonPositive",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "IsNonZero",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "IsPositive",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "IsZero",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "Less Than",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "LessThanOrEqual",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "LT",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "LTE",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "NAND",
+    "source_product": "simulink",
+    "source_path": "slref/logicaloperator.html",
+    "release": "R2025b",
+    "title": "Logical Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "NOR",
+    "source_product": "simulink",
+    "source_path": "slref/logicaloperator.html",
+    "release": "R2025b",
+    "title": "Logical Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "NotEqual",
+    "source_product": "simulink",
+    "source_path": "slref/relationaloperator.html",
+    "release": "R2025b",
+    "title": "Relational Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "NXOR",
+    "source_product": "simulink",
+    "source_path": "slref/logicaloperator.html",
+    "release": "R2025b",
+    "title": "Logical Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Logic and Bit Operations"
+    ],
+    "name": "XOR",
+    "source_product": "simulink",
+    "source_path": "slref/logicaloperator.html",
+    "release": "R2025b",
+    "title": "Logical Operator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Lookup Tables"
+    ],
+    "name": "3-D Lookup Table",
+    "source_product": "simulink",
+    "source_path": "slref/ndlookuptable.html",
+    "release": "R2025b",
+    "title": "n-D Lookup Table",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Lookup Tables"
+    ],
+    "name": "Cosine Lookup",
+    "source_product": "simulink",
+    "source_path": "slref/sine.html",
+    "release": "R2025b",
+    "title": "Sine",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Lookup Tables"
+    ],
+    "name": "Exponential Lookup",
+    "source_product": "simulink",
+    "source_path": "slref/ndlookuptable.html",
+    "release": "R2025b",
+    "title": "n-D Lookup Table",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Lookup Tables"
+    ],
+    "name": "Index Search",
+    "source_product": "simulink",
+    "source_path": "slref/ndlookuptable.html",
+    "release": "R2025b",
+    "title": "n-D Lookup Table",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Lookup Tables"
+    ],
+    "name": "Lookup with Akima spline Interpolation",
+    "source_product": "simulink",
+    "source_path": "slref/ndlookuptable.html",
+    "release": "R2025b",
+    "title": "n-D Lookup Table",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Lookup Tables"
+    ],
+    "name": "Lookup with Linear Lagrange Interpolation",
+    "source_product": "simulink",
+    "source_path": "slref/ndlookuptable.html",
+    "release": "R2025b",
+    "title": "n-D Lookup Table",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Lookup Tables"
+    ],
+    "name": "Lookup with Linear Point-slope Interpolation",
+    "source_product": "simulink",
+    "source_path": "slref/ndlookuptable.html",
+    "release": "R2025b",
+    "title": "n-D Lookup Table",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Lookup Tables"
+    ],
+    "name": "SinCos Lookup",
+    "source_product": "simulink",
+    "source_path": "slref/sine.html",
+    "release": "R2025b",
+    "title": "Sine",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Lookup Tables"
+    ],
+    "name": "Sine Lookup",
+    "source_product": "simulink",
+    "source_path": "slref/sine.html",
+    "release": "R2025b",
+    "title": "Sine",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Acos",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Acosh",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Add Constant",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Asin",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Asinh",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Atan",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Atan2 Cordic",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Atanh",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Ceil",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Conj",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Cos Cordic",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Cosh",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Exp",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Fix",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Floor",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Hermitian",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Hypot",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "ln",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Log",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Log10",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Magnitude Squared",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Matrix Divide",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Max",
+    "source_product": "simulink",
+    "source_path": "slref/minmax.html",
+    "release": "R2025b",
+    "title": "MinMax",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Max of Elements",
+    "source_product": "simulink",
+    "source_path": "slref/minmax.html",
+    "release": "R2025b",
+    "title": "MinMax",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Min",
+    "source_product": "simulink",
+    "source_path": "slref/minmax.html",
+    "release": "R2025b",
+    "title": "MinMax",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Min of Elements",
+    "source_product": "simulink",
+    "source_path": "slref/minmax.html",
+    "release": "R2025b",
+    "title": "MinMax",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Mod",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Plus",
+    "source_product": "simulink",
+    "source_path": "slref/sum.html",
+    "release": "R2025b",
+    "title": "Sum",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Power",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Power of 10",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Reciprocal Square Root",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Rem",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Round",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Signed Square Root",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Sin Cordic",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "SinCos Cordic",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Sinh",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Square Root",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Tan",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Math Operations"
+    ],
+    "name": "Tanh",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Ports & Subsystems"
+    ],
+    "name": "Input",
+    "source_product": "simulink",
+    "source_path": "slref/inport.html",
+    "release": "R2025b",
+    "title": "Inport",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Ports & Subsystems"
+    ],
+    "name": "Output",
+    "source_product": "simulink",
+    "source_path": "slref/outport.html",
+    "release": "R2025b",
+    "title": "Outport",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Signal Attributes"
+    ],
+    "name": "Cast",
+    "source_product": "simulink",
+    "source_path": "slref/datatypeconversion.html",
+    "release": "R2025b",
+    "title": "Data Type Conversion",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Signal Attributes"
+    ],
+    "name": "Cast To Boolean",
+    "source_product": "simulink",
+    "source_path": "slref/datatypeconversion.html",
+    "release": "R2025b",
+    "title": "Data Type Conversion",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Signal Attributes"
+    ],
+    "name": "Cast To Double",
+    "source_product": "simulink",
+    "source_path": "slref/datatypeconversion.html",
+    "release": "R2025b",
+    "title": "Data Type Conversion",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Signal Attributes"
+    ],
+    "name": "Cast To Single",
+    "source_product": "simulink",
+    "source_path": "slref/datatypeconversion.html",
+    "release": "R2025b",
+    "title": "Data Type Conversion",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Signal Attributes"
+    ],
+    "name": "Signal Copy",
+    "source_product": "simulink",
+    "source_path": "slref/datatypeconversion.html",
+    "release": "R2025b",
+    "title": "Data Type Conversion",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Signal Attributes"
+    ],
+    "name": "To Nonvirtual Bus",
+    "source_product": "simulink",
+    "source_path": "slref/datatypeconversion.html",
+    "release": "R2025b",
+    "title": "Data Type Conversion",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Signal Attributes"
+    ],
+    "name": "To Virtual Bus",
+    "source_product": "simulink",
+    "source_path": "slref/datatypeconversion.html",
+    "release": "R2025b",
+    "title": "Data Type Conversion",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Sources"
+    ],
+    "name": "Continuous Pulse Generator",
+    "source_product": "simulink",
+    "source_path": "slref/pulsegenerator.html",
+    "release": "R2025b",
+    "title": "Pulse Generator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Sources"
+    ],
+    "name": "Discrete Pulse Generator",
+    "source_product": "simulink",
+    "source_path": "slref/pulsegenerator.html",
+    "release": "R2025b",
+    "title": "Pulse Generator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Sources"
+    ],
+    "name": "Eulers Number",
+    "source_product": "simulink",
+    "source_path": "slref/constant.html",
+    "release": "R2025b",
+    "title": "Constant",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Sources"
+    ],
+    "name": "Inf",
+    "source_product": "simulink",
+    "source_path": "slref/constant.html",
+    "release": "R2025b",
+    "title": "Constant",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Sources"
+    ],
+    "name": "NaN",
+    "source_product": "simulink",
+    "source_path": "slref/constant.html",
+    "release": "R2025b",
+    "title": "Constant",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Sources"
+    ],
+    "name": "Negative Inf",
+    "source_product": "simulink",
+    "source_path": "slref/constant.html",
+    "release": "R2025b",
+    "title": "Constant",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Sources"
+    ],
+    "name": "One",
+    "source_product": "simulink",
+    "source_path": "slref/constant.html",
+    "release": "R2025b",
+    "title": "Constant",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Sources"
+    ],
+    "name": "Pi",
+    "source_product": "simulink",
+    "source_path": "slref/constant.html",
+    "release": "R2025b",
+    "title": "Constant",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Sources"
+    ],
+    "name": "Sawtooth Generator",
+    "source_product": "simulink",
+    "source_path": "slref/pulsegenerator.html",
+    "release": "R2025b",
+    "title": "Pulse Generator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Sources"
+    ],
+    "name": "Square Wave Generator",
+    "source_product": "simulink",
+    "source_path": "slref/pulsegenerator.html",
+    "release": "R2025b",
+    "title": "Pulse Generator",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "Sources"
+    ],
+    "name": "Zero",
+    "source_product": "simulink",
+    "source_path": "slref/constant.html",
+    "release": "R2025b",
+    "title": "Constant",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Quick Insert",
+      "User-Defined Functions"
+    ],
+    "name": "C/C++ Code Block",
+    "source_product": "simulink",
+    "source_path": "slref/ccaller.html",
+    "release": "R2025b",
+    "title": "C Caller",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Signal Routing"
+    ],
+    "name": "Bus Element In",
+    "source_product": "simulink",
+    "source_path": "slref/inbuselement.html",
+    "release": "R2025b",
+    "title": "In Bus Element",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Signal Routing"
+    ],
+    "name": "Bus Element Out",
+    "source_product": "simulink",
+    "source_path": "slref/outbuselement.html",
+    "release": "R2025b",
+    "title": "Out Bus Element",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Sinks"
+    ],
+    "name": "Floating Scope",
+    "source_product": "simulink",
+    "source_path": "slref/scopeviewer.html",
+    "release": "R2025b",
+    "title": "Floating Scope and Scope Viewer",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "String"
+    ],
+    "name": "String Starts With",
+    "source_product": "simulink",
+    "source_path": "slref/stringcontains.html",
+    "release": "R2025b",
+    "title": "String Contains, String Starts With, String Ends With",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Environment",
+      "Celestial Phenomena"
+    ],
+    "name": "Eclipse Shadow Model (Cylindrical)",
+    "source_product": "aeroblks",
+    "source_path": "eclipseshadowmodeldualcone.html",
+    "release": "R2025b",
+    "title": "Eclipse Shadow Model (Dual Cone)",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Environment",
+      "Wind"
+    ],
+    "name": "Dryden Wind Turbulence Model (Continuous (+q -r))",
+    "source_product": "aeroblks",
+    "source_path": "drydenwindturbulencemodelcontinuous.html",
+    "release": "R2025b",
+    "title": "Dryden Wind Turbulence Model",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Environment",
+      "Wind"
+    ],
+    "name": "Dryden Wind Turbulence Model (Continuous (-q +r))",
+    "source_product": "aeroblks",
+    "source_path": "drydenwindturbulencemodelcontinuous.html",
+    "release": "R2025b",
+    "title": "Dryden Wind Turbulence Model",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Environment",
+      "Wind"
+    ],
+    "name": "Dryden Wind Turbulence Model (Discrete (+q -r))",
+    "source_product": "aeroblks",
+    "source_path": "drydenwindturbulencemodeldiscrete.html",
+    "release": "R2025b",
+    "title": "Dryden Wind Turbulence Model",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Environment",
+      "Wind"
+    ],
+    "name": "Dryden Wind Turbulence Model (Discrete (-q +r))",
+    "source_product": "aeroblks",
+    "source_path": "drydenwindturbulencemodeldiscrete.html",
+    "release": "R2025b",
+    "title": "Dryden Wind Turbulence Model",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Environment",
+      "Wind"
+    ],
+    "name": "Von Karman Wind Turbulence Model (Continuous (+q -r))",
+    "source_product": "aeroblks",
+    "source_path": "vonkarmanwindturbulencemodelcontinuous.html",
+    "release": "R2025b",
+    "title": "Von Karman Wind Turbulence Model",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Environment",
+      "Wind"
+    ],
+    "name": "Von Karman Wind Turbulence Model (Continuous (-q +r))",
+    "source_product": "aeroblks",
+    "source_path": "vonkarmanwindturbulencemodelcontinuous.html",
+    "release": "R2025b",
+    "title": "Von Karman Wind Turbulence Model",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Spacecraft",
+      "CubeSat Vehicles"
+    ],
+    "name": "CubeSat Vehicle (Custom Pointing)",
+    "source_product": "aeroblks",
+    "source_path": "cubesatvehicleearthnadirpointing.html",
+    "release": "R2025b",
+    "title": "CubeSat Vehicle Earth (Nadir) Pointing",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Spacecraft",
+      "CubeSat Vehicles"
+    ],
+    "name": "CubeSat Vehicle (Nadir Pointing)",
+    "source_product": "aeroblks",
+    "source_path": "cubesatvehicleearthnadirpointing.html",
+    "release": "R2025b",
+    "title": "CubeSat Vehicle Earth (Nadir) Pointing",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Aerospace Blockset",
+    "path": [
+      "Spacecraft",
+      "CubeSat Vehicles"
+    ],
+    "name": "CubeSat Vehicle (Sun Tracking)",
+    "source_product": "aeroblks",
+    "source_path": "cubesatvehicleearthnadirpointing.html",
+    "release": "R2025b",
+    "title": "CubeSat Vehicle Earth (Nadir) Pointing",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Audio Toolbox",
+    "path": [
+      "Filters"
+    ],
+    "name": "Parametric EQ Design",
+    "source_product": "audio",
+    "source_path": "ref/parametricequalizerdesign.html",
+    "release": "R2025b",
+    "title": "Parametric Equalizer Design",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Audio Toolbox",
+    "path": [
+      "Filters"
+    ],
+    "name": "Shelving EQ Design",
+    "source_product": "audio",
+    "source_path": "ref/shelvingequalizerdesign.html",
+    "release": "R2025b",
+    "title": "Shelving Equalizer Design",
+    "method": "verified_variant"
+  },
+  {
+    "product": "AUTOSAR Blockset",
+    "path": [
+      "Classic Platform",
+      "Basic Software"
+    ],
+    "name": "Diagnostic Event Manager (Dem)",
+    "source_product": "autosar",
+    "source_path": "ref/diagnosticservicecomponent.html",
+    "release": "R2025b",
+    "title": "Diagnostic Service Component",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280013x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype35.html",
+    "release": "R2025b",
+    "title": "ADC Type 3-5",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280013x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280015x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype35.html",
+    "release": "R2025b",
+    "title": "ADC Type 3-5",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F280015x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28003x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype35.html",
+    "release": "R2025b",
+    "title": "ADC Type 3-5",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28003x"
+    ],
+    "name": "DAC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xdac.html",
+    "release": "R2025b",
+    "title": "C28x DAC",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28003x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M35x",
+      "C28x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype35.html",
+    "release": "R2025b",
+    "title": "ADC Type 3-5",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M35x",
+      "C28x"
+    ],
+    "name": "AnalogIO Input",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xanalogioinput.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x AnalogIO Input",
+    "method": "old_family_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M35x",
+      "C28x"
+    ],
+    "name": "AnalogIO Output",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xanalogiooutput.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x AnalogIO Output",
+    "method": "old_family_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M35x",
+      "C28x"
+    ],
+    "name": "COMP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xcomp.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x COMP",
+    "method": "old_family_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M35x",
+      "C28x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M36x",
+      "C28x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype35.html",
+    "release": "R2025b",
+    "title": "ADC Type 3-5",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M36x",
+      "C28x"
+    ],
+    "name": "AnalogIO Input",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xanalogioinput.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x AnalogIO Input",
+    "method": "old_family_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M36x",
+      "C28x"
+    ],
+    "name": "AnalogIO Output",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xanalogiooutput.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x AnalogIO Output",
+    "method": "old_family_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M36x",
+      "C28x"
+    ],
+    "name": "COMP",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2802xc2803xc2806xf28m3xcomp.html",
+    "release": "R2025b",
+    "title": "C2802x/C2803x/C2806x/F28M3x COMP",
+    "method": "old_family_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28M36x",
+      "C28x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p55x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype35.html",
+    "release": "R2025b",
+    "title": "ADC Type 3-5",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p55x"
+    ],
+    "name": "DAC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xdac.html",
+    "release": "R2025b",
+    "title": "C28x DAC",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p55x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype35.html",
+    "release": "R2025b",
+    "title": "ADC Type 3-5",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "DAC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c28xdac.html",
+    "release": "R2025b",
+    "title": "C28x DAC",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F28p65x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F29H85x"
+    ],
+    "name": "ADC",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adctype35.html",
+    "release": "R2025b",
+    "title": "ADC Type 3-5",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "F29H85x"
+    ],
+    "name": "ePWM",
+    "source_product": "ti-c2000",
+    "source_path": "ref/epwmtype14.html",
+    "release": "R2025b",
+    "title": "ePWM Type 1-4",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "Absolute IQN",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000absoluteiqn.html",
+    "release": "R2025b",
+    "title": "C2000 Absolute IQN",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "Arctangent IQN",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000arctangentiqn.html",
+    "release": "R2025b",
+    "title": "C2000 Arctangent IQN",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "Float to IQN",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000floattoiqn.html",
+    "release": "R2025b",
+    "title": "C2000 Float to IQN",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "Fractional part IQN x int32",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000fractionalpartiqnxint32.html",
+    "release": "R2025b",
+    "title": "C2000 Fractional part IQN x int32",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "Fractional part IQN",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000fractionalpartiqn.html",
+    "release": "R2025b",
+    "title": "C2000 Fractional part IQN",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "Integer part IQN x int32",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000integerpartiqnxint32.html",
+    "release": "R2025b",
+    "title": "C2000 Integer part IQN x int32",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "Integer part IQN",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000integerpartiqn.html",
+    "release": "R2025b",
+    "title": "C2000 Integer part IQN",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "IQN / IQN",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000divisioniqn.html",
+    "release": "R2025b",
+    "title": "C2000 Division IQN",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "IQN to Float",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000iqntofloat.html",
+    "release": "R2025b",
+    "title": "C2000 IQN to Float",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "IQN x int32",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000iqnxint32.html",
+    "release": "R2025b",
+    "title": "C2000 IQN x int32",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "IQN x IQN",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000iqnxiqn.html",
+    "release": "R2025b",
+    "title": "C2000 IQN x IQN",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "IQN1 to IQN2",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000iqn1toiqn2.html",
+    "release": "R2025b",
+    "title": "C2000 IQN1 to IQN2",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "IQN1 x IQN2",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000iqn1xiqn2.html",
+    "release": "R2025b",
+    "title": "C2000 IQN1 x IQN2",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "Magnitude IQN",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000magnitudeiqn.html",
+    "release": "R2025b",
+    "title": "C2000 Magnitude IQN",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "Saturate IQN",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000saturateiqn.html",
+    "release": "R2025b",
+    "title": "C2000 Saturate IQN",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "Square Root IQN",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000squarerootiqn.html",
+    "release": "R2025b",
+    "title": "C2000 Square Root IQN",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Optimization",
+      "C28x IQmath"
+    ],
+    "name": "Trig Fcn IQN",
+    "source_product": "ti-c2000",
+    "source_path": "ref/c2000trigfcniqn.html",
+    "release": "R2025b",
+    "title": "C2000 Trig Fcn IQN",
+    "method": "old_iqmath_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Sensors"
+    ],
+    "name": "ADXL34x",
+    "source_product": "ti-c2000",
+    "source_path": "ref/adxl34xaccelerometer.html",
+    "release": "R2025b",
+    "title": "ADXL34x Accelerometer",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Sensors"
+    ],
+    "name": "BMP280",
+    "source_product": "ti-c2000",
+    "source_path": "ref/bmp280pressuresensor.html",
+    "release": "R2025b",
+    "title": "BMP280 Pressure Sensor",
+    "method": "verified_variant"
+  },
+  {
+    "product": "C2000 Microcontroller Blockset",
+    "path": [
+      "Sensors"
+    ],
+    "name": "LIS3DH",
+    "source_product": "ti-c2000",
+    "source_path": "ref/lis3dhaccelerometersensor.html",
+    "release": "R2025b",
+    "title": "LIS3DH Accelerometer Sensor",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Control System Toolbox",
+    "path": [
+      "Linear Parameter Varying"
+    ],
+    "name": "Discrete Varying 2DOF PID",
+    "source_product": "simulink",
+    "source_path": "slref/discretepidcontroller2dof.html",
+    "release": "R2025b",
+    "title": "Discrete PID Controller (2DOF)",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Control System Toolbox",
+    "path": [
+      "Linear Parameter Varying"
+    ],
+    "name": "Discrete Varying PID",
+    "source_product": "simulink",
+    "source_path": "slref/discretepidcontroller.html",
+    "release": "R2025b",
+    "title": "Discrete PID Controller",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Control System Toolbox",
+    "path": [
+      "Linear Parameter Varying"
+    ],
+    "name": "Varying 2DOF PID",
+    "source_product": "simulink",
+    "source_path": "slref/pidcontroller2dof.html",
+    "release": "R2025b",
+    "title": "PID Controller (2DOF)",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Control System Toolbox",
+    "path": [
+      "Linear Parameter Varying"
+    ],
+    "name": "Varying PID Controller",
+    "source_product": "simulink",
+    "source_path": "slref/pidcontroller.html",
+    "release": "R2025b",
+    "title": "PID Controller",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Processing Functions"
+    ],
+    "name": "fixunknowns\\_reverse",
+    "source_product": "deeplearning",
+    "source_path": "ref/fixunknowns.html",
+    "release": "R2025b",
+    "title": "fixunknowns",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Processing Functions"
+    ],
+    "name": "lvqoutputs\\_reverse",
+    "source_product": "deeplearning",
+    "source_path": "ref/lvqoutputs.html",
+    "release": "R2025b",
+    "title": "lvqoutputs",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Processing Functions"
+    ],
+    "name": "mapstd\\_reverse",
+    "source_product": "deeplearning",
+    "source_path": "ref/mapstd.html",
+    "release": "R2025b",
+    "title": "mapstd",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Processing Functions"
+    ],
+    "name": "processpca\\_reverse",
+    "source_product": "deeplearning",
+    "source_path": "ref/processpca.html",
+    "release": "R2025b",
+    "title": "processpca",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Processing Functions"
+    ],
+    "name": "removeconstantrows\\_reverse",
+    "source_product": "deeplearning",
+    "source_path": "ref/removeconstantrows.html",
+    "release": "R2025b",
+    "title": "removeconstantrows",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Deep Learning Toolbox",
+    "path": [
+      "Shallow Neural Networks",
+      "Processing Functions"
+    ],
+    "name": "removerows\\_reverse",
+    "source_product": "deeplearning",
+    "source_path": "ref/removerows.html",
+    "release": "R2025b",
+    "title": "removerows",
+    "method": "verified_variant"
+  },
+  {
+    "product": "DSP System Toolbox HDL Support",
+    "path": [
+      "Signal Management"
+    ],
+    "name": "Convert 1-D to 2-D",
+    "source_product": "dsp",
+    "source_path": "ref/convert1dto2d.html",
+    "release": "R2023b",
+    "title": "Convert 1-D to 2-D",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Fixed-Point Designer HDL Support",
+    "path": [
+      "Matrices and Linear Algebra",
+      "Matrix Factorizations"
+    ],
+    "name": "Complex Partial-Systolic Q-less QR with Forgetting Factor",
+    "source_product": "fixedpoint",
+    "source_path": "ref/complexpartialsystolicqlessqrdecompositionwithforgettingfactor.html",
+    "release": "R2025b",
+    "title": "Complex Partial-Systolic Q-less QR with Forgetting Factor Decomposition",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Fixed-Point Designer HDL Support",
+    "path": [
+      "Matrices and Linear Algebra",
+      "Matrix Factorizations"
+    ],
+    "name": "Real Partial-Systolic Q-less QR with Forgetting Factor",
+    "source_product": "fixedpoint",
+    "source_path": "ref/realpartialsystolicqlessqrdecompositionwithforgettingfactor.html",
+    "release": "R2025b",
+    "title": "Real Partial-Systolic Q-less QR with Forgetting Factor Decomposition",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Foundation Library",
+    "path": [
+      "Hydraulic",
+      "Hydraulic Elements"
+    ],
+    "name": "Hydraulic Reference",
+    "source_product": "simscape",
+    "source_path": "ref/hydraulicreference.html",
+    "release": "R2025b",
+    "title": "Hydraulic Reference",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Acos",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "ACosh",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Asin",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "ASinh",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Atan",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "ATanh",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Ceil",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Conjugate",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Cosh",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Exp",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Fix",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Floor",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Hermitian",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Hypot",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Log",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Log10",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Magnitude Square",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Math Reciprocal",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Max",
+    "source_product": "simulink",
+    "source_path": "slref/minmax.html",
+    "release": "R2025b",
+    "title": "MinMax",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Min",
+    "source_product": "simulink",
+    "source_path": "slref/minmax.html",
+    "release": "R2025b",
+    "title": "MinMax",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Mod",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Pow",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Pow10",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Rem",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Round",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "SignedSqrt",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Sinh",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Square",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Tan",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "HDL Floating Point Operations"
+    ],
+    "name": "Tanh",
+    "source_product": "simulink",
+    "source_path": "slref/trigonometricfunction.html",
+    "release": "R2025b",
+    "title": "Trigonometric Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "Ports & Subsystems"
+    ],
+    "name": "Subsystem Reference",
+    "source_product": "simulink",
+    "source_path": "slref/variantsubsystem.html",
+    "release": "R2025b",
+    "title": "Variant Subsystem",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "Signal Routing"
+    ],
+    "name": "Bus Element In",
+    "source_product": "simulink",
+    "source_path": "slref/inbuselement.html",
+    "release": "R2025b",
+    "title": "In Bus Element",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "Signal Routing"
+    ],
+    "name": "Bus Element Out",
+    "source_product": "simulink",
+    "source_path": "slref/outbuselement.html",
+    "release": "R2025b",
+    "title": "Out Bus Element",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "Sinks"
+    ],
+    "name": "Floating Scope",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "HDL Coder",
+    "path": [
+      "Sinks"
+    ],
+    "name": "XY Graph",
+    "source_product": "simulink",
+    "source_path": "slref/mathfunction.html",
+    "release": "R2025b",
+    "title": "Math Function",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Model Predictive Control Toolbox",
+    "path": [],
+    "name": "Multistage Nonlinear MPC",
+    "source_product": "mpc",
+    "source_path": "ref/multistagenonlinearmpccontroller.html",
+    "release": "R2025b",
+    "title": "Multistage Nonlinear MPC Controller",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Radar Toolbox",
+    "path": [],
+    "name": "DBSCAN Clustering",
+    "source_product": "radar",
+    "source_path": "ref/dbscanclusterer.html",
+    "release": "R2025b",
+    "title": "DBSCAN Clusterer",
+    "method": "verified_variant"
+  },
+  {
+    "product": "RF Blockset",
+    "path": [
+      "Circuit Envelope",
+      "Elements"
+    ],
+    "name": "C",
+    "source_product": "simrf",
+    "source_path": "ref/capacitor.html",
+    "release": "R2025b",
+    "title": "Capacitor",
+    "method": "verified_variant"
+  },
+  {
+    "product": "RF Blockset",
+    "path": [
+      "Circuit Envelope",
+      "Elements"
+    ],
+    "name": "Gnd",
+    "source_product": "simrf",
+    "source_path": "ref/ground.html",
+    "release": "R2025b",
+    "title": "Ground",
+    "method": "verified_variant"
+  },
+  {
+    "product": "RF Blockset",
+    "path": [
+      "Circuit Envelope",
+      "Elements"
+    ],
+    "name": "L",
+    "source_product": "simrf",
+    "source_path": "ref/inductor.html",
+    "release": "R2025b",
+    "title": "Inductor",
+    "method": "verified_variant"
+  },
+  {
+    "product": "RF Blockset",
+    "path": [
+      "Circuit Envelope",
+      "Elements"
+    ],
+    "name": "R",
+    "source_product": "simrf",
+    "source_path": "ref/resistor.html",
+    "release": "R2025b",
+    "title": "Resistor",
+    "method": "verified_variant"
+  },
+  {
+    "product": "RF Blockset",
+    "path": [
+      "Circuit Envelope",
+      "Elements"
+    ],
+    "name": "Z",
+    "source_product": "simrf",
+    "source_path": "ref/impedance.html",
+    "release": "R2025b",
+    "title": "Impedance",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Sensor Fusion and Tracking Toolbox",
+    "path": [
+      "Multi-Object Tracking Algorithms"
+    ],
+    "name": "Probability Hypothesis Density Tracker",
+    "source_product": "fusion",
+    "source_path": "ref/probabilityhypothesisdensityphdtracker.html",
+    "release": "R2025b",
+    "title": "Probability Hypothesis Density (PHD) Tracker",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Additional Discrete"
+    ],
+    "name": "Discrete Transfer Fcn (with initial outputs)",
+    "source_product": "simulink",
+    "source_path": "slref/discretetransferfcn.html",
+    "release": "R2025b",
+    "title": "Discrete Transfer Fcn",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Additional Discrete"
+    ],
+    "name": "Discrete Transfer Fcn (with initial states)",
+    "source_product": "simulink",
+    "source_path": "slref/discretetransferfcn.html",
+    "release": "R2025b",
+    "title": "Discrete Transfer Fcn",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Additional Discrete"
+    ],
+    "name": "Discrete Zero-Pole (with initial outputs)",
+    "source_product": "simulink",
+    "source_path": "slref/discretezeropole.html",
+    "release": "R2025b",
+    "title": "Discrete Zero-Pole",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Additional Discrete"
+    ],
+    "name": "Discrete Zero-Pole (with initial states)",
+    "source_product": "simulink",
+    "source_path": "slref/discretezeropole.html",
+    "release": "R2025b",
+    "title": "Discrete Zero-Pole",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Additional Discrete"
+    ],
+    "name": "Idealized ADC quantizer",
+    "source_product": "simulink",
+    "source_path": "slref/quantizer.html",
+    "release": "R2025b",
+    "title": "Quantizer",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Additional Linear"
+    ],
+    "name": "State-Space (with initial outputs)",
+    "source_product": "simulink",
+    "source_path": "slref/statespace.html",
+    "release": "R2025b",
+    "title": "State-Space",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Additional Linear"
+    ],
+    "name": "Transfer Fcn (with initial outputs)",
+    "source_product": "simulink",
+    "source_path": "slref/transferfcn.html",
+    "release": "R2025b",
+    "title": "Transfer Fcn",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Additional Linear"
+    ],
+    "name": "Transfer Fcn (with initial states)",
+    "source_product": "simulink",
+    "source_path": "slref/transferfcn.html",
+    "release": "R2025b",
+    "title": "Transfer Fcn",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Additional Linear"
+    ],
+    "name": "Zero-Pole (with initial states)",
+    "source_product": "simulink",
+    "source_path": "slref/zeropole.html",
+    "release": "R2025b",
+    "title": "Zero-Pole",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Additional Sinks"
+    ],
+    "name": "Averaging Power Spectral Density",
+    "source_product": "audio",
+    "source_path": "../dsp/ref/spectrumanalyzerblock.html",
+    "release": "R2025b",
+    "title": "Spectrum Analyzer",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Additional Sinks"
+    ],
+    "name": "Averaging Spectrum Analyzer",
+    "source_product": "audio",
+    "source_path": "../dsp/ref/spectrumanalyzerblock.html",
+    "release": "R2025b",
+    "title": "Spectrum Analyzer",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Extras",
+    "path": [
+      "Additional Sinks"
+    ],
+    "name": "Power Spectral Density",
+    "source_product": "audio",
+    "source_path": "../dsp/ref/spectrumanalyzerblock.html",
+    "release": "R2025b",
+    "title": "Spectrum Analyzer",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Real-Time",
+    "path": [
+      "EtherCAT"
+    ],
+    "name": "Get SubDevice State",
+    "source_product": "slrealtime",
+    "source_path": "io_ref/ethercatgetdevicestate.html",
+    "release": "R2025b",
+    "title": "EtherCAT Get Device State",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Real-Time",
+    "path": [
+      "EtherCAT"
+    ],
+    "name": "Set SubDevice State",
+    "source_product": "slrealtime",
+    "source_path": "io_ref/ethercatsetdevicestate.html",
+    "release": "R2025b",
+    "title": "EtherCAT Set Device State",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Real-Time",
+    "path": [
+      "Logitech G29"
+    ],
+    "name": "Steering Wheel Read",
+    "source_product": "slrealtime",
+    "source_path": "io_ref/logitechg29steeringwheel.html",
+    "release": "R2025b",
+    "title": "Logitech G29 Steering Wheel",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Real-Time",
+    "path": [
+      "RS232"
+    ],
+    "name": "FIFO ASCII read",
+    "source_product": "slrealtime",
+    "source_path": "io_ref/fiforead.html",
+    "release": "R2025b",
+    "title": "FIFO Read",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Real-Time",
+    "path": [
+      "RS232"
+    ],
+    "name": "FIFO bin read",
+    "source_product": "slrealtime",
+    "source_path": "io_ref/fiforead.html",
+    "release": "R2025b",
+    "title": "FIFO Read",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Real-Time",
+    "path": [
+      "RS232"
+    ],
+    "name": "V2 Ascii Decode",
+    "source_product": "slrealtime",
+    "source_path": "io_ref/asciidecodev2.html",
+    "release": "R2025b",
+    "title": "ASCII Decode V2",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Real-Time",
+    "path": [
+      "RS232",
+      "Mainboard"
+    ],
+    "name": "Legacy Serial F",
+    "source_product": "slrealtime",
+    "source_path": "io_ref/legacyserialportf.html",
+    "release": "R2025b",
+    "title": "Legacy Serial Port F",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Simulink Test",
+    "path": [],
+    "name": "Observer",
+    "source_product": "sltest",
+    "source_path": "ref/observerreference.html",
+    "release": "R2025b",
+    "title": "Observer Reference",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Vehicle Dynamics Blockset",
+    "path": [
+      "Brakes"
+    ],
+    "name": "Drum Brake",
+    "source_product": "vdynblks",
+    "source_path": "ref/rotationalbrake.html",
+    "release": "R2025b",
+    "title": "Rotational Brake",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Vehicle Dynamics Blockset",
+    "path": [
+      "Brakes"
+    ],
+    "name": "External Torque Brake",
+    "source_product": "vdynblks",
+    "source_path": "ref/rotationalbrake.html",
+    "release": "R2025b",
+    "title": "Rotational Brake",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Vehicle Dynamics Blockset",
+    "path": [
+      "Brakes"
+    ],
+    "name": "Mapped Brake",
+    "source_product": "vdynblks",
+    "source_path": "ref/rotationalbrake.html",
+    "release": "R2025b",
+    "title": "Rotational Brake",
+    "method": "verified_variant"
+  },
+  {
+    "product": "Vehicle Dynamics Blockset",
+    "path": [
+      "Vehicle Scenarios",
+      "Drive Cycle and Maneuvers"
+    ],
+    "name": "Wide Open Throttle",
+    "source_product": "vdynblks",
+    "source_path": "ref/drivecyclesource.html",
+    "release": "R2025b",
+    "title": "Drive Cycle Source",
+    "method": "verified_variant"
+  }
+]

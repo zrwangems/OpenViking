@@ -1,16 +1,17 @@
 ---
 type: simulink-block
-title: 'AnalogIO Input'
+title: 'C2802x/C2803x/C2806x/F28M3x AnalogIO Input'
 family: 'ti-c2000'
 product_id: 'ti-c2000'
 product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
-official_category: 'C2000 Microcontroller Blockset / C2806x'
+official_category: 'C2802x'
+documentation_page: 'c2802xc2803xc2806xf28m3xanalogioinput'
+documentation_source_path: 'ref/c2802xc2803xc2806xf28m3xanalogioinput.html'
 language: en
-documentation_status: tree_only
 ---
 
-# AnalogIO Input
+# C2802x/C2803x/C2806x/F28M3x AnalogIO Input
 
 ## Ports
 
@@ -18,7 +19,39 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Parameters (Input pins)**
+:   Select the input pins to sample.
+
+**Sample time**
+:   Specify the time interval between samples. To inherit sample time from
+    the upstream block, set this parameter to -1.
+
+**Data type**
+:   Select the data type of the digital output data. If you select
+    `auto`, the block automatically selects the
+    data type for your model. You can also manually select a data type. You
+    can choose from the options `double`,
+    `single`, `int8`,
+    `uint8`, `int16`,
+    `uint16`, `int32`,
+    and `uint32`.
+
+**Parameters (Input pins)**
+:   Select the input pins to sample.
+
+**Sample time**
+:   Specify the time interval between samples. To inherit sample time from
+    the upstream block, set this parameter to -1.
+
+**Data type**
+:   Select the data type of the digital output data. If you select
+    `auto`, the block automatically selects the
+    data type for your model. You can also manually select a data type. You
+    can choose from the options `double`,
+    `single`, `int8`,
+    `uint8`, `int16`,
+    `uint16`, `int32`,
+    and `uint32`.
 
 ## Libraries
 
@@ -38,4 +71,13 @@ Not documented in R2025b.
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Configure pin, sample time, and data type for analog input
+
+# C2802x/C2803x/C2806x/F28M3x AnalogIO Input
+
+Configure pin, sample time, and data type for analog input
+
+Use this block to sample the voltage on Analog IO pins and output the
+results.
+
+- C2802x/C2803x/C2806x/F28M3x AnalogIO Input block

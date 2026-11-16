@@ -5,9 +5,10 @@ family: 'deeplearning'
 product_id: 'deeplearning'
 product_name: 'Deep Learning Toolbox'
 documentation_release: R2025b
-official_category: 'Deep Learning Toolbox / Shallow Neural Networks / Net Input Functions'
+official_category: 'Shallow Neural Networks / Net Input Functions'
+documentation_page: 'netprod'
+documentation_source_path: 'ref/netprod.html'
 language: en
-documentation_status: tree_only
 ---
 
 # netprod
@@ -34,8 +35,31 @@ Not documented in R2025b.
 
 ## Version History
 
-Not documented in R2025b.
+**Introduced before R2006a**
 
 ## Description
 
-This block occurs in the local R2025b Library Browser tree, but no unambiguous standalone official reference page is available.
+Product net input function
+
+`netprod` is a net input function. Net input functions calculate a layer’s
+net input by combining its weighted inputs and biases.
+
+`N = netprod({Z1,Z2,...,Zn})` takes
+
+|  |  |
+| --- | --- |
+| `Zi` | `S`-by-`Q` matrices in a row cell array |
+
+and returns an element-wise product of `Z1` to
+`Zn`.
+
+`info = netprod('code')` returns information
+about this function. The following codes are supported:
+
+|  |  |
+| --- | --- |
+| `'deriv'` | Name of derivative function |
+| `'fullderiv'` | Full `N`-by-`S`-by-`Q` derivative = 1, element-wise `S`-by-`Q` derivative = 0 |
+| `'name'` | Full name |
+| `'fpnames'` | Returns names of function parameters |
+| `'fpdefaults'` | Returns default function parameters |
