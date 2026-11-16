@@ -563,6 +563,11 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                 ]
             nodes = {}
             for library in libraries:
+                # The block catalog also contains tutorials, deployment workflows and
+                # other categories without blocks. They are not block-library pages.
+                # Ancestors of real blocks are still created by the loop below.
+                if not library["blocks"]:
+                    continue
                 relative_parts = (
                     library["path"][2:] if product["id"] == "simulink" else library["path"]
                 )
@@ -619,15 +624,6 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                     )
                     target.parent.mkdir(parents=True, exist_ok=True)
                     target.write_text(content, encoding="utf-8")
-                nodes[("Simulink", "Quick Insert")] = {
-                    "name": "Quick Insert",
-                    "blocks": [],
-                    "description": (
-                        "Quick Insert 是依赖模型上下文的动态插入入口，没有固定块清单。"
-                        if language == "zh"
-                        else "Quick Insert is a model-context-dependent dynamic insertion surface and has no fixed block list."
-                    ),
-                }
             for key, node in nodes.items():
                 directory = browser_root.joinpath(*key)
                 directory.mkdir(parents=True, exist_ok=True)
@@ -644,69 +640,10 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                 for block in node["blocks"]:
                     filename = block.get("resource_name", resource_component(block["name"]) + ".md")
                     lines.append(f"- [{block['name']}]({filename})")
-                if len(lines) == 2:
-                    lines.append(
-                        node.get(
-                            "description",
-                            (
-                                "这是 R2025b Library Browser 的官方分类节点。当前节点没有子目录，"
-                                "官方块清单也未在此列出固定块；保留该页是为了维持官方目录层级，"
-                                "不表示对应产品功能为空。"
-                                if language == "zh"
-                                else "This is an official R2025b Library Browser category. It has no "
-                                "subdirectories or fixed block entries in the official block manifest. "
-                                "The page preserves the official hierarchy and does not imply that the "
-                                "corresponding product functionality is unavailable."
-                            ),
-                        )
-                    )
-                    if len(key) > 1:
-                        lines.extend(
-                            [
-                                "",
-                                (
-                                    "- [返回上级目录](../index.md)"
-                                    if language == "zh"
-                                    else "- [Back to parent directory](../index.md)"
-                                ),
-                            ]
-                        )
-                    if len(key) > 2:
-                        product_index = "../" * (len(key) - 1) + "index.md"
-                        product_name = nodes[(key[0],)]["name"]
-                        lines.append(
-                            f"- [查看 {product_name} 目录]({product_index})"
-                            if language == "zh"
-                            else f"- [Browse {product_name}]({product_index})"
-                        )
                 (directory / "index.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-        for name, (directory, target_product) in BROWSER_ALIASES.items():
-            alias = browser_root / directory
-            alias.mkdir(parents=True, exist_ok=True)
-            (alias / "index.md").write_text(
-                f"# {name}\n\n"
-                + (
-                    "这是本机 Library Browser 支持库入口。公开 R2025b 目录没有它的独立块库 XML，以下链接只用于查阅关联产品文档，不代表已枚举该支持库的全部块。\n\n"
-                    if language == "zh"
-                    else "This support-library entry is visible in the local Library Browser. The public R2025b catalog has no independent block XML for it; the associated product below is reference documentation, not a claim that every support-library block has been enumerated.\n\n"
-                )
-                + f"[{'打开关联产品文档' if language == 'zh' else 'Open associated product documentation'}](../{target_product}/index.md)\n",
-                encoding="utf-8",
-            )
-        for name in BROWSER_LOCAL_ONLY:
-            directory = resource_component(name)
-            local = browser_root / directory
-            local.mkdir(parents=True, exist_ok=True)
-            (local / "index.md").write_text(
-                f"# {name}\n\n"
-                + (
-                    "该入口来自用户本机 R2025b Library Browser。公开产品目录没有对应的独立块库 XML，因此这里没有虚构子库或块；需要从该 MATLAB 安装实例导出本机库树后补齐。\n"
-                    if language == "zh"
-                    else "This entry comes from the user's local R2025b Library Browser. The public product catalog has no corresponding independent block XML, so no children are fabricated; enumerate the local MATLAB installation to populate them.\n"
-                ),
-                encoding="utf-8",
-            )
-        root_entries = [(name, resource_component(name)) for name, _ in BROWSER_PRODUCTS]
+        root_entries = [
+            (product["name"], resource_component(product["name"])) for product in products
+        ]
         root_index.extend(f"- [{name}]({directory}/index.md)" for name, directory in root_entries)
         (browser_root / "index.md").write_text("\n".join(root_index) + "\n", encoding="utf-8")
     totals = manifest["totals"]

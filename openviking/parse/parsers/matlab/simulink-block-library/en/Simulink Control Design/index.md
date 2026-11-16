@@ -1,6 +1,5 @@
 # Simulink Control Design
 
-- [Get Started with Simulink Control Design](Get Started with Simulink Control Design/index.md)
 - [Operating Points](Operating Points/index.md)
 - [Linearization](Linearization/index.md)
 - [Frequency Response Estimation](Frequency Response Estimation/index.md)
