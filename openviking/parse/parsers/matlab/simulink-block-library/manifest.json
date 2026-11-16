@@ -7138,32 +7138,6 @@
               }
             },
             {
-              "name": "Subsystem Examples",
-              "type": "block",
-              "documentation_path": "slref/subsystem.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Subsystem",
-              "source_release": "R2025b",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simulink/Commonly Used Blocks/Subsystem.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simulink/Commonly Used Blocks/Subsystem.md"
-                }
-              },
-              "resource_name": "Subsystem Examples.md",
-              "resource_paths": {
-                "en": "en/Simulink/Ports & Subsystems/Subsystem Examples.md",
-                "zh": "zh/Simulink/Ports & Subsystems/Subsystem Examples.md"
-              }
-            },
-            {
               "name": "Subsystem Reference",
               "type": "block",
               "documentation_path": "slref/subsystem.html",
@@ -8819,21 +8793,21 @@
             {
               "name": "Add Constant",
               "type": "block",
-              "documentation_path": "slref/mathfunction.html",
+              "documentation_path": "slref/sum.html",
               "summary": "",
               "introduced": null,
               "updated": [],
-              "documented_as": "Math Function",
+              "documented_as": "Sum",
               "source_release": "R2025b",
               "match_kind": "verified_override",
               "documents": {
                 "en": {
                   "status": "available",
-                  "path": "en/Simulink/Math Operations/Math Function.md"
+                  "path": "en/Simulink/Commonly Used Blocks/Sum.md"
                 },
                 "zh": {
                   "status": "available",
-                  "path": "zh/Simulink/Math Operations/Math Function.md"
+                  "path": "zh/Simulink/Commonly Used Blocks/Sum.md"
                 }
               },
               "resource_name": "Add Constant.md",
@@ -9394,21 +9368,21 @@
             {
               "name": "Matrix Divide",
               "type": "block",
-              "documentation_path": "slref/mathfunction.html",
+              "documentation_path": "slref/divide.html",
               "summary": "",
               "introduced": null,
               "updated": [],
-              "documented_as": "Math Function",
+              "documented_as": "Divide",
               "source_release": "R2025b",
               "match_kind": "verified_override",
               "documents": {
                 "en": {
                   "status": "available",
-                  "path": "en/Simulink/Math Operations/Math Function.md"
+                  "path": "en/Simulink/Math Operations/Divide.md"
                 },
                 "zh": {
                   "status": "available",
-                  "path": "zh/Simulink/Math Operations/Math Function.md"
+                  "path": "zh/Simulink/Math Operations/Divide.md"
                 }
               },
               "resource_name": "Matrix Divide.md",
@@ -10431,21 +10405,21 @@
             {
               "name": "Signal Copy",
               "type": "block",
-              "documentation_path": "slref/datatypeconversion.html",
+              "documentation_path": "slref/signalconversion.html",
               "summary": "",
               "introduced": null,
               "updated": [],
-              "documented_as": "Data Type Conversion",
+              "documented_as": "Signal Conversion",
               "source_release": "R2025b",
               "match_kind": "verified_override",
               "documents": {
                 "en": {
                   "status": "available",
-                  "path": "en/Simulink/Commonly Used Blocks/Data Type Conversion.md"
+                  "path": "en/Simulink/Quick Insert/Signal Attributes/Signal Copy.md"
                 },
                 "zh": {
                   "status": "available",
-                  "path": "zh/Simulink/Commonly Used Blocks/Data Type Conversion.md"
+                  "path": "zh/Simulink/Quick Insert/Signal Attributes/Signal Copy.md"
                 }
               },
               "resource_name": "Signal Copy.md",
@@ -10457,21 +10431,21 @@
             {
               "name": "To Nonvirtual Bus",
               "type": "block",
-              "documentation_path": "slref/datatypeconversion.html",
+              "documentation_path": "slref/signalconversion.html",
               "summary": "",
               "introduced": null,
               "updated": [],
-              "documented_as": "Data Type Conversion",
+              "documented_as": "Signal Conversion",
               "source_release": "R2025b",
               "match_kind": "verified_override",
               "documents": {
                 "en": {
                   "status": "available",
-                  "path": "en/Simulink/Commonly Used Blocks/Data Type Conversion.md"
+                  "path": "en/Simulink/Quick Insert/Signal Attributes/Signal Copy.md"
                 },
                 "zh": {
                   "status": "available",
-                  "path": "zh/Simulink/Commonly Used Blocks/Data Type Conversion.md"
+                  "path": "zh/Simulink/Quick Insert/Signal Attributes/Signal Copy.md"
                 }
               },
               "resource_name": "To Nonvirtual Bus.md",
@@ -10483,21 +10457,21 @@
             {
               "name": "To Virtual Bus",
               "type": "block",
-              "documentation_path": "slref/datatypeconversion.html",
+              "documentation_path": "slref/signalconversion.html",
               "summary": "",
               "introduced": null,
               "updated": [],
-              "documented_as": "Data Type Conversion",
+              "documented_as": "Signal Conversion",
               "source_release": "R2025b",
               "match_kind": "verified_override",
               "documents": {
                 "en": {
                   "status": "available",
-                  "path": "en/Simulink/Commonly Used Blocks/Data Type Conversion.md"
+                  "path": "en/Simulink/Quick Insert/Signal Attributes/Signal Copy.md"
                 },
                 "zh": {
                   "status": "available",
-                  "path": "zh/Simulink/Commonly Used Blocks/Data Type Conversion.md"
+                  "path": "zh/Simulink/Quick Insert/Signal Attributes/Signal Copy.md"
                 }
               },
               "resource_name": "To Virtual Bus.md",
@@ -10949,32 +10923,6 @@
               }
             },
             {
-              "name": "Data Type Propagation Examples",
-              "type": "block",
-              "documentation_path": "slref/datatypepropagation.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Data Type Propagation",
-              "source_release": "R2025b",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simulink/Signal Attributes/Data Type Propagation.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simulink/Signal Attributes/Data Type Propagation.md"
-                }
-              },
-              "resource_name": "Data Type Propagation Examples.md",
-              "resource_paths": {
-                "en": "en/Simulink/Signal Attributes/Data Type Propagation Examples.md",
-                "zh": "zh/Simulink/Signal Attributes/Data Type Propagation Examples.md"
-              }
-            },
-            {
               "name": "Data Type Scaling Strip",
               "type": "block",
               "documentation_path": "slref/datatypescalingstrip.html",
@@ -11117,11 +11065,11 @@
               "documents": {
                 "en": {
                   "status": "available",
-                  "path": "en/Simulink/Signal Attributes/Signal Conversion.md"
+                  "path": "en/Simulink/Quick Insert/Signal Attributes/Signal Copy.md"
                 },
                 "zh": {
                   "status": "available",
-                  "path": "zh/Simulink/Signal Attributes/Signal Conversion.md"
+                  "path": "zh/Simulink/Quick Insert/Signal Attributes/Signal Copy.md"
                 }
               },
               "match_kind": "exact",
@@ -13970,32 +13918,6 @@
               }
             },
             {
-              "name": "S-Function Examples",
-              "type": "block",
-              "documentation_path": "slref/sfunction.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "S-Function",
-              "source_release": "R2025b",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simulink/User-Defined Functions/S-Function.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simulink/User-Defined Functions/S-Function.md"
-                }
-              },
-              "resource_name": "S-Function Examples.md",
-              "resource_paths": {
-                "en": "en/Simulink/User-Defined Functions/S-Function Examples.md",
-                "zh": "zh/Simulink/User-Defined Functions/S-Function Examples.md"
-              }
-            },
-            {
               "name": "Simulink Function",
               "type": "block",
               "documentation_path": "slref/simulinkfunction.html",
@@ -14059,7 +13981,7 @@
           "blocks": []
         }
       ],
-      "block_occurrences": 514,
+      "block_occurrences": 511,
       "unique_document_paths": 350
     },
     {
@@ -20479,32 +20401,6 @@
               }
             },
             {
-              "name": "Info",
-              "type": "block",
-              "documentation_path": "ref/labeldefinitioncreatormultisignal.info.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "info",
-              "source_release": "R2023b",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Automated Driving Toolbox/Info.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Automated Driving Toolbox/Info.md"
-                }
-              },
-              "resource_name": "Info.md",
-              "resource_paths": {
-                "en": "en/Automated Driving Toolbox/Info.md",
-                "zh": "zh/Automated Driving Toolbox/Info.md"
-              }
-            },
-            {
               "name": "Multi-Object Tracker",
               "type": "block",
               "documentation_path": "ref/multiobjecttracker.html",
@@ -20585,8 +20481,8 @@
           ]
         }
       ],
-      "block_occurrences": 35,
-      "unique_document_paths": 34
+      "block_occurrences": 34,
+      "unique_document_paths": 33
     },
     {
       "id": "autosar",
@@ -43935,38 +43831,11 @@
         {
           "path": [],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Info",
-              "type": "block",
-              "documentation_path": "ref/labeldefinitioncreator.info.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "info",
-              "source_release": "R2023b",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Computer Vision Toolbox/Info.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Computer Vision Toolbox/Info.md"
-                }
-              },
-              "resource_name": "Info.md",
-              "resource_paths": {
-                "en": "en/Computer Vision Toolbox/Info.md",
-                "zh": "zh/Computer Vision Toolbox/Info.md"
-              }
-            }
-          ]
+          "blocks": []
         }
       ],
-      "block_occurrences": 75,
-      "unique_document_paths": 74
+      "block_occurrences": 74,
+      "unique_document_paths": 73
     },
     {
       "id": "control",
@@ -57195,38 +57064,11 @@
         {
           "path": [],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Info",
-              "type": "block",
-              "documentation_path": "ref/dsp.allpassfilter.info.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "info",
-              "source_release": "R2025b",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/DSP System Toolbox/Info.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/DSP System Toolbox/Info.md"
-                }
-              },
-              "resource_name": "Info.md",
-              "resource_paths": {
-                "en": "en/DSP System Toolbox/Info.md",
-                "zh": "zh/DSP System Toolbox/Info.md"
-              }
-            }
-          ]
+          "blocks": []
         }
       ],
-      "block_occurrences": 238,
-      "unique_document_paths": 220
+      "block_occurrences": 237,
+      "unique_document_paths": 219
     },
     {
       "id": "dsp-system-toolbox-hdl-support",
@@ -90496,21 +90338,21 @@
             {
               "name": "Subsystem Reference",
               "type": "block",
-              "documentation_path": "../simulink/slref/variantsubsystem.html",
+              "documentation_path": "../simulink/slref/subsystem.html",
               "summary": "",
               "introduced": null,
               "updated": [],
-              "documented_as": "Variant Subsystem",
+              "documented_as": "Subsystem",
               "source_release": "R2025b",
               "match_kind": "verified_override",
               "documents": {
                 "en": {
                   "status": "available",
-                  "path": "en/HDL Coder/Ports & Subsystems/Subsystem Reference.md"
+                  "path": "en/HDL Coder/Ports & Subsystems/Atomic Subsystem.md"
                 },
                 "zh": {
                   "status": "available",
-                  "path": "zh/HDL Coder/Ports & Subsystems/Subsystem Reference.md"
+                  "path": "zh/HDL Coder/Ports & Subsystems/Atomic Subsystem.md"
                 }
               },
               "resource_name": "Subsystem Reference.md",
@@ -90640,11 +90482,11 @@
               "documents": {
                 "en": {
                   "status": "available",
-                  "path": "en/HDL Coder/Ports & Subsystems/Subsystem Reference.md"
+                  "path": "en/HDL Coder/Ports & Subsystems/Variant Subsystem.md"
                 },
                 "zh": {
                   "status": "available",
-                  "path": "zh/HDL Coder/Ports & Subsystems/Subsystem Reference.md"
+                  "path": "zh/HDL Coder/Ports & Subsystems/Variant Subsystem.md"
                 }
               },
               "match_kind": "exact",
@@ -91422,21 +91264,21 @@
             {
               "name": "Floating Scope",
               "type": "block",
-              "documentation_path": "../simulink/slref/mathfunction.html",
+              "documentation_path": "../simulink/slref/scopeviewer.html",
               "summary": "",
               "introduced": null,
               "updated": [],
-              "documented_as": "Math Function",
+              "documented_as": "Floating Scope and Scope Viewer",
               "source_release": "R2025b",
               "match_kind": "verified_override",
               "documents": {
                 "en": {
                   "status": "available",
-                  "path": "en/HDL Coder/HDL Floating Point Operations/Ceil.md"
+                  "path": "en/HDL Coder/Sinks/Floating Scope.md"
                 },
                 "zh": {
                   "status": "available",
-                  "path": "zh/HDL Coder/HDL Floating Point Operations/Ceil.md"
+                  "path": "zh/HDL Coder/Sinks/Floating Scope.md"
                 }
               },
               "resource_name": "Floating Scope.md",
@@ -91643,21 +91485,21 @@
             {
               "name": "XY Graph",
               "type": "block",
-              "documentation_path": "../simulink/slref/mathfunction.html",
+              "documentation_path": "../simulink/slref/record.html",
               "summary": "",
               "introduced": null,
               "updated": [],
-              "documented_as": "Math Function",
+              "documented_as": "Record, XY Graph",
               "source_release": "R2025b",
               "match_kind": "verified_override",
               "documents": {
                 "en": {
                   "status": "available",
-                  "path": "en/HDL Coder/HDL Floating Point Operations/Ceil.md"
+                  "path": "en/HDL Coder/Sinks/XY Graph.md"
                 },
                 "zh": {
                   "status": "available",
-                  "path": "zh/HDL Coder/HDL Floating Point Operations/Ceil.md"
+                  "path": "zh/HDL Coder/Sinks/XY Graph.md"
                 }
               },
               "resource_name": "XY Graph.md",
@@ -91986,7 +91828,7 @@
         }
       ],
       "block_occurrences": 262,
-      "unique_document_paths": 183
+      "unique_document_paths": 185
     },
     {
       "id": "hdlverifier",
@@ -123370,34 +123212,7 @@
             "Vehicle Scenarios"
           ],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Driver",
-              "type": "block",
-              "documentation_path": "ref/longitudinaldriver.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Longitudinal Driver",
-              "source_release": "R2023b",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Vehicle Dynamics Blockset/Vehicle Scenarios/Driver.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Vehicle Dynamics Blockset/Vehicle Scenarios/Driver.md"
-                }
-              },
-              "resource_name": "Driver.md",
-              "resource_paths": {
-                "en": "en/Vehicle Dynamics Blockset/Vehicle Scenarios/Driver.md",
-                "zh": "zh/Vehicle Dynamics Blockset/Vehicle Scenarios/Driver.md"
-              }
-            }
-          ]
+          "blocks": []
         },
         {
           "path": [
@@ -123903,8 +123718,8 @@
           ]
         }
       ],
-      "block_occurrences": 65,
-      "unique_document_paths": 57
+      "block_occurrences": 64,
+      "unique_document_paths": 56
     },
     {
       "id": "vnt",
@@ -126908,15 +126723,15 @@
     "products": 75,
     "products_with_blocks": 75,
     "products_without_block_library": 0,
-    "block_occurrences": 4572,
-    "unique_product_document_paths": 3814,
+    "block_occurrences": 4565,
+    "unique_product_document_paths": 3812,
     "full_document_occurrences": {
-      "en": 4572,
-      "zh": 4572
+      "en": 4565,
+      "zh": 4565
     },
     "full_documents": {
-      "en": 3814,
-      "zh": 3814
+      "en": 3812,
+      "zh": 3812
     },
     "pending_documents": {
       "en": 0,
@@ -126928,9 +126743,9 @@
     "tree_products": 75,
     "tree_directories": 741,
     "tree_blocks": 4792,
-    "matched_blocks": 4572,
+    "matched_blocks": 4565,
     "tree_only_blocks": 0,
-    "verified_override_blocks": 589,
+    "verified_override_blocks": 582,
     "excluded_non_block_entries": [
       {
         "product": "Simulink",
@@ -127474,6 +127289,30 @@
       },
       {
         "product": "Simulink",
+        "path": [
+          "Ports & Subsystems"
+        ],
+        "name": "Subsystem Examples",
+        "reason": "non_block_browser_entry"
+      },
+      {
+        "product": "Simulink",
+        "path": [
+          "Signal Attributes"
+        ],
+        "name": "Data Type Propagation Examples",
+        "reason": "non_block_browser_entry"
+      },
+      {
+        "product": "Simulink",
+        "path": [
+          "User-Defined Functions"
+        ],
+        "name": "S-Function Examples",
+        "reason": "non_block_browser_entry"
+      },
+      {
+        "product": "Simulink",
         "path": [],
         "name": "Blocksets & Toolboxes",
         "reason": "non_block_browser_entry"
@@ -127563,6 +127402,12 @@
       {
         "product": "Automated Driving Toolbox",
         "path": [],
+        "name": "Info",
+        "reason": "non_block_browser_entry"
+      },
+      {
+        "product": "Automated Driving Toolbox",
+        "path": [],
         "name": "Subsystem",
         "reason": "product_or_subsystem_library_link"
       },
@@ -127621,6 +127466,12 @@
       {
         "product": "Computer Vision Toolbox",
         "path": [],
+        "name": "Info",
+        "reason": "non_block_browser_entry"
+      },
+      {
+        "product": "Computer Vision Toolbox",
+        "path": [],
         "name": "Subsystem",
         "reason": "product_or_subsystem_library_link"
       },
@@ -127661,6 +127512,12 @@
         "product": "DSP System Toolbox",
         "path": [],
         "name": "Demos",
+        "reason": "non_block_browser_entry"
+      },
+      {
+        "product": "DSP System Toolbox",
+        "path": [],
+        "name": "Info",
         "reason": "non_block_browser_entry"
       },
       {
@@ -128631,6 +128488,14 @@
         ],
         "name": "Sim3D Core",
         "reason": "no_verified_official_block_reference"
+      },
+      {
+        "product": "Vehicle Dynamics Blockset",
+        "path": [
+          "Vehicle Scenarios"
+        ],
+        "name": "Driver",
+        "reason": "non_block_browser_entry"
       },
       {
         "product": "Vision HDL Toolbox",

@@ -16,18 +16,6 @@
     "path": [
       "Ports & Subsystems"
     ],
-    "name": "Subsystem Examples",
-    "source_product": "simulink",
-    "source_path": "slref/subsystem.html",
-    "release": "R2025b",
-    "title": "Subsystem",
-    "method": "search_variant"
-  },
-  {
-    "product": "Simulink",
-    "path": [
-      "Ports & Subsystems"
-    ],
     "name": "Subsystem Reference",
     "source_product": "simulink",
     "source_path": "slref/subsystem.html",
@@ -142,18 +130,6 @@
   {
     "product": "Simulink",
     "path": [
-      "Signal Attributes"
-    ],
-    "name": "Data Type Propagation Examples",
-    "source_product": "simulink",
-    "source_path": "slref/datatypepropagation.html",
-    "release": "R2025b",
-    "title": "Data Type Propagation",
-    "method": "search_variant"
-  },
-  {
-    "product": "Simulink",
-    "path": [
       "Sinks"
     ],
     "name": "XY Graph",
@@ -174,18 +150,6 @@
     "release": "R2023b",
     "title": "String Contains, String Starts With, String Ends With",
     "method": "old_search"
-  },
-  {
-    "product": "Simulink",
-    "path": [
-      "User-Defined Functions"
-    ],
-    "name": "S-Function Examples",
-    "source_product": "simulink",
-    "source_path": "slref/sfunction.html",
-    "release": "R2025b",
-    "title": "S-Function",
-    "method": "search_variant"
   },
   {
     "product": "Aerospace Blockset",
@@ -273,16 +237,6 @@
     "release": "R2025b",
     "title": "Bicycle Model",
     "method": "search_variant"
-  },
-  {
-    "product": "Automated Driving Toolbox",
-    "path": [],
-    "name": "Info",
-    "source_product": "driving",
-    "source_path": "ref/labeldefinitioncreatormultisignal.info.html",
-    "release": "R2023b",
-    "title": "info",
-    "method": "old_search"
   },
   {
     "product": "C2000 Microcontroller Blockset",
@@ -3094,16 +3048,6 @@
     "method": "search_variant"
   },
   {
-    "product": "Computer Vision Toolbox",
-    "path": [],
-    "name": "Info",
-    "source_product": "vision",
-    "source_path": "ref/labeldefinitioncreator.info.html",
-    "release": "R2023b",
-    "title": "info",
-    "method": "old_search"
-  },
-  {
     "product": "Deep Learning Toolbox",
     "path": [
       "Shallow Neural Networks",
@@ -3440,16 +3384,6 @@
     "release": "R2025b",
     "title": "normprod",
     "method": "direct"
-  },
-  {
-    "product": "DSP System Toolbox",
-    "path": [],
-    "name": "Info",
-    "source_product": "dsp",
-    "source_path": "ref/dsp.allpassfilter.info.html",
-    "release": "R2025b",
-    "title": "info",
-    "method": "search_exact"
   },
   {
     "product": "Foundation Library",
@@ -4192,18 +4126,6 @@
   {
     "product": "Vehicle Dynamics Blockset",
     "path": [
-      "Vehicle Scenarios"
-    ],
-    "name": "Driver",
-    "source_product": "vdynblks",
-    "source_path": "ref/longitudinaldriver.html",
-    "release": "R2023b",
-    "title": "Longitudinal Driver",
-    "method": "old_search"
-  },
-  {
-    "product": "Vehicle Dynamics Blockset",
-    "path": [
       "Wheels and Tires"
     ],
     "name": "Longitudinal Wheel - Disc Brake",
@@ -4790,10 +4712,10 @@
     ],
     "name": "Add Constant",
     "source_product": "simulink",
-    "source_path": "slref/mathfunction.html",
+    "source_path": "slref/sum.html",
     "release": "R2025b",
-    "title": "Math Function",
-    "method": "verified_variant"
+    "title": "Sum",
+    "method": "reviewed_variant"
   },
   {
     "product": "Simulink",
@@ -5037,10 +4959,10 @@
     ],
     "name": "Matrix Divide",
     "source_product": "simulink",
-    "source_path": "slref/mathfunction.html",
+    "source_path": "slref/divide.html",
     "release": "R2025b",
-    "title": "Math Function",
-    "method": "verified_variant"
+    "title": "Divide",
+    "method": "reviewed_variant"
   },
   {
     "product": "Simulink",
@@ -5362,10 +5284,10 @@
     ],
     "name": "Signal Copy",
     "source_product": "simulink",
-    "source_path": "slref/datatypeconversion.html",
+    "source_path": "slref/signalconversion.html",
     "release": "R2025b",
-    "title": "Data Type Conversion",
-    "method": "verified_variant"
+    "title": "Signal Conversion",
+    "method": "reviewed_variant"
   },
   {
     "product": "Simulink",
@@ -5375,10 +5297,10 @@
     ],
     "name": "To Nonvirtual Bus",
     "source_product": "simulink",
-    "source_path": "slref/datatypeconversion.html",
+    "source_path": "slref/signalconversion.html",
     "release": "R2025b",
-    "title": "Data Type Conversion",
-    "method": "verified_variant"
+    "title": "Signal Conversion",
+    "method": "reviewed_variant"
   },
   {
     "product": "Simulink",
@@ -5388,10 +5310,10 @@
     ],
     "name": "To Virtual Bus",
     "source_product": "simulink",
-    "source_path": "slref/datatypeconversion.html",
+    "source_path": "slref/signalconversion.html",
     "release": "R2025b",
-    "title": "Data Type Conversion",
-    "method": "verified_variant"
+    "title": "Signal Conversion",
+    "method": "reviewed_variant"
   },
   {
     "product": "Simulink",
@@ -6875,10 +6797,10 @@
     ],
     "name": "Subsystem Reference",
     "source_product": "simulink",
-    "source_path": "slref/variantsubsystem.html",
+    "source_path": "slref/subsystem.html",
     "release": "R2025b",
-    "title": "Variant Subsystem",
-    "method": "verified_variant"
+    "title": "Subsystem",
+    "method": "reviewed_variant"
   },
   {
     "product": "HDL Coder",
@@ -6911,10 +6833,10 @@
     ],
     "name": "Floating Scope",
     "source_product": "simulink",
-    "source_path": "slref/mathfunction.html",
+    "source_path": "slref/scopeviewer.html",
     "release": "R2025b",
-    "title": "Math Function",
-    "method": "verified_variant"
+    "title": "Floating Scope and Scope Viewer",
+    "method": "reviewed_variant"
   },
   {
     "product": "HDL Coder",
@@ -6923,10 +6845,10 @@
     ],
     "name": "XY Graph",
     "source_product": "simulink",
-    "source_path": "slref/mathfunction.html",
+    "source_path": "slref/record.html",
     "release": "R2025b",
-    "title": "Math Function",
-    "method": "verified_variant"
+    "title": "Record, XY Graph",
+    "method": "reviewed_variant"
   },
   {
     "product": "Model Predictive Control Toolbox",

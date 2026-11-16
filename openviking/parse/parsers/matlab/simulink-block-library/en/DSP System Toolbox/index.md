@@ -13,4 +13,3 @@
 - [Sources](Sources/index.md)
 - [Statistics](Statistics/index.md)
 - [Transforms](Transforms/index.md)
-- [Info](Info.md)

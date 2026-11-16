@@ -1,170 +1,50 @@
 ---
 type: simulink-block
-title: 'Math Function'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+title: 'Record'
+family: 'simulink'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'HDL Floating Point Operations'
-documentation_page: 'mathfunction'
-documentation_source_path: '../simulink/slref/mathfunction.html'
+official_category: 'Sinks'
+documentation_page: 'record'
+documentation_source_path: 'slref/record.html'
 language: zh-CN
-chinese_source: official
+chinese_source: worker-translation
 ---
 
-# Math Function
+# Record
 
 ## 端口
 
 ### 输入
 
-### **Port\_1** — 输入信号 标量 | 向量 | 矩阵
+### **Port\_1** — 要记录的信号 scalar | vector | matrix | array | bus
 
-输入信号，指定为标量、向量或矩阵。受支持的模式同时接受实数和复数输入，但 `reciprocal` 除外，它不接受复数定点输入。请参阅描述。
+要记录的信号。您可以通过将连线拖到模块边缘或使用 **端口** 参数来向 Record 模块添加端口。
 
-#### 依赖关系
+Record 模块支持记录可变大小信号，但不支持可视化可变大小信号。
 
-此模块的数据类型支持取决于您选择的**函数**和输入的大小。有关详细信息，请参阅数据类型支持。
+XY Graph 模块是 Record 模块的替代配置，用于在 XY 图上可视化连接到两个输入端口的数据。第一个输入端口提供 XY 图的 *x* 数据，第二个输入端口提供 *y* 数据。
 
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
+#### 提示
 
-### **Port\_2** — 输入信号 标量 | 向量 | 矩阵
+- 要记录基于帧的数据，请为接收基于帧信号的每个端口指定 **输入处理** 参数。
+- 当您将非标量信号连接到 XY Graph 模块的输入端口时，必须手动配置非标量信号的哪些通道或元素为 XY 图提供 *x* 和 *y* 数据。
 
-输入信号，指定为标量、向量或矩阵。受支持的模式同时接受实数和复数输入，但 `reciprocal` 除外，它不接受复数定点输入。
-
-#### 依赖关系
-
-要启用此端口，请将**函数**设置为 **hypot**、**rem** 或 **mod**。
-
-此模块的数据类型支持取决于您选择的**函数**和输入的大小。有关详细信息，请参阅数据类型支持。
-
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-### 输出
-
-### **Port\_1** — 对一个或多个输入执行函数运算的结果 标量 | 向量 | 矩阵
-
-输出信号，指定为标量、向量或矩阵。模块输出的维度取决于您选择的**函数**和输入的大小。模块输出是实数还是复数取决于您的**输出信号类型**选项。请参阅描述。
-
-#### 使用牛顿-拉夫逊方法的 `reciprocal`
-
-使用牛顿-拉夫逊方法的 `reciprocal` 的输出数据类型取决于输入数据类型：
-
-| 输入数据类型 | 输出数据类型 |
-| --- | --- |
-| 单精度 | 单精度 |
-| 双精度 | 双精度 |
-| 内置整数 | 内置整数 |
-| 内置定点 | 内置定点 |
-| `fi` (*value*, 0, *word\_length*, *fraction\_length*) | `fi` (*value*, 0, *word\_length*, *word\_length*–*fraction\_length*–1) |
-| `fi` (*value*, 1, *word\_length*, *fraction\_length*) | `fi` (*value*, 1, *word\_length*, *word\_length*–*fraction\_length*–2) |
-
-**数据类型:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
+**数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image` | `datetime`
+**复数支持：** 是
 
 ## 参数
 
-### 常设
+要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **仿真** 选项卡上，在 **准备** 库中，选择 **属性检查器**。
 
-### **函数** — 数学函数 **exp** (默认) | **log** | **2^u** | **10^u** | **log10** | **magnitude^2** | **方波** | **pow** | **conj** | **倒数** | **hypot** | **rem** | **mod** | **转置** | **hermitian**
+### 主要
 
-指定数学函数。有关此参数的选项的详细信息，请参阅描述。
+### **输入端口数** — 输入端口数 `1`（默认）| [`1,100`] 范围内的整数
 
-#### 依赖关系
+输入端口数，指定为介于 `1` 和 `100` 之间（含两端）的整数。
 
-将**函数**设置为 **pow** 会启用**有符号幂**参数。
-
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数**：`Operator` |
-| **类型：**字符向量 |
-| **值**：`'exp' | 'log' | '2^u' | '10^u' | 'log10' | 'magnitude^2' | 'square' | 'pow' | 'conj' | 'reciprocal' | 'hypot' | 'rem' | 'mod' | 'transpose' | 'hermitian'` |
-| **默认值：**`'exp'` |
-
-### **算法方法** — `reciprocal` 函数的算法方法 **完全** (默认) | **牛顿-拉夫逊**
-
-`reciprocal` 函数的算法方法，指定为**完全**或**牛顿-拉夫逊**。要使用牛顿-拉夫逊逼近方法计算倒数，请选择**牛顿-拉夫逊**。否则，请选择**完全**。
-
-#### 依赖关系
-
-将**函数**设置为**倒数**会启用此参数。
-
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数**：`AlgorithmType` |
-| **类型：**字符向量 |
-| **值：**`'Exact' | 'Newton-Raphson'` |
-| **默认值**：`'Exact'` |
-
-### **有符号幂** — 幂的符号性 on (默认) | off
-
-计算幂时（指定为开或关），考虑输入信号的符号。Math Function 仅在输出信号为实数时使用此参数。
-
-- on - 通过将输入信号绝对值乘以输入信号的符号来计算幂。
-- off - 计算实际输入值的幂。如果第一个输入为负数，第二个输入不是整数，且输出信号为实数，则函数返回 `NaN`。
-
-#### 依赖关系
-
-将**函数**设置为 **pow** 会启用此参数。
-
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数**：`SignedPower` |
-| **类型：**字符向量 |
-| **值：**`'on' | 'off' |` |
-| **默认值：**`'on'` |
-
-### **输出信号类型** — 输出信号的复/实性 **自动** (默认) | **实数** | **复**
-
-将 Math Function 模块的输出信号类型指定为 `auto`、`real` 或 `complex`。
-
-| 函数 | 输入信号类型 | 输出信号类型 | | |
-| --- | --- | --- | --- | --- |
-| 自动 | 实数 | 复数 |
-| `exp`, `log`, `2^u`, `10^u`, `log10`, `square`, `pow`, `reciprocal`, `conjugate`, `transpose`, `hermitian` | `real`  `complex` | `real`  `complex` | `real`  `error` | `complex`  `complex` |
-| `magnitude squared` | `real`  `complex` | `real`  `real` | `real`  `real` | `complex`  `complex` |
-| `hypot`, `rem`, `mod` | `real`  `complex` | `real`  `error` | `real`  `error` | `complex`  `error` |
-
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数**：`OutputSignalType` |
-| **类型：**字符向量 |
-| **值：**`'auto' | 'real' | 'complex'` |
-| **默认值：**`'auto'` |
-
-### **迭代次数** — 牛顿-拉夫逊迭代次数 3 (默认) | 标量
-
-牛顿-拉夫逊迭代次数，指定为标量。
-
-#### 依赖关系
-
-要启用此参数，请进行如下设置：
-
-- **函数**设置为**倒数**。
-- **算法方法**设置为**牛顿-拉夫逊**。
-
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数**：`Iterations` |
-| **类型：**字符向量 |
-| **值：**`'3' | scalar` |
-| **默认值：**`'3'` |
-
-### **采样时间(-1 表示继承)** — 采样之间的时间间隔 `-1` (默认) | 标量 | 向量
-
-指定采样时间间隔。要继承采样时间，请将此参数设置为 `-1`。有关详细信息，请参阅指定采样时间。
-
-#### 依赖关系
-
-仅当您将此参数设置为 `-1` 以外的值时才可见。要了解详细信息，请参阅不建议设置采样时间的模块。
+XY Graph 模块是 Record 模块的替代配置，用于在 XY 图上可视化连接到两个输入端口的数据。在 XY Graph 模块中，第一个输入端口提供 *x* 数据，第二个输入端口提供 *y* 数据。
 
 #### 编程用法
 
@@ -172,25 +52,127 @@ chinese_source: official
 
 |  |  |
 | --- | --- |
-| **参数:** | `SampleTime` |
-| **值:** | `"-1"` (默认) | scalar or vector in quotes |
+| **参数：** | `NumPorts` |
+| **值：** | `1`（默认）| [`1`, `100`] 范围内的整数 |
+| **数据类型：** | `integer` |
 
-### 信号属性
+**示例：** `set_param("myModel/Record","NumPorts",2)`
 
-### **输出最小值** — 范围检查的最小输出值 `[]` (默认) | 标量
+### **抽取** — 抽取因子 `1`（默认）| 正整数
 
-软件检查的输出范围的下限值。
+*自 R2025a 起*
 
-软件使用最小值执行下列操作：
+指定抽取因子以降低记录数据的有效采样率。对于抽取因子 *n*，Record 模块记录每第 *n* 个采样值。例如，当您将 **抽取** 值指定为 `2` 时，Record 模块每隔一个数据点记录一次。
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值）。
-- 仿真范围检查（请参阅指定信号范围和启用仿真范围检查）。
-- 定点数据类型的自动定标。
-- 从模型生成的代码的优化。此优化可删除算法代码，并影响某些仿真模式（如 SIL 或外部模式）的结果。有关详细信息，请参阅使用指定的最小值和值进行优化 (Embedded Coder)。
+有关控制仿真期间记录哪些采样值的详细信息，请参阅 Specify Signal Values to Log。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `Decimation` |
+| **值：** | `"1"`（默认）| 带引号的正整数 |
+| **数据类型：** | `character vector` | `string` |
+
+**示例：** `set_param("myModel/Record","Decimation","2")`
+
+### **将数据点限制为最后** — 要记录的采样数 `inf`（默认）| 标量 | 向量
+
+*自 R2025a 起*
+
+当您只想保存或分析仿真末尾的数据时，请将要记录的采样数指定为大于零的正整数。默认情况下，Record 模块记录整个仿真的数据，并且 **将数据点限制为最后** 参数的值为 `inf`。
+
+将记录数据限制为最后 *n* 个信号值会直接影响内存分配。当您指定此参数时，软件会根据指定的值预先分配内存，而不是根据仿真期间生成的时间步。因此，当记录不确定数量的时间步时，不建议使用 **将数据点限制为最后** 参数。
+
+有关控制仿真期间记录哪些采样值的详细信息，请参阅 Specify Signal Values to Log。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `MaxDataPoints` |
+| **值：** | `"inf"`（默认）| 带引号的正整数 |
+| **数据类型：** | `character vector` | `string` |
+
+**示例：** `set_param("myModel/Record","MaxDataPoints","20")`
+
+### **选择端口** — 要为其指定输入处理模式的端口 `1`（默认）| 整数
+
+结合使用 **选择端口** 和 **输入处理** 参数来指定端口的输入处理模式。输入处理模式确定 Record 模块如何解释矩阵数据：
+
+- Sample-based — 矩阵中的每个元素是单独的通道。
+- Frame-based — 矩阵中的每一列是单独的通道。
+
+要使用基于帧的输入处理，信号必须具有离散采样率，并且采样值必须是非标量且具有固定维度。
+
+默认情况下，每个端口将输入信号作为 sample-based 处理。
+
+要更改端口的输入处理模式：
+
+1. 使用 **选择端口** 参数选择端口号。
+2. 使用 **输入处理** 参数选择输入处理模式。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+通过将 `FrameSettings` 参数指定为具有与模块端口数量相同元素数的行向量，以编程方式为每个端口指定输入处理模式。元素索引对应于模块上的端口号。指定 `1` 以对端口使用基于帧的输入处理，指定 `0` 以使用基于采样的处理。
+
+|  |  |
+| --- | --- |
+| **参数：** | `FrameSettings` |
+| **值：** | `false`（默认）| `1`-by-`n` 逻辑值行向量，其中 `n` 等于端口数 |
+| **数据类型：** | `logical array` |
+
+**示例：** `set_param("myModel/Record","FrameSettings",[true,false,true])`
+
+### **输入处理** — 所选端口的输入处理模式 `Elements as channels (sample-based)`（默认）| `Columns as channels (frame-based)`
+
+结合使用 **选择端口** 和 **输入处理** 参数来指定端口的输入处理模式。输入处理模式确定 Record 模块如何解释矩阵数据：
+
+- Sample-based — 矩阵中的每个元素是单独的通道。
+- Frame-based — 矩阵中的每一列是单独的通道。
+
+要使用基于帧的输入处理，信号必须具有离散采样率，并且采样值必须是非标量且具有固定维度。
+
+默认情况下，每个端口将输入信号作为 sample-based 处理。
+
+要更改端口的输入处理模式：
+
+1. 使用 **选择端口** 参数选择端口号。
+2. 使用 **输入处理** 参数选择输入处理模式。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+通过将 `FrameSettings` 参数指定为具有与模块端口数量相同元素数的行向量，以编程方式为每个端口指定输入处理模式。元素索引对应于模块上的端口号。指定 `1` 以对端口使用基于帧的输入处理，指定 `0` 以使用基于采样的处理。
+
+|  |  |
+| --- | --- |
+| **参数：** | `FrameSettings` |
+| **值：** | `false`（默认）| `1`-by-`n` 逻辑值行向量，其中 `n` 等于端口数 |
+| **数据类型：** | `logical array` |
+
+**示例：** `set_param("myModel/Record","FrameSettings"[true,false,true])`
+
+### 记录
+
+### **记录到工作区** — 工作区记录选项 `off`（默认）| `on`
+
+工作区记录选项。默认情况下，Record 模块仅将数据记录到仿真数据检查器。选择 **记录到工作区** 可将连接到 Record 模块的信号数据记录到 MATLAB® 工作区中的 `Simulink.SimulationData.Dataset` 对象。
+
+使用 **工作区变量名称** 参数指定包含记录的 Record 模块数据的 `Dataset` 对象名称。
 
 #### 提示
 
-**输出最小值**不会对实际输出信号进行饱和处理或截断。请改用 Saturation 模块。
+- 当您将数据记录到工作区时，访问数据的方式取决于您的模型配置。默认情况下，模型将所有记录的数据作为 `Simulink.SimulationOutput` 对象提供在单个输出变量中。您可以使用 `get` 函数或通过 Record 模块工作区变量名的点表示法访问 Record 模块数据。当 **单一仿真输出** 选项禁用时，记录数据会显示在工作区的单独变量中，您可以直接访问 Record 模块数据。
+- 使用 **记录间隔** 配置参数指定的记录间隔适用于使用 Record 模块记录到工作区的数据。
+- 使用单个 Record 模块将数据记录到仿真数据检查器、工作区和文件。
 
 #### 编程用法
 
@@ -198,23 +180,41 @@ chinese_source: official
 
 |  |  |
 | --- | --- |
-| **参数:** | `OutMin` |
-| **值:** | `'[]'` (默认) | scalar in quotes |
+| **参数：** | `RecordToWorkspace` |
+| **值：** | `"off"`（默认）| "on" | `false` 或 `0` | `true` 或 `1` |
 
-### **输出最大值** — 范围检查的最大输出值 `[]` (默认) | 标量
+**示例：** `set_param("myModel/Record","RecordToWorkspace","on")`
 
-软件检查的输出范围的上限值。
+### **工作区变量名称** — 包含记录的模块数据的工作区变量名称 `recordout`（默认）| 字符向量 | 字符串
 
-软件使用最大值执行下列操作：
+包含记录的模块数据的工作区变量名称。
 
-- 某些模块的参数范围检查（请参阅指定模块参数的最小值和最大值）。
-- 仿真范围检查（请参阅指定信号范围和启用仿真范围检查）。
-- 定点数据类型的自动定标。
-- 从模型生成的代码的优化。此优化可删除算法代码，并影响某些仿真模式（如 SIL 或外部模式）的结果。有关详细信息，请参阅使用指定的最小值和值进行优化 (Embedded Coder)。
+#### 依赖关系
+
+要启用此参数，请选择 **记录到工作区** 参数。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `VariableName` |
+| **值：** | `"recordout"`（默认）| 有效的 MATLAB 变量名称 |
+| **数据类型：** | `character vector` | `string` |
+
+**示例：** `set_param("myModel/Record","VariableName","RecordedData")`
+
+### **记录到文件** — 记录到文件选项 `off`（默认）| `on`
+
+记录到文件选项。默认情况下，Record 模块仅将数据记录到仿真数据检查器。选择 **记录到文件** 可将连接到 Record 模块的信号数据记录到文件。
 
 #### 提示
 
-**输出最大值**不会对实际输出信号进行饱和处理或截断。请改用 Saturation 模块。
+- 使用 **文件名** 参数指定文件的名称。
+- 使用 **文件类型** 参数指定是将数据记录到 MLDATX 文件、MAT 文件、Excel 文件还是 Parquet 文件 *(自 R2025a 起)*。
+- 使用 **文件位置** 参数指定文件的路径。
+- 使用 **记录间隔** 配置参数指定的记录间隔不适用于使用 Record 模块记录到文件的数据。
 
 #### 编程用法
 
@@ -222,302 +222,353 @@ chinese_source: official
 
 |  |  |
 | --- | --- |
-| **参数:** | `OutMax` |
-| **值:** | `'[]'` (默认) | scalar in quotes |
+| **参数：** | `RecordToFile` |
+| **值：** | `"off"`（默认）| "on" | `false` 或 `0` | `true` 或 `1` |
 
-### **输出数据类型** — 指定输出数据类型 `Inherit: Same as first input` (默认) | `Inherit: Inherit via internal rule` | `Inherit: Inherit via back propagation` | **double** | **single** | **half** | **int8** | **uint8** | **int16** | **uint16** | **int32** | **uint32** | **int64** | **uint64** | **fixdt(1,16)** | **fixdt(1,16,0)** | **fixdt(1,16,2^0,0)** | **<数据类型表达式>**
+**示例：** `set_param("myModel/Record","RecordToFile","on")`
 
-指定输出数据类型。可以将其设置为：
+### **文件名** — 包含记录数据的文件名称 `recording.mldatx`（默认）| 字符向量 | 字符串
 
-- 继承数据类型的规则，例如**继承: 通过反向传播继承**
-- 内置数据类型的名称，例如 `single`
-- 数据类型对象的名称，例如 `Simulink.NumericType` 对象
-- 计算结果为数据类型的表达式，例如 `fixdt(1,16,0)`
+包含记录数据的文件名称。名称无需包含文件扩展名。如果您在名称中包含文件扩展名，请确保该名称对指定的 **文件类型** 使用有效的扩展名。
 
-**数据类型助手**可帮助您设置数据属性。要使用**数据类型助手**，请点击 the Show data type assistant button。有关详细信息，请参阅使用数据类型助手指定数据类型。
+#### 提示
 
-#### 依赖关系
-
-- 要启用此参数，请将**函数**设置为 **magnitude^2**、**方波**或**倒数**。
-- 对于 **magnitude^2** 和 **square**，当输入是小于单精度的浮点数据类型时，**Inherit: 从内部规则继承**输出数据类型取决于 Inherit floating-point output type smaller than single precision 配置参数的设置。当编码数据类型所需的位数小于编码单精度数据类型所需的 32 位时，数据类型小于单精度。例如，`half` 和 `int16` 小于单精度。
-
-#### 编程用法
-
-|  |
-| --- |
-| **模块参数**：`OutDataTypeStr` |
-| **类型**：字符向量 |
-| **值**：`'Inherit: Inherit via internal rule` | `'Inherit: Same as first input'` | `'Inherit: Inherit via back propagation'` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'fixdt(1,16)'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
-| **默认值**：`'Inherit: Same as first input'` |
-
-### **锁定输出数据类型设置以防止被定点工具更改** — 防止定点工具覆盖数据类型 `off` (默认) | `on`
-
-选择此参数可防止定点工具覆盖您在模块上指定的**输出**数据类型。有关详细信息，请参阅Use Lock Output Data Type Setting (Fixed-Point Designer)。
+- 如果从一次运行到下一次运行，您不更改记录到的文件的名称或位置，Record 模块将覆盖文件中的先前数据。
+- 当您要将文件保存到工作目录以外的位置时，请使用 **文件位置** 参数指定要保存文件的目录路径。
 
 #### 依赖关系
 
-要启用此参数，请将**函数**设置为 **magnitude^2**、**方波**或**倒数**。
+要启用此参数，请选择 **记录到文件** 参数。
 
 #### 编程用法
 
-|  |
-| --- |
-| **模块参数**：`LockScale` |
-| **类型：**字符向量 |
-| **值：**`'off' | 'on'` |
-| **默认值：**`'off'` |
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-### **整数舍入模式** — 定点运算的舍入模式 **向下** (默认) | **向上** | **收敛** | **最邻近值** | **舍入** | **最简** | **零**
+指定 **文件名**、**文件类型** 和 **文件位置** 参数。在传递给 `set_param` 的名称中包含所需文件类型的扩展名。当您要将文件保存到当前工作目录以外的位置时，请指定包含文件名和扩展名的路径。
 
-定点运算的舍入模式。有关详细信息，请参阅舍入模式 (Fixed-Point Designer)。
+|  |  |
+| --- | --- |
+| **参数：** | `FileName` |
+| **值：** | `"recording.mldatx"`（默认）| 有效文件名 |
+| **数据类型：** | `character vector` | `string` |
 
-模块参数始终舍入到最邻近的可表示值。要控制模块参数的舍入方法，请在封装字段中使用 MATLAB 舍入函数输入表达式。
+**示例：** `set_param("myModel/Record","FileName","myRecording.mldatx")`
+
+### **文件类型** — 记录数据的文件类型 `*.mldatx`（默认）| `*.mat` | `*.xslx` | `*.parquet`
+
+使用 **文件类型** 参数指定要将数据记录到 MLDATX、MAT、Excel 还是 Parquet 文件 *(自 R2025a 起)*。
+
+#### 提示
+
+- 当您将数据记录到 Excel 文件时，数据将按 Microsoft Excel Import, Export, and Logging Format 中所述进行格式化。
+- 当您将数据记录到 Excel 文件时，可以使用 **时间** 参数指定是否共享时间列，并使用 **属性** 参数指定要记录的信号属性。
 
 #### 依赖关系
 
-要启用此参数，请将**函数**设置为 **magnitude^2**、**方波**或**倒数**。
+要启用此参数，请选择 **记录到文件**。
 
 #### 编程用法
 
-|  |
-| --- |
-| **模块参数**：`RndMeth` |
-| **类型：**字符向量 |
-| **值：**`'Ceiling' | 'Convergent' | 'Floor' | 'Nearest' | 'Round' | 'Simplest' | 'Zero'` |
-| **默认值：**`'Floor'` |
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
 
-### **对整数溢出进行饱和处理** — 选择发生整数溢出时的行为 `on` (默认) | 布尔
+使用 `FileName` 参数指定 **文件名**、**文件类型** 和 **文件位置** 参数。在传递给 `set_param` 的名称中包含所需文件类型的扩展名。当您要将文件保存到当前工作目录以外的位置时，请指定包含文件名和扩展名的路径。
 
-| 操作 | 理由 | 溢出 | 示例 |
-| --- | --- | --- | --- |
-| 选中**对整数溢出进行饱和处理**复选框。 | 您的模型可能有溢出，并且您希望在生成的代码中具有显式饱和保护。 | 将溢出饱和处理为数据类型能够表示的最小值或最大值。 | `int8`（有符号 8 位整数）数据类型可以表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。如果选中此复选框，模块输出将在达到 127 时饱和。类似地，模块输出将在达到最小输出值 -128 时饱和。 |
-| 不选中**对整数溢出进行饱和处理**复选框。 | 您需要优化所生成代码的效率。  您希望避免过度地指定信号超出范围时的处理方式。有关详细信息，请参阅信号范围错误故障排除。 | 溢出会绕回到由数据类型表示的适当值。 | `int8`（有符号 8 位整数）数据类型可以表示的最大值为 127。任何大于此最大值的模块运算结果都会导致 8 位整数溢出。清除该复选框时，软件会将导致溢出的值解释为 `int8`，这可能产生意外结果。例如，以 `int8` 表示的模块结果 130（二进制 1000 0010）为 -126。 |
+|  |  |
+| --- | --- |
+| **参数：** | `FileName` |
+| **值：** | `"recording.mldatx"`（默认）| 有效文件名 |
+| **数据类型：** | `character vector` | `string` |
 
-如果选中此复选框，饱和将应用于模块中的每个内部操作，而不仅仅应用于输出或结果。代码生成过程可以检测何时不会发生溢出。在这种情况下，代码生成器不会生成饱和代码。
+**示例：** `set_param("myModel/Record","FileName","myRecording.parquet")`
+
+### **文件位置** — 包含记录数据的文件路径 工作目录（默认）| 字符向量 | 字符串
+
+当您要将文件保存到工作目录以外的位置时，使用 **文件位置** 参数指定要保存包含记录数据的文件的位置。确保您在指定的目录中具有写入权限。
 
 #### 依赖关系
 
-要启用此参数，请将**函数**设置为 **magnitude^2**、**方波**、**conj**、**倒数**或 **hermitian**。
+要启用此参数，请选择 **记录到文件**。
 
 #### 编程用法
 
-|  |
-| --- |
-| **模块参数**：`SaturateOnIntegerOverflow` |
-| **类型**：字符向量 |
-| **值**：`'off'` | `'on'` |
-| **默认值**：`'on'` |
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+使用 `FileName` 参数指定 **文件名**、**文件类型** 和 **文件位置** 参数。在传递给 `set_param` 的名称中包含所需文件类型的扩展名。当您要将文件保存到当前工作目录以外的位置时，请指定包含文件名和扩展名的路径。
+
+|  |  |
+| --- | --- |
+| **参数：** | `FileName` |
+| **值：** | `"recording.mldatx"`（默认）| 有效文件名 |
+| **数据类型：** | `character vector` | `string` |
+
+**示例：** `set_param("myModel/Record","FileName","myRecording.mldatx")`
+
+### **时间** — 将时间数据导出到 Excel 或 Parquet 文件的选项 `Shared Time Columns`（默认）| `Individual Time Columns`
+
+指定当您将 Record 模块数据记录到 Excel 文件或 Parquet 文件时如何记录信号时间数据 *(自 R2025a 起)*。
+
+- `Shared Time Columns` — 当多个信号的时间数据相同时，这些信号在记录文件中共享单个时间列。如果 Record 模块记录具有唯一时间数据的信号的数据，则记录文件仍可包含多个时间列。
+- `Individual Time Columns` — 每个记录的信号在记录文件中始终拥有自己的时间列。
+
+#### 依赖关系
+
+要启用此参数，请选择 **记录到文件**，并将 **文件类型** 指定为 `*.xlsx` 或 `*.parquet` *(自 R2025a 起)*。
+
+#### 编程用法
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+以编程方式设置 **时间** 参数仅支持 Parquet 文件。
+
+|  |  |
+| --- | --- |
+| **参数：** | `SharedTimeColumn` |
+| **值：** | `"on"`（默认）| `"off"` |
+
+**示例：** `set_param("myModel/Record","SharedTimeColumn",
+"off")`
+
+### **信号属性** — 要导出到 Excel 文件的信号属性 `Data Type` | `Units` | `Port Index` | `Block Path` | `Interpolation`
+
+选择一个或多个信号属性选项，以便在将数据记录到 Excel 文件时包含在日志文件中。选定的信号属性按照 Microsoft Excel 导入、导出和日志记录格式中描述的格式，显示在第一个数据点上方的信号列中。
+
+#### 依赖项
+
+要启用此参数，请选择 **记录到文件**，并将 **文件类型** 指定为 `*.xlsx`。
+
+### **压缩类型** — 压缩选项 `Fastest (snappy)`（默认） | `Balanced for Size and Speed (gzip)` | `Compact (brotli)` | `None (uncompressed)`
+
+*自 R2025a 起*
+
+将压缩指定为以下选项之一：
+
+- `Fastest (snappy)` — 保存速度与未压缩文件相似，文件大小更小
+- `Balanced for Size and Speed (gzip)` — 在文件大小和保存速度之间取得平衡
+- `Compact (brotli)` — 文件大小最小，保存速度最慢
+- `None (uncompressed)` — 文件大小最大，保存速度最快
+
+#### 依赖项
+
+要启用此参数，请选择 **记录到文件**，并将 **文件类型** 指定为 `*.parquet`。
+
+#### 程序化使用
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `ParquetCompression` |
+| **值：** | `"fastest"`（默认） | `"balanced"` | `"compact"` | `"none"` |
+
+**示例：** `set_param("myModel/Record","ParquetCompression","balanced")`
+
+### **生成 Sidecar** — 生成 JSON sidecar 的选项 `on`（默认） | `off`
+
+*自 R2025a 起*
+
+选择此参数以生成包含所有记录元数据的 JSON sidecar。
+
+#### 依赖项
+
+要启用此参数，请选择 **记录到文件**，并将 **文件类型** 指定为 `*.parquet`。
+
+#### 程序化使用
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `ParquetMetaData` |
+| **值：** | `"on"`（默认） | `"off"` |
+
+**示例：** `set_param("myModel/Record","ParquetMetaData","off")`
+
+### **行组策略** — Parquet 文件中对行进行分组的选项 `Row Group Height`（默认） | `Row Group Size (MB)`
+
+*自 R2025a 起*
+
+指定 Parquet 文件中的行组。
+
+- `Row Group Height` — 指定每个组的行数。
+- `Row Group Size (MB)` — 以兆字节为单位指定行组的大小。
+
+#### 依赖项
+
+要启用此参数，请选择 **记录到文件**，并将 **文件类型** 指定为 `*.parquet`。
+
+#### 程序化使用
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `ParquetRowGroupPolicy` |
+| **值：** | `"height"`（默认） | `"sizeinmb"` |
+
+**示例：** `set_param("myModel/Record","ParquetRowGroupPolicy","sizeinmb")`
+
+### **行组策略值** — 行组的高度或大小 `auto`（默认，当 `Row Group Policy` 为 `Row Group Height`） | `512`（默认，当 `Row Group Policy` 为 `Row Group Size (MB)` | 行数 | 行组大小
+
+*自 R2025a 起*
+
+要指定每个行组中的行数，请将 **行组策略** 参数设置为 `Row Group Height`。然后，使用 **行组策略值** 参数定义每个组中的行数，选择 `1` 到 `67,108,864` 之间的值。默认情况下，该值为 `auto`，这会创建不超过 512 MB 的最大可能行组。
+
+要指定每个行组的大小，请将 **行组策略** 参数设置为 `Row Group Size (MB)`。然后，使用 **行组策略值** 参数以兆字节为单位设置行组的数据大小，最大为 1GB。
+
+#### 依赖项
+
+要启用此参数，请选择 **记录到文件**，并将 **文件类型** 指定为 `*.parquet`。
+
+#### 程序化使用
+
+要以编程方式设置模块参数值，请使用 `set_param` 函数。
+
+|  |  |
+| --- | --- |
+| **参数：** | `ParquetRowGroupHeight` |
+| **值：** | `"auto"`（默认） | 带引号的整数，范围 [`1`, `67108864`] |
+| **数据类型：** | `character vector` | `string` |
+
+**示例：** `set_param("myModel/Record","ParquetRowGroupPolicy","height","ParquetRowGroupHeight","5000")`
+
+|  |  |
+| --- | --- |
+| **参数：** | `ParquetRowGroupSize` |
+| **值：** | `"512"`（默认） | 带引号的正数，范围 (`0`, `1000`] |
+| **数据类型：** | `character vector` | `string` |
+
+**示例：** `set_param("myModel/Record","ParquetRowGroupPolicy","sizeinmb","ParquetRowGroupsize","450")`
 
 ## 所属库
 
-Simulink / Math Operations HDL Coder / Math Operations
+Simulink / Sinks
 
 ## 模块特性
 
 |  |  |
 | --- | --- |
-| **数据类型** | `Boolean` | `double` | `fixed point` | `half` | `integer` | `single` |
-| **直接馈通** | `是` |
-| **多维信号** | `是` |
-| **可变大小信号** | `是` |
-| **过零检测** | `否` |
+| **数据类型** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `half` | `integer` | `single` | `string` |
+| **直接馈通** | `no` |
+| **多维信号** | `yes` |
+| **可变大小信号** | `yes` |
+| **过零检测** | `no` |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+
+此模块在代码生成时会被忽略。
 
 ### HDL 代码生成 使用 HDL Coder™ 为 FPGA 和 ASIC 设计生成 VHDL、Verilog 和 SystemVerilog 代码。
 
-HDL Coder™ 提供影响 HDL 实现和综合逻辑的额外配置选项。
-
 **HDL 架构**
 
-| 函数 | 架构 | 描述 |
-| --- | --- | --- |
-| `conj` | **ComplexConjugate** | 计算复共轭。 |
-| `hermitian` | **hermitian** | 计算 hermitian。 |
-| `transpose` | **转置** | 计算数组转置。请参阅 Simulink 文档中的Math Function。 |
-| `mod`  `rem` | **ShiftAdd** | 通过使用非还原除法算法对内置整数类型输入执行模数或余数运算，该算法执行多次移位相加运算来计算 `mod` 和 `rem` 运算。  **ShiftAdd** 是一种流水线实现，它可能会在生成的代码中引入额外的延迟。使用这种架构，您还可以通过设置 **LatencyStrategy** 参数来设置延迟策略。 |
-
-**倒数架构**
-
-当**算法方法**设置为**精确**时，您可以在此模块的 HDL 模块属性中选择此选项。
-
-| 架构 | 参数 | 额外的延迟周期 | 描述 |
-| --- | --- | --- | --- |
-| **ShiftAdd(默认值)** | 无 | 有符号输入：（输入字长 + 4）  无符号输入：（输入字长 + 4）  有关模块的浮点延迟，请参阅Latency Values of Floating-Point Operators (HDL Coder)。 | 通过使用非还原除法算法对定点或浮点输入执行倒数运算，该算法执行多次移位相加运算来计算倒数。与牛顿-拉夫逊逼近方法相比，这种架构提高了精度。  使用定点数据类型时，必须满足以下标准才能生成 HDL 代码：  - 输入字长 (`WL`) 必须小于或等于 63。 - `[WL input + Abs(FL Sum)]` 必须小于或等于 63。其中， `FL Sum` 由下式给出：  `FL sum = FL input + FL output` |
-
-您可以在 **ShiftAdd** 架构中对 Math Function Reciprocal 模块应用共享优化。有关详细信息，请参阅Resource Sharing (HDL Coder)。
-
-此模块具有多周期实现，这会在生成的代码中引入额外的延迟。要查看增加的延迟，请查看生成的模型或验证模型。请参阅Generated Model and Validation Model (HDL Coder)。
-
-对于 `reciprocal` 函数，HDL 代码生成还支持牛顿-拉夫逊算法方法。选择**算法方法**为**牛顿-拉夫逊**，以将这些架构用于 Math Function 模块中的 `reciprocal` 函数。
-
-| 架构 | 额外的延迟周期 | 描述 |
-| --- | --- | --- |
-| **ReciprocalNewton**（默认值） | `Iterations` + 1 | 使用牛顿迭代法的多速率实现。选择此选项可优化设计区域。  `Iterations` 的默认值为 3。  `Iterations` 的推荐值为 2 到 10。如果 `Iterations` 的值超出建议的范围，HDL Coder 将显示一条消息。 |
-| **ReciprocalNewtonSingleRate** | (`Iterations` \* 2) + 1 | 使用单频率流水线牛顿法。要为您的设计优化速度或需要单速率实现，请选择此选项。  `Iterations` 的默认值为 3。  `Iterations` 的建议值介于 2 到 10 之间。如果 `Iterations` 值超出建议的范围，HDL Coder 将显示一条消息。 |
-| ReciprocalRsqrtBasedNewtonSingleRate | 有符号输入：(`Iterations` \* 4) + 8  无符号输入：(`Iterations` \* 4) + 6 | 使用单频率流水线牛顿法。要优化速度或需要单速率实现，请选择此选项。  `Iterations` 的默认值为 3。  `Iterations` 的推荐值为 2 到 10。如果 `Iterations` 超出推荐范围，代码生成器会生成一条消息。 |
+| 架构 | 描述 |
+| --- | --- |
+| `No HDL` | 不为该模块生成 HDL 代码。 |
 
 **HDL 模块属性**
 
-| 通用 | |
+|  |  |
 | --- | --- |
-| **ConstrainedOutputPipeline** | 通过移动设计中现有延迟的方式来放置在输出端的寄存器的数量。分布式流水线不会重新分发这些寄存器。默认值为 `0`。有关详细信息，请参阅ConstrainedOutputPipeline (HDL Coder)。 |
-| **InputPipeline** | 要在生成的代码中插入的输入流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅InputPipeline (HDL Coder)。 |
-| **OutputPipeline** | 要在生成的代码中插入的输出流水线阶段数。分布式流水线和受限输出流水线可以移动这些寄存器。默认值为 `0`。有关详细信息，请参阅OutputPipeline (HDL Coder)。 |
-| **LatencyStrategy** | 要启用此属性，请将 HDL 架构设置为 **ShiftAdd**。对于定点类型，指定是将设计中的模块映射到 `MAX`、`Min`、`CUSTOM` 还是 `ZERO` 延迟。默认值为 **MAX**。另请参阅LatencyStrategy (HDL Coder)。 |
-| **CustomLatency** | 要启用此属性，请将 HDL 架构设置为 **ShiftAdd**。当 **LatencyStrategy** 设置为 `CUSTOM` 时，使用此属性为定点类型指定介于 `ZERO` 和 `MAX` 之间的自定义延迟值。另请参阅LatencyStrategy (HDL Coder)。 |
+| **PreserveUpstreamLogic** | 控制未连接逻辑的移除。默认值为 `off`，这意味着未连接逻辑不会保留在 HDL 代码中。有关更多详细信息，请参阅 PreserveUpstreamLogic (HDL Coder)。 |
 
-| 原生浮点 | |
-| --- | --- |
-| **CheckResetToZero** | 将此属性用于 Math Function 模块的 `mod` 和 `rem` 函数。如果两个数 `a` 和 `b` 的商 `a/b` 接近整数，则此设置将 `a` 视为 `b` 的整数倍且 `rem(a,b)` = 0。该结果在数值上是精确的，并且与仿真结果相匹配。计算该结果会使用额外的资源，并会增加目标 FPGA 设备上的占用面积。有关详细信息，请参阅 CheckResetToZero (HDL Coder)。 |
-| **HandleDenormals** | 指定是否希望 HDL Coder 在设计中插入额外的逻辑来处理非正规数字。非正规数是大小非常小、必须使用包含前导零的尾数才能表示的浮点数。默认值为 **inherit**。另请参阅HandleDenormals (HDL Coder)。 |
-| **LatencyStrategy** | 指定对于浮点运算符是否将设计中的模块映射到 `inherit`、`Max`、`Min`、`Zero` 或 `Custom`。默认值为 **inherit**。另请参阅LatencyStrategy (HDL Coder)。 |
-| **NFPCustomLatency** | 要指定值，请将 **LatencyStrategy** 设置为 `Custom`。HDL Coder 会增加延迟，其值等于您为 **NFPCustomLatency** 设置指定的值。另请参阅NFPCustomLatency (HDL Coder)。 |
-| **MaxIterations** | 将此属性用于 Math Function 模块的 `mod` 和 `rem` 函数。如果您的两个数 `a` 和 `b` 是非常大的整数，您可以增大 **MaxIterations** 以匹配仿真结果。计算该结果会使用额外的资源，并会增加目标 FPGA 设备上的占用面积。有关详细信息，请参阅 MaxIterations (HDL Coder)。 |
-| **IterationsPerPipeline** | 将此属性用于 Math Function 模块的 `reciprocal` 函数。要启用此属性，请将**算法方法**参数设置为**精确**。当 **LatencyStrategy** 设置为 `Custom(PerIterations)` 时，使用此设置指定每个流水线阶段的迭代次数。有关详细信息，请参阅Reciprocal (HDL Coder)。 |
+### PLC 代码生成 使用 Simulink® PLC Coder™ 生成 Structured Text 代码。
 
-**支持原生浮点的数据类型和函数**
-
-Math Function 模块支持标量、向量或矩阵数据类型。此模块支持以下使用原生浮点的函数。
-
-| 数学函数 | 支持的浮点数据类型 | | | 定点数据类型支持 | 复数数据支持 |
-| --- | --- | --- | --- | --- | --- |
-| 半精度 | 单精度 | 双精度 |
-| `exp` | 否 | 是 | 否 | 否 | 否 |
-| `log` | 否 | 是 | 是 | 否 | 否 |
-| `2^u` | 否 | 是 | 否 | 否 | 否 |
-| `10^u` | 否 | 是 | 否 | 否 | 否 |
-| `log10` | 否 | 是 | 否 | 否 | 否 |
-| `magnitude^2` | 否 | 是 | 是 | 是 | 是 |
-| `square` | 否 | 是 | 否 | 是 | 是 |
-| `pow` | 否 | 是 | 否 | 否 | 否 |
-| `conj` | 否 | 是 | 否 | 是 | 是 |
-| `reciprocal` | 是 | 是 | 是 | 是 | 否 |
-| `hypot` | 否 | 是 | 否 | 否 | 否 |
-| `rem` | 否 | 是 | 否 | 否 | 否 |
-| `mod` | 否 | 是 | 否 | 否 | 否 |
-| `transpose` | 是 | 是 | 是 | 是 | 是 |
-| `hermitian` | 否 | 是 | 否 | 是 | 是 |
-
-**限制**
-
-当您使用**倒数**实现时：
-
-- 输入必须为标量，并且必须具有整数或定点（有符号或无符号）数据类型。
-- 输出必须为标量，并且具有整数或定点（有符号或无符号）数据类型。
-- 必须对模块选择**对整数溢出进行饱和处理**选项。
-
-### PLC 代码生成 使用 Simulink® PLC Coder™ 生成结构化文本代码。
-
-### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
-
-Math Function 模块只支持某些配置中的定点转换。有关详细信息，请参阅 Block Support Table。
+此模块在代码生成时会被忽略。
 
 ## 版本历史
 
-**在 R2006a 之前推出**
+**在 R2021a 中引入**
 
-### R2023a: `Math Function` 模块支持 2^u
+### R2025a：记录 `datetime` 数据
 
-Math Function 模块现在支持 `2^u` 函数。MATLAB 等效形式是 `2.^u`（请参阅 `power`）。
+Record 模块支持记录 `datetime` 数据。
+
+### R2025a：XY 可视化中不再支持实时流式传输
+
+为避免可扩展性问题，数据不再流式传输到 Simulation Data Inspector、Record 模块或 XY Graph 模块中的 XY 可视化。
+
+### R2025a：限制 Record 模块记录的数据
+
+通过指定要记录的信号值，限制 Record 模块记录的数据大小。可以使用以下两个参数指定要记录的信号值：
+
+- **抽取** — 记录每第 *n* 个信号值。
+- **将数据点限制为最后** — 仅记录最后 *n* 个信号值。
+
+### R2025a：使用 Record 模块将数据导出到 Parquet 文件
+
+使用 Record 模块将来自标量和多维信号的数据，以及来自总线或总线数组的数据，导出到 Parquet 文件。Record 模块记录并可导出任何内置数据类型的实数和复数数据，以及枚举、字符串和定点数据。有关更多信息，请参阅使用 Record 模块将数据导出到 Parquet 文件。
+
+### R2023b：记录无界可变大小信号
+
+在 normal 和 accelerator 模式仿真中，Record 模块支持记录无界可变大小信号，但不支持可视化无界可变大小信号。对于包含无界可变大小信号的 nonvirtual 总线，不支持记录。
+
+### R2023a：记录包含可变大小信号的非虚拟总线
+
+在 normal 和 accelerator 模式仿真中，Record 模块支持记录：
+
+- 直接包含可变大小信号或在嵌套总线中包含可变大小信号的非虚拟总线
+- 具有包含可变大小信号的嵌套非虚拟总线的总线
+
+仅在 normal 模式仿真中，Record 模块支持记录：
+
+- 具有包含可变大小信号的非虚拟总线的总线数组
+
+Record 模块不支持可视化可变大小信号。
+
+### R2022b：缩放单个信号
+
+可以为 Record 模块中的单个信号设置显示比例和偏移量。
+
+- 时间图和迷你图 — 缩放和偏移 *y* 值的显示。
+- XY 图 — 独立缩放和偏移 *x* 值和 *y* 值的显示。
+- 地图 — 独立缩放和偏移经度和纬度。
+
+光标继续显示未缩放的值。
+
+### R2021b：XY Graph 模块替换为 Record 模块的替代配置
+
+XY Graph 模块替换为预配置为在 XY 图上显示两个输入信号的 Record 模块。使用更新后的 XY Graph 模块，可以：
+
+- 在仿真期间查看 XY 图上的数据。
+- 将 XY 图数据记录到工作区、文件，或工作区和文件。
+- 无需再次仿真即可缩放、平移、适应视图以及调整 XY 图的坐标轴范围。
+- 通过使用光标和添加趋势线来分析 XY 迹线。
+- 添加其他端口和子图，以在若干可视化类型（包括时间图、地图或其他 XY 图）中随 XY 图一起可视化其他仿真数据。
+- 在 XY 图上可视化多条迹线。
+
+仿真时，之前版本的 XY Graph 模块会打开一个新窗口，以在仿真期间显示连接的信号数据。要查看更新后的 XY Graph 模块上的数据，请在模型中双击该模块。要在新窗口中查看 XY 图，请右键单击该模块，然后选择 **在新窗口中打开**。
+
+现有模型中的 XY Graph 模块会自动替换为新的 XY Graph 模块。XY Graph 查看器也会替换为新的 XY Graph 模块。Goto 和 From 模块将信号连接到替换 XY Graph 查看器的 XY Graph 模块。
+
+连接到 XY Graph 模块的信号始终流式传输到 Simulation Data Inspector。
+
+### R2021a：**日志记录间隔**配置参数适用于使用 Record 模块记录到工作区的数据
+
+**日志记录间隔**配置参数适用于使用 Record 模块记录到工作区的数据。
+
+**日志记录间隔**参数不会影响使用 Record 模块记录到文件的数据，也不会影响信号在 Record 模块中的显示方式。还可以在 Simulation Data Inspector 中访问连接到 Record 模块的信号的完整信号数据。
 
 ## 描述
 
-执行数学函数
+查看数据并将数据记录到工作区、文件或两者
 
-Math Function 模块执行许多常见的数学函数。
+使用 Record 模块或 XY Graph 模块将数据记录到工作区、文件，或同时记录到工作区和文件。将数据记录到文件时，可以选择记录到 MAT 文件、MLDATX 文件、Excel® 文件或 Parquet 文件 *(自 R2025a 起)*。连接到 Record 模块的信号始终记录到 Simulation Data Inspector。如果确定需要在仿真后保存数据，可以将数据从 Record 模块导出到工作区或除 Parquet 文件之外的任何受支持文件类型。
 
-可以从 Math Function 模块中的**函数**参数列表中选择以下函数之一。
+还可以使用 Record 模块可视化连接的信号。要查看连接到 Record 模块的信号的数据，请双击该模块。在 Record 模块中查看数据时，可以访问仿真控件，例如 **运行** 按钮。
 
-| 函数 | 描述 | 数学表达式 | MATLAB® 等效函数 |
-| --- | --- | --- | --- |
-| `exp` | 指数 | `eu` | `exp` |
-| `log` | 自然对数 | `ln u` | `log` |
-| `2^u` | 以 2 为底的幂 | `2u` | `2.^u`  （请参见`power`） |
-| `10^u` | 以 10 为底的幂 | `10u` | `10.^u`  （请参见 `power`） |
-| `log10` | 常用（以 10 为底）对数 | `log u` | `log10` |
-| `magnitude^2` | 复数模量 | `|u|2` | `real(u).^2 + imag(u).^2`   （请参见 `real`、`imag` 和 `power`） |
-| `square` | 2 次幂 | `u2` | `u.^2`  （请参见 `power`） |
-| `pow` | 幂 | - 在**有符号幂**处于选中状态且**输出信号类型**设置为**实数**时，表达式为 `sign(u)*|u|v`。 - 在**有符号幂**处于清除状态或**输出信号类型**设置为**复数**时，表达式为 `uv`。 - 当**输出信号类型**设置为 `auto` 时，表达式取决于软件编译的复/实性类型。 | `power` |
-| `conj` | 复共轭 | `ū` | `conj` |
-| 使用精确法的 `reciprocal` | 倒数 | `1/u` | `1./u`  （请参见 `rdivide`） |
-| 使用牛顿-拉夫逊方法的 `reciprocal` | 倒数 | 请参阅 牛顿-拉夫逊倒数算法方法。 | 无 |
-| `hypot` | 平方和的平方根 | `(u2+v2)0.5` | `hypot` |
-| `rem` | 除后的余数 | — | `rem` |
-| `mod` | 除后的模数 | — | `mod` |
-| `transpose` | 转置 | `uT` | `u.'`  （请参见数组与矩阵运算） |
-| `hermitian` | 复共轭转置 | `uH` | `u'`  （请参见数组与矩阵运算） |
+默认情况下，Record 模块在迷你图上显示所有连接的信号。为每个连接的信号添加一个迷你图。当迷你图填满可见空间后，滚动条允许继续绘制信号。
 
-**提示**
+打开以查看由 Record 模块记录的数据的模型，其模块参数在属性检查器中可见
 
-要执行平方根计算，请使用 Sqrt 模块。
+### 构建可视化
 
-模块输出是对一个或多个输入执行函数运算的结果。这些函数支持以下类型的运算。
+Record 模块支持 Simulation Data Inspector 中可用的大多数可视化。当其他可视化更适合你的数据时，可以使用 **布局** 选项和绘图类型选择器（默认标记为 **迷你图**）修改绘图布局和绘图类型。使用 **布局** 列表选择子图布局。要更改子图的绘图类型，请选择该子图，然后从绘图类型选择器中选择所需的绘图类型。
 
-| 函数 | 标量运算 | 按元素的向量和矩阵运算 | 向量和矩阵运算 |
-| --- | --- | --- | --- |
-| `exp` | 是 | 是 | 不适用 |
-| `log` | 是 | 是 | 不适用 |
-| `2^u` | 是 | 是 | 不适用 |
-| `10^u` | 是 | 是 | 不适用 |
-| `log10` | 是 | 是 | 不适用 |
-| `magnitude^2` | 是 | 是 | 不适用 |
-| `square` | 是 | 是 | 不适用 |
-| `pow` | 是 | 是 | 不适用 |
-| `conj` | 是 | 是 | 不适用 |
-| 使用精确法的 `reciprocal` | 是 | 是 | 不适用 |
-| 使用牛顿-拉夫逊方法的 `reciprocal` | 是 | 是 | 不适用 |
-| `hypot` | 是，对两个输入均执行 | 是，对两个输入均执行（大小相同的两个向量或两个矩阵、一个标量和一个向量，或者一个标量和一个矩阵） | — |
-| `rem` | 是，对两个输入均执行 | 是，对两个输入均执行（大小相同的两个向量或两个矩阵、一个标量和一个向量，或者一个标量和一个矩阵） | 不适用 |
-| `mod` | 是，对两个输入均执行 | 是，对两个输入均执行（大小相同的两个向量或两个矩阵、一个标量和一个向量，或者一个标量和一个矩阵） | 不适用 |
-| `transpose` | 是 | — | 是 |
-| `hermitian` | 是 | — | 是 |
+有关更多信息，请参阅使用 Record 模块将数据记录到工作区和文件。有关展示如何使用每种可视化类型的示例，请参阅：
 
-函数名称和适当的输入端口数出现在模块上。
-
-**提示**
-
-当需要向量或矩阵输出时，使用 Math Function 模块。
-
-### 牛顿-拉夫逊倒数算法方法
-
-具有牛顿-拉夫逊算法方法的 `reciprocal` 函数通过使用牛顿-拉夫逊逼近方法来计算倒数。该函数使用递归逼近来求实数值函数根的更佳逼近。
-
-实数 a 的倒数定义为函数的零值：
-
-f(x)=1x−a.
-
-Simulink® 选择 0<x0<2a 范围内的一个初始估计值，因为这是函数的收敛域。
-
-要连续计算函数的根，请指定**迭代次数**参数。该过程按如下方式重复执行：
-
-xi+1=xi−f(xi)f'(xi)=xi+(xi−axi2)=xi.(2−axi)
-
-f'(x) 是函数 f(x) 的导数。
-
-### 数据类型支持
-
-下表列出了该模块的每个函数可以支持的输入数据类型。
-
-| 函数 | 单精度 | 双精度 | 半精度\* | 布尔 | 内置整数 | 定点 |
-| --- | --- | --- | --- | --- | --- | --- |
-| `exp` | 是 | 是 | 是 | — | — | — |
-| `log` | 是 | 是 | 是 | — | — | — |
-| `2^u` | 是 | 是 | 是 | — | — | — |
-| `10^u` | 是 | 是 | 是 | — | — | — |
-| `log10` | 是 | 是 | 是 | — | — | — |
-| `magnitude^2` | 是 | 是 | 是 | — | 是 | 是 |
-| `square` | 是 | 是 | 是 | — | 是 | 是 |
-| `pow` | 是 | 是 | 是 | — | — | — |
-| `conj` | 是 | 是 | 是 | — | 是 | 是 |
-| 使用精确法的 `reciprocal` | 是 | 是 | 是 | — | 是 | 是 |
-| 使用牛顿-拉夫逊方法的 `reciprocal`（有关详细信息，请参阅输出） | 是 | 是 | — | — | 是 | 是 |
-| `hypot` | 是 | 是 | 是 | — | — | — |
-| `rem` | 是 | 是 | 是 | — | 是 | — |
-| `mod` | 是 | 是 | 是 | — | 是 | — |
-| `transpose` | 是 | 是 | 是 | 是 | 是 | 是 |
-| `hermitian` | 是 | 是 | 是 | — | 是 | 是 |
-
-有关半精度算术运算的详细信息，请参阅 The Half-Precision Data Type in Simulink (Fixed-Point Designer)。
+- 迷你图 — 使用迷你图一起查看多个信号
+- XY — 在 XY 图上可视化仿真数据并使用 XY 图分析数据
+- 地图 — 查看和回放地图数据
+- 时间图和文本编辑器 — 使用 Simulation Data Inspector 创建绘图

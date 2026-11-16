@@ -5,32 +5,32 @@ Completeness is measured against every official product `referencelist_block_cat
 - Official catalog entries: **75**
 - Products with an enumerated block library: **75**
 - Products without an official block-library XML: **0** (not silently counted as empty third-party libraries)
-- Product/library/block occurrences: **4572**
-- Unique product/documentation paths: **3814**
-- Existing full English pages: **3814**; Chinese pages: **3814**
+- Product/library/block occurrences: **4565**
+- Unique product/documentation paths: **3812**
+- Existing full English pages: **3812**; Chinese pages: **3812**
 - Pending full English pages: **0**; Chinese pages: **0**
 
 Third-party, support-package and locally licensed libraries are outside this public product catalog. They must be enumerated from the user's MATLAB installation and are not fabricated here. HTTP failures, license-denied pages and fetch failures are represented as gaps, never as successful documents.
 
 | Product | Library entries | Unique document paths | Status |
 | --- | ---: | ---: | --- |
-| Simulink (`simulink`) | 514 | 350 | enumerated / 已枚举 |
+| Simulink (`simulink`) | 511 | 350 | enumerated / 已枚举 |
 | Aerospace Blockset (`aeroblks`) | 150 | 141 | enumerated / 已枚举 |
 | Audio Toolbox (`audio`) | 50 | 49 | enumerated / 已枚举 |
-| Automated Driving Toolbox (`driving`) | 35 | 34 | enumerated / 已枚举 |
+| Automated Driving Toolbox (`driving`) | 34 | 33 | enumerated / 已枚举 |
 | AUTOSAR Blockset (`autosar`) | 9 | 9 | enumerated / 已枚举 |
 | Battery (`simscape-battery`) | 45 | 45 | enumerated / 已枚举 |
 | C2000 Microcontroller Blockset (`ti-c2000`) | 533 | 105 | enumerated / 已枚举 |
 | Communications Toolbox (`comm`) | 180 | 174 | enumerated / 已枚举 |
 | Communications Toolbox HDL Support (`communications-toolbox-hdl-support`) | 25 | 25 | enumerated / 已枚举 |
-| Computer Vision Toolbox (`vision`) | 75 | 74 | enumerated / 已枚举 |
+| Computer Vision Toolbox (`vision`) | 74 | 73 | enumerated / 已枚举 |
 | Control System Toolbox (`control`) | 24 | 24 | enumerated / 已枚举 |
 | Data Acquisition Toolbox (`daq`) | 6 | 6 | enumerated / 已枚举 |
 | DDS Blockset (`dds`) | 2 | 2 | enumerated / 已枚举 |
 | Deep Learning Toolbox (`deeplearning`) | 87 | 81 | enumerated / 已枚举 |
 | Driveline (`sdl`) | 100 | 100 | enumerated / 已枚举 |
 | DSP HDL Toolbox (`dsphdl`) | 18 | 17 | enumerated / 已枚举 |
-| DSP System Toolbox (`dsp`) | 238 | 220 | enumerated / 已枚举 |
+| DSP System Toolbox (`dsp`) | 237 | 219 | enumerated / 已枚举 |
 | DSP System Toolbox HDL Support (`dsp-system-toolbox-hdl-support`) | 27 | 27 | enumerated / 已枚举 |
 | Electrical (`sps`) | 405 | 401 | enumerated / 已枚举 |
 | Embedded Coder (`ecoder`) | 14 | 14 | enumerated / 已枚举 |
@@ -39,7 +39,7 @@ Third-party, support-package and locally licensed libraries are outside this pub
 | Fluids (`hydro`) | 207 | 207 | enumerated / 已枚举 |
 | Foundation Library (`simscape`) | 272 | 272 | enumerated / 已枚举 |
 | Fuzzy Logic Toolbox (`fuzzy`) | 19 | 19 | enumerated / 已枚举 |
-| HDL Coder (`hdlcoder`) | 262 | 183 | enumerated / 已枚举 |
+| HDL Coder (`hdlcoder`) | 262 | 185 | enumerated / 已枚举 |
 | HDL Verifier (`hdlverifier`) | 8 | 4 | enumerated / 已枚举 |
 | Image Acquisition Toolbox (`imaq`) | 1 | 1 | enumerated / 已枚举 |
 | Industrial Communication Toolbox (`icomm`) | 6 | 6 | enumerated / 已枚举 |
@@ -85,7 +85,7 @@ Third-party, support-package and locally licensed libraries are outside this pub
 | System Identification Toolbox (`ident`) | 14 | 14 | enumerated / 已枚举 |
 | UAV Toolbox (`uav`) | 31 | 31 | enumerated / 已枚举 |
 | Utilities (`utilities`) | 24 | 24 | enumerated / 已枚举 |
-| Vehicle Dynamics Blockset (`vdynblks`) | 65 | 57 | enumerated / 已枚举 |
+| Vehicle Dynamics Blockset (`vdynblks`) | 64 | 56 | enumerated / 已枚举 |
 | Vehicle Network Toolbox (`vnt`) | 28 | 28 | enumerated / 已枚举 |
 | Vision HDL Toolbox (`visionhdl`) | 31 | 30 | enumerated / 已枚举 |
 | Wireless HDL Toolbox (`wireless-hdl`) | 47 | 47 | enumerated / 已枚举 |

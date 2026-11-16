@@ -15,7 +15,11 @@ from openviking.parse.parsers.directory import DirectoryParser
 from openviking.parse.parsers.matlab._zip import read_xml_member
 from openviking.parse.parsers.matlab.catalog import find_block, find_block_reference
 from openviking.parse.parsers.matlab.formats import parse_additional
-from openviking.parse.parsers.matlab.library import normalize_block_document, read_block_document
+from openviking.parse.parsers.matlab.library import (
+    block_references,
+    normalize_block_document,
+    read_block_document,
+)
 from openviking.parse.parsers.matlab.mat import parse_mat, parse_mat_documents
 from openviking.parse.parsers.matlab.parser import MatlabParser
 from openviking.parse.parsers.matlab.scripts import parse_m_file, parse_mlx
@@ -356,6 +360,18 @@ def test_non_block_browser_entries_are_excluded_not_given_fake_pages():
     assert not (root / "en/Simulink/Dashboard/Wireless Icons/Network.md").exists()
     assert ("libsb2sl", ("ALG",), "1VarPoly") in removed
     assert not (root / "en/libsb2sl/ALG/1VarPoly.md").exists()
+    for product in ("Automated Driving Toolbox", "Computer Vision Toolbox", "DSP System Toolbox"):
+        assert (product, (), "Info") in removed
+        assert not (root / "en" / product / "Info.md").exists()
+    for name, documentation_path in {
+        "Floating Scope": "../simulink/slref/scopeviewer.html",
+        "XY Graph": "../simulink/slref/record.html",
+        "Subsystem Reference": "../simulink/slref/subsystem.html",
+    }.items():
+        reference = next(
+            ref for ref in block_references() if ref.product_id == "hdlcoder" and ref.name == name
+        )
+        assert reference.documentation_path == documentation_path
 
 
 def test_library_browser_manifest_counts_and_canonical_layout():
@@ -366,23 +382,23 @@ def test_library_browser_manifest_counts_and_canonical_layout():
     totals = manifest["totals"]
     assert totals["products"] == 75
     assert totals["products_with_blocks"] == 75
-    assert totals["block_occurrences"] == 4572
-    assert totals["unique_product_document_paths"] == 3814
-    assert totals["full_document_occurrences"] == {"en": 4572, "zh": 4572}
-    assert totals["full_documents"] == {"en": 3814, "zh": 3814}
+    assert totals["block_occurrences"] == 4565
+    assert totals["unique_product_document_paths"] == 3812
+    assert totals["full_document_occurrences"] == {"en": 4565, "zh": 4565}
+    assert totals["full_documents"] == {"en": 3812, "zh": 3812}
     assert totals["pending_documents"] == {"en": 0, "zh": 0}
     assert totals["tree_only_occurrences"] == 0
     assert manifest["reconciliation"]["tree_directories"] == 741
-    assert manifest["reconciliation"]["matched_blocks"] == 4572
+    assert manifest["reconciliation"]["matched_blocks"] == 4565
     assert manifest["reconciliation"]["tree_only_blocks"] == 0
-    assert manifest["reconciliation"]["verified_override_blocks"] == 589
-    assert len(manifest["reconciliation"]["excluded_non_block_entries"]) == 220
+    assert manifest["reconciliation"]["verified_override_blocks"] == 582
+    assert len(manifest["reconciliation"]["excluded_non_block_entries"]) == 227
     assert not (root / "browser").exists()
     assert not (root / "catalog").exists()
     assert not (root / "products").exists()
     assert (root / "README.md").is_file()
     products = {product["id"]: product for product in manifest["products"]}
-    assert products["simulink"]["block_occurrences"] == 514
+    assert products["simulink"]["block_occurrences"] == 511
     assert products["stateflow"]["block_occurrences"] == 4
     assert products["simscape"]["block_occurrences"] == 272
     assert products["simscape-root"]["block_occurrences"] == 0
@@ -396,7 +412,7 @@ def test_library_browser_manifest_counts_and_canonical_layout():
 
     for language in ("en", "zh"):
         browser = root / language
-        assert len(list(browser.rglob("*.md"))) == 5389
+        assert len(list(browser.rglob("*.md"))) == 5382
         root_index = (browser / "index.md").read_text(encoding="utf-8")
         entries = re.findall(r"^- \[(.*?)\]", root_index, re.MULTILINE)
         assert len(entries) == 75
@@ -506,7 +522,7 @@ def test_scraped_block_knowledge_is_local_and_complete():
     chinese = root / "zh"
     documents = [path for path in english.rglob("*.md") if path.name != "index.md"]
     chinese_documents = [path for path in chinese.rglob("*.md") if path.name != "index.md"]
-    assert len(documents) == len(chinese_documents) == 4572
+    assert len(documents) == len(chinese_documents) == 4565
     assert len(list(english.glob("*/index.md"))) == 75
     for page in documents:
         relative = page.relative_to(english)

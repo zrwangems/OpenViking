@@ -22,7 +22,6 @@
 - [Out1](Out1.md)
 - [Resettable Subsystem](Resettable Subsystem.md)
 - [Subsystem](Subsystem.md)
-- [Subsystem Examples](Subsystem Examples.md)
 - [Subsystem Reference](Subsystem Reference.md)
 - [Switch Case](Switch Case.md)
 - [Switch Case Action Subsystem](Switch Case Action Subsystem.md)

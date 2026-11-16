@@ -1,17 +1,17 @@
 ---
 type: simulink-block
-title: 'Record'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+title: 'Record, XY Graph'
+family: 'hdlcoder'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
 official_category: 'Sinks'
 documentation_page: 'record'
-documentation_source_path: 'slref/record.html'
+documentation_source_path: '../simulink/slref/record.html'
 language: en
 ---
 
-# Record
+# Record, XY Graph
 
 ## Ports
 

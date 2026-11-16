@@ -11,4 +11,3 @@
 - [Text & Graphics](Text & Graphics/index.md)
 - [Transforms](Transforms/index.md)
 - [Utilities](Utilities/index.md)
-- [Info](Info.md)

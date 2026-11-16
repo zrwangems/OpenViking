@@ -4,7 +4,6 @@
 - [Data Type Conversion Inherited](Data Type Conversion Inherited.md)
 - [Data Type Duplicate](Data Type Duplicate.md)
 - [Data Type Propagation](Data Type Propagation.md)
-- [Data Type Propagation Examples](Data Type Propagation Examples.md)
 - [Data Type Scaling Strip](Data Type Scaling Strip.md)
 - [Data Type Conversion](Data Type Conversion.md)
 - [IC](IC.md)

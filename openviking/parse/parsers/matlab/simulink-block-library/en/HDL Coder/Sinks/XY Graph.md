@@ -1,205 +1,67 @@
 ---
 type: simulink-block
-title: 'Math Function'
+title: 'Record, XY Graph'
 family: 'hdlcoder'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'HDL Floating Point Operations'
-documentation_page: 'mathfunction'
-documentation_source_path: '../simulink/slref/mathfunction.html'
+official_category: 'Sinks'
+documentation_page: 'record'
+documentation_source_path: '../simulink/slref/record.html'
 language: en
 ---
 
-# Math Function
+# Record, XY Graph
 
 ## Ports
 
 ### Input
 
-### **Port\_1** — Input signal scalar | vector | matrix
+### **Port\_1** — Signal to record scalar | vector | matrix | array | bus
 
-Input signal specified as a scalar, vector, or matrix. Supported modes accept real and
-complex inputs, except for `reciprocal`, which does not
-accept complex fixed-point inputs. See Description.
+Signal to record. You can add ports to the Record block by dragging
+lines to the edge of the block or by using the **Ports**
+parameter.
 
-#### Dependencies
+The Record block supports logging variable-size signals but does
+not support visualizing variable-size signals.
 
-Data type support for this block depends on the **Function** that you
-select and the size of the inputs. For more information, see Data Type Support.
+The XY Graph block is an alternative configuration of the
+Record block that visualizes data connected to two input ports on an
+XY plot. The first input port provides the *x* data for the XY plot,
+and the second input port provides the *y* data.
 
-**Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
+#### Tips
 
-### **Port\_2** — Input signal scalar | vector | matrix
+- To log frame-based data, specify the **Input processing**
+  parameter for each port that receives a frame-based signal.
+- When you connect a nonscalar signal to an input port of the XY
+  Graph block, you must manually configure which channels or elements of
+  the nonscalar signal provide the *x* and *y*
+  data for the XY plot.
 
-Input signal specified as a scalar, vector, or matrix. Supported modes accept real and
-complex inputs, except for `reciprocal`, which does not
-accept complex fixed-point inputs.
-
-#### Dependencies
-
-To enable this port, set **Function** to
-`hypot`,
-`rem`, or
-`mod`.
-
-Data type support for this block depends on the **Function** that you
-select, and the size of the inputs. For more information, see Data Type Support.
-
-**Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-### Output
-
-### **Port\_1** — Result of the operation of the function on the input or inputs scalar | vector | matrix
-
-Output signal specified as a scalar, vector, or matrix. The dimensions of the block
-output depend on the **Function** that you select and
-the size of the inputs. The block output is real or complex, depending
-on what you select for **Output signal type**. See
-Description.
-
-#### `reciprocal` with Newton-Raphson Method
-
-The `reciprocal` with Newton-Raphson method
-output data type depends on the input data type:
-
-| Input Data Type | Output Data Type |
-| --- | --- |
-| single | single |
-| double | double |
-| built-in integer | built-in integer |
-| built-in fixed-point | built-in fixed-point |
-| `fi` (*value*, 0, *word\_length*, *fraction\_length*) | `fi` (*value*, 0, *word\_length*, *word\_length*–*fraction\_length*–1) |
-| `fi` (*value*, 1, *word\_length*, *fraction\_length*) | `fi` (*value*, 1, *word\_length*, *word\_length*–*fraction\_length*–2) |
-
-**Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
+**Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image` | `datetime`
+**Complex Number Support:** Yes
 
 ## Parameters
 
+To edit block parameters interactively, use the
+Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
+**Prepare** gallery, select **Property
+Inspector**.
+
 ### Main
 
-### **Function** — Math function `exp` (default) | `log` | `2^u` | `10^u` | `log10` | `magnitude^2` | `square` | `pow` | `conj` | `reciprocal` | `hypot` | `rem` | `mod` | `transpose` | `hermitian`
+### **Number of input ports** — Number of input ports `1` (default) | integer in the range [`1,100`]
 
-Specify the mathematical function. For more information about the options for this
-parameter, see Description.
+Number of input ports, specified as an integer between `1` and
+`100`, inclusive.
 
-#### Dependency
-
-Setting **Function** to
-`pow` enables the **Signed
-power** parameter.
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter:** `Operator` |
-| **Type:** character vector |
-| **Values:** `'exp' | 'log' | '2^u' | '10^u' | 'log10' | 'magnitude^2' | 'square' | 'pow' | 'conj' | 'reciprocal' | 'hypot' | 'rem' | 'mod' | 'transpose' | 'hermitian'` |
-| **Default:** `'exp'` |
-
-### **Algorithm method** — Algorithm method for `reciprocal` function `Exact` (default) | `Newton-Raphson`
-
-Algorithm method for `reciprocal` function, specified
-as `Exact` or
-`Newton-Raphson`. To calculate reciprocal
-with the Newton-Raphson approximation method, select
-`Newton-Raphson`. Otherwise, select
-`Exact`.
-
-#### Dependency
-
-Setting **Function** to
-`reciprocal` enables this parameter.
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter:** `AlgorithmType` |
-| **Type:** character vector |
-| **Values:** `'Exact' | 'Newton-Raphson'` |
-| **Default:** `'Exact'` |
-
-### **Signed power** — Power signedness on (default) | off
-
-When calculating power, specified as on or off, take into account sign of the input
-signal. Math Function uses this parameter only when the
-output signal is real.
-
-- on — Calculate power of the absolute value of the input,
-  multiplied by the sign of the input.
-- off — Calculate power of the actual input value. If the first
-  input is negative, the second input is not an integer, and the
-  output signal is real, the function returns
-  `NaN`.
-
-#### Dependency
-
-Setting **Function** to
-`pow` enables this parameter.
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter:** `SignedPower` |
-| **Type:** character vector |
-| **Values:** `'on' | 'off' |` |
-| **Default:** `'on'` |
-
-### **Output signal type** — Complexity of output signal `auto` (default) | `real` | `complex`
-
-Specify the output signal type of the Math Function block as
-`auto`, `real`, or
-`complex`.
-
-| Function | Input Signal Type | Output Signal Type | | |
-| --- | --- | --- | --- | --- |
-| Auto | Real | Complex |
-| `exp`, `log`, `2^u`, `10^u`, `log10`, `square`, `pow`, `reciprocal`, `conjugate`, `transpose`, `hermitian` | `real`  `complex` | `real`  `complex` | `real`  `error` | `complex`  `complex` |
-| `magnitude squared` | `real`  `complex` | `real`  `real` | `real`  `real` | `complex`  `complex` |
-| `hypot`, `rem`, `mod` | `real`  `complex` | `real`  `error` | `real`  `error` | `complex`  `error` |
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter:** `OutputSignalType` |
-| **Type:** character vector |
-| **Values:** `'auto' | 'real' | 'complex'` |
-| **Default:** `'auto'` |
-
-### **Number of iterations** — Number of Newton-Raphson iterations 3 (default) | scalar
-
-Number of Newton-Raphson iterations, specified as a scalar.
-
-#### Dependencies
-
-To enable this parameter, set:
-
-- **Function** to
-  `reciprocal`.
-- **Algorithm method** to
-  `Newton-Raphson`.
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter:** `Iterations` |
-| **Type:** character vector |
-| **Values:** `'3' | scalar` |
-| **Default:** `'3'` |
-
-### **Sample time (-1 for inherited)** — Interval between samples `-1` (default) | scalar | vector
-
-Specify the time interval between samples. To inherit the sample time, set this
-parameter to `-1`. For more information, see Specify Sample Time.
-
-#### Dependencies
-
-This parameter is visible only if you set it to a value other than
-`-1`. To learn more, see Blocks for Which Sample Time Is Not Recommended.
+The XY Graph block is an alternative configuration of the
+Record block that visualizes data connected to two input ports on an
+XY plot. In the XY Graphblock, the first input port provides the
+*x* data, and the second input port provides the
+*y* data.
 
 #### Programmatic Use
 
@@ -208,31 +70,180 @@ the `set_param` function.
 
 |  |  |
 | --- | --- |
-| **Parameter:** | `SampleTime` |
-| **Values:** | `"-1"` (default) | scalar or vector in quotes |
+| **Parameter:** | `NumPorts` |
+| **Values:** | 1 (default) | integer in the range [`1`, `100`] |
+| **Data Types:** | `integer` |
 
-### Signal Attributes
+**Example:** `set_param("myModel/Record","NumPorts",2)`
 
-### **Output minimum** — Minimum output value for range checking `[]` (default) | scalar
+### **Decimation** — Decimation factor `1` (default) | positive integer
 
-Lower value of the output range that the software checks.
+*Since R2025a*
 
-The software uses the minimum to perform:
+Specify a decimation factor to reduce the effective sample rate for the logged
+data. For a decimation factor, *n*, the Record block
+logs every *n*th sample value. For
+example, when you specify the **Decimation** value as
+`2`, the Record block logs every other data
+point.
 
-- Parameter range checking (see Specify Minimum and Maximum Values for Block Parameters)
-  for some blocks.
-- Simulation range checking (see Specify Signal Ranges and
-  Enable Simulation Range Checking).
-- Automatic scaling of fixed-point data types.
-- Optimization of the code that you generate from the model. This
-  optimization can remove algorithmic code and affect the results of some
-  simulation modes such as SIL or external mode. For more information, see
-  Optimize using the specified minimum and maximum values (Embedded Coder).
+For more information about controlling which samples are logged during simulation,
+see Specify Signal Values to Log.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `Decimation` |
+| **Values:** | `"1"` (default) | positive integer in quotes |
+| **Data Types:** | `character vector` | `string` |
+
+**Example:** `set_param("myModel/Record","Decimation","2")`
+
+### **Limit data points to last** — Number of samples to log `inf` (default) | scalar | vector
+
+*Since R2025a*
+
+When you want to save or analyze only the data from the end of a simulation,
+specify the number of samples you want to log as a positive integer greater than zero.
+By default, the Record block logs data for the entire simulation, and
+the value for the **Limit data points to last** parameter is
+`inf`.
+
+Limiting logged data to the last *n* signal values directly
+impacts memory allocation. When you specify this parameter, the software allocates
+memory upfront based on the specified value, not on the time steps generated during
+the simulation. For this reason, the **Limit data points to
+last** parameter is not recommended when logging an indeterminate number
+of time steps.
+
+For more information about controlling which samples are logged during simulation,
+see Specify Signal Values to Log.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `MaxDataPoints` |
+| **Values:** | `"inf"` (default) | positive integer in quotes |
+| **Data Types:** | `character vector` | `string` |
+
+**Example:** `set_param("myModel/Record","MaxDataPoints","20")`
+
+### **Select port** — Port for which to specify input processing mode `1` (default) | integer
+
+Use the **Select port** and **Input processing**
+parameters together to specify the input processing mode for a port. The input
+processing mode determines how the Record block interprets matrix data:
+
+- Sample-based — Each element in the matrix is a separate channel.
+- Frame-based — Each column in the matrix is a separate channel.
+
+To use frame-based input processing, the signal must have a discrete sample rate,
+and the sample values must be nonscalar with fixed dimensions.
+
+By default, each port processes the input signal as sample-based.
+
+To change the input processing mode for a port:
+
+1. Select the port number using the **Select port**
+   parameter.
+2. Select the input processing mode using the **Input
+   processing** parameter.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+Programmatically specify the input processing mode for each port by specifying
+the `FrameSettings` parameter as a row vector with as many elements
+as block ports. The element index corresponds to the port number on the block.
+Specify `1` to use frame-based input processing for the port and
+`0` to use sample-based processing.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `FrameSettings` |
+| **Values:** | `false` (default) | `1`-by-`n` row vector of logical values, where `n` is equal to the number of ports |
+| **Data Types:** | `logical array` |
+
+**Example:** `set_param("myModel/Record","FrameSettings",[true,false,true])`
+
+### **Input processing** — Input processing mode for selected port `Elements as channels (sample-based)` (default) | `Columns as channels (frame-based)`
+
+Use the **Select port** and **Input processing**
+parameters together to specify the input processing mode for a port. The input
+processing mode determines how the Record block interprets matrix data:
+
+- Sample-based — Each element in the matrix is a separate channel.
+- Frame-based — Each column in the matrix is a separate channel.
+
+To use frame-based input processing, the signal must have a discrete sample rate,
+and the sample values must be nonscalar with fixed dimensions.
+
+By default, each port processes the input signal as sample-based.
+
+To change the input processing mode for a port:
+
+1. Select the port number using the **Select port**
+   parameter.
+2. Select the input processing mode using the **Input
+   processing** parameter.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+Programmatically specify the input processing mode for each port by specifying
+the `FrameSettings` parameter as a row vector with as many elements
+as block ports. The element index corresponds to the port number on the block.
+Specify `1` to use frame-based input processing for the port and
+`0` to use sample-based processing.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `FrameSettings` |
+| **Values:** | `false` (default) | `1`-by-`n` row vector of logical values, where `n` is equal to the number of ports |
+| **Data Types:** | `logical array` |
+
+**Example:** `set_param("myModel/Record","FrameSettings"[true,false,true])`
+
+### Record
+
+### **Record to workspace** — Workspace logging option `off` (default) | `on`
+
+Workspace logging option. By default, the Record block logs data
+only to the Simulation Data Inspector. Select **Record to workspace**
+to log data for signals connected to the Record block to the
+MATLAB® workspace in a `Simulink.SimulationData.Dataset`
+object.
+
+Use the **Workspace variable name** parameter to specify the name
+of the `Dataset` object that contains the logged Record
+block data.
 
 #### Tips
 
-**Output minimum** does not saturate or clip the actual output
-signal. Use the Saturation block instead.
+- When you log data to the workspace, the way you access the data depends on
+  your model configuration. By default, models provide all logged data in a single
+  output variable as a `Simulink.SimulationOutput` object.
+  You can access the Record block data using the `get` function or a dot with the
+  Record block workspace variable name. When the **Single simulation output**
+  option is disabled, logging data appears in separate variables in the workspace,
+  and you access the Record block data directly.
+- Logging intervals specified using the **Logging intervals**
+  configuration parameter apply to data logged to the workspace using the
+  Record block.
+- Use a single Record block to log data to the Simulation Data
+  Inspector, the workspace, and a file.
 
 #### Programmatic Use
 
@@ -241,29 +252,51 @@ the `set_param` function.
 
 |  |  |
 | --- | --- |
-| **Parameter:** | `OutMin` |
-| **Values:** | `'[]'` (default) | scalar in quotes |
+| **Parameter:** | `RecordToWorkspace` |
+| **Values:** | `"off"` (default) | "on" | `false` or `0` | `true` or `1` |
 
-### **Output maximum** — Maximum output value for range checking `[]` (default) | scalar
+**Example:** `set_param("myModel/Record","RecordToWorkspace","on")`
 
-Upper value of the output range that the software checks.
+### **Workspace variable name** — Name for workspace variable that contains logged block data `recordout` (default) | character vector | string
 
-The software uses the maximum value to perform:
+Name for the workspace variable that contains the logged block data.
 
-- Parameter range checking (see Specify Minimum and Maximum Values for Block Parameters)
-  for some blocks.
-- Simulation range checking (see Specify Signal Ranges and
-  Enable Simulation Range Checking).
-- Automatic scaling of fixed-point data types.
-- Optimization of the code that you generate from the model. This
-  optimization can remove algorithmic code and affect the results of some
-  simulation modes such as SIL or external mode. For more information, see
-  Optimize using the specified minimum and maximum values (Embedded Coder).
+#### Dependencies
+
+To enable this parameter, select the **Record to workspace**
+parameter.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `VariableName` |
+| **Values:** | `"recordout"` (default) | valid MATLAB variable name |
+| **Data Types:** | `character vector` | `string` |
+
+**Example:** `set_param("myModel/Record","VariableName","RecordedData")`
+
+### **Record to file** — Log to file option `off` (default) | `on`
+
+Log to file option. By default, the Record block logs data to the
+Simulation Data Inspector only. Select **Record to file** to log data
+for signals connected to the Record block to a file.
 
 #### Tips
 
-**Output maximum** does not saturate or clip the actual output
-signal. Use the Saturation block instead.
+- Use the **File name** parameter to specify a name for the
+  file.
+- Use the **File type** parameter to specify whether to log
+  data to an MLDATX file, a MAT file, an Excel file, or a Parquet
+  file *(since R2025a)*.
+- Use the **File location** parameter to specify the path
+  to the file.
+- Logging intervals specified using the **Logging intervals**
+  configuration parameter do not apply to data logged to a file using the
+  Record block.
 
 #### Programmatic Use
 
@@ -272,141 +305,298 @@ the `set_param` function.
 
 |  |  |
 | --- | --- |
-| **Parameter:** | `OutMax` |
-| **Values:** | `'[]'` (default) | scalar in quotes |
+| **Parameter:** | `RecordToFile` |
+| **Values:** | `"off"` (default) | "on" | `false` or `0` | `true` or `1` |
 
-### **Output data type** — Specify the output data type `Inherit: Same as first input` (default) | `Inherit: Inherit via internal rule` | `Inherit: Inherit via back propagation` | `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `fixdt(1,16)` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
+**Example:** `set_param("myModel/Record","RecordToFile","on")`
 
-Specify the output data type. You can set it to:
+### **File name** — Name of file with logged data `recording.mldatx` (default) | character vector | string
 
-- A rule that inherits a data type, for example,
-  `Inherit: Inherit via back
-  propagation`
-- The name of a built-in data type, for example,
-  `single`
-- The name of a data type object, for example, a
-  `Simulink.NumericType` object
-- An expression that evaluates to a data type, for example,
-  `fixdt(1,16,0)`
+Name of the file that contains the logged data. The name does not need to include
+the file extension. If you do include the file extension in the name, ensure the name
+uses a valid extension for the specified **File type**.
 
-The **Data Type Assistant** helps you set data
-attributes. To use the **Data Type Assistant**, click the Show data type assistant button. For more information, see Specify Data Types Using Data Type Assistant.
+#### Tips
 
-#### Dependencies
-
-- To enable this parameter, set the
-  **Function** to
-  `magnitude^2`,
-  `square`, or
-  `reciprocal`.
-- For the `magnitude^2` and
-  `square`, when input is a
-  floating-point data type smaller than single precision, the
-  `Inherit: Inherit via internal
-  rule` output data type depends on the
-  setting of the Inherit floating-point output type smaller than single precision configuration parameter. Data types are smaller than
-  single-precision when the number of bits needed to encode
-  the data type is less than the 32 bits needed to encode the
-  single precision data type. For example,
-  `half` and `int16` are
-  smaller than single precision.
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter**: `OutDataTypeStr` |
-| **Type**: character vector |
-| **Values**: `'Inherit: Inherit via internal rule` | `'Inherit: Same as first input'` | `'Inherit: Inherit via back propagation'` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'fixdt(1,16)'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
-| **Default**: `'Inherit: Same as first input'` |
-
-### **Lock output data type setting against changes by the fixed-point tools** — Prevent fixed-point tools from overriding data types `off` (default) | `on`
-
-Select this parameter to prevent the fixed-point tools from overriding
-the **Output** data type you specify on the block. For
-more information, see Use Lock Output Data Type Setting (Fixed-Point Designer).
+- If you do not change the name or location of the file you log to from one
+  run to the next, the Record block overwrites prior data in the
+  file.
+- When you want to save the file in a location other than your working
+  directory, use the **File location** parameter to specify the
+  path to the directory where you want to save the file.
 
 #### Dependencies
 
-To enable this parameter, set the **Function** to
-`magnitude^2`,
-`square`, or
-`reciprocal`.
+To enable this parameter, select the **Record to file**
+parameter.
 
 #### Programmatic Use
 
-|  |
-| --- |
-| **Block Parameter:** `LockScale` |
-| **Type:** character vector |
-| **Values:** `'off' | 'on'` |
-| **Default:** `'off'` |
+To set the block parameter value programmatically, use
+the `set_param` function.
 
-### **Integer rounding mode** — Rounding mode for fixed-point operations `Floor` (default) | `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
+Specify the **File name**, **File type**, and
+**File location** parameters. Include the extension for the
+desired file type in the name you pass to `set_param`. When you
+want to save the file somewhere other than the current working directory, specify
+the path with the filename and extension.
 
-Rounding mode for fixed-point operations. For more information, see
-Rounding Modes (Fixed-Point Designer).
+|  |  |
+| --- | --- |
+| **Parameter:** | `FileName` |
+| **Values:** | `"recording.mldatx"` (default) | valid filename |
+| **Data Types:** | `character vector` | `string` |
 
-Block parameters always round to the nearest representable value. To
-control the rounding of a block parameter, enter an expression using a
-MATLAB rounding function into the mask field.
+**Example:** `set_param("myModel/Record","FileName","myRecording.mldatx")`
+
+### **File type** — Type of file for logged data `*.mldatx` (default) | `*.mat` | `*.xslx` | `*.parquet`
+
+Use the **File type** parameter to specify whether you want to
+log data to an MLDATX, MAT, Excel, or Parquet file *(since R2025a)*.
+
+#### Tips
+
+- When you log data to an Excel file, the data is formatted as described in Microsoft Excel Import, Export, and Logging Format.
+- When you log data to an Excel file, you can specify whether to share time columns using the
+  **Time** parameter and which signal attributes to log using
+  the **Attributes** parameter.
 
 #### Dependencies
 
-To enable this parameter, set the **Function** to
-`magnitude^2`,
-`square`, or
-`reciprocal`.
+To enable this parameter, select **Record to file**.
 
 #### Programmatic Use
 
-|  |
-| --- |
-| **Block Parameter:** `RndMeth` |
-| **Type:** character vector |
-| **Values:** `'Ceiling' | 'Convergent' | 'Floor' | 'Nearest' | 'Round' | 'Simplest' | 'Zero'` |
-| **Default:** `'Floor'` |
+To set the block parameter value programmatically, use
+the `set_param` function.
 
-### **Saturate on integer overflow** — Choose the behavior when integer overflow occurs `on` (default) | boolean
+Use the `FileName` parameter to specify the **File
+name**, **File type**, and **File
+location** parameters. Include the extension for the desired file type in
+the name you pass to `set_param`. When you want to save the file
+somewhere other than the current working directory, specify the path with the
+filename and extension.
 
-| Action | Rationale | Overflows | Example |
-| --- | --- | --- | --- |
-| Select **Saturate on integer overflow** check box. | Your model has possible overflow and you want explicit saturation protection in the generated code. | Overflows saturate to either the minimum or maximum value that the data type can represent. | The maximum value that the `int8` (signed, 8-bit integer) data type can represent is 127. Any block operation result greater than this maximum value causes overflow of the 8-bit integer. With the check box selected, the block output saturates at 127. Similarly, the block output saturates at a minimum output value of -128. |
-| Do not select **Saturate on integer overflow** check box. | You want to optimize efficiency of your generated code.  You want to avoid overspecifying how a block handles out-of-range signals. For more information, see Troubleshoot Signal Range Errors. | Overflows wrap to the appropriate value that is representable by the data type. | The maximum value that the `int8` (signed, 8-bit integer) data type can represent is 127. Any block operation result greater than this maximum value causes overflow of the 8-bit integer. With the check box cleared, the software interprets the overflow-causing value as `int8`, which can produce an unintended result. For example, a block result of 130 (binary 1000 0010) expressed as `int8`, is -126. |
+|  |  |
+| --- | --- |
+| **Parameter:** | `FileName` |
+| **Values:** | `"recording.mldatx"` (default) | valid filename |
+| **Data Types:** | `character vector` | `string` |
 
-When you select this check box, saturation applies to every internal operation on the
-block, not just the output or result. The code generation process can
-detect when overflow is not possible. In this case, the code generator
-does not produce saturation code.
+**Example:** `set_param("myModel/Record","FileName","myRecording.parquet")`
+
+### **File location** — Path to file with logged data working directory (default) | character vector | string
+
+Use the **File location** parameter to specify the location where
+you want to save the file with the logged data when you want to save the file
+somewhere other than the working directory. Ensure you have write permissions in the
+directory you specify.
 
 #### Dependencies
 
-To enable this parameter, set the **Function** to
-`magnitude^2`,
-`square`,
-`conj`,
-`reciprocal`, or
-`hermitian`.
+To enable this parameter, select **Record to file**.
 
 #### Programmatic Use
 
-|  |
-| --- |
-| **Block Parameter**: `SaturateOnIntegerOverflow` |
-| **Type**: character vector |
-| **Value**: `'off'` | `'on'` |
-| **Default**: `'on'` |
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+Use the `FileName` parameter to specify the **File
+name**, **File type**, and **File
+location** parameters. Include the extension for the desired file type in
+the name you pass to `set_param`. When you want to save the file
+somewhere other than the current working directory, specify the path with the
+filename and extension.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `FileName` |
+| **Values:** | `"recording.mldatx"` (default) | valid filename |
+| **Data Types:** | `character vector` | `string` |
+
+**Example:** `set_param("myModel/Record","FileName","myRecording.mldatx")`
+
+### **Time** — Options for exporting time data to Excel or Parquet file `Shared Time Columns` (default) | `Individual Time Columns`
+
+Specify how to log signal time data when you log the Record block
+data to an Excel file or Parquet file *(since R2025a)*.
+
+- `Shared Time Columns` — When time data is identical for
+  multiple signals, the signals share a single time column in the logging file.
+  The logging file can still include multiple time columns if the
+  Record block logs data for signals with unique time
+  data.
+- `Individual Time Columns` — Each logged signal always has
+  its own time column in the logging file.
+
+#### Dependencies
+
+To enable this parameter, select **Record to file** and specify
+**File type** as `*.xlsx` or `*.parquet` *(since R2025a)*.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+Programmatically setting the **Time** parameter is supported
+only for Parquet files.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `SharedTimeColumn` |
+| **Values:** | `"on"` (default) | `"off"` |
+
+**Example:** `set_param("myModel/Record","SharedTimeColumn",
+"off")`
+
+### **Signal Attributes** — Signal attributes to export to Excel file `Data Type` | `Units` | `Port Index` | `Block Path` | `Interpolation`
+
+Select one or more signal attribute options to include in the logging file when
+you log data to an Excel file. Selected signal attributes appear in the signal column above the
+first data point according to the format described in Microsoft Excel Import, Export, and Logging Format.
+
+#### Dependencies
+
+To enable this parameter, select **Record to file** and specify
+**File type** as `*.xlsx`.
+
+### **Compression Type** — Compression options `Fastest (snappy)` (default) | `Balanced for Size and Speed (gzip)` | `Compact (brotli)` | `None (uncompressed)`
+
+*Since R2025a*
+
+Specify compression as one of these options:
+
+- `Fastest (snappy)` — Similar save speed to an
+  uncompressed file, smaller file size
+- `Balanced for Size and Speed (gzip)` — Balance
+  between file size and save speed
+- `Compact (brotli)` — Smallest file size, slowest save
+  speed
+- `None (uncompressed)` — Largest file size, fastest
+  save speed
+
+#### Dependencies
+
+To enable this parameter, select **Record to file** and specify
+**File type** as `*.parquet`.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `ParquetCompression` |
+| **Values:** | `"fastest"` (default) | `"balanced"` | `"compact"` | `"none"` |
+
+**Example:** `set_param("myModel/Record","ParquetCompression","balanced")`
+
+### **Generate Sidecar** — Option to generate JSON sidecar `on` (default) | `off`
+
+*Since R2025a*
+
+Select this parameter to generate a JSON sidecar that contains all the logged
+metadata.
+
+#### Dependencies
+
+To enable this parameter, select **Record to file** and specify
+**File type** as `*.parquet`.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `ParquetMetaData` |
+| **Values:** | `"on"` (default) | `"off"` |
+
+**Example:** `set_param("myModel/Record","ParquetMetaData","off")`
+
+### **Row Group Policy** — Options for grouping rows in Parquet file `Row Group Height` (default) | `Row Group Size (MB)`
+
+*Since R2025a*
+
+Specify row groups in the Parquet file.
+
+- `Row Group Height` — Specify the number of rows per
+  group.
+- `Row Group Size (MB)` — Specify the size of the row group
+  in megabytes.
+
+#### Dependencies
+
+To enable this parameter, select **Record to file** and specify
+**File type** as `*.parquet`.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `ParquetRowGroupPolicy` |
+| **Values:** | `"height"` (default) | `"sizeinmb"` |
+
+**Example:** `set_param("myModel/Record","ParquetRowGroupPolicy","sizeinmb")`
+
+### **Row Group Policy Value** — Height or size of row group `auto` (default when `Row Group Policy` is `Row Group Height`) | `512` (default when `Row Group Policy` is `Row Group Size (MB)` | number of rows | size of row group
+
+*Since R2025a*
+
+To specify the number of rows in each row group, set the **Row Group
+Policy** parameter to `Row Group Height`. Then, use the
+**Row Group Policy Value** parameter to define the number of rows
+in each group, choosing a value between `1` and
+`67,108,864`. By default, the value is `auto`,
+which creates the largest possible row group without exceeding 512 MB.
+
+To specify the size of each row group, set the **Row Group
+Policy** parameter to `Row Group Size (MB)`. Then, use
+the **Row Group Policy Value** parameter to set the data size of
+the row group in megabytes, up to 1GB.
+
+#### Dependencies
+
+To enable this parameter, select **Record to file** and specify
+**File type** as `*.parquet`.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `ParquetRowGroupHeight` |
+| **Values:** | `"auto"` (default) | integer in the range [`1`, `67108864`] in quotes |
+| **Data Types:** | `character vector` | `string` |
+
+**Example:** `set_param("myModel/Record","ParquetRowGroupPolicy","height","ParquetRowGroupHeight","5000")`
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `ParquetRowGroupSize` |
+| **Values:** | `"512"` (default) | positive number in the range (`0`, `1000`] in quotes |
+| **Data Types:** | `character vector` | `string` |
+
+**Example:** `set_param("myModel/Record","ParquetRowGroupPolicy","sizeinmb","ParquetRowGroupsize","450")`
 
 ## Libraries
 
-Simulink / Math Operations HDL Coder / Math Operations
+Simulink / Sinks
 
 ## Block Characteristics
 
 |  |  |
 | --- | --- |
-| **Data Types** | `Boolean` | `double` | `fixed point` | `half` | `integer` | `single` |
-| **Direct Feedthrough** | `yes` |
+| **Data Types** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `half` | `integer` | `single` | `string` |
+| **Direct Feedthrough** | `no` |
 | **Multidimensional Signals** | `yes` |
 | **Variable-Size Signals** | `yes` |
 | **Zero-Crossing Detection** | `no` |
@@ -415,222 +605,171 @@ Simulink / Math Operations HDL Coder / Math Operations
 
 ### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
 
-### HDL Code Generation Generate VHDL, Verilog and SystemVerilog code for FPGA and ASIC designs using HDL Coder™.
+This block is ignored for code generation.
 
-HDL Coder™ provides additional configuration options that affect HDL
-implementation and synthesized logic.
+### HDL Code Generation Generate VHDL, Verilog and SystemVerilog code for FPGA and ASIC designs using HDL Coder™.
 
 **HDL Architecture**
 
-| Function | Architecture | Description |
-| --- | --- | --- |
-| `conj` | `ComplexConjugate` | Calculate complex conjugate. |
-| `hermitian` | `Hermitian` | Calculate hermitian. |
-| `transpose` | `Transpose` | Calculate array transpose. See Math Function in the Simulink documentation. |
-| `mod`  `rem` | `ShiftAdd` | Perform modulus or remainder operation on a built-in integer types input by using a non-restoring division algorithm that performs multiple shift and add operations to compute the `mod` and `rem` operations.  `ShiftAdd` is a pipelined implementation, and it can introduce additional latency in the generated code. Using this architecture, you can also set the latency strategy by setting the **LatencyStrategy** parameter. |
-
-**Reciprocal Architecture**
-
-When you set the **Algorithm method** to
-`Exact`, you can select this options in HDL Block
-properties of this block.
-
-| Architecture | Parameters | Additional Cycles of Latency | Description |
-| --- | --- | --- | --- |
-| `ShiftAdd(default)` | None | Signed input: (Input word length + 4)  Unsigned input: (Input word length + 4)  For floating-point latency of the block, see Latency Values of Floating-Point Operators (HDL Coder). | Perform reciprocal operation on a fixed-point or floating point input by using a non-restoring division algorithm that performs multiple shift and add operations to compute the reciprocal. This architecture provides improved accuracy compared to the Newton-Raphson approximation method.  When you use fixed-point data types, following criteria must be satisfied for generating the HDL code:  - Input word length (`WL`) must be   less than or equal to 63. - `[WL input + Abs(FL Sum)]` must   be less than or equal to 63. Where, `FL   Sum` is given by,  `FL sum = FL input + FL   output` |
-
-You can apply sharing optimization for Math Function Reciprocal block in
-`ShiftAdd` architecture. For more information, see
-Resource Sharing (HDL Coder).
-
-This block has multi-cycle implementations that introduce additional
-latency in the generated code. To see the added latency, view the
-generated model or validation model. See Generated Model and Validation Model (HDL Coder).
-
-HDL code generation also supports the Newton-Raphson algorithm method for
-`reciprocal` function. Select the **Algorithm
-method** as `Newton-Raphson` to use these
-architectures for `reciprocal` function in the Math
-Function block.
-
-| Architecture | Additional Cycles of Latency | Description |
-| --- | --- | --- |
-| `ReciprocalNewton` (default) | `Iterations` + 1 | Use the multirate implementation of the iterative Newton method. Select this option to optimize area for your design.  The default value for `Iterations` is 3.  The recommended value for `Iterations` is from 2 through 10. If `Iterations` value is outside the recommended range, HDL Coder displays a message. |
-| `ReciprocalNewtonSingleRate` | (`Iterations` \* 2) + 1 | Use the single rate pipelined Newton method. Select this option to optimize speed for your design, or if you want a single rate implementation.  The default value for `Iterations` is 3.  The recommended value for `Iterations` is between 2 and 10. If `Iterations` value is outside the recommended range, HDL Coder displays a message. |
-| ReciprocalRsqrtBasedNewtonSingleRate | Signed input: (`Iterations` \* 4) + 8  Unsigned input: (`Iterations` \* 4) + 6 | Use the single rate pipelined Newton method. Select this option to optimize speed, or if you want a single rate implementation.  The default value for `Iterations` is 3.  The recommended value for `Iterations` is from 2 through 10. If `Iterations` is outside the recommended range, the coder generates a message. |
+| Architecture | Description |
+| --- | --- |
+| `No HDL` | Do not generate HDL code for this block. |
 
 **HDL Block Properties**
 
-| General | |
+|  |  |
 | --- | --- |
-| **ConstrainedOutputPipeline** | Number of registers to place at the outputs by moving existing delays within your design. Distributed pipelining does not redistribute these registers. The default is `0`. For more details, see ConstrainedOutputPipeline (HDL Coder). |
-| **InputPipeline** | Number of input pipeline stages to insert in the generated code. Distributed pipelining and constrained output pipelining can move these registers. The default is `0`. For more details, see InputPipeline (HDL Coder). |
-| **OutputPipeline** | Number of output pipeline stages to insert in the generated code. Distributed pipelining and constrained output pipelining can move these registers. The default is `0`. For more details, see OutputPipeline (HDL Coder). |
-| **LatencyStrategy** | To enable this property, set HDL architecture to `ShiftAdd`. Specify whether to map the blocks in your design to `MAX`, `Min`, `CUSTOM`, or `ZERO` latency for fixed-point types. The default is `MAX`. See also LatencyStrategy (HDL Coder). |
-| **CustomLatency** | To enable this property, set HDL architecture to `ShiftAdd`. When **LatencyStrategy** is set to `CUSTOM`, use this property to specify a custom latency value between `ZERO` and `MAX` for fixed-point types. See also LatencyStrategy (HDL Coder). |
-
-| Native Floating Point | |
-| --- | --- |
-| **CheckResetToZero** | Use this property for the `mod` and `rem` functions of the Math Function block. If you have numbers `a` and `b` such that the quotient `a/b` is close to an integer, this setting treats `a` as an integral multiple of `b`, and `rem(a,b)` = 0. This result is numerically accurate and matches the simulation results. Calculating this result uses additional resources and increases the area footprint on the target FPGA device. For more information, see CheckResetToZero (HDL Coder). |
-| **HandleDenormals** | Specify whether you want HDL Coder to insert additional logic to handle denormal numbers in your design. Denormal numbers are numbers that have magnitudes less than the smallest floating-point number that can be represented without leading zeros in the mantissa. The default is `inherit`. See also HandleDenormals (HDL Coder). |
-| **LatencyStrategy** | Specify whether to map the blocks in your design to `inherit`, `Max`, `Min`, `Zero`, or `Custom` for the floating-point operator. The default is `inherit`. See also LatencyStrategy (HDL Coder). |
-| **NFPCustomLatency** | To specify a value, set **LatencyStrategy** to `Custom`. HDL Coder adds latency equal to the value that you specify for the **NFPCustomLatency** setting. See also NFPCustomLatency (HDL Coder). |
-| **MaxIterations** | Use this property for the `mod` and `rem` functions of the Math Function block. If you have numbers `a` and `b` that are significantly large integers, you can increase **MaxIterations** to match the simulation results. Calculating this result uses additional resources and increases the area footprint on the target FPGA device. For more information, see MaxIterations (HDL Coder). |
-| **IterationsPerPipeline** | Use this property for the `reciprocal` function of the Math Function block. To enable this property, set **Algorithm method** parameter to `Exact`. When you set **LatencyStrategy** to `Custom(PerIterations)`, use this setting to specify the number of iterations per pipeline stages. For more information, see Reciprocal (HDL Coder). |
-
-**Supported Datatypes and Functions in Native Floating-Point**
-
-The Math Function block supports scalar, vector, or matrix data types. This
-block supports these functions with Native Floating-Point.
-
-| Math Functions | Supported Floating-Point Datatypes | | | Fixed-Point Datatype Support | Complex Data Support |
-| --- | --- | --- | --- | --- | --- |
-| Half | Single | Double |
-| `exp` | No | Yes | No | No | No |
-| `log` | No | Yes | Yes | No | No |
-| `2^u` | No | Yes | No | No | No |
-| `10^u` | No | Yes | No | No | No |
-| `log10` | No | Yes | No | No | No |
-| `magnitude^2` | No | Yes | Yes | Yes | Yes |
-| `square` | No | Yes | No | Yes | Yes |
-| `pow` | No | Yes | No | No | No |
-| `conj` | No | Yes | No | Yes | Yes |
-| `reciprocal` | Yes | Yes | Yes | Yes | No |
-| `hypot` | No | Yes | No | No | No |
-| `rem` | No | Yes | No | No | No |
-| `mod` | No | Yes | No | No | No |
-| `transpose` | Yes | Yes | Yes | Yes | Yes |
-| `hermitian` | No | Yes | No | Yes | Yes |
-
-**Restrictions**
-
-When you use a `reciprocal` implementation:
-
-- Input must be scalar and must have integer or fixed-point (signed or
-  unsigned) data type.
-- The output must be scalar and have integer or fixed-point (signed or
-  unsigned) data type.
-- The **Saturate on integer overflow** option on the
-  block must be selected.
+| **PreserveUpstreamLogic** | Control the removal of unconnected logic. The default is `off`, which means unconnected logic is not preserved in HDL code. For more details, see PreserveUpstreamLogic (HDL Coder). |
 
 ### PLC Code Generation Generate Structured Text code using Simulink® PLC Coder™.
 
-### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
-
-The Math Function block only supports fixed-point conversion in certain
-configurations. For more information, see the Block Support Table.
+This block is ignored for code generation.
 
 ## Version History
 
-**Introduced before R2006a**
+**Introduced in R2021a**
 
-### R2023a: `Math Function` Block Supports 2^u
+### R2025a: Log `datetime` data
 
-The Math Function block now supports the
-`2^u` function. The MATLAB equivalent is `2.^u` (see `power`).
+The Record block supports logging `datetime` data.
+
+### R2025a: Live streaming no longer supported in XY visualizations
+
+To avoid scalability issues, data is no longer streamed to XY visualizations in the
+Simulation Data Inspector, Record block, or XY Graph
+block.
+
+### R2025a: Limit data logged by Record block
+
+Limit the size of data logged by the Record block by specifying signal
+values to log. You can specify signal values to log using these two parameters:
+
+- **Decimation** — Log every *n*th signal value.
+- **Limit data points to last** — Log only the last
+  *n* signal values.
+
+### R2025a: Export data to a Parquet file using the Record block
+
+Use the Record block to export data from scalar and multidimensional
+signals, as well as data from buses or arrays of buses, to a Parquet file. The
+Record block logs and can export real and complex data of any built-in data
+type, as well as enumerations, strings, and fixed-point data. For more information, see
+Export Data to Parquet File Using Record Block.
+
+### R2023b: Log unbounded variable-size signals
+
+In normal and accelerator mode simulations, the Record block supports
+logging unbounded variable-size signals but does not support visualizing
+unbounded-variable-size signals. Logging is not supported for nonvirtual buses that contain
+unbounded variable-size signals.
+
+### R2023a: Log nonvirtual buses that contain variable-size signals
+
+In normal and accelerator mode simulations, the Record block supports
+logging:
+
+- Nonvirtual buses that contain variable-size signals directly or in nested
+  buses
+- Buses with nested nonvirtual buses that contain variable-size signals
+
+In normal mode simulations only, the Record block supports
+logging:
+
+- Arrays of buses with nonvirtual buses that contain variable-size signals
+
+The Record block does not support visualizing variable-size
+signals.
+
+### R2022b: Scale individual signals
+
+You can set the display scale and offset for an individual signal in the Record
+block.
+
+- Time plots and sparklines — Scale and offset the display of *y* values.
+- XY plots — Scale and offset the display of the *x*
+  values and *y* values independently.
+- Maps — Scale and offset the longitude and latitude independently.
+
+Cursors continue to show the unscaled values.
+
+### R2021b: XY Graph block replaced with alternative configuration of the Record block
+
+The XY Graph block is replaced with a Record block that is
+preconfigured to display two input signals on an XY plot. Using the updated XY
+Graph block, you can:
+
+- View data on the XY plot during simulation.
+- Record the XY plot data to the workspace, a file, or the workspace and a
+  file.
+- Zoom, pan, fit to view, and adjust the axis limits for the XY plot without having to
+  simulate again.
+- Analyze the XY trace by using cursors and by adding a trend line.
+- Add additional ports and subplots to visualize additional simulation data alongside
+  the XY plot on several visualization types, including time plots, maps, or additional XY
+  plots.
+- Visualize multiple traces on the XY plot.
+
+Upon simulation, the prior version of the XY Graph block opened a new
+window to display the connected signal data during simulation. To view data on the updated
+XY Graph block, double-click the block in the model. To view the XY plot in
+a new window, right-click the block and select **Open in New
+Window**.
+
+XY Graph blocks in existing models are automatically replaced with the
+new XY Graph block. XY Graph viewers are also replaced with the new XY
+Graph block. Goto and From blocks connect signals to
+the XY Graph block that replaces the XY Graph viewer.
+
+Signals connected to an XY Graph block always stream to the Simulation
+Data Inspector.
+
+### R2021a: **Logging intervals** configuration parameter applies to data logged to the workspace using the Record block
+
+The **Logging intervals** configuration parameter applies to data
+logged to the workspace using the Record block.
+
+The **Logging intervals** parameter does not affect data logged to a
+file using the Record block or how signals are displayed in the
+Record block. You can also access complete signal data for signals
+connected to the Record block in the Simulation Data Inspector.
 
 ## Description
 
-Perform mathematical function
+View and log data to the workspace, a file, or both
 
-The Math Function block performs many common mathematical functions.
+Use the Record block or the XY Graph block to record data to
+the workspace, a file, or to both the workspace and a file. When you log data to a file, you
+can choose to log to a MAT file, an MLDATX file, an Excel® file, or a Parquet file *(since R2025a)*. Signals connected
+to a Record block always log to the Simulation Data Inspector. If you decide
+that you need to save data after simulation, you can export data from the
+Record block to the workspace or to any supported file type except a Parquet
+file.
 
-You can select one of these functions from the **Function** parameter list
-in Math Function block.
+You can also use the Record block to visualize connected signals. To view
+data for signals connected to the Record block, double-click the block. You
+have access to simulation controls, such as the **Run** button, while viewing
+data in the Record block.
 
-| Function | Description | Mathematical Expression | MATLAB® Equivalent |
-| --- | --- | --- | --- |
-| `exp` | Exponential | `eu` | `exp` |
-| `log` | Natural logarithm | `ln u` | `log` |
-| `2^u` | Power of base 2 | `2u` | `2.^u`  (see `power`) |
-| `10^u` | Power of base 10 | `10u` | `10.^u`  (see `power`) |
-| `log10` | Common (base 10) logarithm | `log u` | `log10` |
-| `magnitude^2` | Complex modulus | `|u|2` | `real(u).^2 + imag(u).^2`   (see `real`, `imag`, and `power`) |
-| `square` | Power 2 | `u2` | `u.^2`  (see `power`) |
-| `pow` | Power | - With **Signed power** selected and   **Output signal type** set to   `real`, the expression is   `sign(u)*|u|v`. - With **Signed power** cleared or   **Output signal type** set to   `complex`, the expression is   `uv`. - When **Output signal type** is set to   `auto`, the expression depends on the   complexity type that the software compiles. | `power` |
-| `conj` | Complex conjugate | `ū` | `conj` |
-| `reciprocal` with Exact method | Reciprocal | `1/u` | `1./u`  (see `rdivide`) |
-| `reciprocal` with Newton-Raphson method | Reciprocal | See Newton-Raphson Reciprocal Algorithm Method | None |
-| `hypot` | Square root of sum squares | `(u2+v2)0.5` | `hypot` |
-| `rem` | Remainder after division | — | `rem` |
-| `mod` | Modulus after division | — | `mod` |
-| `transpose` | Transpose | `uT` | `u.'`  (see Array vs. Matrix Operations) |
-| `hermitian` | Complex conjugate transpose | `uH` | `u'`  (see Array vs. Matrix Operations) |
+By default, the Record block displays all connected signals on a sparklines
+plot. A sparkline is added for each connected signal. After sparklines fill the visible space,
+a scrollbar allows you to continue plotting signals.
 
-**Tip**
+A model opened to view data logged by a Record block with the block parameters visible in the Property Inspector
 
-To perform square root calculations, use the Sqrt block.
+### Build Visualizations
 
-The block output is the result of the operation of the function on the input or inputs. The
-functions support these types of operations.
+The Record block supports most visualizations available in the Simulation
+Data Inspector. When a different visualization makes sense for your data, you can modify the
+plot layout and plot types using the **Layouts** option and the plot types
+selector, labeled **Sparklines** by default. Use the
+**Layouts** list to select a layout of subplots. To change the plot type
+of a subplot, select the subplot then select the desired plot type from the plot types
+selector.
 
-| Function | Scalar Operations | Element-Wise Vector and Matrix Operations | Vector and Matrix Operations |
-| --- | --- | --- | --- |
-| `exp` | Yes | Yes | Not applicable |
-| `log` | Yes | Yes | Not applicable |
-| `2^u` | Yes | Yes | Not applicable |
-| `10^u` | Yes | Yes | Not applicable |
-| `log10` | Yes | Yes | Not applicable |
-| `magnitude^2` | Yes | Yes | Not applicable |
-| `square` | Yes | Yes | Not applicable |
-| `pow` | Yes | Yes | Not applicable |
-| `conj` | Yes | Yes | Not applicable |
-| `reciprocal` with Exact method | Yes | Yes | Not applicable |
-| `reciprocal` with Newton-Raphson method | Yes | Yes | Not applicable |
-| `hypot` | Yes, on two inputs | Yes, on two inputs (two vectors or two matrices of the same size, a scalar and a vector, or a scalar and a matrix) | — |
-| `rem` | Yes, on two inputs | Yes, on two inputs (two vectors or two matrices of the same size, a scalar and a vector, or a scalar and a matrix) | Not applicable |
-| `mod` | Yes, on two inputs | Yes, on two inputs (two vectors or two matrices of the same size, a scalar and a vector, or a scalar and a matrix) | Not applicable |
-| `transpose` | Yes | — | Yes |
-| `hermitian` | Yes | — | Yes |
+For more information, see Log Data to the Workspace and a File Using the Record Block. For examples that show
+how to use each visualization type, see:
 
-The name of the function and the appropriate number of input ports appear on the block.
-
-**Tip**
-
-Use the Math Function block when you want vector or matrix output.
-
-### Newton-Raphson Reciprocal Algorithm Method
-
-The `reciprocal` function that has the Newton-Raphson algorithm method
-calculates the reciprocal by using the Newton-Raphson approximation method. The
-function uses recursive approximation to find better approximations to the roots of
-a real-value function.
-
-The reciprocal of a real number a is defined as a zero of the function:
-
-f(x)=1x−a.
-
-Simulink® chooses an initial estimate in the range 0<x0<2a, because this is the domain of convergence for the
-function.
-
-To successively calculate the roots of the function, specify the **Number of
-iterations** parameter. The process is repeated as follows:
-
-xi+1=xi−f(xi)f'(xi)=xi+(xi−axi2)=xi.(2−axi)
-
-f'(x) is the derivative of the function f(x).
-
-### Data Type Support
-
-This table lists the input data types that each function of the block can support.
-
-| Function | Single | Double | Half\* | Boolean | Built-In Integer | Fixed Point |
-| --- | --- | --- | --- | --- | --- | --- |
-| `exp` | Yes | Yes | Yes | — | — | — |
-| `log` | Yes | Yes | Yes | — | — | — |
-| `2^u` | Yes | Yes | Yes | — | — | — |
-| `10^u` | Yes | Yes | Yes | — | — | — |
-| `log10` | Yes | Yes | Yes | — | — | — |
-| `magnitude^2` | Yes | Yes | Yes | — | Yes | Yes |
-| `square` | Yes | Yes | Yes | — | Yes | Yes |
-| `pow` | Yes | Yes | Yes | — | — | — |
-| `conj` | Yes | Yes | Yes | — | Yes | Yes |
-| `reciprocal` with Exact method | Yes | Yes | Yes | — | Yes | Yes |
-| `reciprocal` with Newton-Raphson method (for more information, see Output) | Yes | Yes | — | — | Yes | Yes |
-| `hypot` | Yes | Yes | Yes | — | — | — |
-| `rem` | Yes | Yes | Yes | — | Yes | — |
-| `mod` | Yes | Yes | Yes | — | Yes | — |
-| `transpose` | Yes | Yes | Yes | Yes | Yes | Yes |
-| `hermitian` | Yes | Yes | Yes | — | Yes | Yes |
-
-For more information on half-precision arithmetic operations, see The Half-Precision Data Type in Simulink (Fixed-Point Designer).
+- Sparklines — View Many Signals Together Using Sparklines
+- XY — Visualize Simulation Data on XY Plot and Analyze Data Using XY Plot
+- Map — View and Replay Map Data
+- Time plot and text editor — Create Plots Using the Simulation Data Inspector

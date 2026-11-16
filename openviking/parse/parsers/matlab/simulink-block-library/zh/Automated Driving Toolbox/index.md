@@ -5,7 +5,6 @@
 - [Simulation 3D](Simulation 3D/index.md)
 - [Vehicle Control](Vehicle Control/index.md)
 - [Detection Concatenation](Detection Concatenation.md)
-- [Info](Info.md)
 - [Multi-Object Tracker](Multi-Object Tracker.md)
 - [Path Smoother Spline](Path Smoother Spline.md)
 - [Velocity Profiler](Velocity Profiler.md)

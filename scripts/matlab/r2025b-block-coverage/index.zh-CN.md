@@ -5,32 +5,32 @@
 - 官方产品目录条目：**75**
 - 枚举到块库的产品：**75**
 - 没有官方块库 XML 的产品：**0**（不是静默跳过，也不冒充第三方空库）
-- 产品→库→块条目：**4572**
-- 产品内独立文档路径：**3814**
-- 已有完整英文文档：**3814**；中文文档：**3814**
+- 产品→库→块条目：**4565**
+- 产品内独立文档路径：**3812**
+- 已有完整英文文档：**3812**；中文文档：**3812**
 - 待补完整英文文档：**0**；中文文档：**0**
 
 第三方、硬件支持包和用户本机授权库不在公开产品总目录内，需要从用户 MATLAB 安装实例枚举，不能凭空生成。抓取失败、无权限和正文缺失都单独记为缺口，不把只有元数据的条目称为完整文档。
 
 | 产品 | 库中块条目 | 独立文档路径 | 状态 |
 | --- | ---: | ---: | --- |
-| Simulink (`simulink`) | 514 | 350 | enumerated / 已枚举 |
+| Simulink (`simulink`) | 511 | 350 | enumerated / 已枚举 |
 | Aerospace Blockset (`aeroblks`) | 150 | 141 | enumerated / 已枚举 |
 | Audio Toolbox (`audio`) | 50 | 49 | enumerated / 已枚举 |
-| Automated Driving Toolbox (`driving`) | 35 | 34 | enumerated / 已枚举 |
+| Automated Driving Toolbox (`driving`) | 34 | 33 | enumerated / 已枚举 |
 | AUTOSAR Blockset (`autosar`) | 9 | 9 | enumerated / 已枚举 |
 | Battery (`simscape-battery`) | 45 | 45 | enumerated / 已枚举 |
 | C2000 Microcontroller Blockset (`ti-c2000`) | 533 | 105 | enumerated / 已枚举 |
 | Communications Toolbox (`comm`) | 180 | 174 | enumerated / 已枚举 |
 | Communications Toolbox HDL Support (`communications-toolbox-hdl-support`) | 25 | 25 | enumerated / 已枚举 |
-| Computer Vision Toolbox (`vision`) | 75 | 74 | enumerated / 已枚举 |
+| Computer Vision Toolbox (`vision`) | 74 | 73 | enumerated / 已枚举 |
 | Control System Toolbox (`control`) | 24 | 24 | enumerated / 已枚举 |
 | Data Acquisition Toolbox (`daq`) | 6 | 6 | enumerated / 已枚举 |
 | DDS Blockset (`dds`) | 2 | 2 | enumerated / 已枚举 |
 | Deep Learning Toolbox (`deeplearning`) | 87 | 81 | enumerated / 已枚举 |
 | Driveline (`sdl`) | 100 | 100 | enumerated / 已枚举 |
 | DSP HDL Toolbox (`dsphdl`) | 18 | 17 | enumerated / 已枚举 |
-| DSP System Toolbox (`dsp`) | 238 | 220 | enumerated / 已枚举 |
+| DSP System Toolbox (`dsp`) | 237 | 219 | enumerated / 已枚举 |
 | DSP System Toolbox HDL Support (`dsp-system-toolbox-hdl-support`) | 27 | 27 | enumerated / 已枚举 |
 | Electrical (`sps`) | 405 | 401 | enumerated / 已枚举 |
 | Embedded Coder (`ecoder`) | 14 | 14 | enumerated / 已枚举 |
@@ -39,7 +39,7 @@
 | Fluids (`hydro`) | 207 | 207 | enumerated / 已枚举 |
 | Foundation Library (`simscape`) | 272 | 272 | enumerated / 已枚举 |
 | Fuzzy Logic Toolbox (`fuzzy`) | 19 | 19 | enumerated / 已枚举 |
-| HDL Coder (`hdlcoder`) | 262 | 183 | enumerated / 已枚举 |
+| HDL Coder (`hdlcoder`) | 262 | 185 | enumerated / 已枚举 |
 | HDL Verifier (`hdlverifier`) | 8 | 4 | enumerated / 已枚举 |
 | Image Acquisition Toolbox (`imaq`) | 1 | 1 | enumerated / 已枚举 |
 | Industrial Communication Toolbox (`icomm`) | 6 | 6 | enumerated / 已枚举 |
@@ -85,7 +85,7 @@
 | System Identification Toolbox (`ident`) | 14 | 14 | enumerated / 已枚举 |
 | UAV Toolbox (`uav`) | 31 | 31 | enumerated / 已枚举 |
 | Utilities (`utilities`) | 24 | 24 | enumerated / 已枚举 |
-| Vehicle Dynamics Blockset (`vdynblks`) | 65 | 57 | enumerated / 已枚举 |
+| Vehicle Dynamics Blockset (`vdynblks`) | 64 | 56 | enumerated / 已枚举 |
 | Vehicle Network Toolbox (`vnt`) | 28 | 28 | enumerated / 已枚举 |
 | Vision HDL Toolbox (`visionhdl`) | 31 | 30 | enumerated / 已枚举 |
 | Wireless HDL Toolbox (`wireless-hdl`) | 47 | 47 | enumerated / 已枚举 |

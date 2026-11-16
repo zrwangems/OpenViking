@@ -1,75 +1,56 @@
 ---
 type: simulink-block
-title: 'Math Function'
+title: 'Sum'
 family: 'hdlcoder'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'HDL Floating Point Operations'
-documentation_page: 'mathfunction'
-documentation_source_path: '../simulink/slref/mathfunction.html'
+official_category: 'Commonly Used Blocks'
+documentation_page: 'sum'
+documentation_source_path: '../simulink/slref/sum.html'
 language: en
 ---
 
-# Math Function
+# Sum
 
 ## Ports
 
-### Input
+### Inputs
 
-### **Port\_1** — Input signal scalar | vector | matrix
+The inputs can be of different data types unless you select **Require all
+inputs to have the same data type**.
 
-Input signal specified as a scalar, vector, or matrix. Supported modes accept real and
-complex inputs, except for `reciprocal`, which does not
-accept complex fixed-point inputs. See Description.
+### **Port\_1** — First input operand signal scalar | vector | matrix
 
-#### Dependencies
-
-Data type support for this block depends on the **Function** that you
-select and the size of the inputs. For more information, see Data Type Support.
+Input signal to the addition or subtraction operation. If there is
+only one input signal, then addition or subtraction is performed on the
+elements over all dimensions or the specified dimension.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 
-### **Port\_2** — Input signal scalar | vector | matrix
+### **Port\_n** — *n*th input operand signal scalar | vector | matrix
 
-Input signal specified as a scalar, vector, or matrix. Supported modes accept real and
-complex inputs, except for `reciprocal`, which does not
-accept complex fixed-point inputs.
+*n*th input signal to the operations. The number of
+inputs matches the number of signs in the **List of
+signs** parameter. The block applies the operations to the
+inputs in the order listed. You can also use a numerical value equal to
+the number of input ports as the **List of signs**
+parameter. The block creates the input ports and applies addition to all
+inputs. For example, if you assign `5` for the
+**List of signs** parameter, the block creates
+`5` input ports and adds them together to produce
+the output.
 
-#### Dependencies
-
-To enable this port, set **Function** to
-`hypot`,
-`rem`, or
-`mod`.
-
-Data type support for this block depends on the **Function** that you
-select, and the size of the inputs. For more information, see Data Type Support.
+All nonscalar inputs must have the same dimensions. Scalar inputs are
+expanded to have the same dimensions as other inputs.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 ### Output
 
-### **Port\_1** — Result of the operation of the function on the input or inputs scalar | vector | matrix
+### **Port\_1** — Output signal scalar | vector | matrix
 
-Output signal specified as a scalar, vector, or matrix. The dimensions of the block
-output depend on the **Function** that you select and
-the size of the inputs. The block output is real or complex, depending
-on what you select for **Output signal type**. See
-Description.
-
-#### `reciprocal` with Newton-Raphson Method
-
-The `reciprocal` with Newton-Raphson method
-output data type depends on the input data type:
-
-| Input Data Type | Output Data Type |
-| --- | --- |
-| single | single |
-| double | double |
-| built-in integer | built-in integer |
-| built-in fixed-point | built-in fixed-point |
-| `fi` (*value*, 0, *word\_length*, *fraction\_length*) | `fi` (*value*, 0, *word\_length*, *word\_length*–*fraction\_length*–1) |
-| `fi` (*value*, 1, *word\_length*, *fraction\_length*) | `fi` (*value*, 1, *word\_length*, *word\_length*–*fraction\_length*–2) |
+Output signal resulting from addition and/or subtraction operations.
+The output signal has the same dimension as the input signals.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 
@@ -77,119 +58,148 @@ output data type depends on the input data type:
 
 ### Main
 
-### **Function** — Math function `exp` (default) | `log` | `2^u` | `10^u` | `log10` | `magnitude^2` | `square` | `pow` | `conj` | `reciprocal` | `hypot` | `rem` | `mod` | `transpose` | `hermitian`
+### **Icon shape** — Block icon shape `rectangular` | `round`
 
-Specify the mathematical function. For more information about the options for this
-parameter, see Description.
+Designate the icon shape of the block as rectangular or round.
 
-#### Dependency
+The default value depends on the block configuration.
 
-Setting **Function** to
-`pow` enables the **Signed
-power** parameter.
+- `round` default —
+  Sum block
+- `rectangular` default —
+  Add, Subtract, and
+  Sum of Element blocks
 
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter:** `Operator` |
-| **Type:** character vector |
-| **Values:** `'exp' | 'log' | '2^u' | '10^u' | 'log10' | 'magnitude^2' | 'square' | 'pow' | 'conj' | 'reciprocal' | 'hypot' | 'rem' | 'mod' | 'transpose' | 'hermitian'` |
-| **Default:** `'exp'` |
-
-### **Algorithm method** — Algorithm method for `reciprocal` function `Exact` (default) | `Newton-Raphson`
-
-Algorithm method for `reciprocal` function, specified
-as `Exact` or
-`Newton-Raphson`. To calculate reciprocal
-with the Newton-Raphson approximation method, select
-`Newton-Raphson`. Otherwise, select
-`Exact`.
-
-#### Dependency
-
-Setting **Function** to
-`reciprocal` enables this parameter.
+For a rectangular block, the first input port is the top port. For a
+round Sum block, the first input port is the port closest
+to the 12 o'clock position going in a counterclockwise direction around
+the block. Similarly, other input ports appear in counterclockwise order
+around the block.
 
 #### Programmatic Use
 
 |  |
 | --- |
-| **Block Parameter:** `AlgorithmType` |
-| **Type:** character vector |
-| **Values:** `'Exact' | 'Newton-Raphson'` |
-| **Default:** `'Exact'` |
+| **Block Parameter**: `IconShape` |
+| **Type**: character vector |
+| **Values**: `'rectangular'` | `'round'` |
 
-### **Signed power** — Power signedness on (default) | off
+### **List of signs** — Operations performed on inputs `+` | `-` | `|` | integer
 
-When calculating power, specified as on or off, take into account sign of the input
-signal. Math Function uses this parameter only when the
-output signal is real.
+Enter addition and subtraction operations performed on the inputs. An
+input port is created for each operation. A spacer
+(`|`) creates extra space between the input ports on
+the block icon. Addition is the default operation. If you only want to
+add the inputs, enter the number of input ports. The operations are
+performed in the order listed.
 
-- on — Calculate power of the absolute value of the input,
-  multiplied by the sign of the input.
-- off — Calculate power of the actual input value. If the first
-  input is negative, the second input is not an integer, and the
-  output signal is real, the function returns
-  `NaN`.
+The default value depends on the block configuration.
 
-#### Dependency
+- `|++` default — Sum
+  block
+- `++` default — Add
+  block
+- `+-` default — Subtract
+  block
+- `+` default — Sum of
+  Element block
 
-Setting **Function** to
-`pow` enables this parameter.
+When you enter only one sign, the block enables the **Apply
+over** parameter. For a vector input, `+`
+or `-` adds or subtracts the elements over all
+dimensions or in the specified dimension.
 
-#### Programmatic Use
+#### Tips
 
-|  |
-| --- |
-| **Block Parameter:** `SignedPower` |
-| **Type:** character vector |
-| **Values:** `'on' | 'off' |` |
-| **Default:** `'on'` |
-
-### **Output signal type** — Complexity of output signal `auto` (default) | `real` | `complex`
-
-Specify the output signal type of the Math Function block as
-`auto`, `real`, or
-`complex`.
-
-| Function | Input Signal Type | Output Signal Type | | |
-| --- | --- | --- | --- | --- |
-| Auto | Real | Complex |
-| `exp`, `log`, `2^u`, `10^u`, `log10`, `square`, `pow`, `reciprocal`, `conjugate`, `transpose`, `hermitian` | `real`  `complex` | `real`  `complex` | `real`  `error` | `complex`  `complex` |
-| `magnitude squared` | `real`  `complex` | `real`  `real` | `real`  `real` | `complex`  `complex` |
-| `hypot`, `rem`, `mod` | `real`  `complex` | `real`  `error` | `real`  `error` | `complex`  `error` |
+You can manipulate the positions of the input ports on the block
+by inserting spacers (`|`) between the signs in the
+**List of signs** parameter. For
+example, “`++|--`” creates an extra
+space between the second and third input ports.
 
 #### Programmatic Use
 
 |  |
 | --- |
-| **Block Parameter:** `OutputSignalType` |
-| **Type:** character vector |
-| **Values:** `'auto' | 'real' | 'complex'` |
-| **Default:** `'auto'` |
+| **Block Parameter**: `Inputs` |
+| **Type**: character vector |
+| **Values**: `'+'` | `'-'` | `|` | integer |
 
-### **Number of iterations** — Number of Newton-Raphson iterations 3 (default) | scalar
+### **Apply over** — How to apply function along specified dimensions `All dimensions` (default) | `Specified dimension`
 
-Number of Newton-Raphson iterations, specified as a scalar.
+Specify how to apply function along specified dimensions.
+
+- `All dimensions` — Apply function for
+  all input values for all dimensions.
+
+  For example, in this model, **List of
+  signs** is set to `+`, and
+  **Apply over** is set to `All
+  dimensions`. The block returns the sum of all
+  input values from all dimensions.
+
+  2D matrix with Constant block value [1 2 3 4 5 6] as input to Sum block configured for all dimensions
+
+  When you select configuration parameter **Use algorithms optimized for row-major array
+  layout**, the software enables row-major
+  algorithms for simulation. To generate row-major code, set the
+  configuration parameter **Array layout (Simulink Coder)** to
+  `Row-major`, and select
+  **Use algorithms optimized for row-major array
+  layout**. The column-major and row-major algorithms
+  differ only in the summation order. In some cases, due to
+  different operation order on the same data set, you might
+  experience minor numeric differences in the outputs of
+  column-major and row-major algorithms.
+- `Specified dimensions` — Apply
+  function for all input values for specified dimension.
 
 #### Dependencies
 
-To enable this parameter, set:
-
-- **Function** to
-  `reciprocal`.
-- **Algorithm method** to
-  `Newton-Raphson`.
+To enable this parameter, enter only one sign in the
+**List of signs** parameter.
 
 #### Programmatic Use
 
 |  |
 | --- |
-| **Block Parameter:** `Iterations` |
-| **Type:** character vector |
-| **Values:** `'3' | scalar` |
-| **Default:** `'3'` |
+| **Block Parameter**: `CollapseMode` |
+| **Type**: character vector |
+| **Values**: `'All dimensions'` | `'Specified dimension'` |
+| **Default**: `'All dimensions'` |
+
+### **Dimension** — Dimension along which to apply summation `1` (default) | positive integer
+
+Specify the dimension along which to apply the summation as a positive
+integer.
+
+The block follows the same summation rules as the MATLAB®
+`sum` function. For more information, see Algorithms.
+
+For example, in this model, **List of signs** is
+set to `+`, **Apply over** is set to
+`Specified dimension`, and
+**Dimension** is set to `2`. The
+block returns the sum of the input values of each row.
+
+2D matrix with Constant block value [1 2 3;4 5 6] as input to Sum block configured for dimension 2
+
+If the specified dimension is greater than the dimension of the input,
+an error message appears.
+
+#### Dependencies
+
+To enable this parameter, set **Apply over** to
+`Specified dimension`.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter**: `CollapseDim` |
+| **Type**: character vector |
+| **Value**: integer |
+| **Default**: `'1'` |
 
 ### **Sample time (-1 for inherited)** — Interval between samples `-1` (default) | scalar | vector
 
@@ -212,6 +222,9 @@ the `set_param` function.
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
 
 ### Signal Attributes
+
+The **Data Type Assistant** helps you set data
+attributes. To use the **Data Type Assistant**, click the Show data type assistant button. For more information, see Specify Data Types Using Data Type Assistant.
 
 ### **Output minimum** — Minimum output value for range checking `[]` (default) | scalar
 
@@ -275,41 +288,98 @@ the `set_param` function.
 | **Parameter:** | `OutMax` |
 | **Values:** | `'[]'` (default) | scalar in quotes |
 
-### **Output data type** — Specify the output data type `Inherit: Same as first input` (default) | `Inherit: Inherit via internal rule` | `Inherit: Inherit via back propagation` | `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `fixdt(1,16)` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
+### **Output data type** — Specify the output data type `Inherit: Inherit via internal rule` (default) | `Inherit: Keep MSB` | `Inherit: Keep LSB` | `Inherit: Inherit via back propagation` | `Inherit: Same as first input` | `Inherit: Same as accumulator` | `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `fixdt(1,16)` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
-Specify the output data type. You can set it to:
+Choose the data type for the output. The type can be inherited,
+specified directly, or expressed as a data type object such as a
+`Simulink.NumericType` object.
 
-- A rule that inherits a data type, for example,
-  `Inherit: Inherit via back
-  propagation`
-- The name of a built-in data type, for example,
-  `single`
-- The name of a data type object, for example, a
-  `Simulink.NumericType` object
-- An expression that evaluates to a data type, for example,
-  `fixdt(1,16,0)`
+When you select an inherited option, the block behaves as follows:
 
-The **Data Type Assistant** helps you set data
-attributes. To use the **Data Type Assistant**, click the Show data type assistant button. For more information, see Specify Data Types Using Data Type Assistant.
+- `Inherit: Inherit via internal
+  rule` — The software chooses a data type to
+  balance numerical accuracy, performance, and generated code
+  size, while taking into account the properties of the
+  embedded target hardware.
 
-#### Dependencies
+  **Note**
 
-- To enable this parameter, set the
-  **Function** to
-  `magnitude^2`,
-  `square`, or
-  `reciprocal`.
-- For the `magnitude^2` and
-  `square`, when input is a
-  floating-point data type smaller than single precision, the
+  The accumulator internal rule favors greater numerical
+  accuracy, possibly at the cost of less efficient
+  generated code. To get the same accuracy for the output,
+  set the output data type to `Inherit:
+  Inherit same as accumulator`.
+
+  **Note**
+
+  When input is a floating-point data type smaller than
+  single precision, the `Inherit: Inherit via
+  internal rule` output data type depends
+  on the setting of the Inherit floating-point output type smaller than single precision configuration parameter. Data types are smaller than
+  single precision when the number of bits needed to
+  encode the data type is less than the 32 bits needed to
+  encode the single-precision data type. For example,
+  `half` and `int16`
+  are smaller than single precision.
+- `Inherit: Keep MSB` – The
+  software chooses a data type that maintains the full range
+  of the operation, then reduces the precision of the output
+  to a size appropriate for the embedded target hardware.
+
+  **Tip**
+
+  For more efficient generated code, set
+  **Accumulator data type** to
   `Inherit: Inherit via internal
-  rule` output data type depends on the
-  setting of the Inherit floating-point output type smaller than single precision configuration parameter. Data types are smaller than
-  single-precision when the number of bits needed to encode
-  the data type is less than the 32 bits needed to encode the
-  single precision data type. For example,
-  `half` and `int16` are
-  smaller than single precision.
+  rule`, and clear **Saturate
+  on integer overflow**.
+
+  This rule never produces overflows.
+- `Inherit: Keep LSB`– The software
+  chooses a data type that maintains the precision of the
+  operation, but reduces the range if the full type does not
+  fit on the embedded target hardware.
+
+  **Tip**
+
+  For more efficient generated code, set
+  **Accumulator data type** to
+  `Inherit: Inherit via internal
+  rule`, and clear **Saturate
+  on integer overflow**.
+
+  This rule can produce overflows.
+
+  If you change the embedded target settings, the data type
+  selected by these internal rules might change. It is not
+  always possible for the software to optimize code efficiency
+  and numerical accuracy at the same time. If the rules do not
+  meet your specific needs for numerical accuracy or
+  performance, use one of the following options:
+
+  - Specify the output data type
+    explicitly.
+  - Use the simple choice of `Inherit:
+    Same as first input`.
+  - Explicitly specify a default data type such as
+    `fixdt(1,32,16)` and then use the
+    Fixed-Point Tool to propose data types for your
+    model. For more information, see `fxptdlg` (Fixed-Point Designer).
+  - To specify your own inheritance rule, use
+    `Inherit: Inherit via back
+    propagation` and then use a Data Type
+    Propagation block. Examples of how to use
+    this block are available in the Signal Attributes
+    library Data Type Propagation
+    Examples block.
+- `Inherit: Inherit via back
+  propagation` — Use data type of the driving
+  block.
+- `Inherit: Same as first input` —
+  Use data type of the first input signal.
+- `Inherit: Inherit same as
+  accumulator`— Use data type of the
+  accumulator.
 
 #### Programmatic Use
 
@@ -317,89 +387,122 @@ attributes. To use the **Data Type Assistant**, click the Show data type assista
 | --- |
 | **Block Parameter**: `OutDataTypeStr` |
 | **Type**: character vector |
-| **Values**: `'Inherit: Inherit via internal rule` | `'Inherit: Same as first input'` | `'Inherit: Inherit via back propagation'` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'fixdt(1,16)'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
-| **Default**: `'Inherit: Same as first input'` |
+| **Values**: `'Inherit: Inherit via internal rule` | `'Inherit: Keep MSB'` | `'Inherit: Keep LSB'` | `'Inherit: Inherit via back propagation'` | `'Inherit: Same as first input'` | `'Inherit: Same as accumulator'` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'`|`'fixdt(1,16)'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
+| **Default**: `'Inherit: Inherit via internal rule'` |
 
-### **Lock output data type setting against changes by the fixed-point tools** — Prevent fixed-point tools from overriding data types `off` (default) | `on`
+### **Accumulator data type** — Data type of the accumulator `Inherit: Inherit via internal rule` (default) | `Inherit: Same as first input` | `double` | `single` | `half` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `int64` | `uint64` | `fixdt(1,16)` | `fixdt(1,16,0)` | `fixdt(1,16,2^0,0)` | `<data type expression>`
 
-Select this parameter to prevent the fixed-point tools from overriding
-the **Output** data type you specify on the block. For
-more information, see Use Lock Output Data Type Setting (Fixed-Point Designer).
+Choose the data type of the accumulator. The type can be inherited,
+specified directly, or expressed as a data type object such as
+`Simulink.NumericType`. When you choose
+`Inherit: Inherit via internal
+rule`, Simulink® chooses a data type to balance numerical accuracy,
+performance, and generated code size, while taking into account the
+properties of the embedded target hardware.
 
-#### Dependencies
+#### Programmatic Use
 
-To enable this parameter, set the **Function** to
-`magnitude^2`,
-`square`, or
-`reciprocal`.
+|  |
+| --- |
+| **Block Parameter**:  `AccumDataTypeStr` |
+| **Type**: character vector |
+| **Values**: `'Inherit: Inherit via internal rule'` | `'Inherit: Same as first input'` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'`, `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'fixdt(1,16)'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
+| **Default**: `'Inherit: Inherit via internal rule'` |
+
+### **Require all inputs to have the same data type** — Require that all inputs have the same data type `off` (default) | `on`
+
+Specify if input signals must all have the same data type. If you enable
+this parameter, then an error occurs during simulation if the input
+signal types are different.
+
+#### Programmatic Use
+
+|  |
+| --- |
+| **Block Parameter:** `InputSameDT` |
+| **Type:** character vector |
+| **Values:** `'off' | 'on'` |
+| **Default:** `'off'` |
+
+### **Lock data type settings against changes by the fixed-point tools** — Prevent fixed-point tools from overriding data types `off` (default) | `on`
+
+Select to lock data type settings of this block against changes by the
+Fixed-Point Tool and the Fixed-Point Advisor. For more information,
+see Lock the Output Data Type Setting (Fixed-Point Designer).
 
 #### Programmatic Use
 
 |  |
 | --- |
 | **Block Parameter:** `LockScale` |
-| **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
 
 ### **Integer rounding mode** — Rounding mode for fixed-point operations `Floor` (default) | `Ceiling` | `Convergent` | `Nearest` | `Round` | `Simplest` | `Zero`
 
-Rounding mode for fixed-point operations. For more information, see
-Rounding Modes (Fixed-Point Designer).
+Specify the rounding mode for fixed-point operations. For more information, see Rounding Modes (Fixed-Point Designer).
 
-Block parameters always round to the nearest representable value. To
-control the rounding of a block parameter, enter an expression using a
-MATLAB rounding function into the mask field.
-
-#### Dependencies
-
-To enable this parameter, set the **Function** to
-`magnitude^2`,
-`square`, or
-`reciprocal`.
+Block parameters always round to the nearest representable value. To control the
+rounding of a block parameter, enter an expression using a MATLAB rounding function into the mask field.
 
 #### Programmatic Use
 
-|  |
-| --- |
-| **Block Parameter:** `RndMeth` |
-| **Type:** character vector |
-| **Values:** `'Ceiling' | 'Convergent' | 'Floor' | 'Nearest' | 'Round' | 'Simplest' | 'Zero'` |
-| **Default:** `'Floor'` |
+To set the block parameter value programmatically, use
+the `set_param` function.
 
-### **Saturate on integer overflow** — Choose the behavior when integer overflow occurs `on` (default) | boolean
+|  |  |
+| --- | --- |
+| **Parameter:** | `RndMeth` |
+| **Values:** | `'Floor'` (default) | `'Ceiling'` | `'Convergent'` | `'Nearest'` | `'Round'` | `'Simplest'` | `'Zero'` |
 
-| Action | Rationale | Overflows | Example |
-| --- | --- | --- | --- |
-| Select **Saturate on integer overflow** check box. | Your model has possible overflow and you want explicit saturation protection in the generated code. | Overflows saturate to either the minimum or maximum value that the data type can represent. | The maximum value that the `int8` (signed, 8-bit integer) data type can represent is 127. Any block operation result greater than this maximum value causes overflow of the 8-bit integer. With the check box selected, the block output saturates at 127. Similarly, the block output saturates at a minimum output value of -128. |
-| Do not select **Saturate on integer overflow** check box. | You want to optimize efficiency of your generated code.  You want to avoid overspecifying how a block handles out-of-range signals. For more information, see Troubleshoot Signal Range Errors. | Overflows wrap to the appropriate value that is representable by the data type. | The maximum value that the `int8` (signed, 8-bit integer) data type can represent is 127. Any block operation result greater than this maximum value causes overflow of the 8-bit integer. With the check box cleared, the software interprets the overflow-causing value as `int8`, which can produce an unintended result. For example, a block result of 130 (binary 1000 0010) expressed as `int8`, is -126. |
+### **Saturate on integer overflow** — Method of overflow action `off` (default) | `on`
 
-When you select this check box, saturation applies to every internal operation on the
-block, not just the output or result. The code generation process can
-detect when overflow is not possible. In this case, the code generator
-does not produce saturation code.
+Specify whether overflows saturate or wrap.
 
-#### Dependencies
+- `on` — Overflows saturate to either the minimum or maximum
+  value that the data type can represent.
+- `off` — Overflows wrap to the appropriate value that the data
+  type can represent.
 
-To enable this parameter, set the **Function** to
-`magnitude^2`,
-`square`,
-`conj`,
-`reciprocal`, or
-`hermitian`.
+For example, the maximum value that the signed 8-bit integer `int8`
+can represent is 127. Any block operation result greater than this maximum value causes
+overflow of the 8-bit integer.
+
+- With this parameter selected, the block output saturates at 127.
+  Similarly, the block output saturates at a minimum output value of
+  -128.
+- With this parameter cleared, the software interprets the overflow-causing
+  value as `int8`, which can produce an unintended result.
+  For example, a block result of 130 (binary 1000 0010) expressed as
+  `int8` is -126.
+
+#### Tips
+
+- Consider selecting this parameter when your model has a possible overflow
+  and you want explicit saturation protection in the generated code.
+- Consider clearing this parameter when you want to optimize efficiency of
+  your generated code. Clearing this parameter also helps you to avoid
+  overspecifying how a block handles out-of-range signals. For more
+  information, see Troubleshoot Signal Range Errors.
+- When you select this parameter, saturation applies to every internal
+  operation on the block, not just the output or result.
+- In general, the code generation process can detect when overflow is not
+  possible. In this case, the code generator does not produce saturation
+  code.
 
 #### Programmatic Use
 
-|  |
-| --- |
-| **Block Parameter**: `SaturateOnIntegerOverflow` |
-| **Type**: character vector |
-| **Value**: `'off'` | `'on'` |
-| **Default**: `'on'` |
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `SaturateOnIntegerOverflow` |
+| **Values:** | `'off'` (default) | `'on'` |
 
 ## Libraries
 
-Simulink / Math Operations HDL Coder / Math Operations
+Simulink / Commonly Used Blocks Simulink / Math Operations HDL Coder / Commonly Used Blocks HDL Coder / Math Operations
 
 ## Block Characteristics
 
@@ -420,217 +523,123 @@ Simulink / Math Operations HDL Coder / Math Operations
 HDL Coder™ provides additional configuration options that affect HDL
 implementation and synthesized logic.
 
-**HDL Architecture**
+**HDL Architecture of Sum, Add, and Subtract Blocks**
 
-| Function | Architecture | Description |
-| --- | --- | --- |
-| `conj` | `ComplexConjugate` | Calculate complex conjugate. |
-| `hermitian` | `Hermitian` | Calculate hermitian. |
-| `transpose` | `Transpose` | Calculate array transpose. See Math Function in the Simulink documentation. |
-| `mod`  `rem` | `ShiftAdd` | Perform modulus or remainder operation on a built-in integer types input by using a non-restoring division algorithm that performs multiple shift and add operations to compute the `mod` and `rem` operations.  `ShiftAdd` is a pipelined implementation, and it can introduce additional latency in the generated code. Using this architecture, you can also set the latency strategy by setting the **LatencyStrategy** parameter. |
+The default `Linear` architecture generates a chain
+of N operations (adders) for N inputs.
 
-**Reciprocal Architecture**
+**HDL Architecture of Sum of Elements Block**
 
-When you set the **Algorithm method** to
-`Exact`, you can select this options in HDL Block
-properties of this block.
-
-| Architecture | Parameters | Additional Cycles of Latency | Description |
-| --- | --- | --- | --- |
-| `ShiftAdd(default)` | None | Signed input: (Input word length + 4)  Unsigned input: (Input word length + 4)  For floating-point latency of the block, see Latency Values of Floating-Point Operators (HDL Coder). | Perform reciprocal operation on a fixed-point or floating point input by using a non-restoring division algorithm that performs multiple shift and add operations to compute the reciprocal. This architecture provides improved accuracy compared to the Newton-Raphson approximation method.  When you use fixed-point data types, following criteria must be satisfied for generating the HDL code:  - Input word length (`WL`) must be   less than or equal to 63. - `[WL input + Abs(FL Sum)]` must   be less than or equal to 63. Where, `FL   Sum` is given by,  `FL sum = FL input + FL   output` |
-
-You can apply sharing optimization for Math Function Reciprocal block in
-`ShiftAdd` architecture. For more information, see
-Resource Sharing (HDL Coder).
+For the Sum of Elements block, HDL Coder supports `Tree` architectures for Sum of
+Elements blocks that have a single vector input with multiple elements.
 
 This block has multi-cycle implementations that introduce additional
 latency in the generated code. To see the added latency, view the
 generated model or validation model. See Generated Model and Validation Model (HDL Coder).
 
-HDL code generation also supports the Newton-Raphson algorithm method for
-`reciprocal` function. Select the **Algorithm
-method** as `Newton-Raphson` to use these
-architectures for `reciprocal` function in the Math
-Function block.
-
-| Architecture | Additional Cycles of Latency | Description |
+| Architecture | Additional cycles of latency | Description |
 | --- | --- | --- |
-| `ReciprocalNewton` (default) | `Iterations` + 1 | Use the multirate implementation of the iterative Newton method. Select this option to optimize area for your design.  The default value for `Iterations` is 3.  The recommended value for `Iterations` is from 2 through 10. If `Iterations` value is outside the recommended range, HDL Coder displays a message. |
-| `ReciprocalNewtonSingleRate` | (`Iterations` \* 2) + 1 | Use the single rate pipelined Newton method. Select this option to optimize speed for your design, or if you want a single rate implementation.  The default value for `Iterations` is 3.  The recommended value for `Iterations` is between 2 and 10. If `Iterations` value is outside the recommended range, HDL Coder displays a message. |
-| ReciprocalRsqrtBasedNewtonSingleRate | Signed input: (`Iterations` \* 4) + 8  Unsigned input: (`Iterations` \* 4) + 6 | Use the single rate pipelined Newton method. Select this option to optimize speed, or if you want a single rate implementation.  The default value for `Iterations` is 3.  The recommended value for `Iterations` is from 2 through 10. If `Iterations` is outside the recommended range, the coder generates a message. |
+| `Linear` | 0 | Generates a linear chain of adders to compute the sum of products.  For multiple inputs that have different bit widths, the `Linear` architecture optimizes the resource utilization by implementing adders in multiple stages with pipelines in between the stages. The output of each stage is calculated based on the width of the inputs to that stage. |
+| `Tree` | 0 | Generates a tree structure of adders to compute the sum of products. |
 
-**HDL Block Properties**
+**HDL
+Block Properties**
+
+**Note**
+
+To use the **LatencyStrategy** setting in the **Native
+Floating Point** tab of the HDL Block Properties dialog box, specify
+`Linear` or `Tree` as the HDL
+Architecture.
 
 | General | |
 | --- | --- |
 | **ConstrainedOutputPipeline** | Number of registers to place at the outputs by moving existing delays within your design. Distributed pipelining does not redistribute these registers. The default is `0`. For more details, see ConstrainedOutputPipeline (HDL Coder). |
 | **InputPipeline** | Number of input pipeline stages to insert in the generated code. Distributed pipelining and constrained output pipelining can move these registers. The default is `0`. For more details, see InputPipeline (HDL Coder). |
 | **OutputPipeline** | Number of output pipeline stages to insert in the generated code. Distributed pipelining and constrained output pipelining can move these registers. The default is `0`. For more details, see OutputPipeline (HDL Coder). |
-| **LatencyStrategy** | To enable this property, set HDL architecture to `ShiftAdd`. Specify whether to map the blocks in your design to `MAX`, `Min`, `CUSTOM`, or `ZERO` latency for fixed-point types. The default is `MAX`. See also LatencyStrategy (HDL Coder). |
-| **CustomLatency** | To enable this property, set HDL architecture to `ShiftAdd`. When **LatencyStrategy** is set to `CUSTOM`, use this property to specify a custom latency value between `ZERO` and `MAX` for fixed-point types. See also LatencyStrategy (HDL Coder). |
+
+**Note**
+
+The Sum of Elements block does not support HDL code generation with double data types
+in the Native Floating Point mode.
 
 | Native Floating Point | |
 | --- | --- |
-| **CheckResetToZero** | Use this property for the `mod` and `rem` functions of the Math Function block. If you have numbers `a` and `b` such that the quotient `a/b` is close to an integer, this setting treats `a` as an integral multiple of `b`, and `rem(a,b)` = 0. This result is numerically accurate and matches the simulation results. Calculating this result uses additional resources and increases the area footprint on the target FPGA device. For more information, see CheckResetToZero (HDL Coder). |
-| **HandleDenormals** | Specify whether you want HDL Coder to insert additional logic to handle denormal numbers in your design. Denormal numbers are numbers that have magnitudes less than the smallest floating-point number that can be represented without leading zeros in the mantissa. The default is `inherit`. See also HandleDenormals (HDL Coder). |
 | **LatencyStrategy** | Specify whether to map the blocks in your design to `inherit`, `Max`, `Min`, `Zero`, or `Custom` for the floating-point operator. The default is `inherit`. See also LatencyStrategy (HDL Coder). |
 | **NFPCustomLatency** | To specify a value, set **LatencyStrategy** to `Custom`. HDL Coder adds latency equal to the value that you specify for the **NFPCustomLatency** setting. See also NFPCustomLatency (HDL Coder). |
-| **MaxIterations** | Use this property for the `mod` and `rem` functions of the Math Function block. If you have numbers `a` and `b` that are significantly large integers, you can increase **MaxIterations** to match the simulation results. Calculating this result uses additional resources and increases the area footprint on the target FPGA device. For more information, see MaxIterations (HDL Coder). |
-| **IterationsPerPipeline** | Use this property for the `reciprocal` function of the Math Function block. To enable this property, set **Algorithm method** parameter to `Exact`. When you set **LatencyStrategy** to `Custom(PerIterations)`, use this setting to specify the number of iterations per pipeline stages. For more information, see Reciprocal (HDL Coder). |
 
-**Supported Datatypes and Functions in Native Floating-Point**
+**Complex Data Support**
 
-The Math Function block supports scalar, vector, or matrix data types. This
-block supports these functions with Native Floating-Point.
+The default `Linear` implementation
+supports complex data.
 
-| Math Functions | Supported Floating-Point Datatypes | | | Fixed-Point Datatype Support | Complex Data Support |
-| --- | --- | --- | --- | --- | --- |
-| Half | Single | Double |
-| `exp` | No | Yes | No | No | No |
-| `log` | No | Yes | Yes | No | No |
-| `2^u` | No | Yes | No | No | No |
-| `10^u` | No | Yes | No | No | No |
-| `log10` | No | Yes | No | No | No |
-| `magnitude^2` | No | Yes | Yes | Yes | Yes |
-| `square` | No | Yes | No | Yes | Yes |
-| `pow` | No | Yes | No | No | No |
-| `conj` | No | Yes | No | Yes | Yes |
-| `reciprocal` | Yes | Yes | Yes | Yes | No |
-| `hypot` | No | Yes | No | No | No |
-| `rem` | No | Yes | No | No | No |
-| `mod` | No | Yes | No | No | No |
-| `transpose` | Yes | Yes | Yes | Yes | Yes |
-| `hermitian` | No | Yes | No | Yes | Yes |
+The `Tree`  implementation supports complex data with
+`+` for the **List of signs** block parameter. With
+native floating point support, the `Tree`  implementation supports
+complex data with both `+` and `-` for **List of
+signs**.
 
-**Restrictions**
+**Limitations and Considerations**
 
-When you use a `reciprocal` implementation:
-
-- Input must be scalar and must have integer or fixed-point (signed or
-  unsigned) data type.
-- The output must be scalar and have integer or fixed-point (signed or
-  unsigned) data type.
-- The **Saturate on integer overflow** option on the
-  block must be selected.
+To generate HDL code for multi-input Sum block that has mixed
+scalar and vector inputs, you must specify vector input at one of the first two
+inputs of the Sum block.
 
 ### PLC Code Generation Generate Structured Text code using Simulink® PLC Coder™.
 
 ### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
 
-The Math Function block only supports fixed-point conversion in certain
-configurations. For more information, see the Block Support Table.
-
 ## Version History
 
 **Introduced before R2006a**
 
-### R2023a: `Math Function` Block Supports 2^u
+### R2024a: Specify how to apply function using **Apply over** parameter, renamed from **Sum over**
 
-The Math Function block now supports the
-`2^u` function. The MATLAB equivalent is `2.^u` (see `power`).
+When you enter only one sign for **List of signs**, the block
+enables the **Apply over** parameter. For a vector input,
+`+` or `-` adds or subtracts the elements over
+all dimensions or in the specified dimension.
+
+To better reflect the supported behavior, the **Sum over**
+parameter is now called **Apply over**.
 
 ## Description
 
-Perform mathematical function
+Add or subtract inputs
 
-The Math Function block performs many common mathematical functions.
+The Sum block performs addition or subtraction on its inputs. The
+Add, Subtract, Sum of Elements, and
+Sum blocks are alternative configurations of the same block. This
+block can add or subtract scalar, vector, or matrix inputs. It can also collapse the
+elements of a signal and perform a summation.
 
-You can select one of these functions from the **Function** parameter list
-in Math Function block.
+You specify the operations of the block with the **List of signs**
+parameter with plus signs (`+`), minus signs (`-`),
+and spacers (`|`).
 
-| Function | Description | Mathematical Expression | MATLAB® Equivalent |
+- The number of `+` and `-` characters equals
+  the number of inputs. For example, `+-+` requires three inputs.
+  The block subtracts the second (middle) input from the first (top) input, and
+  then adds the third (bottom) input.
+- A spacer character creates extra space between ports on the block icon.
+- If performing only addition, you can use a numerical value equal to the number
+  of inputs.
+- If there is only one input port, one `+` or
+  `-` adds or subtracts the elements over all dimensions or
+  in the specified dimension.
+
+The Sum block first converts the input data type to its accumulator
+data type, then performs the specified operations. The block converts the result to its
+output data type using the specified rounding and overflow modes.
+
+### Calculation of Block Output
+
+Output calculation for the Sum block depends on the number of block
+inputs and the sign of input ports.
+
+| Number of Sum Block Input Ports | Input Port Signs | Block Output Calculation Formula | Output Formula Variables |
 | --- | --- | --- | --- |
-| `exp` | Exponential | `eu` | `exp` |
-| `log` | Natural logarithm | `ln u` | `log` |
-| `2^u` | Power of base 2 | `2u` | `2.^u`  (see `power`) |
-| `10^u` | Power of base 10 | `10u` | `10.^u`  (see `power`) |
-| `log10` | Common (base 10) logarithm | `log u` | `log10` |
-| `magnitude^2` | Complex modulus | `|u|2` | `real(u).^2 + imag(u).^2`   (see `real`, `imag`, and `power`) |
-| `square` | Power 2 | `u2` | `u.^2`  (see `power`) |
-| `pow` | Power | - With **Signed power** selected and   **Output signal type** set to   `real`, the expression is   `sign(u)*|u|v`. - With **Signed power** cleared or   **Output signal type** set to   `complex`, the expression is   `uv`. - When **Output signal type** is set to   `auto`, the expression depends on the   complexity type that the software compiles. | `power` |
-| `conj` | Complex conjugate | `ū` | `conj` |
-| `reciprocal` with Exact method | Reciprocal | `1/u` | `1./u`  (see `rdivide`) |
-| `reciprocal` with Newton-Raphson method | Reciprocal | See Newton-Raphson Reciprocal Algorithm Method | None |
-| `hypot` | Square root of sum squares | `(u2+v2)0.5` | `hypot` |
-| `rem` | Remainder after division | — | `rem` |
-| `mod` | Modulus after division | — | `mod` |
-| `transpose` | Transpose | `uT` | `u.'`  (see Array vs. Matrix Operations) |
-| `hermitian` | Complex conjugate transpose | `uH` | `u'`  (see Array vs. Matrix Operations) |
-
-**Tip**
-
-To perform square root calculations, use the Sqrt block.
-
-The block output is the result of the operation of the function on the input or inputs. The
-functions support these types of operations.
-
-| Function | Scalar Operations | Element-Wise Vector and Matrix Operations | Vector and Matrix Operations |
-| --- | --- | --- | --- |
-| `exp` | Yes | Yes | Not applicable |
-| `log` | Yes | Yes | Not applicable |
-| `2^u` | Yes | Yes | Not applicable |
-| `10^u` | Yes | Yes | Not applicable |
-| `log10` | Yes | Yes | Not applicable |
-| `magnitude^2` | Yes | Yes | Not applicable |
-| `square` | Yes | Yes | Not applicable |
-| `pow` | Yes | Yes | Not applicable |
-| `conj` | Yes | Yes | Not applicable |
-| `reciprocal` with Exact method | Yes | Yes | Not applicable |
-| `reciprocal` with Newton-Raphson method | Yes | Yes | Not applicable |
-| `hypot` | Yes, on two inputs | Yes, on two inputs (two vectors or two matrices of the same size, a scalar and a vector, or a scalar and a matrix) | — |
-| `rem` | Yes, on two inputs | Yes, on two inputs (two vectors or two matrices of the same size, a scalar and a vector, or a scalar and a matrix) | Not applicable |
-| `mod` | Yes, on two inputs | Yes, on two inputs (two vectors or two matrices of the same size, a scalar and a vector, or a scalar and a matrix) | Not applicable |
-| `transpose` | Yes | — | Yes |
-| `hermitian` | Yes | — | Yes |
-
-The name of the function and the appropriate number of input ports appear on the block.
-
-**Tip**
-
-Use the Math Function block when you want vector or matrix output.
-
-### Newton-Raphson Reciprocal Algorithm Method
-
-The `reciprocal` function that has the Newton-Raphson algorithm method
-calculates the reciprocal by using the Newton-Raphson approximation method. The
-function uses recursive approximation to find better approximations to the roots of
-a real-value function.
-
-The reciprocal of a real number a is defined as a zero of the function:
-
-f(x)=1x−a.
-
-Simulink® chooses an initial estimate in the range 0<x0<2a, because this is the domain of convergence for the
-function.
-
-To successively calculate the roots of the function, specify the **Number of
-iterations** parameter. The process is repeated as follows:
-
-xi+1=xi−f(xi)f'(xi)=xi+(xi−axi2)=xi.(2−axi)
-
-f'(x) is the derivative of the function f(x).
-
-### Data Type Support
-
-This table lists the input data types that each function of the block can support.
-
-| Function | Single | Double | Half\* | Boolean | Built-In Integer | Fixed Point |
-| --- | --- | --- | --- | --- | --- | --- |
-| `exp` | Yes | Yes | Yes | — | — | — |
-| `log` | Yes | Yes | Yes | — | — | — |
-| `2^u` | Yes | Yes | Yes | — | — | — |
-| `10^u` | Yes | Yes | Yes | — | — | — |
-| `log10` | Yes | Yes | Yes | — | — | — |
-| `magnitude^2` | Yes | Yes | Yes | — | Yes | Yes |
-| `square` | Yes | Yes | Yes | — | Yes | Yes |
-| `pow` | Yes | Yes | Yes | — | — | — |
-| `conj` | Yes | Yes | Yes | — | Yes | Yes |
-| `reciprocal` with Exact method | Yes | Yes | Yes | — | Yes | Yes |
-| `reciprocal` with Newton-Raphson method (for more information, see Output) | Yes | Yes | — | — | Yes | Yes |
-| `hypot` | Yes | Yes | Yes | — | — | — |
-| `rem` | Yes | Yes | Yes | — | Yes | — |
-| `mod` | Yes | Yes | Yes | — | Yes | — |
-| `transpose` | Yes | Yes | Yes | Yes | Yes | Yes |
-| `hermitian` | Yes | Yes | Yes | — | Yes | Yes |
-
-For more information on half-precision arithmetic operations, see The Half-Precision Data Type in Simulink (Fixed-Point Designer).
+| One input port | The input port sign is + | y = e[0] + e[1] + e[2] ... + e[m] | `e[i]` is the *i*th element of input u |
+| The input port sign is – | y = 0.0 – e[0] – e[1] – e[2] ... – e[m] |
+| Two or more input ports | All input port signs are – | y = 0.0 – u[0] – u[1] – u[2] ... – u[n] | `u[i]` is the input to the *i*th input port |
+| The *k*th input port is the first port where the sign is + | y = u[k] – u[0] – u[1] – u[2] – u[k–1] (+/–) u[k+1] ... (+/–) u[n] |

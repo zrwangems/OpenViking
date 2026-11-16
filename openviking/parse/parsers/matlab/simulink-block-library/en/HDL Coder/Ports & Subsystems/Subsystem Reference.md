@@ -1,698 +1,948 @@
 ---
 type: simulink-block
-title: 'Variant Subsystem'
+title: 'Subsystem'
 family: 'hdlcoder'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
 official_category: 'Ports & Subsystems'
-documentation_page: 'variantsubsystem'
-documentation_source_path: '../simulink/slref/variantsubsystem.html'
+documentation_page: 'subsystem'
+documentation_source_path: '../simulink/slref/subsystem.html'
 language: en
 ---
 
-# Variant Subsystem
+# Subsystem
 
 ## Ports
 
 ### Input
 
-### **In\_1** — Input port corresponding to root-level Inport blocks in variant subsystem same data types accepted by Inport blocks
+### **In** — Signal input to subsystem scalar | vector | matrix | array | bus
 
-Each Subsystem, Model, or Subsystem
-Reference block contained within a Variant
-Subsystem represents one variant choice. The variant choices can
-contain Inport, control port (Enable, Trigger, Reset, and Function-Call Subsystem), or
-Connection Port (Simscape) blocks at
-its input. The variant choices can have input ports that differ in number
-from the input ports in the parent Variant Subsystem block.
-However, the conditions described in Map Input and Output Ports of Variant Choices in Variant Subsystem must be met.
+Placing a block such as an Inport or In Bus Element
+block in a subsystem adds an external input port to the Subsystem
+block.
+
+Use Inport or In Bus Element blocks to get signals
+from the local environment.
+
+For more information, see Connect Subsystems.
+
+**Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
+**Complex Number Support:** Yes
+
+### **reinit** — Control signal for subsystem reinitialize event scalar
+
+A reinitialize event port provides a function-call control signal that
+triggers a subsystem reinitialize event, which resets the states of the
+subsystem.
+
+The subsystem must contain a Reinitialize Function block that corresponds to each
+subsystem reinitialize event. To specify the port name, use the
+**Event name** parameter of the Event
+Listener block in the Reinitialize Function
+block. For more information, see Reinitialize States of Blocks in Subsystem.
+
+#### Dependencies
+
+To enable this port, select **Treat as atomic
+unit**, and then select **Show subsystem
+reinitialize ports**.
 ### Output
 
-### **Out\_1** — Output port corresponding to root-level Outport blocks contained in variant subsystem same data types accepted by Outport blocks
+### **Out** — Signal output from subsystem scalar | vector | matrix | array | bus
 
-Each Subsystem, Model, or Subsystem
-Reference block contained within a Variant
-Subsystem represents one variant choice. The variant choices can
-contain Outport or Connection Port (Simscape) blocks at
-its output. The variant choices can have output ports that differ in number
-from the output ports in the parent Variant Subsystem block.
-However, the conditions described in Map Input and Output Ports of Variant Choices in Variant Subsystem must be met.
+Placing a block such as an Outport or Out Bus
+Element block in a subsystem adds an output port from the
+Subsystem block.
 
-The unconnected output ports (inactive output ports) of a Variant
-Subsystem block output a ground value. To output a value other
-than ground, select the **Specify output when source is
-unconnected** parameter of the Outport block and
-specify a value.
+Use Outport  or Out Bus Element blocks to send
+signals to the local environment.
+
+For more information, see Connect Subsystems.
+
+**Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
+**Complex Number Support:** Yes
 
 ## Parameters
 
-To access these parameters, right-click the variant badge on the block icon and select
-**Block Parameters**. For more information, see Variant Badges.
+To edit block parameters interactively, use the
+Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
+**Prepare** gallery, select **Property
+Inspector**.
 
-### **Variant control mode** — Variant control mode `expression` (default) | `label` | `sim codegen switching`
+### Main
 
-The variant control that determines the active variant choice can be any of these
-types.
+### **Show port labels** — Display options for port labels `FromPortIcon` (default) | `FromPortBlockName` | `SignalName` | `none`
 
-- `expression` — The software chooses the active variant based
-  on the evaluation of the variant conditions. When a condition expression evaluates to
-  `true`, the corresponding variant choice becomes active. When a
-  condition expression evaluates to `false`, the corresponding variant
-  choice becomes inactive. See Switch Between Choices Using Condition Expressions in Variant Blocks.
-- `label` — The software chooses the active variant based on
-  the name of the variant. The variant control is a string and does not require you to
-  create any variable in any workspaces. See Switch Between Choices Using Labels in Variant Blocks.
-- `sim codegen switching` — Automatically switch between the
-  variants for simulation and code generation workflows without creating any workspace
-  variable. When you simulate a model, the software automatically chooses the
-  `sim` branch as the active choice. Similarly, when you do a
-  software-in-the-loop (SIL) or processor-In-Loop (PIL) simulation, generate code, or use
-  external mode, the software automatically chooses the `codegen` branch.
-  See Switch Between Choices for Simulation and Code Generation Workflows Without Using Control Variables in Variant Blocks.
+Select how to display port labels on the Subsystem block icon.
 
-For more information on variant control modes, see Introduction to Variant Controls. For a comparison between different types of variant control modes, see Compare Different Types of Variant Control Modes in Variant Blocks.
+- `none` — Do not display port labels.
+- `FromPortIcon` — If the corresponding port icon displays a signal name, display the signal name on the Subsystem block. Otherwise, display the port block name or the port number if the block name is a default name.
+- `FromPortBlockName` — Display the name of the corresponding port block on the Subsystem block.
+- `SignalName` — If the signal connected to the port is named, display the name of the signal on the Subsystem block. Otherwise, display the name of the corresponding port block.
 
-#### Dependencies
-
-The availability of different variant activation times depends on the type of the
-**Variant control mode** that you specify. The
-**Variant activation time** parameter determines the time when
-the software sets the active choice. The parameter also determines which variability
-to include in the generated code. This table explains the variant activation time
-supported by each variant control mode.
-
-| **Variant activation time** | | | | |  |
-| --- | --- | --- | --- | --- | --- |
-| **Variant control mode** | `update diagram` | `update diagram analyze all choices` | `code compile` | `startup` | `runtime` (Variant Subsystem block only) |
-| `expression` | ✓ | ✓ | ✓ | ✓ | ✓ |
-| `label` | ✓ | x | x | x | x |
-| `sim codegen switching` | ✓ | ✓ | x | x | x |
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter:** `VariantControlMode` |
-| **Type:** character vector |
-| **Values:** `'expression'` | `'label'` | `'sim codegen switching'` |
-| **Default:** `'expression'` |
-
-### **Variant activation time** — Time when software chooses active variant choice `update diagram` (default) | `update diagram analyze all choices` | `code compile` | `startup` | `runtime` | `inherit from Simulink.VariantControl`
-
-This parameter determines which variability to include in the simulation and code
-generation workflows. For more information, see Activate Variant During Different Stages of Simulation and Code Generation Workflow.
-
-- `update diagram` — When you execute the model, only
-  the active choice is included in the simulation and the code generation
-  workflow. Generated code contains only the active choice.
-- `update diagram analyze all choices` — When you
-  execute the model, both active and inactive choices are analyzed for consistency
-  across the model. However, only the active choice is included in the simulation
-  and the code generation workflow. Generated code contains only the active
-  choice.
-- `code compile` — When you execute the model, both
-  active and inactive choices are analyzed for consistency across the model, and
-  all choices are included in the simulation and the code generation workflow.
-  Generated code contains both the active and inactive choices enclosed in the
-  preprocessor conditionals `#if` and `#elif`.
-  However, the executable built from the generated code contains only active
-  choice.
-- `startup` — When you execute the model, both active
-  and inactive choices are analyzed for consistency across the model, and all
-  choices are included in the simulation and the code generation workflow. With
-  this option, you can improve the speed of iterative simulations using fast
-  restart. For more information, see Run Iterative Simulations Without Recompiling Model for Variant Systems Using Fast Restart. Code
-  generated from the model contains both the active and inactive choices that are
-  enclosed in regular `if` conditions. The executable built from
-  the generated code also contains both active and inactive choices.
-- `runtime` — When you execute the model, the active
-  variant can switch during simulation or execution of the generated code by using
-  the Parameter
-  Writer block. Place a Parameter Writer block inside a
-  conditionally executed subsystem or in an Initialize Function block, a
-  Reinitialize Function block, or a Reset Function block. For more
-  information on the blocks, see Event Functions.
-  You can use the Parameter Writer block to write to block
-  parameters, model workspace variables, and base workspace variables. Multiple
-  variant control variables are not supported for
-  `runtime` activation time. All modeling patterns
-  supported by the Parameter Writer block are valid for run-time
-  activation. For more information, see Common Uses of Parameter Writer Block.
-
-  When you set the **Variant activation time** parameter of the
-  Variant Subsystem block to
-  `runtime`, the color of the inactive variant choices
-  does not fade. In this case, the setting of the **Variant
-  Fading** option in the **Information Overlays**
-  menu on the **Debug** tab of the Simulink Editor is
-  ignored.
-- `inherit from Simulink.VariantControl` — When you
-  execute the model, the block inherits the activation time from its variant
-  control variables of type `Simulink.VariantControl`. If a variant block has multiple variant
-  control variables of type `Simulink.VariantControl`, then all those
-  variables must have the same activation time.
-
-The table compares the different variant activation times based on conditional code,
-variant switching, handling of states, and fast restart support.
-
-|  | `update diagram` or `update diagram analyze all choices` | `code compile` | `startup` | `runtime` |
-| --- | --- | --- | --- | --- |
-| **Generated conditional code** | Inactive conditional code is not available. | Conditional code is present inside preprocessor macros. The inactive choice code is eliminated when generated code is compiled. | Conditional code is generated as part of an `if-elseif-else` statement. The variant control variable value cannot be modified during execution. | Conditional code is generated as part of an `if-elseif-else` statement. The variant control variable value can be modified during execution. |
-| **Variant switching during simulation or code execution** | Not supported. | Not supported. | Supported at startup (before simulation start at *t* = 0). | Supported. The active variants are switched by changing the variant control variable using the Parameter Writer block. |
-| **Explicit setting of held or reset option for states** | Not supported. States are reset for inactive blocks. | Not supported. States are reset for inactive blocks | States cannot be changed during simulation. In the generated code, if you attempt to change the variant, states are in held state. | States are held by default. Reset states explicitly through State Writer blocks. Read blocks with states by using the State Reader block and transfer to another choice by using the State Writer block. |
-| **Executable size** | Smaller size. Code is not generated for the inactive variant. | Smaller size. The inactive variant code is removed during compilation. | Comparatively larger size. Both active and inactive variant code is available for startup switching. | Comparatively larger size. Both active and inactive variant code is available for run-time switching. |
-| **Fast restart support** | Not supported. | Not supported. | Supported. | Supported. |
-
-#### Dependencies
-
-- The availability of different variant activation times depends on the type
-  of the variant control mode that you specify. The **Variant
-  activation time** parameter determines when the software sets
-  the active choice. The parameter also determines which variability to
-  include in the generated code. This table explains the variant activation
-  time supported by each variant control mode.
-
-  | **Variant activation time** | | | | |  |
-  | --- | --- | --- | --- | --- | --- |
-  | **Variant control mode** | `update diagram` | `update diagram analyze all choices` | `code compile` | `startup` | `runtime` |
-  | `expression` | ✓ | ✓ | ✓ | ✓ | ✓ |
-  | `label` | ✓ | x | x | x | x |
-  | `sim codegen switching` | ✓ | ✓ | x | x | x |
-- To enable switching of active variant choice of the Variant
-  Subsystem block using the `runtime` activation
-  time, you must use the Parameter Writer block. Set the
-  **Destination** parameter of the Parameter
-  Writer block based on the location of your variant control
-  variable and select **Validate parameter** :
-
-  - `Block parameter` — Control variable
-    is a mask parameter in a subsystem.
-  - `Model workspace variable` — Control
-    variable is located in the model workspace.
-  - `Base workspace variable` — Control
-    variable is located in the base workspace or a data
-    dictionary.
-
-  For example, you can create a mask parameter
-  `V` in a subsystem and use it in a variant condition
-  expression for a variant control. The Parameter Writer block
-  writes to the value of `V` in the variant control
-  condition.
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter:** `VariantActivationTime` |
-| **Type:** character vector |
-| **Values:** `'update diagram'` | `'update diagram analyze all choices'` | `'code compile'` | `'startup'`| `'runtime'` |
-| **Default:** `'update diagram'` |
-
-### **Variant control variable** — Variable to determine active variant choices `Simulink.VariantControl` object | scalar variable | `Simulink.Parameter` object | `struct`
-
-When you specify a variable of type listed in Types of Variant Control Variables (Operands) in Variant Blocks, the
-software generates variant control expressions for the variant choices of the
-Variant Assembly Subsystem block. The **Variant
-control variable** that you specify here is on the left side and
-the members of the **Variant enumeration choice** are on the
-right side of the generated expressions. Both the sides are related by
-`==`.
-
-The variant control variable acts as a switch to change the active variant
-choice. You specify a value for a variant control variable and run the
-simulation. During simulation, the software evaluates the variant control
-expressions to determine the active variant choice. When an expression evaluates
-to `true`, the corresponding variant choice is set active. To
-change the active variant, change the value of the variant control variable such
-that the corresponding variant control expression evaluates to
-`true` turns active.
-
-#### Dependencies
-
-This parameter is available only in Variant Assembly
-Subsystem block. To enable this parameter, set **Variant
-control mode** to `expression`.
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter:** `VariantControlVariable` |
-| **Type:** character vector |
-| **Values:** `Simulink.VariantControl` object, scalar variable, `Simulink.Parameter` object, `struct` |
-| **Default:** `''` |
-
-### **Variant choices enumeration** — Enumeration class to add variant choices enumeration class with model or subsystem filenames as its members
-
-To add Model or Subsystem Reference blocks as
-variant choices to a Variant Assembly Subsystem block, specify an
-enumeration class name that contains the corresponding model or subsystem
-filenames as its members. You can then validate the enumeration class using the
-Refresh button in the **Variant choices** table. On a
-successful validation, the members of the enumeration class are added as variant
-choices to the Variant Assembly Subsystem block. Each choice has
-a variant control expression with **Variant control
-variable** on its left side and the members of the
-**Variant choices enumeration** that you specify here on
-its right side. Both the sides of the expression are related by
-`==`. The newly added variant choices and their
-corresponding control expressions are displayed in the **Variant
-choices** table.
-
-To remove variant choices from a Variant Assembly Subsystem
-block, remove the corresponding members from the enumeration class that you
-specify here. You cannot manage the variant choices from inside the
-Variant Assembly Subsystem block.
-
-The enumeration class that you specify must be on the search path of your
-current MATLAB® session. For information on how to add files or folders to the
-search path, see `addpath`.
-
-For more information on how to add choices using the **Variant choices
-enumeration** parameter, see Add or Remove Variant Choices of Variant Assembly Subsystem Blocks Using External Files.
-
-#### Dependencies
-
-This parameter is available only in Variant Assembly
-Subsystem block. To enable this parameter, set **Variant
-control mode** to `expression`.
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Block Parameter:** `VariantChoicesEnumeration` |
-| **Type:** character vector |
-| **Values:** enumeration class defined using `classdef` or `Simulink.defineIntEnumType` |
-| **Default:** `''` |
-
-### **Variant choices specifier** — MATLAB expression to add variant choices any MATLAB expression that evaluates to a one-dimensional cell array of model or subsystem filenames, or filename patterns that match the model or subsystem filenames or an array of strings
-
-To add Model or Subsystem Reference blocks as
-variant choices to a Variant Assembly Subsystem block, specify
-the corresponding model or subsystem filenames. The filenames must be specified
-as a MATLAB expression that returns a one-dimensional cell array of character
-vectors when evaluated or an array of strings. You can then validate the
-expression using the Refresh button in the **Variant choices**
-table. On a successful validation, the blocks that correspond to the specified
-files are added as variant choices to the Variant Assembly
-Subsystem block. For each choice, a variant control label is
-generated. The name of the variant control label is same as the name of the
-choice. The newly added variant choices and their corresponding control labels
-are displayed in the **Variant choices** table.
-
-To remove variant choices from a Variant Assembly Subsystem
-block, modify the expression specified in this parameter. You cannot manage the
-variant choices of a Variant Assembly Subsystem block from inside
-the block.
-
-The MATLAB expression that you specify must contain either of these:
-
-- Model or subsystem filenames that are on the search path of your
-  current MATLAB session. For example, if you specify
-  `{'model1.slx', 'subsystemRef1.slx'}` as a
-  specifier, the blocks that correspond to the
-  `model1.slx` and
-  `subsystemRef1.slx` files are added as variant
-  choices of the Variant Assembly Subsystem
-  block.
-- File name patterns that match the model or subsystem filenames on
-  the MATLAB path. The paths in the pattern can be absolute or
-  relative to the parent folder of the model that contains the
-  Variant Assembly Subsystem block. For example, if
-  you specify `{'folder_1/*.slx', 'folder_2/*.slx'}`
-  as a specifier, the software passes the character vectors
-  `folder_1/*` and `folder2/*`
-  to the `dir` function. The
-  function then returns the model and the subsystem files that are
-  located inside the `folder1` and
-  `folder2` folders. The blocks that correspond
-  to the returned files are added as variant choices of the
-  Variant Assembly Subsystem block.
-
-For information on how to add files or folders to the search
-path, see `addpath`.
-
-For more information on how to specify choices in the **Variant choices
-specifier** parameter, see Add or Remove Variant Choices of Variant Assembly Subsystem Blocks Using External Files.
-
-#### Dependencies
-
-This parameter is available only in Variant Assembly
-Subsystem block. To enable this parameter, set **Variant
-control mode** to `label`.
-
-#### Programmatic Use
-
-|  |
-| --- |
-| **Parameter:** `VariantChoicesSpecifier` |
-| **Type:** character vector |
-| **Value:** Any MATLAB expression that evaluates to a one-dimensional cell array of filenames or filename patterns. |
-| **Default:** `''` |
-
-### **Variant choices** — Table of variant choices, variant controls, and conditions empty table (default)
-
-The table has a row for each variant choice contained in the variant
-subsystem. If there are no variant choices, the table is empty.
-
-You can use buttons to the left of the **Variant choices**
-table to modify the elements in the table.
-
-| To... | Click... |
-| --- | --- |
-| **Create and add a new subsystem choice**: Create a new Subsystem block as a variant choice and add an entry for the new choice in the table. | the Create and add a new subsystem choice button |
-| **Create and add a new model variant choice**: Create a new Model block as a variant choice and add an entry for the new choice in the table. | the Create and add a new model variant choice button |
-| **Delete selected variant choices**: Delete variant choices permanently. | the Delete selected variant choices button |
-| **Create/Edit selected variant object**: Create or edit a `Simulink.VariantExpression` object in the global workspace and specify the variant condition using the `Simulink.VariantExpression` object parameter dialog box.  **Note**  For a model that uses the base workspace, this operation creates the `Simulink.VariantExpression` object in the base workspace and the object is available only for the current MATLAB session. To permanently store the data, save the object in a MAT file or MATLAB script. | the Create or Edit selected variant object button |
-| **Open selected variant choice block**: Open the Subsystem block for the selected row. | the Open selected variant choice block button |
-| **Refresh dialog information from Variant Subsystem contents**: Update the **Variant choices** table according to the variant choices and values of the variant control in the global workspace. | the Refresh dialog information from Variant Subsystem contents button |
-
-#### Dependencies
-
-The Variant Assembly Subsystem block allows you to only
-open the selected variant choice and refresh the list of variant choices
-using the buttons in this section. To add new variant choices to the
-Variant Assembly Subsystem block, see Add or Remove Variant Choices of Variant Assembly Subsystem Blocks Using External Files.
-
-### **Name (read-only)** — Variant choice name Read-only: `Subsystem` and `Subsystem1` (default) | name of choices contained in Variant Subsystem
-
-This parameter is read-only.
-
-This parameter displays the
-name of the choices. Each choice has a variant control in the form of labels,
-expressions, or switches. For Variant Assembly Subsystem in the
-`label` mode, no separate variant control is
-available. The name of the choice is used as a variant control to set the active
-choice.
-
-### **Variant control label** — Name of choice in `label` mode `true` or `false` (default) | string
-
-A name for a choice, specified as a string.
-
-#### Dependencies
-
-To enable this parameter, set **Variant control mode** to
-`label`.
+For port label editing on Subsystem blocks, see Edit Port Labels on Subsystem Blocks.
 
 #### Programmatic Use
 
 To set the block parameter value programmatically, use
 the `set_param` function.
 
-To get the block parameter value
-programmatically, use the `get_param` function.
-
 |  |  |
 | --- | --- |
-| **Parameter:** | `VariantControl` |
-| **Values:** | variant control that is associated with the variant choice |
-| **Data Types:** | `char` |
+| **Parameter:** | `ShowPortLabels` |
+| **Values:** | `'FromPortIcon'` (default) | `'FromPortBlockName'` | `'SignalName'` | `'none'` |
 
-**Example:** `set_param(gcb, 'VariantControl', 'V == 3')`,
-where `gcb` is the variant choice of the Variant
-Subsystem block.
+### **Read/Write permissions** — Levels of access to contents of subsystem `ReadWrite` (default) | `ReadOnly` | `NoReadOrWrite`
 
-**Example:** `get_param(gcb, 'VariantControl')`, where
-`gcb` is the variant choice of the Variant
-Subsystem block.
+Control user access to the contents of the subsystem.
 
-### **Variant control switch** — Variant choices for simulation and code generation workflows `(sim)` | `(codegen)`
+- `ReadWrite` — Enable opening and modification of subsystem contents.
+- `ReadOnly` — Enable opening but not modification of the subsystem. If the subsystem resides in a block library, you can create and open links to the subsystem and can make and modify local copies of the subsystem but cannot change the permissions or modify the contents of the original library instance.
+- `NoReadOrWrite` — Disable opening or modification of subsystem. If the subsystem resides in a library, you can create links to the subsystem in a model but cannot open, modify, change permissions, or create local copies of the subsystem.
 
-Specify `(sim)` to activate the corresponding variant choice
-during simulation. Specify `(codegen)` to activate the
-corresponding variant choice while performing code generation workflows such as
-SIL, PIL, external mode, and so on.
-
-#### Dependencies
-
-To enable this parameter, set **Variant control mode** to
-`sim codegen switching`.
+You do not receive a response if you attempt to view the contents of a subsystem whose **Read/Write permissions** parameter is set to `NoReadOrWrite`. For example, when double-clicking such a subsystem, the software does not open the subsystem and does not display any messages.
 
 #### Programmatic Use
 
 To set the block parameter value programmatically, use
 the `set_param` function.
 
-To get the block parameter value
-programmatically, use the `get_param` function.
-
 |  |  |
 | --- | --- |
-| **Parameter:** | `VariantControl` |
-| **Values:** | variant control that is associated with the variant choice |
-| **Data Types:** | `char` |
+| **Parameter:** | `Permissions` |
+| **Values:** | `'ReadWrite'` (default) | `'ReadOnly'` | `'NoReadOrWrite'` |
 
-**Example:** `set_param(gcb, 'VariantControl', '(sim)')`,
-where `gcb` is the variant choice of the Variant
-Subsystem block.
+### **Name of error callback function** — Name of function to be called if error occurs no default
 
-**Example:** `get_param(gcb, 'VariantControl')`, where
-`gcb` is the variant choice of the Variant
-Subsystem block.
+Enter the name of a function to be called if an error occurs while the software executes the
+subsystem.
 
-### **Variant control expression** — Condition expression that determines the active choice `true` or `false` (default) | boolean condition expression | a `Simulink.VariantExpression` object representing a boolean condition expression | `(default)`
-
-Specify the condition expression to determine the active choice. When a condition
-expression evaluates to `true`, the software activates the
-corresponding variant choice. When a condition expression evaluates to
-`false`, the software deactivates the corresponding variant
-choice.
-
-The variant controls can be:
-
-- Boolean condition expression for rapid prototyping. For example,
-  `A == 1`, `A ~= B`, `A
-  && B == 1`, and so on.
-- A `Simulink.VariantExpression` object that contains a
-  condition expression for condition reuse. See Simulink.VariantExpression Objects for Variant Condition Reuse of Variant Blocks.
-- Default Variant Choice if none of the choices evaluates to
-  `true`.
-
-Here, `A` and `B` are operands called
-as *variant control variables*. `==`,
-`~=`, and `&&` are operators in the
-condition expression. The condition expression can contain one or more such variant
-control variables and operators. For information on supported types and storage location
-of variant control variables, see Types of Variant Control Variables (Operands) in Variant Blocks and Storage Locations for Variant Control Variables (Operands) in Variant Blocks. For information
-on operators, see Types of Operators in Variant Blocks for Different Activation Times.
-
-For more information, see Switch Between Choices Using Condition Expressions in Variant Blocks.
-
-In Variant Assembly Subsystem block, this parameter is a list of
-auto-generated boolean expressions with **Variant control variable** on
-the left-hand side and the members of the **Variant enumeration
-choice** are on the right-hand side of the expressions. Both the sides of
-the expressions are connected with `==`. This parameter is
-read-only.
+The software passes two arguments to the function: the handle of the subsystem and a
+character vector that specifies the error type. If no function is specified, the software
+displays a generic error message if executing the subsystem causes an error.
 
 #### Programmatic Use
 
 To set the block parameter value programmatically, use
 the `set_param` function.
 
-To get the block parameter value
-programmatically, use the `get_param` function.
+|  |  |
+| --- | --- |
+| **Parameter:** | `ErrorFcn` |
+| **Values:** | `''` (default) | function name in quotes |
+| **Data Types:** | `char` | `string` |
 
-Variant Subsystem block:
+### **Permit hierarchical resolution** — Resolution for workspace variable names `All` (default) | `ExplicitOnly` | `None`
+
+Select whether to resolve names of workspace variables referenced by this subsystem.
+
+For more information, see Symbol Resolution and Symbol Resolution Process.
+
+- `All` — Resolve all names of workspace variables used by this subsystem, including those used to specify block parameter values and Simulink data objects (for example, `Simulink.Signal` objects).
+- `ExplicitOnly` — Resolve only names of workspace variables used to specify block parameter values, data store memory (where no block exists), signals, and states marked as “must resolve”.
+- `None` — Do not resolve any workspace variable names.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
 
 |  |  |
 | --- | --- |
-| **Parameter:** | `VariantControl` |
-| **Values:** | variant control that is associated with the variant choice |
-| **Data Types:** | `char` |
+| **Parameter:** | `PermitHierarchicalResolution` |
+| **Values:** | `'All'` (default) | `'ExplicitOnly'` | `'None'` |
 
-**Example:** `set_param(gcb, 'VariantControl', 'V == 3')`, where
-`gcb` is the variant choice of the Variant
-Subsystem block.
+### **Treat as atomic unit** — Option to execute subsystem as one unit `off` | `on`
 
-**Example:** `get_param(gcb, 'VariantControl')`, where
-`gcb` is the variant choice of the Variant
-Subsystem block.
+Selecting this parameter causes the software to treat the subsystem as a unit when determining
+the execution order of block methods.
 
-Variant Source and Variant Sink blocks:
+- `off` — Treat all blocks in the subsystem as being at the same level in the model hierarchy as the subsystem when determining block method execution order. This can cause execution of methods of blocks in the subsystem to be interleaved with execution of methods of blocks outside the subsystem.
+- `on` — Treat the subsystem as a unit when determining the execution order of block methods. For example, when it needs to compute the output of the subsystem, the software invokes the output methods of all the blocks in the subsystem before invoking the output methods of other blocks at the same level as the Subsystem block.
+
+The default value depends on the block configuration. For example, the default value
+for the Subsystem block is `off`. The default value for
+the Atomic Subsystem block is `on`.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
 
 |  |  |
 | --- | --- |
-| **Parameter:** | `VariantControls` |
-| **Values:** | variant controls that are associated with variant choices |
-| **Data Types:** | `char` |
+| **Parameter:** | `TreatAsAtomicUnit` |
+| **Values:** | `'off'` | `'on'` |
 
-**Example:** `set_param(gcb, 'VariantControls', {'A == 1','A ==
-2'})`, where `gcb` is the Variant
-Sink or Variant Source block.
+### **Show subsystem reinitialize ports** — Option to display reinitialize event ports `off` (default) | `on`
 
-**Example:** `get_param(gcb, 'VariantControls')`, where
-`gcb` is the Variant Sink or Variant
-Source block.
-
-### **Condition (read-only)** — Condition expression in `Simulink.VariantExpression` object Read-only: `N/A` (default)
-
-This parameter is read-only.
-
-This parameter displays the condition expression specified as
-`Simulink.VariantExpression` object. To change or edit the condition
-expression, use the `Simulink.VariantExpression` parameter dialog box
-that appears when you double-click the object in the workspace.
-
-**Note**
-
-The operands that you specify in a condition expression of type
-`Simulink.VariantExpression` must be defined in the base
-workspace or a data dictionary. Specifying operands that are defined in the mask
-or model workspace is not supported.
-
-### **Label mode active choice** — Name of active choice in `label` mode `true (Subsystem)` (default) | `false (Subsystem1)`
-
-This list contains the labels of all the variant choices. To set an active choice, select a
-label from the list. The corresponding choice becomes active. Alternatively, to change
-the active choice in label mode, you can follow the approaches described in Set Active Choices Using Variant Control Labels.
+Select this parameter to display the reinitialize event ports. Clear this parameter to remove the ports.
 
 #### Dependencies
 
-To enable this parameter, set **Variant control mode** to
-`label`.
+To enable this parameter, select **Treat as atomic unit**.
 
 #### Programmatic Use
 
-|  |
-| --- |
-| **Parameter:** `LabelModeActiveChoice` |
-| **Type:** character vector |
-| **Value:** If no label mode active choice is specified, the value is empty. If a label mode active choice is specified, the value is the variant control label for the active choice. |
-| **Default:** `''` |
+To set the block parameter value programmatically, use
+the `set_param` function.
 
-### **Built-in empty choice** — Output zero if no variant choice is active `off` (default) | `on`
+|  |  |
+| --- | --- |
+| **Parameter:** | `ShowSubsystemReinitializePorts` |
+| **Values:** | `'off'` (default) | `'on'` |
 
-- `off` — Simulink generates an error when there is no active variant
-  choice.
-- `on` — When you select this option, Simulink adds a nonmodifiable variant choice entry to the
-  **Variant choices** table with its variant control
-  set to `(default)`. This entry does not appear as a
-  visible variant choice in the Variant Subsystem block.
-  During simulation, if there is no active variant choice, Simulink disconnects the variant choices of the Variant
-  Subsystem block, thus removing the variant regions
-  completely from the model. The inactive outports of the subsystem output
-  zero. To output a value other than zero, select the **Specify
-  output when source is unconnected** parameter of the
-  Outport block and specify a value of your
-  choice.
+### **Minimize algebraic loop occurrences** — Option to eliminate artificial algebraic loops `off` (default) | `on`
 
-For more information, see Manage Variant Components to Pass Specified Values from Inactive Variant Subsystems with No Active Choice (Simulink Coder).
+Try to eliminate any artificial algebraic loops that include the atomic subsystem
+
+- `off` — Do not try to eliminate any artificial algebraic loops that include the atomic subsystem.
+- `on` — Try to eliminate any artificial algebraic loops that include the atomic subsystem.
 
 #### Dependencies
 
-This parameter is available only if there are no
-`default` variant choices in the Variant
-Subsystem and if you set **Variant control
-mode** to `expression`.
+To enable this parameter, select **Treat as atomic unit**.
 
 #### Programmatic Use
 
-|  |
-| --- |
-| **Parameter:** `EmptyChoice` |
-| **Type:** character vector |
-| **Value:** `'off'` | `'on'` |
-| **Default:** `'off'` |
+To set the block parameter value programmatically, use
+the `set_param` function.
 
-### **Built-in passthrough choice** — Assign input port values to output ports if no variant choice is active `off` (default) | `on`
+|  |  |
+| --- | --- |
+| **Parameter:** | `MinAlgLoopOccurrences` |
+| **Values:** | `'off'` (default) | `'on'` |
 
-- `off` — Simulink generates an error when there is no active variant
-  choice.
-- `on` — When you select this option, Simulink adds a nonmodifiable variant choice entry to the
-  **Variant choices** table with its variant control
-  set to `(default)`. This entry does not appear as a
-  visible variant choice in the Variant Subsystem block.
-  During simulation, if there is no active variant choice, Simulink bypasses the variant choices of the Variant
-  Subsystem block. Only the input and output ports remain
-  active, and the input port pass values directly to the output
-  ports.
+### **Schedule as** — Type of scheduling `Sample time` (default) | `Periodic partition` | `Aperiodic partition`
 
-  For values to be mapped from input ports to output ports when no
-  choice is active, the Variant Subsystem block must
-  have:
+Specify how to schedule the subsystem.
 
-  - Only data ports, with no other types of input and output
-    ports
-  - An equal number of data input and output ports
-  - Input and output ports that exactly match the ports of variant
-    choices
-
-For more information, see Manage Variant Components to Pass Specified Values from Inactive Variant Subsystems with No Active Choice (Simulink Coder).
+- `Sample time` — Specify whether all blocks in this subsystem
+  must run at the same rate or can run at different rates.
+- `Periodic partition` — Schedule the subsystem as a periodic
+  partition. Specify a partition name and a sample time corresponding to the rate at which
+  the partition runs.
+- `Aperiodic partition` — Schedule the subsystem as an
+  aperiodic partition. Specify a partition name.
 
 #### Dependencies
 
-This parameter is available only if there are no
-`default` variant choices in the Variant
-Subsystem and if you set **Variant control
-mode** to `expression`.
+To enable this parameter, select **Treat as atomic unit**.
 
 #### Programmatic Use
 
-|  |
-| --- |
-| **Parameter:** `PassThrough` |
-| **Type:** character vector |
-| **Value:** `'off'` | `'on'` |
-| **Default:** `'off'` |
+To set the block parameter value programmatically, use
+the `set_param` function.
 
-### **Propagate conditions outside of variant subsystem** — Option to choose if components outside of the variant subsystem must be informed of the active and inactive state of underlying blocks `off` (default) | `on`
+|  |  |
+| --- | --- |
+| **Parameter:** | `ScheduleAs` |
+| **Values:** | `'Sample time'` (default) | `'Periodic partition'` | `'Aperiodic partition'` |
 
-When you select the **Propagate conditions outside of variant
-subsystem** parameter, the software propagates the variant
-condition of the underlying blocks to the Variant Subsystem
-container block so the subsystem can adapt its interface to the state of the
-underlying blocks. Ports that are mapped to the ports on the active choice
-becomes active. Ports that are not mapped to the ports on the inactive choice
-becomes inactive. Selecting this option ensures that the components outside of
-the Variant Subsystem are aware of the active and inactive state
-of blocks within the Variant Subsystem block. For more
-information, see Propagate Variant Conditions to Define Variant Regions Outside Variant Subsystems to Promote Consistency and Reduce Errors and Propagate Variant Conditions to Control Execution of Conditional Subsystems
+### **Partition name** — Name of partition no default
 
-Variant conditions do not propagate outside a Variant Subsystem
-block if all variant choices within the block have the same interface.
+Specify the name of the partition for the subsystem.
+
+#### Dependencies
+
+To enable this parameter, select **Treat as atomic unit** and set
+**Schedule as** to `Periodic partition` or
+`Aperiodic partition`.
 
 #### Programmatic Use
 
-|  |
-| --- |
-| **Parameter:** `PropagateVariantConditions` |
-| **Type:** character vector |
-| **Value:** `'off'` | `'on'` |
-| **Default:** `'off'` |
+To set the block parameter value programmatically, use
+the `set_param` function.
 
-### **Allow flexible interface** — Option to choose to make interface of the variant subsystem flexible `on` (default) | `off`
+|  |  |
+| --- | --- |
+| **Parameter:** | `PartitionName` |
+| **Values:** | `''` (default) | partition name in quotes |
+| **Data Types:** | `char` | `string` |
 
-Specify whether to make the interface of a variant subsystem flexible.
+### **Sample time** — Time interval `-1` (default) | `[Ts 0]`
 
-- `on` — Simulate with variant choices that have
-  input and output ports that differ in number from the input and
-  output ports of the Variant Subsystem block.
-- `off` — When you simulate with this option, if
-  there is inconsistency in the interface, the software will generate
-  errors with fix-it actions to match the ports of the variant choices
-  to the Variant Subsystem block.
+Specify whether all blocks in this subsystem must run at the same rate or can run at
+different rates.
+
+- `-1` — Inherited sample time.
+- `[Ts 0]` — Periodic sample time.
+
+If the blocks in the subsystem can run at different rates, specify the subsystem sample time
+as inherited (`-1`).
+
+If all blocks must run at the same rate, specify the sample time corresponding to this
+rate as the value of the **Sample time** parameter.
+
+If any of the blocks in the subsystem specify a different sample time (other than
+`-1` or `inf`), the software displays an error message
+when you update or simulate the model. For example, suppose all the blocks in the subsystem
+must run `5` times a second. To ensure this rate, specify the sample time of
+the subsystem as `0.2`. In this example, if any of the blocks in the
+subsystem specify a sample time other than `0.2`, `-1`, or
+`inf`, the software displays an error when you update or simulate the
+model.
+
+#### Dependencies
+
+To enable this parameter, select **Treat as atomic unit**.
 
 #### Programmatic Use
 
-|  |
-| --- |
-| **Parameter:** `AllowFlexibleInterface` |
-| **Type:** character vector |
-| **Value:** `'off'` | `'on'` |
-| **Default:** `'on'` |
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `SystemSampleTime` |
+| **Values:** | `'-1'` (default) | `'[Ts 0]'` |
+
+### **Treat as grouped when propagating variant conditions** — Option to treat subsystem as unit when propagating variant conditions `on` (default) | `off`
+
+Specify whether the software treats the subsystem as a unit when propagating variant
+conditions from Variant Source blocks or to Variant Sink
+blocks.
+
+- `on` — The software treats the subsystem as a unit when propagating
+  variant conditions from Variant Source blocks or to Variant
+  Sink blocks. For example, when the software computes the variant condition of
+  the subsystem, the software propagates that condition to all the blocks in the
+  subsystem.
+- `off` — The software treats all blocks in the subsystem as being at
+  the same level in the model hierarchy as the subsystem itself when determining their
+  variant condition.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `TreatAsGroupedWhenPropagatingVariantConditions` |
+| **Values:** | `'on'` (default) | `'off'` |
+
+#### Dependencies
+
+To enable this parameter, clear the **Treat as atomic unit**
+parameter.
+
+### Code Generation
+
+Parameters on the Code Generation tab require a Simulink
+Coder™ or Embedded Coder® license.
+
+### **Function packaging** — Code format `Auto` | `Inline` | `Nonreusable function` | `Reusable function`
+
+Select the code format to be generated for an atomic (nonvirtual) subsystem.
+
+- `Auto` — The software chooses the optimal format for you
+  based on the type and number of instances of the subsystem that exist in the
+  model.
+- `Inline` — The software inlines the subsystem
+  unconditionally.
+- `Nonreusable function` — If **Filename
+  options** is set to `Auto`, the software packages
+  separate functions in the model file. If **File name options** is
+  set to `Use subsystem name`, `Use function
+  name`, or `User specified` using different
+  filenames, the software packages separate functions in separate files.
+
+  Subsystems with this setting generate functions that might have arguments depending on
+  the Function interface parameter setting.
+  You can name the generated function and file using parameters Function name and File name (no extension), respectively.
+  These functions are not reentrant.
+- `Reusable function` — The software generates a function
+  with arguments that allows reuse of subsystem code when a model includes multiple
+  instances of the subsystem.
+
+  This option also generates a function with arguments that allows subsystem code to
+  be reused in the generated code of a model reference hierarchy that includes multiple
+  instances of a subsystem across referenced models. In this case, the subsystem must be
+  in a library.
+
+For more information, see:
+
+- Generate Code and Executables for Individual Subsystems (Simulink Coder)
+- Generate Inlined Subsystem Code (Simulink Coder)
+- Generate Subsystem Code as Separate Function and Files (Simulink Coder)
+- Generate Reusable Code from Library Subsystems Shared Across Models (Simulink Coder)
+
+The default value depends on the block configuration. For example, the default
+value for the Subsystem block is `Auto`.
+The default value for the CodeReuseSubsystem block is
+`Reusable function`.
+
+#### Tips
+
+- When you want multiple instances of a subsystem to be represented as one
+  reusable function, you can designate each one of them as
+  `Auto` or as `Reusable
+  function`. Using one or the other is best, as using both creates two
+  reusable functions, one for each designation. The outcomes of these choices differ
+  only when reuse is not possible. Selecting `Auto` does not
+  allow control of the function or filename for the subsystem code.
+- The `Reusable function` and `Auto`
+  options both try to determine if multiple instances of a subsystem exist and if the
+  code can be reused. The difference between the behavior of each option is that when
+  reuse is not possible:
+
+  - `Auto` yields inlined code, or if circumstances
+    prohibit inlining, separate functions for each subsystem instance.
+  - `Reusable function` yields a separate function
+    with arguments for each subsystem instance in the model.
+- If you select `Reusable function` while your generated
+  code is under source control, set **File name options** to
+  `Use subsystem name`, `Use function
+  name`, or `User specified`. Otherwise, the
+  names of your code files change whenever you modify your model, which prevents
+  source control on your files.
+- If you select an option other than `Auto` or
+  `Inline` and the model configuration parameter
+  **States**, the code generator produces separate output and
+  update methods. The code generator does not take into account the
+  **Combine output and update methods for code generation and
+  simulation** specification.
+
+#### Dependencies
+
+- This parameter requires a Simulink
+  Coder license for code generation.
+- To enable this parameter, select **Treat as atomic
+  unit**.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `RTWSystemCode` |
+| **Values:** | `'Auto'` | `'Inline'` | `'Nonreusable function'` | `'Reusable function'` |
+
+### **Function name options** — How to name generated function `Auto` | `Use subsystem name` | `User specified`
+
+Select how the software names the function it generates for the subsystem.
+
+If you have an Embedded Coder license, you can control function names with options on the Configuration
+Parameter **Code Generation** > **Identifiers** pane.
+
+- `Auto` — Assign a unique function name using the default
+  naming convention,
+  `model_subsystem()`,
+  where *`model`* is the name of the model and
+  *`subsystem`* is the name of the subsystem, or that of an
+  identical one when code is being reused.
+
+  If you select `Reusable function` for the
+  **Function packaging** parameter and a model reference hierarchy
+  contains multiple instances of the reusable subsystem, in order to generate reusable
+  code for the subsystem, **Function name options** must be set to
+  `Auto`.
+- `Use subsystem name` — Use the subsystem name as the
+  function name. By default, the function name uses the naming convention
+  `model_subsystem`.
+
+  When a subsystem is in a library block and the subsystem parameter Function packaging is set to
+  `Reusable function`, if you set the
+  `Use subsystem name` option, the code
+  generator uses the name of the library block for the subsystem function
+  name and filename.
+- `User specified` — Enable the **Function
+  name** field. Enter any legal C or C++ function name, which must be
+  unique.
+
+For more information, see Generate Subsystem Code as Separate Function and Files (Simulink Coder).
+
+The default value depends on the block configuration. For example, the default
+value for the Subsystem block is `Auto`.
+The default value for the CodeReuseSubsystem block is
+`Use subsystem name`.
+
+#### Dependencies
+
+- This parameter requires a Simulink
+  Coder license.
+- To enable this parameter, set **Function packaging** to
+  `Nonreusable function` or `Reusable
+  function`.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `RTWFcnNameOpts` |
+| **Values:** | `'Auto'` | `'Use subsystem name'` | `'User specified'` |
+
+### **Function name** — Name of function for subsystem code no default
+
+Specify a unique, valid C or C++ function name for subsystem code.
+
+Use this parameter if you want to give the function a specific name instead of
+allowing the Simulink
+Coder code generator to assign its own autogenerated name or use the subsystem
+name. For more information, see Generate Subsystem Code as Separate Function and Files (Simulink Coder).
+
+#### Dependencies
+
+- This parameter requires a Simulink
+  Coder license.
+- To enable this parameter, set **Function name options** to
+  `User specified`.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `RTWFcnName` |
+| **Values:** | `''` (default) | function name in quotes |
+| **Data Types:** | `char` | `string` |
+
+### **File name options** — How to name generated file `Auto` | `Use subsystem name` | `Use function name` | `User specified`
+
+Select how the software names the separate file for the function it generates for the
+subsystem.
+
+- `Auto` — Depending on the configuration of the subsystem
+  and how many instances are in the model, `Auto` yields
+  different results.
+
+  - If the code generator does *not* generate a separate file
+    for the subsystem, the subsystem code is generated within the code module
+    generated from the subsystem parent system. If the subsystem parent is the model
+    itself, the subsystem code is generated within
+    `model.c` or
+    `model.cpp`.
+  - If you select `Reusable function` for the
+    **Function packaging** parameter and your generated code is
+    under source control, consider specifying a **File name
+    options** value other than `Auto`. This
+    prevents the generated filename from changing due to unrelated model
+    modifications, which is problematic for using source control to manage
+    configurations.
+  - If you select `Reusable function` for the
+    **Function packaging** parameter and a model reference
+    hierarchy contains multiple instances of the reusable subsystem, in order to
+    generate reusable code for the subsystem, **File name
+    options** must be set to `Auto`.
+- `Use subsystem name` — The code generator generates a
+  separate file, using the subsystem (or library block) name as the filename.
+
+  When **File name options** is set to `Use subsystem
+  name`, the subsystem filename is mangled if the model contains
+  Model blocks, or if a model reference target is being generated for
+  the model. In these situations, the filename for the subsystem consists of the
+  subsystem name prefixed by the model name.
+- `Use function name` — The code generator uses the
+  function name specified by **Function name options** as the
+  filename.
+- `User specified` — This option enables the
+  **File name (no extension)** text entry field. The code generator
+  uses the name you enter as the filename. Enter any filename, but do not include the
+  `.c` or `.cpp` (or any other) extension. This
+  filename need not be unique.
+
+  While a subsystem source filename need not be unique, you must avoid giving nonunique
+  names that result in cyclic dependencies. For example, `sys_a.h`
+  includes `sys_b.h`, `sys_b.h` includes
+  `sys_c.h`, and `sys_c.h` includes
+  `sys_a.h`.
+
+The default value depends on the block configuration. For example, the default
+value for the Subsystem block is `Auto`.
+The default value for the CodeReuseSubsystem block is
+`Use function name`.
+
+#### Dependencies
+
+- This parameter requires a Simulink
+  Coder license.
+- To enable this parameter, set **Function packaging** to
+  `Nonreusable function` or `Reusable
+  function`.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `RTWFileNameOpts` |
+| **Values:** | `'Auto'` | `'Use subsystem name'` | `'Use function name'` | `'User specified'` |
+
+### **File name (no extension)** — Name of generated file no default
+
+The filename that you specify does not have to be unique. However, avoid giving
+non-unique names that result in cyclic dependencies. For example,
+`sys_a.h` includes `sys_b.h`,
+`sys_b.h` includes `sys_c.h`, and
+`sys_c.h` includes `sys_a.h`.
+
+For more information, see Generate Subsystem Code as Separate Function and Files (Simulink Coder).
+
+#### Dependencies
+
+- This parameter requires a Simulink
+  Coder license.
+- To enable this parameter, set **File name options** to
+  `User specified`.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `RTWFileName` |
+| **Values:** | `''` (default) | filename in quotes |
+| **Data Types:** | `char` | `string` |
+
+### **Function interface** — How to use arguments with generated function `void_void` (default) | `Allow arguments (Optimized)` | `Allow arguments (Match graphical interface)`
+
+Select how to use arguments with the generated function.
+
+- `void_void` — Generate a function without arguments and
+  pass data as global variables. For example:
+
+  ```
+  void subsystem_function(void)
+  ```
+- `Allow arguments (Optimized)` — Generate a function that
+  uses arguments instead of passing data as global variables. This specification reduces
+  global RAM. This option might reduce code size and improve execution speed and enable
+  the code generator to apply additional optimizations. For
+  example:
+
+  ```
+  void subsystem_function(real_T rtu_In1, real_T rtu_In2,
+                          real_T *rty_Out1)
+  ```
+
+  In some cases, when generating optimized code, the code generator might not
+  generate a function that has arguments.
+- `Allow arguments (Match graphical interface)` — Generate
+  a function interface that uses arguments that match the Subsystem
+  graphical block interface. The generated function interface is predictable and does
+  not change. A predictable interface can be useful for debugging and testing your code
+  and integrating with external applications. For example, if a model has two
+  Inport blocks and two Outport blocks, then the
+  generated function interface
+  is:
+
+  ```
+  void subsystem_function(real_T rtu_In1, real_T rtu_In2,
+                          real_T *rty_Out1, real_T *rty_Out2)
+  ```
+
+For more information, see:
+
+- Reduce Global Variables in Nonreusable Subsystem Functions (Embedded Coder)
+- Generate Predictable Function Interface to Match Graphical Block Interface (Embedded Coder)
+- Generate Modular Function Code for Nonvirtual Subsystems (Embedded Coder)
+
+#### Dependencies
+
+- This parameter requires an Embedded Coder license and an ERT-based system target file.
+- To enable this parameter, set **Function packaging** to
+  `Nonreusable function`.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `FunctionInterfaceSpec` |
+| **Values:** | `'void_void'` (default) | `'Allow arguments (Optimized)'` | `'Allow arguments (Match graphical interface)'` |
+
+### **Function with separate data** — Control code generation for subsystem `off` (default) | `on`
+
+Generate subsystem function code in which the internal data for an atomic subsystem is
+separated from its parent model and is owned by the subsystem.
+
+- `off` — Do not generate subsystem function code in which the
+  internal data for an atomic subsystem is separated from its parent model and is owned
+  by the subsystem.
+- `on` — Generate subsystem function code in which the internal
+  data for an atomic subsystem is separated from its parent model and is owned by the
+  subsystem. The subsystem data structure is declared independently from the parent
+  model data structures. A subsystem with separate data has its own block I/O and
+  `DWork` data structure. As a result, the generated code for the
+  subsystem is easier to trace and test. The data separation also tends to reduce the
+  maximum size of global data structures throughout the model, because they are split
+  into multiple data structures.
+
+For details on how to generate modular function code for an atomic subsystem, see
+Generate Modular Function Code for Nonvirtual Subsystems (Embedded Coder).
+
+For details on how to apply memory sections to atomic subsystems, see Override Default Memory Placement for Subsystem Functions and Data (Embedded Coder).
+
+#### Dependencies
+
+- This parameter requires an Embedded Coder license and an ERT-based system target file.
+- To enable this parameter, set **Function packaging** to
+  `Nonreusable function`.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `FunctionWithSeparateData` |
+| **Values:** | `'off'` (default) | `'on'` |
+
+### **Memory section for initialize/terminate functions** — How to apply memory sections `Inherit from model` (default) | `Default` | model memory section
+
+Select how the software applies memory sections to the subsystem initialization and
+termination functions.
+
+- `Inherit from model` — Apply the root model memory
+  sections to the subsystem function code.
+- `Default` — Do not apply memory sections to the subsystem
+  system code, overriding any model-level specification.
+- Apply one of the model memory sections to the subsystem.
+
+#### Tips
+
+- The possible values vary depending on what, if any, package of memory sections
+  you have set for the model configuration. See Control Data and Function Placement in Memory by Inserting Pragmas (Embedded Coder) and Model Configuration Parameters: Code Generation (Simulink Coder).
+- If you have not configured the model with a package, `Inherit from
+  model` is the only available value. Otherwise, the list includes
+  `Default` and all memory sections the model package
+  contains.
+- These options can be useful for overriding the model memory section settings for
+  the given subsystem. For details on how to apply memory sections to atomic
+  subsystems, see Override Default Memory Placement for Subsystem Functions and Data (Embedded Coder).
+
+#### Dependencies
+
+- This parameter requires an Embedded Coder license and an ERT-based system target file.
+- To enable this parameter, set **Function packaging** to
+  `Nonreusable function` or `Reusable
+  function`.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `RTWMemSecFuncInitTerm` |
+| **Values:** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
+
+### **Memory section for execution functions** — How to apply memory sections `Inherit from model` (default) | `Default` | model memory section
+
+Select how Embedded Coder applies memory sections to the subsystem execution functions.
+
+- `Inherit from model` — Apply the root model memory
+  sections to the subsystem function code.
+- `Default` — Do not apply memory sections to the subsystem
+  system code, overriding any model-level specification.
+- Apply one of the model memory sections to the subsystem.
+
+#### Tips
+
+- The possible values vary depending on what, if any, package of memory sections
+  you have set for the model configuration. See Control Data and Function Placement in Memory by Inserting Pragmas (Embedded Coder) and Model Configuration Parameters: Code Generation (Simulink Coder).
+- If you have not configured the model with a package, `Inherit from
+  model` is the only available value. Otherwise, the list includes
+  `Default` and all memory sections the model package
+  contains.
+- These options can be useful for overriding the model memory section settings for
+  the given subsystem. For details on how to apply memory sections to atomic
+  subsystems, see Override Default Memory Placement for Subsystem Functions and Data (Embedded Coder).
+
+#### Dependencies
+
+- This parameter requires an Embedded Coder license and an ERT-based system target file.
+- To enable this parameter, set **Function packaging** to
+  `Nonreusable function` or `Reusable
+  function`.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `RTWMemSecFuncExecute` |
+| **Values:** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
+
+### **Memory section for constants** — How to apply memory sections `Inherit from model` (default) | `Default` | model memory section
+
+Select how the software applies memory sections to the subsystem constants.
+
+- `Inherit from model` — Apply the root model memory
+  sections to the subsystem data.
+- `Default` — Do not apply memory sections to the subsystem
+  data, overriding any model-level specification.
+- Apply one of the model memory sections to the subsystem.
+
+#### Tips
+
+- The memory section that you specify applies to the corresponding global data
+  structures in the generated code. For basic information about the global data
+  structures generated for atomic subsystems, see Standard Data Structures (Simulink Coder).
+- The possible values vary depending on what, if any, package of memory sections
+  you have set for the model configuration. See Control Data and Function Placement in Memory by Inserting Pragmas (Embedded Coder).
+- If you have not configured the model with a package, `Inherit from
+  model` is the only available value. Otherwise, the list includes
+  `Default` and all memory sections the model package
+  contains.
+- These options can be useful for overriding the model memory section settings for
+  the given subsystem. For details on how to apply memory sections to atomic
+  subsystems, see Override Default Memory Placement for Subsystem Functions and Data (Embedded Coder).
+
+#### Dependencies
+
+- This parameter requires an Embedded Coder license and an ERT-based system target file.
+- To enable this parameter, set **Function packaging** to
+  `Nonreusable function` and select the
+  **Function with separate data** parameter.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `RTWMemSecDataConstants` |
+| **Values:** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
+
+### **Memory section for internal data** — How to apply memory sections `Inherit from model` (default) | `Default` | model memory section
+
+Select how the software applies memory sections to the subsystem internal data.
+
+- `Inherit from model` — Apply the root model memory
+  sections to the subsystem data.
+- `Default` — Do not apply memory sections to the subsystem
+  data, overriding any model-level specification.
+- Apply one of the model memory sections to the subsystem.
+
+#### Tips
+
+- The memory section that you specify applies to the corresponding global data
+  structures in the generated code. For basic information about the global data
+  structures generated for atomic subsystems, see Standard Data Structures (Simulink Coder).
+- The possible values vary depending on what, if any, package of memory sections
+  you have set for the model configuration. See Control Data and Function Placement in Memory by Inserting Pragmas (Embedded Coder).
+- If you have not configured the model with a package, `Inherit from
+  model` is the only available value. Otherwise, the list includes
+  `Default` and all memory sections the model package
+  contains.
+- These options can be useful for overriding the model memory section settings for
+  the given subsystem. For details on how to apply memory sections to atomic
+  subsystems, see Override Default Memory Placement for Subsystem Functions and Data (Embedded Coder).
+
+#### Dependencies
+
+- This parameter requires an Embedded Coder license and an ERT-based system target file.
+- To enable this parameter, set **Function packaging** to
+  `Nonreusable function` and select the
+  **Function with separate data** parameter.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `RTWMemSecDataInternal` |
+| **Values:** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
+
+### **Memory section for parameters** — How to apply memory sections `Inherit from model` (default) | `Default` | model memory section
+
+Select how the software applies memory sections to the subsystem parameters.
+
+- `Inherit from model` — Apply the root model memory
+  sections to the subsystem function code.
+- `Default` — Do not apply memory sections to
+  the subsystem system code, overriding any model-level
+  specification.
+- Apply one of the model memory sections to the subsystem.
+
+#### Tips
+
+- The memory section that you specify applies to the corresponding global data
+  structure in the generated code. For basic information about the global data
+  structures generated for atomic subsystems, see Standard Data Structures (Simulink Coder).
+- The possible values vary depending on what, if any, package of memory sections
+  you have set for the model configuration. See Control Data and Function Placement in Memory by Inserting Pragmas (Embedded Coder).
+- If you have not configured the model with a package, `Inherit from
+  model` is the only available value. Otherwise, the list includes
+  `Default` and all memory sections the model package
+  contains.
+- These options can be useful for overriding the model memory section settings for
+  the given subsystem. For details on how to apply memory sections to atomic
+  subsystems, see Override Default Memory Placement for Subsystem Functions and Data (Embedded Coder).
+
+#### Dependencies
+
+- This parameter requires an Embedded Coder license and an ERT-based system target file.
+- To enable this parameter, set **Function packaging** to
+  `Nonreusable function` and select the
+  **Function with separate data** parameter.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `RTWMemSecDataParameters` |
+| **Values:** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
+
+### Subsystem Reference
+
+### **Subsystem file name** — Filename of referenced subsystem no default
+
+Specify the subsystem file you want to reference. For information about subsystem references, see Create and Use Referenced Subsystems in Models.
+
+#### Dependencies
+
+To access this parameter, in the **Subsystem Reference** section, click **Convert**.
+
+For more information on how to convert a subsystem to a referenced subsystem, see Convert Subsystem to a Referenced Subsystem.
+
+#### Programmatic Use
+
+To set the block parameter value programmatically, use
+the `set_param` function.
+
+|  |  |
+| --- | --- |
+| **Parameter:** | `ReferencedSubsystem` |
+| **Values:** | `''` (default) | subsystem filename in quotes |
+| **Data Types:** | `char` | `string` |
 
 ## Libraries
 
-Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
+Simulink / Commonly Used Blocks Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
 
 ## Block Characteristics
 
 |  |  |
 | --- | --- |
-| **Data Types** | `Booleana` | `busa` | `doublea` | `enumerateda` | `fixed pointa` | `halfa` | `integera` | `singlea` | `stringa` |
+| **Data Types** | `Booleana` | `busa` | `doublea` | `enumerateda` | `fixed pointa` | `halfa` | `imagea` | `integera` | `singlea` | `stringa` |
 | **Direct Feedthrough** | `no` |
 | **Multidimensional Signals** | `yesa` |
 | **Variable-Size Signals** | `yesa` |
@@ -705,21 +955,20 @@ Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems
 
 ### C/C++ Code Generation Generate C and C++ code using Simulink® Coder™.
 
-Actual data type or capability support depends on block implementation.
+Actual code generation support depends on block implementation.
 
 ### HDL Code Generation Generate VHDL, Verilog and SystemVerilog code for FPGA and ASIC designs using HDL Coder™.
 
 HDL Coder™ provides additional configuration options that affect HDL
-implementation and synthesized logic. Actual data type or capability support depends
-on block implementation.
+implementation and synthesized logic.
 
 **HDL Architecture**
 
 | Architecture | Description |
 | --- | --- |
-| `Module` (default) | Generate code for the subsystem and the blocks within the subsystem. HDL Coder generates code for all the variant choices. |
-| `BlackBox` | Generate a black-box interface. That is, the generated HDL code includes only the input/output port definitions for the subsystem. In this way, you can use a subsystem in your model to generate an interface to existing manually written HDL code.  The black-box interface generated for subsystems is similar to the interface generated for Model blocks, but without generation of clock signals. |
-| `No HDL` | Remove the subsystem from the generated code. You can use the subsystem in simulation but treat it as a “no-op” in the HDL code. |
+| `Module` (default) | Generate code for the subsystem and the blocks within the subsystem. |
+| `BlackBox` | Generate a black box interface. The generated HDL code includes only the input/output port definitions for the subsystem. Therefore, you can use a subsystem in your model to generate an interface to existing, manually written HDL code.  The black-box interface generation for subsystems is similar to the Model block interface generation without the clock signals. |
+| `No HDL` | Remove the subsystem from the generated code. You can use the subsystem in simulation, however, treat it as a “no-op” in the HDL code. |
 
 **Black Box Interface Customization**
 
@@ -732,7 +981,6 @@ interface. See Customize Black Box or HDL Cosimulation Interface (HDL Coder).
 | General | |
 | --- | --- |
 | **AdaptivePipelining** | Automatic pipeline insertion based on the synthesis tool, target frequency, and multiplier word-lengths. The default is `inherit`. See also AdaptivePipelining (HDL Coder). |
-| **BalanceDelays** | Detects introduction of new delays along one path and inserts matching delays on the other paths. The default is `inherit`. See also BalanceDelays (HDL Coder). |
 | **ClockRatePipelining** | Insert pipeline registers at a faster clock rate instead of the slower data rate. The default is `inherit`. See also ClockRatePipelining (HDL Coder). |
 | **ConstrainedOutputPipeline** | Number of registers to place at the outputs by moving existing delays within your design. Distributed pipelining does not redistribute these registers. The default is `0`. For more details, see ConstrainedOutputPipeline (HDL Coder). |
 | **DistributedPipelining** | Pipeline register distribution, or register retiming. The default is `inherit`. See also DistributedPipelining (HDL Coder). |
@@ -743,270 +991,104 @@ interface. See Customize Black Box or HDL Cosimulation Interface (HDL Coder).
 | **SharingFactor** | Number of functionally equivalent resources to map to a single shared resource. The default is 0. See also Resource Sharing (HDL Coder). |
 | **StreamingFactor** | Number of parallel data paths, or vectors, that are time multiplexed to transform into serial, scalar data paths. The default is 0, which implements fully parallel data paths. See also Streaming (HDL Coder). |
 
-**Target Specification**
+If this block is not the DUT, the block property settings in the **Target
+Specification** tab are ignored. In the HDL Workflow Advisor, if you use the
+**IP Core Generation** workflow, these target specification block
+property values are saved with the model. If you specify these target specification block
+property values using `hdlset_param`, when you open HDL Workflow Advisor,
+the fields are populated with the corresponding values.
 
-This block cannot be the DUT, so the block property settings in the **Target
-Specification** tab are ignored.
+| Target Specification | |
+| --- | --- |
+| **AdditionalTargetInterfaces** | Additional target interfaces, specified as a character vector.  To save this block property on the model, in the **Set Target Interface** task of the **IP Core Generation** workflow, corresponding to the DUT ports that you want to add more interfaces, select **Add more...**. You can then add more interfaces in the Add New Target Interfaces dialog box. Specify the type of interface, number of additional interfaces, and a unique name for each additional interface.  Values: `''` (default) | cell array of character vectors  Example: `'{{'AXI4-Stream','InterfaceID','AXI4-Stream1'}}'` |
+| **ProcessorFPGASynchronization** | Processor/FPGA synchronization mode, specified as a character vector.  To save this block property on the model, specify the **Processor/FPGA Synchronization** in the **Set Target Interface** task of the **IP Core Generation** workflow.  Values: `Free running` (default) | `Coprocessing - blocking`  Example: `'Free running'` |
+| **TestPointMapping** | To save this block property on the model, specify the mapping of test point ports to target platform interfaces in the **Set Target Interface** task of the **IP Core Generation** workflow.  Values: `''` (default) | cell array of character vectors  Example: `'{{'TestPoint','AXI4-Lite','x"108"'}}'` |
+| **TunableParameterMapping** | To save this block property on the model, specify the mapping of tunable parameter ports to target platform interfaces in the **Set Target Interface** task of the **IP Core Generation** workflow.  Values: `''` (default) | cell array of character vectors  Example: `'{{'myParam','AXI4-Lite','x"108"'}}'` |
+| **AXI4RegisterReadback** | To save this block property on the model, specify whether you want to enable readback on AXI4 subordinate write registers in the **Generate RTL Code and IP Core** task of the **IP Core Generation** workflow. To learn more, see Model Design for AXI4 Slave Interface Generation (HDL Coder).  Values: `'off'` (default) | `'on'` |
+| **AXI4SlaveIDWidth** | To save this block property on the model, specify the number of AXI manager interfaces that you want to connect the DUT IP core to by using the **AXI4 Slave ID Width** setting in the **Generate RTL Code and IP Core** task of the **IP Core Generation** workflow. To learn more, see Define Multiple AXI Master Interfaces in Reference Designs to Access DUT AXI4 Slave Interface (HDL Coder).  Values: `'off'` (default) | `'on'` |
+| **RegisterInterfaceReadPipeline** | To save this block property on the model, Specify the number of pipeline stages to insert in the read address decoder path by using the **Register interface read pipeline** setting in the **Generate RTL Code and IP Core** task of the **IP Core Generation** workflow. To learn more, see Model Design for AXI4 Slave Interface Generation (HDL Coder).  Values: `0` (default) | character vector |
+| **GenerateDefaultAXI4Slave** | To save this block property on the model, specify whether you want to disable generation of default AXI4 subordinate interfaces in the **Generate RTL Code and IP Core** task of the **IP Core Generation** workflow.  Values: `'on'` (default) | `'off'` |
+| **IPCoreAdditionalFiles** | Verilog®, SystemVerilog, or VHDL® files for black boxes in your design. Specify the full path to each file, and separate file names with a semicolon (;).  You can set this property in the HDL Workflow Advisor, in the **Additional source files** field.  Values: `''` (default) | character vector  Example: `'C:\myprojfiles\led_blinking_file1.vhd;C:\myprojfiles\led_blinking_file2.vhd;'` |
+| **IPCoreName** | IP core name, specified as a character vector.  You can set this property in the HDL Workflow Advisor, in the **IP core name** field. If this property is set to the default value, the HDL Workflow Advisor constructs the IP core name based on the name of the DUT.  Values: `''` (default) | character vector  Example: `'my_model_name'` |
+| **IPCoreVersion** | IP core version number, specified as a character vector.  You can set this property in the HDL Workflow Advisor, in the **IP core version** field. If this property is set to the default value, the HDL Workflow Advisor sets the IP core version.  Values: `''` (default) | character vector  Example: `'1.3'` |
+| **IPDataCaptureBufferSize** | FPGA Data Capture buffer size, specified as a character vector. Use FPGA Data Capture to observe signals in a design when running on an FPGA.  The buffer size uses values that are 128\*2^n, where n is an integer. By default, the buffer size is 128 (n=0). The maximum value of n is 13, which means that the maximum value for buffer size is 1048576 (=128\*2^13).  Values: `''` (default) | character vector  Example: `'1.3'` |
+
+**Generate HDL Code with Algebraic Loops**
+
+To generate HDL code for models that contain Subsystem
+blocks:
+
+- In the Configuration Parameters dialog box, click
+  **Diagnostics**, and set the
+  **Algebraic loop** parameter to
+  `none` or
+  `warning`.
+- Open the block mask for the Subsystem block and select
+  the **Treat as atomic unit** and
+  **Minimize algebraic loop occurrences**
+  parameters.
 
 **Restrictions**
 
-- The Variant Subsystem cannot be a design-under-test
-  (DUT).
-- **Variant activation time** parameter must be set to
-  `update diagram`, `update
-  diagram analyze all choices`, or
-  `startup`.
-- For the Outport block of the Variant Subsystem,
-  **Specify output when source is unconnected**
-  parameter must be disabled.
+If your DUT is a masked subsystem, you can generate code only if it is at the
+top level of the model.
+
+For more information, see:
+
+- External Component Interfaces (HDL Coder)
+- Generate Black Box Interface for Subsystem (HDL Coder)
+
+### PLC Code Generation Generate Structured Text code using Simulink® PLC Coder™.
+
+Subsystem must be atomic to support PLC code generation.
+
+**PLC Block Properties**
+
+|  |  |
+| --- | --- |
+| **UseExternalDefinition** | Suppress block definition in generated code. The default is `Off`. See also UseExternalDefinition (Simulink PLC Coder). |
 
 ### Fixed-Point Conversion Design and simulate fixed-point systems using Fixed-Point Designer™.
 
-Actual data type or capability support depends on block implementation.
+Actual data type support depends on block implementation.
 
 ## Version History
 
-**Introduced in R2010b**
-
-### R2025a: Reduce overhead and irrelevant diagnostic messages by suppressing callbacks for inactive variant choices and commented blocks
-
-The callbacks `LoadFcn`, `ContinueFcn`,
-`InitFcn`, `ModelCloseFcn`,
-`PauseFcn`, `PostSaveFcn`,
-`PreSaveFcn`, `StartFcn`, and
-`StopFcn` do not execute for inactive variant choices in Variant Subsystem blocks with the
-`update diagram` activation time and for commented
-blocks. This suppression reduces computational overhead and prevents unnecessary
-diagnostic messages from the blocks that do not affect the current model iteration.
-However, these callbacks are not suppressed for blocks within models or subsystem
-files inside a commented or an inactive Model block or Subsystem Reference block. Also, the mask initialization and mask
-parameter callbacks are not suppressed. For the list of applicable callbacks, see
-Author Mask Initialization and Callbacks and Mask Parameters.
-
-### R2025a: Parameter to output zero when no variant choices exist renamed from **Allow zero active variant controls**
-
-The **Allow zero active variant controls** parameter is now
-renamed to **Built-in empty choice**. This new parameter maintains
-the previous functionality to remove the variant components and output zero when no
-variant choice is active.
-
-### R2025a: Assign input values to output ports when no variant choices exist
-
-Use the **Built-in passthrough choice** parameter to bypass
-variant region and assign input values to the output ports when no variant choice is
-active.
-
-### R2024b: `runtime` activation time : Change the active choice during simulation or code generation
-
-Starting in R2024b, use the `runtime` variant activation time in
-a Variant Subsystem block to change the active variant during
-simulation or code generation by using the Parameter Writer block.
-You can model all scenarios where the Parameter Writer block can
-write to the variant control variable in the global workspace, mask workspace, or
-model workspace.
-
-### R2024a: Automated port synchronization
-
-Simulink provides options to add missing ports and delete unused ports in
-Variant Subsystem and Variant Assembly Subsystem
-blocks to match the ports of the underlying variant choices. During simulation, if
-Simulink encounters a port mismatch between a Variant Subsystem
-or Variant Assembly Subsystem block and its variant choices, the
-resulting error message provides the option of adding missing ports and deleting
-unused ports to resolve the issue.
-
-### R2024a: Use adapted rate-based model blocks as choices
-
-You can use adapted rate-based model blocks as variant choices in a Variant
-Subsystem block. When you add adapted rate-based models as variant
-choices, the inports in the variant subsystem are matched to the port names of the
-respective rate-based models.
-
-### R2024a: Access the mask of the active variant choice
-
-You can access the mask of the active variant choice of the Variant
-Subsystem directly without having to navigate inside the Variant
-Subsystem block.
-
-- If the Variant Subsystem block is unmasked,
-  double-clicking on the block opens the mask of its active choice.
-  Clicking on the **Look under mask** badge or selecting
-  the corresponding option from the context menu of the Variant
-  Subsystem block takes you directly inside the active
-  choice.
-- If the Variant Subsystem block is masked and the active
-  choice also has a mask, then double-clicking on the block opens the
-  Variant Subsystem mask.
-- If the Variant Subsystem block is unmasked and its
-  active choice is masked, then double-clicking on the **Look
-  under mask** badge takes you to the variant layer. You can
-  see similar behavior in a masked Variant Subsystem block
-  with an unmasked active choice.
-
-When you click on the **Look under mask** badge of a linked
-Variant Subsystem block with its active choice as a linked and
-masked Model Reference block, the Model Reference
-opens in a separate editor. Additionally, you must perform
-`set_param` operations on the mask parameters of the active
-choice block on the active choice, and not on the Variant Subsystem
-block.
-
-Promotion of the mask of the active choice is limited to its immediate parent.
-Nested Variant Subsystem mask promotion is not supported.
-
-### R2024a: Specify variant choices as an array of strings
-
-You can specify **Variant choices specifier** as an
-array of strings in Variant Assembly Subsystem block.
-
-### R2023b: Promote content preview of active choice
-
-Simulink promotes the content preview of the active choice of the
-Variant Subsystem block automatically. When the active choice is
-a Model Reference that is not loaded, and when the active choice is a
-Stateflow chart, the Variant Subsystem is shown as the content
-preview.
-
-### R2023b: Navigate directly into active choice
-
-You can navigate directly inside the active variant by double clicking on the
-Variant Subsystem block. When you select **Open in New
-Tab** or **Open in New Window** from the context menu,
-the active choice is opened in a new tab or a new window. You can also use the
-`open_system` function to access the variant layer and the
-active choice.
-
-```
-open_system(vssBlock)
-open_system(vssBlock,'ActiveChoice','window')
-```
-
-When the active choice
-has an `OpenFcn` callback, double-clicking on the Variant
-Subsystem block does not execute that callback. Additionally,
-double-clicking on the Variant Subsystem does not navigate into the
-active choice if the active choice is a referenced model that is not loaded.
-
-### R2021a: Promote mask icon of active variant automatically
-
-Simulink automatically displays the mask icon of the active variant block on
-the parent Variant Subsystem. Prior to R2021a, you had to provide
-icon drawing commands on the mask of the Variant Subsystem to display
-the mask icon of the underlying active variant block.
+**Introduced in R2007a**
 
 ## Description
 
-Template subsystem containing Subsystem blocks as variant choices
+Group blocks to create model hierarchy
 
-The Variant Subsystem block enables you to include multiple
-implementations of a component in a separate hierarchy.
+A Subsystem block contains a subset of blocks within a model or system.
+The Subsystem block can represent a virtual subsystem or a nonvirtual
+subsystem.
 
-For example, suppose you want to simulate a model that represents a vehicle with three
-possible engine configurations: 2-cylinder gas, 4-cylinder gas, and 8-cylinder gas. You
-could implement each engine model as a separate subsystem inside the Variant
-Subsystem block and then switch between the subsystems based on the Types of Variant Control Modes in Variant Blocks you select. For
-more information, see Introduction to Variant Controls.
+- *Virtual subsystems* help visually organize a block
+  diagram. When you group blocks in a virtual subsystem or expand a virtual
+  subsystem, you can affect the execution order of blocks because of the changes
+  to the block paths. Virtual subsystems are neither conditionally nor atomically
+  executed. Virtual subsystems do not have checksums.
+- *Nonvirtual subsystems*, also known as *atomic
+  subsystems*, help functionally organize a block diagram. When you
+  group blocks in a nonvirtual subsystem or expand a nonvirtual subsystem, you
+  change the model behavior. Each nonvirtual subsystem executes as a single block,
+  or atomic unit, when the parent model executes. The blocks in a nonvirtual
+  subsystem execute consecutively.
 
-**Note**
+For information on the types of nonvirtual subsystems, see Explore Types of Subsystems.
 
-Only one implementation of a Variant Subsystem block is active
-during simulation.
+To determine whether a subsystem is virtual or nonvirtual, use either of these strategies:
 
-Multiple models of an engine inside a Variant Subsystem block
+- Check the border of the block. A block that represents a virtual subsystem has a
+  thin border. A block that represents a nonvirtual subsystem has a thick border.
 
-The Variant Subsystem block is a template preconfigured to contain two
-or more blocks to use as variant choices. These choices represent multiple
-implementations of a system. Only one child block is active during model execution. The
-active child block is referred to as the *active variant*.
+  Virtual and nonvirtual subsystem blocks
+- Use the `get_param` function to query the Boolean
+  block parameter `IsSubsystemVirtual`.
 
-Each variant choice inside the Variant Subsystem block is associated
-with a **Variant
-control mode** and a **Variant
-activation time**. The variant control mode determines how to select the
-active variant. The variant activation time determines a time to activate the choices
-and to decide whether to include only the active choice or both active and inactive
-choices in the generated code.
+The ports on a Subsystem block correspond to blocks inside the subsystem.
+For more information, see Connect Subsystems.
 
-A Variant Subsystem block can contain a mixture of Subsystem blocks, Model blocks, or Subsystem
-Reference blocks as variant choices. A Variant Subsystem
-block with only Model blocks as choices is called a Variant
-Model block. For more information, see Implement Variations in Separate Hierarchy Using Variant Subsystems. A Variant Subsystem block with Model or
-Subsystem Reference blocks as choices that can be added or removed
-only from external files and not within the block is called a Variant Assembly
-Subsystem block.
-
-Apart from the variant choices, you can include Inport, control port (Enable, Trigger, Reset, and Function-Call Subsystem), Outport, or Connection Port (Simscape) blocks inside a
-Variant Subsystem block. There are no drawn connections between the
-blocks that are inside the Variant Subsystem blocks. The software
-automatically wires the active variant to the Inport and
-Outport blocks of the Variant Subsystem during model
-compilation. The blocks representing variant choices can have input and output ports
-that differ in number from the input and output ports in the parent Variant
-Subsystem block. For more information, see Map Input and Output Ports of Variant Choices in Variant Subsystem.
-
-When you load a model with a Variant Subsystem block that has variant
-choices stored in subsystem files, by default, only the active choice is loaded to
-optimize the loading time for models. However, if you initialize a model
-programmatically using the `find_system`,
-`get_param`, or `set_param` function, inactive
-choices might get loaded.
-
-Using Variant Subsystem block allows you to:
-
-- Mix Subsystem, Model, and Subsystem
-  Reference blocks as variant choices.
-- Model components that do not have similar interface. You can have
-  different numbers of inports and outports for multiple variant choices
-  inside a Variant Subsystem. However, the conditions listed in
-  Map Input and Output Ports of Variant Choices in Variant Subsystem must be met.
-- Establish a hierarchical block diagram, where the Variant
-  Subsystem block is on one layer and the variant choices are on
-  another layer.
-- Keeps functionally related blocks together.
-- Reduce the complexity of your model.
-- During model compilation, the software eliminates inactive blocks
-  throughout the model, depending on the variant activation time you
-  select.
-
-The color and icon of the variant badge on the block icon changes depending on the
-values of the **Variant activation time**, **Variant control
-mode**, and **Propagate conditions outside of variant
-subsystem** parameters set on the block. For more information, see Variant Badges.
-
-### Open the Block
-
-You can open the Variant Subsystem block from the Simulink® interface or programmatically. These methods enable you to access the
-active variant choice or the entire variant layer of the Variant
-Subsystem block, depending on your requirements.
-
-**Open from Simulink Interface**
-
-Use any of these actions in the Simulink interface to open the Variant Subsystem
-block.
-
-| Keyboard and mouse action | Result |
-| --- | --- |
-| Double-click | Opens the active variant choice inside the block in a new tab  **Note**  If the variant choice is a Model block and the model it references is not loaded, then double-clicking the block opens the variant layer containing the variant choices instead of opening the underlying layer of the active variant choice. |
-| Hold **Ctrl** and double-click | Opens the block in a new tab, shows the variant layer |
-| Hold **Shift** and double-click | Opens the block in a new window, shows the variant layer |
-| Right-click, select **Open** > **Open in New Tab** | Opens the block in the current window, shows the variant layer |
-| Right-click, select **Open** > **Open in New Window** | Opens the block in a new window, shows the variant layer |
-| Right-click the variant badge, select **Open** >**(active variant)** | Opens the active variant choice in a new tab |
-| Right-click the variant badge, select **Open** > **variant control (variant choice name)**, where *`variant control`* is the variant control `expression`, `label`, or `(sim)` or `(codegen)` for the variant choice specified by the *variant choice name.* | Opens the selected variant choice in a new tab |
-
-**Open Programmatically**
-
-Use either of these commands to open the Variant Subsystem
-block, where *`variantSubsystemBlockName`* is the name of
-the block:
-
-- `open_system("variantSubsystemBlockName")`
-  command — Open the Variant Subsystem block and view its
-  variant layers.
-- `open_system("variantSubsystemBlockName","ActiveChoice")`
-  — Open the active variant choice within the Variant
-  Subsystem block.
-
-For information on additional options to open the Variant
-Subsystem block using the `open_system` command,
-such as opening in a new tab or window, see `open_system`.
+The Subsystem block supports signal label propagation through subsystem
+Inport and Outport blocks. For more information, see Signal Label Propagation.

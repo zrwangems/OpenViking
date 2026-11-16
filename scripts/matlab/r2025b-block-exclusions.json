@@ -1746,5 +1746,55 @@
     ],
     "name": "6DOF",
     "reason": "non_block_browser_entry"
+  },
+  {
+    "product": "Automated Driving Toolbox",
+    "path": [],
+    "name": "Info",
+    "reason": "non_block_browser_entry"
+  },
+  {
+    "product": "Computer Vision Toolbox",
+    "path": [],
+    "name": "Info",
+    "reason": "non_block_browser_entry"
+  },
+  {
+    "product": "DSP System Toolbox",
+    "path": [],
+    "name": "Info",
+    "reason": "non_block_browser_entry"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Ports & Subsystems"
+    ],
+    "name": "Subsystem Examples",
+    "reason": "non_block_browser_entry"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "Signal Attributes"
+    ],
+    "name": "Data Type Propagation Examples",
+    "reason": "non_block_browser_entry"
+  },
+  {
+    "product": "Simulink",
+    "path": [
+      "User-Defined Functions"
+    ],
+    "name": "S-Function Examples",
+    "reason": "non_block_browser_entry"
+  },
+  {
+    "product": "Vehicle Dynamics Blockset",
+    "path": [
+      "Vehicle Scenarios"
+    ],
+    "name": "Driver",
+    "reason": "non_block_browser_entry"
   }
 ]
