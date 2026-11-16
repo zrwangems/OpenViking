@@ -366,7 +366,25 @@ def test_library_browser_manifest_counts_and_canonical_layout():
     assert "matlab" not in products
     common = root / "en/simulink/commonly-used-blocks"
     assert len(list(common.glob("*.md"))) == 24  # 23 blocks plus index
-    assert "Quick Insert" in (root / "en/simulink/quick-insert/index.md").read_text()
+    quick_insert = (root / "zh/simulink/quick-insert/index.md").read_text(encoding="utf-8")
+    assert "依赖模型上下文的动态插入入口" in quick_insert
+    assert "[返回上级目录](../index.md)" in quick_insert
+    loop_shaping = root / (
+        "zh/control/control-system-design-and-tuning/multiloop-multiobjective-tuning/"
+        "loop-shaping-design/index.md"
+    )
+    loop_shaping_text = loop_shaping.read_text(encoding="utf-8")
+    assert "不表示对应产品功能为空" in loop_shaping_text
+    assert "[返回上级目录](../index.md)" in loop_shaping_text
+    assert "[查看 Control System Toolbox 目录](../../../index.md)" in loop_shaping_text
+    assert (loop_shaping.parent / "../../../index.md").resolve() == (
+        root / "zh/control/index.md"
+    ).resolve()
+    for language, obsolete_text in (("en", "No fixed block entries."), ("zh", "无固定块条目。")):
+        for index in (root / language).rglob("index.md"):
+            text = index.read_text(encoding="utf-8")
+            assert obsolete_text not in text, index
+            assert len(text.splitlines()) >= 3, index
     assert len(list((root / "en").rglob("*.md"))) == 6229
     assert len(list((root / "zh").rglob("*.md"))) == 6229
     for language in ("en", "zh"):

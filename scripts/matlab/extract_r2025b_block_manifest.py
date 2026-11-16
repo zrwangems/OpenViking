@@ -565,18 +565,15 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                     target = browser_root / "simulink/commonly-used-blocks" / f"{slug(name)}.md"
                     target.parent.mkdir(parents=True, exist_ok=True)
                     target.write_text(content, encoding="utf-8")
-                quick = browser_root / "simulink/quick-insert/index.md"
-                quick.parent.mkdir(parents=True, exist_ok=True)
-                quick.write_text(
-                    "# Quick Insert\n\n"
-                    + (
-                        "Quick Insert 是依赖模型上下文的动态插入入口，没有固定块清单。\n"
+                nodes[("simulink", "quick-insert")] = {
+                    "name": "Quick Insert",
+                    "blocks": [],
+                    "description": (
+                        "Quick Insert 是依赖模型上下文的动态插入入口，没有固定块清单。"
                         if language == "zh"
-                        else "Quick Insert is a model-context-dependent dynamic insertion surface and has no fixed block list.\n"
+                        else "Quick Insert is a model-context-dependent dynamic insertion surface and has no fixed block list."
                     ),
-                    encoding="utf-8",
-                )
-                nodes[("simulink", "quick-insert")] = {"name": "Quick Insert", "blocks": []}
+                }
             for key, node in nodes.items():
                 directory = browser_root.joinpath(*key)
                 directory.mkdir(parents=True, exist_ok=True)
@@ -595,8 +592,39 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                     lines.append(f"- [{block['name']}]({filename})")
                 if len(lines) == 2:
                     lines.append(
-                        "No fixed block entries." if language == "en" else "无固定块条目。"
+                        node.get(
+                            "description",
+                            (
+                                "这是 R2025b Library Browser 的官方分类节点。当前节点没有子目录，"
+                                "官方块清单也未在此列出固定块；保留该页是为了维持官方目录层级，"
+                                "不表示对应产品功能为空。"
+                                if language == "zh"
+                                else "This is an official R2025b Library Browser category. It has no "
+                                "subdirectories or fixed block entries in the official block manifest. "
+                                "The page preserves the official hierarchy and does not imply that the "
+                                "corresponding product functionality is unavailable."
+                            ),
+                        )
                     )
+                    if len(key) > 1:
+                        lines.extend(
+                            [
+                                "",
+                                (
+                                    "- [返回上级目录](../index.md)"
+                                    if language == "zh"
+                                    else "- [Back to parent directory](../index.md)"
+                                ),
+                            ]
+                        )
+                    if len(key) > 2:
+                        product_index = "../" * (len(key) - 1) + "index.md"
+                        product_name = nodes[(key[0],)]["name"]
+                        lines.append(
+                            f"- [查看 {product_name} 目录]({product_index})"
+                            if language == "zh"
+                            else f"- [Browse {product_name}]({product_index})"
+                        )
                 (directory / "index.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
         for name, (directory, target_product) in BROWSER_ALIASES.items():
             alias = browser_root / directory
