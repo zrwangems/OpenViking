@@ -143,16 +143,16 @@ language: zh-CN
 - [Busbar](../../zh/products/sps/ref/busbar.md) — 官方英文摘要: Load flow analysis busbar connector **完整正文**
 - [Busbar (DC)](../../zh/products/sps/ref/busbardc.md) — 官方英文摘要: Load flow analysis DC busbar connector (Since R2022a) **完整正文**
 - [Delta Reference (Three-Phase)](../../zh/products/sps/ref/deltareferencethreephase.md) — 官方英文摘要: Internal reference point for delta-connected network **完整正文**
-- [Electrical Reference](../../zh/products/sps/../simscape/ref/electricalreference.md) — 官方英文摘要: Connection to electrical ground **完整正文**
+- [Electrical Reference](../../zh/products/simscape/ref/electricalreference.md) — 官方英文摘要: Connection to electrical ground **完整正文**
 - [Floating Neutral (Three-Phase)](../../zh/products/sps/ref/floatingneutralthreephase.md) — 官方英文摘要: Internal floating neutral point for wye-connected network **完整正文**
-- [Floating Reference](../../zh/products/sps/../simscape/ref/floatingreference.md) — 官方英文摘要: Reference for measuring voltage of other nodes in floating electrical network (Since R2023b) **完整正文**
+- [Floating Reference](../../zh/products/simscape/ref/floatingreference.md) — 官方英文摘要: Reference for measuring voltage of other nodes in floating electrical network (Since R2023b) **完整正文**
 - [Grounded Neutral (Three-Phase)](../../zh/products/sps/ref/groundedneutralthreephase.md) — 官方英文摘要: Connect phases of three-phase system to electrical reference **完整正文**
 - [Neutral Port (Three-Phase)](../../zh/products/sps/ref/neutralportthreephase.md) — 官方英文摘要: Connect phases of three-phase system to electrical conserving port **完整正文**
-- [Open Circuit](../../zh/products/sps/../simscape/ref/opencircuit.md) — 官方英文摘要: Electrical port terminator that draws no current **完整正文**
+- [Open Circuit](../../zh/products/simscape/ref/opencircuit.md) — 官方英文摘要: Electrical port terminator that draws no current **完整正文**
 - [Open Circuit (Three-Phase)](../../zh/products/sps/ref/opencircuitthreephase.md) — 官方英文摘要: Three-phase terminator that draws no current **完整正文**
 - [Phase Permute](../../zh/products/sps/ref/phasepermute.md) — 官方英文摘要: Permute phases of three-phase system **完整正文**
 - [Phase Splitter](../../zh/products/sps/ref/phasesplitter.md) — 官方英文摘要: Expand or combine three electrical conserving ports **完整正文**
-- [PS Three-Element Demux](../../zh/products/sps/../simscape/ref/psthreeelementdemux.md) — 官方英文摘要: Convert three-element physical signal vector into scalar physical signals **完整正文**
+- [PS Three-Element Demux](../../zh/products/simscape/ref/psthreeelementdemux.md) — 官方英文摘要: Convert three-element physical signal vector into scalar physical signals **完整正文**
 
 ## Electrical Block Libraries / Connectors and References​ / Other
 
@@ -427,7 +427,7 @@ language: zh-CN
 ## Electrical Block Libraries / Sensors and Transducers / Sensors
 
 - [Accelerometer](../../zh/products/sps/ref/accelerometer.md) — 官方英文摘要: Behavioral model of MEMS accelerometer **完整正文**
-- [Current Sensor](../../zh/products/sps/../simscape/ref/currentsensor.md) — 官方英文摘要: Current sensor in electrical systems **完整正文**
+- [Current Sensor](../../zh/products/simscape/ref/currentsensor.md) — 官方英文摘要: Current sensor in electrical systems **完整正文**
 - [Current Sensor (Three-Phase)](../../zh/products/sps/ref/currentsensorthreephase.md) — 官方英文摘要: Ideal three-phase current measurement **完整正文**
 - [Current and Voltage Sensor (Three-Phase)](../../zh/products/sps/ref/currentandvoltagesensorthreephase.md) — 官方英文摘要: Ideal three-phase current and voltage sensor **完整正文**
 - [Gyro](../../zh/products/sps/ref/gyro.md) — 官方英文摘要: Behavioral model of MEMS gyro **完整正文**
@@ -437,7 +437,7 @@ language: zh-CN
 - [Power Sensor (Three-Phase)](../../zh/products/sps/ref/powersensorthreephase.md) — 官方英文摘要: Three-phase ideal active and reactive power sensor **完整正文**
 - [Proximity Sensor](../../zh/products/sps/ref/proximitysensor.md) — 官方英文摘要: Ideal behavioral model of simple distance sensor **完整正文**
 - [PS Sensor](../../zh/products/sps/ref/pssensor.md) — 官方英文摘要: Generic linear transducer with electrical output **完整正文**
-- [Voltage Sensor](../../zh/products/sps/../simscape/ref/voltagesensor.md) — 官方英文摘要: Voltage sensor in electrical systems **完整正文**
+- [Voltage Sensor](../../zh/products/simscape/ref/voltagesensor.md) — 官方英文摘要: Voltage sensor in electrical systems **完整正文**
 
 ## Electrical Block Libraries / Sensors and Transducers / Encoders and Transducers
 

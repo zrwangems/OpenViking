@@ -15,7 +15,8 @@ language: en
 
 ## Ports
 
-Not documented in R2025b.
+The block has a two-phase fluid conserving port. This port identifies the two-phase
+fluid node set to zero pressure and specific internal energy.
 
 ## Parameters
 
@@ -61,3 +62,8 @@ continue to work as before.
 ## Description
 
 (Not recommended) Reference point at zero absolute pressure and specific internal energy
+
+The Absolute Reference (2P) block represents a reference point at zero
+absolute pressure and specific internal energy. Use with the Pressure &
+Internal Energy Sensor (2P) block to measure the absolute pressure and
+specific internal energy at a two-phase fluid node.

@@ -19,7 +19,8 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Sample time**
+:   Specify how often this block reads the dip switch states.
 
 ## Libraries
 
@@ -40,3 +41,8 @@ Not documented in R2025b.
 ## Description
 
 Read the state of a DIP switch
+
+Read the four individual switch statuses. Each block output emits 0 when the
+corresponding switch state is Off and emits 1 when the switch state is On.
+
+During simulations without the hardware, this block emits zeroes.

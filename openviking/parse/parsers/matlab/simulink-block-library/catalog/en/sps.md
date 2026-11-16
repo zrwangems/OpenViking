@@ -143,16 +143,16 @@ No direct block entries.
 - [Busbar](../../en/products/sps/ref/busbar.md) — Official summary: Load flow analysis busbar connector **full document**
 - [Busbar (DC)](../../en/products/sps/ref/busbardc.md) — Official summary: Load flow analysis DC busbar connector (Since R2022a) **full document**
 - [Delta Reference (Three-Phase)](../../en/products/sps/ref/deltareferencethreephase.md) — Official summary: Internal reference point for delta-connected network **full document**
-- [Electrical Reference](../../en/products/sps/../simscape/ref/electricalreference.md) — Official summary: Connection to electrical ground **full document**
+- [Electrical Reference](../../en/products/simscape/ref/electricalreference.md) — Official summary: Connection to electrical ground **full document**
 - [Floating Neutral (Three-Phase)](../../en/products/sps/ref/floatingneutralthreephase.md) — Official summary: Internal floating neutral point for wye-connected network **full document**
-- [Floating Reference](../../en/products/sps/../simscape/ref/floatingreference.md) — Official summary: Reference for measuring voltage of other nodes in floating electrical network (Since R2023b) **full document**
+- [Floating Reference](../../en/products/simscape/ref/floatingreference.md) — Official summary: Reference for measuring voltage of other nodes in floating electrical network (Since R2023b) **full document**
 - [Grounded Neutral (Three-Phase)](../../en/products/sps/ref/groundedneutralthreephase.md) — Official summary: Connect phases of three-phase system to electrical reference **full document**
 - [Neutral Port (Three-Phase)](../../en/products/sps/ref/neutralportthreephase.md) — Official summary: Connect phases of three-phase system to electrical conserving port **full document**
-- [Open Circuit](../../en/products/sps/../simscape/ref/opencircuit.md) — Official summary: Electrical port terminator that draws no current **full document**
+- [Open Circuit](../../en/products/simscape/ref/opencircuit.md) — Official summary: Electrical port terminator that draws no current **full document**
 - [Open Circuit (Three-Phase)](../../en/products/sps/ref/opencircuitthreephase.md) — Official summary: Three-phase terminator that draws no current **full document**
 - [Phase Permute](../../en/products/sps/ref/phasepermute.md) — Official summary: Permute phases of three-phase system **full document**
 - [Phase Splitter](../../en/products/sps/ref/phasesplitter.md) — Official summary: Expand or combine three electrical conserving ports **full document**
-- [PS Three-Element Demux](../../en/products/sps/../simscape/ref/psthreeelementdemux.md) — Official summary: Convert three-element physical signal vector into scalar physical signals **full document**
+- [PS Three-Element Demux](../../en/products/simscape/ref/psthreeelementdemux.md) — Official summary: Convert three-element physical signal vector into scalar physical signals **full document**
 
 ## Electrical Block Libraries / Connectors and References​ / Other
 
@@ -427,7 +427,7 @@ No direct block entries.
 ## Electrical Block Libraries / Sensors and Transducers / Sensors
 
 - [Accelerometer](../../en/products/sps/ref/accelerometer.md) — Official summary: Behavioral model of MEMS accelerometer **full document**
-- [Current Sensor](../../en/products/sps/../simscape/ref/currentsensor.md) — Official summary: Current sensor in electrical systems **full document**
+- [Current Sensor](../../en/products/simscape/ref/currentsensor.md) — Official summary: Current sensor in electrical systems **full document**
 - [Current Sensor (Three-Phase)](../../en/products/sps/ref/currentsensorthreephase.md) — Official summary: Ideal three-phase current measurement **full document**
 - [Current and Voltage Sensor (Three-Phase)](../../en/products/sps/ref/currentandvoltagesensorthreephase.md) — Official summary: Ideal three-phase current and voltage sensor **full document**
 - [Gyro](../../en/products/sps/ref/gyro.md) — Official summary: Behavioral model of MEMS gyro **full document**
@@ -437,7 +437,7 @@ No direct block entries.
 - [Power Sensor (Three-Phase)](../../en/products/sps/ref/powersensorthreephase.md) — Official summary: Three-phase ideal active and reactive power sensor **full document**
 - [Proximity Sensor](../../en/products/sps/ref/proximitysensor.md) — Official summary: Ideal behavioral model of simple distance sensor **full document**
 - [PS Sensor](../../en/products/sps/ref/pssensor.md) — Official summary: Generic linear transducer with electrical output **full document**
-- [Voltage Sensor](../../en/products/sps/../simscape/ref/voltagesensor.md) — Official summary: Voltage sensor in electrical systems **full document**
+- [Voltage Sensor](../../en/products/simscape/ref/voltagesensor.md) — Official summary: Voltage sensor in electrical systems **full document**
 
 ## Electrical Block Libraries / Sensors and Transducers / Encoders and Transducers
 

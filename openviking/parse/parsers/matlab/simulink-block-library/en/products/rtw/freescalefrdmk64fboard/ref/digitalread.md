@@ -19,7 +19,13 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Pin**
+:   Select a digital pin. To view the pin mapping, click
+    **View pin map**.
+
+**Sample time**
+:   Specify how often this block reads a digital pin value in
+    seconds.
 
 ## Libraries
 
@@ -40,3 +46,5 @@ Not documented in R2025b.
 ## Description
 
 Read the logical value of digital input pin
+
+Read the logical vale of a digital input pin.

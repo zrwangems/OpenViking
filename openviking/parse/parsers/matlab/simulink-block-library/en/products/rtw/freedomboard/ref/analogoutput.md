@@ -40,3 +40,13 @@ Not documented in R2025b.
 ## Description
 
 Send an analog output signal to PTE30 pin
+
+Send an analog output signal to the pin PTE30 on the FRDM-KL25Z board. When you give a
+value between 0.0-1.0, this block emits an analog signal to the pin PTE30, such
+that:
+
+Vout = 3.3\*(1 + input\*4095)/4096
+
+Make sure to use only one Analog Output block within the same model.
+
+During simulations without the hardware, this block does nothing.

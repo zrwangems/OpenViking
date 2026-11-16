@@ -19,7 +19,28 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Rows of shift registers**
+:   The number of shift registers that the block uses internally.
+
+**Register length step**
+:   The difference in symbol capacity of each successive shift register, where
+    the last register holds zero symbols.
+
+**Initial conditions**
+:   Indicates the values that fill each shift register at the beginning of the
+    simulation (except for the last shift register, which has zero
+    delay).
+
+    - When you select a scalar value for **Initial
+      conditions**, the value fills all shift registers
+      (except for the last one)
+    - When you select a column vector with a length equal to the
+      **Rows of shift registers** parameter, each
+      entry fills the corresponding shift register.
+
+    The value of the first element of the **Initial
+    conditions** parameter is unimportant, since the last shift
+    register has zero delay.
 
 ## Libraries
 
@@ -88,3 +109,16 @@ When you select the `RAM` implementation:
 ## Description
 
 Restore ordering of symbols that were permuted using shift registers
+
+The Convolutional Deinterleaver block recovers a signal that was interleaved using the
+Convolutional Interleaver block. Internally,
+this block uses a set of shift registers. The parameters in the two blocks must have the
+same values. For information about delays, see Delays of Convolutional Interleaving and Deinterleaving.
+
+This block accepts a scalar or column vector input signal, which can be real or
+complex. The output signal has the same sample time as the input signal.
+
+This block accepts the following data types: `int8`,
+`uint8`, `int16`, `uint16`,
+`int32`, `uint32`, `boolean`,
+`single`, `double`, and fixed-point.

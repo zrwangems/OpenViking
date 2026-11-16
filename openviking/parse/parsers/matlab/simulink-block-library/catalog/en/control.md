@@ -38,7 +38,7 @@ No direct block entries.
 
 ## Dynamic System Models / Linear System Representation / Sparse State-Space Models
 
-- [Descriptor State-Space](../../en/products/control/../simulink/slref/descriptorstatespace.md) — Official summary: Model linear implicit system **full document**
+- [Descriptor State-Space](../../en/continuous/descriptor-state-space.md) — Official summary: Model linear implicit system **full document**
 - [Sparse Second Order](../../en/products/control/ref/sparsesecondorder.md) — Official summary: Represent sparse second-order models in Simulink **full document**
 
 ## Dynamic System Models / Linear System Representation / LPV and LTV Models
@@ -56,8 +56,8 @@ No direct block entries.
 - [Varying Delay](../../en/products/control/ref/varyingdelay.md) — Official summary: Varying delay with support for fixed delay and zero delay (direct feedthrough) (Since R2024a) **full document**
 - [Varying Lowpass Filter](../../en/products/control/ref/varyinglowpassfilter.md) — Official summary: Butterworth filter with varying coefficients **full document**
 - [Varying Notch Filter](../../en/products/control/ref/varyingnotchfilter.md) — Official summary: Notch filter with varying coefficients **full document**
-- [PID Controller](../../en/products/control/../simulink/slref/pidcontroller.md) — Official summary: Continuous-time or discrete-time PID controller **full document**
-- [PID Controller (2DOF)](../../en/products/control/../simulink/slref/pidcontroller2dof.md) — Official summary: Continuous-time or discrete-time two-degree-of-freedom PID controller **full document**
+- [PID Controller](../../en/continuous/pid-controller.md) — Official summary: Continuous-time or discrete-time PID controller **full document**
+- [PID Controller (2DOF)](../../en/continuous/pid-controller-2dof.md) — Official summary: Continuous-time or discrete-time two-degree-of-freedom PID controller **full document**
 - [Varying Transfer Function](../../en/products/control/ref/varyingtransferfunction.md) — Official summary: Transfer function with varying coefficients **full document**
 - [Varying State Space](../../en/products/control/ref/varyingstatespace.md) — Official summary: State-space model with varying matrix values **full document**
 - [Varying Observer Form](../../en/products/control/ref/varyingobserverform.md) — Official summary: Observer-form state-space model with varying matrix values **full document**
@@ -67,8 +67,8 @@ No direct block entries.
 - [Discrete Varying Delay](../../en/products/control/ref/discretevaryingdelay.md) — Official summary: Discrete varying delay with support for fixed delay and zero delay (direct feedthrough) (Since R2024a) **full document**
 - [Discrete Varying Lowpass](../../en/products/control/ref/discretevaryinglowpass.md) — Official summary: Discrete Butterworth filter with varying coefficients **full document**
 - [Discrete Varying Notch](../../en/products/control/ref/discretevaryingnotch.md) — Official summary: Discrete-time notch filter with varying coefficients **full document**
-- [Discrete PID Controller (2DOF)](../../en/products/control/../simulink/slref/discretepidcontroller2dof.md) — Official summary: Discrete-time or continuous-time two-degree-of-freedom PID controller **full document**
-- [Discrete PID Controller](../../en/products/control/../simulink/slref/discretepidcontroller.md) — Official summary: Discrete-time or continuous-time PID controller **full document**
+- [Discrete PID Controller (2DOF)](../../en/discrete/discrete-pid-controller-2dof.md) — Official summary: Discrete-time or continuous-time two-degree-of-freedom PID controller **full document**
+- [Discrete PID Controller](../../en/discrete/discrete-pid-controller.md) — Official summary: Discrete-time or continuous-time PID controller **full document**
 - [Discrete Varying Transfer Function](../../en/products/control/ref/discretevaryingtransferfunction.md) — Official summary: Discrete-time transfer function with varying coefficients **full document**
 - [Discrete Varying State Space](../../en/products/control/ref/discretevaryingstatespace.md) — Official summary: Discrete-time state-space model with varying matrix values **full document**
 - [Discrete Varying Observer Form](../../en/products/control/ref/discretevaryingobserverform.md) — Official summary: Discrete-time observer-form state-space model with varying matrix values **full document**
@@ -244,8 +244,8 @@ No direct block entries.
 
 - [Varying Lowpass Filter](../../en/products/control/ref/varyinglowpassfilter.md) — Official summary: Butterworth filter with varying coefficients **full document**
 - [Varying Notch Filter](../../en/products/control/ref/varyingnotchfilter.md) — Official summary: Notch filter with varying coefficients **full document**
-- [PID Controller](../../en/products/control/../simulink/slref/pidcontroller.md) — Official summary: Continuous-time or discrete-time PID controller **full document**
-- [PID Controller (2DOF)](../../en/products/control/../simulink/slref/pidcontroller2dof.md) — Official summary: Continuous-time or discrete-time two-degree-of-freedom PID controller **full document**
+- [PID Controller](../../en/continuous/pid-controller.md) — Official summary: Continuous-time or discrete-time PID controller **full document**
+- [PID Controller (2DOF)](../../en/continuous/pid-controller-2dof.md) — Official summary: Continuous-time or discrete-time two-degree-of-freedom PID controller **full document**
 - [Varying Transfer Function](../../en/products/control/ref/varyingtransferfunction.md) — Official summary: Transfer function with varying coefficients **full document**
 - [Varying State Space](../../en/products/control/ref/varyingstatespace.md) — Official summary: State-space model with varying matrix values **full document**
 - [Varying Observer Form](../../en/products/control/ref/varyingobserverform.md) — Official summary: Observer-form state-space model with varying matrix values **full document**
@@ -254,8 +254,8 @@ No direct block entries.
 
 - [Discrete Varying Lowpass](../../en/products/control/ref/discretevaryinglowpass.md) — Official summary: Discrete Butterworth filter with varying coefficients **full document**
 - [Discrete Varying Notch](../../en/products/control/ref/discretevaryingnotch.md) — Official summary: Discrete-time notch filter with varying coefficients **full document**
-- [Discrete PID Controller](../../en/products/control/../simulink/slref/discretepidcontroller.md) — Official summary: Discrete-time or continuous-time PID controller **full document**
-- [Discrete PID Controller (2DOF)](../../en/products/control/../simulink/slref/discretepidcontroller2dof.md) — Official summary: Discrete-time or continuous-time two-degree-of-freedom PID controller **full document**
+- [Discrete PID Controller](../../en/discrete/discrete-pid-controller.md) — Official summary: Discrete-time or continuous-time PID controller **full document**
+- [Discrete PID Controller (2DOF)](../../en/discrete/discrete-pid-controller-2dof.md) — Official summary: Discrete-time or continuous-time two-degree-of-freedom PID controller **full document**
 - [Discrete Varying Transfer Function](../../en/products/control/ref/discretevaryingtransferfunction.md) — Official summary: Discrete-time transfer function with varying coefficients **full document**
 - [Discrete Varying State Space](../../en/products/control/ref/discretevaryingstatespace.md) — Official summary: Discrete-time state-space model with varying matrix values **full document**
 - [Discrete Varying Observer Form](../../en/products/control/ref/discretevaryingobserverform.md) — Official summary: Discrete-time observer-form state-space model with varying matrix values **full document**

@@ -15,11 +15,14 @@ language: en
 
 ## Ports
 
-Not documented in R2025b.
+The block has two magnetic conserving ports associated with
+its terminals.
 
 ## Parameters
 
-Not documented in R2025b.
+**Constant mmf**
+:   Output mmf. You can specify any real value. The default value
+    is `1` A.
 
 ## Libraries
 
@@ -40,3 +43,11 @@ Not documented in R2025b.
 ## Description
 
 Ideal magnetomotive force source
+
+The MMF Source block represents an ideal magnetomotive
+force (mmf) source that is powerful enough to maintain specified constant
+mmf across its output terminals, regardless of the flux flowing through
+the source.
+
+You specify the output mmf by using the **Constant mmf** parameter,
+which can be positive, negative, or zero.

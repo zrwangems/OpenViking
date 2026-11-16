@@ -19,7 +19,7 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+For a description of block parameters, see Subsystem.
 
 ## Libraries
 

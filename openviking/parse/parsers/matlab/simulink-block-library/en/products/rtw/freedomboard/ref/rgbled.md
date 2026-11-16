@@ -40,3 +40,11 @@ Not documented in R2025b.
 ## Description
 
 Set the RGB LED to a desired color
+
+Set the RGB LED to a desired color by providing inputs to the Red, Green, and Blue
+LEDs, labeled R, G, and B. The block inputs accept values in the range 0 to 255.
+
+For example, to output the color red, set the R input value to a value greater than 0,
+G and B to 0.
+
+During simulations without the hardware, this block does nothing.

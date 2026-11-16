@@ -61,7 +61,7 @@ No direct block entries.
 
 - [Proof Assumption](../../en/products/sldv/ref/proofassumption.md) — Official summary: Constrain signal values when proving model properties **full document**
 - [Proof Objective](../../en/products/sldv/ref/proofobjective.md) — Official summary: Define objectives that signals must satisfy when proving model properties **full document**
-- [Assertion](../../en/products/sldv/../simulink/slref/assertion.md) — Official summary: Check whether signal is zero **full document**
+- [Assertion](../../en/model-verification/assertion.md) — Official summary: Check whether signal is zero **full document**
 - [Detector](../../en/products/sldv/ref/detector.md) — Official summary: Detect true duration on input and construct output true duration based on output type **full document**
 - [Extender](../../en/products/sldv/ref/extender.md) — Official summary: Extend true duration of input **full document**
 - [Implies](../../en/products/sldv/ref/implies.md) — Official summary: Specify condition that produces a certain response **full document**

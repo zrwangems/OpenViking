@@ -13,7 +13,7 @@ chinese_source: worker-translation
 
 
 
-# 从工作区、文件或 Simulation Data Inspector 加载数据
+从工作区、文件或 Simulation Data Inspector 加载数据
 
 ## 库
 

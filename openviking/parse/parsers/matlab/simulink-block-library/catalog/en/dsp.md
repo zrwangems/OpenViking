@@ -50,7 +50,7 @@ No direct block entries.
 
 ## Signal Generation, Manipulation, and Analysis / Signal Operations / Delay
 
-- [Variable Integer Delay](../../en/products/dsp/../simulink/slref/delay.md) — Official summary: Delay input signal by fixed or variable sample periods **full document**
+- [Variable Integer Delay](../../en/discrete/delay.md) — Official summary: Delay input signal by fixed or variable sample periods **full document**
 - [Variable Fractional Delay](../../en/products/dsp/ref/variablefractionaldelay.md) — Official summary: Delay input by time-varying fractional number of sample periods **full document**
 
 ## Signal Generation, Manipulation, and Analysis / Signal Generation
@@ -72,11 +72,11 @@ No direct block entries.
 - [Binary File Writer](../../en/products/dsp/ref/binaryfilewriter.md) — Official summary: Write data to binary files **full document**
 - [From Multimedia File](../../en/products/dsp/ref/frommultimediafile.md) — Official summary: Stream from multimedia file **full document**
 - [To Multimedia File](../../en/products/dsp/ref/tomultimediafile.md) — Official summary: Stream video frames and audio samples to multimedia file **full document**
-- [From Workspace](../../en/products/dsp/../simulink/slref/fromworkspace.md) — Official summary: Load signal data from workspace into Simulink model **full document**
+- [From Workspace](../../en/sources/from-workspace.md) — Official summary: Load signal data from workspace into Simulink model **full document**
 - [Signal From Workspace](../../en/products/dsp/ref/signalfromworkspace.md) — Official summary: Import signal from MATLAB workspace **full document**
 - [Triggered Signal From Workspace](../../en/products/dsp/ref/triggeredsignalfromworkspace.md) — Official summary: Import signal samples from MATLAB workspace when triggered **full document**
 - [Triggered To Workspace](../../en/products/dsp/ref/triggeredtoworkspace.md) — Official summary: Write input sample to MATLAB workspace when triggered **full document**
-- [To Workspace](../../en/products/dsp/../simulink/slref/toworkspace.md) — Official summary: Log data to workspace from Simulink model **full document**
+- [To Workspace](../../en/sinks/to-workspace.md) — Official summary: Log data to workspace from Simulink model **full document**
 - [Audio Device Writer](../../en/products/dsp/ref/audiodevicewriter.md) — Official summary: Play to sound card **full document**
 - [UDP Receive](../../en/products/dsp/ref/udpreceive.md) — Official summary: Receive UDP packets on a given IP port **full document**
 - [UDP Send](../../en/products/dsp/ref/udpsend.md) — Official summary: Send UDP message **full document**
@@ -84,11 +84,11 @@ No direct block entries.
 ## Signal Generation, Manipulation, and Analysis / Scopes and Data Logging
 
 - [Array Plot](../../en/products/dsp/ref/arrayplot.md) — Official summary: Display vectors or arrays **full document**
-- [Display](../../en/products/dsp/../simulink/slref/display.md) — Official summary: Show value of input **full document**
+- [Display](../../en/sinks/display.md) — Official summary: Show value of input **full document**
 - [Spectrum Analyzer](../../en/products/dsp/ref/spectrumanalyzerblock.md) — Official summary: Display frequency spectrum **full document**
 - [Time Scope](../../en/products/dsp/ref/timescopeblock.md) — Official summary: Display and analyze signals generated during simulation and log signal data to MATLAB **full document**
 - [Filter Visualizer](../../en/products/dsp/ref/filtervisualizer.md) — Official summary: Display magnitude and phase response of time-varying digital filters (Since R2023a) **full document**
-- [To Workspace](../../en/products/dsp/../simulink/slref/toworkspace.md) — Official summary: Log data to workspace from Simulink model **full document**
+- [To Workspace](../../en/sinks/to-workspace.md) — Official summary: Log data to workspace from Simulink model **full document**
 - [Triggered To Workspace](../../en/products/dsp/ref/triggeredtoworkspace.md) — Official summary: Write input sample to MATLAB workspace when triggered **full document**
 - [Matrix Viewer](../../en/products/dsp/ref/matrixviewer.md) — Official summary: (To be removed) Display matrices as color images **full document**
 
@@ -110,12 +110,12 @@ No direct block entries.
 
 - [Check Signal Attributes](../../en/products/dsp/ref/checksignalattributes.md) — Official summary: Error when input signal does or does not match selected attributes exactly **full document**
 - [Inherit Complexity](../../en/products/dsp/ref/inheritcomplexity.md) — Official summary: Change complexity of input to match reference signal **full document**
-- [Data Type Conversion](../../en/products/dsp/../simulink/slref/datatypeconversion.md) — Official summary: Convert input signal to specified data type **full document**
-- [Reshape](../../en/products/dsp/../simulink/slref/reshape.md) — Official summary: Change dimensionality of signal **full document**
+- [Data Type Conversion](../../en/signal-attributes/data-type-conversion.md) — Official summary: Convert input signal to specified data type **full document**
+- [Reshape](../../en/math-operations/reshape.md) — Official summary: Change dimensionality of signal **full document**
 - [Flip](../../en/products/dsp/ref/flip.md) — Official summary: Flip input vertically or horizontally **full document**
 - [Multiport Selector](../../en/products/dsp/ref/multiportselector.md) — Official summary: Distribute arbitrary subsets of input rows or columns to multiple output ports **full document**
 - [Overwrite Values](../../en/products/dsp/ref/overwritevalues.md) — Official summary: Overwrite submatrix or subdiagonal of input **full document**
-- [Selector](../../en/products/dsp/../simulink/slref/selector.md) — Official summary: Select input elements from vector, matrix, or multidimensional signal **full document**
+- [Selector](../../en/signal-routing/selector.md) — Official summary: Select input elements from vector, matrix, or multidimensional signal **full document**
 - [Variable Selector](../../en/products/dsp/ref/variableselector.md) — Official summary: Select subset of rows or columns from input **full document**
 
 ## Filter Design and Analysis
@@ -178,8 +178,8 @@ No direct block entries.
 
 - [Analytic Signal](../../en/products/dsp/ref/analyticsignal.md) — Official summary: Compute analytic signals of discrete-time inputs **full document**
 - [Differentiator Filter](../../en/products/dsp/ref/differentiatorfilter.md) — Official summary: Direct form FIR fullband differentiator filter **full document**
-- [Discrete Filter](../../en/products/dsp/../simulink/slref/discretefilter.md) — Official summary: Model Infinite Impulse Response (IIR) filters **full document**
-- [Discrete FIR Filter](../../en/products/dsp/../simulink/slref/discretefirfilter.md) — Official summary: Model FIR filters **full document**
+- [Discrete Filter](../../en/discrete/discrete-filter.md) — Official summary: Model Infinite Impulse Response (IIR) filters **full document**
+- [Discrete FIR Filter](../../en/discrete/discrete-fir-filter.md) — Official summary: Model FIR filters **full document**
 - [Frequency-Domain FIR Filter](../../en/products/dsp/ref/frequencydomainfirfilter.md) — Official summary: Filter input signal in the frequency domain **full document**
 - [Hampel Filter](../../en/products/dsp/ref/hampelfilter.md) — Official summary: Filter outliers using Hampel identifier **full document**
 - [Highpass Filter](../../en/products/dsp/ref/highpassfilter.md) — Official summary: Design FIR or IIR highpass filter **full document**
@@ -374,11 +374,11 @@ No direct block entries.
 
 - [Extract Triangular Matrix](../../en/products/dsp/ref/extracttriangularmatrix.md) — Official summary: Extract lower or upper triangle from input matrices **full document**
 - [Matrix 1-Norm](../../en/products/dsp/ref/matrix1norm.md) — Official summary: Compute 1-norm of matrix **full document**
-- [Matrix Concatenate](../../en/products/dsp/../simulink/slref/matrixconcatenate.md) — Official summary: Concatenate input matrices of same data type for iterative processing **full document**
+- [Matrix Concatenate](../../en/matrix-operations/matrix-concatenate.md) — Official summary: Concatenate input matrices of same data type for iterative processing **full document**
 - [Matrix Exponential](../../en/products/dsp/ref/matrixexponential.md) — Official summary: Compute matrix exponential **full document**
-- [Matrix Multiply](../../en/products/dsp/../simulink/slref/product.md) — Official summary: Multiply and divide scalars and nonscalars or multiply and invert matrices **full document**
+- [Matrix Multiply](../../en/matrix-operations/product-matrix-multiply.md) — Official summary: Multiply and divide scalars and nonscalars or multiply and invert matrices **full document**
 - [Matrix Product](../../en/products/dsp/ref/matrixproduct.md) — Official summary: Multiply matrix elements along rows, columns, or entire input **full document**
-- [Matrix Sum](../../en/products/dsp/../simulink/slref/sum.md) — Official summary: Add or subtract inputs **full document**
+- [Matrix Sum](../../en/math-operations/sum.md) — Official summary: Add or subtract inputs **full document**
 - [Overwrite Values](../../en/products/dsp/ref/overwritevalues.md) — Official summary: Overwrite submatrix or subdiagonal of input **full document**
 - [Reciprocal Condition](../../en/products/dsp/ref/reciprocalcondition.md) — Official summary: Compute reciprocal condition of square matrix in 1-norm **full document**
 - [Toeplitz](../../en/products/dsp/ref/toeplitz.md) — Official summary: Generate matrix with Toeplitz symmetry **full document**
@@ -446,8 +446,8 @@ No direct block entries.
 - [Allpole Filter](../../en/products/dsp/ref/allpolefilter.md) — Official summary: Model allpole filters **full document**
 - [Biquad Filter](../../en/products/dsp/ref/biquadfilter.md) — Official summary: Model biquadratic IIR (SOS) filters **full document**
 - [Differentiator Filter](../../en/products/dsp/ref/differentiatorfilter.md) — Official summary: Direct form FIR fullband differentiator filter **full document**
-- [Discrete Filter](../../en/products/dsp/../simulink/slref/discretefilter.md) — Official summary: Model Infinite Impulse Response (IIR) filters **full document**
-- [Discrete FIR Filter](../../en/products/dsp/../simulink/slref/discretefirfilter.md) — Official summary: Model FIR filters **full document**
+- [Discrete Filter](../../en/discrete/discrete-filter.md) — Official summary: Model Infinite Impulse Response (IIR) filters **full document**
+- [Discrete FIR Filter](../../en/discrete/discrete-fir-filter.md) — Official summary: Model FIR filters **full document**
 - [Highpass Filter](../../en/products/dsp/ref/highpassfilter.md) — Official summary: Design FIR or IIR highpass filter **full document**
 - [Lowpass Filter](../../en/products/dsp/ref/lowpassfilter.md) — Official summary: Design FIR or IIR lowpass filter **full document**
 
@@ -479,7 +479,7 @@ No direct block entries.
 ## Fixed-Point Design / Quantizers
 
 - [G711 Codec](../../en/products/dsp/ref/g711codec.md) — Official summary: Quantize narrowband speech input signals **full document**
-- [Quantizer](../../en/products/dsp/../simulink/slref/quantizer.md) — Official summary: Discretize input at given interval **full document**
+- [Quantizer](../../en/discontinuities/quantizer.md) — Official summary: Discretize input at given interval **full document**
 - [Scalar Quantizer Decoder](../../en/products/dsp/ref/scalarquantizerdecoder.md) — Official summary: Convert each index value into quantized output value **full document**
 - [Scalar Quantizer Encoder](../../en/products/dsp/ref/scalarquantizerencoder.md) — Official summary: Encode each input value by associating it with index value of quantization region **full document**
 - [Uniform Decoder](../../en/products/dsp/ref/uniformdecoder.md) — Official summary: Decode integer input into floating-point output **full document**

@@ -123,8 +123,8 @@ language: zh-CN
 - [Interlacer](../../zh/products/comm/ref/interlacer.md) — 官方英文摘要: Alternately select elements from two input vectors to generate output vector **完整正文**
 - [Puncture](../../zh/products/comm/ref/puncture.md) — 官方英文摘要: Output elements that correspond to 1s in binary puncture vector **完整正文**
 - [Scrambler](../../zh/products/comm/ref/scrambler.md) — 官方英文摘要: Scramble input signal **完整正文**
-- [Bit to Integer Converter](../../zh/products/comm/../simulink/slref/bittointegerconverter.md) — 官方英文摘要: Map vector of bits to corresponding vector of integers **完整正文**
-- [Integer to Bit Converter](../../zh/products/comm/../simulink/slref/integertobitconverter.md) — 官方英文摘要: Map vector of integers to vector of bits **完整正文**
+- [Bit to Integer Converter](../../zh/logic-and-bit-operations/bit-to-integer-converter.md) — 官方英文摘要: Map vector of bits to corresponding vector of integers **完整正文**
+- [Integer to Bit Converter](../../zh/logic-and-bit-operations/integer-to-bit-converter.md) — 官方英文摘要: Map vector of integers to vector of bits **完整正文**
 
 ## PHY Components / Interleaving
 
@@ -231,8 +231,8 @@ language: zh-CN
 - [Bipolar to Unipolar Converter](../../zh/products/comm/ref/bipolartounipolarconverter.md) — 官方英文摘要: Map bipolar signal to unipolar signal in range [0, M – 1] **完整正文**
 - [Unipolar to Bipolar Converter](../../zh/products/comm/ref/unipolartobipolarconverter.md) — 官方英文摘要: Map unipolar signal in range [0, M – 1] to bipolar signal **完整正文**
 - [Data Mapper](../../zh/products/comm/ref/datamapper.md) — 官方英文摘要: Map integer symbols from one coding scheme to another **完整正文**
-- [Bit to Integer Converter](../../zh/products/comm/../simulink/slref/bittointegerconverter.md) — 官方英文摘要: Map vector of bits to corresponding vector of integers **完整正文**
-- [Integer to Bit Converter](../../zh/products/comm/../simulink/slref/integertobitconverter.md) — 官方英文摘要: Map vector of integers to vector of bits **完整正文**
+- [Bit to Integer Converter](../../zh/logic-and-bit-operations/bit-to-integer-converter.md) — 官方英文摘要: Map vector of bits to corresponding vector of integers **完整正文**
+- [Integer to Bit Converter](../../zh/logic-and-bit-operations/integer-to-bit-converter.md) — 官方英文摘要: Map vector of integers to vector of bits **完整正文**
 
 ## PHY Components / Modulation / Analog Baseband Modulation
 
@@ -317,7 +317,7 @@ language: zh-CN
 
 - [AGC](../../zh/products/comm/ref/agc.md) — 官方英文摘要: Adaptively adjust gain for constant signal-level output **完整正文**
 - [Coarse Frequency Compensator](../../zh/products/comm/ref/coarsefrequencycompensator.md) — 官方英文摘要: Compensate for carrier frequency offset in PAM, PSK, or QAM **完整正文**
-- [DC Blocker](../../zh/products/comm/../dsp/ref/dcblocker.md) — 官方英文摘要: Block DC component **完整正文**
+- [DC Blocker](../../zh/products/dsp/ref/dcblocker.md) — 官方英文摘要: Block DC component **完整正文**
 - [DPD](../../zh/products/comm/ref/dpd.md) — 官方英文摘要: Digital predistorter **完整正文**
 - [DPD Coefficient Estimator](../../zh/products/comm/ref/dpdcoefficientestimator.md) — 官方英文摘要: Estimate memory-polynomial coefficients for digital predistortion **完整正文**
 - [I/Q Compensator Coefficient to Imbalance](../../zh/products/comm/ref/iqcompensatorcoefficienttoimbalance.md) — 官方英文摘要: Convert compensator coefficient into amplitude and phase imbalance **完整正文**
@@ -484,11 +484,11 @@ language: zh-CN
 - [Error Rate Calculation](../../zh/products/comm/ref/errorratecalculation.md) — 官方英文摘要: Compute bit error rate or symbol error rate of input data **完整正文**
 - [EVM Measurement](../../zh/products/comm/ref/evmmeasurement.md) — 官方英文摘要: Measure error vector magnitude (EVM) **完整正文**
 - [MER Measurement](../../zh/products/comm/ref/mermeasurement.md) — 官方英文摘要: Measure modulation error ratio in digital modulation applications **完整正文**
-- [Power Meter](../../zh/products/comm/../dsp/ref/powermeter.md) — 官方英文摘要: Measure power and the CCDF of the power of voltage signal in Simulink (Since R2021a) **完整正文**
+- [Power Meter](../../zh/products/dsp/ref/powermeter.md) — 官方英文摘要: Measure power and the CCDF of the power of voltage signal in Simulink (Since R2021a) **完整正文**
 - [Constellation Diagram](../../zh/products/comm/ref/constellationdiagram.md) — 官方英文摘要: Display and analyze input signals in IQ-plane **完整正文**
 - [Eye Diagram](../../zh/products/comm/ref/eyediagramscope.md) — 官方英文摘要: Display eye diagram of time-domain signal (Since R2023b) **完整正文**
-- [Time Scope](../../zh/products/comm/../dsp/ref/timescopeblock.md) — 官方英文摘要: Display and analyze signals generated during simulation and log signal data to MATLAB **完整正文**
-- [Spectrum Analyzer](../../zh/products/comm/../dsp/ref/spectrumanalyzerblock.md) — 官方英文摘要: Display frequency spectrum **完整正文**
+- [Time Scope](../../zh/products/dsp/ref/timescopeblock.md) — 官方英文摘要: Display and analyze signals generated during simulation and log signal data to MATLAB **完整正文**
+- [Spectrum Analyzer](../../zh/products/dsp/ref/spectrumanalyzerblock.md) — 官方英文摘要: Display frequency spectrum **完整正文**
 - [Waveform From Wireless Waveform Generator App](../../zh/products/comm/ref/waveformfromwirelesswaveformgeneratorapp.md) — 官方英文摘要: Wireless waveform source exported to Simulink (Since R2021b) **完整正文**
 - [Baseband File Writer](../../zh/products/comm/ref/basebandfilewriter.md) — 官方英文摘要: Write baseband signals to file **完整正文**
 - [Baseband File Reader](../../zh/products/comm/ref/basebandfilereader.md) — 官方英文摘要: Read baseband signals from file **完整正文**

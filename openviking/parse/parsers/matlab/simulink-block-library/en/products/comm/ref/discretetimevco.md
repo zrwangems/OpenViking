@@ -19,7 +19,23 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Output amplitude**
+:   The amplitude of the output.
+
+**Quiescent frequency (Hz)**
+:   The frequency of the oscillator output when the input signal is
+    zero.
+
+**Input sensitivity**
+:   This value scales the input voltage and, consequently, the shift from the
+    **Quiescent frequency** value. The units of
+    **Input sensitivity** are Hertz per volt.
+
+**Initial phase (rad)**
+:   The initial phase of the oscillator in radians.
+
+**Sample time**
+:   The calculation sample time.
 
 ## Libraries
 
@@ -46,3 +62,23 @@ blocks.
 ## Description
 
 (To be removed) Implement voltage-controlled oscillator (VCO) in discrete time
+
+The Discrete-Time VCO block generates a signal whose frequency shift from the
+**Quiescent frequency** parameter is proportional to the input
+signal. The input signal is interpreted as a voltage. If the input signal is
+*u*(*t*), then the output signal is
+
+y(t)=Accos(2πfct+2πkc∫0tu(τ)dτ+φ)
+
+where *A*c is the **Output
+amplitude**, *f*c is the
+**Quiescent frequency**,
+*k*c is the **Input
+sensitivity**, and φ is the **Initial phase**
+
+This block uses a discrete-time integrator to interpret the equation above.
+
+This block accepts a scalar-valued input signal with a data type of
+`single` or `double`. The output signal inherits
+its data type from the input signal. For code generation, the block supports double
+precision only.

@@ -80,17 +80,17 @@ No direct block entries.
 
 ## Control System Design and Tuning / PID Controller Tuning / Model-Based PID Controller Tuning
 
-- [PID Controller](../../en/products/slcontrol/../simulink/slref/pidcontroller.md) — Official summary: Continuous-time or discrete-time PID controller **full document**
-- [PID Controller (2DOF)](../../en/products/slcontrol/../simulink/slref/pidcontroller2dof.md) — Official summary: Continuous-time or discrete-time two-degree-of-freedom PID controller **full document**
-- [Discrete PID Controller](../../en/products/slcontrol/../simulink/slref/discretepidcontroller.md) — Official summary: Discrete-time or continuous-time PID controller **full document**
-- [Discrete PID Controller (2DOF)](../../en/products/slcontrol/../simulink/slref/discretepidcontroller2dof.md) — Official summary: Discrete-time or continuous-time two-degree-of-freedom PID controller **full document**
+- [PID Controller](../../en/continuous/pid-controller.md) — Official summary: Continuous-time or discrete-time PID controller **full document**
+- [PID Controller (2DOF)](../../en/continuous/pid-controller-2dof.md) — Official summary: Continuous-time or discrete-time two-degree-of-freedom PID controller **full document**
+- [Discrete PID Controller](../../en/discrete/discrete-pid-controller.md) — Official summary: Discrete-time or continuous-time PID controller **full document**
+- [Discrete PID Controller (2DOF)](../../en/discrete/discrete-pid-controller-2dof.md) — Official summary: Discrete-time or continuous-time two-degree-of-freedom PID controller **full document**
 
 ## Control System Design and Tuning / PID Controller Tuning / Real-Time PID Autotuning
 
 - [Closed-Loop PID Autotuner](../../en/products/slcontrol/ug/closedlooppidautotuner.md) — Official summary: Automatically tune PID gains based on plant frequency responses estimated from closed-loop experiment in real time **full document**
 - [Open-Loop PID Autotuner](../../en/products/slcontrol/ug/openlooppidautotuner.md) — Official summary: Automatically tune PID gains based on plant frequency responses estimated from open-loop experiment in real time **full document**
 - [Gain-Scheduled PID Autotuner](../../en/products/slcontrol/ug/gainscheduledpidautotuner.md) — Official summary: Automatically tune PID gains at multiple operating points (Since R2024a) **full document**
-- [Field Oriented Control Autotuner](../../en/products/slcontrol/../mcb/ref/fieldorientedcontrolautotuner.md) — Official summary: Automatically and sequentially tune multiple PID control loops in field-oriented control application **full document**
+- [Field Oriented Control Autotuner](../../en/products/mcb/ref/fieldorientedcontrolautotuner.md) — Official summary: Automatically and sequentially tune multiple PID control loops in field-oriented control application **full document**
 - [Change Operating Points](../../en/products/slcontrol/ug/changeoperatingpoints.md) — Official summary: tSwitch between operating points during simulation (Since R2023b) **full document**
 - [PID Gain Scheduler](../../en/products/slcontrol/ug/pidgainscheduler.md) — Official summary: Lookup table based gain scheduling with PID array (Since R2023b) **full document**
 - [PID Gains Store and Update](../../en/products/slcontrol/ug/pidgainsstoreandupdate.md) — Official summary: Store and update tuned PID gains tuned using Closed-Loop PID Autotuner (Since R2023b) **full document**
@@ -157,23 +157,23 @@ No direct block entries.
 
 ## Control System Design and Tuning / Gain Scheduling / Continuous Time
 
-- [Varying Lowpass Filter](../../en/products/slcontrol/../control/ref/varyinglowpassfilter.md) — Official summary: Butterworth filter with varying coefficients **full document**
-- [Varying Notch Filter](../../en/products/slcontrol/../control/ref/varyingnotchfilter.md) — Official summary: Notch filter with varying coefficients **full document**
-- [PID Controller](../../en/products/slcontrol/../simulink/slref/pidcontroller.md) — Official summary: Continuous-time or discrete-time PID controller **full document**
-- [PID Controller (2DOF)](../../en/products/slcontrol/../simulink/slref/pidcontroller2dof.md) — Official summary: Continuous-time or discrete-time two-degree-of-freedom PID controller **full document**
-- [Varying Transfer Function](../../en/products/slcontrol/../control/ref/varyingtransferfunction.md) — Official summary: Transfer function with varying coefficients **full document**
-- [Varying State Space](../../en/products/slcontrol/../control/ref/varyingstatespace.md) — Official summary: State-space model with varying matrix values **full document**
-- [Varying Observer Form](../../en/products/slcontrol/../control/ref/varyingobserverform.md) — Official summary: Observer-form state-space model with varying matrix values **full document**
+- [Varying Lowpass Filter](../../en/products/control/ref/varyinglowpassfilter.md) — Official summary: Butterworth filter with varying coefficients **full document**
+- [Varying Notch Filter](../../en/products/control/ref/varyingnotchfilter.md) — Official summary: Notch filter with varying coefficients **full document**
+- [PID Controller](../../en/continuous/pid-controller.md) — Official summary: Continuous-time or discrete-time PID controller **full document**
+- [PID Controller (2DOF)](../../en/continuous/pid-controller-2dof.md) — Official summary: Continuous-time or discrete-time two-degree-of-freedom PID controller **full document**
+- [Varying Transfer Function](../../en/products/control/ref/varyingtransferfunction.md) — Official summary: Transfer function with varying coefficients **full document**
+- [Varying State Space](../../en/products/control/ref/varyingstatespace.md) — Official summary: State-space model with varying matrix values **full document**
+- [Varying Observer Form](../../en/products/control/ref/varyingobserverform.md) — Official summary: Observer-form state-space model with varying matrix values **full document**
 
 ## Control System Design and Tuning / Gain Scheduling / Discrete Time
 
-- [Discrete Varying Lowpass](../../en/products/slcontrol/../control/ref/discretevaryinglowpass.md) — Official summary: Discrete Butterworth filter with varying coefficients **full document**
-- [Discrete Varying Notch](../../en/products/slcontrol/../control/ref/discretevaryingnotch.md) — Official summary: Discrete-time notch filter with varying coefficients **full document**
-- [Discrete PID Controller](../../en/products/slcontrol/../simulink/slref/discretepidcontroller.md) — Official summary: Discrete-time or continuous-time PID controller **full document**
-- [Discrete PID Controller (2DOF)](../../en/products/slcontrol/../simulink/slref/discretepidcontroller2dof.md) — Official summary: Discrete-time or continuous-time two-degree-of-freedom PID controller **full document**
-- [Discrete Varying Transfer Function](../../en/products/slcontrol/../control/ref/discretevaryingtransferfunction.md) — Official summary: Discrete-time transfer function with varying coefficients **full document**
-- [Discrete Varying State Space](../../en/products/slcontrol/../control/ref/discretevaryingstatespace.md) — Official summary: Discrete-time state-space model with varying matrix values **full document**
-- [Discrete Varying Observer Form](../../en/products/slcontrol/../control/ref/discretevaryingobserverform.md) — Official summary: Discrete-time observer-form state-space model with varying matrix values **full document**
+- [Discrete Varying Lowpass](../../en/products/control/ref/discretevaryinglowpass.md) — Official summary: Discrete Butterworth filter with varying coefficients **full document**
+- [Discrete Varying Notch](../../en/products/control/ref/discretevaryingnotch.md) — Official summary: Discrete-time notch filter with varying coefficients **full document**
+- [Discrete PID Controller](../../en/discrete/discrete-pid-controller.md) — Official summary: Discrete-time or continuous-time PID controller **full document**
+- [Discrete PID Controller (2DOF)](../../en/discrete/discrete-pid-controller-2dof.md) — Official summary: Discrete-time or continuous-time two-degree-of-freedom PID controller **full document**
+- [Discrete Varying Transfer Function](../../en/products/control/ref/discretevaryingtransferfunction.md) — Official summary: Discrete-time transfer function with varying coefficients **full document**
+- [Discrete Varying State Space](../../en/products/control/ref/discretevaryingstatespace.md) — Official summary: Discrete-time state-space model with varying matrix values **full document**
+- [Discrete Varying Observer Form](../../en/products/control/ref/discretevaryingobserverform.md) — Official summary: Discrete-time observer-form state-space model with varying matrix values **full document**
 
 ## Control System Design and Tuning / Gain Scheduling / Gain-Scheduled PID Autotuning
 

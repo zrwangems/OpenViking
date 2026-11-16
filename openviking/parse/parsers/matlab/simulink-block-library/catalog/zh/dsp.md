@@ -50,7 +50,7 @@ language: zh-CN
 
 ## Signal Generation, Manipulation, and Analysis / Signal Operations / Delay
 
-- [Variable Integer Delay](../../zh/products/dsp/../simulink/slref/delay.md) — 官方英文摘要: Delay input signal by fixed or variable sample periods **完整正文**
+- [Variable Integer Delay](../../zh/discrete/delay.md) — 官方英文摘要: Delay input signal by fixed or variable sample periods **完整正文**
 - [Variable Fractional Delay](../../zh/products/dsp/ref/variablefractionaldelay.md) — 官方英文摘要: Delay input by time-varying fractional number of sample periods **完整正文**
 
 ## Signal Generation, Manipulation, and Analysis / Signal Generation
@@ -72,11 +72,11 @@ language: zh-CN
 - [Binary File Writer](../../zh/products/dsp/ref/binaryfilewriter.md) — 官方英文摘要: Write data to binary files **完整正文**
 - [From Multimedia File](../../zh/products/dsp/ref/frommultimediafile.md) — 官方英文摘要: Stream from multimedia file **完整正文**
 - [To Multimedia File](../../zh/products/dsp/ref/tomultimediafile.md) — 官方英文摘要: Stream video frames and audio samples to multimedia file **完整正文**
-- [From Workspace](../../zh/products/dsp/../simulink/slref/fromworkspace.md) — 官方英文摘要: Load signal data from workspace into Simulink model **完整正文**
+- [From Workspace](../../zh/sources/from-workspace.md) — 官方英文摘要: Load signal data from workspace into Simulink model **完整正文**
 - [Signal From Workspace](../../zh/products/dsp/ref/signalfromworkspace.md) — 官方英文摘要: Import signal from MATLAB workspace **完整正文**
 - [Triggered Signal From Workspace](../../zh/products/dsp/ref/triggeredsignalfromworkspace.md) — 官方英文摘要: Import signal samples from MATLAB workspace when triggered **完整正文**
 - [Triggered To Workspace](../../zh/products/dsp/ref/triggeredtoworkspace.md) — 官方英文摘要: Write input sample to MATLAB workspace when triggered **完整正文**
-- [To Workspace](../../zh/products/dsp/../simulink/slref/toworkspace.md) — 官方英文摘要: Log data to workspace from Simulink model **完整正文**
+- [To Workspace](../../zh/sinks/to-workspace.md) — 官方英文摘要: Log data to workspace from Simulink model **完整正文**
 - [Audio Device Writer](../../zh/products/dsp/ref/audiodevicewriter.md) — 官方英文摘要: Play to sound card **完整正文**
 - [UDP Receive](../../zh/products/dsp/ref/udpreceive.md) — 官方英文摘要: Receive UDP packets on a given IP port **完整正文**
 - [UDP Send](../../zh/products/dsp/ref/udpsend.md) — 官方英文摘要: Send UDP message **完整正文**
@@ -84,11 +84,11 @@ language: zh-CN
 ## Signal Generation, Manipulation, and Analysis / Scopes and Data Logging
 
 - [Array Plot](../../zh/products/dsp/ref/arrayplot.md) — 官方英文摘要: Display vectors or arrays **完整正文**
-- [Display](../../zh/products/dsp/../simulink/slref/display.md) — 官方英文摘要: Show value of input **完整正文**
+- [Display](../../zh/sinks/display.md) — 官方英文摘要: Show value of input **完整正文**
 - [Spectrum Analyzer](../../zh/products/dsp/ref/spectrumanalyzerblock.md) — 官方英文摘要: Display frequency spectrum **完整正文**
 - [Time Scope](../../zh/products/dsp/ref/timescopeblock.md) — 官方英文摘要: Display and analyze signals generated during simulation and log signal data to MATLAB **完整正文**
 - [Filter Visualizer](../../zh/products/dsp/ref/filtervisualizer.md) — 官方英文摘要: Display magnitude and phase response of time-varying digital filters (Since R2023a) **完整正文**
-- [To Workspace](../../zh/products/dsp/../simulink/slref/toworkspace.md) — 官方英文摘要: Log data to workspace from Simulink model **完整正文**
+- [To Workspace](../../zh/sinks/to-workspace.md) — 官方英文摘要: Log data to workspace from Simulink model **完整正文**
 - [Triggered To Workspace](../../zh/products/dsp/ref/triggeredtoworkspace.md) — 官方英文摘要: Write input sample to MATLAB workspace when triggered **完整正文**
 - [Matrix Viewer](../../zh/products/dsp/ref/matrixviewer.md) — 官方英文摘要: (To be removed) Display matrices as color images **完整正文**
 
@@ -110,12 +110,12 @@ language: zh-CN
 
 - [Check Signal Attributes](../../zh/products/dsp/ref/checksignalattributes.md) — 官方英文摘要: Error when input signal does or does not match selected attributes exactly **完整正文**
 - [Inherit Complexity](../../zh/products/dsp/ref/inheritcomplexity.md) — 官方英文摘要: Change complexity of input to match reference signal **完整正文**
-- [Data Type Conversion](../../zh/products/dsp/../simulink/slref/datatypeconversion.md) — 官方英文摘要: Convert input signal to specified data type **完整正文**
-- [Reshape](../../zh/products/dsp/../simulink/slref/reshape.md) — 官方英文摘要: Change dimensionality of signal **完整正文**
+- [Data Type Conversion](../../zh/signal-attributes/data-type-conversion.md) — 官方英文摘要: Convert input signal to specified data type **完整正文**
+- [Reshape](../../zh/math-operations/reshape.md) — 官方英文摘要: Change dimensionality of signal **完整正文**
 - [Flip](../../zh/products/dsp/ref/flip.md) — 官方英文摘要: Flip input vertically or horizontally **完整正文**
 - [Multiport Selector](../../zh/products/dsp/ref/multiportselector.md) — 官方英文摘要: Distribute arbitrary subsets of input rows or columns to multiple output ports **完整正文**
 - [Overwrite Values](../../zh/products/dsp/ref/overwritevalues.md) — 官方英文摘要: Overwrite submatrix or subdiagonal of input **完整正文**
-- [Selector](../../zh/products/dsp/../simulink/slref/selector.md) — 官方英文摘要: Select input elements from vector, matrix, or multidimensional signal **完整正文**
+- [Selector](../../zh/signal-routing/selector.md) — 官方英文摘要: Select input elements from vector, matrix, or multidimensional signal **完整正文**
 - [Variable Selector](../../zh/products/dsp/ref/variableselector.md) — 官方英文摘要: Select subset of rows or columns from input **完整正文**
 
 ## Filter Design and Analysis
@@ -178,8 +178,8 @@ language: zh-CN
 
 - [Analytic Signal](../../zh/products/dsp/ref/analyticsignal.md) — 官方英文摘要: Compute analytic signals of discrete-time inputs **完整正文**
 - [Differentiator Filter](../../zh/products/dsp/ref/differentiatorfilter.md) — 官方英文摘要: Direct form FIR fullband differentiator filter **完整正文**
-- [Discrete Filter](../../zh/products/dsp/../simulink/slref/discretefilter.md) — 官方英文摘要: Model Infinite Impulse Response (IIR) filters **完整正文**
-- [Discrete FIR Filter](../../zh/products/dsp/../simulink/slref/discretefirfilter.md) — 官方英文摘要: Model FIR filters **完整正文**
+- [Discrete Filter](../../zh/discrete/discrete-filter.md) — 官方英文摘要: Model Infinite Impulse Response (IIR) filters **完整正文**
+- [Discrete FIR Filter](../../zh/discrete/discrete-fir-filter.md) — 官方英文摘要: Model FIR filters **完整正文**
 - [Frequency-Domain FIR Filter](../../zh/products/dsp/ref/frequencydomainfirfilter.md) — 官方英文摘要: Filter input signal in the frequency domain **完整正文**
 - [Hampel Filter](../../zh/products/dsp/ref/hampelfilter.md) — 官方英文摘要: Filter outliers using Hampel identifier **完整正文**
 - [Highpass Filter](../../zh/products/dsp/ref/highpassfilter.md) — 官方英文摘要: Design FIR or IIR highpass filter **完整正文**
@@ -374,11 +374,11 @@ language: zh-CN
 
 - [Extract Triangular Matrix](../../zh/products/dsp/ref/extracttriangularmatrix.md) — 官方英文摘要: Extract lower or upper triangle from input matrices **完整正文**
 - [Matrix 1-Norm](../../zh/products/dsp/ref/matrix1norm.md) — 官方英文摘要: Compute 1-norm of matrix **完整正文**
-- [Matrix Concatenate](../../zh/products/dsp/../simulink/slref/matrixconcatenate.md) — 官方英文摘要: Concatenate input matrices of same data type for iterative processing **完整正文**
+- [Matrix Concatenate](../../zh/matrix-operations/matrix-concatenate.md) — 官方英文摘要: Concatenate input matrices of same data type for iterative processing **完整正文**
 - [Matrix Exponential](../../zh/products/dsp/ref/matrixexponential.md) — 官方英文摘要: Compute matrix exponential **完整正文**
-- [Matrix Multiply](../../zh/products/dsp/../simulink/slref/product.md) — 官方英文摘要: Multiply and divide scalars and nonscalars or multiply and invert matrices **完整正文**
+- [Matrix Multiply](../../zh/matrix-operations/product-matrix-multiply.md) — 官方英文摘要: Multiply and divide scalars and nonscalars or multiply and invert matrices **完整正文**
 - [Matrix Product](../../zh/products/dsp/ref/matrixproduct.md) — 官方英文摘要: Multiply matrix elements along rows, columns, or entire input **完整正文**
-- [Matrix Sum](../../zh/products/dsp/../simulink/slref/sum.md) — 官方英文摘要: Add or subtract inputs **完整正文**
+- [Matrix Sum](../../zh/math-operations/sum.md) — 官方英文摘要: Add or subtract inputs **完整正文**
 - [Overwrite Values](../../zh/products/dsp/ref/overwritevalues.md) — 官方英文摘要: Overwrite submatrix or subdiagonal of input **完整正文**
 - [Reciprocal Condition](../../zh/products/dsp/ref/reciprocalcondition.md) — 官方英文摘要: Compute reciprocal condition of square matrix in 1-norm **完整正文**
 - [Toeplitz](../../zh/products/dsp/ref/toeplitz.md) — 官方英文摘要: Generate matrix with Toeplitz symmetry **完整正文**
@@ -446,8 +446,8 @@ language: zh-CN
 - [Allpole Filter](../../zh/products/dsp/ref/allpolefilter.md) — 官方英文摘要: Model allpole filters **完整正文**
 - [Biquad Filter](../../zh/products/dsp/ref/biquadfilter.md) — 官方英文摘要: Model biquadratic IIR (SOS) filters **完整正文**
 - [Differentiator Filter](../../zh/products/dsp/ref/differentiatorfilter.md) — 官方英文摘要: Direct form FIR fullband differentiator filter **完整正文**
-- [Discrete Filter](../../zh/products/dsp/../simulink/slref/discretefilter.md) — 官方英文摘要: Model Infinite Impulse Response (IIR) filters **完整正文**
-- [Discrete FIR Filter](../../zh/products/dsp/../simulink/slref/discretefirfilter.md) — 官方英文摘要: Model FIR filters **完整正文**
+- [Discrete Filter](../../zh/discrete/discrete-filter.md) — 官方英文摘要: Model Infinite Impulse Response (IIR) filters **完整正文**
+- [Discrete FIR Filter](../../zh/discrete/discrete-fir-filter.md) — 官方英文摘要: Model FIR filters **完整正文**
 - [Highpass Filter](../../zh/products/dsp/ref/highpassfilter.md) — 官方英文摘要: Design FIR or IIR highpass filter **完整正文**
 - [Lowpass Filter](../../zh/products/dsp/ref/lowpassfilter.md) — 官方英文摘要: Design FIR or IIR lowpass filter **完整正文**
 
@@ -479,7 +479,7 @@ language: zh-CN
 ## Fixed-Point Design / Quantizers
 
 - [G711 Codec](../../zh/products/dsp/ref/g711codec.md) — 官方英文摘要: Quantize narrowband speech input signals **完整正文**
-- [Quantizer](../../zh/products/dsp/../simulink/slref/quantizer.md) — 官方英文摘要: Discretize input at given interval **完整正文**
+- [Quantizer](../../zh/discontinuities/quantizer.md) — 官方英文摘要: Discretize input at given interval **完整正文**
 - [Scalar Quantizer Decoder](../../zh/products/dsp/ref/scalarquantizerdecoder.md) — 官方英文摘要: Convert each index value into quantized output value **完整正文**
 - [Scalar Quantizer Encoder](../../zh/products/dsp/ref/scalarquantizerencoder.md) — 官方英文摘要: Encode each input value by associating it with index value of quantization region **完整正文**
 - [Uniform Decoder](../../zh/products/dsp/ref/uniformdecoder.md) — 官方英文摘要: Decode integer input into floating-point output **完整正文**

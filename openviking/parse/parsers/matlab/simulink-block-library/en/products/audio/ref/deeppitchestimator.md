@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Deep Pitch Estimator'
-family: 'deeplearning'
-product_id: 'deeplearning'
-product_name: 'Deep Learning Toolbox'
+family: 'audio'
+product_id: 'audio'
+product_name: 'Audio Toolbox'
 documentation_release: R2025b
-official_category: 'Applications / Signal Processing, Audio, and Wireless / Audio Processing'
+official_category: 'AI for Audio / Pretrained Models / CREPE'
 documentation_page: 'deeppitchestimator'
-documentation_source_path: '../audio/ref/deeppitchestimator.html'
+documentation_source_path: 'ref/deeppitchestimator.html'
 language: en
 ---
 

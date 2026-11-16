@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'PID Controller (2DOF)'
-family: 'slcontrol'
-product_id: 'slcontrol'
-product_name: 'Simulink Control Design'
+family: 'simulink'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Control System Design and Tuning / PID Controller Tuning / Model-Based PID Controller Tuning'
+official_category: 'Simulink Environment Fundamentals / Block Libraries / Continuous'
 documentation_page: 'pidcontroller2dof'
-documentation_source_path: '../simulink/slref/pidcontroller2dof.html'
+documentation_source_path: 'slref/pidcontroller2dof.html'
 language: en
 ---
 

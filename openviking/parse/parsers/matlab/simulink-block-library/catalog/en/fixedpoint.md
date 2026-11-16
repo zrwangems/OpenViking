@@ -320,13 +320,13 @@ No direct block entries.
 
 ## Embedded Implementation / Fixed-Point Math Operations in MATLAB and Simulink / Complex Numbers
 
-- [Complex to Magnitude-Angle](../../en/products/fixedpoint/../dsphdl/ref/complextomagnitudeangle.md) — Official summary: Compute magnitude and phase angle of complex signal using CORDIC algorithm **full document**
-- [Magnitude-Angle to Complex](../../en/products/fixedpoint/../simulink/slref/magnitudeangletocomplex.md) — Official summary: Convert magnitude and/or a phase angle signal to complex signal **full document**
+- [Complex to Magnitude-Angle](../../en/products/dsphdl/ref/complextomagnitudeangle.md) — Official summary: Compute magnitude and phase angle of complex signal using CORDIC algorithm **full document**
+- [Magnitude-Angle to Complex](../../en/math-operations/magnitude-angle-to-complex.md) — Official summary: Convert magnitude and/or a phase angle signal to complex signal **full document**
 
 ## Embedded Implementation / Fixed-Point Math Operations in MATLAB and Simulink / Trigonometric Functions
 
 - [Hyperbolic Tangent HDL Optimized](../../en/products/fixedpoint/ref/hyperbolictangenthdloptimized.md) — Official summary: Computes CORDIC-based hyperbolic tangent and generates optimized HDL code **full document**
-- [Trigonometric Function](../../en/products/fixedpoint/../simulink/slref/trigonometricfunction.md) — Official summary: Specified trigonometric function on input **full document**
+- [Trigonometric Function](../../en/math-operations/trigonometric-function.md) — Official summary: Specified trigonometric function on input **full document**
 
 ## Embedded Implementation / Fixed-Point Math Operations in MATLAB and Simulink / Coordinate Transformations
 

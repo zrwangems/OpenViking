@@ -16,11 +16,11 @@ language: zh-CN
 
 - [Audio Device Reader](../../zh/products/audio/ref/audiodevicereader.md) — 官方英文摘要: Record from sound card **完整正文**
 - [Audio Device Writer](../../zh/products/audio/ref/audiodevicewriter.md) — 官方英文摘要: Play to sound card **完整正文**
-- [From Multimedia File](../../zh/products/audio/../dsp/ref/frommultimediafile.md) — 官方英文摘要: Stream from multimedia file **完整正文**
-- [To Multimedia File](../../zh/products/audio/../dsp/ref/tomultimediafile.md) — 官方英文摘要: Stream video frames and audio samples to multimedia file **完整正文**
+- [From Multimedia File](../../zh/products/dsp/ref/frommultimediafile.md) — 官方英文摘要: Stream from multimedia file **完整正文**
+- [To Multimedia File](../../zh/products/dsp/ref/tomultimediafile.md) — 官方英文摘要: Stream video frames and audio samples to multimedia file **完整正文**
 - [Wavetable Synthesizer](../../zh/products/audio/ref/wavetablesynthesizer.md) — 官方英文摘要: Generate periodic signal from single-cycle waveforms **完整正文**
 - [Audio Oscillator](../../zh/products/audio/ref/audiooscillator.md) — 官方英文摘要: Generate sine, square, and sawtooth waveforms **完整正文**
-- [Colored Noise](../../zh/products/audio/../dsp/ref/colorednoise.md) — 官方英文摘要: Generate colored noise signal **完整正文**
+- [Colored Noise](../../zh/products/dsp/ref/colorednoise.md) — 官方英文摘要: Generate colored noise signal **完整正文**
 
 ## Audio Processing Algorithm Design
 
@@ -177,9 +177,9 @@ language: zh-CN
 ## Simulation, Tuning, and Visualization
 
 - [MIDI Controls](../../zh/products/audio/ref/midicontrolsblock.md) — 官方英文摘要: Output values from controls on MIDI control surface **完整正文**
-- [Spectrum Analyzer](../../zh/products/audio/../dsp/ref/spectrumanalyzerblock.md) — 官方英文摘要: Display frequency spectrum **完整正文**
-- [Time Scope](../../zh/products/audio/../dsp/ref/timescopeblock.md) — 官方英文摘要: Display and analyze signals generated during simulation and log signal data to MATLAB **完整正文**
-- [Array Plot](../../zh/products/audio/../dsp/ref/arrayplot.md) — 官方英文摘要: Display vectors or arrays **完整正文**
+- [Spectrum Analyzer](../../zh/products/dsp/ref/spectrumanalyzerblock.md) — 官方英文摘要: Display frequency spectrum **完整正文**
+- [Time Scope](../../zh/products/dsp/ref/timescopeblock.md) — 官方英文摘要: Display and analyze signals generated during simulation and log signal data to MATLAB **完整正文**
+- [Array Plot](../../zh/products/dsp/ref/arrayplot.md) — 官方英文摘要: Display vectors or arrays **完整正文**
 
 ## Musical Instrument Digital Interface (MIDI)
 

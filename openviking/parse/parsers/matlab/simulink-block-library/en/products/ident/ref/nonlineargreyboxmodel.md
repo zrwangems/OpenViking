@@ -19,7 +19,20 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**IDNLGREY model**
+:   Name of `idnlgrey` variable in the MATLAB® workspace.
+
+**Initial state**
+:   Specify the initial states as one of the following:
+
+    - `'z'`: Specifies zero, which corresponds
+      to a system starting from rest.
+    - `'m'`: Specifies the internal initial
+      states of the model.
+    - Vector of size equal to the number of states in the `idnlgrey` object.
+    - An initial state structure array. For information
+      about creating this structure, type `help idnlgrey/sim` in
+      the MATLAB Command Window.
 
 ## Libraries
 
@@ -40,3 +53,14 @@ Not documented in R2025b.
 ## Description
 
 Simulate nonlinear grey-box model in Simulink software
+
+Simulates systems of nonlinear grey-box (`idnlgrey`)
+models.
+
+### Input
+
+Input signal to the model.
+
+### Output
+
+Output signal from the model.

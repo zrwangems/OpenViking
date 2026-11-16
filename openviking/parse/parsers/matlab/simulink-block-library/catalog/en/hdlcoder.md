@@ -348,7 +348,7 @@ No direct block entries.
 
 ## HDL Code Generation from Simulink / Speed and Area Optimization / I/O Optimization
 
-- [Neighborhood Processing Subsystem](../../en/products/hdlcoder/../simulink/slref/neighborhoodprocessingsubsystem.md) — Official summary: Create algorithm that follows the neighborhood pattern (Since R2022b) **full document**
+- [Neighborhood Processing Subsystem](../../en/matrix-operations/neighborhood-processing-subsystem.md) — Official summary: Create algorithm that follows the neighborhood pattern (Since R2022b) **full document**
 
 ## HDL Code Generation from Simulink / Reports and Scripts
 
@@ -669,9 +669,9 @@ No direct block entries.
 
 - [Sparse Matrix-Vector Product](../../en/products/hdlcoder/ref/sparsematrixvectorproduct.md) — Official summary: Multiply sparse matrix with input vector (Since R2024b) **full document**
 - [HDL Combinatorial Logic](../../en/products/hdlcoder/ref/hdlcombinatoriallogic.md) — Official summary: Implement truth table (Since R2024b) **full document**
-- [PWM](../../en/products/hdlcoder/../simulink/slref/pwm.md) — Official summary: Generate ideal pulse width modulated signal corresponding to input duty cycle **full document**
-- [Discrete State-Space](../../en/products/hdlcoder/../simulink/slref/discretestatespace.md) — Official summary: Implement discrete state-space system **full document**
-- [Fixed-Point State-Space](../../en/products/hdlcoder/../simulink/slref/fixedpointstatespace.md) — Official summary: Implement discrete-time state space **full document**
+- [PWM](../../en/discontinuities/pwm.md) — Official summary: Generate ideal pulse width modulated signal corresponding to input duty cycle **full document**
+- [Discrete State-Space](../../en/discrete/discrete-state-space.md) — Official summary: Implement discrete state-space system **full document**
+- [Fixed-Point State-Space](../../en/additional-math-and-discrete/fixed-point-state-space.md) — Official summary: Implement discrete-time state space **full document**
 
 ## Tool Qualification and Certification
 

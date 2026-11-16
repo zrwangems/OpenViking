@@ -15,7 +15,7 @@ language: en
 
 ## Ports
 
-Not documented in R2025b.
+The block has one magnetic conserving port.
 
 ## Parameters
 
@@ -40,3 +40,7 @@ Not documented in R2025b.
 ## Description
 
 Reference connection for magnetic ports
+
+The Magnetic Reference block represents a reference
+point for all magnetic conserving ports. A model with magnetic elements
+must contain at least one Magnetic Reference block.

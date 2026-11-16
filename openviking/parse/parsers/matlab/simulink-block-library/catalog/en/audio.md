@@ -16,11 +16,11 @@ No direct block entries.
 
 - [Audio Device Reader](../../en/products/audio/ref/audiodevicereader.md) — Official summary: Record from sound card **full document**
 - [Audio Device Writer](../../en/products/audio/ref/audiodevicewriter.md) — Official summary: Play to sound card **full document**
-- [From Multimedia File](../../en/products/audio/../dsp/ref/frommultimediafile.md) — Official summary: Stream from multimedia file **full document**
-- [To Multimedia File](../../en/products/audio/../dsp/ref/tomultimediafile.md) — Official summary: Stream video frames and audio samples to multimedia file **full document**
+- [From Multimedia File](../../en/products/dsp/ref/frommultimediafile.md) — Official summary: Stream from multimedia file **full document**
+- [To Multimedia File](../../en/products/dsp/ref/tomultimediafile.md) — Official summary: Stream video frames and audio samples to multimedia file **full document**
 - [Wavetable Synthesizer](../../en/products/audio/ref/wavetablesynthesizer.md) — Official summary: Generate periodic signal from single-cycle waveforms **full document**
 - [Audio Oscillator](../../en/products/audio/ref/audiooscillator.md) — Official summary: Generate sine, square, and sawtooth waveforms **full document**
-- [Colored Noise](../../en/products/audio/../dsp/ref/colorednoise.md) — Official summary: Generate colored noise signal **full document**
+- [Colored Noise](../../en/products/dsp/ref/colorednoise.md) — Official summary: Generate colored noise signal **full document**
 
 ## Audio Processing Algorithm Design
 
@@ -177,9 +177,9 @@ No direct block entries.
 ## Simulation, Tuning, and Visualization
 
 - [MIDI Controls](../../en/products/audio/ref/midicontrolsblock.md) — Official summary: Output values from controls on MIDI control surface **full document**
-- [Spectrum Analyzer](../../en/products/audio/../dsp/ref/spectrumanalyzerblock.md) — Official summary: Display frequency spectrum **full document**
-- [Time Scope](../../en/products/audio/../dsp/ref/timescopeblock.md) — Official summary: Display and analyze signals generated during simulation and log signal data to MATLAB **full document**
-- [Array Plot](../../en/products/audio/../dsp/ref/arrayplot.md) — Official summary: Display vectors or arrays **full document**
+- [Spectrum Analyzer](../../en/products/dsp/ref/spectrumanalyzerblock.md) — Official summary: Display frequency spectrum **full document**
+- [Time Scope](../../en/products/dsp/ref/timescopeblock.md) — Official summary: Display and analyze signals generated during simulation and log signal data to MATLAB **full document**
+- [Array Plot](../../en/products/dsp/ref/arrayplot.md) — Official summary: Display vectors or arrays **full document**
 
 ## Musical Instrument Digital Interface (MIDI)
 

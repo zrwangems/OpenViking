@@ -120,5 +120,5 @@ language: zh-CN
 - [Software Composition](../../zh/products/autosar/ref/softwarecomposition.md) — 官方英文摘要: Model software composition in AUTOSAR architecture model **完整正文**
 - [Diagnostic Service Component](../../zh/products/autosar/ref/diagnosticservicecomponent.md) — 官方英文摘要: Configure AUTOSAR Diagnostic Services and Runtime Environment (RTE) for emulation **完整正文**
 - [NVRAM Service Component](../../zh/products/autosar/ref/nvramservicecomponent.md) — 官方英文摘要: Configure AUTOSAR NVRAM Services and Runtime Environment (RTE) for emulation **完整正文**
-- [Adapter](../../zh/products/autosar/../systemcomposer/ref/adapter.md) — 官方英文摘要: Connect components with different interfaces **完整正文**
+- [Adapter](../../zh/products/systemcomposer/ref/adapter.md) — 官方英文摘要: Connect components with different interfaces **完整正文**
 - [Variant Component](../../zh/products/autosar/ref/variantcomponent.md) — 官方英文摘要: Conditional variations of AUTOSAR architecture models (Since R2025a) **完整正文**

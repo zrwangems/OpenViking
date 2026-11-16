@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Field Oriented Control Autotuner'
-family: 'slcontrol'
-product_id: 'slcontrol'
-product_name: 'Simulink Control Design'
+family: 'mcb'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
-official_category: 'Control System Design and Tuning / PID Controller Tuning / Real-Time PID Autotuning'
+official_category: 'Control Algorithm Design / Controls / Controllers'
 documentation_page: 'fieldorientedcontrolautotuner'
-documentation_source_path: '../mcb/ref/fieldorientedcontrolautotuner.html'
+documentation_source_path: 'ref/fieldorientedcontrolautotuner.html'
 language: en
 ---
 

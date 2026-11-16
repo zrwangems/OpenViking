@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Current Sensor'
-family: 'sps'
-product_id: 'sps'
-product_name: 'Simscape Electrical'
+family: 'simscape'
+product_id: 'simscape'
+product_name: 'Simscape'
 documentation_release: R2025b
-official_category: 'Electrical Block Libraries / Sensors and Transducers / Sensors'
+official_category: 'Foundation Block Libraries / Electrical Models / Electrical Sensors'
 documentation_page: 'currentsensor'
-documentation_source_path: '../simscape/ref/currentsensor.html'
+documentation_source_path: 'ref/currentsensor.html'
 language: en
 ---
 

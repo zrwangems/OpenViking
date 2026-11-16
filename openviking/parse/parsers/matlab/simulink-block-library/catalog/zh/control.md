@@ -38,7 +38,7 @@ language: zh-CN
 
 ## Dynamic System Models / Linear System Representation / Sparse State-Space Models
 
-- [Descriptor State-Space](../../zh/products/control/../simulink/slref/descriptorstatespace.md) — 官方英文摘要: Model linear implicit system **完整正文**
+- [Descriptor State-Space](../../zh/continuous/descriptor-state-space.md) — 官方英文摘要: Model linear implicit system **完整正文**
 - [Sparse Second Order](../../zh/products/control/ref/sparsesecondorder.md) — 官方英文摘要: Represent sparse second-order models in Simulink **完整正文**
 
 ## Dynamic System Models / Linear System Representation / LPV and LTV Models
@@ -56,8 +56,8 @@ language: zh-CN
 - [Varying Delay](../../zh/products/control/ref/varyingdelay.md) — 官方英文摘要: Varying delay with support for fixed delay and zero delay (direct feedthrough) (Since R2024a) **完整正文**
 - [Varying Lowpass Filter](../../zh/products/control/ref/varyinglowpassfilter.md) — 官方英文摘要: Butterworth filter with varying coefficients **完整正文**
 - [Varying Notch Filter](../../zh/products/control/ref/varyingnotchfilter.md) — 官方英文摘要: Notch filter with varying coefficients **完整正文**
-- [PID Controller](../../zh/products/control/../simulink/slref/pidcontroller.md) — 官方英文摘要: Continuous-time or discrete-time PID controller **完整正文**
-- [PID Controller (2DOF)](../../zh/products/control/../simulink/slref/pidcontroller2dof.md) — 官方英文摘要: Continuous-time or discrete-time two-degree-of-freedom PID controller **完整正文**
+- [PID Controller](../../zh/continuous/pid-controller.md) — 官方英文摘要: Continuous-time or discrete-time PID controller **完整正文**
+- [PID Controller (2DOF)](../../zh/continuous/pid-controller-2dof.md) — 官方英文摘要: Continuous-time or discrete-time two-degree-of-freedom PID controller **完整正文**
 - [Varying Transfer Function](../../zh/products/control/ref/varyingtransferfunction.md) — 官方英文摘要: Transfer function with varying coefficients **完整正文**
 - [Varying State Space](../../zh/products/control/ref/varyingstatespace.md) — 官方英文摘要: State-space model with varying matrix values **完整正文**
 - [Varying Observer Form](../../zh/products/control/ref/varyingobserverform.md) — 官方英文摘要: Observer-form state-space model with varying matrix values **完整正文**
@@ -67,8 +67,8 @@ language: zh-CN
 - [Discrete Varying Delay](../../zh/products/control/ref/discretevaryingdelay.md) — 官方英文摘要: Discrete varying delay with support for fixed delay and zero delay (direct feedthrough) (Since R2024a) **完整正文**
 - [Discrete Varying Lowpass](../../zh/products/control/ref/discretevaryinglowpass.md) — 官方英文摘要: Discrete Butterworth filter with varying coefficients **完整正文**
 - [Discrete Varying Notch](../../zh/products/control/ref/discretevaryingnotch.md) — 官方英文摘要: Discrete-time notch filter with varying coefficients **完整正文**
-- [Discrete PID Controller (2DOF)](../../zh/products/control/../simulink/slref/discretepidcontroller2dof.md) — 官方英文摘要: Discrete-time or continuous-time two-degree-of-freedom PID controller **完整正文**
-- [Discrete PID Controller](../../zh/products/control/../simulink/slref/discretepidcontroller.md) — 官方英文摘要: Discrete-time or continuous-time PID controller **完整正文**
+- [Discrete PID Controller (2DOF)](../../zh/discrete/discrete-pid-controller-2dof.md) — 官方英文摘要: Discrete-time or continuous-time two-degree-of-freedom PID controller **完整正文**
+- [Discrete PID Controller](../../zh/discrete/discrete-pid-controller.md) — 官方英文摘要: Discrete-time or continuous-time PID controller **完整正文**
 - [Discrete Varying Transfer Function](../../zh/products/control/ref/discretevaryingtransferfunction.md) — 官方英文摘要: Discrete-time transfer function with varying coefficients **完整正文**
 - [Discrete Varying State Space](../../zh/products/control/ref/discretevaryingstatespace.md) — 官方英文摘要: Discrete-time state-space model with varying matrix values **完整正文**
 - [Discrete Varying Observer Form](../../zh/products/control/ref/discretevaryingobserverform.md) — 官方英文摘要: Discrete-time observer-form state-space model with varying matrix values **完整正文**
@@ -244,8 +244,8 @@ language: zh-CN
 
 - [Varying Lowpass Filter](../../zh/products/control/ref/varyinglowpassfilter.md) — 官方英文摘要: Butterworth filter with varying coefficients **完整正文**
 - [Varying Notch Filter](../../zh/products/control/ref/varyingnotchfilter.md) — 官方英文摘要: Notch filter with varying coefficients **完整正文**
-- [PID Controller](../../zh/products/control/../simulink/slref/pidcontroller.md) — 官方英文摘要: Continuous-time or discrete-time PID controller **完整正文**
-- [PID Controller (2DOF)](../../zh/products/control/../simulink/slref/pidcontroller2dof.md) — 官方英文摘要: Continuous-time or discrete-time two-degree-of-freedom PID controller **完整正文**
+- [PID Controller](../../zh/continuous/pid-controller.md) — 官方英文摘要: Continuous-time or discrete-time PID controller **完整正文**
+- [PID Controller (2DOF)](../../zh/continuous/pid-controller-2dof.md) — 官方英文摘要: Continuous-time or discrete-time two-degree-of-freedom PID controller **完整正文**
 - [Varying Transfer Function](../../zh/products/control/ref/varyingtransferfunction.md) — 官方英文摘要: Transfer function with varying coefficients **完整正文**
 - [Varying State Space](../../zh/products/control/ref/varyingstatespace.md) — 官方英文摘要: State-space model with varying matrix values **完整正文**
 - [Varying Observer Form](../../zh/products/control/ref/varyingobserverform.md) — 官方英文摘要: Observer-form state-space model with varying matrix values **完整正文**
@@ -254,8 +254,8 @@ language: zh-CN
 
 - [Discrete Varying Lowpass](../../zh/products/control/ref/discretevaryinglowpass.md) — 官方英文摘要: Discrete Butterworth filter with varying coefficients **完整正文**
 - [Discrete Varying Notch](../../zh/products/control/ref/discretevaryingnotch.md) — 官方英文摘要: Discrete-time notch filter with varying coefficients **完整正文**
-- [Discrete PID Controller](../../zh/products/control/../simulink/slref/discretepidcontroller.md) — 官方英文摘要: Discrete-time or continuous-time PID controller **完整正文**
-- [Discrete PID Controller (2DOF)](../../zh/products/control/../simulink/slref/discretepidcontroller2dof.md) — 官方英文摘要: Discrete-time or continuous-time two-degree-of-freedom PID controller **完整正文**
+- [Discrete PID Controller](../../zh/discrete/discrete-pid-controller.md) — 官方英文摘要: Discrete-time or continuous-time PID controller **完整正文**
+- [Discrete PID Controller (2DOF)](../../zh/discrete/discrete-pid-controller-2dof.md) — 官方英文摘要: Discrete-time or continuous-time two-degree-of-freedom PID controller **完整正文**
 - [Discrete Varying Transfer Function](../../zh/products/control/ref/discretevaryingtransferfunction.md) — 官方英文摘要: Discrete-time transfer function with varying coefficients **完整正文**
 - [Discrete Varying State Space](../../zh/products/control/ref/discretevaryingstatespace.md) — 官方英文摘要: Discrete-time state-space model with varying matrix values **完整正文**
 - [Discrete Varying Observer Form](../../zh/products/control/ref/discretevaryingobserverform.md) — 官方英文摘要: Discrete-time observer-form state-space model with varying matrix values **完整正文**

@@ -113,9 +113,9 @@ language: zh-CN
 
 ## Architecture and Component Design / Timers and Scheduling / Data Transfers
 
-- [IC](../../zh/products/rtw/../simulink/slref/ic.md) — 官方英文摘要: Set initial value of signal **完整正文**
-- [Initialize Function](../../zh/products/rtw/../simulink/slref/initializefunction.md) — 官方英文摘要: Execute subsystem on model initialize event **完整正文**
-- [Rate Transition](../../zh/products/rtw/../simulink/slref/ratetransition.md) — 官方英文摘要: Handle transfer of data between blocks operating at different rates **完整正文**
+- [IC](../../zh/signal-attributes/ic.md) — 官方英文摘要: Set initial value of signal **完整正文**
+- [Initialize Function](../../zh/user-defined-functions/initialize-function.md) — 官方英文摘要: Execute subsystem on model initialize event **完整正文**
+- [Rate Transition](../../zh/signal-attributes/rate-transition.md) — 官方英文摘要: Handle transfer of data between blocks operating at different rates **完整正文**
 
 ## Code Generation
 

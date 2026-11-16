@@ -19,7 +19,11 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Switch**
+:   Select switch A or switch B.
+
+**Sample time**
+:   Specify how often this block reads the momentary switch state.
 
 ## Libraries
 
@@ -40,3 +44,8 @@ Not documented in R2025b.
 ## Description
 
 Read the state of a momentary switch
+
+Read the state of a momentary switch on the TFC shield. The block output emits 1 when
+the switch is pressed and 0 otherwise.
+
+During simulations without the hardware, this block emits zeroes.

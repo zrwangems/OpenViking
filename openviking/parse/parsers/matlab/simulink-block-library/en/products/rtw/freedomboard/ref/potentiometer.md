@@ -19,7 +19,11 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Potentiometer**
+:   Select potentiometer A or B.
+
+**Sample time**
+:   Specify how often this block reads the potentiometer value, in seconds.
 
 ## Libraries
 
@@ -40,3 +44,11 @@ Not documented in R2025b.
 ## Description
 
 Read the state of a potentiometer
+
+The NXP TFC shield comes with two on board potentiometers (POTA and POTB).
+
+The block output emits values from -1.0 to 1.0 based on the current angular position
+of the potentiometer. These values correspond to the potentiometer being turned fully
+counter clockwise or fully clockwise respectively.
+
+During simulations without the hardware, this block emits zeroes.

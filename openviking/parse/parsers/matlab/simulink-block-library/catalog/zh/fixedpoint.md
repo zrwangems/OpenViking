@@ -320,13 +320,13 @@ language: zh-CN
 
 ## Embedded Implementation / Fixed-Point Math Operations in MATLAB and Simulink / Complex Numbers
 
-- [Complex to Magnitude-Angle](../../zh/products/fixedpoint/../dsphdl/ref/complextomagnitudeangle.md) — 官方英文摘要: Compute magnitude and phase angle of complex signal using CORDIC algorithm **完整正文**
-- [Magnitude-Angle to Complex](../../zh/products/fixedpoint/../simulink/slref/magnitudeangletocomplex.md) — 官方英文摘要: Convert magnitude and/or a phase angle signal to complex signal **完整正文**
+- [Complex to Magnitude-Angle](../../zh/products/dsphdl/ref/complextomagnitudeangle.md) — 官方英文摘要: Compute magnitude and phase angle of complex signal using CORDIC algorithm **完整正文**
+- [Magnitude-Angle to Complex](../../zh/math-operations/magnitude-angle-to-complex.md) — 官方英文摘要: Convert magnitude and/or a phase angle signal to complex signal **完整正文**
 
 ## Embedded Implementation / Fixed-Point Math Operations in MATLAB and Simulink / Trigonometric Functions
 
 - [Hyperbolic Tangent HDL Optimized](../../zh/products/fixedpoint/ref/hyperbolictangenthdloptimized.md) — 官方英文摘要: Computes CORDIC-based hyperbolic tangent and generates optimized HDL code **完整正文**
-- [Trigonometric Function](../../zh/products/fixedpoint/../simulink/slref/trigonometricfunction.md) — 官方英文摘要: Specified trigonometric function on input **完整正文**
+- [Trigonometric Function](../../zh/math-operations/trigonometric-function.md) — 官方英文摘要: Specified trigonometric function on input **完整正文**
 
 ## Embedded Implementation / Fixed-Point Math Operations in MATLAB and Simulink / Coordinate Transformations
 

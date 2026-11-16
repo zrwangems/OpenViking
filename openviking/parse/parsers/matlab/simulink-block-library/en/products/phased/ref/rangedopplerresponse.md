@@ -1,17 +1,17 @@
 ---
 type: simulink-block
-title: 'Range Doppler Response'
-family: 'radar'
-product_id: 'radar'
-product_name: 'Radar Toolbox'
+title: 'Range-Doppler Response'
+family: 'phased'
+product_id: 'phased'
+product_name: 'Phased Array System Toolbox'
 documentation_release: R2025b
-official_category: 'Signal and Data Processing / Detection, Range, Angle, and Doppler Estimation'
+official_category: 'Detection, Range and Doppler Estimation / Range and Doppler Estimation'
 documentation_page: 'rangedopplerresponse'
-documentation_source_path: '../phased/ref/rangedopplerresponse.html'
+documentation_source_path: 'ref/rangedopplerresponse.html'
 language: en
 ---
 
-# Range Doppler Response
+# Range-Doppler Response
 
 ## Ports
 

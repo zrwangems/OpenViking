@@ -113,9 +113,9 @@ No direct block entries.
 
 ## Architecture and Component Design / Timers and Scheduling / Data Transfers
 
-- [IC](../../en/products/rtw/../simulink/slref/ic.md) — Official summary: Set initial value of signal **full document**
-- [Initialize Function](../../en/products/rtw/../simulink/slref/initializefunction.md) — Official summary: Execute subsystem on model initialize event **full document**
-- [Rate Transition](../../en/products/rtw/../simulink/slref/ratetransition.md) — Official summary: Handle transfer of data between blocks operating at different rates **full document**
+- [IC](../../en/signal-attributes/ic.md) — Official summary: Set initial value of signal **full document**
+- [Initialize Function](../../en/user-defined-functions/initialize-function.md) — Official summary: Execute subsystem on model initialize event **full document**
+- [Rate Transition](../../en/signal-attributes/rate-transition.md) — Official summary: Handle transfer of data between blocks operating at different rates **full document**
 
 ## Code Generation
 

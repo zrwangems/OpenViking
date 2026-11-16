@@ -19,7 +19,12 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**mu value**
+:   The µ-law parameter of the compressor.
+
+**Peak signal magnitude**
+:   The peak value of the input signal. This is also the peak value of the
+    output.
 
 ## Libraries
 
@@ -40,3 +45,15 @@ Not documented in R2025b.
 ## Description
 
 Implement µ-law compressor for source coding
+
+The Mu-Law Compressor block implements a µ-law compressor for the input signal. The
+formula for the µ-law compressor is
+
+y=Vlog(1+μ|x|/V)log(1+μ)sgn(x)
+
+where µ is the µ-law parameter of the compressor, *V* is the peak
+magnitude of *x*, log is the natural logarithm, and sgn is the signum
+function (`sign` in MATLAB®).
+
+The input can have any shape or frame status. This block processes each vector element
+independently.

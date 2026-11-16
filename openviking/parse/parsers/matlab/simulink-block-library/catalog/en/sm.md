@@ -242,5 +242,5 @@ No direct block entries.
 
 ## Simscape Mechanical Interfaces
 
-- [Rotational Multibody Interface](../../en/products/sm/../simscape/ref/rotationalmultibodyinterface.md) — Official summary: Interface between mechanical rotational networks and Simscape Multibody joints (Since R2021a) **full document**
-- [Translational Multibody Interface](../../en/products/sm/../simscape/ref/translationalmultibodyinterface.md) — Official summary: Interface between mechanical translational networks and Simscape Multibody joints (Since R2021a) **full document**
+- [Rotational Multibody Interface](../../en/products/simscape/ref/rotationalmultibodyinterface.md) — Official summary: Interface between mechanical rotational networks and Simscape Multibody joints (Since R2021a) **full document**
+- [Translational Multibody Interface](../../en/products/simscape/ref/translationalmultibodyinterface.md) — Official summary: Interface between mechanical translational networks and Simscape Multibody joints (Since R2021a) **full document**

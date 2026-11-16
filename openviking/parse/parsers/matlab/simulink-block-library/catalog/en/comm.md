@@ -123,8 +123,8 @@ No direct block entries.
 - [Interlacer](../../en/products/comm/ref/interlacer.md) — Official summary: Alternately select elements from two input vectors to generate output vector **full document**
 - [Puncture](../../en/products/comm/ref/puncture.md) — Official summary: Output elements that correspond to 1s in binary puncture vector **full document**
 - [Scrambler](../../en/products/comm/ref/scrambler.md) — Official summary: Scramble input signal **full document**
-- [Bit to Integer Converter](../../en/products/comm/../simulink/slref/bittointegerconverter.md) — Official summary: Map vector of bits to corresponding vector of integers **full document**
-- [Integer to Bit Converter](../../en/products/comm/../simulink/slref/integertobitconverter.md) — Official summary: Map vector of integers to vector of bits **full document**
+- [Bit to Integer Converter](../../en/logic-and-bit-operations/bit-to-integer-converter.md) — Official summary: Map vector of bits to corresponding vector of integers **full document**
+- [Integer to Bit Converter](../../en/logic-and-bit-operations/integer-to-bit-converter.md) — Official summary: Map vector of integers to vector of bits **full document**
 
 ## PHY Components / Interleaving
 
@@ -231,8 +231,8 @@ No direct block entries.
 - [Bipolar to Unipolar Converter](../../en/products/comm/ref/bipolartounipolarconverter.md) — Official summary: Map bipolar signal to unipolar signal in range [0, M – 1] **full document**
 - [Unipolar to Bipolar Converter](../../en/products/comm/ref/unipolartobipolarconverter.md) — Official summary: Map unipolar signal in range [0, M – 1] to bipolar signal **full document**
 - [Data Mapper](../../en/products/comm/ref/datamapper.md) — Official summary: Map integer symbols from one coding scheme to another **full document**
-- [Bit to Integer Converter](../../en/products/comm/../simulink/slref/bittointegerconverter.md) — Official summary: Map vector of bits to corresponding vector of integers **full document**
-- [Integer to Bit Converter](../../en/products/comm/../simulink/slref/integertobitconverter.md) — Official summary: Map vector of integers to vector of bits **full document**
+- [Bit to Integer Converter](../../en/logic-and-bit-operations/bit-to-integer-converter.md) — Official summary: Map vector of bits to corresponding vector of integers **full document**
+- [Integer to Bit Converter](../../en/logic-and-bit-operations/integer-to-bit-converter.md) — Official summary: Map vector of integers to vector of bits **full document**
 
 ## PHY Components / Modulation / Analog Baseband Modulation
 
@@ -317,7 +317,7 @@ No direct block entries.
 
 - [AGC](../../en/products/comm/ref/agc.md) — Official summary: Adaptively adjust gain for constant signal-level output **full document**
 - [Coarse Frequency Compensator](../../en/products/comm/ref/coarsefrequencycompensator.md) — Official summary: Compensate for carrier frequency offset in PAM, PSK, or QAM **full document**
-- [DC Blocker](../../en/products/comm/../dsp/ref/dcblocker.md) — Official summary: Block DC component **full document**
+- [DC Blocker](../../en/products/dsp/ref/dcblocker.md) — Official summary: Block DC component **full document**
 - [DPD](../../en/products/comm/ref/dpd.md) — Official summary: Digital predistorter **full document**
 - [DPD Coefficient Estimator](../../en/products/comm/ref/dpdcoefficientestimator.md) — Official summary: Estimate memory-polynomial coefficients for digital predistortion **full document**
 - [I/Q Compensator Coefficient to Imbalance](../../en/products/comm/ref/iqcompensatorcoefficienttoimbalance.md) — Official summary: Convert compensator coefficient into amplitude and phase imbalance **full document**
@@ -484,11 +484,11 @@ No direct block entries.
 - [Error Rate Calculation](../../en/products/comm/ref/errorratecalculation.md) — Official summary: Compute bit error rate or symbol error rate of input data **full document**
 - [EVM Measurement](../../en/products/comm/ref/evmmeasurement.md) — Official summary: Measure error vector magnitude (EVM) **full document**
 - [MER Measurement](../../en/products/comm/ref/mermeasurement.md) — Official summary: Measure modulation error ratio in digital modulation applications **full document**
-- [Power Meter](../../en/products/comm/../dsp/ref/powermeter.md) — Official summary: Measure power and the CCDF of the power of voltage signal in Simulink (Since R2021a) **full document**
+- [Power Meter](../../en/products/dsp/ref/powermeter.md) — Official summary: Measure power and the CCDF of the power of voltage signal in Simulink (Since R2021a) **full document**
 - [Constellation Diagram](../../en/products/comm/ref/constellationdiagram.md) — Official summary: Display and analyze input signals in IQ-plane **full document**
 - [Eye Diagram](../../en/products/comm/ref/eyediagramscope.md) — Official summary: Display eye diagram of time-domain signal (Since R2023b) **full document**
-- [Time Scope](../../en/products/comm/../dsp/ref/timescopeblock.md) — Official summary: Display and analyze signals generated during simulation and log signal data to MATLAB **full document**
-- [Spectrum Analyzer](../../en/products/comm/../dsp/ref/spectrumanalyzerblock.md) — Official summary: Display frequency spectrum **full document**
+- [Time Scope](../../en/products/dsp/ref/timescopeblock.md) — Official summary: Display and analyze signals generated during simulation and log signal data to MATLAB **full document**
+- [Spectrum Analyzer](../../en/products/dsp/ref/spectrumanalyzerblock.md) — Official summary: Display frequency spectrum **full document**
 - [Waveform From Wireless Waveform Generator App](../../en/products/comm/ref/waveformfromwirelesswaveformgeneratorapp.md) — Official summary: Wireless waveform source exported to Simulink (Since R2021b) **full document**
 - [Baseband File Writer](../../en/products/comm/ref/basebandfilewriter.md) — Official summary: Write baseband signals to file **full document**
 - [Baseband File Reader](../../en/products/comm/ref/basebandfilereader.md) — Official summary: Read baseband signals from file **full document**

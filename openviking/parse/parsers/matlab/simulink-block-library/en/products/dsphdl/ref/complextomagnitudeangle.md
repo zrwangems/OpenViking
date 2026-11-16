@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Complex to Magnitude-Angle'
-family: 'fixedpoint'
-product_id: 'fixedpoint'
-product_name: 'Fixed-Point Designer'
+family: 'dsphdl'
+product_id: 'dsphdl'
+product_name: 'DSP HDL Toolbox'
 documentation_release: R2025b
-official_category: 'Embedded Implementation / Fixed-Point Math Operations in MATLAB and Simulink / Complex Numbers'
+official_category: 'HDL-Optimized Filters and Transforms'
 documentation_page: 'complextomagnitudeangle'
-documentation_source_path: '../dsphdl/ref/complextomagnitudeangle.html'
+documentation_source_path: 'ref/complextomagnitudeangle.html'
 language: en
 ---
 

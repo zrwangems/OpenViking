@@ -80,17 +80,17 @@ language: zh-CN
 
 ## Control System Design and Tuning / PID Controller Tuning / Model-Based PID Controller Tuning
 
-- [PID Controller](../../zh/products/slcontrol/../simulink/slref/pidcontroller.md) — 官方英文摘要: Continuous-time or discrete-time PID controller **完整正文**
-- [PID Controller (2DOF)](../../zh/products/slcontrol/../simulink/slref/pidcontroller2dof.md) — 官方英文摘要: Continuous-time or discrete-time two-degree-of-freedom PID controller **完整正文**
-- [Discrete PID Controller](../../zh/products/slcontrol/../simulink/slref/discretepidcontroller.md) — 官方英文摘要: Discrete-time or continuous-time PID controller **完整正文**
-- [Discrete PID Controller (2DOF)](../../zh/products/slcontrol/../simulink/slref/discretepidcontroller2dof.md) — 官方英文摘要: Discrete-time or continuous-time two-degree-of-freedom PID controller **完整正文**
+- [PID Controller](../../zh/continuous/pid-controller.md) — 官方英文摘要: Continuous-time or discrete-time PID controller **完整正文**
+- [PID Controller (2DOF)](../../zh/continuous/pid-controller-2dof.md) — 官方英文摘要: Continuous-time or discrete-time two-degree-of-freedom PID controller **完整正文**
+- [Discrete PID Controller](../../zh/discrete/discrete-pid-controller.md) — 官方英文摘要: Discrete-time or continuous-time PID controller **完整正文**
+- [Discrete PID Controller (2DOF)](../../zh/discrete/discrete-pid-controller-2dof.md) — 官方英文摘要: Discrete-time or continuous-time two-degree-of-freedom PID controller **完整正文**
 
 ## Control System Design and Tuning / PID Controller Tuning / Real-Time PID Autotuning
 
 - [Closed-Loop PID Autotuner](../../zh/products/slcontrol/ug/closedlooppidautotuner.md) — 官方英文摘要: Automatically tune PID gains based on plant frequency responses estimated from closed-loop experiment in real time **完整正文**
 - [Open-Loop PID Autotuner](../../zh/products/slcontrol/ug/openlooppidautotuner.md) — 官方英文摘要: Automatically tune PID gains based on plant frequency responses estimated from open-loop experiment in real time **完整正文**
 - [Gain-Scheduled PID Autotuner](../../zh/products/slcontrol/ug/gainscheduledpidautotuner.md) — 官方英文摘要: Automatically tune PID gains at multiple operating points (Since R2024a) **完整正文**
-- [Field Oriented Control Autotuner](../../zh/products/slcontrol/../mcb/ref/fieldorientedcontrolautotuner.md) — 官方英文摘要: Automatically and sequentially tune multiple PID control loops in field-oriented control application **完整正文**
+- [Field Oriented Control Autotuner](../../zh/products/mcb/ref/fieldorientedcontrolautotuner.md) — 官方英文摘要: Automatically and sequentially tune multiple PID control loops in field-oriented control application **完整正文**
 - [Change Operating Points](../../zh/products/slcontrol/ug/changeoperatingpoints.md) — 官方英文摘要: tSwitch between operating points during simulation (Since R2023b) **完整正文**
 - [PID Gain Scheduler](../../zh/products/slcontrol/ug/pidgainscheduler.md) — 官方英文摘要: Lookup table based gain scheduling with PID array (Since R2023b) **完整正文**
 - [PID Gains Store and Update](../../zh/products/slcontrol/ug/pidgainsstoreandupdate.md) — 官方英文摘要: Store and update tuned PID gains tuned using Closed-Loop PID Autotuner (Since R2023b) **完整正文**
@@ -157,23 +157,23 @@ language: zh-CN
 
 ## Control System Design and Tuning / Gain Scheduling / Continuous Time
 
-- [Varying Lowpass Filter](../../zh/products/slcontrol/../control/ref/varyinglowpassfilter.md) — 官方英文摘要: Butterworth filter with varying coefficients **完整正文**
-- [Varying Notch Filter](../../zh/products/slcontrol/../control/ref/varyingnotchfilter.md) — 官方英文摘要: Notch filter with varying coefficients **完整正文**
-- [PID Controller](../../zh/products/slcontrol/../simulink/slref/pidcontroller.md) — 官方英文摘要: Continuous-time or discrete-time PID controller **完整正文**
-- [PID Controller (2DOF)](../../zh/products/slcontrol/../simulink/slref/pidcontroller2dof.md) — 官方英文摘要: Continuous-time or discrete-time two-degree-of-freedom PID controller **完整正文**
-- [Varying Transfer Function](../../zh/products/slcontrol/../control/ref/varyingtransferfunction.md) — 官方英文摘要: Transfer function with varying coefficients **完整正文**
-- [Varying State Space](../../zh/products/slcontrol/../control/ref/varyingstatespace.md) — 官方英文摘要: State-space model with varying matrix values **完整正文**
-- [Varying Observer Form](../../zh/products/slcontrol/../control/ref/varyingobserverform.md) — 官方英文摘要: Observer-form state-space model with varying matrix values **完整正文**
+- [Varying Lowpass Filter](../../zh/products/control/ref/varyinglowpassfilter.md) — 官方英文摘要: Butterworth filter with varying coefficients **完整正文**
+- [Varying Notch Filter](../../zh/products/control/ref/varyingnotchfilter.md) — 官方英文摘要: Notch filter with varying coefficients **完整正文**
+- [PID Controller](../../zh/continuous/pid-controller.md) — 官方英文摘要: Continuous-time or discrete-time PID controller **完整正文**
+- [PID Controller (2DOF)](../../zh/continuous/pid-controller-2dof.md) — 官方英文摘要: Continuous-time or discrete-time two-degree-of-freedom PID controller **完整正文**
+- [Varying Transfer Function](../../zh/products/control/ref/varyingtransferfunction.md) — 官方英文摘要: Transfer function with varying coefficients **完整正文**
+- [Varying State Space](../../zh/products/control/ref/varyingstatespace.md) — 官方英文摘要: State-space model with varying matrix values **完整正文**
+- [Varying Observer Form](../../zh/products/control/ref/varyingobserverform.md) — 官方英文摘要: Observer-form state-space model with varying matrix values **完整正文**
 
 ## Control System Design and Tuning / Gain Scheduling / Discrete Time
 
-- [Discrete Varying Lowpass](../../zh/products/slcontrol/../control/ref/discretevaryinglowpass.md) — 官方英文摘要: Discrete Butterworth filter with varying coefficients **完整正文**
-- [Discrete Varying Notch](../../zh/products/slcontrol/../control/ref/discretevaryingnotch.md) — 官方英文摘要: Discrete-time notch filter with varying coefficients **完整正文**
-- [Discrete PID Controller](../../zh/products/slcontrol/../simulink/slref/discretepidcontroller.md) — 官方英文摘要: Discrete-time or continuous-time PID controller **完整正文**
-- [Discrete PID Controller (2DOF)](../../zh/products/slcontrol/../simulink/slref/discretepidcontroller2dof.md) — 官方英文摘要: Discrete-time or continuous-time two-degree-of-freedom PID controller **完整正文**
-- [Discrete Varying Transfer Function](../../zh/products/slcontrol/../control/ref/discretevaryingtransferfunction.md) — 官方英文摘要: Discrete-time transfer function with varying coefficients **完整正文**
-- [Discrete Varying State Space](../../zh/products/slcontrol/../control/ref/discretevaryingstatespace.md) — 官方英文摘要: Discrete-time state-space model with varying matrix values **完整正文**
-- [Discrete Varying Observer Form](../../zh/products/slcontrol/../control/ref/discretevaryingobserverform.md) — 官方英文摘要: Discrete-time observer-form state-space model with varying matrix values **完整正文**
+- [Discrete Varying Lowpass](../../zh/products/control/ref/discretevaryinglowpass.md) — 官方英文摘要: Discrete Butterworth filter with varying coefficients **完整正文**
+- [Discrete Varying Notch](../../zh/products/control/ref/discretevaryingnotch.md) — 官方英文摘要: Discrete-time notch filter with varying coefficients **完整正文**
+- [Discrete PID Controller](../../zh/discrete/discrete-pid-controller.md) — 官方英文摘要: Discrete-time or continuous-time PID controller **完整正文**
+- [Discrete PID Controller (2DOF)](../../zh/discrete/discrete-pid-controller-2dof.md) — 官方英文摘要: Discrete-time or continuous-time two-degree-of-freedom PID controller **完整正文**
+- [Discrete Varying Transfer Function](../../zh/products/control/ref/discretevaryingtransferfunction.md) — 官方英文摘要: Discrete-time transfer function with varying coefficients **完整正文**
+- [Discrete Varying State Space](../../zh/products/control/ref/discretevaryingstatespace.md) — 官方英文摘要: Discrete-time state-space model with varying matrix values **完整正文**
+- [Discrete Varying Observer Form](../../zh/products/control/ref/discretevaryingobserverform.md) — 官方英文摘要: Discrete-time observer-form state-space model with varying matrix values **完整正文**
 
 ## Control System Design and Tuning / Gain Scheduling / Gain-Scheduled PID Autotuning
 

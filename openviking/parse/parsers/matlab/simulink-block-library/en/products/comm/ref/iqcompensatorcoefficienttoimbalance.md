@@ -40,3 +40,11 @@ Not documented in R2025b.
 ## Description
 
 Convert compensator coefficient into amplitude and phase imbalance
+
+The I/Q Compensator Coefficient to Imbalance block converts a
+compensator coefficient into its equivalent amplitude and phase imbalance.
+
+This block has a single input port, which accepts a complex coefficient or a vector of
+coefficients. There are amplitude and phase imbalance output ports both of which are
+real. The amplitude imbalance is expressed in dB while the phase imbalance is expressed
+in degrees.

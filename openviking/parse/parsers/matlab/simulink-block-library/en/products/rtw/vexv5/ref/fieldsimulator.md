@@ -19,7 +19,15 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Wheel Radius**
+:   The radius of the robot wheel. This parameter is not unit-specific.
+
+**Wheel Spacing**
+:   The spacing between the two wheels or the axle length. This parameter is not
+    unit-specific.
+
+**Field Range**
+:   The length of the square field. This parameter is not unit-specific.
 
 ## Libraries
 
@@ -40,3 +48,11 @@ Not documented in R2025b.
 ## Description
 
 View the simulation speed values of a two-wheel robot
+
+View the simulation speed values of the right and left wheels of a two-wheel robot in an
+XY graph. The block is applicable for simulation purposes only. The two speed values are
+displayed graphically as the trajectory path of a robot moving in a rectangular field with a
+top view of the field.
+
+During code generation, the Field Simulator block is ignored and has no effect on the
+generated code.

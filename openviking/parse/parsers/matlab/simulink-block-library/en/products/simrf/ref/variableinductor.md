@@ -25,7 +25,7 @@ Simulink control signal, specified as a scalar.
 
 ## Parameters
 
-Not documented in R2025b.
+The Variable Inductor block has no parameters.
 
 ## Libraries
 

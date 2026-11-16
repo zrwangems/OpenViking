@@ -15,11 +15,14 @@ language: en
 
 ## Ports
 
-Not documented in R2025b.
+The block has two magnetic conserving ports associated with
+its terminals.
 
 ## Parameters
 
-Not documented in R2025b.
+**Constant flux**
+:   Output flux. You can specify any real value. The default value
+    is `0.001` Wb.
 
 ## Libraries
 
@@ -40,3 +43,13 @@ Not documented in R2025b.
 ## Description
 
 Ideal flux source
+
+The Flux Source block represents an ideal flux
+source that is powerful enough to maintain specified constant flux
+through it, regardless of the mmf across its terminals.
+
+You specify the output flux by using the **Constant
+flux** parameter, which can be positive, negative, or zero.
+
+The positive direction of the flux flow is indicated by the
+arrow.

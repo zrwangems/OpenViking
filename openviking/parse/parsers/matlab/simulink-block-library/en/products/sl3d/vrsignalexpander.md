@@ -19,7 +19,19 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Output width** — How long the output vector should
+be.
+
+**Output signal indices** — Vector indicating the position at
+which the input signals appear at the output. The remaining positions are
+filled with VR Placeholder signals.
+
+For example, suppose you want an input vector with two signals and an output
+vector with four signals, with the first input signal in position 2 and the
+second input signal in position 4. In the **Output width**
+box, enter `4` and in the **Output signal
+indices** box, enter `[2,4]`. The first
+and third output signals are unspecified.
 
 ## Libraries
 
@@ -46,3 +58,9 @@ interface MATLAB® and Simulink with the Unreal Engine® 3D simulation environme
 ## Description
 
 (To be removed) Expand input vectors into fully qualified virtual world field vectors
+
+The VR Signal Expander block creates a vector of predefined length, using some
+values from the input ports and filling the rest with placeholder signal
+values.
+
+To open the Block Parameters dialog box, double-click the block.

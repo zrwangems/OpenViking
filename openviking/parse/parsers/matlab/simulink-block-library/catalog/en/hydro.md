@@ -278,7 +278,7 @@ No direct block entries.
 
 ## Isothermal Liquid Library / Upgrading Hydraulic Models to Use Isothermal Liquid Blocks
 
-- [Interface (H-IL)](../../en/products/hydro/../simscape/ref/interfacehil.md) — Official summary: Flow connection between hydraulic and isothermal liquid networks **full document**
+- [Interface (H-IL)](../../en/products/simscape/ref/interfacehil.md) — Official summary: Flow connection between hydraulic and isothermal liquid networks **full document**
 
 ## Thermal Liquid Library
 

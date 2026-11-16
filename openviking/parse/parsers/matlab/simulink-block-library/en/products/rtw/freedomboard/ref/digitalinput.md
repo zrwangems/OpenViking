@@ -19,7 +19,19 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Pin**
+:   Select a digital pin.
+
+    Make sure not to assign the same pin number to multiple blocks within your
+    model.
+
+**Sample time**
+:   Specify how often this block reads a digital pin value, in seconds. This
+    parameter value defaults to 1/10 second.
+
+**View pin map**
+:   Click on this button to open a snapshot of the board with a reference to the
+    GPIO pins.
 
 ## Libraries
 
@@ -40,3 +52,9 @@ Not documented in R2025b.
 ## Description
 
 Read the logical value of a digital input pin
+
+Read the logical value of the selected digital input pin. There are 14 pins on the
+FRDM-KL25Z board that you can use as inputs for digital signals, D0-D13. The digital pin
+layout for this board is compatible with the standard Arduino Digital Pins.
+
+During simulations without the hardware, this block emits zeroes.

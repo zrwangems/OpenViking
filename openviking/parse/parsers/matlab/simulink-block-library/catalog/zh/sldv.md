@@ -61,7 +61,7 @@ language: zh-CN
 
 - [Proof Assumption](../../zh/products/sldv/ref/proofassumption.md) — 官方英文摘要: Constrain signal values when proving model properties **完整正文**
 - [Proof Objective](../../zh/products/sldv/ref/proofobjective.md) — 官方英文摘要: Define objectives that signals must satisfy when proving model properties **完整正文**
-- [Assertion](../../zh/products/sldv/../simulink/slref/assertion.md) — 官方英文摘要: Check whether signal is zero **完整正文**
+- [Assertion](../../zh/model-verification/assertion.md) — 官方英文摘要: Check whether signal is zero **完整正文**
 - [Detector](../../zh/products/sldv/ref/detector.md) — 官方英文摘要: Detect true duration on input and construct output true duration based on output type **完整正文**
 - [Extender](../../zh/products/sldv/ref/extender.md) — 官方英文摘要: Extend true duration of input **完整正文**
 - [Implies](../../zh/products/sldv/ref/implies.md) — 官方英文摘要: Specify condition that produces a certain response **完整正文**

@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'OpenL3 Embeddings'
-family: 'deeplearning'
-product_id: 'deeplearning'
-product_name: 'Deep Learning Toolbox'
+family: 'audio'
+product_id: 'audio'
+product_name: 'Audio Toolbox'
 documentation_release: R2025b
-official_category: 'Applications / Signal Processing, Audio, and Wireless / Audio Processing'
+official_category: 'AI for Audio / Pretrained Models / OpenL3'
 documentation_page: 'openl3embeddingsblock'
-documentation_source_path: '../audio/ref/openl3embeddingsblock.html'
+documentation_source_path: 'ref/openl3embeddingsblock.html'
 language: en
 ---
 

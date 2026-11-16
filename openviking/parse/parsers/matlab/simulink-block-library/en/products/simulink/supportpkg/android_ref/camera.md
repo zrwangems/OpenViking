@@ -19,7 +19,27 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Resolution**
+:   Select the camera location on the device and the size of image.
+
+    - `Front` uses the camera on the same side as the
+      display.
+    - `Back` uses the camera on the opposite side from the
+      display.
+
+    To get a list of device specific **Resolution**, connect your
+    configured device and press the **Refresh** button. To configure your
+    device, follow the instructions provided during the Hardware Setup process.
+
+    Image size significantly affects the rate at which the camera produces data. For
+    example, capturing video at `1920x1080` produces almost six times more
+    data than capturing video at `720x486`.
+
+**Sample time**
+:   Specify how often the block reads the sensor.
+
+    Smaller values require the processor to complete the same number of instructions in
+    less time, which can cause task overruns.
 
 ## Libraries
 

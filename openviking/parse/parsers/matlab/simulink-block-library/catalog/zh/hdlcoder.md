@@ -348,7 +348,7 @@ language: zh-CN
 
 ## HDL Code Generation from Simulink / Speed and Area Optimization / I/O Optimization
 
-- [Neighborhood Processing Subsystem](../../zh/products/hdlcoder/../simulink/slref/neighborhoodprocessingsubsystem.md) — 官方英文摘要: Create algorithm that follows the neighborhood pattern (Since R2022b) **完整正文**
+- [Neighborhood Processing Subsystem](../../zh/matrix-operations/neighborhood-processing-subsystem.md) — 官方英文摘要: Create algorithm that follows the neighborhood pattern (Since R2022b) **完整正文**
 
 ## HDL Code Generation from Simulink / Reports and Scripts
 
@@ -669,9 +669,9 @@ language: zh-CN
 
 - [Sparse Matrix-Vector Product](../../zh/products/hdlcoder/ref/sparsematrixvectorproduct.md) — 官方英文摘要: Multiply sparse matrix with input vector (Since R2024b) **完整正文**
 - [HDL Combinatorial Logic](../../zh/products/hdlcoder/ref/hdlcombinatoriallogic.md) — 官方英文摘要: Implement truth table (Since R2024b) **完整正文**
-- [PWM](../../zh/products/hdlcoder/../simulink/slref/pwm.md) — 官方英文摘要: Generate ideal pulse width modulated signal corresponding to input duty cycle **完整正文**
-- [Discrete State-Space](../../zh/products/hdlcoder/../simulink/slref/discretestatespace.md) — 官方英文摘要: Implement discrete state-space system **完整正文**
-- [Fixed-Point State-Space](../../zh/products/hdlcoder/../simulink/slref/fixedpointstatespace.md) — 官方英文摘要: Implement discrete-time state space **完整正文**
+- [PWM](../../zh/discontinuities/pwm.md) — 官方英文摘要: Generate ideal pulse width modulated signal corresponding to input duty cycle **完整正文**
+- [Discrete State-Space](../../zh/discrete/discrete-state-space.md) — 官方英文摘要: Implement discrete state-space system **完整正文**
+- [Fixed-Point State-Space](../../zh/additional-math-and-discrete/fixed-point-state-space.md) — 官方英文摘要: Implement discrete-time state space **完整正文**
 
 ## Tool Qualification and Certification
 

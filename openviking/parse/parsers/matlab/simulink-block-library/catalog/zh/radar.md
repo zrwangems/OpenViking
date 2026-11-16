@@ -126,22 +126,22 @@ language: zh-CN
 ## Signal and Data Processing / Detection, Range, Angle, and Doppler Estimation
 
 - [Pulse Compression Library](../../zh/products/radar/ref/pulsecompressionlibrary.md) — 官方英文摘要: Library of pulse compression specifications (Since R2021a) **完整正文**
-- [CFAR Detector](../../zh/products/radar/../phased/ref/cfardetector.md) — 官方英文摘要: Constant false alarm rate (CFAR) detector **完整正文**
-- [2-D CFAR Detector](../../zh/products/radar/../phased/ref/2dcfardetector.md) — 官方英文摘要: Two-dimensional constant false alarm rate (CFAR) detector **完整正文**
-- [Stretch Processor](../../zh/products/radar/../phased/ref/stretchprocessor.md) — 官方英文摘要: Stretch processor for linear FM waveforms **完整正文**
-- [Time Varying Gain](../../zh/products/radar/../phased/ref/timevaryinggain.md) — 官方英文摘要: Time varying gain (TVG) control **完整正文**
-- [Pulse Integrator](../../zh/products/radar/../phased/ref/pulseintegrator.md) — 官方英文摘要: Coherent or noncoherent pulse integration **完整正文**
-- [Dechirp Mixer](../../zh/products/radar/../phased/ref/dechirpmixer.md) — 官方英文摘要: Dechirping operation on input signal **完整正文**
-- [Matched Filter](../../zh/products/radar/../phased/ref/matchedfilter.md) — 官方英文摘要: Matched filter **完整正文**
-- [Doppler Estimator](../../zh/products/radar/../phased/ref/dopplerestimator.md) — 官方英文摘要: Doppler estimation **完整正文**
-- [Range-Angle Response](../../zh/products/radar/../phased/ref/rangeangleresponse.md) — 官方英文摘要: Obtain range-angle response map for array **完整正文**
-- [Range Doppler Response](../../zh/products/radar/../phased/ref/rangedopplerresponse.md) — 官方英文摘要: Range-Doppler response **完整正文**
-- [Range Estimator](../../zh/products/radar/../phased/ref/rangeestimator.md) — 官方英文摘要: Range estimation **完整正文**
-- [Range Response](../../zh/products/radar/../phased/ref/rangeresponse.md) — 官方英文摘要: Range response **完整正文**
-- [Beamscan Spectrum](../../zh/products/radar/../phased/ref/beamscanspectrum.md) — 官方英文摘要: Beamscan spatial spectrum estimator **完整正文**
-- [Monopulse Estimator](../../zh/products/radar/../phased/ref/monopulseestimator.md) — 官方英文摘要: Estimate target direction from sum and difference channels **完整正文**
-- [MVDR Spectrum](../../zh/products/radar/../phased/ref/mvdrspectrum.md) — 官方英文摘要: Minimum variation distortionless response (MVDR) spatial spectrum estimator **完整正文**
-- [MUSIC Spectrum](../../zh/products/radar/../phased/ref/musicspectrum.md) — 官方英文摘要: MUSIC 2D spatial spectrum estimator **完整正文**
+- [CFAR Detector](../../zh/products/phased/ref/cfardetector.md) — 官方英文摘要: Constant false alarm rate (CFAR) detector **完整正文**
+- [2-D CFAR Detector](../../zh/products/phased/ref/2dcfardetector.md) — 官方英文摘要: Two-dimensional constant false alarm rate (CFAR) detector **完整正文**
+- [Stretch Processor](../../zh/products/phased/ref/stretchprocessor.md) — 官方英文摘要: Stretch processor for linear FM waveforms **完整正文**
+- [Time Varying Gain](../../zh/products/phased/ref/timevaryinggain.md) — 官方英文摘要: Time varying gain (TVG) control **完整正文**
+- [Pulse Integrator](../../zh/products/phased/ref/pulseintegrator.md) — 官方英文摘要: Coherent or noncoherent pulse integration **完整正文**
+- [Dechirp Mixer](../../zh/products/phased/ref/dechirpmixer.md) — 官方英文摘要: Dechirping operation on input signal **完整正文**
+- [Matched Filter](../../zh/products/phased/ref/matchedfilter.md) — 官方英文摘要: Matched filter **完整正文**
+- [Doppler Estimator](../../zh/products/phased/ref/dopplerestimator.md) — 官方英文摘要: Doppler estimation **完整正文**
+- [Range-Angle Response](../../zh/products/phased/ref/rangeangleresponse.md) — 官方英文摘要: Obtain range-angle response map for array **完整正文**
+- [Range Doppler Response](../../zh/products/phased/ref/rangedopplerresponse.md) — 官方英文摘要: Range-Doppler response **完整正文**
+- [Range Estimator](../../zh/products/phased/ref/rangeestimator.md) — 官方英文摘要: Range estimation **完整正文**
+- [Range Response](../../zh/products/phased/ref/rangeresponse.md) — 官方英文摘要: Range response **完整正文**
+- [Beamscan Spectrum](../../zh/products/phased/ref/beamscanspectrum.md) — 官方英文摘要: Beamscan spatial spectrum estimator **完整正文**
+- [Monopulse Estimator](../../zh/products/phased/ref/monopulseestimator.md) — 官方英文摘要: Estimate target direction from sum and difference channels **完整正文**
+- [MVDR Spectrum](../../zh/products/phased/ref/mvdrspectrum.md) — 官方英文摘要: Minimum variation distortionless response (MVDR) spatial spectrum estimator **完整正文**
+- [MUSIC Spectrum](../../zh/products/phased/ref/musicspectrum.md) — 官方英文摘要: MUSIC 2D spatial spectrum estimator **完整正文**
 
 ## Signal and Data Processing / Clustering
 

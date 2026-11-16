@@ -1,0 +1,15 @@
+{
+  "release": "R2025b",
+  "scope": "all official MathWorks products with Simulink blocks; third-party and machine-local support packages excluded",
+  "xml_occurrences_checked": 5431,
+  "unique_bilingual_documents_checked": 4603,
+  "official_chinese_source_renders_checked": 664,
+  "worker_translation_structures_checked": 3939,
+  "failures": {},
+  "failure_count": 0,
+  "external_scope_requires_local_matlab": [
+    "third-party libraries",
+    "hardware support packages not present in the public product catalog",
+    "machine-local and licensed library contents"
+  ]
+}

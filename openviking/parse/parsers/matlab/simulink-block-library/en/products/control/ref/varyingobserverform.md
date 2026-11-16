@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Varying Observer Form'
-family: 'slcontrol'
-product_id: 'slcontrol'
-product_name: 'Simulink Control Design'
+family: 'control'
+product_id: 'control'
+product_name: 'Control System Toolbox'
 documentation_release: R2025b
-official_category: 'Control System Design and Tuning / Gain Scheduling / Continuous Time'
+official_category: 'Dynamic System Models / Linear System Representation / LPV and LTV Models / Continuous-Time Varying Systems'
 documentation_page: 'varyingobserverform'
-documentation_source_path: '../control/ref/varyingobserverform.html'
+documentation_source_path: 'ref/varyingobserverform.html'
 language: en
 ---
 

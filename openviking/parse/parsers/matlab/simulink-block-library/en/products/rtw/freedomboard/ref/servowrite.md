@@ -19,7 +19,14 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Servo**
+:   Select Servo 0 or Servo 1 motor.
+
+**Minimum angle (degrees)**
+:   Specify the minimum angle achievable by the Servo motor.
+
+**Maximum angle (degrees)**
+:   Specify the maximum angle achievable by the Servo motor.
 
 ## Libraries
 
@@ -40,3 +47,11 @@ Not documented in R2025b.
 ## Description
 
 Drive the servo motor to the specified angle
+
+The NXP TFC shield can have up to two servos connected to it.
+
+The Servo Write block drives the servo using a PWM signal with a period
+of 20ms. This block controls a servo motor between specified minimum and maximum angles.
+The block clips any value outside the specified range.
+
+During simulations without the hardware, this block does nothing.

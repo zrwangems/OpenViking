@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Translational Multibody Interface'
-family: 'sm'
-product_id: 'sm'
-product_name: 'Simscape Multibody'
+family: 'simscape'
+product_id: 'simscape'
+product_name: 'Simscape'
 documentation_release: R2025b
-official_category: 'Simscape Mechanical Interfaces'
+official_category: 'Foundation Block Libraries / Mechanical Models / Multibody Interfaces'
 documentation_page: 'translationalmultibodyinterface'
-documentation_source_path: '../simscape/ref/translationalmultibodyinterface.html'
+documentation_source_path: 'ref/translationalmultibodyinterface.html'
 language: en
 ---
 

@@ -19,7 +19,14 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Interleaver delay (samples)**
+:   A vector that lists the number of symbols that fit in each shift register
+    of the corresponding interleaver. The length of this vector is the number of
+    shift registers.
+
+**Initial conditions**
+:   The values that fill each shift register when the simulation
+    begins.
 
 ## Libraries
 
@@ -71,3 +78,22 @@ using the command-line interface, you can use the
 ## Description
 
 Restore ordering of symbols using specified-delay shift registers
+
+The General Multiplexed Deinterleaver block restores the original ordering of a
+sequence that was interleaved using the General Multiplexed Interleaver block.
+
+In typical usage, the parameters in the two blocks have the same values. As a result,
+the **Interleaver delay** parameter, *V*, specifies
+the delays for each shift register in the corresponding
+*interleaver*, so that the delays of the deinterleaver's shift
+registers are actually
+`max(V)-V`.
+
+This block accepts a scalar or column vector input signal, which can be real or
+complex. The output signal has the same sample time as the input signal.
+
+The block can accept the data types `int8`, `uint8`,
+`int16`, `uint16`, `int32`,
+`uint32`, `boolean`, `single`,
+`double`, and fixed-point. The data type of the output will be the
+same as that of the input signal.

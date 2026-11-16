@@ -15,7 +15,7 @@ language: en
 
 ## Ports
 
-Not documented in R2025b.
+The block has two electrical conserving ports.
 
 ## Parameters
 
@@ -40,3 +40,12 @@ Not documented in R2025b.
 ## Description
 
 Electrical element for setting initial voltage difference between two nodes
+
+The Infinite Resistance block represents an infinite
+electrical resistance that draws no current. Use this block to set
+the initial voltage difference between two electrical nodes without
+affecting model equations.
+
+The **Variables** tab lets you set the priority
+and initial target value for the **Voltage difference** variable
+prior to simulation. For more information, see Set Priority and Initial Target for Block Variables.

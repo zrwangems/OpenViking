@@ -15,7 +15,7 @@ language: en
 
 ## Ports
 
-Not documented in R2025b.
+The block has two thermal conserving ports.
 
 ## Parameters
 
@@ -40,3 +40,12 @@ Not documented in R2025b.
 ## Description
 
 Thermal element for setting initial temperature difference between two nodes
+
+The Infinite Thermal Resistance block represents
+an infinite resistance, with no heat flow through it. Use this block
+to set the initial temperature difference between two thermal nodes
+without affecting model equations.
+
+The **Variables** tab lets you set the priority
+and initial target value for the **Temperature difference** variable
+prior to simulation. For more information, see Set Priority and Initial Target for Block Variables.

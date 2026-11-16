@@ -242,5 +242,5 @@ language: zh-CN
 
 ## Simscape Mechanical Interfaces
 
-- [Rotational Multibody Interface](../../zh/products/sm/../simscape/ref/rotationalmultibodyinterface.md) — 官方英文摘要: Interface between mechanical rotational networks and Simscape Multibody joints (Since R2021a) **完整正文**
-- [Translational Multibody Interface](../../zh/products/sm/../simscape/ref/translationalmultibodyinterface.md) — 官方英文摘要: Interface between mechanical translational networks and Simscape Multibody joints (Since R2021a) **完整正文**
+- [Rotational Multibody Interface](../../zh/products/simscape/ref/rotationalmultibodyinterface.md) — 官方英文摘要: Interface between mechanical rotational networks and Simscape Multibody joints (Since R2021a) **完整正文**
+- [Translational Multibody Interface](../../zh/products/simscape/ref/translationalmultibodyinterface.md) — 官方英文摘要: Interface between mechanical translational networks and Simscape Multibody joints (Since R2021a) **完整正文**

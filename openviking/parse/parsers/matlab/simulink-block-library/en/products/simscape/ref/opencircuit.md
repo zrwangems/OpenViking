@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Open Circuit'
-family: 'sps'
-product_id: 'sps'
-product_name: 'Simscape Electrical'
+family: 'simscape'
+product_id: 'simscape'
+product_name: 'Simscape'
 documentation_release: R2025b
-official_category: 'Electrical Block Libraries / Connectors and References\u200b'
+official_category: 'Foundation Block Libraries / Electrical Models / Electrical Elements'
 documentation_page: 'opencircuit'
-documentation_source_path: '../simscape/ref/opencircuit.html'
+documentation_source_path: 'ref/opencircuit.html'
 language: en
 ---
 

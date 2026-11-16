@@ -19,7 +19,22 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Interleaver delay (samples)**
+:   A column vector listing the number of symbols that fit into each shift
+    register. The length of this vector is the number of shift registers. (In
+    sample-based mode, it can also be a row vector.)
+
+**Initial conditions**
+:   The values that fill each shift register at the beginning of the
+    simulation.
+
+    If **Initial conditions** is a scalar, then its value
+    fills all shift registers. If **Initial conditions** is a
+    column vector, then each entry fills the corresponding shift register. (In
+    sample-based mode, **Initial conditions** can also be a row
+    vector.) If a given shift register has zero delay, then the value of the
+    corresponding entry in the **Initial conditions** vector is
+    unimportant.
 
 ## Libraries
 
@@ -71,3 +86,15 @@ are using the command-line interface.)
 ## Description
 
 Permute input symbols using set of shift registers with specified delays
+
+The General Multiplexed Interleaver block permutes the symbols in the input signal.
+Internally, it uses a set of shift registers, each with its own delay value.
+
+This block accepts a scalar or column vector input signal, which can be real or
+complex. The input and output signals have the same sample time.
+
+The block can accept the data types `int8`, `uint8`,
+`int16`, `uint16`, `int32`,
+`uint32`, `boolean`, `single`,
+`double`, and fixed-point. The output signal has the same data type
+as the input signal.

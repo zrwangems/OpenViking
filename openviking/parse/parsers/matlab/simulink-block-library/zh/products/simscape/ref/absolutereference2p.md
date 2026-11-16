@@ -16,19 +16,19 @@ chinese_source: worker-translation
 
 ## 端口
 
-在 R2025b 中未记录。
+该模块具有一个两相流体守恒端口。此端口标识被设为零压力和比内能的两相流体节点。
 
 ## 参数
 
-在 R2025b 中未记录。
+在 R2025b 中未提供文档。
 
 ## 所属库
 
-在 R2025b 中未记录。
+在 R2025b 中未提供文档。
 
 ## 模块特性
 
-在 R2025b 中未记录。
+在 R2025b 中未提供文档。
 
 ## 扩展功能
 
@@ -36,16 +36,18 @@ chinese_source: worker-translation
 
 ## 版本历史
 
-**在 R2015b 中引入**
+**于 R2015b 推出**
 
-### R2023a: 不再推荐 Absolute Reference (2P) 模块
+### R2023a: 不再推荐使用 Absolute Reference (2P) 模块
 
-Pressure & Temperature Sensor (2P) 模块现在包含一个隐式参考节点，这意味着你只需要一个端口即可进行压力或温度的绝对测量。仅当你需要测量模型中两个节点之间的压力或温度差时，才需要暴露第二个端口。
+Pressure & Temperature Sensor (2P) 模块现在包含一个隐式参考节点，这意味着您只需一个端口即可对压力或温度进行绝对测量。仅当需要测量模型中两个节点之间的压力差或温度差时，才显示第二个端口。
 
-在之前的版本中，要测量端口 **A** 处的绝对压力和绝对温度，你需要将端口 **B** 连接到 Absolute Reference (2P) 模块。现在不再需要这样做，因为你可以通过将 Pressure & Temperature Sensor (2P) 模块的 **Measurement reference** 参数设置为 `Absolute` 来进行绝对测量。
+在以前的版本中，要测量端口 **A** 处的绝对压力和绝对温度，需要将端口 **B** 连接到 Absolute Reference (2P) 模块。现在不再需要这样做，因为您可以通过将 Pressure & Temperature Sensor (2P) 模块的 **Measurement reference** 参数设置为 `Absolute` 来进行绝对测量。
 
-此更改没有兼容性影响。将 Absolute Reference (2P) 模块连接到 Pressure & Temperature Sensor (2P) 模块的现有模型将继续像以前一样工作。
+此更改对兼容性没有影响。已将 Absolute Reference (2P) 模块连接到 Pressure & Temperature Sensor (2P) 模块的现有模型将继续像以前一样工作。
 
 ## 描述
 
-（不推荐）绝对压力为零且比内能为零处的参考点
+（不推荐使用）绝对压力和比内能为零的参考点
+
+Absolute Reference (2P) 模块表示绝对压力和比内能为零的参考点。与 Pressure & Internal Energy Sensor (2P) 模块结合使用，以测量两相流体节点处的绝对压力和比内能。

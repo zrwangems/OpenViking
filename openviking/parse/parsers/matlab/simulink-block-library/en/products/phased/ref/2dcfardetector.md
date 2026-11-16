@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: '2-D CFAR Detector'
-family: 'radar'
-product_id: 'radar'
-product_name: 'Radar Toolbox'
+family: 'phased'
+product_id: 'phased'
+product_name: 'Phased Array System Toolbox'
 documentation_release: R2025b
-official_category: 'Signal and Data Processing / Detection, Range, Angle, and Doppler Estimation'
+official_category: 'Detection, Range and Doppler Estimation / Detection'
 documentation_page: '2dcfardetector'
-documentation_source_path: '../phased/ref/2dcfardetector.html'
+documentation_source_path: 'ref/2dcfardetector.html'
 language: en
 ---
 

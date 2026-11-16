@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Range-Angle Response'
-family: 'radar'
-product_id: 'radar'
-product_name: 'Radar Toolbox'
+family: 'phased'
+product_id: 'phased'
+product_name: 'Phased Array System Toolbox'
 documentation_release: R2025b
-official_category: 'Signal and Data Processing / Detection, Range, Angle, and Doppler Estimation'
+official_category: 'Detection, Range and Doppler Estimation / Range and Doppler Estimation'
 documentation_page: 'rangeangleresponse'
-documentation_source_path: '../phased/ref/rangeangleresponse.html'
+documentation_source_path: 'ref/rangeangleresponse.html'
 language: en
 ---
 

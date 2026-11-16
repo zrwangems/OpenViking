@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Assertion'
-family: 'sltest'
-product_id: 'sltest'
-product_name: 'Simulink Test'
+family: 'simulink'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Test Authoring / Assessments, Criteria, and Verification'
+official_category: 'Simulink Environment Fundamentals / Block Libraries / Model Verification'
 documentation_page: 'assertion'
-documentation_source_path: '../simulink/slref/assertion.html'
+documentation_source_path: 'slref/assertion.html'
 language: en
 ---
 

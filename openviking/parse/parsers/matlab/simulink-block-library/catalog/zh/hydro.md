@@ -278,7 +278,7 @@ language: zh-CN
 
 ## Isothermal Liquid Library / Upgrading Hydraulic Models to Use Isothermal Liquid Blocks
 
-- [Interface (H-IL)](../../zh/products/hydro/../simscape/ref/interfacehil.md) — 官方英文摘要: Flow connection between hydraulic and isothermal liquid networks **完整正文**
+- [Interface (H-IL)](../../zh/products/simscape/ref/interfacehil.md) — 官方英文摘要: Flow connection between hydraulic and isothermal liquid networks **完整正文**
 
 ## Thermal Liquid Library
 

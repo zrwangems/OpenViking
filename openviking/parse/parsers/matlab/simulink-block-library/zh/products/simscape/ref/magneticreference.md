@@ -16,7 +16,7 @@ chinese_source: official
 
 ## 端口
 
-R2025b 官方文档未提供。
+该模块有一个磁守恒端口。
 
 ## 参数
 
@@ -41,3 +41,5 @@ R2025b 官方文档未提供。
 ## 描述
 
 磁端口的参考连接
+
+Magnetic Reference 模块表示所有磁守恒端口的一个参考点。带有磁元件的模型必须包含至少一个 Magnetic Reference 模块。

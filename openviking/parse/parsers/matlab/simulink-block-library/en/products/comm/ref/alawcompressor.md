@@ -19,7 +19,12 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**A value**
+:   The A-law parameter of the compressor.
+
+**Peak signal magnitude**
+:   The peak value of the input signal. This is also the peak value of the
+    output signal.
 
 ## Libraries
 
@@ -40,3 +45,17 @@ Not documented in R2025b.
 ## Description
 
 Implement A-law compressor for source coding
+
+The A-Law Compressor block implements an A-law compressor for the input signal. The
+formula for the A-law compressor is
+
+y={A|x|1+logAsgn(x)for 0≤|x|≤VAV(1+log(A|x|/V))1+logAsgn(x)for VA<|x|≤V
+
+where *A* is the A-law parameter of the compressor,
+*V* is the peak signal magnitude for *x*, log is
+the natural logarithm, and *sgn* is the `sign` function.
+
+The most commonly used *A* value is 87.6.
+
+The input can have any shape or frame status. This block processes each vector element
+independently.

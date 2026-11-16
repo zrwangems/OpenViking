@@ -15,7 +15,16 @@ language: en
 
 ## Ports
 
-Not documented in R2025b.
+The block has the following ports:
+
+`N`
+:   Magnetic conserving port associated with the sensor North terminal.
+
+`S`
+:   Magnetic conserving port associated with the sensor South terminal.
+
+The block also has a physical signal output port, which outputs
+the value of the mmf.
 
 ## Parameters
 
@@ -40,3 +49,12 @@ Not documented in R2025b.
 ## Description
 
 Ideal magnetomotive force sensor
+
+The MMF Sensor block represents an ideal magnetomotive
+force (mmf) sensor, that is, a device that converts the mmf measured
+between any magnetic connections into a physical signal proportional
+to the mmf.
+
+Connections N and S are conserving magnetic ports through which
+the sensor is connected to the circuit. The physical signal port outputs
+the value of the mmf.

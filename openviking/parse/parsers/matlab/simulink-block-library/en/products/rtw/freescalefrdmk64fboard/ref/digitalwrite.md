@@ -19,7 +19,9 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Pin**
+:   Select a digital output pin. To view the pin mapping, click
+    **View pin map**.
 
 ## Libraries
 
@@ -40,3 +42,6 @@ Not documented in R2025b.
 ## Description
 
 Set the logical value of a digital output pin
+
+Set the logical state of a digital output pin. The block accepts any datatype
+as its input and internally converts it into boolean value.

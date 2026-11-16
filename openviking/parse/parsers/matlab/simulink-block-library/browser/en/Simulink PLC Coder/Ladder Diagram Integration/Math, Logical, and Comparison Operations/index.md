@@ -1,0 +1,16 @@
+# Math, Logical, and Comparison Operations
+
+- [ADD](ADD.md)
+- [AND](AND.md)
+- [CPT](CPT.md)
+- [DIV](DIV.md)
+- [EQU](EQU.md)
+- [GEQ](GEQ.md)
+- [GRT](GRT.md)
+- [LEQ](LEQ.md)
+- [LES](LES.md)
+- [MUL](MUL.md)
+- [NEQ](NEQ.md)
+- [NOT](NOT.md)
+- [OR](OR.md)
+- [SUB](SUB.md)

@@ -15,7 +15,8 @@ language: en
 
 ## Ports
 
-Not documented in R2025b.
+The block has one physical signal input port and two magnetic
+conserving ports associated with its magnetic terminals.
 
 ## Parameters
 
@@ -40,3 +41,11 @@ Not documented in R2025b.
 ## Description
 
 Ideal magnetomotive force source driven by input signal
+
+The Controlled MMF Source block represents an
+ideal magnetomotive force (mmf) source that is powerful enough to
+maintain the specified mmf at its output regardless of the flux passing
+through it.
+
+The output mmf is *MMF = MMFI*, where *MMFI* is
+the numerical value presented at the physical signal port.

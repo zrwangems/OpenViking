@@ -19,7 +19,10 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Block Title**
+:   The title of the system requirements list in the model. The default title
+    is `System Requirements`. You can enter a customized title,
+    for example, `Engine Requirements`.
 
 ## Libraries
 

@@ -126,22 +126,22 @@ No direct block entries.
 ## Signal and Data Processing / Detection, Range, Angle, and Doppler Estimation
 
 - [Pulse Compression Library](../../en/products/radar/ref/pulsecompressionlibrary.md) — Official summary: Library of pulse compression specifications (Since R2021a) **full document**
-- [CFAR Detector](../../en/products/radar/../phased/ref/cfardetector.md) — Official summary: Constant false alarm rate (CFAR) detector **full document**
-- [2-D CFAR Detector](../../en/products/radar/../phased/ref/2dcfardetector.md) — Official summary: Two-dimensional constant false alarm rate (CFAR) detector **full document**
-- [Stretch Processor](../../en/products/radar/../phased/ref/stretchprocessor.md) — Official summary: Stretch processor for linear FM waveforms **full document**
-- [Time Varying Gain](../../en/products/radar/../phased/ref/timevaryinggain.md) — Official summary: Time varying gain (TVG) control **full document**
-- [Pulse Integrator](../../en/products/radar/../phased/ref/pulseintegrator.md) — Official summary: Coherent or noncoherent pulse integration **full document**
-- [Dechirp Mixer](../../en/products/radar/../phased/ref/dechirpmixer.md) — Official summary: Dechirping operation on input signal **full document**
-- [Matched Filter](../../en/products/radar/../phased/ref/matchedfilter.md) — Official summary: Matched filter **full document**
-- [Doppler Estimator](../../en/products/radar/../phased/ref/dopplerestimator.md) — Official summary: Doppler estimation **full document**
-- [Range-Angle Response](../../en/products/radar/../phased/ref/rangeangleresponse.md) — Official summary: Obtain range-angle response map for array **full document**
-- [Range Doppler Response](../../en/products/radar/../phased/ref/rangedopplerresponse.md) — Official summary: Range-Doppler response **full document**
-- [Range Estimator](../../en/products/radar/../phased/ref/rangeestimator.md) — Official summary: Range estimation **full document**
-- [Range Response](../../en/products/radar/../phased/ref/rangeresponse.md) — Official summary: Range response **full document**
-- [Beamscan Spectrum](../../en/products/radar/../phased/ref/beamscanspectrum.md) — Official summary: Beamscan spatial spectrum estimator **full document**
-- [Monopulse Estimator](../../en/products/radar/../phased/ref/monopulseestimator.md) — Official summary: Estimate target direction from sum and difference channels **full document**
-- [MVDR Spectrum](../../en/products/radar/../phased/ref/mvdrspectrum.md) — Official summary: Minimum variation distortionless response (MVDR) spatial spectrum estimator **full document**
-- [MUSIC Spectrum](../../en/products/radar/../phased/ref/musicspectrum.md) — Official summary: MUSIC 2D spatial spectrum estimator **full document**
+- [CFAR Detector](../../en/products/phased/ref/cfardetector.md) — Official summary: Constant false alarm rate (CFAR) detector **full document**
+- [2-D CFAR Detector](../../en/products/phased/ref/2dcfardetector.md) — Official summary: Two-dimensional constant false alarm rate (CFAR) detector **full document**
+- [Stretch Processor](../../en/products/phased/ref/stretchprocessor.md) — Official summary: Stretch processor for linear FM waveforms **full document**
+- [Time Varying Gain](../../en/products/phased/ref/timevaryinggain.md) — Official summary: Time varying gain (TVG) control **full document**
+- [Pulse Integrator](../../en/products/phased/ref/pulseintegrator.md) — Official summary: Coherent or noncoherent pulse integration **full document**
+- [Dechirp Mixer](../../en/products/phased/ref/dechirpmixer.md) — Official summary: Dechirping operation on input signal **full document**
+- [Matched Filter](../../en/products/phased/ref/matchedfilter.md) — Official summary: Matched filter **full document**
+- [Doppler Estimator](../../en/products/phased/ref/dopplerestimator.md) — Official summary: Doppler estimation **full document**
+- [Range-Angle Response](../../en/products/phased/ref/rangeangleresponse.md) — Official summary: Obtain range-angle response map for array **full document**
+- [Range Doppler Response](../../en/products/phased/ref/rangedopplerresponse.md) — Official summary: Range-Doppler response **full document**
+- [Range Estimator](../../en/products/phased/ref/rangeestimator.md) — Official summary: Range estimation **full document**
+- [Range Response](../../en/products/phased/ref/rangeresponse.md) — Official summary: Range response **full document**
+- [Beamscan Spectrum](../../en/products/phased/ref/beamscanspectrum.md) — Official summary: Beamscan spatial spectrum estimator **full document**
+- [Monopulse Estimator](../../en/products/phased/ref/monopulseestimator.md) — Official summary: Estimate target direction from sum and difference channels **full document**
+- [MVDR Spectrum](../../en/products/phased/ref/mvdrspectrum.md) — Official summary: Minimum variation distortionless response (MVDR) spatial spectrum estimator **full document**
+- [MUSIC Spectrum](../../en/products/phased/ref/musicspectrum.md) — Official summary: MUSIC 2D spatial spectrum estimator **full document**
 
 ## Signal and Data Processing / Clustering
 

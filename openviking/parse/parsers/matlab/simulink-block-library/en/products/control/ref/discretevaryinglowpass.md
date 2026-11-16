@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Discrete Varying Lowpass'
-family: 'slcontrol'
-product_id: 'slcontrol'
-product_name: 'Simulink Control Design'
+family: 'control'
+product_id: 'control'
+product_name: 'Control System Toolbox'
 documentation_release: R2025b
-official_category: 'Control System Design and Tuning / Gain Scheduling / Discrete Time'
+official_category: 'Dynamic System Models / Linear System Representation / LPV and LTV Models / Discrete-Time Varying Systems'
 documentation_page: 'discretevaryinglowpass'
-documentation_source_path: '../control/ref/discretevaryinglowpass.html'
+documentation_source_path: 'ref/discretevaryinglowpass.html'
 language: en
 ---
 

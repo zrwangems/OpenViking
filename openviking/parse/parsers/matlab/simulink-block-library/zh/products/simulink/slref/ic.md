@@ -1,15 +1,15 @@
 ---
 type: simulink-block
 title: 'IC'
-family: 'ecoder'
-product_id: 'ecoder'
-product_name: 'Embedded Coder'
+family: 'simulink'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Architecture and Component Design / Timers and Scheduling / Data Transfers'
+official_category: 'Simulink Environment Fundamentals / Block Libraries / Signal Attributes'
 documentation_page: 'ic'
-documentation_source_path: '../simulink/slref/ic.html'
+documentation_source_path: 'slref/ic.html'
 language: zh-CN
-chinese_source: worker-translation
+chinese_source: official
 ---
 
 # IC
@@ -20,39 +20,39 @@ chinese_source: worker-translation
 
 ### **Port\_1** — 输入信号 标量 | 向量 | 矩阵 | N 维数组
 
-输入信号，指定为标量、向量、矩阵或 N 维数组。该模块将此信号的初始条件设置为所指定的**初始值**。
+输入信号，指定为标量、向量、矩阵或 N 维数组。模块将此信号的初始条件设置为您指定的**初始值**。
 
-**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 ### 输出
 
 ### **Port\_1** — 输出信号 标量 | 向量 | 矩阵 | N 维数组
 
-输出信号，以所指定的**初始值**形式提供，随后是输入信号的实际值。有关详细信息，请参阅非零采样时间偏移下的行为。
+输出信号以您指定的**初始值**开始，后跟输入信号的实际值。有关详细信息，请参阅非零采样时间偏移量的行为。
 
-**数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
+**数据类型:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 
 ## 参数
 
-### **初始值** — 初始值 `1`（默认） | 实数、有限标量、向量、矩阵或 N 维数组
+### **初始值** — 初始值 `1` (默认) | 实数、有限标量、向量、矩阵或 N 维数组
 
-将输入信号的初始值指定为有限的实值标量、向量、矩阵或 N 维数组。该值必须是标量，或者与输入信号具有相同的维度。
+将输入信号的初始值指定为有限实数值标量、向量、矩阵或 N 维数组。该值必须是标量，或者与输入信号具有相同的维度。
 
 #### 编程用法
 
 |  |
 | --- |
-| **模块参数：** `Value` |
-| **类型：** character vector |
-| **值：** 标量 | 向量 | 矩阵 | N 维数组 |
-| **默认值：** `'1'` |
+| **模块参数**：`Value` |
+| **类型：**字符向量 |
+| **值：**标量 | 向量 | 矩阵 | N 维数组 |
+| **默认值：**`'1'` |
 
-### **采样时间（继承时为 -1）** — 采样之间的间隔 `-1`（默认） | 标量 | 向量
+### **采样时间(-1 表示继承)** — 采样之间的时间间隔 `-1` (默认) | 标量 | 向量
 
-指定采样之间的时间间隔。要继承采样时间，请将此参数设置为 `-1`。有关详细信息，请参阅指定采样时间。
+指定采样时间间隔。要继承采样时间，请将此参数设置为 `-1`。有关详细信息，请参阅指定采样时间。
 
 #### 依赖关系
 
-仅当将此参数设置为 `-1` 以外的值时，此参数才可见。要了解更多信息，请参阅不建议使用采样时间的模块。
+仅当您将此参数设置为 `-1` 以外的值时才可见。要了解详细信息，请参阅不建议设置采样时间的模块。
 
 #### 编程用法
 
@@ -60,8 +60,8 @@ chinese_source: worker-translation
 
 |  |  |
 | --- | --- |
-| **参数：** | `SampleTime` |
-| **值：** | `"-1"`（默认） | 带引号的标量或向量 |
+| **参数:** | `SampleTime` |
+| **值:** | `"-1"` (默认) | scalar or vector in quotes |
 
 ## 所属库
 
@@ -72,41 +72,43 @@ Simulink / Signal Attributes
 |  |  |
 | --- | --- |
 | **数据类型** | `Boolean` | `bus` | `double` | `enumerated` | `fixed point` | `integer` | `single` |
-| **直接馈通** | `yes` |
-| **多维信号** | `yes` |
-| **可变大小信号** | `no` |
-| **过零检测** | `no` |
+| **直接馈通** | `是` |
+| **多维信号** | `是` |
+| **可变大小信号** | `否` |
+| **过零检测** | `否` |
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
-不建议用于生产代码。与嵌入式系统中常见的资源限制以及对速度和内存的限制有关。生成的代码可能包含动态内存分配和释放、递归、额外的内存开销以及变化很大的执行时间。虽然该代码在功能上有效，并且在资源丰富的环境中通常可接受，但较小的嵌入式目标通常无法支持此类代码。通常，模块会逐渐变得适合生产代码。因此，适合生产代码的模块仍然适合。
+不建议用于生产代码。涉及到嵌入式系统中常见的资源限制以及对速度和内存的限制。生成的代码可以包含内存的动态分配和释放、递归、额外的内存开销以及长短不等的执行时间。虽然代码在功能上有效并且在资源丰富的环境中通常可接受，但较小的嵌入式目标通常不能支持此类代码。通常情况下，模块会向适合生产代码的方向发展。因此，适合生产代码的模块仍然适用。
 
 ### 定点转换 使用 Fixed-Point Designer™ 设计和仿真定点系统。
 
 ## 版本历史
 
-**在 R2006a 之前引入**
+**在 R2006a 之前推出**
 
-### R2023b：IC 模块行主序支持更新
+### R2023b: IC 模块行优先支持更新
 
-IC 模块现在支持针对行主序数组布局的代码生成。
+IC 模块现在支持行优先数组布局的代码生成。
 
 ## 描述
 
 设置信号的初始值
 
-IC 模块设置其输入端口处信号的初始条件，例如仿真开始时间 (`tstart`) 处的信号值。为此，该模块在开始仿真时输出所指定的初始条件，而无论输入信号的实际值如何。此后，该模块输出输入信号的实际值。
+IC 模块设置其输入端口的信号的初始条件，例如，仿真开始时 (`tstart`) 信号的值。为此，该模块在仿真开始时输出指定的初始条件，而不管输入信号的实际值为何。此后，该模块输出输入信号的实际值。
 
-IC 模块可用于为循环中的代数状态变量提供初始猜测。有关详细信息，请参阅代数环概念。
+IC 模块用于为环路中的代数状态变量提供初始估计值。有关详细信息，请参阅代数环概念。
 
-### 非零采样时间偏移下的行为
+### 非零采样时间偏移量的行为
 
-如果 IC 模块具有非零采样时间偏移 (`toffset`)，则 IC 模块在时间 `t` 输出其初始值，
+如果 IC 模块具有非零采样时间偏移量 (`toffset`)，IC 模块将在时间 `t` 输出其初始值，
 
-    t = n * tperiod + toffset
+```
+t = n * tperiod + toffset
+```
 
-其中 `n` 是使 `t ≥ tstart` 成立的最小整数。
+其中 `n` 是满足 `t ≥ tstart` 的最小整数。
 
-也就是说，IC 模块在采样时间为 `[tperiod, toffset]` 的模块首次执行时输出其初始值，该时间可能在 `tstart` 之后。
+即，IC 模块在模块以采样时间 `[tperiod, toffset]` 第一次执行时（可以在 `tstart` 之后）输出其初始值。

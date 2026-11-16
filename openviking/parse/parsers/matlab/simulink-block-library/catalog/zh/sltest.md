@@ -43,7 +43,7 @@ language: zh-CN
 - [Test Sequence](../../zh/products/sltest/ref/testsequence.md) — 官方英文摘要: Create simulation testing scenarios, function calls, and assessments **完整正文**
 - [Test Assessment](../../zh/products/sltest/ref/testassessment.md) — 官方英文摘要: Assess and verify behavior of system under test **完整正文**
 - [Sequence Viewer](../../zh/products/sltest/ref/sequenceviewer.md) — 官方英文摘要: Display messages, events, states, transitions, and functions between blocks during simulation **完整正文**
-- [Assertion](../../zh/products/sltest/../simulink/slref/assertion.md) — 官方英文摘要: Check whether signal is zero **完整正文**
+- [Assertion](../../zh/model-verification/assertion.md) — 官方英文摘要: Check whether signal is zero **完整正文**
 
 ## Test Execution
 

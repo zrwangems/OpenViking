@@ -16,19 +16,23 @@ chinese_source: worker-translation
 
 ## 端口
 
-在 R2025b 中未记录。
+R2025b 中未提供文档。
 
 ## 参数
 
-在 R2025b 中未记录。
+**Number of elements**
+:   输入向量中的元素数量。
+
+**Initial seed**
+:   随机数生成器的初始种子值。
 
 ## 所属库
 
-在 R2025b 中未记录。
+R2025b 中未提供文档。
 
 ## 模块特性
 
-在 R2025b 中未记录。
+R2025b 中未提供文档。
 
 ## 扩展功能
 
@@ -36,8 +40,14 @@ chinese_source: worker-translation
 
 ## 版本历史
 
-**R2006a 之前引入**
+**在 R2006a 之前推出**
 
 ## 描述
 
-使用随机置换重新排列输入符号
+使用随机置换对输入符号重新排序
+
+Random Interleaver 模块使用随机置换重新排列其输入向量中的元素。该模块接受列向量输入信号。**Number of elements** 参数指示输入向量中包含多少个数值。
+
+该模块接受以下数据类型：`int8`、`uint8`、`int16`、`uint16`、`int32`、`uint32`、`boolean`、`single`、`double` 和 fixed-point。输出信号的数据类型继承自输入信号。
+
+**Initial seed** 参数用于初始化模块确定置换时所用的随机数生成器。给定种子时，该模块生成的置换是可预测的，但不同的种子会产生不同的置换。

@@ -267,8 +267,8 @@ language: zh-CN
 
 ## Control and Instrumentation / Automated Testing
 
-- [Test Assessment](../../zh/products/slrealtime/../sltest/ref/testassessment.md) — 官方英文摘要: Assess and verify behavior of system under test **完整正文**
-- [Test Sequence](../../zh/products/slrealtime/../sltest/ref/testsequence.md) — 官方英文摘要: Create simulation testing scenarios, function calls, and assessments **完整正文**
+- [Test Assessment](../../zh/products/sltest/ref/testassessment.md) — 官方英文摘要: Assess and verify behavior of system under test **完整正文**
+- [Test Sequence](../../zh/products/sltest/ref/testsequence.md) — 官方英文摘要: Create simulation testing scenarios, function calls, and assessments **完整正文**
 
 ## Control and Instrumentation / Third-Party Calibration Support
 

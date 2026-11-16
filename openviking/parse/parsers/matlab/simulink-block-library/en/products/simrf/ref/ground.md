@@ -19,7 +19,11 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+The Ground block has no parameters.
+
+All models in the RF Blockset documentation contain a Ground block.
+See Model an RF Mixer for
+an introduction to circuit envelope simulation.
 
 ## Libraries
 

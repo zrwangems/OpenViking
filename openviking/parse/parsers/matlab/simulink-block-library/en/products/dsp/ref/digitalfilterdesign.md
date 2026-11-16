@@ -41,7 +41,9 @@ values.
 
 ## Parameters
 
-Not documented in R2025b.
+### Dialog Box
+
+For more information about the parameters in this dialog box, see Using Filter Designer.
 
 ## Libraries
 

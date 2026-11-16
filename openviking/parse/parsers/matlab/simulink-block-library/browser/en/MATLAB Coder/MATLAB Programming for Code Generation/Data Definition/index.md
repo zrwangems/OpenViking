@@ -1,0 +1,18 @@
+# Data Definition
+
+- [Array Layout](Array Layout/index.md)
+- [Categorical Arrays](Categorical Arrays/index.md)
+- [Cell Arrays](Cell Arrays/index.md)
+- [Characters and Strings](Characters and Strings/index.md)
+- [Datetime Arrays](Datetime Arrays/index.md)
+- [Deep Learning Arrays](Deep Learning Arrays/index.md)
+- [Dictionaries](Dictionaries/index.md)
+- [Duration Arrays](Duration Arrays/index.md)
+- [Enumerations](Enumerations/index.md)
+- [Function Handles](Function Handles/index.md)
+- [MATLAB Classes](MATLAB Classes/index.md)
+- [Numeric Types](Numeric Types/index.md)
+- [Structures](Structures/index.md)
+- [Tables](Tables/index.md)
+- [Timetables](Timetables/index.md)
+- [Variable-Size Data](Variable-Size Data/index.md)

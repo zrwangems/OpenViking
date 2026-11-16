@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'CAN FD Unpack'
-family: 'ti-c2000'
-product_id: 'ti-c2000'
-product_name: 'C2000 Microcontroller Blockset'
+family: 'ecoder'
+product_id: 'ecoder'
+product_name: 'Embedded Coder'
 documentation_release: R2025b
-official_category: 'Peripherals / Target Communication'
+official_category: 'Architecture and Component Design / Blocks for Embedded Targets'
 documentation_page: 'canfdunpack'
-documentation_source_path: '../ecoder/ref/canfdunpack.html'
+documentation_source_path: 'ref/canfdunpack.html'
 language: en
 ---
 

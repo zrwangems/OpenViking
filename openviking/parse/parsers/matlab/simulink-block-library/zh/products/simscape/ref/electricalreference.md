@@ -1,15 +1,15 @@
 ---
 type: simulink-block
 title: 'Electrical Reference'
-family: 'sps'
-product_id: 'sps'
-product_name: 'Simscape Electrical'
+family: 'simscape'
+product_id: 'simscape'
+product_name: 'Simscape'
 documentation_release: R2025b
-official_category: 'Electrical Block Libraries / Connectors and References\u200b'
+official_category: 'Foundation Block Libraries / Electrical Models / Electrical Elements'
 documentation_page: 'electricalreference'
-documentation_source_path: '../simscape/ref/electricalreference.html'
+documentation_source_path: 'ref/electricalreference.html'
 language: zh-CN
-chinese_source: worker-translation
+chinese_source: official
 ---
 
 # Electrical Reference
@@ -18,13 +18,13 @@ chinese_source: worker-translation
 
 ### 守恒
 
-### **V** — 电压为零的电气
+### **V** — 电压为零 电气
 
 电压等于零的电气守恒端口。
 
 ## 参数
 
-未在 R2025b 中记录。
+R2025b 官方文档未提供。
 
 ## 所属库
 
@@ -32,18 +32,18 @@ Simscape / Foundation Library / Electrical / Electrical Elements Simscape / Elec
 
 ## 模块特性
 
-未在 R2025b 中记录。
+R2025b 官方文档未提供。
 
 ## 扩展功能
 
-### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 和 C++ 代码。
+### C/C++ 代码生成 使用 Simulink® Coder™ 生成 C 代码和 C++ 代码。
 
 ## 版本历史
 
-**在 R2007a 中引入**
+**在 R2007a 中推出**
 
 ## 描述
 
-连接到电气地
+电气接地连接
 
-Electrical Reference 模块表示一个电气地。所有直接连接到地的模块的电气守恒端口都必须连接到 Electrical Reference 模块。包含电气元件的模型必须至少包含一个 Electrical Reference 模块。有关详细信息，请参阅接地规则。
+Electrical Reference 表示电气接地。所有模块直接接地的电气守恒端口都必须连接到一个 Electrical Reference 模块。带有电气元件的模型必须包含至少一个 Electrical Reference 模块。有关详细信息，请参阅Grounding Rules。

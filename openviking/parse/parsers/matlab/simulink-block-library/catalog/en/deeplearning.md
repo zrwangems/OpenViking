@@ -59,11 +59,11 @@ No direct block entries.
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Classification
 
-- [Wavelet Scattering](../../en/products/deeplearning/../dsp/ref/waveletscattering.md) — Official summary: Model wavelet scattering network in Simulink (Since R2022b) **full document**
+- [Wavelet Scattering](../../en/products/dsp/ref/waveletscattering.md) — Official summary: Model wavelet scattering network in Simulink (Since R2022b) **full document**
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Regression
 
-- [Wavelet Scattering](../../en/products/deeplearning/../dsp/ref/waveletscattering.md) — Official summary: Model wavelet scattering network in Simulink (Since R2022b) **full document**
+- [Wavelet Scattering](../../en/products/dsp/ref/waveletscattering.md) — Official summary: Model wavelet scattering network in Simulink (Since R2022b) **full document**
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Preprocessing and Feature Extraction
 
@@ -77,8 +77,8 @@ No direct block entries.
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Anomaly Detection
 
-- [Wavelet Scattering](../../en/products/deeplearning/../dsp/ref/waveletscattering.md) — Official summary: Model wavelet scattering network in Simulink (Since R2022b) **full document**
-- [Deep Signal Anomaly Detector](../../en/products/deeplearning/../dsp/ref/deepsignalanomalydetector.md) — Official summary: Detect signal anomalies using deep learning network in Simulink (Since R2024a) **full document**
+- [Wavelet Scattering](../../en/products/dsp/ref/waveletscattering.md) — Official summary: Model wavelet scattering network in Simulink (Since R2022b) **full document**
+- [Deep Signal Anomaly Detector](../../en/products/dsp/ref/deepsignalanomalydetector.md) — Official summary: Detect signal anomalies using deep learning network in Simulink (Since R2024a) **full document**
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Embedded AI Systems
 
@@ -87,14 +87,14 @@ No direct block entries.
 
 ## Applications / Signal Processing, Audio, and Wireless / Audio Processing
 
-- [VGGish](../../en/products/deeplearning/../audio/ref/vggishblock.md) — Official summary: VGGish embeddings extraction network (Since R2022a) **full document**
-- [VGGish Embeddings](../../en/products/deeplearning/../audio/ref/vggishembeddingsblock.md) — Official summary: Extract VGGish embeddings (Since R2022a) **full document**
-- [YAMNet](../../en/products/deeplearning/../audio/ref/yamnetblock.md) — Official summary: YAMNet sound classification network (Since R2021b) **full document**
-- [Sound Classifier](../../en/products/deeplearning/../audio/ref/soundclassifier.md) — Official summary: Classify sounds in audio signal (Since R2021b) **full document**
-- [OpenL3](../../en/products/deeplearning/../audio/ref/openl3block.md) — Official summary: OpenL3 embeddings extraction network (Since R2022b) **full document**
-- [OpenL3 Embeddings](../../en/products/deeplearning/../audio/ref/openl3embeddingsblock.md) — Official summary: Extract OpenL3 embeddings (Since R2022b) **full document**
-- [CREPE](../../en/products/deeplearning/../audio/ref/crepeblock.md) — Official summary: CREPE deep pitch estimation neural network (Since R2023a) **full document**
-- [Deep Pitch Estimator](../../en/products/deeplearning/../audio/ref/deeppitchestimator.md) — Official summary: Estimate pitch with CREPE deep learning neural network (Since R2023a) **full document**
+- [VGGish](../../en/products/audio/ref/vggishblock.md) — Official summary: VGGish embeddings extraction network (Since R2022a) **full document**
+- [VGGish Embeddings](../../en/products/audio/ref/vggishembeddingsblock.md) — Official summary: Extract VGGish embeddings (Since R2022a) **full document**
+- [YAMNet](../../en/products/audio/ref/yamnetblock.md) — Official summary: YAMNet sound classification network (Since R2021b) **full document**
+- [Sound Classifier](../../en/products/audio/ref/soundclassifier.md) — Official summary: Classify sounds in audio signal (Since R2021b) **full document**
+- [OpenL3](../../en/products/audio/ref/openl3block.md) — Official summary: OpenL3 embeddings extraction network (Since R2022b) **full document**
+- [OpenL3 Embeddings](../../en/products/audio/ref/openl3embeddingsblock.md) — Official summary: Extract OpenL3 embeddings (Since R2022b) **full document**
+- [CREPE](../../en/products/audio/ref/crepeblock.md) — Official summary: CREPE deep pitch estimation neural network (Since R2023a) **full document**
+- [Deep Pitch Estimator](../../en/products/audio/ref/deeppitchestimator.md) — Official summary: Estimate pitch with CREPE deep learning neural network (Since R2023a) **full document**
 
 ## Applications / Signal Processing, Audio, and Wireless / Wireless Communications
 
@@ -207,7 +207,7 @@ No direct block entries.
 - [Predict](../../en/products/deeplearning/ref/predict.md) — Official summary: Predict responses using a trained deep learning neural network **full document**
 - [Stateful Classify](../../en/products/deeplearning/ref/statefulclassify.md) — Official summary: Classify data using a trained deep learning recurrent neural network (Since R2021a) **full document**
 - [Stateful Predict](../../en/products/deeplearning/ref/statefulpredict.md) — Official summary: Predict responses using a trained recurrent neural network (Since R2021a) **full document**
-- [Deep Learning Object Detector](../../en/products/deeplearning/../vision/ref/deeplearningobjectdetector.md) — Official summary: Detect objects using trained deep learning object detector (Since R2021b) **full document**
+- [Deep Learning Object Detector](../../en/products/vision/ref/deeplearningobjectdetector.md) — Official summary: Detect objects using trained deep learning object detector (Since R2021b) **full document**
 - [TensorFlow Model Predict](../../en/products/deeplearning/ref/tensorflowmodelpredict.md) — Official summary: Predict responses using pretrained Python TensorFlow model (Since R2024a) **full document**
 - [PyTorch Model Predict](../../en/products/deeplearning/ref/pytorchmodelpredict.md) — Official summary: Predict responses using pretrained Python PyTorch model (Since R2024a) **full document**
 - [ONNX Model Predict](../../en/products/deeplearning/ref/onnxmodelpredict.md) — Official summary: Predict responses using pretrained Python ONNX model (Since R2024a) **full document**

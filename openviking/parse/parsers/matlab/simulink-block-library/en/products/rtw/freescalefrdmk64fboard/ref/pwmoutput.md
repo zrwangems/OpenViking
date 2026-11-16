@@ -19,7 +19,17 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Pin**
+:   Select the output pin to generate the pulse waveform. To view the
+    pin mapping, click **View pin map**.
+
+**Initial frequency (Hz)**
+:   Specify the initial frequency in Hertz. The default initial
+    frequency is 2000 Hz.
+
+**Initial duty cycle (0 – 100)**
+:   Specify the initial duty cycle between 0 to 100. The default
+    initial duty cycle is 0.
 
 ## Libraries
 
@@ -40,3 +50,9 @@ Not documented in R2025b.
 ## Description
 
 Generate pulse waveform on specified output pin
+
+Generate pulse waveform on the specified output pin. You can provide a value
+between 0 to 100 as the block input. The input value that you provide controls
+the duty cycle of the pulse waveform. For an input ‘0’, the block produces ‘0’
+percent duty cycle and for an input ‘100’, the block produces 100 duty
+cycle.

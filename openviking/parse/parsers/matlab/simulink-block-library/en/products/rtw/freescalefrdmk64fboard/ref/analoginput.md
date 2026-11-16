@@ -19,7 +19,16 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Pin**
+:   Select an analog pin from the list of values. To view the pin
+    mapping, click **View Pin
+    Map**.
+
+    The GPIO Pin Map appears.
+
+**Sample time**
+:   Specify how often this block reads the pin value in
+    seconds.
 
 ## Libraries
 
@@ -40,3 +49,7 @@ Not documented in R2025b.
 ## Description
 
 Measure the voltage of analog input pin
+
+Measure the voltage of an analog input pin to emit voltage in the range 0.0 to
+1.0. The maximum voltage the block outputs is determined by the input reference
+voltage VREFH with a default value 3.3 volt.

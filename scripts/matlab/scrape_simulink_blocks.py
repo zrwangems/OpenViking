@@ -111,24 +111,33 @@ def localized_content(html: bytes, entry: dict[str, str], language: str) -> tupl
 
     allowed = ZH_SECTIONS if language == "zh-CN" else SECTIONS
     candidates = main.select("div.refsect1.description, div.ref_sect, div.block_ref, div.refsect1")
+    # A block_ref wrapper can have a direct Description h2 while the actual
+    # prose lives in a nested refsect1 with the same h2. Select the richest
+    # candidate for each section instead of rendering the empty wrapper and
+    # then discarding the informative child as a duplicate.
+    by_title = {}
+    for candidate in candidates:
+        heading = candidate.find("h2", recursive=False)
+        if heading is not None:
+            title = heading.get_text(" ", strip=True)
+            if title in allowed:
+                by_title.setdefault(title, []).append(candidate)
+    selected = {
+        title: max(
+            items,
+            key=lambda item: (
+                sum(len(text) for text in item.stripped_strings if text != title),
+                len(list(item.parents)),
+            ),
+        )
+        for title, items in by_title.items()
+    }
     for section in candidates:
-        # Some hardware-block pages wrap Description in block_ref and put
-        # Parameters in plain refsect1 containers. Do not render nested
-        # candidates twice when both an ancestor and child match.
         section_heading = section.find("h2", recursive=False)
-        if section_heading is not None and any(
-            parent in candidates
-            and parent.find("h2", recursive=False) is not None
-            and parent.find("h2", recursive=False).get_text(" ", strip=True)
-            == section_heading.get_text(" ", strip=True)
-            for parent in section.parents
-            if parent is not main
-        ):
-            continue
         if section_heading is None:
             continue
         title = section_heading.get_text(" ", strip=True)
-        if title not in allowed:
+        if title not in allowed or selected[title] is not section:
             continue
         section_heading.extract()
         fragments = [section]

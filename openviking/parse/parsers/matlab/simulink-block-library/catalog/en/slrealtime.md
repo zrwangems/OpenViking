@@ -267,8 +267,8 @@ No direct block entries.
 
 ## Control and Instrumentation / Automated Testing
 
-- [Test Assessment](../../en/products/slrealtime/../sltest/ref/testassessment.md) — Official summary: Assess and verify behavior of system under test **full document**
-- [Test Sequence](../../en/products/slrealtime/../sltest/ref/testsequence.md) — Official summary: Create simulation testing scenarios, function calls, and assessments **full document**
+- [Test Assessment](../../en/products/sltest/ref/testassessment.md) — Official summary: Assess and verify behavior of system under test **full document**
+- [Test Sequence](../../en/products/sltest/ref/testsequence.md) — Official summary: Create simulation testing scenarios, function calls, and assessments **full document**
 
 ## Control and Instrumentation / Third-Party Calibration Support
 

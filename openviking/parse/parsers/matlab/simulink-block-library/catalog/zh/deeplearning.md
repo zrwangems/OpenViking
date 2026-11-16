@@ -59,11 +59,11 @@ language: zh-CN
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Classification
 
-- [Wavelet Scattering](../../zh/products/deeplearning/../dsp/ref/waveletscattering.md) — 官方英文摘要: Model wavelet scattering network in Simulink (Since R2022b) **完整正文**
+- [Wavelet Scattering](../../zh/products/dsp/ref/waveletscattering.md) — 官方英文摘要: Model wavelet scattering network in Simulink (Since R2022b) **完整正文**
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Regression
 
-- [Wavelet Scattering](../../zh/products/deeplearning/../dsp/ref/waveletscattering.md) — 官方英文摘要: Model wavelet scattering network in Simulink (Since R2022b) **完整正文**
+- [Wavelet Scattering](../../zh/products/dsp/ref/waveletscattering.md) — 官方英文摘要: Model wavelet scattering network in Simulink (Since R2022b) **完整正文**
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Preprocessing and Feature Extraction
 
@@ -77,8 +77,8 @@ language: zh-CN
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Anomaly Detection
 
-- [Wavelet Scattering](../../zh/products/deeplearning/../dsp/ref/waveletscattering.md) — 官方英文摘要: Model wavelet scattering network in Simulink (Since R2022b) **完整正文**
-- [Deep Signal Anomaly Detector](../../zh/products/deeplearning/../dsp/ref/deepsignalanomalydetector.md) — 官方英文摘要: Detect signal anomalies using deep learning network in Simulink (Since R2024a) **完整正文**
+- [Wavelet Scattering](../../zh/products/dsp/ref/waveletscattering.md) — 官方英文摘要: Model wavelet scattering network in Simulink (Since R2022b) **完整正文**
+- [Deep Signal Anomaly Detector](../../zh/products/dsp/ref/deepsignalanomalydetector.md) — 官方英文摘要: Detect signal anomalies using deep learning network in Simulink (Since R2024a) **完整正文**
 
 ## Applications / Signal Processing, Audio, and Wireless / Signal Processing / Embedded AI Systems
 
@@ -87,14 +87,14 @@ language: zh-CN
 
 ## Applications / Signal Processing, Audio, and Wireless / Audio Processing
 
-- [VGGish](../../zh/products/deeplearning/../audio/ref/vggishblock.md) — 官方英文摘要: VGGish embeddings extraction network (Since R2022a) **完整正文**
-- [VGGish Embeddings](../../zh/products/deeplearning/../audio/ref/vggishembeddingsblock.md) — 官方英文摘要: Extract VGGish embeddings (Since R2022a) **完整正文**
-- [YAMNet](../../zh/products/deeplearning/../audio/ref/yamnetblock.md) — 官方英文摘要: YAMNet sound classification network (Since R2021b) **完整正文**
-- [Sound Classifier](../../zh/products/deeplearning/../audio/ref/soundclassifier.md) — 官方英文摘要: Classify sounds in audio signal (Since R2021b) **完整正文**
-- [OpenL3](../../zh/products/deeplearning/../audio/ref/openl3block.md) — 官方英文摘要: OpenL3 embeddings extraction network (Since R2022b) **完整正文**
-- [OpenL3 Embeddings](../../zh/products/deeplearning/../audio/ref/openl3embeddingsblock.md) — 官方英文摘要: Extract OpenL3 embeddings (Since R2022b) **完整正文**
-- [CREPE](../../zh/products/deeplearning/../audio/ref/crepeblock.md) — 官方英文摘要: CREPE deep pitch estimation neural network (Since R2023a) **完整正文**
-- [Deep Pitch Estimator](../../zh/products/deeplearning/../audio/ref/deeppitchestimator.md) — 官方英文摘要: Estimate pitch with CREPE deep learning neural network (Since R2023a) **完整正文**
+- [VGGish](../../zh/products/audio/ref/vggishblock.md) — 官方英文摘要: VGGish embeddings extraction network (Since R2022a) **完整正文**
+- [VGGish Embeddings](../../zh/products/audio/ref/vggishembeddingsblock.md) — 官方英文摘要: Extract VGGish embeddings (Since R2022a) **完整正文**
+- [YAMNet](../../zh/products/audio/ref/yamnetblock.md) — 官方英文摘要: YAMNet sound classification network (Since R2021b) **完整正文**
+- [Sound Classifier](../../zh/products/audio/ref/soundclassifier.md) — 官方英文摘要: Classify sounds in audio signal (Since R2021b) **完整正文**
+- [OpenL3](../../zh/products/audio/ref/openl3block.md) — 官方英文摘要: OpenL3 embeddings extraction network (Since R2022b) **完整正文**
+- [OpenL3 Embeddings](../../zh/products/audio/ref/openl3embeddingsblock.md) — 官方英文摘要: Extract OpenL3 embeddings (Since R2022b) **完整正文**
+- [CREPE](../../zh/products/audio/ref/crepeblock.md) — 官方英文摘要: CREPE deep pitch estimation neural network (Since R2023a) **完整正文**
+- [Deep Pitch Estimator](../../zh/products/audio/ref/deeppitchestimator.md) — 官方英文摘要: Estimate pitch with CREPE deep learning neural network (Since R2023a) **完整正文**
 
 ## Applications / Signal Processing, Audio, and Wireless / Wireless Communications
 
@@ -207,7 +207,7 @@ language: zh-CN
 - [Predict](../../zh/products/deeplearning/ref/predict.md) — 官方英文摘要: Predict responses using a trained deep learning neural network **完整正文**
 - [Stateful Classify](../../zh/products/deeplearning/ref/statefulclassify.md) — 官方英文摘要: Classify data using a trained deep learning recurrent neural network (Since R2021a) **完整正文**
 - [Stateful Predict](../../zh/products/deeplearning/ref/statefulpredict.md) — 官方英文摘要: Predict responses using a trained recurrent neural network (Since R2021a) **完整正文**
-- [Deep Learning Object Detector](../../zh/products/deeplearning/../vision/ref/deeplearningobjectdetector.md) — 官方英文摘要: Detect objects using trained deep learning object detector (Since R2021b) **完整正文**
+- [Deep Learning Object Detector](../../zh/products/vision/ref/deeplearningobjectdetector.md) — 官方英文摘要: Detect objects using trained deep learning object detector (Since R2021b) **完整正文**
 - [TensorFlow Model Predict](../../zh/products/deeplearning/ref/tensorflowmodelpredict.md) — 官方英文摘要: Predict responses using pretrained Python TensorFlow model (Since R2024a) **完整正文**
 - [PyTorch Model Predict](../../zh/products/deeplearning/ref/pytorchmodelpredict.md) — 官方英文摘要: Predict responses using pretrained Python PyTorch model (Since R2024a) **完整正文**
 - [ONNX Model Predict](../../zh/products/deeplearning/ref/onnxmodelpredict.md) — 官方英文摘要: Predict responses using pretrained Python ONNX model (Since R2024a) **完整正文**

@@ -15,7 +15,8 @@ language: en
 
 ## Ports
 
-Not documented in R2025b.
+The block has one physical signal input port and two magnetic
+conserving ports associated with its magnetic terminals.
 
 ## Parameters
 
@@ -40,3 +41,13 @@ Not documented in R2025b.
 ## Description
 
 Ideal flux source driven by input signal
+
+The Controlled Flux Source block represents an
+ideal flux source that is powerful enough to maintain the specified
+flux through it regardless of the mmf across the source.
+
+The output flux is *PHI = PHIs*, where *PHIs* is
+the numerical value presented at the physical signal port.
+
+The positive direction of the flux flow is indicated by the
+arrow.

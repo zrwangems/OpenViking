@@ -120,5 +120,5 @@ No direct block entries.
 - [Software Composition](../../en/products/autosar/ref/softwarecomposition.md) — Official summary: Model software composition in AUTOSAR architecture model **full document**
 - [Diagnostic Service Component](../../en/products/autosar/ref/diagnosticservicecomponent.md) — Official summary: Configure AUTOSAR Diagnostic Services and Runtime Environment (RTE) for emulation **full document**
 - [NVRAM Service Component](../../en/products/autosar/ref/nvramservicecomponent.md) — Official summary: Configure AUTOSAR NVRAM Services and Runtime Environment (RTE) for emulation **full document**
-- [Adapter](../../en/products/autosar/../systemcomposer/ref/adapter.md) — Official summary: Connect components with different interfaces **full document**
+- [Adapter](../../en/products/systemcomposer/ref/adapter.md) — Official summary: Connect components with different interfaces **full document**
 - [Variant Component](../../en/products/autosar/ref/variantcomponent.md) — Official summary: Conditional variations of AUTOSAR architecture models (Since R2025a) **full document**

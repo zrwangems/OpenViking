@@ -43,7 +43,7 @@ No direct block entries.
 - [Test Sequence](../../en/products/sltest/ref/testsequence.md) — Official summary: Create simulation testing scenarios, function calls, and assessments **full document**
 - [Test Assessment](../../en/products/sltest/ref/testassessment.md) — Official summary: Assess and verify behavior of system under test **full document**
 - [Sequence Viewer](../../en/products/sltest/ref/sequenceviewer.md) — Official summary: Display messages, events, states, transitions, and functions between blocks during simulation **full document**
-- [Assertion](../../en/products/sltest/../simulink/slref/assertion.md) — Official summary: Check whether signal is zero **full document**
+- [Assertion](../../en/model-verification/assertion.md) — Official summary: Check whether signal is zero **full document**
 
 ## Test Execution
 

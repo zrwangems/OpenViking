@@ -19,7 +19,15 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**A value**
+:   The A-law parameter of the compressor.
+
+**Peak signal magnitude**
+:   The peak value of the input signal. This is also the peak value of the
+    output signal.
+
+Match these parameters to the ones in the corresponding A-Law
+Compressor block.
 
 ## Libraries
 
@@ -40,3 +48,12 @@ Not documented in R2025b.
 ## Description
 
 Implement A-law expander for source coding
+
+The A-Law Expander block recovers data that the A-Law
+Compressor block compressed. The formula for the A-law expander, shown
+below, is the inverse of the compressor function.
+
+x={y(1+logA)Afor 0≤|y|≤V1+logAexp(|y|(1+logA)/V−1)VAsgn(y)for V1+logA<|y|≤V
+
+The input can have any shape or frame status. This block processes each vector element
+independently.

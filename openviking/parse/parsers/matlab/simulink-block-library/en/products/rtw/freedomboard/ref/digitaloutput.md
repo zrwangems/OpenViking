@@ -19,7 +19,15 @@ Not documented in R2025b.
 
 ## Parameters
 
-Not documented in R2025b.
+**Pin**
+:   Select the digital pin.
+
+    Make sure not to assign the same pin number to multiple blocks within your
+    model.
+
+**View pin map**
+:   Click on this button to open a snapshot of the board with a reference to the
+    GPIO pins.
 
 ## Libraries
 
@@ -40,3 +48,9 @@ Not documented in R2025b.
 ## Description
 
 Set the logical value of a digital output pin
+
+Set the logical value of the selected digital output pin. There are 14 pins on the
+FRDM-KL25Z board that you can use as output for digital signals, D0-D13. The digital pin
+layout for this board is compatible with the standard Arduino Digital Pins.
+
+During simulations without the hardware, this block does nothing.

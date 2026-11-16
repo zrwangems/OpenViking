@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Monopulse Estimator'
-family: 'radar'
-product_id: 'radar'
-product_name: 'Radar Toolbox'
+family: 'phased'
+product_id: 'phased'
+product_name: 'Phased Array System Toolbox'
 documentation_release: R2025b
-official_category: 'Signal and Data Processing / Detection, Range, Angle, and Doppler Estimation'
+official_category: 'Beamforming and Direction of Arrival Estimation / Direction of Arrival Estimation / DOA for Arbitrary Array Geometries'
 documentation_page: 'monopulseestimator'
-documentation_source_path: '../phased/ref/monopulseestimator.html'
+documentation_source_path: 'ref/monopulseestimator.html'
 language: en
 ---
 
