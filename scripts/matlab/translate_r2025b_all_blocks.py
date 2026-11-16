@@ -115,10 +115,16 @@ def main() -> None:
     parser.add_argument("--product", action="append")
     parser.add_argument("--path", action="append", help="Only this documentation path; repeatable")
     parser.add_argument(
+        "--selection",
+        type=Path,
+        help="JSON array of [product, documentation_path] pairs to translate",
+    )
+    parser.add_argument(
         "--force", action="store_true", help="Retranslate even when Chinese is available"
     )
     parser.add_argument("--limit", type=int)
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--chunk-workers", type=int, default=1)
     parser.add_argument("--chunk-size", type=int, default=16000)
     parser.add_argument("--temperature", type=float, default=0)
     parser.add_argument(
@@ -138,12 +144,22 @@ def main() -> None:
     manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
     selected = set(args.product or [])
     selected_paths = set(args.path or [])
+    selection = (
+        {tuple(item) for item in json.loads(args.selection.read_text(encoding="utf-8"))}
+        if args.selection
+        else None
+    )
     work = []
     for product in manifest["products"]:
         if selected and product["id"] not in selected:
             continue
         for entry in unique_entries(product):
             if selected_paths and entry["documentation_path"] not in selected_paths:
+                continue
+            if (
+                selection is not None
+                and (product["id"], entry["documentation_path"]) not in selection
+            ):
                 continue
             if entry["documents"]["en"]["status"] == "available" and (
                 args.force or entry["documents"]["zh"]["status"] != "available"
@@ -199,9 +215,15 @@ def main() -> None:
                         time.sleep(5 * (attempt + 1))
                 raise AssertionError("unreachable")
 
-            translated = "\n\n".join(
-                translate_chunk(chunk) for chunk in split_source(source, args.chunk_size)
-            ).strip()
+            chunks = split_source(source, args.chunk_size)
+            if args.chunk_workers > 1:
+                with concurrent.futures.ThreadPoolExecutor(
+                    max_workers=args.chunk_workers
+                ) as chunk_pool:
+                    translated_chunks = list(chunk_pool.map(translate_chunk, chunks))
+            else:
+                translated_chunks = [translate_chunk(chunk) for chunk in chunks]
+            translated = "\n\n".join(translated_chunks).strip()
             validate_translation(source, translated)
             cached.parent.mkdir(parents=True, exist_ok=True)
             cached.write_text(translated + "\n", encoding="utf-8")
@@ -251,8 +273,12 @@ def main() -> None:
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     write_browser_tree(manifest, args.manifest.parent)
-    args.cache.mkdir(parents=True, exist_ok=True)
+    # Browser generation assigns the canonical document paths; persist them.
+    args.manifest.write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
     remaining = manifest_failures(manifest)
+    args.cache.mkdir(parents=True, exist_ok=True)
     (args.cache / "scrape-failures.json").write_text(
         json.dumps(remaining, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )

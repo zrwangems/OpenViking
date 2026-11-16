@@ -1,3 +1,0 @@
-# Effects
-
-- [Reverberator](reverberator.md)

@@ -70,9 +70,17 @@ def slug(value: str) -> str:
 def read_block_document(family: str, name: str, language: str = "en") -> str:
     """Structure a block page while adding a resource, not in the source library."""
     localized = "zh" if str(language).lower().startswith("zh") else "en"
-    path = library_root() / localized / family / f"{slug(name)}.md"
-    document = path.read_text(encoding="utf-8")
-    return normalize_block_document(document, language=localized)
+    normalized_name = slug(name)
+    for reference in block_references():
+        relative = reference.resource_path(localized)
+        if not relative or slug(reference.name) != normalized_name:
+            continue
+        resource_family = relative.rsplit("/", 1)[0].split("/", 1)[1]
+        slug_family = "/".join(slug(part) for part in resource_family.split("/"))
+        if slug_family == family:
+            document = (library_root() / relative).read_text(encoding="utf-8")
+            return normalize_block_document(document, language=localized)
+    raise FileNotFoundError(f"No packaged block document for {family}/{name} ({localized})")
 
 
 def read_reference_document(reference: BlockReference, language: str = "en") -> str:

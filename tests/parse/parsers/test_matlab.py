@@ -364,29 +364,30 @@ def test_library_browser_manifest_counts_and_canonical_layout():
     assert products["stateflow"]["block_occurrences"] == 10
     assert products["simscape"]["block_occurrences"] == 276
     assert "matlab" not in products
-    common = root / "en/simulink/commonly-used-blocks"
+    common = root / "en/Simulink/Commonly Used Blocks"
     assert len(list(common.glob("*.md"))) == 24  # 23 blocks plus index
-    quick_insert = (root / "zh/simulink/quick-insert/index.md").read_text(encoding="utf-8")
+    quick_insert = (root / "zh/Simulink/Quick Insert/index.md").read_text(encoding="utf-8")
     assert "依赖模型上下文的动态插入入口" in quick_insert
     assert "[返回上级目录](../index.md)" in quick_insert
     loop_shaping = root / (
-        "zh/control/control-system-design-and-tuning/multiloop-multiobjective-tuning/"
-        "loop-shaping-design/index.md"
+        "zh/Control System Toolbox/Control System Design and Tuning/"
+        "Multiloop, Multiobjective Tuning/Loop-Shaping Design/index.md"
     )
     loop_shaping_text = loop_shaping.read_text(encoding="utf-8")
     assert "不表示对应产品功能为空" in loop_shaping_text
     assert "[返回上级目录](../index.md)" in loop_shaping_text
     assert "[查看 Control System Toolbox 目录](../../../index.md)" in loop_shaping_text
     assert (loop_shaping.parent / "../../../index.md").resolve() == (
-        root / "zh/control/index.md"
+        root / "zh/Control System Toolbox/index.md"
     ).resolve()
     for language, obsolete_text in (("en", "No fixed block entries."), ("zh", "无固定块条目。")):
         for index in (root / language).rglob("index.md"):
             text = index.read_text(encoding="utf-8")
             assert obsolete_text not in text, index
             assert len(text.splitlines()) >= 3, index
-    assert len(list((root / "en").rglob("*.md"))) == 6229
-    assert len(list((root / "zh").rglob("*.md"))) == 6229
+    assert len(list((root / "en").rglob("*.md"))) == 6230
+    assert len(list((root / "zh").rglob("*.md"))) == 6230
+
     for language in ("en", "zh"):
         browser = root / language
         root_index = (browser / "index.md").read_text(encoding="utf-8")
@@ -399,12 +400,14 @@ def test_library_browser_manifest_counts_and_canonical_layout():
             "Wireless HDL Toolbox",
         ]
         assert "5G Toolbox" not in entries
-        assert (browser / "communications-toolbox-hdl-support/index.md").is_file()
-        assert (browser / "dsp-system-toolbox-hdl-support/index.md").is_file()
-        assert (browser / "fixed-point-designer-hdl-support/index.md").is_file()
-        assert (browser / "motor-control-blockset-hdl-support/index.md").is_file()
-        assert (browser / "report-generator/index.md").is_file()
-        assert (browser / "simulink-extras/index.md").is_file()
+        assert (browser / "Aerospace Blockset/index.md").is_file()
+        assert not (browser / "aeroblks").exists()
+        assert (browser / "Communications Toolbox HDL Support/index.md").is_file()
+        assert (browser / "DSP System Toolbox HDL Support/index.md").is_file()
+        assert (browser / "Fixed-Point Designer HDL Support/index.md").is_file()
+        assert (browser / "Motor Control Blockset HDL Support/index.md").is_file()
+        assert (browser / "Report Generator/index.md").is_file()
+        assert (browser / "Simulink Extras/index.md").is_file()
         assert not (browser / "5g").exists()
     assert "# Simulink 库浏览器" in (root / "zh/index.md").read_text()
     assert (
@@ -429,7 +432,8 @@ def test_library_browser_manifest_counts_and_canonical_layout():
                         language, document["path"]
                     )
                     assert resource.is_file()
-    assert len(unique_documents) == 7798
+    # Repeated Browser occurrences share the owning product's canonical document.
+    assert len(unique_documents) == 2 * totals["unique_product_document_paths"]
 
 
 def test_toolbox_matching_uses_original_product_and_library_path():
@@ -500,9 +504,9 @@ def test_scraped_block_knowledge_is_local_and_complete():
         assert "## 中文" not in text
         assert "language: zh-CN" in chinese_text
         assert re.search(r"[\u4e00-\u9fff]", chinese_text)
-    logical = (
-        english / "simulink/logic-and-bit-operations/logical-operator.md"
-    ).read_text(encoding="utf-8")
+    logical = (english / "Simulink/Logic and Bit Operations/Logical Operator.md").read_text(
+        encoding="utf-8"
+    )
     assert "Perform specified logical operation on input" in logical
     assert "## Ports" in logical
     assert "## Parameters" in logical
@@ -510,21 +514,23 @@ def test_scraped_block_knowledge_is_local_and_complete():
     assert "## Block Characteristics" in logical
 
     # Alternative configurations point to the real Sum documentation, not a guessed page.
-    total = (english / "simulink/math-operations/sum.md").read_text(encoding="utf-8")
+    total = (english / "Simulink/Math Operations/Sum.md").read_text(encoding="utf-8")
     assert "documentation_page: 'sum'" in total
     assert "Add, Subtract, Sum of Elements" in total
     assert "Add or subtract inputs" in total
 
-    dashboard = english / "simulink/dashboard/knob.md"
-    strings = english / "simulink/string/string-constant.md"
-    additional = english / "simulink/additional-math-and-discrete/increment-real-world.md"
+    dashboard = english / "Simulink/Dashboard/Knob.md"
+    strings = english / "Simulink/String/String Constant.md"
+    additional = english / "Simulink/Additional Math and Discrete/Increment Real World.md"
     assert dashboard.is_file()
     assert strings.is_file()
     assert additional.is_file()
-    assert "# Continuous" in (english / "simulink/continuous/index.md").read_text(encoding="utf-8")
+    assert "# Continuous" in (english / "Simulink/Continuous/index.md").read_text(
+        encoding="utf-8"
+    )
     assert "documentation_release: R2025b" in logical
     assert not (root / "datetime").exists()
-    assert "# Messages & Events" in (english / "simulink/messages-events/index.md").read_text(
+    assert "# Messages & Events" in (english / "Simulink/Messages & Events/index.md").read_text(
         encoding="utf-8"
     )
 

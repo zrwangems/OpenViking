@@ -1,0 +1,17 @@
+# Incremental Learning Blocks
+
+- [IncrementalClassificationLinear Predict](IncrementalClassificationLinear Predict.md)
+- [IncrementalClassificationLinear Fit](IncrementalClassificationLinear Fit.md)
+- [IncrementalRegressionLinear Predict](IncrementalRegressionLinear Predict.md)
+- [IncrementalRegressionLinear Fit](IncrementalRegressionLinear Fit.md)
+- [IncrementalClassificationECOC Fit](IncrementalClassificationECOC Fit.md)
+- [IncrementalClassificationECOC Predict](IncrementalClassificationECOC Predict.md)
+- [IncrementalClassificationKernel Fit](IncrementalClassificationKernel Fit.md)
+- [IncrementalClassificationKernel Predict](IncrementalClassificationKernel Predict.md)
+- [IncrementalRegressionKernel Fit](IncrementalRegressionKernel Fit.md)
+- [IncrementalRegressionKernel Predict](IncrementalRegressionKernel Predict.md)
+- [IncrementalClassificationNaiveBayes Fit](IncrementalClassificationNaiveBayes Fit.md)
+- [IncrementalClassificationNaiveBayes Predict](IncrementalClassificationNaiveBayes Predict.md)
+- [Detect Drift](Detect Drift.md)
+- [Per Observation Loss](Per Observation Loss.md)
+- [Update Metrics](Update Metrics.md)

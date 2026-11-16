@@ -1,0 +1,18 @@
+# User-Defined Functions
+
+- [C Caller](C Caller.md)
+- [C Function](C Function.md)
+- [Fcn](Fcn.md)
+- [Function Caller](Function Caller.md)
+- [Initialize Function](Initialize Function.md)
+- [Interpreted MATLAB Function](Interpreted MATLAB Function.md)
+- [Level-2 MATLAB S-Function](Level-2 MATLAB S-Function.md)
+- [MATLAB Function](MATLAB Function.md)
+- [MATLAB System](MATLAB System.md)
+- [Python Code](Python Code.md)
+- [Reinitialize Function](Reinitialize Function.md)
+- [Reset Function](Reset Function.md)
+- [S-Function](S-Function.md)
+- [S-Function Builder](S-Function Builder.md)
+- [Simulink Function](Simulink Function.md)
+- [Terminate Function](Terminate Function.md)

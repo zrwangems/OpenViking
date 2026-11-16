@@ -122,7 +122,9 @@ def find_block(block_type: str, source_block: str = "") -> tuple[str, str] | Non
     if not relative or not relative.startswith("en/"):
         return None
     family = relative.removeprefix("en/").rsplit("/", 1)[0]
-    return family, reference.name
+    # Keep the established slug-based lookup API independent of the official
+    # display names used by the on-disk Library Browser tree.
+    return "/".join(slug(part) for part in family.split("/")), reference.name
 
 
 def export_catalog(directory: str | Path) -> list[Path]:

@@ -1,3 +1,0 @@
-# Systems
-
-- [Channel](channel.md)
