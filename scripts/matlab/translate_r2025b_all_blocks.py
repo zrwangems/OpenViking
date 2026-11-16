@@ -21,7 +21,6 @@ from extract_r2025b_block_manifest import (
     refresh_totals,
     report,
     write_browser_tree,
-    write_catalog,
 )
 from scrape_r2025b_all_blocks import unique_entries
 
@@ -251,17 +250,17 @@ def main() -> None:
     args.manifest.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    write_catalog(manifest, args.manifest.parent)
     write_browser_tree(manifest, args.manifest.parent)
+    args.cache.mkdir(parents=True, exist_ok=True)
     remaining = manifest_failures(manifest)
-    (args.manifest.parent / "scrape-failures.json").write_text(
+    (args.cache / "scrape-failures.json").write_text(
         json.dumps(remaining, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     docs = Path(__file__).parents[2] / "docs"
     en, zh = report(manifest)
     (docs / "en/reference/matlab-block-library-coverage.md").write_text(en, encoding="utf-8")
     (docs / "zh/reference/matlab-block-library-coverage.md").write_text(zh, encoding="utf-8")
-    (args.manifest.parent / "translation-failures.json").write_text(
+    (args.cache / "translation-failures.json").write_text(
         json.dumps(failures, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     print(json.dumps(manifest["totals"], ensure_ascii=False, indent=2))

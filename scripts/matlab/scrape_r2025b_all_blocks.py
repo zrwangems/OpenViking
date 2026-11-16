@@ -23,7 +23,6 @@ from extract_r2025b_block_manifest import (
     refresh_totals,
     report,
     write_browser_tree,
-    write_catalog,
 )
 from scrape_simulink_blocks import localized_content
 
@@ -209,9 +208,9 @@ def main() -> None:
     args.manifest.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    write_catalog(manifest, root)
     write_browser_tree(manifest, root)
-    failure_path = root / "scrape-failures.json"
+    failure_path = args.cache / "scrape-failures.json"
+    args.cache.mkdir(parents=True, exist_ok=True)
     all_failures = manifest_failures(manifest)
     failure_path.write_text(
         json.dumps(all_failures, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"

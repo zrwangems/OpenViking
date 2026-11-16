@@ -49,7 +49,7 @@ def render_block_template(
         return None
     if reference.product_id == "simulink" and "Commonly Used Blocks" in source_block.split("/"):
         document = read_block_document(
-            "browser/simulink/commonly-used-blocks", name, language=language
+            "simulink/commonly-used-blocks", name, language=language
         )
     else:
         document = read_reference_document(reference, language=language)

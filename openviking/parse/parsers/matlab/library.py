@@ -44,7 +44,7 @@ def manifest() -> dict:
 
 @lru_cache(maxsize=1)
 def block_references() -> tuple[BlockReference, ...]:
-    """Read all 5,431 official R2025b library occurrences, including gaps."""
+    """Read every packaged R2025b Library Browser occurrence, including gaps."""
     return tuple(
         BlockReference(
             product_id=product["id"],
@@ -70,11 +70,7 @@ def slug(value: str) -> str:
 def read_block_document(family: str, name: str, language: str = "en") -> str:
     """Structure a block page while adding a resource, not in the source library."""
     localized = "zh" if str(language).lower().startswith("zh") else "en"
-    if family == "browser" or family.startswith("browser/"):
-        relative = family.removeprefix("browser/")
-        path = library_root() / "browser" / localized / relative / f"{slug(name)}.md"
-    else:
-        path = library_root() / localized / family / f"{slug(name)}.md"
+    path = library_root() / localized / family / f"{slug(name)}.md"
     document = path.read_text(encoding="utf-8")
     return normalize_block_document(document, language=localized)
 

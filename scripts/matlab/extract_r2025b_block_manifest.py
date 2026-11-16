@@ -343,78 +343,8 @@ def report(manifest: dict) -> tuple[str, str]:
     return "\n".join(english) + "\n", "\n".join(chinese) + "\n"
 
 
-def write_catalog(manifest: dict, root: Path) -> None:
-    """Write browsable bilingual catalogs without claiming full translations."""
-    for language in ("en", "zh"):
-        target = root / "catalog" / language
-        target.mkdir(parents=True, exist_ok=True)
-        totals = manifest["totals"]
-        if language == "en":
-            index = [
-                "# R2025b all-product block catalog",
-                "",
-                f"{totals['block_occurrences']} product/library/block occurrences across {totals['products_with_blocks']} products. Linked pages have full local documentation; metadata-only entries explicitly remain pending.",
-                "",
-            ]
-        else:
-            index = [
-                "# R2025b 全产品块目录",
-                "",
-                f"共 {totals['products_with_blocks']} 个产品、{totals['block_occurrences']} 个库中条目。带链接的块有本地完整正文；仅元数据条目明确标为待补。目录中的官方摘要保留英文，不冒充中文翻译。",
-                "",
-            ]
-        for product in manifest["products"]:
-            index.append(
-                f"- [{product['name']}]({product['id']}.md): {product['block_occurrences']}"
-            )
-            lines = [
-                "---",
-                "type: simulink-product-block-catalog",
-                f"product: {product['id']!r}",
-                "release: R2025b",
-                f"language: {'zh-CN' if language == 'zh' else 'en'}",
-                "---",
-                "",
-                f"# {product['name']}",
-                "",
-            ]
-            if product["status"] != "enumerated":
-                lines.append(
-                    "该产品没有官方块库 XML，不据此推断其没有 MATLAB 功能。"
-                    if language == "zh"
-                    else "This product has no official block-library XML; this does not imply that it has no MATLAB functionality."
-                )
-            for library in product["libraries"]:
-                location = " / ".join(library["path"])
-                lines.extend([f"## {location}", ""])
-                if not library["blocks"]:
-                    lines.extend(
-                        ["无直接块条目。" if language == "zh" else "No direct block entries.", ""]
-                    )
-                for block in library["blocks"]:
-                    document = block["documents"][language]
-                    title = block["name"]
-                    if document["status"] == "available" and document["path"]:
-                        title = f"[{title}](../../{document['path']})"
-                        status = "完整正文" if language == "zh" else "full document"
-                    else:
-                        status = (
-                            "仅元数据，中英文正文待补"
-                            if language == "zh"
-                            else "metadata only; full English and Chinese documents pending"
-                        )
-                    summary_label = "官方英文摘要" if language == "zh" else "Official summary"
-                    lines.append(f"- {title} — {summary_label}: {block['summary']} **{status}**")
-                lines.append("")
-            (target / f"{product['id']}.md").write_text(
-                "\n".join(lines).rstrip() + "\n", encoding="utf-8"
-            )
-        (target / "index.md").write_text("\n".join(index) + "\n", encoding="utf-8")
-
-
-# Top-level order from the requester's R2025b Library Browser. This is an
-# installation profile, not the public MathWorks product catalog. The latter
-# remains available under catalog/ and products/.
+# Top-level order from the requester's R2025b Library Browser. The two
+# canonical language directories contain only this installation profile.
 BROWSER_PRODUCTS = [
     ("Simulink", "simulink"),
     ("Aerospace Blockset", "aeroblks"),
@@ -533,10 +463,41 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
         for _, directory in BROWSER_PRODUCTS
         if directory in by_id and by_id[directory]["status"] == "enumerated"
     ]
+    for product in products:
+        if product["id"] == "simulink":
+            product["libraries"] = [
+                library
+                for library in product["libraries"]
+                if tuple(library["path"][:2])
+                == ("Simulink Environment Fundamentals", "Block Libraries")
+            ]
+        product["block_occurrences"] = sum(
+            len(library["blocks"]) for library in product["libraries"]
+        )
+        product["unique_document_paths"] = len(
+            {
+                block["documentation_path"]
+                for library in product["libraries"]
+                for block in library["blocks"]
+            }
+        )
+    manifest["products"] = products
+    manifest["scope"] = "the 66-entry local R2025b Library Browser installation profile"
+    refresh_totals(manifest)
     if len(BROWSER_PRODUCTS) != 66 or len(browser_ids) != 66:
         raise ValueError("The installed Browser profile must contain 66 unique top-level entries")
+    # Scraper staging files and previous Browser trees are both valid inputs.
+    # Load them before replacing either canonical language directory.
+    source_documents = {
+        (id(block), language): (root / document["path"]).read_text(encoding="utf-8")
+        for product in products
+        for library in product["libraries"]
+        for block in library["blocks"]
+        for language, document in block["documents"].items()
+        if document["status"] == "available" and document["path"]
+    }
     for language in ("en", "zh"):
-        browser_root = root / "browser" / language
+        browser_root = root / language
         shutil.rmtree(browser_root, ignore_errors=True)
         browser_root.mkdir(parents=True, exist_ok=True)
         root_index = [
@@ -578,7 +539,7 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                     target.parent.mkdir(parents=True, exist_ok=True)
                     document = block["documents"][language]
                     if document["status"] == "available" and document["path"]:
-                        content = (root / document["path"]).read_text(encoding="utf-8")
+                        content = source_documents[(id(block), language)]
                     else:
                         content = f"# {block['name']}\n\n{block['summary']}\n\n" + (
                             "完整中英文正文待补。\n"
@@ -588,6 +549,7 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                     target.write_text(content, encoding="utf-8")
                     relative = target.relative_to(root).as_posix()
                     block.setdefault("resource_paths", {})[language] = relative
+                    document["path"] = relative
             if product["id"] == "simulink":
                 common_key = ("simulink", "commonly-used-blocks")
                 nodes.setdefault(("simulink",), {"name": "Simulink", "blocks": []})
@@ -599,10 +561,10 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                 for name in COMMON_BLOCKS:
                     block = by_name[name]
                     nodes[common_key]["blocks"].append(block)
-                    source = root / block["documents"][language]["path"]
+                    content = source_documents[(id(block), language)]
                     target = browser_root / "simulink/commonly-used-blocks" / f"{slug(name)}.md"
                     target.parent.mkdir(parents=True, exist_ok=True)
-                    target.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
+                    target.write_text(content, encoding="utf-8")
                 quick = browser_root / "simulink/quick-insert/index.md"
                 quick.parent.mkdir(parents=True, exist_ok=True)
                 quick.write_text(
@@ -665,79 +627,29 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
         root_entries = BROWSER_PRODUCTS
         root_index.extend(f"- [{name}]({directory}/index.md)" for name, directory in root_entries)
         (browser_root / "index.md").write_text("\n".join(root_index) + "\n", encoding="utf-8")
-        reference_index = root / language / "index.md"
-        reference_index.write_text(
-            (
-                "# R2025b 块文档参考存储\n\n"
-                "这里保存去重正文和旧基础 Simulink 分类，**不是 Library Browser 顶层目录**。"
-                "请从 [中文 Library Browser](../browser/zh/index.md) 按本机产品树浏览；"
-                "`products/<产品>/ref/` 是完整正文，`commonly-used-blocks` 等旧目录只保留基础 Simulink 的 341 个参考条目。\n\n"
-                "完整产品清单见 [全产品目录](../catalog/zh/index.md)。\n"
-                if language == "zh"
-                else "# R2025b block-document reference storage\n\n"
-                "This directory stores deduplicated documents and legacy base-Simulink categories; "
-                "**it is not the Library Browser root**. Use the [English Library Browser](../browser/en/index.md) "
-                "for the installed product tree. `products/<product>/ref/` stores full documents; "
-                "legacy categories such as `commonly-used-blocks` contain only the 341 base-Simulink reference entries.\n\n"
-                "See the [all-product catalog](../catalog/en/index.md) for the complete public catalog.\n"
-            ),
-            encoding="utf-8",
-        )
     totals = manifest["totals"]
-    (root / "index.md").write_text(
+    (root / "README.md").write_text(
         "# Simulink Block Library\n\n"
-        "- [English Library Browser](browser/en/index.md)\n"
-        "- [中文 Library Browser](browser/zh/index.md)\n"
-        "- [English product catalog](catalog/en/index.md)\n"
-        "- [中文产品目录](catalog/zh/index.md)\n"
-        "- [R2025b manifest](manifest.json)\n\n"
-        f"Official catalog: {totals['products']} products, {totals['products_with_blocks']} with block libraries, "
-        f"{totals['block_occurrences']} occurrences and {totals['unique_product_document_paths']} unique document paths. "
-        f"Full English pages: {totals['full_documents']['en']}; full Chinese pages: {totals['full_documents']['zh']}. "
-        "The Browser root mirrors the requester's 66-entry local R2025b installation profile in screenshot order. "
-        "The all-product catalog retains other public MathWorks products. product/ref pages are deduplicated document storage, not the Browser hierarchy. "
-        "Report Generator and Simulink Extras have no independent public block XML and require local enumeration. "
-        "Third-party and machine-local support packages require separate enumeration.\n",
+        "MATLAB/Simulink R2025b 资源添加时使用的本地块参考库。"
+        "`zh/` 和 `en/` 是正式 Library Browser 目录，按产品、子库和块组织；"
+        "解析器按块原始名称及 `SourceBlock` 匹配文档，无需联网。\n\n"
+        "- [中文块库](zh/index.md)\n"
+        "- [English block library](en/index.md)\n\n"
+        f"当前包含 {totals['block_occurrences']} 个库中块条目，中英文正文均已生成。"
+        "`manifest.json` 是解析器和离线生成脚本使用的机器元数据，不是 OV 资源页面。"
+        "重新生成使用 `scripts/matlab/` 下的 R2025b 脚本；抓取缓存和失败日志保存在库目录之外。\n",
         encoding="utf-8",
     )
-    selected_products = {p["id"] for p in products}
-    public_only = [
-        p["name"]
-        for p in manifest["products"]
-        if p["status"] == "enumerated" and p["id"] not in selected_products
-    ]
-    simulink = by_id["simulink"]
-    hardware_paths = {
-        block["documentation_path"]
-        for library in simulink["libraries"]
-        if library["path"][0] == "Simulink Supported Hardware"
-        for block in library["blocks"]
-    }
-    hardware_occurrences = sum(
-        len(library["blocks"])
-        for library in simulink["libraries"]
-        if library["path"][0] == "Simulink Supported Hardware"
-    )
-    (root / "library-browser-reconciliation.md").write_text(
-        "# R2025b Library Browser 对账\n\n"
-        "## 数量口径\n\n"
-        f"- 公共目录有块库 XML 的产品：{totals['products_with_blocks']}；产品→库→块出现条目：{totals['block_occurrences']}。\n"
-        f"- 产品内去重文档路径：{totals['unique_product_document_paths']}，英文和中文各 {totals['full_documents']['en']} 份完整正文。此前的 4609 是错误数字，实际为 {totals['unique_product_document_paths']}。\n"
-        "- 4603 不是用户本机全部块数，也不是全局不同块名数；同一块可属于多个库，同一文档路径也可被多个块引用。\n"
-        "- 用户截图有 66 个本机顶层入口。旧生成器有 77 个：63 个相同，14 个仅属于公共目录，漏掉 3 个本机入口。现在 Browser 根目录严格保留截图的 66 项及其顺序。\n\n"
-        "## 旧目录真实差异\n\n"
-        "| 差异 | 数量 | 项目 |\n| --- | ---: | --- |\n"
-        f"| 旧 Browser 有、截图无 | {len(public_only)} | {', '.join(public_only)} |\n"
-        "| 截图有、旧 Browser 无 | 3 | Motor Control Blockset HDL Support、Report Generator、Simulink Extras |\n"
-        "| 两边都有 | 63 | 60 个公共产品库及 Communications/DSP System/Fixed-Point Designer 3 个 HDL Support 入口 |\n\n"
-        "## 本机与公开文档边界\n\n"
-        "- 截图只能证明这 66 个顶层入口，不能证明隐藏子库、第三方自定义库或未展开硬件支持包的完整性。截图中没有可识别的第三方自定义库，不能据此写成第三方库为 0。\n"
-        "- Motor Control Blockset HDL Support 是本机支持库入口；公开目录没有独立 XML。当前只链接关联产品参考文档，不把关联产品块冒充支持库全量。\n"
-        "- Report Generator、Simulink Extras 同样没有独立公共块库 XML，保留入口并明确等待本机枚举。\n"
-        f"- 公共 Simulink XML 还含硬件支持文档：{hardware_occurrences} 个出现条目、{len(hardware_paths)} 个独立文档路径。它们计入 4603 的公共正文范围，但不因此断言已经安装在用户本机，也不混入截图的 Simulink 基础库目录。\n"
-        "- `zh/`、`en/` 是正文参考存储及旧基础分类；`browser/zh/`、`browser/en/` 才是按截图组织的产品树。`catalog/` 保留所有公共产品，`products/*/ref/` 保存去重正文。\n",
-        encoding="utf-8",
-    )
+    (root / "index.md").unlink(missing_ok=True)
+    for redundant in ("browser", "catalog"):
+        shutil.rmtree(root / redundant, ignore_errors=True)
+    for report_name in (
+        "library-browser-reconciliation.md",
+        "scrape-failures.json",
+        "scrape-failures.md",
+        "translation-failures.json",
+    ):
+        (root / report_name).unlink(missing_ok=True)
 
 
 def main() -> None:
@@ -801,9 +713,8 @@ def main() -> None:
             raise SystemExit(
                 f"Official R2025b snapshot changed; review before updating: {differences}"
             )
-    write_catalog(manifest, args.output.parent)
     write_browser_tree(manifest, args.output.parent)
-    # Browser generation assigns resource_paths; persist them in the same run.
+    # Browser generation assigns the canonical document paths; persist them.
     args.output.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )

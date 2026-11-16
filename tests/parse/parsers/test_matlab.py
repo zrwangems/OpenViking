@@ -325,54 +325,52 @@ def test_block_templates_follow_resource_language():
 
 
 def test_standard_library_and_external_library_matching():
-    assert find_block("Logic") == ("browser/simulink/logic-and-bit-operations", "Logical Operator")
+    assert find_block("Logic") == ("simulink/logic-and-bit-operations", "Logical Operator")
     assert find_block("Reference", "autolibdcdc/Bidirectional DC-DC") is None
     assert find_block_reference("Reference", "autolibdcdc/Bidirectional DC-DC") is None
-    assert find_block("Display", "simulink/Sinks/Display") == ("browser/simulink/sinks", "Display")
-    assert find_block("Inport", "simulink/Sources/Inport") == ("browser/simulink/sources", "Inport")
+    assert find_block("Display", "simulink/Sinks/Display") == ("simulink/sinks", "Display")
+    assert find_block("Inport", "simulink/Sources/Inport") == ("simulink/sources", "Inport")
     assert find_block("Gain", "simulink/Commonly Used Blocks/Gain") == (
-        "browser/simulink/commonly-used-blocks",
+        "simulink/commonly-used-blocks",
         "Gain",
     )
     assert find_block("MatrixConcatenate", "simulink/Matrix Operations/Matrix Concatenate") == (
-        "browser/simulink/matrix-operations",
+        "simulink/matrix-operations",
         "Matrix Concatenate",
     )
 
 
-def test_all_product_manifest_counts_and_explicit_document_gaps():
+def test_library_browser_manifest_counts_and_canonical_layout():
     root = Path(__file__).parents[3] / "openviking/parse/parsers/matlab/simulink-block-library"
     manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
     assert manifest["release"] == "R2025b"
     totals = manifest["totals"]
-    assert totals["products"] == 133
-    assert totals["products_with_blocks"] == 74
-    assert totals["products_without_block_library"] == 59
-    assert totals["block_occurrences"] == 5431
-    assert totals["unique_product_document_paths"] == 4603
-    assert totals["full_document_occurrences"] == {"en": 5431, "zh": 5431}
-    assert totals["full_documents"] == {"en": 4603, "zh": 4603}
+    assert totals["products"] == 60
+    assert totals["products_with_blocks"] == 60
+    assert totals["products_without_block_library"] == 0
+    assert totals["block_occurrences"] == 3899
+    assert totals["unique_product_document_paths"] == 3404
+    assert totals["full_document_occurrences"] == {"en": 3899, "zh": 3899}
+    assert totals["full_documents"] == {"en": 3404, "zh": 3404}
     assert totals["pending_documents"] == {"en": 0, "zh": 0}
-    assert json.loads((root / "scrape-failures.json").read_text()) == []
-    assert json.loads((root / "translation-failures.json").read_text()) == []
+    assert not (root / "scrape-failures.json").exists()
+    assert not (root / "translation-failures.json").exists()
+    assert not (root / "library-browser-reconciliation.md").exists()
+    assert not (root / "browser").exists()
+    assert not (root / "catalog").exists()
+    assert (root / "README.md").is_file()
     products = {product["id"]: product for product in manifest["products"]}
-    assert products["simulink"]["block_occurrences"] == 839
+    assert products["simulink"]["block_occurrences"] == 341
     assert products["stateflow"]["block_occurrences"] == 10
     assert products["simscape"]["block_occurrences"] == 276
-    assert products["matlab"]["status"] == "no_block_library"
-    for language in ("en", "zh"):
-        catalog = root / "catalog" / language
-        assert len(list(catalog.glob("*.md"))) == 134  # 133 products plus index
-    chinese_stateflow = (root / "catalog/zh/stateflow.md").read_text(encoding="utf-8")
-    assert "Chart" in chinese_stateflow
-    assert "仅元数据，中英文正文待补" not in chinese_stateflow
-    common = root / "browser/en/simulink/commonly-used-blocks"
+    assert "matlab" not in products
+    common = root / "en/simulink/commonly-used-blocks"
     assert len(list(common.glob("*.md"))) == 24  # 23 blocks plus index
-    assert "Quick Insert" in (root / "browser/en/simulink/quick-insert/index.md").read_text()
-    assert len(list((root / "browser/en").rglob("*.md"))) == 6229
-    assert len(list((root / "browser/zh").rglob("*.md"))) == 6229
+    assert "Quick Insert" in (root / "en/simulink/quick-insert/index.md").read_text()
+    assert len(list((root / "en").rglob("*.md"))) == 6229
+    assert len(list((root / "zh").rglob("*.md"))) == 6229
     for language in ("en", "zh"):
-        browser = root / "browser" / language
+        browser = root / language
         root_index = (browser / "index.md").read_text(encoding="utf-8")
         entries = re.findall(r"^- \[(.*?)\]", root_index, re.MULTILINE)
         assert len(entries) == 66
@@ -390,14 +388,14 @@ def test_all_product_manifest_counts_and_explicit_document_gaps():
         assert (browser / "report-generator/index.md").is_file()
         assert (browser / "simulink-extras/index.md").is_file()
         assert not (browser / "5g").exists()
-    assert "不是 Library Browser 顶层目录" in (root / "zh/index.md").read_text()
+    assert "# Simulink 库浏览器" in (root / "zh/index.md").read_text()
     assert (
         sum(
             len(library["blocks"])
             for product in products.values()
             for library in product["libraries"]
         )
-        == 5431
+        == 3899
     )
     unique_documents = set()
     for product in products.values():
@@ -413,7 +411,7 @@ def test_all_product_manifest_counts_and_explicit_document_gaps():
                         language, document["path"]
                     )
                     assert resource.is_file()
-    assert len(unique_documents) == 9206
+    assert len(unique_documents) == 7798
 
 
 def test_toolbox_matching_uses_original_product_and_library_path():
@@ -435,7 +433,7 @@ def test_toolbox_matching_uses_original_product_and_library_path():
     spectrum = find_block_reference("Spectrum Analyzer", "dsp/Sinks/Spectrum Analyzer")
     assert spectrum.product_id == "dsp"
     assert find_block("Chart", "stateflow/Chart") == (
-        "browser/stateflow/chart-programming/chart-programming-basics/stateflow-charts",
+        "stateflow/chart-programming/chart-programming-basics/stateflow-charts",
         "Chart",
     )
     chart_page = render_block_template("Chart", "stateflow/Chart", language="zh-CN")[1]
@@ -469,29 +467,14 @@ def test_scraped_block_knowledge_is_local_and_complete():
     ).exists()
     english = root / "en"
     chinese = root / "zh"
-    documents = [path for path in english.glob("*/*.md") if path.name != "index.md"]
-    chinese_documents = [path for path in chinese.glob("*/*.md") if path.name != "index.md"]
-    assert len(documents) == len(chinese_documents) == 341
-    assert len({path.parent.name for path in documents}) == 20
-    assert not any(
-        "https://" in path.read_text(encoding="utf-8") for path in [*documents, *chinese_documents]
-    )
-    manifest = json.loads(
-        (
-            Path(__file__).parents[3] / "scripts" / "matlab" / "simulink-block-manifest.json"
-        ).read_text(encoding="utf-8")
-    )
-    assert len(manifest) == 341
-    for entry in manifest:
-        family = entry["category"].lower().replace(" & ", "-").replace(" ", "-")
-        slug = "".join(
-            character if character.isalnum() else "-" for character in entry["name"].lower()
-        ).strip("-")
-        while "--" in slug:
-            slug = slug.replace("--", "-")
-        page = english / family / f"{slug}.md"
-        chinese_page = chinese / family / f"{slug}.md"
-        assert page.is_file() and chinese_page.is_file(), entry
+    documents = [path for path in english.rglob("*.md") if path.name != "index.md"]
+    chinese_documents = [path for path in chinese.rglob("*.md") if path.name != "index.md"]
+    assert len(documents) == len(chinese_documents) == 3922
+    assert len(list(english.glob("*/index.md"))) == 66
+    for page in documents:
+        relative = page.relative_to(english)
+        chinese_page = chinese / relative
+        assert chinese_page.is_file(), relative
         text = page.read_text(encoding="utf-8")
         chinese_text = chinese_page.read_text(encoding="utf-8")
         assert "documentation_release: R2025b" in text
@@ -499,9 +482,9 @@ def test_scraped_block_knowledge_is_local_and_complete():
         assert "## 中文" not in text
         assert "language: zh-CN" in chinese_text
         assert re.search(r"[\u4e00-\u9fff]", chinese_text)
-    logical = (english / "logic-and-bit-operations" / "logical-operator.md").read_text(
-        encoding="utf-8"
-    )
+    logical = (
+        english / "simulink/logic-and-bit-operations/logical-operator.md"
+    ).read_text(encoding="utf-8")
     assert "Perform specified logical operation on input" in logical
     assert "## Ports" in logical
     assert "## Parameters" in logical
@@ -509,21 +492,21 @@ def test_scraped_block_knowledge_is_local_and_complete():
     assert "## Block Characteristics" in logical
 
     # Alternative configurations point to the real Sum documentation, not a guessed page.
-    total = (english / "math-operations" / "sum.md").read_text(encoding="utf-8")
+    total = (english / "simulink/math-operations/sum.md").read_text(encoding="utf-8")
     assert "documentation_page: 'sum'" in total
     assert "Add, Subtract, Sum of Elements" in total
     assert "Add or subtract inputs" in total
 
-    dashboard = english / "dashboard" / "knob.md"
-    strings = english / "string" / "string-constant.md"
-    additional = english / "additional-math-and-discrete" / "increment-real-world.md"
+    dashboard = english / "simulink/dashboard/knob.md"
+    strings = english / "simulink/string/string-constant.md"
+    additional = english / "simulink/additional-math-and-discrete/increment-real-world.md"
     assert dashboard.is_file()
     assert strings.is_file()
     assert additional.is_file()
-    assert "# Continuous" in (english / "continuous" / "index.md").read_text(encoding="utf-8")
+    assert "# Continuous" in (english / "simulink/continuous/index.md").read_text(encoding="utf-8")
     assert "documentation_release: R2025b" in logical
     assert not (root / "datetime").exists()
-    assert "# Messages & Events" in (english / "messages-events" / "index.md").read_text(
+    assert "# Messages & Events" in (english / "simulink/messages-events/index.md").read_text(
         encoding="utf-8"
     )
 
@@ -550,7 +533,7 @@ def test_resource_add_structures_block_pages_without_rewriting_source_files():
         ],
     }
     for language, headings in expected.items():
-        document = read_block_document("math-operations", "Abs", language=language)
+        document = read_block_document("simulink/math-operations", "Abs", language=language)
         assert [line for line in document.splitlines() if line.startswith("## ")] == headings
         assert document.index(headings[0]) < document.index(headings[-1])
         expected_summary = (
@@ -559,7 +542,7 @@ def test_resource_add_structures_block_pages_without_rewriting_source_files():
         assert expected_summary in document
 
     # Aliases in older source documents are normalized only in the add-resource output.
-    document = read_block_document("messages-events", "Receive", language="zh-CN")
+    document = read_block_document("simulink/messages-events", "Receive", language="zh-CN")
     assert "## 描述" in document
     assert "## 说明" not in document
 

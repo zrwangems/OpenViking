@@ -117,20 +117,12 @@ def find_block(block_type: str, source_block: str = "") -> tuple[str, str] | Non
     if reference.product_id == "simulink" and "commonlyusedblocks" in {
         _normalize(part) for part in source_block.split("/")
     }:
-        return "browser/simulink/commonly-used-blocks", reference.name
+        return "simulink/commonly-used-blocks", reference.name
     relative = reference.resource_path("en")
-    if not relative:
+    if not relative or not relative.startswith("en/"):
         return None
-    if relative.startswith("browser/en/"):
-        family = "browser/" + relative.removeprefix("browser/en/").rsplit("/", 1)[0]
-        return family, reference.name
-    family, filename = relative.removeprefix("en/").rsplit("/", 1)
-    if family.startswith("products/"):
-        return family, reference.name
-    for entry_family, _, name, _ in catalog_entries():
-        if entry_family == family and slug(name) == filename.removesuffix(".md"):
-            return entry_family, name
-    return None
+    family = relative.removeprefix("en/").rsplit("/", 1)[0]
+    return family, reference.name
 
 
 def export_catalog(directory: str | Path) -> list[Path]:
