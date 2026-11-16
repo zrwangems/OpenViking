@@ -8,4 +8,3 @@
 - [Computing Peripherals](Computing Peripherals/index.md)
 - [Utilities](Utilities/index.md)
 - [Sensors](Sensors/index.md)
-- [IO Device Builder](IO Device Builder/index.md)

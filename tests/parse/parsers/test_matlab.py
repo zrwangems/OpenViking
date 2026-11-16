@@ -366,33 +366,39 @@ def test_library_browser_manifest_counts_and_canonical_layout():
     assert "matlab" not in products
     common = root / "en/Simulink/Commonly Used Blocks"
     assert len(list(common.glob("*.md"))) == 24  # 23 blocks plus index
-    quick_insert = (root / "zh/Simulink/Quick Insert/index.md").read_text(encoding="utf-8")
-    assert "依赖模型上下文的动态插入入口" in quick_insert
-    assert "[返回上级目录](../index.md)" in quick_insert
+    assert not (root / "zh/Simulink/Quick Insert").exists()
+    assert (root / "zh/DDS Blockset/Model DDS Applications in Simulink/index.md").is_file()
+    for directory in (
+        "Get Started with DDS Blockset",
+        "Create DDS Definitions",
+        "Deploy Applications to DDS Network",
+    ):
+        assert not (root / "zh/DDS Blockset" / directory).exists()
     loop_shaping = root / (
         "zh/Control System Toolbox/Control System Design and Tuning/"
-        "Multiloop, Multiobjective Tuning/Loop-Shaping Design/index.md"
+        "Multiloop, Multiobjective Tuning/Loop-Shaping Design"
     )
-    loop_shaping_text = loop_shaping.read_text(encoding="utf-8")
-    assert "不表示对应产品功能为空" in loop_shaping_text
-    assert "[返回上级目录](../index.md)" in loop_shaping_text
-    assert "[查看 Control System Toolbox 目录](../../../index.md)" in loop_shaping_text
-    assert (loop_shaping.parent / "../../../index.md").resolve() == (
-        root / "zh/Control System Toolbox/index.md"
-    ).resolve()
+    assert not loop_shaping.exists()
+    normal_category = root / (
+        "zh/Control System Toolbox/Control System Design and Tuning/index.md"
+    )
+    assert "[Gain Scheduling](Gain Scheduling/index.md)" in normal_category.read_text(
+        encoding="utf-8"
+    )
     for language, obsolete_text in (("en", "No fixed block entries."), ("zh", "无固定块条目。")):
         for index in (root / language).rglob("index.md"):
             text = index.read_text(encoding="utf-8")
             assert obsolete_text not in text, index
             assert len(text.splitlines()) >= 3, index
-    assert len(list((root / "en").rglob("*.md"))) == 6230
-    assert len(list((root / "zh").rglob("*.md"))) == 6230
+            assert "- [" in text, index
+    assert len(list((root / "en").rglob("*.md"))) == 4899
+    assert len(list((root / "zh").rglob("*.md"))) == 4899
 
     for language in ("en", "zh"):
         browser = root / language
         root_index = (browser / "index.md").read_text(encoding="utf-8")
         entries = re.findall(r"^- \[(.*?)\]", root_index, re.MULTILINE)
-        assert len(entries) == 66
+        assert len(entries) == 60
         assert entries[:3] == ["Simulink", "Aerospace Blockset", "Audio Toolbox"]
         assert entries[-3:] == [
             "Vehicle Network Toolbox",
@@ -402,12 +408,15 @@ def test_library_browser_manifest_counts_and_canonical_layout():
         assert "5G Toolbox" not in entries
         assert (browser / "Aerospace Blockset/index.md").is_file()
         assert not (browser / "aeroblks").exists()
-        assert (browser / "Communications Toolbox HDL Support/index.md").is_file()
-        assert (browser / "DSP System Toolbox HDL Support/index.md").is_file()
-        assert (browser / "Fixed-Point Designer HDL Support/index.md").is_file()
-        assert (browser / "Motor Control Blockset HDL Support/index.md").is_file()
-        assert (browser / "Report Generator/index.md").is_file()
-        assert (browser / "Simulink Extras/index.md").is_file()
+        for empty_entry in (
+            "Communications Toolbox HDL Support",
+            "DSP System Toolbox HDL Support",
+            "Fixed-Point Designer HDL Support",
+            "Motor Control Blockset HDL Support",
+            "Report Generator",
+            "Simulink Extras",
+        ):
+            assert not (browser / empty_entry).exists()
         assert not (browser / "5g").exists()
     assert "# Simulink 库浏览器" in (root / "zh/index.md").read_text()
     assert (
@@ -492,7 +501,7 @@ def test_scraped_block_knowledge_is_local_and_complete():
     documents = [path for path in english.rglob("*.md") if path.name != "index.md"]
     chinese_documents = [path for path in chinese.rglob("*.md") if path.name != "index.md"]
     assert len(documents) == len(chinese_documents) == 3922
-    assert len(list(english.glob("*/index.md"))) == 66
+    assert len(list(english.glob("*/index.md"))) == 60
     for page in documents:
         relative = page.relative_to(english)
         chinese_page = chinese / relative

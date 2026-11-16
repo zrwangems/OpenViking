@@ -6,4 +6,3 @@
 - [Multibody Interfaces](Multibody Interfaces/index.md)
 - [Rotational Elements](Rotational Elements/index.md)
 - [Translational Elements](Translational Elements/index.md)
-- [Mechanical Systems](Mechanical Systems/index.md)

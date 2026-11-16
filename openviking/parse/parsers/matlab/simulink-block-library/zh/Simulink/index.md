@@ -21,4 +21,3 @@
 - [User-Defined Functions](User-Defined Functions/index.md)
 - [Additional Math and Discrete](Additional Math and Discrete/index.md)
 - [Commonly Used Blocks](Commonly Used Blocks/index.md)
-- [Quick Insert](Quick Insert/index.md)

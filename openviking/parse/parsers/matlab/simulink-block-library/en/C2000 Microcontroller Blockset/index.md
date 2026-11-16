@@ -1,9 +1,4 @@
 # C2000 Microcontroller Blockset
 
-- [Get Started with C2000 Microcontroller Blockset](Get Started with C2000 Microcontroller Blockset/index.md)
-- [Applications](Applications/index.md)
 - [Peripherals](Peripherals/index.md)
 - [Multiprocessor Architecture Modeling](Multiprocessor Architecture Modeling/index.md)
-- [Connected IO Simulation](Connected IO Simulation/index.md)
-- [Signal Monitoring and Parameter Tuning](Signal Monitoring and Parameter Tuning/index.md)
-- [Deployment and Validation](Deployment and Validation/index.md)

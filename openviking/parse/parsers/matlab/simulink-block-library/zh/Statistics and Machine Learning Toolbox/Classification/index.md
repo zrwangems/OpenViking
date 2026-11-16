@@ -1,16 +1,10 @@
 # Classification
 
-- [Classification Learner App](Classification Learner App/index.md)
 - [Classification Trees](Classification Trees/index.md)
 - [Discriminant Analysis](Discriminant Analysis/index.md)
 - [Naive Bayes](Naive Bayes/index.md)
 - [Nearest Neighbors](Nearest Neighbors/index.md)
 - [Support Vector Machine Classification](Support Vector Machine Classification/index.md)
 - [Classification Ensembles](Classification Ensembles/index.md)
-- [Generalized Additive Model](Generalized Additive Model/index.md)
 - [Neural Networks](Neural Networks/index.md)
 - [Incremental Learning](Incremental Learning/index.md)
-- [Semi-Supervised Learning for Classification](Semi-Supervised Learning for Classification/index.md)
-- [Fairness in Binary Classification](Fairness in Binary Classification/index.md)
-- [Interpretability](Interpretability/index.md)
-- [Model Building and Assessment](Model Building and Assessment/index.md)

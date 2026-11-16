@@ -14,6 +14,7 @@ from extract_r2025b_block_manifest import (  # noqa: E402
     BROWSER_LOCAL_ONLY,
     canonicalize_cross_product_documents,
     resource_component,
+    write_browser_tree,
 )
 from scrape_simulink_blocks import localized_content  # noqa: E402
 from translate_r2025b_all_blocks import (  # noqa: E402
@@ -107,6 +108,57 @@ def test_browser_resource_names_keep_official_spelling():
 def test_library_browser_screenshot_only_entries_are_explicit():
     assert "Motor Control Blockset HDL Support" in BROWSER_ALIASES
     assert {"Report Generator", "Simulink Extras"} <= BROWSER_LOCAL_ONLY
+
+
+def test_browser_generation_omits_categories_without_blocks(tmp_path):
+    document = {
+        language: {"status": "available", "path": f"{language}/source.md"}
+        for language in ("en", "zh")
+    }
+    block = {
+        "name": "Real Block",
+        "documentation_path": "dds/realblock.html",
+        "summary": "A real block",
+        "documents": document,
+    }
+    manifest = {
+        "scope": "test",
+        "products": [
+            {
+                "id": "dds",
+                "name": "DDS Blockset",
+                "status": "enumerated",
+                "block_occurrences": 1,
+                "unique_document_paths": 1,
+                "libraries": [
+                    {"path": ["Get Started with DDS Blockset"], "blocks": []},
+                    {"path": ["Create DDS Definitions"], "blocks": []},
+                    {"path": ["Model DDS Applications in Simulink"], "blocks": [block]},
+                    {"path": ["Deploy Applications to DDS Network"], "blocks": []},
+                ],
+            }
+        ],
+    }
+    for language in ("en", "zh"):
+        (tmp_path / language).mkdir()
+        (tmp_path / language / "source.md").write_text(
+            f"---\ndocumentation_release: R2025b\nlanguage: {language}\n---\n# Real Block\n",
+            encoding="utf-8",
+        )
+
+    write_browser_tree(manifest, tmp_path)
+
+    for language in ("en", "zh"):
+        browser = tmp_path / language
+        assert (browser / "DDS Blockset/Model DDS Applications in Simulink/Real Block.md").is_file()
+        assert not (browser / "DDS Blockset/Create DDS Definitions").exists()
+        assert not (browser / "DDS Blockset/Get Started with DDS Blockset").exists()
+        assert not (browser / "DDS Blockset/Deploy Applications to DDS Network").exists()
+        assert not (browser / "Report Generator").exists()
+        assert not (browser / "Simulink Extras").exists()
+        assert "Create DDS Definitions" not in (browser / "DDS Blockset/index.md").read_text(
+            encoding="utf-8"
+        )
 
 
 def test_xml_audit_keeps_duplicate_occurrences_and_simscape_blocks(tmp_path):

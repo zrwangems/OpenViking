@@ -1,7 +1,5 @@
 # Model Predictive Control Toolbox
 
-- [Get Started with Model Predictive Control Toolbox](Get Started with Model Predictive Control Toolbox/index.md)
-- [Linear Plant Specification](Linear Plant Specification/index.md)
 - [MPC Design](MPC Design/index.md)
 - [Explicit MPC Design](Explicit MPC Design/index.md)
 - [Adaptive MPC Design](Adaptive MPC Design/index.md)
