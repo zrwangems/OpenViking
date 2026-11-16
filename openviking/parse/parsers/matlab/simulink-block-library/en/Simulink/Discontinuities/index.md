@@ -1,0 +1,16 @@
+# Discontinuities
+
+- [Backlash](Backlash.md)
+- [Coulomb and Viscous Friction](Coulomb and Viscous Friction.md)
+- [Dead Zone](Dead Zone.md)
+- [Dead Zone Dynamic](Dead Zone Dynamic.md)
+- [Hit Crossing](Hit Crossing.md)
+- [PWM](PWM.md)
+- [Quantizer](Quantizer.md)
+- [Rate Limiter](Rate Limiter.md)
+- [Rate Limiter Dynamic](Rate Limiter Dynamic.md)
+- [Relay](Relay.md)
+- [Saturation](Saturation.md)
+- [Saturation Dynamic](Saturation Dynamic.md)
+- [Variable Pulse Generator](Variable Pulse Generator.md)
+- [Wrap To Zero](Wrap To Zero.md)

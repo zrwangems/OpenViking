@@ -1,0 +1,15 @@
+{
+  "release": "R2025b",
+  "scope": "the 66-entry local R2025b Library Browser installation profile",
+  "xml_occurrences_checked": 3899,
+  "unique_bilingual_documents_checked": 3404,
+  "official_chinese_source_renders_checked": 611,
+  "worker_translation_structures_checked": 2793,
+  "failures": {},
+  "failure_count": 0,
+  "external_scope_requires_local_matlab": [
+    "third-party libraries",
+    "hardware support packages not present in the public product catalog",
+    "machine-local and licensed library contents"
+  ]
+}

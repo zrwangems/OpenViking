@@ -1,0 +1,53 @@
+---
+type: simulink-block
+title: 'Digital Output'
+family: 'rtw'
+product_id: 'rtw'
+product_name: 'Simulink Coder'
+documentation_release: R2025b
+official_category: 'Deployment, Integration, and Supported Hardware / Simulink Coder Supported Hardware / NXP FRDM-KL25Z Board / Modeling'
+documentation_page: 'digitaloutput'
+documentation_source_path: 'freedomboard/ref/digitaloutput.html'
+language: zh-CN
+chinese_source: worker-translation
+---
+
+# Digital Output
+
+## 端口
+
+R2025b 中未提供文档。
+
+## 参数
+
+**Pin**
+:   选择数字引脚。
+
+    请确保不要将同一引脚编号分配给模型中的多个模块。
+
+**View pin map**
+:   点击此按钮可打开开发板的快照，其中包含 GPIO 引脚的参考信息。
+
+## 所属库
+
+R2025b 中未提供文档。
+
+## 模块特性
+
+R2025b 中未提供文档。
+
+## 扩展功能
+
+R2025b 中未提供文档。
+
+## 版本历史
+
+**在 R2014b 中引入**
+
+## 描述
+
+设置数字输出引脚的逻辑值
+
+设置所选数字输出引脚的逻辑值。FRDM-KL25Z 开发板上有 14 个引脚可用作数字信号输出，即 D0-D13。此开发板的数字引脚布局与标准 Arduino Digital Pins 兼容。
+
+在没有硬件的情况下进行仿真时，此模块不执行任何操作。

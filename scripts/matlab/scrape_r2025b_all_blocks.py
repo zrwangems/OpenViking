@@ -209,6 +209,10 @@ def main() -> None:
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     write_browser_tree(manifest, root)
+    # Browser generation assigns the canonical document paths; persist them.
+    args.manifest.write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
     failure_path = args.cache / "scrape-failures.json"
     args.cache.mkdir(parents=True, exist_ok=True)
     all_failures = manifest_failures(manifest)

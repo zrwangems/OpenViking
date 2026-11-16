@@ -16,6 +16,7 @@ import argparse
 import concurrent.futures
 import hashlib
 import json
+import posixpath
 import re
 import shutil
 import time
@@ -42,6 +43,11 @@ EXPECTED = {
 
 def slug(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+
+
+def resource_component(value: str) -> str:
+    """Keep the official display name; only path separators need substitution."""
+    return value.replace("/", "／").replace("\x00", "")
 
 
 def local_name(tag: str) -> str:
@@ -188,8 +194,44 @@ def parse_product(
     if top is None:
         raise ValueError(f"No root library category: {path}")
     visit(top, [])
+    canonical_documents = {}
+    for library in result["libraries"]:
+        for block in library["blocks"]:
+            for language in ("en", "zh"):
+                key = (block["documentation_path"], language)
+                document = block["documents"][language]
+                if key in canonical_documents and document["status"] == "available":
+                    block["documents"][language] = canonical_documents[key]
+                elif document["status"] == "available":
+                    canonical_documents[key] = document
     result["unique_document_paths"] = len(paths)
     return result
+
+
+def canonicalize_cross_product_documents(manifest: dict) -> None:
+    """Resolve ../product references to the owning product's source document."""
+    owners = {}
+    for product in manifest["products"]:
+        for library in product["libraries"]:
+            for block in library["blocks"]:
+                path = block["documentation_path"]
+                if ".." not in Path(path).parts:
+                    owners[(product["id"], path)] = block["documents"]
+    for product in manifest["products"]:
+        for library in product["libraries"]:
+            for block in library["blocks"]:
+                path = block["documentation_path"]
+                if ".." not in Path(path).parts:
+                    continue
+                normalized = posixpath.normpath(path)
+                while normalized.startswith("../"):
+                    normalized = normalized[3:]
+                owner, documentation_path = normalized.split("/", 1)
+                documents = owners.get((owner, documentation_path))
+                if documents:
+                    block["documents"] = {
+                        language: dict(document) for language, document in documents.items()
+                    }
 
 
 def old_document_index(path: Path) -> dict:
@@ -415,10 +457,16 @@ BROWSER_PRODUCTS = [
 ]
 
 BROWSER_ALIASES = {
-    "Communications Toolbox HDL Support": ("communications-toolbox-hdl-support", "wireless-hdl"),
-    "DSP System Toolbox HDL Support": ("dsp-system-toolbox-hdl-support", "dsphdl"),
-    "Fixed-Point Designer HDL Support": ("fixed-point-designer-hdl-support", "hdlcoder"),
-    "Motor Control Blockset HDL Support": ("motor-control-blockset-hdl-support", "mcb"),
+    "Communications Toolbox HDL Support": (
+        "Communications Toolbox HDL Support",
+        "Wireless HDL Toolbox",
+    ),
+    "DSP System Toolbox HDL Support": ("DSP System Toolbox HDL Support", "DSP HDL Toolbox"),
+    "Fixed-Point Designer HDL Support": ("Fixed-Point Designer HDL Support", "HDL Coder"),
+    "Motor Control Blockset HDL Support": (
+        "Motor Control Blockset HDL Support",
+        "Motor Control Blockset",
+    ),
 }
 
 # These entries are visible in the local Browser but have no independent
@@ -496,6 +544,7 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
         for language, document in block["documents"].items()
         if document["status"] == "available" and document["path"]
     }
+    canonical_document_paths = {}
     for language in ("en", "zh"):
         browser_root = root / language
         shutil.rmtree(browser_root, ignore_errors=True)
@@ -519,7 +568,7 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                 )
                 if not relative_parts:
                     continue
-                parts = [product["id"], *(slug(part) for part in relative_parts)]
+                parts = [product["name"], *(resource_component(part) for part in relative_parts)]
                 for depth in range(1, len(parts) + 1):
                     key = tuple(parts[:depth])
                     display = product["name"] if depth == 1 else relative_parts[depth - 2]
@@ -527,12 +576,12 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                 nodes[tuple(parts)]["blocks"].extend(library["blocks"])
                 name_counts = {}
                 for block in library["blocks"]:
-                    key = slug(block["name"])
+                    key = resource_component(block["name"])
                     name_counts[key] = name_counts.get(key, 0) + 1
                 for block in library["blocks"]:
-                    filename = slug(block["name"])
+                    filename = resource_component(block["name"])
                     if name_counts[filename] > 1:
-                        filename += "-" + slug(Path(block["documentation_path"]).stem)
+                        filename += "-" + resource_component(Path(block["documentation_path"]).stem)
                     filename += ".md"
                     block["resource_name"] = filename
                     target = browser_root.joinpath(*parts, filename)
@@ -549,10 +598,11 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                     target.write_text(content, encoding="utf-8")
                     relative = target.relative_to(root).as_posix()
                     block.setdefault("resource_paths", {})[language] = relative
-                    document["path"] = relative
+                    key = (product["id"], block["documentation_path"], language)
+                    document["path"] = canonical_document_paths.setdefault(key, relative)
             if product["id"] == "simulink":
-                common_key = ("simulink", "commonly-used-blocks")
-                nodes.setdefault(("simulink",), {"name": "Simulink", "blocks": []})
+                common_key = ("Simulink", "Commonly Used Blocks")
+                nodes.setdefault(("Simulink",), {"name": "Simulink", "blocks": []})
                 nodes[common_key] = {"name": "Commonly Used Blocks", "blocks": []}
                 by_name = {}
                 for library in product["libraries"]:
@@ -562,10 +612,14 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                     block = by_name[name]
                     nodes[common_key]["blocks"].append(block)
                     content = source_documents[(id(block), language)]
-                    target = browser_root / "simulink/commonly-used-blocks" / f"{slug(name)}.md"
+                    target = (
+                        browser_root
+                        / "Simulink/Commonly Used Blocks"
+                        / f"{resource_component(name)}.md"
+                    )
                     target.parent.mkdir(parents=True, exist_ok=True)
                     target.write_text(content, encoding="utf-8")
-                nodes[("simulink", "quick-insert")] = {
+                nodes[("Simulink", "Quick Insert")] = {
                     "name": "Quick Insert",
                     "blocks": [],
                     "description": (
@@ -588,7 +642,7 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                     f"- [{nodes[child]['name']}]({child[-1]}/index.md)" for child in children
                 )
                 for block in node["blocks"]:
-                    filename = block.get("resource_name", slug(block["name"]) + ".md")
+                    filename = block.get("resource_name", resource_component(block["name"]) + ".md")
                     lines.append(f"- [{block['name']}]({filename})")
                 if len(lines) == 2:
                     lines.append(
@@ -640,7 +694,7 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                 encoding="utf-8",
             )
         for name in BROWSER_LOCAL_ONLY:
-            directory = dict(BROWSER_PRODUCTS)[name]
+            directory = resource_component(name)
             local = browser_root / directory
             local.mkdir(parents=True, exist_ok=True)
             (local / "index.md").write_text(
@@ -652,7 +706,7 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                 ),
                 encoding="utf-8",
             )
-        root_entries = BROWSER_PRODUCTS
+        root_entries = [(name, resource_component(name)) for name, _ in BROWSER_PRODUCTS]
         root_index.extend(f"- [{name}]({directory}/index.md)" for name, directory in root_entries)
         (browser_root / "index.md").write_text("\n".join(root_index) + "\n", encoding="utf-8")
     totals = manifest["totals"]
@@ -731,6 +785,7 @@ def main() -> None:
             for product in products
         ],
     }
+    canonicalize_cross_product_documents(manifest)
     refresh_totals(manifest)
     totals = manifest["totals"]
     if not args.no_count_check:
