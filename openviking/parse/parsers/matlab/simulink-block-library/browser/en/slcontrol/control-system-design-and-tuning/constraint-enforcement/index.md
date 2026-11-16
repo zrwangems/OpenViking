@@ -1,5 +1,5 @@
 # Constraint Enforcement
 
-- [Barrier Certificate Enforcement](barrier-certificate-enforcement.md)
 - [Constraint Enforcement](constraint-enforcement.md)
+- [Barrier Certificate Enforcement](barrier-certificate-enforcement.md)
 - [Passivity Enforcement](passivity-enforcement.md)

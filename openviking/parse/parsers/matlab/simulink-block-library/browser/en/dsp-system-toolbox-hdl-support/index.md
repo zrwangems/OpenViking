@@ -1,5 +1,5 @@
 # DSP System Toolbox HDL Support
 
-This Library Browser support-library entry reuses the owning product's block documentation instead of creating inconsistent copies.
+This support-library entry is visible in the local Library Browser. The public R2025b catalog has no independent block XML for it; the associated product below is reference documentation, not a claim that every support-library block has been enumerated.
 
-[Open the owning product library](../dsphdl/index.md)
+[Open associated product documentation](../dsphdl/index.md)

@@ -1,6 +1,5 @@
 # Embedded Coder Supported Hardware
 
-- [AMD SoC Devices](amd-soc-devices/index.md)
 - [ARM Cortex-A Processors](arm-cortex-a-processors/index.md)
 - [ARM Cortex-M Processors](arm-cortex-m-processors/index.md)
 - [ARM Cortex-R Processors](arm-cortex-r-processors/index.md)
@@ -10,3 +9,4 @@
 - [Intel SoC Devices](intel-soc-devices/index.md)
 - [Qualcomm Hexagon Processors](qualcomm-hexagon-processors/index.md)
 - [STMicroelectronics STM32 Processors](stmicroelectronics-stm32-processors/index.md)
+- [AMD SoC Devices](amd-soc-devices/index.md)

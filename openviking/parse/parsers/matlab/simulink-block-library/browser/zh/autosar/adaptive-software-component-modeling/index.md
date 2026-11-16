@@ -1,6 +1,6 @@
 # Adaptive Software Component Modeling
 
-- [Code Generation](code-generation/index.md)
+- [Modeling Patterns](modeling-patterns/index.md)
 - [Component Creation](component-creation/index.md)
 - [Component Development](component-development/index.md)
-- [Modeling Patterns](modeling-patterns/index.md)
+- [Code Generation](code-generation/index.md)

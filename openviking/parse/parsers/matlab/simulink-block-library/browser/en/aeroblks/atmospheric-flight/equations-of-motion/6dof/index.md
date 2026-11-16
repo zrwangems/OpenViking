@@ -1,9 +1,9 @@
 # 6DOF
 
-- [6DOF (Euler Angles)](6dof-euler-angles.md)
-- [6DOF (Quaternion)](6dof-quaternion.md)
 - [6DOF Acceleration](6dof-acceleration.md)
 - [6DOF Angular Acceleration](6dof-angular-acceleration.md)
+- [6DOF (Euler Angles)](6dof-euler-angles.md)
+- [6DOF (Quaternion)](6dof-quaternion.md)
 - [6DOF ECEF (Quaternion)](6dof-ecef-quaternion.md)
 - [6DOF Wind (Quaternion)](6dof-wind-quaternion.md)
 - [6DOF Wind (Wind Angles)](6dof-wind-wind-angles.md)

@@ -5,5 +5,5 @@
 - [Color Space Converter](color-space-converter.md)
 - [Demosaic Interpolator](demosaic-interpolator.md)
 - [Gamma Corrector](gamma-corrector.md)
-- [Image Resizer](image-resizer.md)
 - [Lookup Table](lookup-table.md)
+- [Image Resizer](image-resizer.md)

@@ -1,6 +1,6 @@
 # Applications
 
-- [Motor Control](motor-control/index.md)
+- [Wireless Communication](wireless-communication/index.md)
 - [Radar](radar/index.md)
 - [Vision](vision/index.md)
-- [Wireless Communication](wireless-communication/index.md)
+- [Motor Control](motor-control/index.md)

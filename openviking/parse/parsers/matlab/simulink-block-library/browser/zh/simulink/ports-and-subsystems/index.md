@@ -1,8 +1,8 @@
 # Ports and Subsystems
 
 - [Enable](enable.md)
-- [Enabled and Triggered Subsystem](enabled-and-triggered-subsystem.md)
 - [Enabled Subsystem](enabled-subsystem.md)
+- [Enabled and Triggered Subsystem](enabled-and-triggered-subsystem.md)
 - [For Each Subsystem](for-each-subsystem.md)
 - [For Iterator Subsystem](for-iterator-subsystem.md)
 - [Function Element](function-element.md)

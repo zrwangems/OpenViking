@@ -369,11 +369,28 @@ def test_all_product_manifest_counts_and_explicit_document_gaps():
     common = root / "browser/en/simulink/commonly-used-blocks"
     assert len(list(common.glob("*.md"))) == 24  # 23 blocks plus index
     assert "Quick Insert" in (root / "browser/en/simulink/quick-insert/index.md").read_text()
-    assert len(list((root / "browser/en").rglob("*.md"))) == 7781
-    assert len(list((root / "browser/zh").rglob("*.md"))) == 7781
-    assert (root / "browser/en/communications-toolbox-hdl-support/index.md").is_file()
-    assert (root / "browser/zh/dsp-system-toolbox-hdl-support/index.md").is_file()
-    assert (root / "browser/en/fixed-point-designer-hdl-support/index.md").is_file()
+    assert len(list((root / "browser/en").rglob("*.md"))) == 6229
+    assert len(list((root / "browser/zh").rglob("*.md"))) == 6229
+    for language in ("en", "zh"):
+        browser = root / "browser" / language
+        root_index = (browser / "index.md").read_text(encoding="utf-8")
+        entries = re.findall(r"^- \[(.*?)\]", root_index, re.MULTILINE)
+        assert len(entries) == 66
+        assert entries[:3] == ["Simulink", "Aerospace Blockset", "Audio Toolbox"]
+        assert entries[-3:] == [
+            "Vehicle Network Toolbox",
+            "Vision HDL Toolbox",
+            "Wireless HDL Toolbox",
+        ]
+        assert "5G Toolbox" not in entries
+        assert (browser / "communications-toolbox-hdl-support/index.md").is_file()
+        assert (browser / "dsp-system-toolbox-hdl-support/index.md").is_file()
+        assert (browser / "fixed-point-designer-hdl-support/index.md").is_file()
+        assert (browser / "motor-control-blockset-hdl-support/index.md").is_file()
+        assert (browser / "report-generator/index.md").is_file()
+        assert (browser / "simulink-extras/index.md").is_file()
+        assert not (browser / "5g").exists()
+    assert "不是 Library Browser 顶层目录" in (root / "zh/index.md").read_text()
     assert (
         sum(
             len(library["blocks"])
