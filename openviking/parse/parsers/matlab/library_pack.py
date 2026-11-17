@@ -16,6 +16,8 @@ import zipfile
 from pathlib import Path
 from urllib.parse import quote
 
+import yaml
+
 from openviking.storage.ovpack.format import (
     OVPACK_FILES_DIR,
     OVPACK_FORMAT_VERSION,
@@ -115,20 +117,30 @@ def _directory_entries(directory: Path) -> tuple[str, list[tuple[str, str]]]:
 
 
 def _front_matter(uri: str, entries: int) -> list[str]:
-    return [
-        "---",
-        f"directory: {uri}",
-        "generated_by:",
-        "  component: block-library-pack",
-        "  trigger: pack_build",
-        "freshness:",
-        f"  total_entries: {entries}",
-        f"  sampled_entries: {entries}",
-        "  unsampled_entries: 0",
-        "  pending_child_changes: 0",
-        "---",
-        "",
-    ]
+    """Render sidecar frontmatter as YAML, not as hand-joined strings.
+
+    Library Browser directory names can contain ``": "`` (for example
+    ``Additional Math: Increment - Decrement``). Hand-joined frontmatter made
+    those paths parse as ``mapping values are not allowed here`` when
+    OpenViking read the sidecar back, so let the YAML emitter decide quoting.
+    """
+    metadata = {
+        "directory": uri,
+        "generated_by": {"component": "block-library-pack", "trigger": "pack_build"},
+        "freshness": {
+            "total_entries": entries,
+            "sampled_entries": entries,
+            "unsampled_entries": 0,
+            "pending_child_changes": 0,
+        },
+    }
+    body = yaml.safe_dump(
+        metadata,
+        allow_unicode=True,
+        default_flow_style=False,
+        sort_keys=False,
+    ).rstrip("\n")
+    return ["---", *body.split("\n"), "---", ""]
 
 
 def _abstract(title: str, entries: list[tuple[str, str]], language: str) -> str:
