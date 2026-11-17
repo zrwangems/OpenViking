@@ -1,22 +1,17 @@
-"""Build the downloadable R2025b block-library resource and its OVPack.
+"""Stage the R2025b block-library resource and pack it as an OVPack.
 
 The packaged library under ``openviking/parse/parsers/matlab/simulink-block-library``
-stays the single source of truth for the parser. This module stages a copy with
-directory ``.abstract.md`` (L0) and ``.overview.md`` (L1) pages derived from each
-directory's own ``index.md``, then writes an OVPack whose root is
-``viking://resources/simulink-block-library``. No network access or LLM is used.
+stays the single source of truth for the parser. This module copies it into a
+pack root (optionally one language), drops the per-directory ``index.md``, and
+writes an OVPack. It generates no summaries: L0/L1 belong to ingestion, where
+OpenViking's semantic processor writes them with the VLM.
 """
-
 from __future__ import annotations
 
 import json
-import re
 import shutil
 import zipfile
 from pathlib import Path
-from urllib.parse import quote
-
-import yaml
 
 from openviking.storage.ovpack.format import (
     OVPACK_FILES_DIR,
@@ -44,147 +39,10 @@ from openviking_cli.utils.uri import VikingURI
 
 DEFAULT_ROOT = "simulink-block-library"
 RESOURCE_SCOPE = "resources"
-_ENTRY = re.compile(r"^- \[(?P<name>.+?)\]\((?P<target>[^)]+)\)\s*$")
-_HEADING = re.compile(r"^#\s+(?P<title>.+?)\s*$")
-_SUMMARY_SECTION = {"zh": "## 描述", "en": "## Description"}
-_ENTRY_LABEL = {"zh": "目录内容", "en": "Contents"}
-_COUNT_LABEL = {"zh": "条目", "en": "entries"}
-_INDEX = "index.md"
-
-
-def _language(relative: Path) -> str:
-    top = relative.parts[0] if relative.parts else ""
-    return "en" if top == "en" else "zh"
-
-
-def _clean(text: str) -> str:
-    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", text)
-    text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", text)
-    text = re.sub(r"[`*_>#]", "", text)
-    text = re.sub(r"\s+", " ", text)
-    return text.strip()
-
-
-class Summaries:
-    """One-line descriptions taken from each document's own description section."""
-
-    def __init__(self, root: Path) -> None:
-        self.root = root
-        self._cache: dict[Path, str] = {}
-
-    def for_file(self, path: Path, language: str) -> str:
-        if path in self._cache:
-            return self._cache[path]
-        summary = ""
-        try:
-            text = path.read_text(encoding="utf-8")
-        except OSError:
-            text = ""
-        marker = _SUMMARY_SECTION[language]
-        start = text.find(f"\n{marker}\n")
-        if start >= 0:
-            body = text[start + len(marker) + 2 :]
-            paragraph = body.split("\n\n", 1)[0]
-            summary = _clean(paragraph)[:180]
-        self._cache[path] = summary
-        return summary
-
-
-def _directory_entries(directory: Path) -> tuple[str, list[tuple[str, str]]]:
-    index = directory / _INDEX
-    title = directory.name
-    entries: list[tuple[str, str]] = []
-    if not index.is_file():
-        readme = directory / "README.md"
-        if readme.is_file():
-            for line in readme.read_text(encoding="utf-8").splitlines():
-                if match := _HEADING.match(line):
-                    title = _clean(match.group("title"))
-                    break
-        entries = [
-            (child.name, f"{quote(child.name)}/")
-            for child in sorted(directory.iterdir(), key=lambda item: item.name)
-            if child.is_dir() and not child.name.startswith(".")
-        ]
-        return title, entries
-    for line in index.read_text(encoding="utf-8").splitlines():
-        if match := _HEADING.match(line):
-            title = _clean(match.group("title"))
-            continue
-        if match := _ENTRY.match(line.strip()):
-            entries.append((_clean(match.group("name")), match.group("target")))
-    return title, entries
-
-
-def _front_matter(uri: str, entries: int) -> list[str]:
-    """Render sidecar frontmatter as YAML, not as hand-joined strings.
-
-    Library Browser directory names can contain ``": "`` (for example
-    ``Additional Math: Increment - Decrement``). Hand-joined frontmatter made
-    those paths parse as ``mapping values are not allowed here`` when
-    OpenViking read the sidecar back, so let the YAML emitter decide quoting.
-    """
-    metadata = {
-        "directory": uri,
-        "generated_by": {"component": "block-library-pack", "trigger": "pack_build"},
-        "freshness": {
-            "total_entries": entries,
-            "sampled_entries": entries,
-            "unsampled_entries": 0,
-            "pending_child_changes": 0,
-        },
-    }
-    body = yaml.safe_dump(
-        metadata,
-        allow_unicode=True,
-        default_flow_style=False,
-        sort_keys=False,
-    ).rstrip("\n")
-    return ["---", *body.split("\n"), "---", ""]
-
-
-def _abstract(title: str, entries: list[tuple[str, str]], language: str) -> str:
-    names = [name for name, _ in entries]
-    head = names[:6]
-    listing = "、".join(head) if language == "zh" else ", ".join(head)
-    more = len(names) - len(head)
-    if language == "zh":
-        sentence = f"{title} 收录 {len(entries)} 个条目"
-        if listing:
-            sentence += f"，例如 {listing}"
-            sentence += " 等" if more > 0 else ""
-        return f"{sentence}。目录按 Simulink Library Browser 的层级组织，可逐级进入查看块说明。"
-    sentence = f"{title} lists {len(entries)} entries"
-    if listing:
-        sentence += f", including {listing}"
-        sentence += ", among others" if more > 0 else ""
-    return f"{sentence}. The directory follows the Simulink Library Browser hierarchy."
-
-
-def _overview(
-    title: str,
-    entries: list[tuple[str, str]],
-    directory: Path,
-    language: str,
-    summaries: Summaries,
-) -> str:
-    label = _ENTRY_LABEL[language]
-    lines = [f"# {title}", ""]
-    lines.append(_abstract(title, entries, language))
-    if not entries:
-        return "\n".join(lines) + "\n"
-    lines.extend(["", f"## {label}", ""])
-    for name, target in entries:
-        decoded = target.replace("%20", " ").replace("%26", "&")
-        described = ""
-        candidate = (directory / decoded).resolve()
-        if candidate.is_file() and candidate.suffix == ".md":
-            described = summaries.for_file(candidate, language)
-        line = f"- [{name}]({target})"
-        if described:
-            line += f" — {described}"
-        lines.append(line)
-    return "\n".join(lines) + "\n"
+INDEX_NAME = "index.md"
+"""Per-directory navigation page. The resource keeps block documents only:
+OpenViking builds directory summaries at ingestion, so a hand-written index
+duplicates navigation and adds nothing an agent can search."""
 
 
 def _sanitize_names(staged: Path) -> int:
@@ -207,37 +65,38 @@ def _sanitize_names(staged: Path) -> int:
     return len(renamed)
 
 
-def build_tree(source: Path, target: Path, root_name: str) -> int:
-    """Copy the library and add L0/L1 pages to every directory."""
-    summaries = Summaries(source)
+def build_tree(
+    source: Path,
+    target: Path,
+    root_name: str,
+    language: str | None = None,
+) -> int:
+    """Stage the library for import: block documents only, optional language split.
+
+    ``language`` ``"zh"``/``"en"`` stages just that language and makes it the
+    resource root, so the Library Browser products sit directly under
+    ``viking://resources/<root_name>/``. ``None`` keeps the two-language layout.
+    Directory ``index.md`` pages are dropped for the reason described on
+    ``INDEX_NAME``; L0/L1 come from OpenViking's own ingestion, never from here.
+    """
+    if language is not None and language not in {"zh", "en"}:
+        raise ValueError(f"language must be 'zh' or 'en', got {language!r}")
     staged = target / root_name
+    source_root = source if language is None else source / language
+    if not source_root.is_dir():
+        raise ValueError(f"library directory not found: {source_root}")
     shutil.copytree(
-        source,
+        source_root,
         staged,
-        ignore=shutil.ignore_patterns("manifest.json", "__pycache__", "*.pyc"),
+        ignore=shutil.ignore_patterns("manifest.json", INDEX_NAME, "__pycache__", "*.pyc"),
     )
     _sanitize_names(staged)
-    written = 0
-    for directory in [staged, *sorted(path for path in staged.rglob("*") if path.is_dir())]:
-        if not any(directory.iterdir()) and directory != staged:
-            continue
-        title, entries = _directory_entries(directory)
-        language = _language(directory.relative_to(staged))
-        relative = directory.relative_to(staged).as_posix()
-        uri = f"viking://{RESOURCE_SCOPE}/{root_name}/"
-        if relative != ".":
-            uri += f"{relative}/"
-        front_matter = "\n".join(_front_matter(uri, len(entries))).rstrip() + "\n\n"
-        (directory / ".abstract.md").write_text(
-            front_matter + _abstract(title, entries, language) + "\n",
-            encoding="utf-8",
-        )
-        (directory / ".overview.md").write_text(
-            front_matter + _overview(title, entries, directory, language, summaries),
-            encoding="utf-8",
-        )
-        written += 1
-    return written
+    removed_empty = 0
+    for directory in sorted((path for path in staged.rglob("*") if path.is_dir()), reverse=True):
+        if not any(directory.iterdir()):
+            directory.rmdir()
+            removed_empty += 1
+    return removed_empty
 
 
 def pack(root: Path, target: Path, root_name: str) -> dict[str, object]:
@@ -309,3 +168,44 @@ def pack(root: Path, target: Path, root_name: str) -> dict[str, object]:
         "overviews": sum(relative.endswith(".overview.md") for relative in files),
         "members_validated": len(members),
     }
+
+
+def build_language_pack(
+    source: Path,
+    target: Path,
+    root_name: str,
+    language: str,
+) -> dict[str, object]:
+    """Build one single-language package whose root is the library itself."""
+    import tempfile
+
+    source = Path(source)
+    target = Path(target)
+    with tempfile.TemporaryDirectory(prefix="block-library-") as staging:
+        build_tree(source, Path(staging), root_name, language=language)
+        return pack(Path(staging) / root_name, target, root_name)
+
+
+def _main(argv: list[str] | None = None) -> int:
+    import argparse
+    import sys
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--source", required=True, help="packaged simulink-block-library directory")
+    parser.add_argument("--out", required=True, help="OVPack path to write")
+    parser.add_argument("--name", default=DEFAULT_ROOT, help="resource name inside the pack")
+    parser.add_argument("--language", choices=("zh", "en"), help="single-language pack")
+    args = parser.parse_args(argv)
+
+    source = Path(args.source)
+    if args.language:
+        summary = build_language_pack(source, Path(args.out), args.name, args.language)
+    else:
+        summary = pack(source, Path(args.out), args.name)
+    json.dump(summary, sys.stdout, ensure_ascii=False, indent=2)
+    sys.stdout.write("\n")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main())
