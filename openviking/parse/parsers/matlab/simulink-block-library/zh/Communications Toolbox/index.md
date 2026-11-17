@@ -17,5 +17,4 @@
 - [Source Coding](Source%20Coding/index.md)
 - [Synchronization](Synchronization/index.md)
 - [Utility Blocks](Utility%20Blocks/index.md)
-- [Demos](Demos.md)
 - [Subsystem](Subsystem.md)

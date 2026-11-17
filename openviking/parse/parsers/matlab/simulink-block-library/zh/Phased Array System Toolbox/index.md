@@ -10,4 +10,3 @@
 - [Space-Time Adaptive Processing](Space-Time%20Adaptive%20Processing/index.md)
 - [Transmitters and Receivers](Transmitters%20and%20Receivers/index.md)
 - [Waveforms](Waveforms/index.md)
-- [Copyright](Copyright.md)

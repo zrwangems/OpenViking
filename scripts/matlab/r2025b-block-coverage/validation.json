@@ -1,11 +1,11 @@
 {
   "release": "R2025b",
   "scope": "the 75-library local MATLAB R2025b Library Browser tree_full.md",
-  "tree_occurrences_checked": 4792,
+  "tree_occurrences_checked": 4736,
   "retained_documents_without_cached_html": 0,
-  "unique_bilingual_documents_checked": 3893,
+  "unique_bilingual_documents_checked": 3850,
   "official_chinese_source_renders_checked": 0,
-  "worker_translations_checked": 3893,
+  "worker_translations_checked": 3850,
   "failures": {},
   "failure_count": 0,
   "external_scope_requires_local_matlab": [

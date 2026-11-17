@@ -9,8 +9,5 @@
 - [Morphological Operations](Morphological%20Operations/index.md)
 - [Statistics](Statistics/index.md)
 - [Utilities](Utilities/index.md)
-- [Examples](Examples.md)
-- [I/O Interfaces](I%EF%BC%8FO%20Interfaces.md)
-- [Info](Info.md)
 - [Subsystem](Subsystem.md)
 - [Subsystem1](Subsystem1.md)

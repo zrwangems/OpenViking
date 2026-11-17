@@ -31,4 +31,3 @@
 - [Sensors](Sensors/index.md)
 - [Target Communication](Target%20Communication/index.md)
 - [Test Bench Blocks](Test%20Bench%20Blocks/index.md)
-- [Blockset Name2](Blockset%20Name2.md)

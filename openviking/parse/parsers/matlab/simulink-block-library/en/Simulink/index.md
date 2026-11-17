@@ -23,5 +23,3 @@
 - [Sources](Sources/index.md)
 - [String](String/index.md)
 - [User-Defined Functions](User-Defined%20Functions/index.md)
-- [Blocksets & Toolboxes](Blocksets%20%26%20Toolboxes.md)
-- [Demos](Demos.md)

@@ -15,5 +15,3 @@
 - [Propulsion](Propulsion/index.md)
 - [Spacecraft](Spacecraft/index.md)
 - [Utilities](Utilities/index.md)
-- [Demos](Demos.md)
-- [Demos1](Demos1.md)

@@ -10,7 +10,6 @@
 - [Digital Input](Digital%20Input.md)
 - [Digital Output](Digital%20Output.md)
 - [Encoder Input](Encoder%20Input.md)
-- [Examples](Examples.md)
 - [Frequency Output](Frequency%20Output.md)
 - [Other Input](Other%20Input.md)
 - [Other Output](Other%20Output.md)

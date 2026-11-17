@@ -43,9 +43,16 @@ DOCUMENT_OVERRIDES = {
     entry_key(item["product"], item["path"], item["name"]): item
     for item in json.loads(OVERRIDES_PATH.read_text(encoding="utf-8"))
 }
-# The Browser tree is exhaustive: no leaf is excluded. Every former exclusion
-# now has an explicit official block or topic mapping in DOCUMENT_OVERRIDES.
-EXCLUDED_ENTRIES = {}
+# Topic, demo, launcher and function leaves are not blocks. Keep the 6DOF
+# library entry because it is part of the real block inventory; all other
+# official-topic mappings are documentation-only leaves and must not be emitted.
+EXCLUDED_ENTRIES = {
+    key
+    for item in DOCUMENT_OVERRIDES.values()
+    if item.get("content_kind") == "official_topic"
+    and (key := entry_key(item["product"], item["path"], item["name"]))
+    != ("Aerospace Blockset", ("Equations of Motion",), "6DOF")
+}
 
 # The local Browser splits several Simscape products into their own top-level
 # libraries. These IDs keep their established SourceBlock/document ownership.
@@ -236,6 +243,8 @@ def align_manifest(full_manifest: dict, tree_path: Path = TREE_PATH) -> dict:
         for tree_block in tree_product["blocks"]:
             block_name = tree_block["name"]
             key = entry_key(name, tree_block["path"], block_name)
+            if key in EXCLUDED_ENTRIES:
+                continue
             override = DOCUMENT_OVERRIDES.get(key)
             candidates = [] if override else by_name.get(block_name, [])
             match_kind = "exact"
@@ -376,7 +385,13 @@ def align_manifest(full_manifest: dict, tree_path: Path = TREE_PATH) -> dict:
             for library in product["libraries"]
             for block in library["blocks"]
         ),
-        "excluded_non_block_entries": [],
+        "excluded_non_block_entries": sorted(
+            (
+                {"product": product, "path": list(path), "name": name}
+                for product, path, name in EXCLUDED_ENTRIES
+            ),
+            key=lambda item: (item["product"], item["path"], item["name"]),
+        ),
         "ambiguous_non_exact_matches_retained_as_tree_only": conflicts,
     }
     return manifest

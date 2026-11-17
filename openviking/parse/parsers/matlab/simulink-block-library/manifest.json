@@ -15797,66 +15797,11 @@
         {
           "path": [],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Blocksets & Toolboxes",
-              "type": "block",
-              "documentation_path": "block-libraries.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Simulink Block Libraries",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simulink/Blocksets & Toolboxes.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simulink/Blocksets & Toolboxes.md"
-                }
-              },
-              "resource_name": "Blocksets & Toolboxes.md",
-              "resource_paths": {
-                "en": "en/Simulink/Blocksets & Toolboxes.md",
-                "zh": "zh/Simulink/Blocksets & Toolboxes.md"
-              }
-            },
-            {
-              "name": "Demos",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Simulink",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simulink/Demos.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simulink/Demos.md"
-                }
-              },
-              "resource_name": "Demos.md",
-              "resource_paths": {
-                "en": "en/Simulink/Demos.md",
-                "zh": "zh/Simulink/Demos.md"
-              }
-            }
-          ]
+          "blocks": []
         }
       ],
-      "block_occurrences": 576,
-      "unique_document_paths": 352
+      "block_occurrences": 574,
+      "unique_document_paths": 350
     },
     {
       "id": "aeroblks",
@@ -15992,35 +15937,7 @@
             "Animation"
           ],
           "targets": [],
-          "blocks": [
-            {
-              "name": "MATLAB-Based Animation",
-              "type": "block",
-              "documentation_path": "matlabanimation.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "MATLAB Animation",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Aerospace Blockset/Animation/MATLAB-Based Animation.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Aerospace Blockset/Animation/MATLAB-Based Animation.md"
-                }
-              },
-              "resource_name": "MATLAB-Based Animation.md",
-              "resource_paths": {
-                "en": "en/Aerospace Blockset/Animation/MATLAB-Based Animation.md",
-                "zh": "zh/Aerospace Blockset/Animation/MATLAB-Based Animation.md"
-              }
-            }
-          ]
+          "blocks": []
         },
         {
           "path": [
@@ -16835,35 +16752,7 @@
             "Environment"
           ],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Atmosphere",
-              "type": "block",
-              "documentation_path": "environment.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Environment",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Aerospace Blockset/Environment/Atmosphere.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Aerospace Blockset/Environment/Atmosphere.md"
-                }
-              },
-              "resource_name": "Atmosphere.md",
-              "resource_paths": {
-                "en": "en/Aerospace Blockset/Environment/Atmosphere.md",
-                "zh": "zh/Aerospace Blockset/Environment/Atmosphere.md"
-              }
-            }
-          ]
+          "blocks": []
         },
         {
           "path": [
@@ -18498,35 +18387,7 @@
             "GNC"
           ],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Guidance",
-              "type": "block",
-              "documentation_path": "guidance-navigation-and-control-gnc.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Guidance, Navigation, and Control (GNC)",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Aerospace Blockset/GNC/Guidance.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Aerospace Blockset/GNC/Guidance.md"
-                }
-              },
-              "resource_name": "Guidance.md",
-              "resource_paths": {
-                "en": "en/Aerospace Blockset/GNC/Guidance.md",
-                "zh": "zh/Aerospace Blockset/GNC/Guidance.md"
-              }
-            }
-          ]
+          "blocks": []
         },
         {
           "path": [
@@ -19470,35 +19331,7 @@
             "Utilities"
           ],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Axes Transformations",
-              "type": "block",
-              "documentation_path": "axes-transformations-1.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Axes Transformations",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Aerospace Blockset/Utilities/Axes Transformations.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Aerospace Blockset/Utilities/Axes Transformations.md"
-                }
-              },
-              "resource_name": "Axes Transformations.md",
-              "resource_paths": {
-                "en": "en/Aerospace Blockset/Utilities/Axes Transformations.md",
-                "zh": "zh/Aerospace Blockset/Utilities/Axes Transformations.md"
-              }
-            }
-          ]
+          "blocks": []
         },
         {
           "path": [
@@ -20197,66 +20030,11 @@
         {
           "path": [],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Demos",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Aerospace Blockset",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Aerospace Blockset/Demos.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Aerospace Blockset/Demos.md"
-                }
-              },
-              "resource_name": "Demos.md",
-              "resource_paths": {
-                "en": "en/Aerospace Blockset/Demos.md",
-                "zh": "zh/Aerospace Blockset/Demos.md"
-              }
-            },
-            {
-              "name": "Demos1",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Aerospace Blockset",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Aerospace Blockset/Demos.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Aerospace Blockset/Demos.md"
-                }
-              },
-              "resource_name": "Demos1.md",
-              "resource_paths": {
-                "en": "en/Aerospace Blockset/Demos1.md",
-                "zh": "zh/Aerospace Blockset/Demos1.md"
-              }
-            }
-          ]
+          "blocks": []
         }
       ],
-      "block_occurrences": 157,
-      "unique_document_paths": 147
+      "block_occurrences": 151,
+      "unique_document_paths": 142
     },
     {
       "id": "audio",
@@ -21614,60 +21392,6 @@
           "targets": [],
           "blocks": [
             {
-              "name": "Demos",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Audio Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Audio Toolbox/Demos.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Audio Toolbox/Demos.md"
-                }
-              },
-              "resource_name": "Demos.md",
-              "resource_paths": {
-                "en": "en/Audio Toolbox/Demos.md",
-                "zh": "zh/Audio Toolbox/Demos.md"
-              }
-            },
-            {
-              "name": "Info",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Audio Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Audio Toolbox/Demos.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Audio Toolbox/Demos.md"
-                }
-              },
-              "resource_name": "Info.md",
-              "resource_paths": {
-                "en": "en/Audio Toolbox/Info.md",
-                "zh": "zh/Audio Toolbox/Info.md"
-              }
-            },
-            {
               "name": "Subsystem",
               "type": "block",
               "documentation_path": "../simulink/slref/subsystem.html",
@@ -21697,8 +21421,8 @@
           ]
         }
       ],
-      "block_occurrences": 53,
-      "unique_document_paths": 51
+      "block_occurrences": 51,
+      "unique_document_paths": 50
     },
     {
       "id": "driving",
@@ -22544,33 +22268,6 @@
           "targets": [],
           "blocks": [
             {
-              "name": "Demos",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Automated Driving Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Automated Driving Toolbox/Demos.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Automated Driving Toolbox/Demos.md"
-                }
-              },
-              "resource_name": "Demos.md",
-              "resource_paths": {
-                "en": "en/Automated Driving Toolbox/Demos.md",
-                "zh": "zh/Automated Driving Toolbox/Demos.md"
-              }
-            },
-            {
               "name": "Detection Concatenation",
               "type": "block",
               "documentation_path": "ref/detectionconcatenation.html",
@@ -22595,33 +22292,6 @@
               "resource_paths": {
                 "en": "en/Automated Driving Toolbox/Detection Concatenation.md",
                 "zh": "zh/Automated Driving Toolbox/Detection Concatenation.md"
-              }
-            },
-            {
-              "name": "Info",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Automated Driving Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Automated Driving Toolbox/Demos.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Automated Driving Toolbox/Demos.md"
-                }
-              },
-              "resource_name": "Info.md",
-              "resource_paths": {
-                "en": "en/Automated Driving Toolbox/Info.md",
-                "zh": "zh/Automated Driving Toolbox/Info.md"
               }
             },
             {
@@ -22759,8 +22429,8 @@
           ]
         }
       ],
-      "block_occurrences": 38,
-      "unique_document_paths": 35
+      "block_occurrences": 36,
+      "unique_document_paths": 34
     },
     {
       "id": "autosar",
@@ -22775,35 +22445,7 @@
             "Adaptive Platform"
           ],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Signal Routing",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "AUTOSAR Blockset",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/AUTOSAR Blockset/Adaptive Platform/Signal Routing.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/AUTOSAR Blockset/Adaptive Platform/Signal Routing.md"
-                }
-              },
-              "resource_name": "Signal Routing.md",
-              "resource_paths": {
-                "en": "en/AUTOSAR Blockset/Adaptive Platform/Signal Routing.md",
-                "zh": "zh/AUTOSAR Blockset/Adaptive Platform/Signal Routing.md"
-              }
-            }
-          ]
+          "blocks": []
         },
         {
           "path": [
@@ -23110,8 +22752,8 @@
           ]
         }
       ],
-      "block_occurrences": 10,
-      "unique_document_paths": 10
+      "block_occurrences": 9,
+      "unique_document_paths": 9
     },
     {
       "id": "simscape-battery",
@@ -38612,39 +38254,11 @@
         {
           "path": [],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Blockset Name2",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "C2000 Microcontroller Blockset",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/C2000 Microcontroller Blockset/Blockset Name2.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/C2000 Microcontroller Blockset/Blockset Name2.md"
-                }
-              },
-              "resource_name": "Blockset Name2.md",
-              "resource_paths": {
-                "en": "en/C2000 Microcontroller Blockset/Blockset Name2.md",
-                "zh": "zh/C2000 Microcontroller Blockset/Blockset Name2.md"
-              }
-            }
-          ]
+          "blocks": []
         }
       ],
-      "block_occurrences": 534,
-      "unique_document_paths": 106
+      "block_occurrences": 533,
+      "unique_document_paths": 105
     },
     {
       "id": "comm",
@@ -43164,33 +42778,6 @@
               }
             },
             {
-              "name": "Quantizers Library Link",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Communications Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Communications Toolbox/Source Coding/Quantizers Library Link.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Communications Toolbox/Source Coding/Quantizers Library Link.md"
-                }
-              },
-              "resource_name": "Quantizers Library Link.md",
-              "resource_paths": {
-                "en": "en/Communications Toolbox/Source Coding/Quantizers Library Link.md",
-                "zh": "zh/Communications Toolbox/Source Coding/Quantizers Library Link.md"
-              }
-            },
-            {
               "name": "Quantizing Decoder",
               "type": "block",
               "documentation_path": "ref/quantizingdecoder.html",
@@ -43686,33 +43273,6 @@
           "targets": [],
           "blocks": [
             {
-              "name": "Demos",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Communications Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Communications Toolbox/Source Coding/Quantizers Library Link.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Communications Toolbox/Source Coding/Quantizers Library Link.md"
-                }
-              },
-              "resource_name": "Demos.md",
-              "resource_paths": {
-                "en": "en/Communications Toolbox/Demos.md",
-                "zh": "zh/Communications Toolbox/Demos.md"
-              }
-            },
-            {
               "name": "Subsystem",
               "type": "block",
               "documentation_path": "../simulink/slref/subsystem.html",
@@ -43742,8 +43302,8 @@
           ]
         }
       ],
-      "block_occurrences": 183,
-      "unique_document_paths": 176
+      "block_occurrences": 181,
+      "unique_document_paths": 175
     },
     {
       "id": "communications-toolbox-hdl-support",
@@ -46554,60 +46114,6 @@
           "targets": [],
           "blocks": [
             {
-              "name": "Demos",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Computer Vision Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Computer Vision Toolbox/Demos.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Computer Vision Toolbox/Demos.md"
-                }
-              },
-              "resource_name": "Demos.md",
-              "resource_paths": {
-                "en": "en/Computer Vision Toolbox/Demos.md",
-                "zh": "zh/Computer Vision Toolbox/Demos.md"
-              }
-            },
-            {
-              "name": "Info",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Computer Vision Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Computer Vision Toolbox/Demos.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Computer Vision Toolbox/Demos.md"
-                }
-              },
-              "resource_name": "Info.md",
-              "resource_paths": {
-                "en": "en/Computer Vision Toolbox/Info.md",
-                "zh": "zh/Computer Vision Toolbox/Info.md"
-              }
-            },
-            {
               "name": "Subsystem",
               "type": "block",
               "documentation_path": "../simulink/slref/subsystem.html",
@@ -46664,8 +46170,8 @@
           ]
         }
       ],
-      "block_occurrences": 78,
-      "unique_document_paths": 75
+      "block_occurrences": 76,
+      "unique_document_paths": 74
     },
     {
       "id": "control",
@@ -49108,89 +48614,7 @@
             "Control Systems"
           ],
           "targets": [],
-          "blocks": [
-            {
-              "name": "NARMA-L2 Controller",
-              "type": "block",
-              "documentation_path": "ug/design-narma-l2-neural-controller-in-simulink.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Design NARMA-L2 Neural Controller in Simulink",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Deep Learning Toolbox/Shallow Neural Networks/Control Systems/NARMA-L2 Controller.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Deep Learning Toolbox/Shallow Neural Networks/Control Systems/NARMA-L2 Controller.md"
-                }
-              },
-              "resource_name": "NARMA-L2 Controller.md",
-              "resource_paths": {
-                "en": "en/Deep Learning Toolbox/Shallow Neural Networks/Control Systems/NARMA-L2 Controller.md",
-                "zh": "zh/Deep Learning Toolbox/Shallow Neural Networks/Control Systems/NARMA-L2 Controller.md"
-              }
-            },
-            {
-              "name": "NN Predictive Controller",
-              "type": "block",
-              "documentation_path": "ug/design-neural-network-predictive-controller-in-simulink.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Design Neural Network Predictive Controller in Simulink",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Deep Learning Toolbox/Shallow Neural Networks/Control Systems/NN Predictive Controller.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Deep Learning Toolbox/Shallow Neural Networks/Control Systems/NN Predictive Controller.md"
-                }
-              },
-              "resource_name": "NN Predictive Controller.md",
-              "resource_paths": {
-                "en": "en/Deep Learning Toolbox/Shallow Neural Networks/Control Systems/NN Predictive Controller.md",
-                "zh": "zh/Deep Learning Toolbox/Shallow Neural Networks/Control Systems/NN Predictive Controller.md"
-              }
-            },
-            {
-              "name": "X(2Y) Graph",
-              "type": "block",
-              "documentation_path": "ug/neural-network-architectures.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Neural Network Architectures",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Deep Learning Toolbox/Shallow Neural Networks/Control Systems/X(2Y) Graph.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Deep Learning Toolbox/Shallow Neural Networks/Control Systems/X(2Y) Graph.md"
-                }
-              },
-              "resource_name": "X(2Y) Graph.md",
-              "resource_paths": {
-                "en": "en/Deep Learning Toolbox/Shallow Neural Networks/Control Systems/X(2Y) Graph.md",
-                "zh": "zh/Deep Learning Toolbox/Shallow Neural Networks/Control Systems/X(2Y) Graph.md"
-              }
-            }
-          ]
+          "blocks": []
         },
         {
           "path": [
@@ -50093,8 +49517,8 @@
           ]
         }
       ],
-      "block_occurrences": 90,
-      "unique_document_paths": 84
+      "block_occurrences": 87,
+      "unique_document_paths": 81
     },
     {
       "id": "sdl",
@@ -60014,60 +59438,6 @@
           "targets": [],
           "blocks": [
             {
-              "name": "Demos",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "DSP System Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/DSP System Toolbox/Demos.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/DSP System Toolbox/Demos.md"
-                }
-              },
-              "resource_name": "Demos.md",
-              "resource_paths": {
-                "en": "en/DSP System Toolbox/Demos.md",
-                "zh": "zh/DSP System Toolbox/Demos.md"
-              }
-            },
-            {
-              "name": "Info",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "DSP System Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/DSP System Toolbox/Demos.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/DSP System Toolbox/Demos.md"
-                }
-              },
-              "resource_name": "Info.md",
-              "resource_paths": {
-                "en": "en/DSP System Toolbox/Info.md",
-                "zh": "zh/DSP System Toolbox/Info.md"
-              }
-            },
-            {
               "name": "Subsystem",
               "type": "block",
               "documentation_path": "../simulink/slref/subsystem.html",
@@ -60097,8 +59467,8 @@
           ]
         }
       ],
-      "block_occurrences": 240,
-      "unique_document_paths": 221
+      "block_occurrences": 238,
+      "unique_document_paths": 220
     },
     {
       "id": "dsp-system-toolbox-hdl-support",
@@ -77010,33 +76380,6 @@
                 "en": "en/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Spool Orifice Flow Force (IL).md",
                 "zh": "zh/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Spool Orifice Flow Force (IL).md"
               }
-            },
-            {
-              "name": "Valve Actuators",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Fluids",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Valve Actuators.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Valve Actuators.md"
-                }
-              },
-              "resource_name": "Valve Actuators.md",
-              "resource_paths": {
-                "en": "en/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Valve Actuators.md",
-                "zh": "zh/Fluids/Isothermal Liquid/Valves & Orifices/Valve Actuators & Forces/Valve Actuators.md"
-              }
             }
           ]
         },
@@ -79544,8 +78887,8 @@
           ]
         }
       ],
-      "block_occurrences": 208,
-      "unique_document_paths": 208
+      "block_occurrences": 207,
+      "unique_document_paths": 207
     },
     {
       "id": "simscape",
@@ -95207,39 +94550,11 @@
         {
           "path": [],
           "targets": [],
-          "blocks": [
-            {
-              "name": "For Use with Siemens ModelSim/Questa",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "HDL Verifier",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/HDL Verifier/For Use with Siemens ModelSim／Questa.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/HDL Verifier/For Use with Siemens ModelSim／Questa.md"
-                }
-              },
-              "resource_name": "For Use with Siemens ModelSim／Questa.md",
-              "resource_paths": {
-                "en": "en/HDL Verifier/For Use with Siemens ModelSim／Questa.md",
-                "zh": "zh/HDL Verifier/For Use with Siemens ModelSim／Questa.md"
-              }
-            }
-          ]
+          "blocks": []
         }
       ],
-      "block_occurrences": 9,
-      "unique_document_paths": 5
+      "block_occurrences": 8,
+      "unique_document_paths": 4
     },
     {
       "id": "imaq",
@@ -107920,39 +107235,11 @@
         {
           "path": [],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Copyright",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Phased Array System Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Phased Array System Toolbox/Copyright.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Phased Array System Toolbox/Copyright.md"
-                }
-              },
-              "resource_name": "Copyright.md",
-              "resource_paths": {
-                "en": "en/Phased Array System Toolbox/Copyright.md",
-                "zh": "zh/Phased Array System Toolbox/Copyright.md"
-              }
-            }
-          ]
+          "blocks": []
         }
       ],
-      "block_occurrences": 81,
-      "unique_document_paths": 81
+      "block_occurrences": 80,
+      "unique_document_paths": 80
     },
     {
       "id": "autoblks",
@@ -108541,35 +107828,7 @@
             "Propulsion"
           ],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Combustion Engines",
-              "type": "block",
-              "documentation_path": "propulsion.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Propulsion",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Powertrain Blockset/Propulsion/Combustion Engines.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Powertrain Blockset/Propulsion/Combustion Engines.md"
-                }
-              },
-              "resource_name": "Combustion Engines.md",
-              "resource_paths": {
-                "en": "en/Powertrain Blockset/Propulsion/Combustion Engines.md",
-                "zh": "zh/Powertrain Blockset/Propulsion/Combustion Engines.md"
-              }
-            }
-          ]
+          "blocks": []
         },
         {
           "path": [
@@ -109321,35 +108580,7 @@
             "Utilities"
           ],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Simscape",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Powertrain Blockset",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Powertrain Blockset/Utilities/Simscape.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Powertrain Blockset/Utilities/Simscape.md"
-                }
-              },
-              "resource_name": "Simscape.md",
-              "resource_paths": {
-                "en": "en/Powertrain Blockset/Utilities/Simscape.md",
-                "zh": "zh/Powertrain Blockset/Utilities/Simscape.md"
-              }
-            }
-          ]
+          "blocks": []
         },
         {
           "path": [
@@ -109558,8 +108789,8 @@
           ]
         }
       ],
-      "block_occurrences": 53,
-      "unique_document_paths": 49
+      "block_occurrences": 51,
+      "unique_document_paths": 47
     },
     {
       "id": "radar",
@@ -109667,33 +108898,6 @@
               "resource_paths": {
                 "en": "en/Radar Toolbox/Constant Gamma Clutter.md",
                 "zh": "zh/Radar Toolbox/Constant Gamma Clutter.md"
-              }
-            },
-            {
-              "name": "Copyright",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Radar Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Radar Toolbox/Copyright.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Radar Toolbox/Copyright.md"
-                }
-              },
-              "resource_name": "Copyright.md",
-              "resource_paths": {
-                "en": "en/Radar Toolbox/Copyright.md",
-                "zh": "zh/Radar Toolbox/Copyright.md"
               }
             },
             {
@@ -109898,8 +109102,8 @@
           ]
         }
       ],
-      "block_occurrences": 13,
-      "unique_document_paths": 13
+      "block_occurrences": 12,
+      "unique_document_paths": 12
     },
     {
       "id": "reinforcement-learning",
@@ -109980,93 +109184,11 @@
         {
           "path": [],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Demos2",
-              "type": "block",
-              "documentation_path": "../rptgen/index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Report Generator",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Report Generator/Demos2.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Report Generator/Demos2.md"
-                }
-              },
-              "resource_name": "Demos2.md",
-              "resource_paths": {
-                "en": "en/Report Generator/Demos2.md",
-                "zh": "zh/Report Generator/Demos2.md"
-              }
-            },
-            {
-              "name": "Launch Report",
-              "type": "block",
-              "documentation_path": "../rptgen/ug/report.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "report",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Report Generator/Launch Report.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Report Generator/Launch Report.md"
-                }
-              },
-              "resource_name": "Launch Report.md",
-              "resource_paths": {
-                "en": "en/Report Generator/Launch Report.md",
-                "zh": "zh/Report Generator/Launch Report.md"
-              }
-            },
-            {
-              "name": "Launch Rptlist",
-              "type": "block",
-              "documentation_path": "../rptgen/ug/rptlist.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "rptlist",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Report Generator/Launch Rptlist.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Report Generator/Launch Rptlist.md"
-                }
-              },
-              "resource_name": "Launch Rptlist.md",
-              "resource_paths": {
-                "en": "en/Report Generator/Launch Rptlist.md",
-                "zh": "zh/Report Generator/Launch Rptlist.md"
-              }
-            }
-          ]
+          "blocks": []
         }
       ],
-      "block_occurrences": 3,
-      "unique_document_paths": 3
+      "block_occurrences": 0,
+      "unique_document_paths": 0
     },
     {
       "id": "slrequirements",
@@ -116413,33 +115535,6 @@
               }
             },
             {
-              "name": "Design Patterns",
-              "type": "block",
-              "documentation_path": "gs/common-design-patterns.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "SimEvents Common Design Patterns",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/SimEvents/Design Patterns.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/SimEvents/Design Patterns.md"
-                }
-              },
-              "resource_name": "Design Patterns.md",
-              "resource_paths": {
-                "en": "en/SimEvents/Design Patterns.md",
-                "zh": "zh/SimEvents/Design Patterns.md"
-              }
-            },
-            {
               "name": "Discrete-Event Chart",
               "type": "block",
               "documentation_path": "ref/discreteeventchart.html",
@@ -117148,8 +116243,8 @@
           ]
         }
       ],
-      "block_occurrences": 31,
-      "unique_document_paths": 31
+      "block_occurrences": 30,
+      "unique_document_paths": 30
     },
     {
       "id": "simscape-root",
@@ -117162,201 +116257,11 @@
         {
           "path": [],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Battery",
-              "type": "block",
-              "documentation_path": "../simscape-battery/index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Simscape",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simscape/Battery.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simscape/Battery.md"
-                }
-              },
-              "resource_name": "Battery.md",
-              "resource_paths": {
-                "en": "en/Simscape/Battery.md",
-                "zh": "zh/Simscape/Battery.md"
-              }
-            },
-            {
-              "name": "Driveline",
-              "type": "block",
-              "documentation_path": "../sdl/index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Simscape",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simscape/Driveline.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simscape/Driveline.md"
-                }
-              },
-              "resource_name": "Driveline.md",
-              "resource_paths": {
-                "en": "en/Simscape/Driveline.md",
-                "zh": "zh/Simscape/Driveline.md"
-              }
-            },
-            {
-              "name": "Electrical",
-              "type": "block",
-              "documentation_path": "../sps/index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Simscape",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simscape/Electrical.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simscape/Electrical.md"
-                }
-              },
-              "resource_name": "Electrical.md",
-              "resource_paths": {
-                "en": "en/Simscape/Electrical.md",
-                "zh": "zh/Simscape/Electrical.md"
-              }
-            },
-            {
-              "name": "Fluids",
-              "type": "block",
-              "documentation_path": "../hydro/index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Simscape",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simscape/Fluids.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simscape/Fluids.md"
-                }
-              },
-              "resource_name": "Fluids.md",
-              "resource_paths": {
-                "en": "en/Simscape/Fluids.md",
-                "zh": "zh/Simscape/Fluids.md"
-              }
-            },
-            {
-              "name": "Foundation Library",
-              "type": "block",
-              "documentation_path": "../simscape/index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Simscape",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simscape/Foundation Library.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simscape/Foundation Library.md"
-                }
-              },
-              "resource_name": "Foundation Library.md",
-              "resource_paths": {
-                "en": "en/Simscape/Foundation Library.md",
-                "zh": "zh/Simscape/Foundation Library.md"
-              }
-            },
-            {
-              "name": "Multibody",
-              "type": "block",
-              "documentation_path": "../sm/index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Simscape",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simscape/Multibody.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simscape/Multibody.md"
-                }
-              },
-              "resource_name": "Multibody.md",
-              "resource_paths": {
-                "en": "en/Simscape/Multibody.md",
-                "zh": "zh/Simscape/Multibody.md"
-              }
-            },
-            {
-              "name": "Utilities",
-              "type": "block",
-              "documentation_path": "../simscape/index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Simscape",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simscape/Foundation Library.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simscape/Foundation Library.md"
-                }
-              },
-              "resource_name": "Utilities.md",
-              "resource_paths": {
-                "en": "en/Simscape/Utilities.md",
-                "zh": "zh/Simscape/Utilities.md"
-              }
-            }
-          ]
+          "blocks": []
         }
       ],
-      "block_occurrences": 7,
-      "unique_document_paths": 6
+      "block_occurrences": 0,
+      "unique_document_paths": 0
     },
     {
       "id": "sl3d",
@@ -120008,39 +118913,11 @@
         {
           "path": [],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Examples",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Simulink Design Verifier",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simulink Design Verifier/Examples.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simulink Design Verifier/Examples.md"
-                }
-              },
-              "resource_name": "Examples.md",
-              "resource_paths": {
-                "en": "en/Simulink Design Verifier/Examples.md",
-                "zh": "zh/Simulink Design Verifier/Examples.md"
-              }
-            }
-          ]
+          "blocks": []
         }
       ],
-      "block_occurrences": 10,
-      "unique_document_paths": 10
+      "block_occurrences": 9,
+      "unique_document_paths": 9
     },
     {
       "id": "sldrt",
@@ -120343,33 +119220,6 @@
               }
             },
             {
-              "name": "Examples",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Simulink Desktop Real-Time",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simulink Desktop Real-Time/Examples.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simulink Desktop Real-Time/Examples.md"
-                }
-              },
-              "resource_name": "Examples.md",
-              "resource_paths": {
-                "en": "en/Simulink Desktop Real-Time/Examples.md",
-                "zh": "zh/Simulink Desktop Real-Time/Examples.md"
-              }
-            },
-            {
               "name": "Frequency Output",
               "type": "block",
               "documentation_path": "ref/frequencyoutput.html",
@@ -120654,8 +119504,8 @@
           ]
         }
       ],
-      "block_occurrences": 21,
-      "unique_document_paths": 21
+      "block_occurrences": 20,
+      "unique_document_paths": 20
     },
     {
       "id": "simulink-extras",
@@ -121820,35 +120670,7 @@
             "CAN"
           ],
           "targets": [],
-          "blocks": [
-            {
-              "name": "CAN MSG blocks",
-              "type": "block",
-              "documentation_path": "can.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "CAN",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Simulink Real-Time/CAN/CAN MSG blocks.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Simulink Real-Time/CAN/CAN MSG blocks.md"
-                }
-              },
-              "resource_name": "CAN MSG blocks.md",
-              "resource_paths": {
-                "en": "en/Simulink Real-Time/CAN/CAN MSG blocks.md",
-                "zh": "zh/Simulink Real-Time/CAN/CAN MSG blocks.md"
-              }
-            }
-          ]
+          "blocks": []
         },
         {
           "path": [
@@ -124044,8 +122866,8 @@
           ]
         }
       ],
-      "block_occurrences": 80,
-      "unique_document_paths": 78
+      "block_occurrences": 79,
+      "unique_document_paths": 77
     },
     {
       "id": "sltest",
@@ -125318,147 +124140,11 @@
         {
           "path": [],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Examples",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "SoC Blockset",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/SoC Blockset/Examples.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/SoC Blockset/Examples.md"
-                }
-              },
-              "resource_name": "Examples.md",
-              "resource_paths": {
-                "en": "en/SoC Blockset/Examples.md",
-                "zh": "zh/SoC Blockset/Examples.md"
-              }
-            },
-            {
-              "name": "Hardware Logic I/O",
-              "type": "block",
-              "documentation_path": "hardware-io-devices.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Hardware I/O Devices",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/SoC Blockset/Hardware Logic I／O.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/SoC Blockset/Hardware Logic I／O.md"
-                }
-              },
-              "resource_name": "Hardware Logic I／O.md",
-              "resource_paths": {
-                "en": "en/SoC Blockset/Hardware Logic I／O.md",
-                "zh": "zh/SoC Blockset/Hardware Logic I／O.md"
-              }
-            },
-            {
-              "name": "Host I/O",
-              "type": "block",
-              "documentation_path": "ug/soc-blockset-model-structure.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "SoC Blockset Model Structure",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/SoC Blockset/Host I／O.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/SoC Blockset/Host I／O.md"
-                }
-              },
-              "resource_name": "Host I／O.md",
-              "resource_paths": {
-                "en": "en/SoC Blockset/Host I／O.md",
-                "zh": "zh/SoC Blockset/Host I／O.md"
-              }
-            },
-            {
-              "name": "Processor I/O",
-              "type": "block",
-              "documentation_path": "ug/soc-blockset-model-structure.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "SoC Blockset Model Structure",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/SoC Blockset/Host I／O.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/SoC Blockset/Host I／O.md"
-                }
-              },
-              "resource_name": "Processor I／O.md",
-              "resource_paths": {
-                "en": "en/SoC Blockset/Processor I／O.md",
-                "zh": "zh/SoC Blockset/Processor I／O.md"
-              }
-            },
-            {
-              "name": "Templates",
-              "type": "block",
-              "documentation_path": "ug/use-templates-to-create-soc-model.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Use Template to Create SoC Model",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/SoC Blockset/Templates.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/SoC Blockset/Templates.md"
-                }
-              },
-              "resource_name": "Templates.md",
-              "resource_paths": {
-                "en": "en/SoC Blockset/Templates.md",
-                "zh": "zh/SoC Blockset/Templates.md"
-              }
-            }
-          ]
+          "blocks": []
         }
       ],
-      "block_occurrences": 46,
-      "unique_document_paths": 45
+      "block_occurrences": 41,
+      "unique_document_paths": 41
     },
     {
       "id": "stateflow",
@@ -129285,35 +127971,7 @@
             "Utilities"
           ],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Simscape",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Vehicle Dynamics Blockset",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Vehicle Dynamics Blockset/Utilities/Simscape.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Vehicle Dynamics Blockset/Utilities/Simscape.md"
-                }
-              },
-              "resource_name": "Simscape.md",
-              "resource_paths": {
-                "en": "en/Vehicle Dynamics Blockset/Utilities/Simscape.md",
-                "zh": "zh/Vehicle Dynamics Blockset/Utilities/Simscape.md"
-              }
-            }
-          ]
+          "blocks": []
         },
         {
           "path": [
@@ -129668,35 +128326,7 @@
             "Vehicle Scenarios"
           ],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Driver",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Vehicle Dynamics Blockset",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Vehicle Dynamics Blockset/Utilities/Simscape.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Vehicle Dynamics Blockset/Utilities/Simscape.md"
-                }
-              },
-              "resource_name": "Driver.md",
-              "resource_paths": {
-                "en": "en/Vehicle Dynamics Blockset/Vehicle Scenarios/Driver.md",
-                "zh": "zh/Vehicle Dynamics Blockset/Vehicle Scenarios/Driver.md"
-              }
-            }
-          ]
+          "blocks": []
         },
         {
           "path": [
@@ -129937,35 +128567,7 @@
             "Sim3D"
           ],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Sim3D Core",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Vehicle Dynamics Blockset",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Vehicle Dynamics Blockset/Utilities/Simscape.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Vehicle Dynamics Blockset/Utilities/Simscape.md"
-                }
-              },
-              "resource_name": "Sim3D Core.md",
-              "resource_paths": {
-                "en": "en/Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core.md",
-                "zh": "zh/Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Core.md"
-              }
-            }
-          ]
+          "blocks": []
         },
         {
           "path": [
@@ -129974,35 +128576,7 @@
             "Sim3D Vehicle"
           ],
           "targets": [],
-          "blocks": [
-            {
-              "name": "Components",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Vehicle Dynamics Blockset",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Vehicle Dynamics Blockset/Utilities/Simscape.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Vehicle Dynamics Blockset/Utilities/Simscape.md"
-                }
-              },
-              "resource_name": "Components.md",
-              "resource_paths": {
-                "en": "en/Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components.md",
-                "zh": "zh/Vehicle Dynamics Blockset/Vehicle Scenarios/Sim3D/Sim3D Vehicle/Components.md"
-              }
-            }
-          ]
+          "blocks": []
         },
         {
           "path": [
@@ -130263,8 +128837,8 @@
           ]
         }
       ],
-      "block_occurrences": 68,
-      "unique_document_paths": 57
+      "block_occurrences": 64,
+      "unique_document_paths": 56
     },
     {
       "id": "vnt",
@@ -132012,87 +130586,6 @@
           "targets": [],
           "blocks": [
             {
-              "name": "Examples",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Vision HDL Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Vision HDL Toolbox/Examples.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Vision HDL Toolbox/Examples.md"
-                }
-              },
-              "resource_name": "Examples.md",
-              "resource_paths": {
-                "en": "en/Vision HDL Toolbox/Examples.md",
-                "zh": "zh/Vision HDL Toolbox/Examples.md"
-              }
-            },
-            {
-              "name": "I/O Interfaces",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Vision HDL Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Vision HDL Toolbox/Examples.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Vision HDL Toolbox/Examples.md"
-                }
-              },
-              "resource_name": "I／O Interfaces.md",
-              "resource_paths": {
-                "en": "en/Vision HDL Toolbox/I／O Interfaces.md",
-                "zh": "zh/Vision HDL Toolbox/I／O Interfaces.md"
-              }
-            },
-            {
-              "name": "Info",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Vision HDL Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Vision HDL Toolbox/Examples.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Vision HDL Toolbox/Examples.md"
-                }
-              },
-              "resource_name": "Info.md",
-              "resource_paths": {
-                "en": "en/Vision HDL Toolbox/Info.md",
-                "zh": "zh/Vision HDL Toolbox/Info.md"
-              }
-            },
-            {
               "name": "Subsystem",
               "type": "block",
               "documentation_path": "../simulink/slref/subsystem.html",
@@ -132149,8 +130642,8 @@
           ]
         }
       ],
-      "block_occurrences": 36,
-      "unique_document_paths": 32
+      "block_occurrences": 33,
+      "unique_document_paths": 31
     },
     {
       "id": "wireless-hdl",
@@ -133393,33 +131886,6 @@
           "targets": [],
           "blocks": [
             {
-              "name": "I/O Interfaces",
-              "type": "block",
-              "documentation_path": "index.html",
-              "summary": "",
-              "introduced": null,
-              "updated": [],
-              "documented_as": "Wireless HDL Toolbox",
-              "source_release": "R2025b",
-              "content_kind": "official_topic",
-              "match_kind": "verified_override",
-              "documents": {
-                "en": {
-                  "status": "available",
-                  "path": "en/Wireless HDL Toolbox/I／O Interfaces.md"
-                },
-                "zh": {
-                  "status": "available",
-                  "path": "zh/Wireless HDL Toolbox/I／O Interfaces.md"
-                }
-              },
-              "resource_name": "I／O Interfaces.md",
-              "resource_paths": {
-                "en": "en/Wireless HDL Toolbox/I／O Interfaces.md",
-                "zh": "zh/Wireless HDL Toolbox/I／O Interfaces.md"
-              }
-            },
-            {
               "name": "Subsystem",
               "type": "block",
               "documentation_path": "../simulink/slref/subsystem.html",
@@ -133476,8 +131942,8 @@
           ]
         }
       ],
-      "block_occurrences": 50,
-      "unique_document_paths": 49
+      "block_occurrences": 49,
+      "unique_document_paths": 48
     }
   ],
   "scope": "the 75-library local MATLAB R2025b Library Browser tree_full.md",
@@ -133486,15 +131952,15 @@
     "products": 75,
     "products_with_blocks": 75,
     "products_without_block_library": 0,
-    "block_occurrences": 4792,
-    "unique_product_document_paths": 3893,
+    "block_occurrences": 4736,
+    "unique_product_document_paths": 3850,
     "full_document_occurrences": {
-      "en": 4792,
-      "zh": 4792
+      "en": 4736,
+      "zh": 4736
     },
     "full_documents": {
-      "en": 3893,
-      "zh": 3893
+      "en": 3850,
+      "zh": 3850
     },
     "pending_documents": {
       "en": 0,
@@ -133506,10 +131972,333 @@
     "tree_products": 75,
     "tree_directories": 741,
     "tree_blocks": 4792,
-    "matched_blocks": 4792,
+    "matched_blocks": 4736,
     "tree_only_blocks": 0,
-    "verified_override_blocks": 809,
-    "excluded_non_block_entries": [],
+    "verified_override_blocks": 753,
+    "excluded_non_block_entries": [
+      {
+        "product": "AUTOSAR Blockset",
+        "path": [
+          "Adaptive Platform"
+        ],
+        "name": "Signal Routing"
+      },
+      {
+        "product": "Aerospace Blockset",
+        "path": [],
+        "name": "Demos"
+      },
+      {
+        "product": "Aerospace Blockset",
+        "path": [],
+        "name": "Demos1"
+      },
+      {
+        "product": "Aerospace Blockset",
+        "path": [
+          "Animation"
+        ],
+        "name": "MATLAB-Based Animation"
+      },
+      {
+        "product": "Aerospace Blockset",
+        "path": [
+          "Environment"
+        ],
+        "name": "Atmosphere"
+      },
+      {
+        "product": "Aerospace Blockset",
+        "path": [
+          "GNC"
+        ],
+        "name": "Guidance"
+      },
+      {
+        "product": "Aerospace Blockset",
+        "path": [
+          "Utilities"
+        ],
+        "name": "Axes Transformations"
+      },
+      {
+        "product": "Audio Toolbox",
+        "path": [],
+        "name": "Demos"
+      },
+      {
+        "product": "Audio Toolbox",
+        "path": [],
+        "name": "Info"
+      },
+      {
+        "product": "Automated Driving Toolbox",
+        "path": [],
+        "name": "Demos"
+      },
+      {
+        "product": "Automated Driving Toolbox",
+        "path": [],
+        "name": "Info"
+      },
+      {
+        "product": "C2000 Microcontroller Blockset",
+        "path": [],
+        "name": "Blockset Name2"
+      },
+      {
+        "product": "Communications Toolbox",
+        "path": [],
+        "name": "Demos"
+      },
+      {
+        "product": "Communications Toolbox",
+        "path": [
+          "Source Coding"
+        ],
+        "name": "Quantizers Library Link"
+      },
+      {
+        "product": "Computer Vision Toolbox",
+        "path": [],
+        "name": "Demos"
+      },
+      {
+        "product": "Computer Vision Toolbox",
+        "path": [],
+        "name": "Info"
+      },
+      {
+        "product": "DSP System Toolbox",
+        "path": [],
+        "name": "Demos"
+      },
+      {
+        "product": "DSP System Toolbox",
+        "path": [],
+        "name": "Info"
+      },
+      {
+        "product": "Deep Learning Toolbox",
+        "path": [
+          "Shallow Neural Networks",
+          "Control Systems"
+        ],
+        "name": "NARMA-L2 Controller"
+      },
+      {
+        "product": "Deep Learning Toolbox",
+        "path": [
+          "Shallow Neural Networks",
+          "Control Systems"
+        ],
+        "name": "NN Predictive Controller"
+      },
+      {
+        "product": "Deep Learning Toolbox",
+        "path": [
+          "Shallow Neural Networks",
+          "Control Systems"
+        ],
+        "name": "X(2Y) Graph"
+      },
+      {
+        "product": "Fluids",
+        "path": [
+          "Isothermal Liquid",
+          "Valves & Orifices",
+          "Valve Actuators & Forces"
+        ],
+        "name": "Valve Actuators"
+      },
+      {
+        "product": "HDL Verifier",
+        "path": [],
+        "name": "For Use with Siemens ModelSim/Questa"
+      },
+      {
+        "product": "Phased Array System Toolbox",
+        "path": [],
+        "name": "Copyright"
+      },
+      {
+        "product": "Powertrain Blockset",
+        "path": [
+          "Propulsion"
+        ],
+        "name": "Combustion Engines"
+      },
+      {
+        "product": "Powertrain Blockset",
+        "path": [
+          "Utilities"
+        ],
+        "name": "Simscape"
+      },
+      {
+        "product": "Radar Toolbox",
+        "path": [],
+        "name": "Copyright"
+      },
+      {
+        "product": "Report Generator",
+        "path": [],
+        "name": "Demos2"
+      },
+      {
+        "product": "Report Generator",
+        "path": [],
+        "name": "Launch Report"
+      },
+      {
+        "product": "Report Generator",
+        "path": [],
+        "name": "Launch Rptlist"
+      },
+      {
+        "product": "SimEvents",
+        "path": [],
+        "name": "Design Patterns"
+      },
+      {
+        "product": "Simscape",
+        "path": [],
+        "name": "Battery"
+      },
+      {
+        "product": "Simscape",
+        "path": [],
+        "name": "Driveline"
+      },
+      {
+        "product": "Simscape",
+        "path": [],
+        "name": "Electrical"
+      },
+      {
+        "product": "Simscape",
+        "path": [],
+        "name": "Fluids"
+      },
+      {
+        "product": "Simscape",
+        "path": [],
+        "name": "Foundation Library"
+      },
+      {
+        "product": "Simscape",
+        "path": [],
+        "name": "Multibody"
+      },
+      {
+        "product": "Simscape",
+        "path": [],
+        "name": "Utilities"
+      },
+      {
+        "product": "Simulink",
+        "path": [],
+        "name": "Blocksets & Toolboxes"
+      },
+      {
+        "product": "Simulink",
+        "path": [],
+        "name": "Demos"
+      },
+      {
+        "product": "Simulink Design Verifier",
+        "path": [],
+        "name": "Examples"
+      },
+      {
+        "product": "Simulink Desktop Real-Time",
+        "path": [],
+        "name": "Examples"
+      },
+      {
+        "product": "Simulink Real-Time",
+        "path": [
+          "CAN"
+        ],
+        "name": "CAN MSG blocks"
+      },
+      {
+        "product": "SoC Blockset",
+        "path": [],
+        "name": "Examples"
+      },
+      {
+        "product": "SoC Blockset",
+        "path": [],
+        "name": "Hardware Logic I/O"
+      },
+      {
+        "product": "SoC Blockset",
+        "path": [],
+        "name": "Host I/O"
+      },
+      {
+        "product": "SoC Blockset",
+        "path": [],
+        "name": "Processor I/O"
+      },
+      {
+        "product": "SoC Blockset",
+        "path": [],
+        "name": "Templates"
+      },
+      {
+        "product": "Vehicle Dynamics Blockset",
+        "path": [
+          "Utilities"
+        ],
+        "name": "Simscape"
+      },
+      {
+        "product": "Vehicle Dynamics Blockset",
+        "path": [
+          "Vehicle Scenarios"
+        ],
+        "name": "Driver"
+      },
+      {
+        "product": "Vehicle Dynamics Blockset",
+        "path": [
+          "Vehicle Scenarios",
+          "Sim3D"
+        ],
+        "name": "Sim3D Core"
+      },
+      {
+        "product": "Vehicle Dynamics Blockset",
+        "path": [
+          "Vehicle Scenarios",
+          "Sim3D",
+          "Sim3D Vehicle"
+        ],
+        "name": "Components"
+      },
+      {
+        "product": "Vision HDL Toolbox",
+        "path": [],
+        "name": "Examples"
+      },
+      {
+        "product": "Vision HDL Toolbox",
+        "path": [],
+        "name": "I/O Interfaces"
+      },
+      {
+        "product": "Vision HDL Toolbox",
+        "path": [],
+        "name": "Info"
+      },
+      {
+        "product": "Wireless HDL Toolbox",
+        "path": [],
+        "name": "I/O Interfaces"
+      }
+    ],
     "ambiguous_non_exact_matches_retained_as_tree_only": [
       {
         "product": "Phased Array System Toolbox",

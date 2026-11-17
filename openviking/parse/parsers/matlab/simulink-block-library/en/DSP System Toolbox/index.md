@@ -15,6 +15,4 @@
 - [Sources](Sources/index.md)
 - [Statistics](Statistics/index.md)
 - [Transforms](Transforms/index.md)
-- [Demos](Demos.md)
-- [Info](Info.md)
 - [Subsystem](Subsystem.md)
