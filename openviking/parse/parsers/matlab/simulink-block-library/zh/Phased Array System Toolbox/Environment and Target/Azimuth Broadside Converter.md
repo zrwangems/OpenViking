@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Azimuth Broadside Converter'
-family: 'phased'
+family: 'environment-and-target'
 product_id: 'phased'
 product_name: 'Phased Array System Toolbox'
 documentation_release: R2025b

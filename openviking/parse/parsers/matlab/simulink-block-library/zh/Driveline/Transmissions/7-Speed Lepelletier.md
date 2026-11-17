@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: '7-Speed Lepelletier'
-family: 'sdl'
+family: 'transmissions'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b

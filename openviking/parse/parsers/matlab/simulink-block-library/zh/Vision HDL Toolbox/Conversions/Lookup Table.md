@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Lookup Table'
-family: 'visionhdl'
+family: 'conversions'
 product_id: 'visionhdl'
 product_name: 'Vision HDL Toolbox'
 documentation_release: R2025b

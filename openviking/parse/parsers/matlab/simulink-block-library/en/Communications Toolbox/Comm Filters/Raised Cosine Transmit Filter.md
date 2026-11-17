@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Raised Cosine Transmit Filter'
 family: 'communications-toolbox-hdl-support'
-product_id: 'communications-toolbox-hdl-support'
-product_name: 'Communications Toolbox HDL Support'
+product_id: 'comm'
+product_name: 'Communications Toolbox'
 documentation_release: R2025b
 official_category: 'Comm Filters'
 documentation_page: 'raisedcosinetransmitfilter'
-documentation_source_path: '../comm/ref/raisedcosinetransmitfilter.html'
+documentation_source_path: 'ref/raisedcosinetransmitfilter.html'
 language: en
 ---
 

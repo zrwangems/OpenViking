@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Floating Scope and Scope Viewer'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Sinks'
 documentation_page: 'scopeviewer'
-documentation_source_path: '../simulink/slref/scopeviewer.html'
+documentation_source_path: 'slref/scopeviewer.html'
 language: zh-CN
 chinese_source: official
 ---

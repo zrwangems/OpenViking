@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Coordinate Transformation Conversion'
-family: 'ros'
+family: 'utilities'
 product_id: 'ros'
 product_name: 'ROS Toolbox'
 documentation_release: R2025b

@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Enabled Delay'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Discrete'
 documentation_page: 'enableddelay'
-documentation_source_path: 'ref/enableddelay.html'
+documentation_source_path: '../hdlcoder/ref/enableddelay.html'
 language: en
 ---
 

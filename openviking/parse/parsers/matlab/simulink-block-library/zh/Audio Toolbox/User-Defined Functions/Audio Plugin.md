@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Audio Plugin'
-family: 'audio'
+family: 'user-defined-functions'
 product_id: 'audio'
 product_name: 'Audio Toolbox'
 documentation_release: R2025b

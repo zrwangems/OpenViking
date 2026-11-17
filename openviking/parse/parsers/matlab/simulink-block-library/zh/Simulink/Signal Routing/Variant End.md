@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Variant End'
-family: 'simulink'
+family: 'signal-routing'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

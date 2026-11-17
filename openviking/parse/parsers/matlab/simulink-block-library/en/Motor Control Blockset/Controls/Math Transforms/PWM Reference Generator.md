@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'PWM Reference Generator'
 family: 'motor-control-blockset-hdl-support'
-product_id: 'motor-control-blockset-hdl-support'
-product_name: 'Motor Control Blockset HDL Support'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
 official_category: 'Controls / Math Transforms'
 documentation_page: 'pwmreferencegenerator'
-documentation_source_path: '../mcb/ref/pwmreferencegenerator.html'
+documentation_source_path: 'ref/pwmreferencegenerator.html'
 language: en
 ---
 

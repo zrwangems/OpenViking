@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Disc Friction Clutch'
-family: 'sdl'
+family: 'clutches'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b

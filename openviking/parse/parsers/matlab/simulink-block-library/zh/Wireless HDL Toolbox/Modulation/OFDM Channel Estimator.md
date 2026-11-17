@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'OFDM Channel Estimator'
-family: 'wireless-hdl'
+family: 'modulation'
 product_id: 'wireless-hdl'
 product_name: 'Wireless HDL Toolbox'
 documentation_release: R2025b

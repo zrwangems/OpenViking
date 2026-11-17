@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Check Dynamic Gap'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'model-verification'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Model Verification'
 documentation_page: 'checkdynamicgap'
-documentation_source_path: '../simulink/slref/checkdynamicgap.html'
+documentation_source_path: 'slref/checkdynamicgap.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

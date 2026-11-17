@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Video To Workspace'
-family: 'vision'
+family: 'sinks'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

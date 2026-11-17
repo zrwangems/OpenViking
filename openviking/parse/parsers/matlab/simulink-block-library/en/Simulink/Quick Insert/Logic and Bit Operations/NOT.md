@@ -2,8 +2,8 @@
 type: simulink-block
 title: 'NOT'
 family: 'libsb2sl'
-product_id: 'libsb2sl'
-product_name: 'libsb2sl'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'LOG'
 documentation_page: 'not'

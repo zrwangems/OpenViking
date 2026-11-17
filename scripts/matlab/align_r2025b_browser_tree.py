@@ -33,7 +33,6 @@ from extract_r2025b_block_manifest import (
 
 TREE_PATH = Path(__file__).with_name("tree_full.md")
 OVERRIDES_PATH = Path(__file__).with_name("r2025b-block-doc-overrides.json")
-EXCLUSIONS_PATH = Path(__file__).with_name("r2025b-block-exclusions.json")
 
 
 def entry_key(product: str, path: list[str], name: str) -> tuple[str, tuple[str, ...], str]:
@@ -44,10 +43,9 @@ DOCUMENT_OVERRIDES = {
     entry_key(item["product"], item["path"], item["name"]): item
     for item in json.loads(OVERRIDES_PATH.read_text(encoding="utf-8"))
 }
-EXCLUDED_ENTRIES = {
-    entry_key(item["product"], item["path"], item["name"]): item
-    for item in json.loads(EXCLUSIONS_PATH.read_text(encoding="utf-8"))
-}
+# The Browser tree is exhaustive: no leaf is excluded. Every former exclusion
+# now has an explicit official block or topic mapping in DOCUMENT_OVERRIDES.
+EXCLUDED_ENTRIES = {}
 
 # The local Browser splits several Simscape products into their own top-level
 # libraries. These IDs keep their established SourceBlock/document ownership.
@@ -211,7 +209,6 @@ def align_manifest(full_manifest: dict, tree_path: Path = TREE_PATH) -> dict:
 
     products = []
     conflicts = []
-    removed = []
     for tree_product in tree:
         name = tree_product["name"]
         product_id = PRODUCT_IDS.get(name, slug(name))
@@ -239,10 +236,8 @@ def align_manifest(full_manifest: dict, tree_path: Path = TREE_PATH) -> dict:
         for tree_block in tree_product["blocks"]:
             block_name = tree_block["name"]
             key = entry_key(name, tree_block["path"], block_name)
-            if key in EXCLUDED_ENTRIES:
-                removed.append(EXCLUDED_ENTRIES[key])
-                continue
-            candidates = by_name.get(block_name, [])
+            override = DOCUMENT_OVERRIDES.get(key)
+            candidates = [] if override else by_name.get(block_name, [])
             match_kind = "exact"
             if not candidates and block_name in BLOCK_ALIASES:
                 candidates = by_name.get(BLOCK_ALIASES[block_name], [])
@@ -263,7 +258,6 @@ def align_manifest(full_manifest: dict, tree_path: Path = TREE_PATH) -> dict:
                         {"product": name, **tree_block, "candidates": sorted(identities)}
                     )
                 candidates = []
-            override = DOCUMENT_OVERRIDES.get(key) if not candidates else None
             if override:
                 source_product_id = override["source_product"]
                 source_path = override["source_path"]
@@ -279,6 +273,7 @@ def align_manifest(full_manifest: dict, tree_path: Path = TREE_PATH) -> dict:
                     "updated": [],
                     "documented_as": override["title"],
                     "source_release": override["release"],
+                    "content_kind": override.get("content_kind", "block"),
                     "match_kind": "verified_override",
                     "documents": {
                         language: {"status": "pending", "path": None} for language in ("en", "zh")
@@ -381,7 +376,7 @@ def align_manifest(full_manifest: dict, tree_path: Path = TREE_PATH) -> dict:
             for library in product["libraries"]
             for block in library["blocks"]
         ),
-        "excluded_non_block_entries": removed,
+        "excluded_non_block_entries": [],
         "ambiguous_non_exact_matches_retained_as_tree_only": conflicts,
     }
     return manifest

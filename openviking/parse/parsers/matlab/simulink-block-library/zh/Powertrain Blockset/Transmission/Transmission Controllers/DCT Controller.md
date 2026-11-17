@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'DCT Controller'
-family: 'autoblks'
+family: 'transmission'
 product_id: 'autoblks'
 product_name: 'Powertrain Blockset'
 documentation_release: R2025b

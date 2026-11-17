@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Zero-Pole'
 family: 'simulink-extras'
-product_id: 'simulink-extras'
-product_name: 'Simulink Extras'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Additional Linear'
 documentation_page: 'zeropole'
-documentation_source_path: '../simulink/slref/zeropole.html'
+documentation_source_path: 'slref/zeropole.html'
 language: zh-CN
 chinese_source: official
 ---

@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Bitwise Operator'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'libsb2sl'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Logic and Bit Operations'
+official_category: 'LOG'
 documentation_page: 'bitwiseoperator'
-documentation_source_path: '../simulink/slref/bitwiseoperator.html'
+documentation_source_path: 'slref/bitwiseoperator.html'
 language: en
 ---
 

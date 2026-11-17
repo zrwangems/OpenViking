@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Simulink Function'
 family: 'simevents'
-product_id: 'simevents'
-product_name: 'SimEvents'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: ''
 documentation_page: 'simulinkfunction'
-documentation_source_path: '../simulink/slref/simulinkfunction.html'
+documentation_source_path: 'slref/simulinkfunction.html'
 language: zh-CN
 chinese_source: official
 ---

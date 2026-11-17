@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Sequence Viewer'
-family: 'simulink'
+family: 'messages-events'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

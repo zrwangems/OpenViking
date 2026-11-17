@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Worm and Gear Constraint'
-family: 'sm'
+family: 'gears-and-couplings'
 product_id: 'sm'
 product_name: 'Multibody'
 documentation_release: R2025b

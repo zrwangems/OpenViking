@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Ideal Rectangular Pulse Filter'
-family: 'comm'
+family: 'comm-filters'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

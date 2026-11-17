@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Flux Observer'
 family: 'motor-control-blockset-hdl-support'
-product_id: 'motor-control-blockset-hdl-support'
-product_name: 'Motor Control Blockset HDL Support'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
 official_category: 'Sensorless Estimators'
 documentation_page: 'fluxobserver'
-documentation_source_path: '../mcb/ref/fluxobserver.html'
+documentation_source_path: 'ref/fluxobserver.html'
 language: en
 ---
 

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'IQ Modulator'
-family: 'simrf'
+family: 'circuit-envelope'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b

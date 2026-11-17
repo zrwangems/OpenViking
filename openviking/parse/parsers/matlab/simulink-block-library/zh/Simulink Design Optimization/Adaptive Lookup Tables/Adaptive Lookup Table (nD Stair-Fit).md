@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Adaptive Lookup Table (nD Stair-Fit)'
-family: 'sldo'
+family: 'adaptive-lookup-tables'
 product_id: 'sldo'
 product_name: 'Simulink Design Optimization'
 documentation_release: R2025b

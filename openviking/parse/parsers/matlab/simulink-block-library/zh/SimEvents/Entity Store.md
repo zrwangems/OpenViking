@@ -5,7 +5,7 @@ family: 'simevents'
 product_id: 'simevents'
 product_name: 'SimEvents'
 documentation_release: R2025b
-official_category: ''
+official_category: 'SimEvents'
 documentation_page: 'entitystore'
 documentation_source_path: 'ref/entitystore.html'
 language: zh-CN

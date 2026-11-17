@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Temperature Control Valve (G)'
-family: 'hydro'
+family: 'gas'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b

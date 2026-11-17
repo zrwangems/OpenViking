@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Modem Status'
-family: 'slrealtime'
+family: 'rs232'
 product_id: 'slrealtime'
 product_name: 'Simulink Real-Time'
 documentation_release: R2025b

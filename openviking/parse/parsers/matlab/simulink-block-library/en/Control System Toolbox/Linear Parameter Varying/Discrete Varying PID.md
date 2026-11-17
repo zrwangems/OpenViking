@@ -2,8 +2,8 @@
 type: simulink-block
 title: 'Discrete PID Controller'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'control'
+product_name: 'Control System Toolbox'
 documentation_release: R2025b
 official_category: 'Discrete'
 documentation_page: 'discretepidcontroller'

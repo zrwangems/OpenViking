@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Coordinate Transformation Conversion'
-family: 'nav'
+family: 'utilities'
 product_id: 'nav'
 product_name: 'Navigation Toolbox'
 documentation_release: R2025b

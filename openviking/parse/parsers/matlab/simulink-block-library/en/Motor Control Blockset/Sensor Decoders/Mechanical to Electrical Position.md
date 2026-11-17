@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Mechanical to Electrical Position'
 family: 'motor-control-blockset-hdl-support'
-product_id: 'motor-control-blockset-hdl-support'
-product_name: 'Motor Control Blockset HDL Support'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
 official_category: 'Sensor Decoders'
 documentation_page: 'mechanicaltoelectricalposition'
-documentation_source_path: '../mcb/ref/mechanicaltoelectricalposition.html'
+documentation_source_path: 'ref/mechanicaltoelectricalposition.html'
 language: en
 ---
 

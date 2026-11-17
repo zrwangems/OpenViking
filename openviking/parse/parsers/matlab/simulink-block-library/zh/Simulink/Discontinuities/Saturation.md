@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Saturation'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Discontinuities'
 documentation_page: 'saturation'
-documentation_source_path: '../simulink/slref/saturation.html'
+documentation_source_path: 'slref/saturation.html'
 language: zh-CN
 chinese_source: official
 ---

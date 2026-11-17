@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Motorcycle Chain'
-family: 'autoblks'
+family: 'drivetrain'
 product_id: 'autoblks'
 product_name: 'Powertrain Blockset'
 documentation_release: R2025b

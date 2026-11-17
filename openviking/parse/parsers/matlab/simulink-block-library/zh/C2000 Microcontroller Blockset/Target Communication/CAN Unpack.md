@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'CAN Unpack'
-family: 'ecoder'
-product_id: 'ecoder'
-product_name: 'Embedded Coder'
+family: 'embedded-targets'
+product_id: 'ti-c2000'
+product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
 official_category: 'Embedded Targets / Host Communication'
 documentation_page: 'canunpack'
-documentation_source_path: 'ref/canunpack.html'
+documentation_source_path: '../ecoder/ref/canunpack.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

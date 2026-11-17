@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Trigger'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Ports & Subsystems'
 documentation_page: 'trigger'
-documentation_source_path: '../simulink/slref/trigger.html'
+documentation_source_path: 'slref/trigger.html'
 language: en
 ---
 

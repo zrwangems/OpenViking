@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Multiband Parametric EQ'
-family: 'audio'
+family: 'filters'
 product_id: 'audio'
 product_name: 'Audio Toolbox'
 documentation_release: R2025b

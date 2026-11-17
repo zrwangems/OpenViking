@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Reduced Lundell Alternator'
-family: 'autoblks'
+family: 'energy-storage-and-auxiliary-drive'
 product_id: 'autoblks'
 product_name: 'Powertrain Blockset'
 documentation_release: R2025b

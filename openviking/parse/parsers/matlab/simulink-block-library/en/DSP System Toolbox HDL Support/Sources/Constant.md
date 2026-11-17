@@ -2,8 +2,8 @@
 type: simulink-block
 title: 'Constant'
 family: 'libsb2sl'
-product_id: 'libsb2sl'
-product_name: 'libsb2sl'
+product_id: 'dsp-system-toolbox-hdl-support'
+product_name: 'DSP System Toolbox HDL Support'
 documentation_release: R2025b
 official_category: 'ALG / AlgExpression'
 documentation_page: 'constant'

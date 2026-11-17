@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Colored Noise'
 family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+product_id: 'audio'
+product_name: 'Audio Toolbox'
 documentation_release: R2025b
 official_category: 'Sources'
 documentation_page: 'colorednoise'
-documentation_source_path: 'ref/colorednoise.html'
+documentation_source_path: '../dsp/ref/colorednoise.html'
 language: en
 ---
 

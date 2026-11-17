@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Convolutional Encoder'
-family: 'wireless-hdl'
+family: 'error-detection-and-correction'
 product_id: 'wireless-hdl'
 product_name: 'Wireless HDL Toolbox'
 documentation_release: R2025b

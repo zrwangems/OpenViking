@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Float Extract Bits'
-family: 'simulink'
+family: 'logic-and-bit-operations'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

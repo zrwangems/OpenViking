@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Analog Output'
-family: 'daq'
+family: 'data-acquisition-toolbox'
 product_id: 'daq'
 product_name: 'Data Acquisition Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Data Acquisition Toolbox'
 documentation_page: 'analog_output'
 documentation_source_path: 'analog_output.html'
 language: zh-CN

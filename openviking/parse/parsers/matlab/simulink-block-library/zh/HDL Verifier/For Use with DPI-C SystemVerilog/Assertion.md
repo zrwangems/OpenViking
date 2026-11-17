@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Assertion'
-family: 'hdlverifier'
+family: 'for-use-with-dpi-c-systemverilog'
 product_id: 'hdlverifier'
 product_name: 'HDL Verifier'
 documentation_release: R2025b

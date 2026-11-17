@@ -14,5 +14,6 @@
 - [Reset Function](Reset Function.md)
 - [S-Function](S-Function.md)
 - [S-Function Builder](S-Function Builder.md)
+- [S-Function Examples](S-Function Examples.md)
 - [Simulink Function](Simulink Function.md)
 - [Terminate Function](Terminate Function.md)

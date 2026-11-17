@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Substring'
-family: 'simulink'
+family: 'string'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

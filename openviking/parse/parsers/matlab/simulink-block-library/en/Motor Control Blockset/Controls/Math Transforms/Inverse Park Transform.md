@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Inverse Park Transform'
 family: 'motor-control-blockset-hdl-support'
-product_id: 'motor-control-blockset-hdl-support'
-product_name: 'Motor Control Blockset HDL Support'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
 official_category: 'Controls / Math Transforms'
 documentation_page: 'inverseparktransform'
-documentation_source_path: '../mcb/ref/inverseparktransform.html'
+documentation_source_path: 'ref/inverseparktransform.html'
 language: en
 ---
 

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'IDCT'
-family: 'dsp'
+family: 'transforms'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b

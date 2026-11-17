@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Record'
-family: 'simulink'
+family: 'sinks'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

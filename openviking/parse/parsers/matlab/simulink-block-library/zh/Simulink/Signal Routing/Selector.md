@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Selector'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Signal Routing'
 documentation_page: 'selector'
-documentation_source_path: '../simulink/slref/selector.html'
+documentation_source_path: 'slref/selector.html'
 language: zh-CN
 chinese_source: official
 ---

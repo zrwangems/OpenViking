@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Rotational Damper'
-family: 'sdl'
+family: 'couplings-drives'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b

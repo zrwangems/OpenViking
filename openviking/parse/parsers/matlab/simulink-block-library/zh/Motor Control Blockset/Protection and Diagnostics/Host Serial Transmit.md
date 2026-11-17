@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Host Serial Transmit'
-family: 'mcb'
+family: 'protection-and-diagnostics'
 product_id: 'mcb'
 product_name: 'Motor Control Blockset'
 documentation_release: R2025b

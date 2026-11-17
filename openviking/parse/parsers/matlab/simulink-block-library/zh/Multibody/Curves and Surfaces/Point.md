@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Point'
-family: 'sm'
+family: 'curves-and-surfaces'
 product_id: 'sm'
 product_name: 'Multibody'
 documentation_release: R2025b

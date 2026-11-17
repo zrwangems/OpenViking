@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Disturbance Compensator'
-family: 'slcontrol'
+family: 'disturbance-observer'
 product_id: 'slcontrol'
 product_name: 'Simulink Control Design'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Open-Loop PID Autotuner'
-family: 'slcontrol'
+family: 'autotuning'
 product_id: 'slcontrol'
 product_name: 'Simulink Control Design'
 documentation_release: R2025b

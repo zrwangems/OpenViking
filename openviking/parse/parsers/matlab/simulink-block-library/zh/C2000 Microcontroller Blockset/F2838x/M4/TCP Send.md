@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'TCP Send'
 family: 'slrealtime'
-product_id: 'slrealtime'
-product_name: 'Simulink Real-Time'
+product_id: 'ti-c2000'
+product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
 official_category: 'IP'
 documentation_page: 'tcpsend'
-documentation_source_path: 'io_ref/tcpsend.html'
+documentation_source_path: '../slrealtime/io_ref/tcpsend.html'
 language: zh-CN
 chinese_source: official
 ---

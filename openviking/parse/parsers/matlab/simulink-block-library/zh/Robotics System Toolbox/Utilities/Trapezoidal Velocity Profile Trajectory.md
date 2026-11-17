@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Trapezoidal Velocity Profile Trajectory'
-family: 'robotics'
+family: 'utilities'
 product_id: 'robotics'
 product_name: 'Robotics System Toolbox'
 documentation_release: R2025b

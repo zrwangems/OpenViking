@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'XCP CAN FD Configuration'
-family: 'slrealtime'
+family: 'xcp'
 product_id: 'slrealtime'
 product_name: 'Simulink Real-Time'
 documentation_release: R2025b

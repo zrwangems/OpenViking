@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'NR Symbol Demodulator'
-family: 'wireless-hdl'
+family: 'modulation'
 product_id: 'wireless-hdl'
 product_name: 'Wireless HDL Toolbox'
 documentation_release: R2025b

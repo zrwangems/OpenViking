@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Loop Filter'
-family: 'msblks'
+family: 'pll'
 product_id: 'msblks'
 product_name: 'Mixed-Signal Blockset'
 documentation_release: R2025b

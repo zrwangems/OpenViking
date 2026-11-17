@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Cepstral Coefficients'
-family: 'audio'
+family: 'features'
 product_id: 'audio'
 product_name: 'Audio Toolbox'
 documentation_release: R2025b

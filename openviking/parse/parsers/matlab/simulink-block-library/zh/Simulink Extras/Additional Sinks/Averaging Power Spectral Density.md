@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Spectrum Analyzer'
-family: 'utilities'
-product_id: 'utilities'
-product_name: 'Utilities'
+family: 'sinks'
+product_id: 'simulink-extras'
+product_name: 'Simulink Extras'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Sinks'
 documentation_page: 'spectrumanalyzerblock'
 documentation_source_path: '../audio/../dsp/ref/spectrumanalyzerblock.html'
 language: zh-CN

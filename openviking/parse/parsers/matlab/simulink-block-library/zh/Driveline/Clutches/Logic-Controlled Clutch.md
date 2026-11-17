@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Logic-Controlled Clutch'
-family: 'sdl'
+family: 'clutches'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b

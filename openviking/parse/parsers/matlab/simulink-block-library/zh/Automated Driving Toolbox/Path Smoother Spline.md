@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Path Smoother Spline'
-family: 'driving'
+family: 'automated-driving-toolbox'
 product_id: 'driving'
 product_name: 'Automated Driving Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Automated Driving Toolbox'
 documentation_page: 'pathsmootherspline'
 documentation_source_path: 'ref/pathsmootherspline.html'
 language: zh-CN

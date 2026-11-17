@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Log Event'
-family: 'slrealtime'
+family: 'profiling'
 product_id: 'slrealtime'
 product_name: 'Simulink Real-Time'
 documentation_release: R2025b

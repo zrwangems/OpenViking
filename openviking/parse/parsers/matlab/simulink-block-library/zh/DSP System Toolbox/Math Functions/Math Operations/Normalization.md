@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Normalization'
-family: 'dsp'
+family: 'math-functions'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b

@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Inverse Clarke Transform'
 family: 'motor-control-blockset-hdl-support'
-product_id: 'motor-control-blockset-hdl-support'
-product_name: 'Motor Control Blockset HDL Support'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
 official_category: 'Controls / Math Transforms'
 documentation_page: 'inverseclarketransform'
-documentation_source_path: '../mcb/ref/inverseclarketransform.html'
+documentation_source_path: 'ref/inverseclarketransform.html'
 language: zh-CN
 chinese_source: official
 ---

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Perfect Insulator'
-family: 'simscape'
+family: 'thermal'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b

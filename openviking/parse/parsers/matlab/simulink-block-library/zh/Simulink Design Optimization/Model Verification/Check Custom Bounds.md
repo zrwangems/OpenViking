@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Check Custom Bounds'
-family: 'sldo'
+family: 'model-verification'
 product_id: 'sldo'
 product_name: 'Simulink Design Optimization'
 documentation_release: R2025b

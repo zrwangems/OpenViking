@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'IO Data Source'
-family: 'soc'
+family: 'processor-testbench'
 product_id: 'soc'
 product_name: 'SoC Blockset'
 documentation_release: R2025b

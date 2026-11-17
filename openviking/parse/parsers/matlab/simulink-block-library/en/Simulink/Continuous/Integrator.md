@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Integrator'
-family: 'simulink'
+family: 'libsb2sl'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Commonly Used Blocks'
+official_category: 'DYN / CIntegrator'
 documentation_page: 'integrator'
 documentation_source_path: 'slref/integrator.html'
 language: en

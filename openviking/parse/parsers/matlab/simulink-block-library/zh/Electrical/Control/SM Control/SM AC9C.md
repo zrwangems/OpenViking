@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'SM AC9C'
-family: 'sps'
+family: 'control'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

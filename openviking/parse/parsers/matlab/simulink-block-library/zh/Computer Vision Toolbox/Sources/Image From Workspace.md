@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Image From Workspace'
-family: 'vision'
+family: 'sources'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

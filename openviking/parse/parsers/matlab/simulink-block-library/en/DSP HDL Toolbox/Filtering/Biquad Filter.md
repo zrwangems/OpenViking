@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Biquad Filter'
 family: 'dsp-system-toolbox-hdl-support'
-product_id: 'dsp-system-toolbox-hdl-support'
-product_name: 'DSP System Toolbox HDL Support'
+product_id: 'dsphdl'
+product_name: 'DSP HDL Toolbox'
 documentation_release: R2025b
 official_category: 'Filtering'
 documentation_page: 'biquadfilter'
-documentation_source_path: '../dsphdl/ref/biquadfilter.html'
+documentation_source_path: 'ref/biquadfilter.html'
 language: en
 ---
 

@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Discrete PID Controller'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Discrete'
 documentation_page: 'discretepidcontroller'
-documentation_source_path: '../simulink/slref/discretepidcontroller.html'
+documentation_source_path: 'slref/discretepidcontroller.html'
 language: en
 ---
 

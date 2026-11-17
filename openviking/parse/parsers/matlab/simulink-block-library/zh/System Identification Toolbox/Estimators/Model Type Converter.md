@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Model Type Converter'
-family: 'ident'
+family: 'estimators'
 product_id: 'ident'
 product_name: 'System Identification Toolbox'
 documentation_release: R2025b

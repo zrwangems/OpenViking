@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'n-D Lookup Table'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'libsb2sl'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Lookup Tables'
+official_category: 'ARC'
 documentation_page: 'ndlookuptable'
-documentation_source_path: '../simulink/slref/ndlookuptable.html'
+documentation_source_path: 'slref/ndlookuptable.html'
 language: zh-CN
 chinese_source: official
 ---

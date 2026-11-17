@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Eye Diagram'
 family: 'communications-toolbox-hdl-support'
-product_id: 'communications-toolbox-hdl-support'
-product_name: 'Communications Toolbox HDL Support'
+product_id: 'comm'
+product_name: 'Communications Toolbox'
 documentation_release: R2025b
 official_category: 'Comm Sinks'
 documentation_page: 'eyediagramscope'
-documentation_source_path: '../comm/ref/eyediagramscope.html'
+documentation_source_path: 'ref/eyediagramscope.html'
 language: en
 ---
 

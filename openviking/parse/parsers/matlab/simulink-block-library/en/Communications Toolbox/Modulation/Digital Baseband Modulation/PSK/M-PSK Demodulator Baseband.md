@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'M-PSK Demodulator Baseband'
 family: 'communications-toolbox-hdl-support'
-product_id: 'communications-toolbox-hdl-support'
-product_name: 'Communications Toolbox HDL Support'
+product_id: 'comm'
+product_name: 'Communications Toolbox'
 documentation_release: R2025b
 official_category: 'Modulation / PM'
 documentation_page: 'mpskdemodulatorbaseband'
-documentation_source_path: '../comm/ref/mpskdemodulatorbaseband.html'
+documentation_source_path: 'ref/mpskdemodulatorbaseband.html'
 language: en
 ---
 

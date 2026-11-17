@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Fault'
-family: 'sps'
+family: 'utilities'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
-title: 'Sqrt'
-family: 'hdlcoder'
+title: 'Reciprocal Sqrt'
+family: 'hdl-floating-point-operations'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
@@ -12,7 +12,7 @@ language: zh-CN
 chinese_source: worker-translation
 ---
 
-# Sqrt
+# Reciprocal Sqrt
 
 ## 端口
 

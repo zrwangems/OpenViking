@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'OSTBC Encoder'
-family: 'comm'
+family: 'mimo'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

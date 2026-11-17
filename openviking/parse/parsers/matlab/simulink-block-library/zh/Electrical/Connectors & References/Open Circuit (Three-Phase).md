@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Open Circuit (Three-Phase)'
-family: 'sps'
+family: 'connectors-references'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Correlation'
-family: 'dsp'
+family: 'simulink-extras'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b
-official_category: 'Statistics'
+official_category: 'Additional Sinks'
 documentation_page: 'correlation'
 documentation_source_path: 'ref/correlation.html'
 language: en

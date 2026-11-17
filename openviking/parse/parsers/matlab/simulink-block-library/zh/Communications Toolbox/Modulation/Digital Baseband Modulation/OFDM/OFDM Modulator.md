@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'OFDM Modulator'
-family: 'wireless-hdl'
-product_id: 'wireless-hdl'
-product_name: 'Wireless HDL Toolbox'
+family: 'modulation'
+product_id: 'comm'
+product_name: 'Communications Toolbox'
 documentation_release: R2025b
 official_category: 'Modulation'
 documentation_page: 'ofdmmodulator'
-documentation_source_path: 'ref/ofdmmodulator.html'
+documentation_source_path: '../wireless-hdl/ref/ofdmmodulator.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

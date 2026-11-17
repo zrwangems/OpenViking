@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Fault Qualification'
-family: 'simscape-battery'
+family: 'bms'
 product_id: 'simscape-battery'
 product_name: 'Battery'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Conductive Heat Transfer'
-family: 'simscape'
+family: 'thermal'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b

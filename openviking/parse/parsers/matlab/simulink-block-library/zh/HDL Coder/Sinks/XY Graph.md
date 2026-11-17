@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Record'
-family: 'simulink'
-product_id: 'simulink'
-product_name: 'Simulink'
+family: 'sinks'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
 official_category: 'Sinks'
 documentation_page: 'record'
-documentation_source_path: 'slref/record.html'
+documentation_source_path: '../simulink/slref/record.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

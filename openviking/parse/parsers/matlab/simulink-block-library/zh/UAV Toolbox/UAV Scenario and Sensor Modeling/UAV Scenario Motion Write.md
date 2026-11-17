@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'UAV Scenario Motion Write'
-family: 'uav'
+family: 'uav-scenario-and-sensor-modeling'
 product_id: 'uav'
 product_name: 'UAV Toolbox'
 documentation_release: R2025b

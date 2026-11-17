@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'TCP/IP Send'
-family: 'instrument'
+family: 'instrument-control-toolbox'
 product_id: 'instrument'
 product_name: 'Instrument Control Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Instrument Control Toolbox'
 documentation_page: 'tcpipsend'
 documentation_source_path: 'tcpipsend.html'
 language: zh-CN

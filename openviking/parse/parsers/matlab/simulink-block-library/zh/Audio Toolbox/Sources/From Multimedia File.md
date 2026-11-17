@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'From Multimedia File'
-family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+family: 'sources'
+product_id: 'audio'
+product_name: 'Audio Toolbox'
 documentation_release: R2025b
 official_category: 'Sources'
 documentation_page: 'frommultimediafile'
-documentation_source_path: 'ref/frommultimediafile.html'
+documentation_source_path: '../dsp/ref/frommultimediafile.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

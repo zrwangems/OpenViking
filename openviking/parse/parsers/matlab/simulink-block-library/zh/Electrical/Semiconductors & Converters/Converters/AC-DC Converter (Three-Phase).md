@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'AC-DC Converter (Three-Phase)'
-family: 'sps'
+family: 'semiconductors-converters'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

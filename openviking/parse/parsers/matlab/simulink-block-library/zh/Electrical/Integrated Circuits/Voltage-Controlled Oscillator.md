@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Voltage-Controlled Oscillator'
-family: 'sps'
+family: 'integrated-circuits'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

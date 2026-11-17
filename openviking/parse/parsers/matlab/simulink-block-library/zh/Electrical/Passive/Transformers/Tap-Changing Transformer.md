@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Tap-Changing Transformer'
-family: 'sps'
+family: 'passive'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'External Force Source (PB)'
-family: 'simscape'
+family: 'translational'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b

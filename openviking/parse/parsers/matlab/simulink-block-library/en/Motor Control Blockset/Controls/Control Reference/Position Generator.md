@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Position Generator'
 family: 'motor-control-blockset-hdl-support'
-product_id: 'motor-control-blockset-hdl-support'
-product_name: 'Motor Control Blockset HDL Support'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
 official_category: 'Controls / Control Reference'
 documentation_page: 'positiongenerator'
-documentation_source_path: '../mcb/ref/positiongenerator.html'
+documentation_source_path: 'ref/positiongenerator.html'
 language: en
 ---
 

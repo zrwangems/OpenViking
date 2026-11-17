@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Eye Measurement'
-family: 'serdes'
+family: 'utilities'
 product_id: 'serdes'
 product_name: 'SerDes Toolbox'
 documentation_release: R2025b

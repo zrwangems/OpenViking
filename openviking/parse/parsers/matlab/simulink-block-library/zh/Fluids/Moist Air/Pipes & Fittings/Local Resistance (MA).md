@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Local Resistance (MA)'
-family: 'hydro'
+family: 'moist-air'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b

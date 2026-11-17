@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'CIC Interpolation'
 family: 'dsp-system-toolbox-hdl-support'
-product_id: 'dsp-system-toolbox-hdl-support'
-product_name: 'DSP System Toolbox HDL Support'
+product_id: 'dsp'
+product_name: 'DSP System Toolbox'
 documentation_release: R2025b
 official_category: 'Filtering'
 documentation_page: 'cicinterpolation'
-documentation_source_path: '../dsp/ref/cicinterpolation.html'
+documentation_source_path: 'ref/cicinterpolation.html'
 language: en
 ---
 

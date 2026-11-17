@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'TCP Receive'
 family: 'slrealtime'
-product_id: 'slrealtime'
-product_name: 'Simulink Real-Time'
+product_id: 'ti-c2000'
+product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
 official_category: 'IP'
 documentation_page: 'tcpreceive'
-documentation_source_path: 'io_ref/tcpreceive.html'
+documentation_source_path: '../slrealtime/io_ref/tcpreceive.html'
 language: en
 ---
 

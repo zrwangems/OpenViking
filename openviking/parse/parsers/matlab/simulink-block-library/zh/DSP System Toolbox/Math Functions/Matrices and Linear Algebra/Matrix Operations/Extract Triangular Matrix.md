@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Extract Triangular Matrix'
-family: 'dsp'
+family: 'math-functions'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b

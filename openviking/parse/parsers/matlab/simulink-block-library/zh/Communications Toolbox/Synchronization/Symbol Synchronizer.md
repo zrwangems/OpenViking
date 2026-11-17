@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Symbol Synchronizer'
-family: 'comm'
+family: 'synchronization'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Two-Ray Channel'
-family: 'radar'
+family: 'radar-toolbox'
 product_id: 'radar'
 product_name: 'Radar Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Radar Toolbox'
 documentation_page: 'tworaychannel'
 documentation_source_path: 'ref/tworaychannel.html'
 language: zh-CN

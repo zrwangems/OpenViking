@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Gazebo Pacer'
-family: 'robotics'
+family: 'gazebo-co-simulation'
 product_id: 'robotics'
 product_name: 'Robotics System Toolbox'
 documentation_release: R2025b

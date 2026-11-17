@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Rectangular QAM TCM Encoder'
-family: 'comm'
+family: 'modulation'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

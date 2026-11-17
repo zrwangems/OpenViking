@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Voice Activity Detector'
-family: 'audio'
+family: 'measurements'
 product_id: 'audio'
 product_name: 'Audio Toolbox'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Divide'
-family: 'hdlcoder'
+family: 'hdl-floating-point-operations'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'In Bus Element'
-family: 'hdlcoder'
+family: 'ports-subsystems'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b

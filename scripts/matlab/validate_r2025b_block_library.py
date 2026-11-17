@@ -223,7 +223,7 @@ def main() -> None:
             continue
         if not re.search(r"documentation_release: R20\d\d[ab]", markdown):
             failures["wrong_release"].append(relative)
-        if not re.match(r"^# \S.+", body) or len(body) < 40:
+        if not re.match(r"^#\s+\S", body) or len(body) < 40:
             failures["empty_body"].append(relative)
         if language == "zh" and not re.search(r"[\u4e00-\u9fff]", body):
             failures["no_chinese_body"].append(relative)

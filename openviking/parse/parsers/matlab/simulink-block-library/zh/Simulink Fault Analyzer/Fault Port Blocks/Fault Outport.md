@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Fault Outport'
-family: 'fault-analyzer'
+family: 'fault-port-blocks'
 product_id: 'fault-analyzer'
 product_name: 'Simulink Fault Analyzer'
 documentation_release: R2025b

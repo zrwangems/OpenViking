@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Derivative'
-family: 'simulink'
+family: 'simulink-extras'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Continuous'
+official_category: 'Linearization'
 documentation_page: 'derivative'
 documentation_source_path: 'slref/derivative.html'
 language: zh-CN

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'MIMO Fading Channel'
-family: 'comm'
+family: 'channels'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Fuzzy Logic Controller'
-family: 'fuzzy'
+family: 'fuzzy-logic-toolbox'
 product_id: 'fuzzy'
 product_name: 'Fuzzy Logic Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Fuzzy Logic Toolbox'
 documentation_page: 'fuzzylogiccontroller'
 documentation_source_path: 'fuzzylogiccontroller.html'
 language: zh-CN

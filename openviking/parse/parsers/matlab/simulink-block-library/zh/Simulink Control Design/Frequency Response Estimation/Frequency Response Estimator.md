@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Frequency Response Estimator'
-family: 'slcontrol'
+family: 'frequency-response-estimation'
 product_id: 'slcontrol'
 product_name: 'Simulink Control Design'
 documentation_release: R2025b

@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Model Info'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Model-Wide Utilities'
 documentation_page: 'modelinfo'
-documentation_source_path: '../simulink/slref/modelinfo.html'
+documentation_source_path: 'slref/modelinfo.html'
 language: en
 ---
 

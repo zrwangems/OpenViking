@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Byte Unpack'
-family: 'mcb'
+family: 'signal-management'
 product_id: 'mcb'
 product_name: 'Motor Control Blockset'
 documentation_release: R2025b

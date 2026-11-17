@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'SPDT Switch'
-family: 'sps'
+family: 'switches-breakers'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

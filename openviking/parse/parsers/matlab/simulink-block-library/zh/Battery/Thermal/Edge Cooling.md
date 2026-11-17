@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Edge Cooling'
-family: 'simscape-battery'
+family: 'thermal'
 product_id: 'simscape-battery'
 product_name: 'Battery'
 documentation_release: R2025b

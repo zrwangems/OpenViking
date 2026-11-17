@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Decrement Real World'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'additional-math-discrete'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Math Operations'
+official_category: 'Additional Math & Discrete / Additional Math: Increment - Decrement'
 documentation_page: 'decrementrealworld'
-documentation_source_path: '../simulink/slref/decrementrealworld.html'
+documentation_source_path: 'slref/decrementrealworld.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

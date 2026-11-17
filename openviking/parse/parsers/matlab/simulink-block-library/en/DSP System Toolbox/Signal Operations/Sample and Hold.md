@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Sample and Hold'
 family: 'dsp-system-toolbox-hdl-support'
-product_id: 'dsp-system-toolbox-hdl-support'
-product_name: 'DSP System Toolbox HDL Support'
+product_id: 'dsp'
+product_name: 'DSP System Toolbox'
 documentation_release: R2025b
 official_category: 'Signal Operations'
 documentation_page: 'sampleandhold'
-documentation_source_path: '../dsp/ref/sampleandhold.html'
+documentation_source_path: 'ref/sampleandhold.html'
 language: en
 ---
 

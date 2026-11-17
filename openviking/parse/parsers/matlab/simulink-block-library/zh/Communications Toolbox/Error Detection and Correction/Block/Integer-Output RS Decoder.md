@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Integer-Output RS Decoder'
-family: 'comm'
+family: 'error-detection-and-correction'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

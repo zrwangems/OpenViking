@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: '6-Phase VSD Transform'
-family: 'motor-control-blockset-hdl-support'
-product_id: 'motor-control-blockset-hdl-support'
-product_name: 'Motor Control Blockset HDL Support'
+family: 'controls'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
 official_category: 'Controls / Math Transforms'
 documentation_page: '6phasevsdtransform'
-documentation_source_path: '../mcb/ref/6phasevsdtransform.html'
+documentation_source_path: 'ref/6phasevsdtransform.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

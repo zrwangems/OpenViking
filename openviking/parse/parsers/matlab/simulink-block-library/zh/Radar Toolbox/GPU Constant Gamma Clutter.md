@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'GPU Constant Gamma Clutter'
-family: 'radar'
+family: 'radar-toolbox'
 product_id: 'radar'
 product_name: 'Radar Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Radar Toolbox'
 documentation_page: 'gpuconstantgammaclutter'
 documentation_source_path: 'ref/gpuconstantgammaclutter.html'
 language: zh-CN

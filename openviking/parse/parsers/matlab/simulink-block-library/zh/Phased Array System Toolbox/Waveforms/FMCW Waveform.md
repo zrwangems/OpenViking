@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'FMCW Waveform'
-family: 'phased'
+family: 'waveforms'
 product_id: 'phased'
 product_name: 'Phased Array System Toolbox'
 documentation_release: R2025b

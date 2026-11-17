@@ -81,6 +81,31 @@ def clean_section(section) -> None:
         link.unwrap()
 
 
+def official_topic_content(html: bytes, entry: dict[str, str], language: str) -> tuple[str, str]:
+    """Render a complete official product, category, example or function page."""
+    soup = BeautifulSoup(html, "html.parser")
+    main = soup.select_one("main") or soup
+    heading = main.select_one("h1")
+    if heading is None:
+        raise ValueError(f"No documentation heading for {entry['name']}")
+    subtitle_node = main.select_one("p[itemprop='purpose']") or heading.find_next_sibling("p")
+    subtitle = " ".join(
+        (
+            subtitle_node.get_text(" ", strip=True)
+            if subtitle_node
+            else heading.get_text(" ", strip=True)
+        ).split()
+    )
+    heading.extract()
+    clean_section(main)
+    markdown = markdownify(str(main), heading_style="ATX", bullets="-")
+    markdown = re.sub(r"\n{3,}", "\n\n", markdown).strip()
+    markdown = "\n".join(line.rstrip() for line in markdown.splitlines())
+    if len(markdown) < 20:
+        raise ValueError(f"No usable official topic content for {entry['name']}")
+    return subtitle, markdown
+
+
 def localized_content(html: bytes, entry: dict[str, str], language: str) -> tuple[str, list]:
     soup = BeautifulSoup(html, "html.parser")
     main = soup.select_one("main") or soup

@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Discrete Filter'
 family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Filtering / Filter Implementations'
 documentation_page: 'discretefilter'
-documentation_source_path: '../simulink/slref/discretefilter.html'
+documentation_source_path: 'slref/discretefilter.html'
 language: en
 ---
 

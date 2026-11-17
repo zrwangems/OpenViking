@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Downsample'
-family: 'dsp-system-toolbox-hdl-support'
-product_id: 'dsp-system-toolbox-hdl-support'
-product_name: 'DSP System Toolbox HDL Support'
+family: 'signal-operations'
+product_id: 'dsp'
+product_name: 'DSP System Toolbox'
 documentation_release: R2025b
 official_category: 'Signal Operations'
 documentation_page: 'downsample'
-documentation_source_path: '../dsp/ref/downsample.html'
+documentation_source_path: 'ref/downsample.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

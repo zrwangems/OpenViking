@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Tustin Pilot Model'
-family: 'aeroblks'
+family: 'pilot-models'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b

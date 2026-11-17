@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Rate Transition'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Signal Attributes'
 documentation_page: 'ratetransition'
-documentation_source_path: '../simulink/slref/ratetransition.html'
+documentation_source_path: 'slref/ratetransition.html'
 language: zh-CN
 chinese_source: official
 ---

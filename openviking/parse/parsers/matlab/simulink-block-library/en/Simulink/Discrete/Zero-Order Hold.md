@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Zero-Order Hold'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Discrete'
 documentation_page: 'zeroorderhold'
-documentation_source_path: '../simulink/slref/zeroorderhold.html'
+documentation_source_path: 'slref/zeroorderhold.html'
 language: en
 ---
 

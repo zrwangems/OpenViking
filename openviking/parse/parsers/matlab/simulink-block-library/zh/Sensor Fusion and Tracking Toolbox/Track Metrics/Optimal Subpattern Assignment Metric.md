@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Optimal Subpattern Assignment Metric'
-family: 'fusion'
+family: 'track-metrics'
 product_id: 'fusion'
 product_name: 'Sensor Fusion and Tracking Toolbox'
 documentation_release: R2025b

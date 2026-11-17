@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Thermodynamic Properties Sensor (G)'
-family: 'simscape'
+family: 'gas'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b

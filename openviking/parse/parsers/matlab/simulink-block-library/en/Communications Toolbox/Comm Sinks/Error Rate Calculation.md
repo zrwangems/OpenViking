@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Error Rate Calculation'
 family: 'communications-toolbox-hdl-support'
-product_id: 'communications-toolbox-hdl-support'
-product_name: 'Communications Toolbox HDL Support'
+product_id: 'comm'
+product_name: 'Communications Toolbox'
 documentation_release: R2025b
 official_category: 'Comm Sinks'
 documentation_page: 'errorratecalculation'
-documentation_source_path: '../comm/ref/errorratecalculation.html'
+documentation_source_path: 'ref/errorratecalculation.html'
 language: en
 ---
 

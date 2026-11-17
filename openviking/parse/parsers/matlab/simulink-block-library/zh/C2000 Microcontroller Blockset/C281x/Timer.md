@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Timer'
-family: 'sps'
-product_id: 'sps'
-product_name: 'Electrical'
+family: 'integrated-circuits'
+product_id: 'ti-c2000'
+product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
 official_category: 'Integrated Circuits'
 documentation_page: 'timer'
-documentation_source_path: 'ref/timer.html'
+documentation_source_path: '../sps/ref/timer.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

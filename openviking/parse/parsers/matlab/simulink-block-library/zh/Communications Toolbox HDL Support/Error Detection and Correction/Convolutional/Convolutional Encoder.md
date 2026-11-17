@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Convolutional Encoder'
-family: 'wireless-hdl'
-product_id: 'wireless-hdl'
-product_name: 'Wireless HDL Toolbox'
+family: 'error-detection-and-correction'
+product_id: 'communications-toolbox-hdl-support'
+product_name: 'Communications Toolbox HDL Support'
 documentation_release: R2025b
 official_category: 'Error Detection and Correction'
 documentation_page: 'convolutionalencoder'
-documentation_source_path: 'ref/convolutionalencoder.html'
+documentation_source_path: '../wireless-hdl/ref/convolutionalencoder.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

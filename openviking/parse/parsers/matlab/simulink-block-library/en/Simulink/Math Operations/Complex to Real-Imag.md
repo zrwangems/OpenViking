@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Complex to Real-Imag'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Math Operations'
 documentation_page: 'complextorealimag'
-documentation_source_path: '../simulink/slref/complextorealimag.html'
+documentation_source_path: 'slref/complextorealimag.html'
 language: en
 ---
 

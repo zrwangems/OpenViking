@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Selector'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'dsp-system-toolbox-hdl-support'
+product_name: 'DSP System Toolbox HDL Support'
 documentation_release: R2025b
 official_category: 'Signal Routing'
 documentation_page: 'selector'
-documentation_source_path: '../simulink/slref/selector.html'
+documentation_source_path: '../dsp/../simulink/slref/selector.html'
 language: en
 ---
 

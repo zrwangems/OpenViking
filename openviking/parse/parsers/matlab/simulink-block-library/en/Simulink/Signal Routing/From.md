@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'From'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Signal Routing'
 documentation_page: 'from'
-documentation_source_path: '../simulink/slref/from.html'
+documentation_source_path: 'slref/from.html'
 language: en
 ---
 

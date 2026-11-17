@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Triggered Signal From Workspace'
-family: 'dsp'
+family: 'signal-operations'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b

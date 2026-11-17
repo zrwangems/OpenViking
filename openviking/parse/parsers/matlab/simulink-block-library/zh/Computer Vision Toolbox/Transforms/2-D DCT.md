@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: '2-D DCT'
-family: 'vision'
+family: 'transforms'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

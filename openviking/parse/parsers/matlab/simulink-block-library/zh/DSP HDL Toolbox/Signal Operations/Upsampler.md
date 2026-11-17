@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Upsampler'
-family: 'dsphdl'
+family: 'signal-operations'
 product_id: 'dsphdl'
 product_name: 'DSP HDL Toolbox'
 documentation_release: R2025b

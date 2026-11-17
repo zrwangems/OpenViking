@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Offset'
-family: 'libsb2sl'
+family: 'signal-operations'
 product_id: 'libsb2sl'
 product_name: 'libsb2sl'
 documentation_release: R2025b
-official_category: 'ALG / AlgExpression'
+official_category: 'Signal Operations'
 documentation_page: 'offset'
 documentation_source_path: '../dsp/ref/offset.html'
 language: zh-CN

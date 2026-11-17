@@ -8,3 +8,4 @@
 - [Space-Time Adaptive Processing](Space-Time Adaptive Processing/index.md)
 - [Transmitters and Receivers](Transmitters and Receivers/index.md)
 - [Waveforms](Waveforms/index.md)
+- [Copyright](Copyright.md)

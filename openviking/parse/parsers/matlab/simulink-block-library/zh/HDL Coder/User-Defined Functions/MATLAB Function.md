@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'MATLAB Function'
-family: 'hdlcoder'
+family: 'libsb2sl'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'User-Defined Functions'
+official_category: 'USR'
 documentation_page: 'matlabfunction'
 documentation_source_path: '../simulink/slref/matlabfunction.html'
 language: zh-CN

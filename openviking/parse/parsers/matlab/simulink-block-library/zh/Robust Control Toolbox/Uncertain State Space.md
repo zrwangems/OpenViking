@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Uncertain State Space'
-family: 'robust'
+family: 'robust-control-toolbox'
 product_id: 'robust'
 product_name: 'Robust Control Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Robust Control Toolbox'
 documentation_page: 'uncertainstatespace'
 documentation_source_path: 'ref/uncertainstatespace.html'
 language: zh-CN

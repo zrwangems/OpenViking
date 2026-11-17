@@ -2,8 +2,8 @@
 type: simulink-block
 title: 'DC Blocker'
 family: 'dsp-system-toolbox-hdl-support'
-product_id: 'dsp-system-toolbox-hdl-support'
-product_name: 'DSP System Toolbox HDL Support'
+product_id: 'comm'
+product_name: 'Communications Toolbox'
 documentation_release: R2025b
 official_category: 'Signal Operations'
 documentation_page: 'dcblocker'

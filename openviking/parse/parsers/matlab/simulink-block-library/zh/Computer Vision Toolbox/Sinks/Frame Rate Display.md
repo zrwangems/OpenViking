@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Frame Rate Display'
-family: 'vision'
+family: 'sinks'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

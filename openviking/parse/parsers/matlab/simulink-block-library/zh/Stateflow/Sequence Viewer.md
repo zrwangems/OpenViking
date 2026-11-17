@@ -5,7 +5,7 @@ family: 'stateflow'
 product_id: 'stateflow'
 product_name: 'Stateflow'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Stateflow'
 documentation_page: 'sequenceviewer'
 documentation_source_path: 'ref/sequenceviewer.html'
 language: zh-CN

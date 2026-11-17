@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Mechanism Configuration'
-family: 'sm'
+family: 'utilities'
 product_id: 'sm'
 product_name: 'Multibody'
 documentation_release: R2025b

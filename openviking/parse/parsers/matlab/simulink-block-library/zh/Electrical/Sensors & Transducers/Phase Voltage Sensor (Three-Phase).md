@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Phase Voltage Sensor (Three-Phase)'
-family: 'sps'
+family: 'sensors-transducers'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

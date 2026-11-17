@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Optical Flow'
-family: 'vision'
+family: 'analysis-enhancement'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

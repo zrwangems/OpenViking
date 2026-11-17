@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Distance Constraint'
-family: 'sm'
+family: 'constraints'
 product_id: 'sm'
 product_name: 'Multibody'
 documentation_release: R2025b

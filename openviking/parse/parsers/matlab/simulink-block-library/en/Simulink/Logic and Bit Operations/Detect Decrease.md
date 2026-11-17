@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Detect Decrease'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Logic and Bit Operations'
 documentation_page: 'detectdecrease'
-documentation_source_path: '../simulink/slref/detectdecrease.html'
+documentation_source_path: 'slref/detectdecrease.html'
 language: en
 ---
 

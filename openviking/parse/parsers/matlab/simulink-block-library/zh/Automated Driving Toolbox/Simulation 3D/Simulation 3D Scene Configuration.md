@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Simulation 3D Scene Configuration'
-family: 'driving'
+family: 'simulation-3d'
 product_id: 'driving'
 product_name: 'Automated Driving Toolbox'
 documentation_release: R2025b

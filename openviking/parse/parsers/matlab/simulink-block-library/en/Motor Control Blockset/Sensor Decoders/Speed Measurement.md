@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Speed Measurement'
 family: 'motor-control-blockset-hdl-support'
-product_id: 'motor-control-blockset-hdl-support'
-product_name: 'Motor Control Blockset HDL Support'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
 official_category: 'Sensor Decoders'
 documentation_page: 'speedmeasurement'
-documentation_source_path: '../mcb/ref/speedmeasurement.html'
+documentation_source_path: 'ref/speedmeasurement.html'
 language: en
 ---
 

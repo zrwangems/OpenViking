@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Timestamp'
-family: 'sldrt'
+family: 'target-profiling'
 product_id: 'sldrt'
 product_name: 'Simulink Desktop Real-Time'
 documentation_release: R2025b

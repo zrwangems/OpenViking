@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Propagation Delay'
-family: 'simulink'
+family: 'discrete'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

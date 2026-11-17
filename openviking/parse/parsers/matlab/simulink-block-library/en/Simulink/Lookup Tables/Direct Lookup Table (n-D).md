@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Direct Lookup Table (n-D)'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Lookup Tables'
 documentation_page: 'directlookuptablend'
-documentation_source_path: '../simulink/slref/directlookuptablend.html'
+documentation_source_path: 'slref/directlookuptablend.html'
 language: en
 ---
 

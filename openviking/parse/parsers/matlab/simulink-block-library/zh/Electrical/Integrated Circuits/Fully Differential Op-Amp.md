@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Fully Differential Op-Amp'
-family: 'sps'
+family: 'integrated-circuits'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

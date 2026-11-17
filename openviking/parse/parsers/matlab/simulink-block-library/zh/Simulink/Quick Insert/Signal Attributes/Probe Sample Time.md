@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Probe'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Signal Attributes'
 documentation_page: 'probe'
-documentation_source_path: '../simulink/slref/probe.html'
+documentation_source_path: 'slref/probe.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

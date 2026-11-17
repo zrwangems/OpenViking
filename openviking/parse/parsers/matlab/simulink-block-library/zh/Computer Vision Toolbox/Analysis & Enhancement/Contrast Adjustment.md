@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Contrast Adjustment'
-family: 'vision'
+family: 'analysis-enhancement'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

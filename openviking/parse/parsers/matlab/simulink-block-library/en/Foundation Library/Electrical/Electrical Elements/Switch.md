@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Switch'
 family: 'libsb2sl'
-product_id: 'libsb2sl'
-product_name: 'libsb2sl'
+product_id: 'simscape'
+product_name: 'Foundation Library'
 documentation_release: R2025b
 official_category: 'LOG'
 documentation_page: 'switch'
-documentation_source_path: '../simscape/ref/switch.html'
+documentation_source_path: 'ref/switch.html'
 language: en
 ---
 

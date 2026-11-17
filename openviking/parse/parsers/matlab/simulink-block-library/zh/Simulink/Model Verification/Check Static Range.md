@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Check Static Range'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'model-verification'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Model Verification'
 documentation_page: 'checkstaticrange'
-documentation_source_path: '../simulink/slref/checkstaticrange.html'
+documentation_source_path: 'slref/checkstaticrange.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

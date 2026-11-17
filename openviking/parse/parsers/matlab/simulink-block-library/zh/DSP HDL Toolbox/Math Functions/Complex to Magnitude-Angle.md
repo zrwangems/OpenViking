@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Complex to Magnitude-Angle'
-family: 'dsphdl'
+family: 'math-functions'
 product_id: 'dsphdl'
 product_name: 'DSP HDL Toolbox'
 documentation_release: R2025b

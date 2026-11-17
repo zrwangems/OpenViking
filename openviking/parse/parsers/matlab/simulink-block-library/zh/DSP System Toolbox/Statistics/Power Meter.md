@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Power Meter'
-family: 'dsp'
+family: 'statistics'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b

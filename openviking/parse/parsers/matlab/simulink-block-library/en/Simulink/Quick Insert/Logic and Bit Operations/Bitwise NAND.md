@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Logical Operator'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'libsb2sl'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Commonly Used Blocks'
+official_category: 'LOG'
 documentation_page: 'logicaloperator'
-documentation_source_path: '../simulink/slref/logicaloperator.html'
+documentation_source_path: 'slref/logicaloperator.html'
 language: en
 ---
 

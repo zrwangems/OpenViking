@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'MAVLink Deserializer'
-family: 'uav'
+family: 'mavlink'
 product_id: 'uav'
 product_name: 'UAV Toolbox'
 documentation_release: R2025b

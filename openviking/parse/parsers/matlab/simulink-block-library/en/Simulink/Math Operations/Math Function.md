@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Math Function'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'libsb2sl'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'HDL Floating Point Operations'
+official_category: 'ALG / AlgExpression'
 documentation_page: 'mathfunction'
-documentation_source_path: '../simulink/slref/mathfunction.html'
+documentation_source_path: 'slref/mathfunction.html'
 language: en
 ---
 

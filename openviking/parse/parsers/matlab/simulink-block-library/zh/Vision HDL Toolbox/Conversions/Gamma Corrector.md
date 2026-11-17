@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Gamma Corrector'
-family: 'visionhdl'
+family: 'conversions'
 product_id: 'visionhdl'
 product_name: 'Vision HDL Toolbox'
 documentation_release: R2025b

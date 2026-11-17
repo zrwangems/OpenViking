@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'ThingSpeak Output'
-family: 'sldrt'
+family: 'internet-of-things'
 product_id: 'sldrt'
 product_name: 'Simulink Desktop Real-Time'
 documentation_release: R2025b

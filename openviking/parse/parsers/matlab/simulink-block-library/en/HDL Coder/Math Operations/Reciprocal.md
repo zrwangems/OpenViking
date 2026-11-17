@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Reciprocal'
 family: 'libsb2sl'
-product_id: 'libsb2sl'
-product_name: 'libsb2sl'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
 official_category: 'ALG / AlgExpression'
 documentation_page: 'reciprocal'
-documentation_source_path: '../hdlcoder/ref/reciprocal.html'
+documentation_source_path: 'ref/reciprocal.html'
 language: en
 ---
 

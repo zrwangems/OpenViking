@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Data Type Conversion'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Commonly Used Blocks'
 documentation_page: 'datatypeconversion'
-documentation_source_path: '../simulink/slref/datatypeconversion.html'
+documentation_source_path: 'slref/datatypeconversion.html'
 language: zh-CN
 chinese_source: official
 ---

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Motor & Drive'
-family: 'sdl'
+family: 'engines-motors'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b

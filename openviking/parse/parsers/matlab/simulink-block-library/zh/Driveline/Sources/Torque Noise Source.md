@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Torque Noise Source'
-family: 'sdl'
+family: 'sources'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b

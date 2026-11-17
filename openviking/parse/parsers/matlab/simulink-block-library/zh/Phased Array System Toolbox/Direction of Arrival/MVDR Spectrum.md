@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'MVDR Spectrum'
-family: 'phased'
+family: 'direction-of-arrival'
 product_id: 'phased'
 product_name: 'Phased Array System Toolbox'
 documentation_release: R2025b

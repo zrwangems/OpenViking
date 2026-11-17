@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Passive Interface'
-family: 'simscape-battery'
+family: 'hil'
 product_id: 'simscape-battery'
 product_name: 'Battery'
 documentation_release: R2025b

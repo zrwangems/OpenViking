@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Reciprocal'
-family: 'libsb2sl'
+family: 'hdl-floating-point-operations'
 product_id: 'libsb2sl'
 product_name: 'libsb2sl'
 documentation_release: R2025b
-official_category: 'ALG / AlgExpression'
+official_category: 'HDL Floating Point Operations'
 documentation_page: 'reciprocal'
 documentation_source_path: '../hdlcoder/ref/reciprocal.html'
 language: zh-CN

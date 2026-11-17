@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Stream Data Sink'
-family: 'soc'
+family: 'hardware-logic-testbench'
 product_id: 'soc'
 product_name: 'SoC Blockset'
 documentation_release: R2025b

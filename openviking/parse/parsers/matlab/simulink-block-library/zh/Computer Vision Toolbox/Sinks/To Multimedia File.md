@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'To Multimedia File'
-family: 'vision'
+family: 'sinks'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

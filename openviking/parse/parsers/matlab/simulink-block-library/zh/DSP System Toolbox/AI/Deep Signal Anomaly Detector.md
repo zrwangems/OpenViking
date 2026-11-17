@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Deep Signal Anomaly Detector'
-family: 'dsp'
+family: 'ai'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b

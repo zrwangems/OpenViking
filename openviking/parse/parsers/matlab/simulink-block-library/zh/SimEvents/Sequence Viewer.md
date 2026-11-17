@@ -5,7 +5,7 @@ family: 'simevents'
 product_id: 'simevents'
 product_name: 'SimEvents'
 documentation_release: R2025b
-official_category: ''
+official_category: 'SimEvents'
 documentation_page: 'sequenceviewer'
 documentation_source_path: 'ref/sequenceviewer.html'
 language: zh-CN

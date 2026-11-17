@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Sample Control Bus Selector'
-family: 'wireless-hdl'
+family: 'utilities'
 product_id: 'wireless-hdl'
 product_name: 'Wireless HDL Toolbox'
 documentation_release: R2025b

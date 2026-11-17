@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Incremental Shaft Encoder'
-family: 'sps'
+family: 'sensors-transducers'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Floating Reference'
-family: 'simscape'
-product_id: 'simscape'
-product_name: 'Foundation Library'
+family: 'electrical'
+product_id: 'sps'
+product_name: 'Electrical'
 documentation_release: R2025b
 official_category: 'Electrical / Electrical Elements'
 documentation_page: 'floatingreference'
-documentation_source_path: 'ref/floatingreference.html'
+documentation_source_path: '../simscape/ref/floatingreference.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Simplified Synchronous Machine Measurement'
-family: 'sps'
+family: 'electromechanical'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

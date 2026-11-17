@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'AGC'
-family: 'comm'
+family: 'rf-impairments-correction'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Trailer Body 6DOF'
-family: 'vdynblks'
+family: 'vehicle-body'
 product_id: 'vdynblks'
 product_name: 'Vehicle Dynamics Blockset'
 documentation_release: R2025b

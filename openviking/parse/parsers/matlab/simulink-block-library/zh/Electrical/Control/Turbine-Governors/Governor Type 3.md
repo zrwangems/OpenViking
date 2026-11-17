@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Governor Type 3'
-family: 'sps'
+family: 'control'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

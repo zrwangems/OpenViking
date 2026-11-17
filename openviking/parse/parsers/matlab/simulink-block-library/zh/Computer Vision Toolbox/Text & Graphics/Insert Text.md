@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Insert Text'
-family: 'vision'
+family: 'text-graphics'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

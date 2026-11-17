@@ -5,7 +5,7 @@ family: 'reinforcement-learning'
 product_id: 'reinforcement-learning'
 product_name: 'Reinforcement Learning'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Reinforcement Learning'
 documentation_page: 'rlagent'
 documentation_source_path: 'ref/rlagent.html'
 language: zh-CN

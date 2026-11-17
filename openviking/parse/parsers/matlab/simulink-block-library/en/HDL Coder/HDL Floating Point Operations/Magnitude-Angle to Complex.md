@@ -7,7 +7,7 @@ product_name: 'HDL Coder'
 documentation_release: R2025b
 official_category: 'Math Operations'
 documentation_page: 'magnitudeangletocomplex'
-documentation_source_path: '../simulink/slref/magnitudeangletocomplex.html'
+documentation_source_path: '../fixedpoint/../simulink/slref/magnitudeangletocomplex.html'
 language: en
 ---
 

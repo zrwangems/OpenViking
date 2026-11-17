@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Task Sync'
-family: 'rtw'
+family: 'asynchronous'
 product_id: 'rtw'
 product_name: 'Simulink Coder'
 documentation_release: R2025b

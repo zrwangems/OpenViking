@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Out Bus Element'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Ports & Subsystems'
 documentation_page: 'outbuselement'
-documentation_source_path: '../simulink/slref/outbuselement.html'
+documentation_source_path: 'slref/outbuselement.html'
 language: en
 ---
 

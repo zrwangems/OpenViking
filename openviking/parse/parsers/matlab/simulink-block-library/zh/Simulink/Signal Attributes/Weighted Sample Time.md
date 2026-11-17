@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Weighted Sample Time'
-family: 'simulink'
+family: 'signal-attributes'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

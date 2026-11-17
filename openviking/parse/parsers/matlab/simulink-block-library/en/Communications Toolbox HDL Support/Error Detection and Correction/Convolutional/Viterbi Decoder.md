@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Viterbi Decoder'
 family: 'wireless-hdl'
-product_id: 'wireless-hdl'
-product_name: 'Wireless HDL Toolbox'
+product_id: 'communications-toolbox-hdl-support'
+product_name: 'Communications Toolbox HDL Support'
 documentation_release: R2025b
 official_category: 'Error Detection and Correction'
 documentation_page: 'viterbidecoder'
-documentation_source_path: 'ref/viterbidecoder.html'
+documentation_source_path: '../wireless-hdl/ref/viterbidecoder.html'
 language: en
 ---
 

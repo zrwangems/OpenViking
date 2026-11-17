@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Array of Electrical Nodes Connector'
-family: 'simscape-battery'
+family: 'connectors'
 product_id: 'simscape-battery'
 product_name: 'Battery'
 documentation_release: R2025b

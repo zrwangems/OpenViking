@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Autothreshold'
-family: 'vision'
+family: 'conversions'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Fuzzy PID Controller'
-family: 'fuzzy'
+family: 'fuzzy-logic-toolbox'
 product_id: 'fuzzy'
 product_name: 'Fuzzy Logic Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Fuzzy Logic Toolbox'
 documentation_page: 'fuzzypidcontroller'
 documentation_source_path: 'fuzzypidcontroller.html'
 language: zh-CN

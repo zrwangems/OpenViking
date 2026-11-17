@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Digital IO Interface'
-family: 'soc'
+family: 'peripherals'
 product_id: 'soc'
 product_name: 'SoC Blockset'
 documentation_release: R2025b

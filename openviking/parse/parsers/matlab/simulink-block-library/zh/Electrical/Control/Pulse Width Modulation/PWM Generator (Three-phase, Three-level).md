@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'PWM Generator (Three-phase, Three-level)'
-family: 'sps'
+family: 'control'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

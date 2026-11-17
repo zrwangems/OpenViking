@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Comparator'
-family: 'sps'
+family: 'integrated-circuits'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

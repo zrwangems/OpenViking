@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Second-Order Low-Pass Filter (Discrete or Continuous)'
-family: 'sps'
+family: 'control'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Battery Equivalent Circuit'
-family: 'simscape-battery'
+family: 'cells'
 product_id: 'simscape-battery'
 product_name: 'Battery'
 documentation_release: R2025b

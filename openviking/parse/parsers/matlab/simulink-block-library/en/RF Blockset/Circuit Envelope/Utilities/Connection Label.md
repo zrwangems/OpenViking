@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Connection Label'
 family: 'utilities'
-product_id: 'utilities'
-product_name: 'Utilities'
+product_id: 'simrf'
+product_name: 'RF Blockset'
 documentation_release: R2025b
 official_category: ''
 documentation_page: 'connectionlabel'
-documentation_source_path: '../simrf/ref/connectionlabel.html'
+documentation_source_path: 'ref/connectionlabel.html'
 language: en
 ---
 

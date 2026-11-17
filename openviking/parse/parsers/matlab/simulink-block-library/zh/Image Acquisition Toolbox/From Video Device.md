@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'From Video Device'
-family: 'imaq'
+family: 'image-acquisition-toolbox'
 product_id: 'imaq'
 product_name: 'Image Acquisition Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Image Acquisition Toolbox'
 documentation_page: 'fromvideodevice'
 documentation_source_path: 'fromvideodevice.html'
 language: zh-CN

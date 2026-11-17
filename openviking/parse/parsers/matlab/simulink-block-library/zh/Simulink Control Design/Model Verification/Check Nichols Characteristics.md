@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Check Nichols Characteristics'
-family: 'slcontrol'
+family: 'model-verification'
 product_id: 'slcontrol'
 product_name: 'Simulink Control Design'
 documentation_release: R2025b

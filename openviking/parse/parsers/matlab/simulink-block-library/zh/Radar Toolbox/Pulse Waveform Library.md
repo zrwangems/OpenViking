@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Pulse Waveform Library'
-family: 'radar'
+family: 'radar-toolbox'
 product_id: 'radar'
 product_name: 'Radar Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Radar Toolbox'
 documentation_page: 'pulsewaveformlibrary'
 documentation_source_path: 'ref/pulsewaveformlibrary.html'
 language: zh-CN

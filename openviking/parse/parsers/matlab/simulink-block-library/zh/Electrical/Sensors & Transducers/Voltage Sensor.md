@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Voltage Sensor'
 family: 'simscape'
-product_id: 'simscape'
-product_name: 'Foundation Library'
+product_id: 'sps'
+product_name: 'Electrical'
 documentation_release: R2025b
 official_category: 'Electrical / Electrical Sensors'
 documentation_page: 'voltagesensor'
-documentation_source_path: 'ref/voltagesensor.html'
+documentation_source_path: '../simscape/ref/voltagesensor.html'
 language: zh-CN
 chinese_source: official
 ---

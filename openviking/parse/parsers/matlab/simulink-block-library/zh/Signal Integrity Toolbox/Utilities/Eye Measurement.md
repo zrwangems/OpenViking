@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Eye Measurement'
-family: 'signal-integrity'
+family: 'utilities'
 product_id: 'signal-integrity'
 product_name: 'Signal Integrity Toolbox'
 documentation_release: R2025b

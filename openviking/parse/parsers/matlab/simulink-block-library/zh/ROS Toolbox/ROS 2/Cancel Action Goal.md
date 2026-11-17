@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Cancel Action Goal'
-family: 'ros'
+family: 'ros-2'
 product_id: 'ros'
 product_name: 'ROS Toolbox'
 documentation_release: R2025b

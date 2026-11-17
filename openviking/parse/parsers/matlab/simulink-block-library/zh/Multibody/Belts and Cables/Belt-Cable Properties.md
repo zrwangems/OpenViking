@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Belt-Cable Properties'
-family: 'sm'
+family: 'belts-and-cables'
 product_id: 'sm'
 product_name: 'Multibody'
 documentation_release: R2025b

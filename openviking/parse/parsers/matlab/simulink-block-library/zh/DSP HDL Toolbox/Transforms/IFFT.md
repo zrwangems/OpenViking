@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'IFFT'
-family: 'dsphdl'
+family: 'transforms'
 product_id: 'dsphdl'
 product_name: 'DSP HDL Toolbox'
 documentation_release: R2025b

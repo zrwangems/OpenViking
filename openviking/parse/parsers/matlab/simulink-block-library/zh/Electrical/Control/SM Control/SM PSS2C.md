@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'SM PSS2C'
-family: 'sps'
+family: 'control'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

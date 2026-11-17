@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Multiposition Valve Actuator'
-family: 'hydro'
+family: 'valve-actuators'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b

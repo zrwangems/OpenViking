@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Ground'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Sources'
 documentation_page: 'ground'
-documentation_source_path: '../simulink/slref/ground.html'
+documentation_source_path: 'slref/ground.html'
 language: en
 ---
 

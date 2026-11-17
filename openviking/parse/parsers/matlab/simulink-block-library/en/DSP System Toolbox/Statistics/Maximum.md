@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Maximum'
 family: 'dsp-system-toolbox-hdl-support'
-product_id: 'dsp-system-toolbox-hdl-support'
-product_name: 'DSP System Toolbox HDL Support'
+product_id: 'dsp'
+product_name: 'DSP System Toolbox'
 documentation_release: R2025b
 official_category: 'Statistics'
 documentation_page: 'maximum'
-documentation_source_path: '../dsp/ref/maximum.html'
+documentation_source_path: 'ref/maximum.html'
 language: en
 ---
 

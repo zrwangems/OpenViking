@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Interprocess Data Read'
-family: 'soc'
+family: 'processor-interconnect'
 product_id: 'soc'
 product_name: 'SoC Blockset'
 documentation_release: R2025b

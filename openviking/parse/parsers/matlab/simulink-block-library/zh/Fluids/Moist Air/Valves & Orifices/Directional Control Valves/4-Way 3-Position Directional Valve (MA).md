@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: '4-Way 3-Position Directional Valve (MA)'
-family: 'hydro'
+family: 'moist-air'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b

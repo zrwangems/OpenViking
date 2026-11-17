@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'To Video Display'
-family: 'vision'
+family: 'sinks'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

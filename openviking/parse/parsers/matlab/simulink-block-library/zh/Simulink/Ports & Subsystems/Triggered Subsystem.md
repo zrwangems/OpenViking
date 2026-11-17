@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Triggered Subsystem'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Ports & Subsystems'
 documentation_page: 'triggeredsubsystem'
-documentation_source_path: '../simulink/slref/triggeredsubsystem.html'
+documentation_source_path: 'slref/triggeredsubsystem.html'
 language: zh-CN
 chinese_source: official
 ---

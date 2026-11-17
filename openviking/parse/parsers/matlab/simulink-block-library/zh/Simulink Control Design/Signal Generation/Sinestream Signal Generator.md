@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Sinestream Signal Generator'
-family: 'slcontrol'
+family: 'signal-generation'
 product_id: 'slcontrol'
 product_name: 'Simulink Control Design'
 documentation_release: R2025b

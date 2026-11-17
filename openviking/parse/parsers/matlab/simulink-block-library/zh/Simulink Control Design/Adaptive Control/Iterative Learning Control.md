@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Iterative Learning Control'
-family: 'slcontrol'
+family: 'adaptive-control'
 product_id: 'slcontrol'
 product_name: 'Simulink Control Design'
 documentation_release: R2025b

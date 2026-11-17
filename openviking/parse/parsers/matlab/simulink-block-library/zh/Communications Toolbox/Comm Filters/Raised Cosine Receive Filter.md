@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Raised Cosine Receive Filter'
-family: 'communications-toolbox-hdl-support'
-product_id: 'communications-toolbox-hdl-support'
-product_name: 'Communications Toolbox HDL Support'
+family: 'comm-filters'
+product_id: 'comm'
+product_name: 'Communications Toolbox'
 documentation_release: R2025b
 official_category: 'Comm Filters'
 documentation_page: 'raisedcosinereceivefilter'
-documentation_source_path: '../comm/ref/raisedcosinereceivefilter.html'
+documentation_source_path: 'ref/raisedcosinereceivefilter.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Constant'
-family: 'libsb2sl'
-product_id: 'libsb2sl'
-product_name: 'libsb2sl'
+family: 'sources'
+product_id: 'dsp'
+product_name: 'DSP System Toolbox'
 documentation_release: R2025b
-official_category: 'MAT'
+official_category: 'Sources'
 documentation_page: 'constant'
-documentation_source_path: '../dsp/ref/constant.html'
+documentation_source_path: 'ref/constant.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

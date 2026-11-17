@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'BPSK Demodulator Baseband'
 family: 'communications-toolbox-hdl-support'
-product_id: 'communications-toolbox-hdl-support'
-product_name: 'Communications Toolbox HDL Support'
+product_id: 'comm'
+product_name: 'Communications Toolbox'
 documentation_release: R2025b
 official_category: 'Modulation / PM'
 documentation_page: 'bpskdemodulatorbaseband'
-documentation_source_path: '../comm/ref/bpskdemodulatorbaseband.html'
+documentation_source_path: 'ref/bpskdemodulatorbaseband.html'
 language: en
 ---
 

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Word to Bits'
-family: 'hdlcoder'
+family: 'logic-and-bit-operations'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b

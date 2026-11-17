@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Detection Concatenation'
-family: 'fusion'
+family: 'utilities'
 product_id: 'fusion'
 product_name: 'Sensor Fusion and Tracking Toolbox'
 documentation_release: R2025b

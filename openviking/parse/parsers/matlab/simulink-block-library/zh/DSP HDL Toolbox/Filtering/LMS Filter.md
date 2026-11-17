@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'LMS Filter'
-family: 'dsp-system-toolbox-hdl-support'
-product_id: 'dsp-system-toolbox-hdl-support'
-product_name: 'DSP System Toolbox HDL Support'
+family: 'filtering'
+product_id: 'dsphdl'
+product_name: 'DSP HDL Toolbox'
 documentation_release: R2025b
 official_category: 'Filtering'
 documentation_page: 'lmsfilter'
-documentation_source_path: '../dsphdl/ref/lmsfilter.html'
+documentation_source_path: 'ref/lmsfilter.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

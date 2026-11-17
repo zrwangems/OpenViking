@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Spacecraft Dynamics'
-family: 'aeroblks'
+family: 'spacecraft'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b

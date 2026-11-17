@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Z-Parameters Mixer'
-family: 'simrf'
+family: 'equivalent-baseband'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b

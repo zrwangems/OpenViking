@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Local Restriction (IL)'
-family: 'simscape'
+family: 'isothermal-liquid'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b

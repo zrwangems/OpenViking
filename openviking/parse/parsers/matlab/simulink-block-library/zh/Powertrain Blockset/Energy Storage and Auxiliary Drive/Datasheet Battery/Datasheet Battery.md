@@ -5,7 +5,7 @@ family: 'autoblks'
 product_id: 'autoblks'
 product_name: 'Powertrain Blockset'
 documentation_release: R2025b
-official_category: 'Energy Storage and Auxiliary Drive / Datasheet Battery'
+official_category: 'Energy Storage and Auxiliary Drive'
 documentation_page: 'datasheetbattery'
 documentation_source_path: 'ref/datasheetbattery.html'
 language: zh-CN

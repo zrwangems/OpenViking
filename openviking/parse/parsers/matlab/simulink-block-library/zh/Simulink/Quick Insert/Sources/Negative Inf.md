@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Constant'
 family: 'libsb2sl'
-product_id: 'libsb2sl'
-product_name: 'libsb2sl'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'ALG / AlgExpression'
 documentation_page: 'constant'
-documentation_source_path: '../simulink/slref/constant.html'
+documentation_source_path: 'slref/constant.html'
 language: zh-CN
 chinese_source: official
 ---

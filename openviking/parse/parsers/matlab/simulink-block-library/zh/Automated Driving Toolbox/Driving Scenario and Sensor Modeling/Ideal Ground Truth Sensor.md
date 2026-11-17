@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Ideal Ground Truth Sensor'
-family: 'driving'
+family: 'driving-scenario-and-sensor-modeling'
 product_id: 'driving'
 product_name: 'Automated Driving Toolbox'
 documentation_release: R2025b

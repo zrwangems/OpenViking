@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Connection Port'
-family: 'utilities'
+family: 'circuit-envelope'
 product_id: 'utilities'
 product_name: 'Utilities'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Circuit Envelope / Utilities'
 documentation_page: 'connectionport'
 documentation_source_path: '../simrf/ref/connectionport.html'
 language: zh-CN

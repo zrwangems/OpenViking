@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Signal Specification'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Signal Attributes'
 documentation_page: 'signalspecification'
-documentation_source_path: '../simulink/slref/signalspecification.html'
+documentation_source_path: 'slref/signalspecification.html'
 language: en
 ---
 

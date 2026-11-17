@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Magnitude-Angle to Complex'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Math Operations'
 documentation_page: 'magnitudeangletocomplex'
-documentation_source_path: '../simulink/slref/magnitudeangletocomplex.html'
+documentation_source_path: 'slref/magnitudeangletocomplex.html'
 language: zh-CN
 chinese_source: official
 ---

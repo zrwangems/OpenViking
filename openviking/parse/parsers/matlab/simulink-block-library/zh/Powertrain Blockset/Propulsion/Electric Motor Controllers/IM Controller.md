@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'IM Controller'
-family: 'autoblks'
+family: 'propulsion'
 product_id: 'autoblks'
 product_name: 'Powertrain Blockset'
 documentation_release: R2025b

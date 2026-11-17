@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'IIR Filter'
 family: 'motor-control-blockset-hdl-support'
-product_id: 'motor-control-blockset-hdl-support'
-product_name: 'Motor Control Blockset HDL Support'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
 official_category: 'Signal Management'
 documentation_page: 'iirfilter'
-documentation_source_path: '../mcb/ref/iirfilter.html'
+documentation_source_path: 'ref/iirfilter.html'
 language: zh-CN
 chinese_source: official
 ---

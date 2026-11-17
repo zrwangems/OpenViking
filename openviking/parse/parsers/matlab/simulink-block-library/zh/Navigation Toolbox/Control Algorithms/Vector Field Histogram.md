@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Vector Field Histogram'
-family: 'nav'
+family: 'control-algorithms'
 product_id: 'nav'
 product_name: 'Navigation Toolbox'
 documentation_release: R2025b

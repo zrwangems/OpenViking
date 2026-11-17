@@ -2,8 +2,8 @@
 type: simulink-block
 title: 'Constant'
 family: 'libsb2sl'
-product_id: 'libsb2sl'
-product_name: 'libsb2sl'
+product_id: 'hdlcoder'
+product_name: 'HDL Coder'
 documentation_release: R2025b
 official_category: 'ALG / AlgExpression'
 documentation_page: 'constant'

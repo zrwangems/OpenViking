@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'CAN Pack'
-family: 'ecoder'
+family: 'embedded-targets'
 product_id: 'ecoder'
 product_name: 'Embedded Coder'
 documentation_release: R2025b

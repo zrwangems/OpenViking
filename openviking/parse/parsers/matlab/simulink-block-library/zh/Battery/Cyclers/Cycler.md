@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Cycler'
-family: 'simscape-battery'
+family: 'cyclers'
 product_id: 'simscape-battery'
 product_name: 'Battery'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Dilation'
-family: 'visionhdl'
+family: 'morphological-operations'
 product_id: 'visionhdl'
 product_name: 'Vision HDL Toolbox'
 documentation_release: R2025b

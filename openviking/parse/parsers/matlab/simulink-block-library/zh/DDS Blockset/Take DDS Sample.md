@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Take DDS Sample'
-family: 'dds'
+family: 'dds-blockset'
 product_id: 'dds'
 product_name: 'DDS Blockset'
 documentation_release: R2025b
-official_category: ''
+official_category: 'DDS Blockset'
 documentation_page: 'takeddssample'
 documentation_source_path: 'ref/takeddssample.html'
 language: zh-CN

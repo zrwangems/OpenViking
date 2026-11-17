@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Digital DATCOM Forces and Moments'
-family: 'aeroblks'
+family: 'aerodynamics'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b

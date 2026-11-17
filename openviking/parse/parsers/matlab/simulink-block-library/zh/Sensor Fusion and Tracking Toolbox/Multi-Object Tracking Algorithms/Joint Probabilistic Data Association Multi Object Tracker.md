@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Joint Probabilistic Data Association Multi Object Tracker'
-family: 'fusion'
+family: 'multi-object-tracking-algorithms'
 product_id: 'fusion'
 product_name: 'Sensor Fusion and Tracking Toolbox'
 documentation_release: R2025b

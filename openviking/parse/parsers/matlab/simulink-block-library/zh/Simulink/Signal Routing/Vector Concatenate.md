@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Vector Concatenate'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Math Operations'
 documentation_page: 'vectorconcatenate'
-documentation_source_path: '../simulink/slref/vectorconcatenate.html'
+documentation_source_path: 'slref/vectorconcatenate.html'
 language: zh-CN
 chinese_source: official
 ---

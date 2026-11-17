@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Counter Input'
-family: 'sldrt'
+family: 'simulink-desktop-real-time'
 product_id: 'sldrt'
 product_name: 'Simulink Desktop Real-Time'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Simulink Desktop Real-Time'
 documentation_page: 'counterinput'
 documentation_source_path: 'ref/counterinput.html'
 language: zh-CN

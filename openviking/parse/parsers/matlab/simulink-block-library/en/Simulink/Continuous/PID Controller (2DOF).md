@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'PID Controller (2DOF)'
 family: 'control'
-product_id: 'control'
-product_name: 'Control System Toolbox'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Linear Parameter Varying'
 documentation_page: 'pidcontroller2dof'
-documentation_source_path: '../simulink/slref/pidcontroller2dof.html'
+documentation_source_path: 'slref/pidcontroller2dof.html'
 language: en
 ---
 

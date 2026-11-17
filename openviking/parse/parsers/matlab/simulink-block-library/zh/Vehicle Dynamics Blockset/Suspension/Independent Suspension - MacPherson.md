@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Independent Suspension - MacPherson'
-family: 'vdynblks'
+family: 'suspension'
 product_id: 'vdynblks'
 product_name: 'Vehicle Dynamics Blockset'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Resettable Synchronous Subsystem'
-family: 'hdlcoder'
+family: 'hdl-subsystems'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Transfer Fcn Direct Form II Time Varying'
-family: 'simulink'
+family: 'additional-math-discrete'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

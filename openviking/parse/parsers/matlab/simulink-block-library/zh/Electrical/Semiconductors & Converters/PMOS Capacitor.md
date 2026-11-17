@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'PMOS Capacitor'
-family: 'sps'
+family: 'semiconductors-converters'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

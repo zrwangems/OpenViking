@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Barrier Certificate Enforcement'
-family: 'slcontrol'
+family: 'constraint-control'
 product_id: 'slcontrol'
 product_name: 'Simulink Control Design'
 documentation_release: R2025b

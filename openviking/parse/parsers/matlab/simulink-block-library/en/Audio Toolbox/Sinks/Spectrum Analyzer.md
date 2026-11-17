@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Spectrum Analyzer'
 family: 'utilities'
-product_id: 'utilities'
-product_name: 'Utilities'
+product_id: 'audio'
+product_name: 'Audio Toolbox'
 documentation_release: R2025b
 official_category: ''
 documentation_page: 'spectrumanalyzerblock'
-documentation_source_path: '../audio/../dsp/ref/spectrumanalyzerblock.html'
+documentation_source_path: '../dsp/ref/spectrumanalyzerblock.html'
 language: en
 ---
 

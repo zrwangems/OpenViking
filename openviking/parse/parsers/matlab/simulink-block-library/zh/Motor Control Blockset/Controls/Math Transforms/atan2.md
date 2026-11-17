@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'atan2'
 family: 'motor-control-blockset-hdl-support'
-product_id: 'motor-control-blockset-hdl-support'
-product_name: 'Motor Control Blockset HDL Support'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
 official_category: 'Controls / Math Transforms'
 documentation_page: 'atan2'
-documentation_source_path: '../mcb/ref/atan2.html'
+documentation_source_path: 'ref/atan2.html'
 language: zh-CN
 chinese_source: official
 ---

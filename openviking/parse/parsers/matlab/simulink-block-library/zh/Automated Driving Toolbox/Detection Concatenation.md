@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Detection Concatenation'
-family: 'driving'
+family: 'automated-driving-toolbox'
 product_id: 'driving'
 product_name: 'Automated Driving Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Automated Driving Toolbox'
 documentation_page: 'detectionconcatenation'
 documentation_source_path: 'ref/detectionconcatenation.html'
 language: zh-CN

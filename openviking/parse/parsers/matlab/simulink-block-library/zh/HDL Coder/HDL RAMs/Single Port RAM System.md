@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Single Port RAM System'
-family: 'hdlcoder'
+family: 'hdl-rams'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b

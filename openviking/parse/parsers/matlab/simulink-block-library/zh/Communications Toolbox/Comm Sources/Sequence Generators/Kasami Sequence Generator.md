@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Kasami Sequence Generator'
-family: 'comm'
+family: 'comm-sources'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

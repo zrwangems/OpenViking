@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Offset'
 family: 'libsb2sl'
-product_id: 'libsb2sl'
-product_name: 'libsb2sl'
+product_id: 'dsp'
+product_name: 'DSP System Toolbox'
 documentation_release: R2025b
 official_category: 'ALG / AlgExpression'
 documentation_page: 'offset'
-documentation_source_path: '../dsp/ref/offset.html'
+documentation_source_path: 'ref/offset.html'
 language: en
 ---
 

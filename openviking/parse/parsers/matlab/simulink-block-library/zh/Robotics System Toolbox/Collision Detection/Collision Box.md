@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Collision Box'
-family: 'robotics'
+family: 'collision-detection'
 product_id: 'robotics'
 product_name: 'Robotics System Toolbox'
 documentation_release: R2025b

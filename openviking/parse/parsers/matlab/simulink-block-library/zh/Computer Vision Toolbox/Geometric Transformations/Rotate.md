@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Rotate'
-family: 'vision'
+family: 'geometric-transformations'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

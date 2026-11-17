@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'MATLAB System'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'User-Defined Functions'
 documentation_page: 'matlabsystem'
-documentation_source_path: '../simulink/slref/matlabsystem.html'
+documentation_source_path: 'slref/matlabsystem.html'
 language: zh-CN
 chinese_source: official
 ---

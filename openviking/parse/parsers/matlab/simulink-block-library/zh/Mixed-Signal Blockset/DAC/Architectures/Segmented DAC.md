@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Segmented DAC'
-family: 'msblks'
+family: 'dac'
 product_id: 'msblks'
 product_name: 'Mixed-Signal Blockset'
 documentation_release: R2025b

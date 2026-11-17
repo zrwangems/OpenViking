@@ -5,7 +5,7 @@ family: 'simevents'
 product_id: 'simevents'
 product_name: 'SimEvents'
 documentation_release: R2025b
-official_category: ''
+official_category: 'SimEvents'
 documentation_page: 'entityoutputswitch'
 documentation_source_path: 'ref/entityoutputswitch.html'
 language: zh-CN

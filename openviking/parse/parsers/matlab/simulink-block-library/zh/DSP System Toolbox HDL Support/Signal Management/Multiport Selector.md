@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Multiport Selector'
-family: 'dsp-system-toolbox-hdl-support'
+family: 'signal-management'
 product_id: 'dsp-system-toolbox-hdl-support'
 product_name: 'DSP System Toolbox HDL Support'
 documentation_release: R2025b
-official_category: 'Signal Management'
+official_category: 'Signal Management / Indexing'
 documentation_page: 'multiportselector'
 documentation_source_path: '../dsp/ref/multiportselector.html'
 language: zh-CN

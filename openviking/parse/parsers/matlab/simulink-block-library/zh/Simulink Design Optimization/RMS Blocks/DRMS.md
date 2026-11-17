@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'DRMS'
-family: 'sldo'
+family: 'rms-blocks'
 product_id: 'sldo'
 product_name: 'Simulink Design Optimization'
 documentation_release: R2025b

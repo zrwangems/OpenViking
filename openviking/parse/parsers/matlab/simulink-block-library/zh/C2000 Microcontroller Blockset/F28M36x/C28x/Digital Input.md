@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Digital Input'
-family: 'sldrt'
-product_id: 'sldrt'
-product_name: 'Simulink Desktop Real-Time'
+family: 'simulink-desktop-real-time'
+product_id: 'ti-c2000'
+product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Simulink Desktop Real-Time'
 documentation_page: 'digitalinput'
-documentation_source_path: 'ref/digitalinput.html'
+documentation_source_path: '../sldrt/ref/digitalinput.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

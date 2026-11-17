@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'EtherCAT Async SSC/SoE Upload'
-family: 'slrealtime'
+family: 'ethercat'
 product_id: 'slrealtime'
 product_name: 'Simulink Real-Time'
 documentation_release: R2025b

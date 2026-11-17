@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Software to AXI4-Stream'
-family: 'soc'
+family: 'memory'
 product_id: 'soc'
 product_name: 'SoC Blockset'
 documentation_release: R2025b

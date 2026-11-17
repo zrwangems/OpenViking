@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Resettable Delay'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Discrete'
 documentation_page: 'resettabledelay'
-documentation_source_path: '../simulink/slref/resettabledelay.html'
+documentation_source_path: 'slref/resettabledelay.html'
 language: zh-CN
 chinese_source: official
 ---

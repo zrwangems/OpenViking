@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Pole-Zero Plot'
-family: 'slcontrol'
+family: 'linear-analysis-plots'
 product_id: 'slcontrol'
 product_name: 'Simulink Control Design'
 documentation_release: R2025b

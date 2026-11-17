@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Centrifugal Pump (TL)'
-family: 'hydro'
+family: 'thermal-liquid'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b

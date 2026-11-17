@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Simulation 3D UAV Vehicle'
-family: 'uav'
+family: 'simulation-3d'
 product_id: 'uav'
 product_name: 'UAV Toolbox'
 documentation_release: R2025b

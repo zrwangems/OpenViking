@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'D Flip-Flop'
-family: 'simulink-extras'
-product_id: 'simulink-extras'
-product_name: 'Simulink Extras'
+family: 'integrated-circuits'
+product_id: 'sps'
+product_name: 'Electrical'
 documentation_release: R2025b
-official_category: 'Flip Flops'
+official_category: 'Integrated Circuits / Logic'
 documentation_page: 'dflipflop'
-documentation_source_path: '../sps/ref/dflipflop.html'
+documentation_source_path: 'ref/dflipflop.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

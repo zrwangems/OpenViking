@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Particle Filter'
-family: 'control'
+family: 'state-estimation'
 product_id: 'control'
 product_name: 'Control System Toolbox'
 documentation_release: R2025b

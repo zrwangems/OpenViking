@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Discrete FIR Filter'
-family: 'hdlcoder'
+family: 'filtering'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'HDL Floating Point Operations'
+official_category: 'Filtering'
 documentation_page: 'discretefirfilter'
 documentation_source_path: '../dsphdl/ref/discretefirfilter.html'
 language: zh-CN

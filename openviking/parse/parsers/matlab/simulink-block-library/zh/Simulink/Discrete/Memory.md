@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Memory'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Discrete'
 documentation_page: 'memory'
-documentation_source_path: '../simulink/slref/memory.html'
+documentation_source_path: 'slref/memory.html'
 language: zh-CN
 chinese_source: official
 ---

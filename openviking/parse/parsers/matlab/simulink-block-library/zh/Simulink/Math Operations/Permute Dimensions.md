@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Permute Dimensions'
-family: 'simulink'
+family: 'math-operations'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

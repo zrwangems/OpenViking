@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Cos+jSin'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'HDL Floating Point Operations'
 documentation_page: 'cosjsin'
-documentation_source_path: 'ref/cosjsin.html'
+documentation_source_path: '../hdlcoder/ref/cosjsin.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'RF Budget'
-family: 'simrf'
+family: 'idealized-baseband'
 product_id: 'simrf'
 product_name: 'RF Blockset'
 documentation_release: R2025b

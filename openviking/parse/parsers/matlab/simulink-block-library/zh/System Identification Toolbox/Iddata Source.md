@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Iddata Source'
-family: 'ident'
+family: 'system-identification-toolbox'
 product_id: 'ident'
 product_name: 'System Identification Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'System Identification Toolbox'
 documentation_page: 'iddatasource'
 documentation_source_path: 'ref/iddatasource.html'
 language: zh-CN

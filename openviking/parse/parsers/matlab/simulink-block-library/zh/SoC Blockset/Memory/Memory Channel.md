@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Memory Channel'
-family: 'soc'
+family: 'memory'
 product_id: 'soc'
 product_name: 'SoC Blockset'
 documentation_release: R2025b

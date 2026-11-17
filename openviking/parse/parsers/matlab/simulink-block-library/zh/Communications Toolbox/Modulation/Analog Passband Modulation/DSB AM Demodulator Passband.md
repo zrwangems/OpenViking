@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'DSB AM Demodulator Passband'
-family: 'comm'
+family: 'modulation'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

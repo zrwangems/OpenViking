@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Increment Stored Integer'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Math Operations'
 documentation_page: 'incrementstoredinteger'
-documentation_source_path: '../simulink/slref/incrementstoredinteger.html'
+documentation_source_path: 'slref/incrementstoredinteger.html'
 language: zh-CN
 chinese_source: official
 ---

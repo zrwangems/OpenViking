@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Dot Product'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'libsb2sl'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Math Operations'
+official_category: 'ALG'
 documentation_page: 'dotproduct'
-documentation_source_path: '../simulink/slref/dotproduct.html'
+documentation_source_path: 'slref/dotproduct.html'
 language: en
 ---
 

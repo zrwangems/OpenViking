@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Phase Noise'
-family: 'comm'
+family: 'rf-impairments-and-components'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Vertical Slider'
-family: 'simulink'
+family: 'dashboard'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

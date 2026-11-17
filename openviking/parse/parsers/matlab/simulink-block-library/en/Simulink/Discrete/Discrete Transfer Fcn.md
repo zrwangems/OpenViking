@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Discrete Transfer Fcn'
 family: 'simulink-extras'
-product_id: 'simulink-extras'
-product_name: 'Simulink Extras'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Additional Discrete'
 documentation_page: 'discretetransferfcn'
-documentation_source_path: '../simulink/slref/discretetransferfcn.html'
+documentation_source_path: 'slref/discretetransferfcn.html'
 language: en
 ---
 

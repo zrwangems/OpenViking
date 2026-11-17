@@ -2,8 +2,8 @@
 type: simulink-block
 title: 'Prediction (slow->fast)'
 family: 'utilities'
-product_id: 'utilities'
-product_name: 'Utilities'
+product_id: 'network-couplers'
+product_name: 'Network Couplers'
 documentation_release: R2025b
 official_category: 'Network Couplers / Fundamental Components'
 documentation_page: 'predictionslowfast'

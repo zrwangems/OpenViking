@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Scalar Quantizer Decoder'
-family: 'dsp'
+family: 'quantizers'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b

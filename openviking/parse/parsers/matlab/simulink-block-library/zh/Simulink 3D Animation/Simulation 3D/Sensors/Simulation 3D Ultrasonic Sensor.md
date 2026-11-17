@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Simulation 3D Ultrasonic Sensor'
-family: 'sl3d'
+family: 'simulation-3d'
 product_id: 'sl3d'
 product_name: 'Simulink 3D Animation'
 documentation_release: R2025b

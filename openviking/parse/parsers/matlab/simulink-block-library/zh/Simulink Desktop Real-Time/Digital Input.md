@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Digital Input'
-family: 'sldrt'
+family: 'simulink-desktop-real-time'
 product_id: 'sldrt'
 product_name: 'Simulink Desktop Real-Time'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Simulink Desktop Real-Time'
 documentation_page: 'digitalinput'
 documentation_source_path: 'ref/digitalinput.html'
 language: zh-CN

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Estimate Center of Gravity'
-family: 'aeroblks'
+family: 'mass-properties'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b

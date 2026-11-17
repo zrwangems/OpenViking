@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'E-NTU Heat Transfer'
-family: 'hydro'
+family: 'heat-exchangers'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b

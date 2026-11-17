@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Check Input Resolution'
-family: 'hdlcoder'
+family: 'model-verification'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b

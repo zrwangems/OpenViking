@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Inherit Complexity'
-family: 'dsp-system-toolbox-hdl-support'
+family: 'signal-management'
 product_id: 'dsp-system-toolbox-hdl-support'
 product_name: 'DSP System Toolbox HDL Support'
 documentation_release: R2025b
-official_category: 'Signal Management'
+official_category: 'Signal Management / Signal Attributes'
 documentation_page: 'inheritcomplexity'
 documentation_source_path: '../dsp/ref/inheritcomplexity.html'
 language: zh-CN

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'AXI4 Video Frame Buffer'
-family: 'soc'
+family: 'memory'
 product_id: 'soc'
 product_name: 'SoC Blockset'
 documentation_release: R2025b

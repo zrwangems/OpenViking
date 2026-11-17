@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Eye Measurement'
-family: 'msblks'
+family: 'utilities'
 product_id: 'msblks'
 product_name: 'Mixed-Signal Blockset'
 documentation_release: R2025b

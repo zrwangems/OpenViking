@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Mapped SI Engine'
-family: 'vdynblks'
+family: 'powertrain'
 product_id: 'vdynblks'
 product_name: 'Vehicle Dynamics Blockset'
 documentation_release: R2025b

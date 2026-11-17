@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Variable Selector'
-family: 'dsp-system-toolbox-hdl-support'
-product_id: 'dsp-system-toolbox-hdl-support'
-product_name: 'DSP System Toolbox HDL Support'
+family: 'signal-management'
+product_id: 'dsp'
+product_name: 'DSP System Toolbox'
 documentation_release: R2025b
-official_category: 'Signal Management'
+official_category: 'Signal Management / Indexing'
 documentation_page: 'variableselector'
-documentation_source_path: '../dsp/ref/variableselector.html'
+documentation_source_path: 'ref/variableselector.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

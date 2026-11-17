@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Yule-Walker AR Estimator'
-family: 'dsp'
+family: 'estimation'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b

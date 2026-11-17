@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'PID Gains Store and Update'
-family: 'slcontrol'
+family: 'autotuning'
 product_id: 'slcontrol'
 product_name: 'Simulink Control Design'
 documentation_release: R2025b

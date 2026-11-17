@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Transport Delay'
-family: 'simulink'
+family: 'simulink-extras'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Continuous'
+official_category: 'Linearization'
 documentation_page: 'transportdelay'
 documentation_source_path: 'slref/transportdelay.html'
 language: en

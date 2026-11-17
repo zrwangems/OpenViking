@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Analog Input (Single Sample)'
-family: 'daq'
+family: 'data-acquisition-toolbox'
 product_id: 'daq'
 product_name: 'Data Acquisition Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Data Acquisition Toolbox'
 documentation_page: 'analoginputsinglesample'
 documentation_source_path: 'analoginputsinglesample.html'
 language: zh-CN

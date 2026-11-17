@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'To Multimedia File'
-family: 'dsp'
+family: 'sinks'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b

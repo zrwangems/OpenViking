@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'MQTT Client Subscribe'
-family: 'icomm'
+family: 'mqtt'
 product_id: 'icomm'
 product_name: 'Industrial Communication Toolbox'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Global Max Pooling 3D Layer'
-family: 'deeplearning'
+family: 'deep-learning-layers'
 product_id: 'deeplearning'
 product_name: 'Deep Learning Toolbox'
 documentation_release: R2025b

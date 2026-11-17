@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'ecompass'
-family: 'nav'
+family: 'multisensor-positioning'
 product_id: 'nav'
 product_name: 'Navigation Toolbox'
 documentation_release: R2025b

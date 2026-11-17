@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'RoadRunner Scenario Reader'
-family: 'driving'
+family: 'roadrunner-scenario'
 product_id: 'driving'
 product_name: 'Automated Driving Toolbox'
 documentation_release: R2025b

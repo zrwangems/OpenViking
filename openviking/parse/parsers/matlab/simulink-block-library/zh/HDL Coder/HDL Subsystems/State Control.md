@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'State Control'
-family: 'hdlcoder'
+family: 'hdl-subsystems'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b

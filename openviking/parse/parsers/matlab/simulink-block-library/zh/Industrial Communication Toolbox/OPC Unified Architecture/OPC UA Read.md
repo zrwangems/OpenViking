@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'OPC UA Read'
-family: 'icomm'
+family: 'opc-unified-architecture'
 product_id: 'icomm'
 product_name: 'Industrial Communication Toolbox'
 documentation_release: R2025b

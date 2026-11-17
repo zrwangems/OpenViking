@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Counter Free-Running'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Sources'
 documentation_page: 'counterfreerunning'
-documentation_source_path: '../simulink/slref/counterfreerunning.html'
+documentation_source_path: 'slref/counterfreerunning.html'
 language: zh-CN
 chinese_source: official
 ---

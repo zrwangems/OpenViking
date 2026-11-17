@@ -2,8 +2,8 @@
 type: simulink-block
 title: 'Spectrum Analyzer'
 family: 'utilities'
-product_id: 'utilities'
-product_name: 'Utilities'
+product_id: 'dsp-system-toolbox-hdl-support'
+product_name: 'DSP System Toolbox HDL Support'
 documentation_release: R2025b
 official_category: ''
 documentation_page: 'spectrumanalyzerblock'

@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'CIC Decimation'
-family: 'dsp-system-toolbox-hdl-support'
+family: 'filtering'
 product_id: 'dsp-system-toolbox-hdl-support'
 product_name: 'DSP System Toolbox HDL Support'
 documentation_release: R2025b
-official_category: 'Filtering'
+official_category: 'Filtering / Multirate Filters'
 documentation_page: 'cicdecimation'
 documentation_source_path: '../dsp/ref/cicdecimation.html'
 language: zh-CN

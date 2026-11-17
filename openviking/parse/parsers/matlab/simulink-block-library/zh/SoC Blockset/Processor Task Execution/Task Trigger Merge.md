@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Task Trigger Merge'
-family: 'soc'
+family: 'processor-task-execution'
 product_id: 'soc'
 product_name: 'SoC Blockset'
 documentation_release: R2025b

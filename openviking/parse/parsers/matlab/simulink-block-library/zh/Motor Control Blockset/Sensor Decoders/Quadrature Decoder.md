@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Quadrature Decoder'
 family: 'motor-control-blockset-hdl-support'
-product_id: 'motor-control-blockset-hdl-support'
-product_name: 'Motor Control Blockset HDL Support'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
 official_category: 'Sensor Decoders'
 documentation_page: 'quadraturedecoder'
-documentation_source_path: '../mcb/ref/quadraturedecoder.html'
+documentation_source_path: 'ref/quadraturedecoder.html'
 language: zh-CN
 chinese_source: official
 ---

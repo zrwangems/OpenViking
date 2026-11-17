@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Spectrum Analyzer'
-family: 'utilities'
-product_id: 'utilities'
-product_name: 'Utilities'
+family: 'sinks'
+product_id: 'dsp'
+product_name: 'DSP System Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Sinks'
 documentation_page: 'spectrumanalyzerblock'
-documentation_source_path: '../audio/../dsp/ref/spectrumanalyzerblock.html'
+documentation_source_path: 'ref/spectrumanalyzerblock.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

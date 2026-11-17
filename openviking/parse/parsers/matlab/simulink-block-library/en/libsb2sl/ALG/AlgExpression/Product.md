@@ -7,7 +7,7 @@ product_name: 'libsb2sl'
 documentation_release: R2025b
 official_category: 'MAT'
 documentation_page: 'product'
-documentation_source_path: '../dsp/../simulink/slref/product.html'
+documentation_source_path: '../simulink/slref/product.html'
 language: en
 ---
 

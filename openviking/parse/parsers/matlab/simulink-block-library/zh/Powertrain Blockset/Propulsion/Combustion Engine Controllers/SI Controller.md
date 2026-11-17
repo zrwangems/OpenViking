@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'SI Controller'
-family: 'autoblks'
+family: 'propulsion'
 product_id: 'autoblks'
 product_name: 'Powertrain Blockset'
 documentation_release: R2025b

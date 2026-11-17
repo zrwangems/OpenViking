@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'FIR Halfband Interpolator'
-family: 'dsp'
+family: 'filtering'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b

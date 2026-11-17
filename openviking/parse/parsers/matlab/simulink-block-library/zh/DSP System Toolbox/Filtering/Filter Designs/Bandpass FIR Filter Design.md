@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Bandpass FIR Filter Design'
-family: 'dsp'
+family: 'filtering'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b

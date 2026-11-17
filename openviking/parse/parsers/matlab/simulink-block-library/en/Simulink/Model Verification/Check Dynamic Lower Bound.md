@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Check Dynamic Lower Bound'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Model Verification'
 documentation_page: 'checkdynamiclowerbound'
-documentation_source_path: '../simulink/slref/checkdynamiclowerbound.html'
+documentation_source_path: 'slref/checkdynamiclowerbound.html'
 language: en
 ---
 

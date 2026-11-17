@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Cell Delta SOC Estimator (Kalman Filter, Variable Resistance)'
-family: 'simscape-battery'
+family: 'bms'
 product_id: 'simscape-battery'
 product_name: 'Battery'
 documentation_release: R2025b

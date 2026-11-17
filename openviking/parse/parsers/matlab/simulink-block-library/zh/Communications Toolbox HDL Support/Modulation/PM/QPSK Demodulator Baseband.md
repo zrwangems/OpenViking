@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'QPSK Demodulator Baseband'
-family: 'communications-toolbox-hdl-support'
+family: 'modulation'
 product_id: 'communications-toolbox-hdl-support'
 product_name: 'Communications Toolbox HDL Support'
 documentation_release: R2025b
-official_category: 'Modulation / PM'
+official_category: 'Modulation / Digital Baseband Modulation / PSK'
 documentation_page: 'qpskdemodulatorbaseband'
 documentation_source_path: '../comm/ref/qpskdemodulatorbaseband.html'
 language: zh-CN

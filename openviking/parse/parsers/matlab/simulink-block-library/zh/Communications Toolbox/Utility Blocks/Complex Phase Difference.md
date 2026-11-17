@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Complex Phase Difference'
-family: 'comm'
+family: 'utility-blocks'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

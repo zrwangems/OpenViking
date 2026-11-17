@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Interpolation'
-family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+family: 'signal-operations'
+product_id: 'autosar'
+product_name: 'AUTOSAR Blockset'
 documentation_release: R2025b
 official_category: 'Signal Operations'
 documentation_page: 'interpolation'
-documentation_source_path: 'ref/interpolation.html'
+documentation_source_path: '../dsp/ref/interpolation.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

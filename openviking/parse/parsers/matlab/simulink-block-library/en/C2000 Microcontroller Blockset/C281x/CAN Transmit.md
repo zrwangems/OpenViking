@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'CAN Transmit'
 family: 'vnt'
-product_id: 'vnt'
-product_name: 'Vehicle Network Toolbox'
+product_id: 'ti-c2000'
+product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
 official_category: 'CAN Communication'
 documentation_page: 'cantransmit'
-documentation_source_path: 'ug/cantransmit.html'
+documentation_source_path: '../vnt/ug/cantransmit.html'
 language: en
 ---
 

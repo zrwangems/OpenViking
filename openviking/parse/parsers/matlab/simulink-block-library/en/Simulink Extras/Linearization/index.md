@@ -1,3 +1,4 @@
 # Linearization
 
-- Empty directory in the local R2025b tree (0 blocks).
+- [Switched derivative for linearization](Switched derivative for linearization.md)
+- [Switched transport delay for linearization](Switched transport delay for linearization.md)

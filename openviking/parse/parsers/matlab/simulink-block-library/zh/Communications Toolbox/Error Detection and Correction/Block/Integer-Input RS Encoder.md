@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Integer-Input RS Encoder'
-family: 'comm'
+family: 'error-detection-and-correction'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

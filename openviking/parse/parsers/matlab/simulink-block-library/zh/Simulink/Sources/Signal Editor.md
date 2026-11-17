@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Signal Editor'
-family: 'simulink'
+family: 'libsb2sl'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Sources'
+official_category: 'SNG'
 documentation_page: 'signaleditorblock'
 documentation_source_path: 'slref/signaleditorblock.html'
 language: zh-CN

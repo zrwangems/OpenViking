@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Reinitialize Function'
-family: 'simulink'
+family: 'user-defined-functions'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

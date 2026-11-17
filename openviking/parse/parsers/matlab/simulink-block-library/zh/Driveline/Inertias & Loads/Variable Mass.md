@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Variable Mass'
-family: 'sdl'
+family: 'inertias-loads'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b

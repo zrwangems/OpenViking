@@ -8,6 +8,7 @@
 - [Digital Input](Digital Input.md)
 - [Digital Output](Digital Output.md)
 - [Encoder Input](Encoder Input.md)
+- [Examples](Examples.md)
 - [Frequency Output](Frequency Output.md)
 - [Other Input](Other Input.md)
 - [Other Output](Other Output.md)

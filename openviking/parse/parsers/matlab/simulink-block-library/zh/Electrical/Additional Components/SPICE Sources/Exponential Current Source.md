@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Exponential Current Source'
-family: 'sps'
+family: 'additional-components'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

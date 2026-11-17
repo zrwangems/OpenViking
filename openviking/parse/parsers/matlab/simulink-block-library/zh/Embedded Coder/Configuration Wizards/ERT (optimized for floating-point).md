@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'ERT (optimized for floating-point)'
-family: 'ecoder'
+family: 'configuration-wizards'
 product_id: 'ecoder'
 product_name: 'Embedded Coder'
 documentation_release: R2025b

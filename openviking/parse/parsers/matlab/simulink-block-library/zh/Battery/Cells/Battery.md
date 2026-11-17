@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Battery'
-family: 'simscape'
-product_id: 'simscape'
-product_name: 'Simscape'
+family: 'cells'
+product_id: 'simscape-battery'
+product_name: 'Battery'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Cells'
 documentation_page: 'battery'
-documentation_source_path: '../simscape-battery/ref/battery.html'
+documentation_source_path: 'ref/battery.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

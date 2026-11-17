@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Prod. Sigmoidal MF'
-family: 'fuzzy'
+family: 'membership-functions'
 product_id: 'fuzzy'
 product_name: 'Fuzzy Logic Toolbox'
 documentation_release: R2025b

@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Convolutional Deinterleaver'
 family: 'communications-toolbox-hdl-support'
-product_id: 'communications-toolbox-hdl-support'
-product_name: 'Communications Toolbox HDL Support'
+product_id: 'comm'
+product_name: 'Communications Toolbox'
 documentation_release: R2025b
 official_category: 'Interleaving'
 documentation_page: 'convolutionaldeinterleaver'
-documentation_source_path: '../comm/ref/convolutionaldeinterleaver.html'
+documentation_source_path: 'ref/convolutionaldeinterleaver.html'
 language: en
 ---
 

@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Minimum'
-family: 'dsp-system-toolbox-hdl-support'
-product_id: 'dsp-system-toolbox-hdl-support'
-product_name: 'DSP System Toolbox HDL Support'
+family: 'statistics'
+product_id: 'dsp'
+product_name: 'DSP System Toolbox'
 documentation_release: R2025b
 official_category: 'Statistics'
 documentation_page: 'minimum'
-documentation_source_path: '../dsp/ref/minimum.html'
+documentation_source_path: 'ref/minimum.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Check Static Range'
-family: 'hdlcoder'
+family: 'model-verification'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Downsample'
-family: 'dsp-system-toolbox-hdl-support'
+family: 'signal-operations'
 product_id: 'dsp-system-toolbox-hdl-support'
 product_name: 'DSP System Toolbox HDL Support'
 documentation_release: R2025b

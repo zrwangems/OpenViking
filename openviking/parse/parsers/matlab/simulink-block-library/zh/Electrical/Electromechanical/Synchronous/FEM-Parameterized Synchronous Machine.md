@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'FEM-Parameterized Synchronous Machine'
-family: 'sps'
+family: 'electromechanical'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

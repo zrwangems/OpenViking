@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Detection Concatenation'
-family: 'radar'
+family: 'radar-toolbox'
 product_id: 'radar'
 product_name: 'Radar Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Radar Toolbox'
 documentation_page: 'detectionconcatenation'
 documentation_source_path: 'ref/detectionconcatenation.html'
 language: zh-CN

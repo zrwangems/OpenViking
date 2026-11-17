@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Corner Detector'
-family: 'visionhdl'
+family: 'analysis-enhancement'
 product_id: 'visionhdl'
 product_name: 'Vision HDL Toolbox'
 documentation_release: R2025b

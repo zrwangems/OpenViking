@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'To VCD File'
-family: 'hdlverifier'
+family: 'for-use-with-amd-vivado-simulator'
 product_id: 'hdlverifier'
 product_name: 'HDL Verifier'
 documentation_release: R2025b

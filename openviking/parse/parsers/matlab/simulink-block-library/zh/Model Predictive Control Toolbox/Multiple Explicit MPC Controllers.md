@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Multiple Explicit MPC Controllers'
-family: 'mpc'
+family: 'model-predictive-control-toolbox'
 product_id: 'mpc'
 product_name: 'Model Predictive Control Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Model Predictive Control Toolbox'
 documentation_page: 'multipleexplicitmpccontrollers'
 documentation_source_path: 'ref/multipleexplicitmpccontrollers.html'
 language: zh-CN

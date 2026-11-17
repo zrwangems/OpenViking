@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Coulomb and Viscous Friction'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Discontinuities'
 documentation_page: 'coulombandviscousfriction'
-documentation_source_path: '../simulink/slref/coulombandviscousfriction.html'
+documentation_source_path: 'slref/coulombandviscousfriction.html'
 language: en
 ---
 

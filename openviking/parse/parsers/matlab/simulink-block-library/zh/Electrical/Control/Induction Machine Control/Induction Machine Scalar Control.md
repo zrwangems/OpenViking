@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Induction Machine Scalar Control'
-family: 'sps'
+family: 'control'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

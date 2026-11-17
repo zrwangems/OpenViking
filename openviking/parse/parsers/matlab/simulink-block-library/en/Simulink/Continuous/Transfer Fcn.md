@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Transfer Fcn'
 family: 'simulink-extras'
-product_id: 'simulink-extras'
-product_name: 'Simulink Extras'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Additional Linear'
 documentation_page: 'transferfcn'
-documentation_source_path: '../simulink/slref/transferfcn.html'
+documentation_source_path: 'slref/transferfcn.html'
 language: en
 ---
 

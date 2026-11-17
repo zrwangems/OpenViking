@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Increment Real World'
-family: 'hdlcoder'
+family: 'additional-math-discrete'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Math Operations'
+official_category: 'Additional Math & Discrete / Additional Math: Increment - Decrement'
 documentation_page: 'incrementrealworld'
 documentation_source_path: '../simulink/slref/incrementrealworld.html'
 language: zh-CN

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Check Dynamic Upper Bound'
-family: 'hdlcoder'
+family: 'model-verification'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b

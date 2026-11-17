@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Velocity Profiler'
-family: 'driving'
+family: 'automated-driving-toolbox'
 product_id: 'driving'
 product_name: 'Automated Driving Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Automated Driving Toolbox'
 documentation_page: 'velocityprofiler'
 documentation_source_path: 'ref/velocityprofiler.html'
 language: zh-CN

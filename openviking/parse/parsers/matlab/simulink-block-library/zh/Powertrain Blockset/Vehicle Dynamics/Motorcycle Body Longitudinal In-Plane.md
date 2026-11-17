@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Motorcycle Body Longitudinal In-Plane'
-family: 'autoblks'
+family: 'vehicle-dynamics'
 product_id: 'autoblks'
 product_name: 'Powertrain Blockset'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'SoC Bus Creator'
-family: 'soc'
+family: 'hardware-logic-connectivity'
 product_id: 'soc'
 product_name: 'SoC Blockset'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Playback'
-family: 'simulink'
+family: 'sources'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

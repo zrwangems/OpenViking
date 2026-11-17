@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Check Against Reference'
-family: 'sldo'
+family: 'model-verification'
 product_id: 'sldo'
 product_name: 'Simulink Design Optimization'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Range-Time Intensity Scope'
-family: 'phased'
+family: 'sinks'
 product_id: 'phased'
 product_name: 'Phased Array System Toolbox'
 documentation_release: R2025b

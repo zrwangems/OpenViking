@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'From Simulink Image'
-family: 'vision'
+family: 'utilities'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

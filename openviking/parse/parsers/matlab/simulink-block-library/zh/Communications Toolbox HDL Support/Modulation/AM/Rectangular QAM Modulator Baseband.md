@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Rectangular QAM Modulator Baseband'
-family: 'communications-toolbox-hdl-support'
+family: 'modulation'
 product_id: 'communications-toolbox-hdl-support'
 product_name: 'Communications Toolbox HDL Support'
 documentation_release: R2025b
-official_category: 'Modulation / AM'
+official_category: 'Modulation / Digital Baseband Modulation / PAM/QAM'
 documentation_page: 'rectangularqammodulatorbaseband'
 documentation_source_path: '../comm/ref/rectangularqammodulatorbaseband.html'
 language: zh-CN

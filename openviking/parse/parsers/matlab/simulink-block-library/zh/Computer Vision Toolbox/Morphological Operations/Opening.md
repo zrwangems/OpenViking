@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Opening'
-family: 'vision'
+family: 'morphological-operations'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

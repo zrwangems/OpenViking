@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Bit to Integer Converter'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'logic-and-bit-operations'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Logic and Bit Operations'
 documentation_page: 'bittointegerconverter'
-documentation_source_path: '../simulink/slref/bittointegerconverter.html'
+documentation_source_path: 'slref/bittointegerconverter.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

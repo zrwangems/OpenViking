@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Packet Input'
-family: 'sldrt'
+family: 'simulink-desktop-real-time'
 product_id: 'sldrt'
 product_name: 'Simulink Desktop Real-Time'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Simulink Desktop Real-Time'
 documentation_page: 'packetinput'
 documentation_source_path: 'ref/packetinput.html'
 language: zh-CN

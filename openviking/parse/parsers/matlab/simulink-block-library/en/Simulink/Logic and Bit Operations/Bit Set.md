@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Bit Set'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Logic and Bit Operations'
 documentation_page: 'bitset'
-documentation_source_path: '../simulink/slref/bitset.html'
+documentation_source_path: 'slref/bitset.html'
 language: en
 ---
 

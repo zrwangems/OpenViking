@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Sparse Second Order'
-family: 'control'
+family: 'control-system-toolbox'
 product_id: 'control'
 product_name: 'Control System Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Control System Toolbox'
 documentation_page: 'sparsesecondorder'
 documentation_source_path: 'ref/sparsesecondorder.html'
 language: zh-CN

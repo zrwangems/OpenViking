@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Synchronous Machine (Six-Phase)'
-family: 'sps'
+family: 'electromechanical'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

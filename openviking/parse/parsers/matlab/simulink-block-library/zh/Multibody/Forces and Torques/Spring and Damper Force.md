@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Spring and Damper Force'
-family: 'sm'
+family: 'forces-and-torques'
 product_id: 'sm'
 product_name: 'Multibody'
 documentation_release: R2025b

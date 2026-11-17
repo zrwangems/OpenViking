@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Scope'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'simulink-extras'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Commonly Used Blocks'
+official_category: 'Additional Sinks'
 documentation_page: 'scope'
-documentation_source_path: '../simulink/slref/scope.html'
+documentation_source_path: 'slref/scope.html'
 language: zh-CN
 chinese_source: official
 ---

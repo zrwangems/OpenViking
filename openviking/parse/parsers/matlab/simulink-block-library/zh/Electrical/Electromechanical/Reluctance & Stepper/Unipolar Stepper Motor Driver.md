@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Unipolar Stepper Motor Driver'
-family: 'sps'
+family: 'electromechanical'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

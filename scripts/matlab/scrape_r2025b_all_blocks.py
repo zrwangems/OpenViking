@@ -26,7 +26,7 @@ from extract_r2025b_block_manifest import (
     report,
     write_browser_tree,
 )
-from scrape_simulink_blocks import localized_content
+from scrape_simulink_blocks import localized_content, official_topic_content
 
 _PRINT_LOCK = threading.Lock()
 
@@ -73,11 +73,21 @@ def fetch(
 
 
 def render_page(html: bytes, entry: dict, product: dict, language: str) -> tuple[str, bool]:
-    subtitle, sections = localized_content(html, entry, "zh-CN" if language == "zh" else "en")
-    official_chinese = language == "en" or bool(re.search(r"[\u4e00-\u9fff]", subtitle))
+    topic = entry.get("content_kind") == "official_topic"
+    if topic:
+        subtitle, topic_markdown = official_topic_content(
+            html, entry, "zh-CN" if language == "zh" else "en"
+        )
+        sections = []
+    else:
+        subtitle, sections = localized_content(html, entry, "zh-CN" if language == "zh" else "en")
+        topic_markdown = ""
+    official_chinese = language == "en" or bool(
+        re.search(r"[\u4e00-\u9fff]", topic_markdown if topic else subtitle)
+    )
     if language == "zh" and not official_chinese:
         raise ValueError("translation_required: MathWorks page has no official Chinese body")
-    if not sections:
+    if not topic and not sections:
         raise ValueError("missing: no usable block-documentation sections")
     metadata = [
         "---",
@@ -95,6 +105,9 @@ def render_page(html: bytes, entry: dict, product: dict, language: str) -> tuple
     if language == "zh":
         metadata.append("chinese_source: official")
     lines = [*metadata, "---", "", f"# {entry['name']}", "", subtitle, ""]
+    if topic:
+        lines.extend([topic_markdown, ""])
+        return "\n".join(lines).rstrip() + "\n", official_chinese
     for title, content in sections:
         lines.extend([f"## {title}", "", content, ""])
     return normalize_block_document("\n".join(lines), language=language), official_chinese
@@ -131,11 +144,14 @@ def process(
     root: Path,
     cache: Path,
     offline: bool,
+    block_sources: set[tuple[str, str, str]],
 ) -> tuple[dict, list[dict]]:
     statuses = {}
     failures = []
     source_product, source_path = document_source(product, entry)
     source_release = entry.get("source_release", RELEASE)
+    if (source_product, source_path, source_release) in block_sources:
+        entry = {**entry, "content_kind": "block"}
     for language in ("en", "zh"):
         release_prefix = "" if source_release == RELEASE else f"{source_release}/"
         relative = (
@@ -211,12 +227,19 @@ def main() -> None:
     if unknown:
         raise SystemExit(f"Unknown or blockless products: {sorted(unknown)}")
     work = [(product, entry) for product in products for entry in unique_entries(product)]
+    block_sources = {
+        (*document_source(product, block), block.get("source_release", RELEASE))
+        for product in products
+        for library in product["libraries"]
+        for block in library["blocks"]
+        if block.get("content_kind") != "official_topic"
+    }
     root = args.manifest.parent
     all_failures = []
     completed = 0
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
         futures = {
-            pool.submit(process, product, entry, root, args.cache, args.offline): (
+            pool.submit(process, product, entry, root, args.cache, args.offline, block_sources): (
                 product,
                 entry,
             )

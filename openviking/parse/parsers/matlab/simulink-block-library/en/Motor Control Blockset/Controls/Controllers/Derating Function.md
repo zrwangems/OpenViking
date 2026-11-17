@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Derating Function'
 family: 'motor-control-blockset-hdl-support'
-product_id: 'motor-control-blockset-hdl-support'
-product_name: 'Motor Control Blockset HDL Support'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
 official_category: 'Controls / Controllers'
 documentation_page: 'deratingfunction'
-documentation_source_path: '../mcb/ref/deratingfunction.html'
+documentation_source_path: 'ref/deratingfunction.html'
 language: en
 ---
 

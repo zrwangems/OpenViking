@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'CAN Receive'
 family: 'vnt'
-product_id: 'vnt'
-product_name: 'Vehicle Network Toolbox'
+product_id: 'ti-c2000'
+product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
 official_category: 'CAN Communication'
 documentation_page: 'canreceive'
-documentation_source_path: 'ug/canreceive.html'
+documentation_source_path: '../vnt/ug/canreceive.html'
 language: en
 ---
 

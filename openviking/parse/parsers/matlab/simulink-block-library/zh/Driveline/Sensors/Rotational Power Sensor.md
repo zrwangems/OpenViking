@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Rotational Power Sensor'
-family: 'sdl'
+family: 'sensors'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b

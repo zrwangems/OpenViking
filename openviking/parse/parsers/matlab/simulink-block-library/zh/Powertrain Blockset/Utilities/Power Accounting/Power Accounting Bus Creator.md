@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Power Accounting Bus Creator'
-family: 'autoblks'
+family: 'utilities'
 product_id: 'autoblks'
 product_name: 'Powertrain Blockset'
 documentation_release: R2025b

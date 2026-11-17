@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Band Brake'
-family: 'sdl'
+family: 'brakes-detents'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'DAC AC Measurement'
-family: 'msblks'
+family: 'dac'
 product_id: 'msblks'
 product_name: 'Mixed-Signal Blockset'
 documentation_release: R2025b

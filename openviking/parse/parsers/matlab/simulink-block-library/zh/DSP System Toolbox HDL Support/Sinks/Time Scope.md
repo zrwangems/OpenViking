@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Time Scope'
-family: 'dsp-system-toolbox-hdl-support'
+family: 'sinks'
 product_id: 'dsp-system-toolbox-hdl-support'
 product_name: 'DSP System Toolbox HDL Support'
 documentation_release: R2025b

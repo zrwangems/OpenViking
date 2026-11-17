@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Discrete State-Space'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'RCP and HIL'
 documentation_page: 'discretestatespace'
-documentation_source_path: '../simulink/slref/discretestatespace.html'
+documentation_source_path: 'slref/discretestatespace.html'
 language: en
 ---
 

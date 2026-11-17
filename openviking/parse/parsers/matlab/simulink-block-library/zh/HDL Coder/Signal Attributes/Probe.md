@@ -1,18 +1,18 @@
 ---
 type: simulink-block
-title: 'Probe'
-family: 'hdlcoder'
+title: 'Probe Complexity'
+family: 'quick-insert'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Signal Attributes'
+official_category: 'Quick Insert / Signal Attributes'
 documentation_page: 'probe'
 documentation_source_path: '../simulink/slref/probe.html'
 language: zh-CN
 chinese_source: worker-translation
 ---
 
-# Probe
+# Probe Complexity
 
 ## 端口
 

@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Protection Relay'
 family: 'motor-control-blockset-hdl-support'
-product_id: 'motor-control-blockset-hdl-support'
-product_name: 'Motor Control Blockset HDL Support'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
 official_category: 'Protection and Diagnostics'
 documentation_page: 'protectionrelay'
-documentation_source_path: '../mcb/ref/protectionrelay.html'
+documentation_source_path: 'ref/protectionrelay.html'
 language: zh-CN
 chinese_source: official
 ---

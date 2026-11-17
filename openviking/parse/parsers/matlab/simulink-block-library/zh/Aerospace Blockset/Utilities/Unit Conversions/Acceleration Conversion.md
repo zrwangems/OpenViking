@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Acceleration Conversion'
-family: 'aeroblks'
+family: 'utilities'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b

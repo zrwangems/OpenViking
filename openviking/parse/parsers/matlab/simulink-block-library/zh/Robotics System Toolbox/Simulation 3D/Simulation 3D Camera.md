@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Simulation 3D Camera'
-family: 'robotics'
+family: 'simulation-3d'
 product_id: 'robotics'
 product_name: 'Robotics System Toolbox'
 documentation_release: R2025b

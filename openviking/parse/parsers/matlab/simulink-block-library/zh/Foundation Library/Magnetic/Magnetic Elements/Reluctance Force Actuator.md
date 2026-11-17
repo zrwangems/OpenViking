@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Reluctance Force Actuator'
-family: 'simscape'
+family: 'magnetic'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b

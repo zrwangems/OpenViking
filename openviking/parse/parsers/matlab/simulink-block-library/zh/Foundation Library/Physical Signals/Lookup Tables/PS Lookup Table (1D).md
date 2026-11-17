@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'PS Lookup Table (1D)'
-family: 'simscape'
+family: 'physical-signals'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Varying State Space'
-family: 'control'
+family: 'linear-parameter-varying'
 product_id: 'control'
 product_name: 'Control System Toolbox'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Protocol Decoder'
-family: 'slrealtime'
+family: 'utilities'
 product_id: 'slrealtime'
 product_name: 'Simulink Real-Time'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Pure Pursuit'
-family: 'robotics'
+family: 'mobile-robot-algorithms'
 product_id: 'robotics'
 product_name: 'Robotics System Toolbox'
 documentation_release: R2025b

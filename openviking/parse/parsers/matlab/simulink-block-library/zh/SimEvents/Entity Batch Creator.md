@@ -5,7 +5,7 @@ family: 'simevents'
 product_id: 'simevents'
 product_name: 'SimEvents'
 documentation_release: R2025b
-official_category: ''
+official_category: 'SimEvents'
 documentation_page: 'entitybatchcreator'
 documentation_source_path: 'ref/entitybatchcreator.html'
 language: zh-CN

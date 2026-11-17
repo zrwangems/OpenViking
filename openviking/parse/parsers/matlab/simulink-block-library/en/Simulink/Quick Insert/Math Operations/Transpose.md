@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Transpose'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'HDL Floating Point Operations'
 documentation_page: 'transpose'
-documentation_source_path: '../simulink/slref/transpose.html'
+documentation_source_path: 'slref/transpose.html'
 language: en
 ---
 

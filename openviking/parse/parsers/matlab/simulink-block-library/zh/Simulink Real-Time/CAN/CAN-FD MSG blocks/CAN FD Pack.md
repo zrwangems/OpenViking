@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'CAN FD Pack'
-family: 'slrealtime'
+family: 'can'
 product_id: 'slrealtime'
 product_name: 'Simulink Real-Time'
 documentation_release: R2025b

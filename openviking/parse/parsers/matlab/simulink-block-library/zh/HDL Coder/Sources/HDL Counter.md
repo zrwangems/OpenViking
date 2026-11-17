@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'HDL Counter'
-family: 'hdlcoder'
+family: 'sources'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b

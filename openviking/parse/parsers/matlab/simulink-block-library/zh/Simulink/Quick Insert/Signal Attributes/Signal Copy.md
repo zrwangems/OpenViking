@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Signal Conversion'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Signal Attributes'
 documentation_page: 'signalconversion'
-documentation_source_path: '../simulink/slref/signalconversion.html'
+documentation_source_path: 'slref/signalconversion.html'
 language: zh-CN
 chinese_source: official
 ---

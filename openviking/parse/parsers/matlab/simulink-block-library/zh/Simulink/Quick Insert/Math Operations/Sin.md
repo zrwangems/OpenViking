@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Sin'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'hdl-floating-point-operations'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'HDL Floating Point Operations'
 documentation_page: 'sin'
-documentation_source_path: 'ref/sin.html'
+documentation_source_path: '../hdlcoder/ref/sin.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

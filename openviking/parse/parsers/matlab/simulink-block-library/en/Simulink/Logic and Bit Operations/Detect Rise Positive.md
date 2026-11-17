@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Detect Rise Positive'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Logic and Bit Operations'
 documentation_page: 'detectrisepositive'
-documentation_source_path: '../simulink/slref/detectrisepositive.html'
+documentation_source_path: 'slref/detectrisepositive.html'
 language: en
 ---
 

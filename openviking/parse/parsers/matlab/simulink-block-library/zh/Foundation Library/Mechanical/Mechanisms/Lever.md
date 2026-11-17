@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Lever'
-family: 'simscape'
+family: 'mechanical'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b

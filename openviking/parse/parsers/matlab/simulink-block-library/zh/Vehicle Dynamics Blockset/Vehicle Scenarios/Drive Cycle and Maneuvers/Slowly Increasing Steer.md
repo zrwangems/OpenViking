@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Slowly Increasing Steer'
-family: 'vdynblks'
+family: 'vehicle-scenarios'
 product_id: 'vdynblks'
 product_name: 'Vehicle Dynamics Blockset'
 documentation_release: R2025b

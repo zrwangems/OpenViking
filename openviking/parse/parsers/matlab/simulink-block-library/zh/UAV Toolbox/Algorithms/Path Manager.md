@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Path Manager'
-family: 'uav'
+family: 'algorithms'
 product_id: 'uav'
 product_name: 'UAV Toolbox'
 documentation_release: R2025b

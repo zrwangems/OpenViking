@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'MCAN Transmit'
-family: 'ti-c2000'
+family: 'f280015x'
 product_id: 'ti-c2000'
 product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b

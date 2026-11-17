@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Vehicle To World'
-family: 'driving'
+family: 'driving-scenario-and-sensor-modeling'
 product_id: 'driving'
 product_name: 'Automated Driving Toolbox'
 documentation_release: R2025b

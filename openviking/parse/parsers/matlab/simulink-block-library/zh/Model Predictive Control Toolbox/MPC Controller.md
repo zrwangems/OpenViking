@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'MPC Controller'
-family: 'mpc'
+family: 'model-predictive-control-toolbox'
 product_id: 'mpc'
 product_name: 'Model Predictive Control Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Model Predictive Control Toolbox'
 documentation_page: 'mpccontroller'
 documentation_source_path: 'ref/mpccontroller.html'
 language: zh-CN

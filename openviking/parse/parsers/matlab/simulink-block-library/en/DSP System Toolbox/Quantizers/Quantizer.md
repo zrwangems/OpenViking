@@ -2,8 +2,8 @@
 type: simulink-block
 title: 'Quantizer'
 family: 'simulink-extras'
-product_id: 'simulink-extras'
-product_name: 'Simulink Extras'
+product_id: 'dsp'
+product_name: 'DSP System Toolbox'
 documentation_release: R2025b
 official_category: 'Additional Discrete'
 documentation_page: 'quantizer'

@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Decrement Stored Integer'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Math Operations'
 documentation_page: 'decrementstoredinteger'
-documentation_source_path: '../simulink/slref/decrementstoredinteger.html'
+documentation_source_path: 'slref/decrementstoredinteger.html'
 language: en
 ---
 

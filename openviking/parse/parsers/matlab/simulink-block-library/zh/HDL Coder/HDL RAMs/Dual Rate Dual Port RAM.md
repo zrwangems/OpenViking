@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Dual Rate Dual Port RAM'
-family: 'hdlcoder'
+family: 'hdl-rams'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b

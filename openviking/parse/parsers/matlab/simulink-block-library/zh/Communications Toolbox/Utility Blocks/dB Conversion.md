@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'dB Conversion'
-family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+family: 'math-functions'
+product_id: 'comm'
+product_name: 'Communications Toolbox'
 documentation_release: R2025b
 official_category: 'Math Functions / Math Operations'
 documentation_page: 'dbconversion'
-documentation_source_path: 'ref/dbconversion.html'
+documentation_source_path: '../dsp/ref/dbconversion.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

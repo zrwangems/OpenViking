@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Discrete-Time Integrator'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Discrete'
 documentation_page: 'discretetimeintegrator'
-documentation_source_path: '../simulink/slref/discretetimeintegrator.html'
+documentation_source_path: 'slref/discretetimeintegrator.html'
 language: en
 ---
 

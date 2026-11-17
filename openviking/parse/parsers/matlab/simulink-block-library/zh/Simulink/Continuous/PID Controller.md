@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'PID Controller'
-family: 'control'
-product_id: 'control'
-product_name: 'Control System Toolbox'
+family: 'libsb2sl'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Linear Parameter Varying'
+official_category: 'DYN'
 documentation_page: 'pidcontroller'
-documentation_source_path: '../simulink/slref/pidcontroller.html'
+documentation_source_path: 'slref/pidcontroller.html'
 language: zh-CN
 chinese_source: official
 ---

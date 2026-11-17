@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'CREPE Postprocess'
-family: 'audio'
+family: 'deep-learning'
 product_id: 'audio'
 product_name: 'Audio Toolbox'
 documentation_release: R2025b

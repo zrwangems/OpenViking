@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'To Multimedia File'
-family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+family: 'sinks'
+product_id: 'audio'
+product_name: 'Audio Toolbox'
 documentation_release: R2025b
 official_category: 'Sinks'
 documentation_page: 'tomultimediafile'
-documentation_source_path: 'ref/tomultimediafile.html'
+documentation_source_path: '../dsp/ref/tomultimediafile.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

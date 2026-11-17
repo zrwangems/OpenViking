@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Bitwise Operator'
-family: 'hdlcoder'
+family: 'libsb2sl'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
-official_category: 'Logic and Bit Operations'
+official_category: 'LOG'
 documentation_page: 'bitwiseoperator'
 documentation_source_path: '../simulink/slref/bitwiseoperator.html'
 language: zh-CN

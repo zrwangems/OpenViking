@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Controlled Current Source (Three-Phase)'
-family: 'sps'
+family: 'sources'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

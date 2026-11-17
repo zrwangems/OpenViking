@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'UAV Animation'
-family: 'uav'
+family: 'utilities'
 product_id: 'uav'
 product_name: 'UAV Toolbox'
 documentation_release: R2025b

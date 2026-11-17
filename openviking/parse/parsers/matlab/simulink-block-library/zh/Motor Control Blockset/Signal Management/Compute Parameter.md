@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Compute Parameter'
-family: 'mcb'
+family: 'signal-management'
 product_id: 'mcb'
 product_name: 'Motor Control Blockset'
 documentation_release: R2025b

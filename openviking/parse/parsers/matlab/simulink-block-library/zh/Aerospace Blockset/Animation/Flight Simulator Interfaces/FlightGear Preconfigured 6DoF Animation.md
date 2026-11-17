@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'FlightGear Preconfigured 6DoF Animation'
-family: 'aeroblks'
+family: 'animation'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b

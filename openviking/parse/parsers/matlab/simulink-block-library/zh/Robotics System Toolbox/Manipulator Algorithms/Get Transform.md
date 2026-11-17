@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Get Transform'
-family: 'robotics'
+family: 'manipulator-algorithms'
 product_id: 'robotics'
 product_name: 'Robotics System Toolbox'
 documentation_release: R2025b

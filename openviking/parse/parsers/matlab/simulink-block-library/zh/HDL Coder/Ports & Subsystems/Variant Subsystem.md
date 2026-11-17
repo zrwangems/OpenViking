@@ -1,7 +1,7 @@
 ---
 type: simulink-block
-title: 'Variant Subsystem'
-family: 'hdlcoder'
+title: 'Variant Assembly Subsystem'
+family: 'ports-subsystems'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b
@@ -12,7 +12,7 @@ language: zh-CN
 chinese_source: worker-translation
 ---
 
-# Variant Subsystem
+# Variant Assembly Subsystem
 
 ## 端口
 

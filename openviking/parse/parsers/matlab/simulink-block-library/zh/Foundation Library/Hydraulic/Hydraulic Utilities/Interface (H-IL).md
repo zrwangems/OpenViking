@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Interface (H-IL)'
-family: 'simscape'
+family: 'hydraulic'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Track-Oriented Multi-Hypothesis Tracker'
-family: 'fusion'
+family: 'multi-object-tracking-algorithms'
 product_id: 'fusion'
 product_name: 'Sensor Fusion and Tracking Toolbox'
 documentation_release: R2025b

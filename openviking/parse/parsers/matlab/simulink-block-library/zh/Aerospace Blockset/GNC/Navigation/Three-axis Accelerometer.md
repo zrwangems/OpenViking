@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Three-axis Accelerometer'
-family: 'aeroblks'
+family: 'gnc'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b

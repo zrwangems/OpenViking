@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'FM Broadcast Demodulator Baseband'
-family: 'comm'
+family: 'modulation'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

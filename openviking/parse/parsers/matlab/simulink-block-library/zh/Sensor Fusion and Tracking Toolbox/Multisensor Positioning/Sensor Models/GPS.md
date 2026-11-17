@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'GPS'
-family: 'fusion'
+family: 'multisensor-positioning'
 product_id: 'fusion'
 product_name: 'Sensor Fusion and Tracking Toolbox'
 documentation_release: R2025b

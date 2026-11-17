@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Unit Delay Enabled Synchronous'
-family: 'hdlcoder'
+family: 'discrete'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b

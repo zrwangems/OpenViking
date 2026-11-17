@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'IncrementalRegressionLinear Predict'
-family: 'stats'
+family: 'incremental-learning'
 product_id: 'stats'
 product_name: 'Statistics and Machine Learning Toolbox'
 documentation_release: R2025b

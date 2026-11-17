@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Longitudinal Controller Stanley'
-family: 'driving'
+family: 'vehicle-control'
 product_id: 'driving'
 product_name: 'Automated Driving Toolbox'
 documentation_release: R2025b

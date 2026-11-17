@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'DDS Receive'
-family: 'slrealtime'
+family: 'dds'
 product_id: 'slrealtime'
 product_name: 'Simulink Real-Time'
 documentation_release: R2025b

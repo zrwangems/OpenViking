@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Connection Label'
-family: 'utilities'
+family: 'circuit-envelope'
 product_id: 'utilities'
 product_name: 'Utilities'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Circuit Envelope / Utilities'
 documentation_page: 'connectionlabel'
 documentation_source_path: '../simrf/ref/connectionlabel.html'
 language: zh-CN

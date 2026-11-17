@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Modbus Client Write'
-family: 'icomm'
+family: 'modbus'
 product_id: 'icomm'
 product_name: 'Industrial Communication Toolbox'
 documentation_release: R2025b

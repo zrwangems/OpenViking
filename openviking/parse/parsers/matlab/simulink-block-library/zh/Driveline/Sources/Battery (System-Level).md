@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Battery (System-Level)'
-family: 'sdl'
+family: 'sources'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b

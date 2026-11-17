@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'LUT based PMSM Control Reference'
-family: 'mcb'
+family: 'controls'
 product_id: 'mcb'
 product_name: 'Motor Control Blockset'
 documentation_release: R2025b

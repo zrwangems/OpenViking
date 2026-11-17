@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Shift Arithmetic'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Logic and Bit Operations'
 documentation_page: 'shiftarithmetic'
-documentation_source_path: '../simulink/slref/shiftarithmetic.html'
+documentation_source_path: 'slref/shiftarithmetic.html'
 language: zh-CN
 chinese_source: official
 ---

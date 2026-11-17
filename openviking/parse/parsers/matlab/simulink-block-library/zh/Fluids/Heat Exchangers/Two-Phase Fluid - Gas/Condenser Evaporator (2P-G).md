@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Condenser Evaporator (2P-G)'
-family: 'hydro'
+family: 'heat-exchangers'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Trace Gas Source (MA)'
-family: 'simscape'
+family: 'moist-air'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b

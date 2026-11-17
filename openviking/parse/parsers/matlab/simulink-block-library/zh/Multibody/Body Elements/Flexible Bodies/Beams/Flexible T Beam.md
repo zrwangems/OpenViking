@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Flexible T Beam'
-family: 'sm'
+family: 'body-elements'
 product_id: 'sm'
 product_name: 'Multibody'
 documentation_release: R2025b

@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Time Scope'
-family: 'dsp-system-toolbox-hdl-support'
-product_id: 'dsp-system-toolbox-hdl-support'
-product_name: 'DSP System Toolbox HDL Support'
+family: 'sinks'
+product_id: 'dsp'
+product_name: 'DSP System Toolbox'
 documentation_release: R2025b
 official_category: 'Sinks'
 documentation_page: 'timescopeblock'
-documentation_source_path: '../audio/../dsp/ref/timescopeblock.html'
+documentation_source_path: 'ref/timescopeblock.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

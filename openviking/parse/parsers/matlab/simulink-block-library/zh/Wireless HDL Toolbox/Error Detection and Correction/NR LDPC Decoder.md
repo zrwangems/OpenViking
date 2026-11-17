@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'NR LDPC Decoder'
-family: 'wireless-hdl'
+family: 'error-detection-and-correction'
 product_id: 'wireless-hdl'
 product_name: 'Wireless HDL Toolbox'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Extract Diagonal'
-family: 'simulink'
+family: 'matrix-operations'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

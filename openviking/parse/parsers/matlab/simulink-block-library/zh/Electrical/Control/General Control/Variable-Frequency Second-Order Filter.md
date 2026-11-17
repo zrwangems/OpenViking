@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Variable-Frequency Second-Order Filter'
-family: 'sps'
+family: 'control'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

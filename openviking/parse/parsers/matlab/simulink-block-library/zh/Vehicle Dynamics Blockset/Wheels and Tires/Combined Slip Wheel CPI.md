@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Combined Slip Wheel CPI'
-family: 'vdynblks'
+family: 'wheels-and-tires'
 product_id: 'vdynblks'
 product_name: 'Vehicle Dynamics Blockset'
 documentation_release: R2025b

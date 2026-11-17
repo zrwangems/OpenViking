@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Trigonometric Function'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'libsb2sl'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'HDL Floating Point Operations'
+official_category: 'TRG'
 documentation_page: 'trigonometricfunction'
-documentation_source_path: '../simulink/slref/trigonometricfunction.html'
+documentation_source_path: 'slref/trigonometricfunction.html'
 language: zh-CN
 chinese_source: official
 ---

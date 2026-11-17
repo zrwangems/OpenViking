@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'SynRM FeedForward Control'
-family: 'mcb'
+family: 'controls'
 product_id: 'mcb'
 product_name: 'Motor Control Blockset'
 documentation_release: R2025b

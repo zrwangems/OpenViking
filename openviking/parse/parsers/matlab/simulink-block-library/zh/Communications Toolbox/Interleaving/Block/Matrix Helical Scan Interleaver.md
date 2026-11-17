@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Matrix Helical Scan Interleaver'
-family: 'comm'
+family: 'interleaving'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

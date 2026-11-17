@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'J1939 Transmit'
-family: 'slrealtime'
+family: 'j1939'
 product_id: 'slrealtime'
 product_name: 'Simulink Real-Time'
 documentation_release: R2025b

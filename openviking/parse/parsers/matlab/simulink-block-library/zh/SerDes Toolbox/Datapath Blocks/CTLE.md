@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'CTLE'
-family: 'serdes'
+family: 'datapath-blocks'
 product_id: 'serdes'
 product_name: 'SerDes Toolbox'
 documentation_release: R2025b

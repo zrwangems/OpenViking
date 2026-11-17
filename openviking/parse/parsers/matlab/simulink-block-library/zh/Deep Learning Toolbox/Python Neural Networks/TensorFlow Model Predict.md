@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'TensorFlow Model Predict'
-family: 'deeplearning'
+family: 'python-neural-networks'
 product_id: 'deeplearning'
 product_name: 'Deep Learning Toolbox'
 documentation_release: R2025b

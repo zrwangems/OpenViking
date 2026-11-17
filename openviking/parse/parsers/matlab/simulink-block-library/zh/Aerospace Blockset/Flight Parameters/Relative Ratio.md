@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Relative Ratio'
-family: 'aeroblks'
+family: 'flight-parameters'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b

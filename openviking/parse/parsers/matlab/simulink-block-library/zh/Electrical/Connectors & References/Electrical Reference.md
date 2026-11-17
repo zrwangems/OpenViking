@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Electrical Reference'
 family: 'simscape'
-product_id: 'simscape'
-product_name: 'Foundation Library'
+product_id: 'sps'
+product_name: 'Electrical'
 documentation_release: R2025b
 official_category: 'Electrical / Electrical Elements'
 documentation_page: 'electricalreference'
-documentation_source_path: 'ref/electricalreference.html'
+documentation_source_path: '../simscape/ref/electricalreference.html'
 language: zh-CN
 chinese_source: official
 ---

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Sensorless Six-Step Commutation'
-family: 'mcb'
+family: 'controls'
 product_id: 'mcb'
 product_name: 'Motor Control Blockset'
 documentation_release: R2025b

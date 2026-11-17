@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Ramp'
-family: 'autosar'
+family: 'classic-platform'
 product_id: 'autosar'
 product_name: 'AUTOSAR Blockset'
 documentation_release: R2025b

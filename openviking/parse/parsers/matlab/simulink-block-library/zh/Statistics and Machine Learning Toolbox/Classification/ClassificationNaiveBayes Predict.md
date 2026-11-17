@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'ClassificationNaiveBayes Predict'
-family: 'stats'
+family: 'classification'
 product_id: 'stats'
 product_name: 'Statistics and Machine Learning Toolbox'
 documentation_release: R2025b

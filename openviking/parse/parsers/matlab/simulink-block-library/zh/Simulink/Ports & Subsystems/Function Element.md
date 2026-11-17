@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Function Element'
-family: 'simulink'
+family: 'ports-subsystems'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

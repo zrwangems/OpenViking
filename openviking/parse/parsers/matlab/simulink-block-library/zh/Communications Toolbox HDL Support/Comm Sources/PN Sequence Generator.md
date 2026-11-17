@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'PN Sequence Generator'
-family: 'communications-toolbox-hdl-support'
+family: 'comm-sources'
 product_id: 'communications-toolbox-hdl-support'
 product_name: 'Communications Toolbox HDL Support'
 documentation_release: R2025b
-official_category: 'Comm Sources'
+official_category: 'Comm Sources / Sequence Generators'
 documentation_page: 'pnsequencegenerator'
 documentation_source_path: '../comm/ref/pnsequencegenerator.html'
 language: zh-CN

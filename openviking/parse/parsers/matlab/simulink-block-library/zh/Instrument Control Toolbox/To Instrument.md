@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'To Instrument'
-family: 'instrument'
+family: 'instrument-control-toolbox'
 product_id: 'instrument'
 product_name: 'Instrument Control Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Instrument Control Toolbox'
 documentation_page: 'toinstrument'
 documentation_source_path: 'toinstrument.html'
 language: zh-CN

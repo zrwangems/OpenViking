@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Interprocess Data Write'
-family: 'soc'
+family: 'processor-interconnect'
 product_id: 'soc'
 product_name: 'SoC Blockset'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Parameter Writer'
-family: 'simulink'
+family: 'signal-routing'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

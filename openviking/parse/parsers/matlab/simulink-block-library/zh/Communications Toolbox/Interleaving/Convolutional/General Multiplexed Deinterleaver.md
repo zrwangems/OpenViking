@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'General Multiplexed Deinterleaver'
-family: 'communications-toolbox-hdl-support'
-product_id: 'communications-toolbox-hdl-support'
-product_name: 'Communications Toolbox HDL Support'
+family: 'interleaving'
+product_id: 'comm'
+product_name: 'Communications Toolbox'
 documentation_release: R2025b
-official_category: 'Interleaving'
+official_category: 'Interleaving / Convolutional'
 documentation_page: 'generalmultiplexeddeinterleaver'
-documentation_source_path: '../comm/ref/generalmultiplexeddeinterleaver.html'
+documentation_source_path: 'ref/generalmultiplexeddeinterleaver.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'ADC DC Measurement'
-family: 'msblks'
+family: 'adc'
 product_id: 'msblks'
 product_name: 'Mixed-Signal Blockset'
 documentation_release: R2025b

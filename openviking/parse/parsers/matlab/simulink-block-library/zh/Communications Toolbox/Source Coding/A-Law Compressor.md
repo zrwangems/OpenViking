@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'A-Law Compressor'
-family: 'comm'
+family: 'source-coding'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

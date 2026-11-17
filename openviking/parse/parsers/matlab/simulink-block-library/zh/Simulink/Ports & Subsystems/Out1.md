@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Outport'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Commonly Used Blocks'
 documentation_page: 'outport'
-documentation_source_path: '../simulink/slref/outport.html'
+documentation_source_path: 'slref/outport.html'
 language: zh-CN
 chinese_source: official
 ---

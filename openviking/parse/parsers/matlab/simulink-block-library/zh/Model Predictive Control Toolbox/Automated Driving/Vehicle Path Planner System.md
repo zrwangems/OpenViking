@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Vehicle Path Planner System'
-family: 'mpc'
+family: 'automated-driving'
 product_id: 'mpc'
 product_name: 'Model Predictive Control Toolbox'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Subband MVDR Beamformer'
-family: 'phased'
+family: 'beamforming'
 product_id: 'phased'
 product_name: 'Phased Array System Toolbox'
 documentation_release: R2025b

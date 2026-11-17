@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Timed-Based Linearization'
-family: 'simulink'
+family: 'model-wide-utilities'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b

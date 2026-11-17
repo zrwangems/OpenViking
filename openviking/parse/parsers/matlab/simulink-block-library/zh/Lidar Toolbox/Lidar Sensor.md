@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Lidar Sensor'
-family: 'lidar'
+family: 'lidar-toolbox'
 product_id: 'lidar'
 product_name: 'Lidar Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Lidar Toolbox'
 documentation_page: 'lidarsensor'
 documentation_source_path: 'ref/lidarsensor.html'
 language: zh-CN

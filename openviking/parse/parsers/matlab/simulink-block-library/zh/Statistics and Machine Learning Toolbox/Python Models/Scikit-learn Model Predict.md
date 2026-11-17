@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Scikit-learn Model Predict'
-family: 'stats'
+family: 'python-models'
 product_id: 'stats'
 product_name: 'Statistics and Machine Learning Toolbox'
 documentation_release: R2025b

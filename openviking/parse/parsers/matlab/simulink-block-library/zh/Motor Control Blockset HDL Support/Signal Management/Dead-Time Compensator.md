@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Dead-Time Compensator'
-family: 'motor-control-blockset-hdl-support'
+family: 'signal-management'
 product_id: 'motor-control-blockset-hdl-support'
 product_name: 'Motor Control Blockset HDL Support'
 documentation_release: R2025b

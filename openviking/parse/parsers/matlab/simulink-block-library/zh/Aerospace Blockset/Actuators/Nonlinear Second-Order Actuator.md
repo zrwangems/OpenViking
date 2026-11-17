@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Nonlinear Second-Order Actuator'
-family: 'aeroblks'
+family: 'actuators'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b

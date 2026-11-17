@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Measure Timing'
-family: 'visionhdl'
+family: 'utilities'
 product_id: 'visionhdl'
 product_name: 'Vision HDL Toolbox'
 documentation_release: R2025b

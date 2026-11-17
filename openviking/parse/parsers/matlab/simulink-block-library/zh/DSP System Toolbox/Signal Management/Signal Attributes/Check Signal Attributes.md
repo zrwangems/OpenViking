@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Check Signal Attributes'
-family: 'dsp'
+family: 'signal-management'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b

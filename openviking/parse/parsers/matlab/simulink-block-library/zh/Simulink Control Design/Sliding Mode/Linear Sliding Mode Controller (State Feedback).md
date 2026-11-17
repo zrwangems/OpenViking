@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Linear Sliding Mode Controller (State Feedback)'
-family: 'slcontrol'
+family: 'sliding-mode'
 product_id: 'slcontrol'
 product_name: 'Simulink Control Design'
 documentation_release: R2025b

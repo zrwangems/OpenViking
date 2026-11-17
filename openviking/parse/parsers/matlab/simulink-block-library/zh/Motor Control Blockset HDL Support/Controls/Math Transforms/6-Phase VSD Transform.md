@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: '6-Phase VSD Transform'
-family: 'motor-control-blockset-hdl-support'
+family: 'controls'
 product_id: 'motor-control-blockset-hdl-support'
 product_name: 'Motor Control Blockset HDL Support'
 documentation_release: R2025b

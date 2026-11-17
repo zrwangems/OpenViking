@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Fault Subsystem'
-family: 'fault-analyzer'
+family: 'simulink-fault-analyzer'
 product_id: 'fault-analyzer'
 product_name: 'Simulink Fault Analyzer'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Simulink Fault Analyzer'
 documentation_page: 'faultsubsystem'
 documentation_source_path: 'ref/faultsubsystem.html'
 language: zh-CN

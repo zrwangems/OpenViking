@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Nonlinear Reluctance'
-family: 'sps'
+family: 'passive'
 product_id: 'sps'
 product_name: 'Electrical'
 documentation_release: R2025b

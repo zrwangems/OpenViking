@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: '2-D FIR Filter'
-family: 'vision'
+family: 'filtering'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

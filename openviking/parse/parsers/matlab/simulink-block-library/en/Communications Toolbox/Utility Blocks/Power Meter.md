@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Power Meter'
 family: 'dsp'
-product_id: 'dsp'
-product_name: 'DSP System Toolbox'
+product_id: 'comm'
+product_name: 'Communications Toolbox'
 documentation_release: R2025b
 official_category: 'Statistics'
 documentation_page: 'powermeter'
-documentation_source_path: 'ref/powermeter.html'
+documentation_source_path: '../dsp/ref/powermeter.html'
 language: en
 ---
 

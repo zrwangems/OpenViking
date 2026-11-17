@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Polynomial'
-family: 'simulink'
+family: 'libsb2sl'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Math Operations'
+official_category: 'ALG'
 documentation_page: 'polynomial'
 documentation_source_path: 'slref/polynomial.html'
 language: zh-CN

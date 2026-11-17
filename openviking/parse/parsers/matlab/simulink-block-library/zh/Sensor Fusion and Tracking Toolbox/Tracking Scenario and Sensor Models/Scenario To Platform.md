@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Scenario To Platform'
-family: 'fusion'
+family: 'tracking-scenario-and-sensor-models'
 product_id: 'fusion'
 product_name: 'Sensor Fusion and Tracking Toolbox'
 documentation_release: R2025b

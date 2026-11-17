@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Road Profile'
-family: 'sdl'
+family: 'tires-vehicles'
 product_id: 'sdl'
 product_name: 'Driveline'
 documentation_release: R2025b

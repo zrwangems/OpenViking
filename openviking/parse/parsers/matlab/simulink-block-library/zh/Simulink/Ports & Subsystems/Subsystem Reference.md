@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Subsystem'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'wireless-hdl'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Ports & Subsystems'
+official_category: ''
 documentation_page: 'subsystem'
-documentation_source_path: '../simulink/slref/subsystem.html'
+documentation_source_path: 'slref/subsystem.html'
 language: zh-CN
 chinese_source: official
 ---

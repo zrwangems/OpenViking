@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Constant Gamma Clutter'
-family: 'radar'
+family: 'radar-toolbox'
 product_id: 'radar'
 product_name: 'Radar Toolbox'
 documentation_release: R2025b
-official_category: ''
+official_category: 'Radar Toolbox'
 documentation_page: 'constantgammaclutter'
 documentation_source_path: 'ref/constantgammaclutter.html'
 language: zh-CN

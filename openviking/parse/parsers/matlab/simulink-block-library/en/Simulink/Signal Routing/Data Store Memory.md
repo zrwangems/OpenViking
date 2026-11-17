@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Data Store Memory'
-family: 'simulink'
+family: 'libsb2sl'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Signal Routing'
+official_category: 'SUP'
 documentation_page: 'datastorememory'
 documentation_source_path: 'slref/datastorememory.html'
 language: en

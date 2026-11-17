@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Persistent Variable Read'
-family: 'slrealtime'
+family: 'target-management'
 product_id: 'slrealtime'
 product_name: 'Simulink Real-Time'
 documentation_release: R2025b

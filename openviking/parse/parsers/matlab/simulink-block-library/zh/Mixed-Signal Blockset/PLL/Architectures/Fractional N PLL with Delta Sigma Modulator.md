@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Fractional N PLL with Delta Sigma Modulator'
-family: 'msblks'
+family: 'pll'
 product_id: 'msblks'
 product_name: 'Mixed-Signal Blockset'
 documentation_release: R2025b

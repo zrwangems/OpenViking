@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'UDP Multicast Receive'
-family: 'slrealtime'
+family: 'ip'
 product_id: 'slrealtime'
 product_name: 'Simulink Real-Time'
 documentation_release: R2025b

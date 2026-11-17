@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Interface (PB-Translational)'
-family: 'simscape'
+family: 'translational'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b

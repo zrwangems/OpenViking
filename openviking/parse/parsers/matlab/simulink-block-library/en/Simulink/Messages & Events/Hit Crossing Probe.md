@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Hit Crossing'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Discontinuities'
 documentation_page: 'hitcrossing'
-documentation_source_path: '../simulink/slref/hitcrossing.html'
+documentation_source_path: 'slref/hitcrossing.html'
 language: en
 ---
 

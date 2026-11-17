@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Kalman Filter'
-family: 'ident'
+family: 'estimators'
 product_id: 'ident'
 product_name: 'System Identification Toolbox'
 documentation_release: R2025b

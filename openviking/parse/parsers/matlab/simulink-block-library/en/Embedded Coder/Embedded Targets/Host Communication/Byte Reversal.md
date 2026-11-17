@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Byte Reversal'
 family: 'slrealtime'
-product_id: 'slrealtime'
-product_name: 'Simulink Real-Time'
+product_id: 'ecoder'
+product_name: 'Embedded Coder'
 documentation_release: R2025b
 official_category: 'Utilities'
 documentation_page: 'bytereversal'
-documentation_source_path: '../ecoder/ref/bytereversal.html'
+documentation_source_path: 'ref/bytereversal.html'
 language: en
 ---
 

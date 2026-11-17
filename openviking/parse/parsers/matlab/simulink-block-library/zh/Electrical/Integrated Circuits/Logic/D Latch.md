@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'D Latch'
-family: 'simulink-extras'
-product_id: 'simulink-extras'
-product_name: 'Simulink Extras'
+family: 'integrated-circuits'
+product_id: 'sps'
+product_name: 'Electrical'
 documentation_release: R2025b
-official_category: 'Flip Flops'
+official_category: 'Integrated Circuits / Logic'
 documentation_page: 'dlatch'
-documentation_source_path: '../sps/ref/dlatch.html'
+documentation_source_path: 'ref/dlatch.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

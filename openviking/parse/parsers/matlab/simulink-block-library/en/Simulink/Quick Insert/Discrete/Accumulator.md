@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Delay'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'libsb2sl'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Commonly Used Blocks'
+official_category: 'LOG'
 documentation_page: 'delay'
-documentation_source_path: '../simulink/slref/delay.html'
+documentation_source_path: 'slref/delay.html'
 language: en
 ---
 

@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'PS Three-Element Demux'
 family: 'simscape'
-product_id: 'simscape'
-product_name: 'Foundation Library'
+product_id: 'sps'
+product_name: 'Electrical'
 documentation_release: R2025b
 official_category: 'Physical Signals / Nonlinear Operators'
 documentation_page: 'psthreeelementdemux'
-documentation_source_path: 'ref/psthreeelementdemux.html'
+documentation_source_path: '../simscape/ref/psthreeelementdemux.html'
 language: en
 ---
 

@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'PWM'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'ti-c2000'
+product_name: 'C2000 Microcontroller Blockset'
 documentation_release: R2025b
 official_category: 'RCP and HIL'
 documentation_page: 'pwm'
-documentation_source_path: '../simulink/slref/pwm.html'
+documentation_source_path: '../hdlcoder/../simulink/slref/pwm.html'
 language: zh-CN
 chinese_source: official
 ---

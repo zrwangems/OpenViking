@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Pressure-Reducing Valve (2P)'
-family: 'hydro'
+family: 'two-phase-fluid'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b

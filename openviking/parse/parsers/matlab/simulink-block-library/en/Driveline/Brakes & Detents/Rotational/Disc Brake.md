@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Disc Brake'
 family: 'vdynblks'
-product_id: 'vdynblks'
-product_name: 'Vehicle Dynamics Blockset'
+product_id: 'sdl'
+product_name: 'Driveline'
 documentation_release: R2025b
 official_category: 'Brakes'
 documentation_page: 'discbrake'
-documentation_source_path: '../sdl/ref/discbrake.html'
+documentation_source_path: 'ref/discbrake.html'
 language: en
 ---
 

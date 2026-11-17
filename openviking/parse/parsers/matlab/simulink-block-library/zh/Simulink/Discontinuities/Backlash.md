@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Backlash'
-family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+family: 'libsb2sl'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Discontinuities'
+official_category: 'DYN'
 documentation_page: 'backlash'
-documentation_source_path: '../simulink/slref/backlash.html'
+documentation_source_path: 'slref/backlash.html'
 language: zh-CN
 chinese_source: official
 ---

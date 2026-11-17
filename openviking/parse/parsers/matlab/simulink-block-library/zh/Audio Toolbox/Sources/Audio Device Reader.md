@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Audio Device Reader'
-family: 'audio'
+family: 'sources'
 product_id: 'audio'
 product_name: 'Audio Toolbox'
 documentation_release: R2025b

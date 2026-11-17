@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'ACIM Torque Estimator'
 family: 'motor-control-blockset-hdl-support'
-product_id: 'motor-control-blockset-hdl-support'
-product_name: 'Motor Control Blockset HDL Support'
+product_id: 'mcb'
+product_name: 'Motor Control Blockset'
 documentation_release: R2025b
 official_category: 'Controls / Control Reference'
 documentation_page: 'acimtorqueestimator'
-documentation_source_path: '../mcb/ref/acimtorqueestimator.html'
+documentation_source_path: 'ref/acimtorqueestimator.html'
 language: zh-CN
 chinese_source: official
 ---

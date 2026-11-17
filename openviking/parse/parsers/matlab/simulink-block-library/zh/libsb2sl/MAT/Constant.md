@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Constant'
-family: 'libsb2sl'
+family: 'sources'
 product_id: 'libsb2sl'
 product_name: 'libsb2sl'
 documentation_release: R2025b
-official_category: 'MAT'
+official_category: 'Sources'
 documentation_page: 'constant'
 documentation_source_path: '../dsp/ref/constant.html'
 language: zh-CN

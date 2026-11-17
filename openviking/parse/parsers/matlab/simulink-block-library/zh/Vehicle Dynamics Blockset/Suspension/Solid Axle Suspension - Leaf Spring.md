@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Solid Axle Suspension - Leaf Spring'
-family: 'vdynblks'
+family: 'suspension'
 product_id: 'vdynblks'
 product_name: 'Vehicle Dynamics Blockset'
 documentation_release: R2025b

@@ -2,8 +2,8 @@
 type: simulink-block
 title: 'Connection Port'
 family: 'utilities'
-product_id: 'utilities'
-product_name: 'Utilities'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: ''
 documentation_page: 'connectionport'

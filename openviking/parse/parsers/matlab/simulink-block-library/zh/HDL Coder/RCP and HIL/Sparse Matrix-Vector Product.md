@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Sparse Matrix-Vector Product'
-family: 'hdlcoder'
+family: 'rcp-and-hil'
 product_id: 'hdlcoder'
 product_name: 'HDL Coder'
 documentation_release: R2025b

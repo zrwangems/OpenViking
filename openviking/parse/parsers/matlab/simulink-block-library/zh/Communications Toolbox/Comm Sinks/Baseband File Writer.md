@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Baseband File Writer'
-family: 'comm'
+family: 'comm-sinks'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

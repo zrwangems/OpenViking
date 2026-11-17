@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: '2-D Histogram'
-family: 'vision'
+family: 'statistics'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

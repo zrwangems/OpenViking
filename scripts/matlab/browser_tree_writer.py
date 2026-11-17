@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import importlib.util
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -50,6 +51,23 @@ def tree_only_page(product: dict, library: dict, block: dict, language: str) -> 
         "",
     ]
     return normalize_block_document("\n".join(lines), language=language)
+
+
+def localize_document_metadata(
+    content: str, product: dict, library: dict, block: dict, language: str
+) -> str:
+    """Keep shared official prose but give every Browser occurrence its own identity."""
+    replacements = {
+        "product_id": repr(product["id"]),
+        "product_name": repr(product["name"]),
+        "documentation_release": block.get("source_release", "R2025b"),
+        "documentation_source_path": repr(block["documentation_path"]),
+    }
+    for key, value in replacements.items():
+        content, count = re.subn(rf"(?m)^{re.escape(key)}:.*$", f"{key}: {value}", content, count=1)
+        if not count:
+            content = content.replace("\n---\n", f"\n{key}: {value}\n---\n", 1)
+    return content
 
 
 def write_browser_tree(manifest: dict, root: Path) -> None:
@@ -106,7 +124,13 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                     target.parent.mkdir(parents=True, exist_ok=True)
                     document = block["documents"][language]
                     if document["status"] == "available" and document["path"]:
-                        content = source_documents[(id(block), language)]
+                        content = localize_document_metadata(
+                            source_documents[(id(block), language)],
+                            product,
+                            library,
+                            block,
+                            language,
+                        )
                     elif block["documentation_path"]:
                         content = f"# {block['name']}\n\n{block['summary']}\n\n" + (
                             "完整中英文正文待补。\n"
@@ -162,9 +186,9 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
         "- [中文块库](zh/index.md)\n"
         "- [English block library](en/index.md)\n\n"
         f"当前包含 {totals['products']} 个顶层库、{totals['block_occurrences']} 个块条目，"
-        "所有保留块都有完整中英文官方正文或经结构校验的中文工作译本。"
-        "实机树中的示例、启动器、产品链接及查无官方块页的条目已按 "
-        "`r2025b-block-exclusions.json` 剔除，目录层级保持不变。"
+        "所有原树条目都有完整中英文官方正文或经结构校验的中文工作译本。"
+        "示例、启动器和产品链接保留原路径并复用对应官方主题页；"
+        "原树无删减，目录层级和叶子条目一一对应。"
         "预配置变体复用对应基础块官方页；少数支持包老块使用页面标注的实际旧版官方文档。\n\n"
         "`manifest.json` 是解析器和离线生成脚本使用的机器元数据，不是 OV 资源页面。"
         "重新生成使用 `scripts/matlab/` 下的 R2025b 脚本；缓存和失败日志保存在库目录之外。\n",

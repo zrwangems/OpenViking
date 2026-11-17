@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Spherical Joint'
-family: 'sm'
+family: 'joints'
 product_id: 'sm'
 product_name: 'Multibody'
 documentation_release: R2025b

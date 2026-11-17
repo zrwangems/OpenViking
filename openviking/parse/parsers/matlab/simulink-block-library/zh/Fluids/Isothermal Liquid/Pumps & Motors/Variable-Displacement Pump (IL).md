@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Variable-Displacement Pump (IL)'
-family: 'hydro'
+family: 'isothermal-liquid'
 product_id: 'hydro'
 product_name: 'Fluids'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Simulation 3D Message Get'
-family: 'aeroblks'
+family: 'animation'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b

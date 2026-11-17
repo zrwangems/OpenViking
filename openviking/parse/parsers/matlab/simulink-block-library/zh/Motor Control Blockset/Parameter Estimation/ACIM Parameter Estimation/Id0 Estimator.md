@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Id0 Estimator'
-family: 'mcb'
+family: 'parameter-estimation'
 product_id: 'mcb'
 product_name: 'Motor Control Blockset'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'DVBS-APSK Demodulator Baseband'
-family: 'satcom'
+family: 'modulation'
 product_id: 'satcom'
 product_name: 'Satellite Communications Toolbox'
 documentation_release: R2025b

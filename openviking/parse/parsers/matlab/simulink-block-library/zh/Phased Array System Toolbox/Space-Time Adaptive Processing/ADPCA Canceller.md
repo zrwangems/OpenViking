@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'ADPCA Canceller'
-family: 'phased'
+family: 'space-time-adaptive-processing'
 product_id: 'phased'
 product_name: 'Phased Array System Toolbox'
 documentation_release: R2025b

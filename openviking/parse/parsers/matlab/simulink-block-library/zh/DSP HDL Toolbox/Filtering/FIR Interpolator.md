@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'FIR Interpolator'
-family: 'dsphdl'
+family: 'filtering'
 product_id: 'dsphdl'
 product_name: 'DSP HDL Toolbox'
 documentation_release: R2025b

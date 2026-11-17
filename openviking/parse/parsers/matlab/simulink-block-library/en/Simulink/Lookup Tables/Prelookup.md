@@ -2,12 +2,12 @@
 type: simulink-block
 title: 'Prelookup'
 family: 'hdlcoder'
-product_id: 'hdlcoder'
-product_name: 'HDL Coder'
+product_id: 'simulink'
+product_name: 'Simulink'
 documentation_release: R2025b
 official_category: 'Lookup Tables'
 documentation_page: 'prelookup'
-documentation_source_path: '../simulink/slref/prelookup.html'
+documentation_source_path: 'slref/prelookup.html'
 language: en
 ---
 

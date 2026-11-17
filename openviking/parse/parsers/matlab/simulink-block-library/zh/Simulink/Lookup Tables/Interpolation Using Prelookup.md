@@ -1,11 +1,11 @@
 ---
 type: simulink-block
 title: 'Interpolation Using Prelookup'
-family: 'simulink'
+family: 'libsb2sl'
 product_id: 'simulink'
 product_name: 'Simulink'
 documentation_release: R2025b
-official_category: 'Lookup Tables'
+official_category: 'NTP'
 documentation_page: 'interpolationusingprelookup'
 documentation_source_path: 'slref/interpolationusingprelookup.html'
 language: zh-CN

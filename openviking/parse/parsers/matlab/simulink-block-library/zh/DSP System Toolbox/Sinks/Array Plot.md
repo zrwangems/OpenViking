@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Array Plot'
-family: 'dsp'
+family: 'sinks'
 product_id: 'dsp'
 product_name: 'DSP System Toolbox'
 documentation_release: R2025b

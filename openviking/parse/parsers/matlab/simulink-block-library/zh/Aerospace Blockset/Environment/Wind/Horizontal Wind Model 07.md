@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Horizontal Wind Model 07'
-family: 'aeroblks'
+family: 'environment'
 product_id: 'aeroblks'
 product_name: 'Aerospace Blockset'
 documentation_release: R2025b

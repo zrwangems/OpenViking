@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Puncture'
-family: 'comm'
+family: 'sequence-operations'
 product_id: 'comm'
 product_name: 'Communications Toolbox'
 documentation_release: R2025b

@@ -1,13 +1,13 @@
 ---
 type: simulink-block
 title: 'Constellation Diagram'
-family: 'communications-toolbox-hdl-support'
-product_id: 'communications-toolbox-hdl-support'
-product_name: 'Communications Toolbox HDL Support'
+family: 'comm-sinks'
+product_id: 'comm'
+product_name: 'Communications Toolbox'
 documentation_release: R2025b
 official_category: 'Comm Sinks'
 documentation_page: 'constellationdiagram'
-documentation_source_path: '../comm/ref/constellationdiagram.html'
+documentation_source_path: 'ref/constellationdiagram.html'
 language: zh-CN
 chinese_source: worker-translation
 ---

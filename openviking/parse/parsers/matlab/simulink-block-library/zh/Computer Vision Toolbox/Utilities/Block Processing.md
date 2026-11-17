@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Block Processing'
-family: 'vision'
+family: 'utilities'
 product_id: 'vision'
 product_name: 'Computer Vision Toolbox'
 documentation_release: R2025b

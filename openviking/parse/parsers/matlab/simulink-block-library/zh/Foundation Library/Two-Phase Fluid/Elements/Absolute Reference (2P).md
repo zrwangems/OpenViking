@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Absolute Reference (2P)'
-family: 'simscape'
+family: 'two-phase-fluid'
 product_id: 'simscape'
 product_name: 'Foundation Library'
 documentation_release: R2025b

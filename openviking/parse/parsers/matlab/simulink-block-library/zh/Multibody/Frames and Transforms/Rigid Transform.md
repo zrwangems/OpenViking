@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Rigid Transform'
-family: 'sm'
+family: 'frames-and-transforms'
 product_id: 'sm'
 product_name: 'Multibody'
 documentation_release: R2025b

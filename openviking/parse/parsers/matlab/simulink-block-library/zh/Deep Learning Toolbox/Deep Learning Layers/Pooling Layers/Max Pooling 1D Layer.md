@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Max Pooling 1D Layer'
-family: 'deeplearning'
+family: 'deep-learning-layers'
 product_id: 'deeplearning'
 product_name: 'Deep Learning Toolbox'
 documentation_release: R2025b

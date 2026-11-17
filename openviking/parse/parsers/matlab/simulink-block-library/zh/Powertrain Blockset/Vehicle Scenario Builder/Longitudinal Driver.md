@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Longitudinal Driver'
-family: 'autoblks'
+family: 'vehicle-scenario-builder'
 product_id: 'autoblks'
 product_name: 'Powertrain Blockset'
 documentation_release: R2025b

@@ -1,7 +1,7 @@
 ---
 type: simulink-block
 title: 'Hammerstein-Wiener Model'
-family: 'ident'
+family: 'models'
 product_id: 'ident'
 product_name: 'System Identification Toolbox'
 documentation_release: R2025b
