@@ -1,11 +1,13 @@
 # Host Communication
 
-- [Byte Reversal](Byte Reversal.md)
-- [Byte Unpack](Byte Unpack.md)
-- [CAN Pack](CAN Pack.md)
-- [CAN Unpack](CAN Unpack.md)
-- [Serial Configuration](Serial Configuration.md)
-- [Serial Receive](Serial Receive.md)
-- [Serial Send](Serial Send.md)
-- [UDP Receive](UDP Receive.md)
-- [UDP Send](UDP Send.md)
+[← Parent: Embedded Targets](../index.md)
+
+- [Byte Reversal](Byte%20Reversal.md)
+- [Byte Unpack](Byte%20Unpack.md)
+- [CAN Pack](CAN%20Pack.md)
+- [CAN Unpack](CAN%20Unpack.md)
+- [Serial Configuration](Serial%20Configuration.md)
+- [Serial Receive](Serial%20Receive.md)
+- [Serial Send](Serial%20Send.md)
+- [UDP Receive](UDP%20Receive.md)
+- [UDP Send](UDP%20Send.md)

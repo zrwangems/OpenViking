@@ -1,3 +1,5 @@
 # Cluster Analysis
 
-- [KNN Search](KNN Search.md)
+[← Parent: Statistics and Machine Learning Toolbox](../index.md)
+
+- [KNN Search](KNN%20Search.md)

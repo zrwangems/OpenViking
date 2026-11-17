@@ -1,3 +1,5 @@
 # Power Accounting
 
-- [Power Accounting Bus Creator](Power Accounting Bus Creator.md)
+[← Parent: Utilities](../index.md)
+
+- [Power Accounting Bus Creator](Power%20Accounting%20Bus%20Creator.md)

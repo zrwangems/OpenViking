@@ -1,9 +1,11 @@
 # Regression
 
-- [RegressionEnsemble Predict](RegressionEnsemble Predict.md)
-- [RegressionGP Predict](RegressionGP Predict.md)
-- [RegressionKernel Predict](RegressionKernel Predict.md)
-- [RegressionLinear Predict](RegressionLinear Predict.md)
-- [RegressionNeuralNetwork Predict](RegressionNeuralNetwork Predict.md)
-- [RegressionSVM Predict](RegressionSVM Predict.md)
-- [RegressionTree Predict](RegressionTree Predict.md)
+[← Parent: Statistics and Machine Learning Toolbox](../index.md)
+
+- [RegressionEnsemble Predict](RegressionEnsemble%20Predict.md)
+- [RegressionGP Predict](RegressionGP%20Predict.md)
+- [RegressionKernel Predict](RegressionKernel%20Predict.md)
+- [RegressionLinear Predict](RegressionLinear%20Predict.md)
+- [RegressionNeuralNetwork Predict](RegressionNeuralNetwork%20Predict.md)
+- [RegressionSVM Predict](RegressionSVM%20Predict.md)
+- [RegressionTree Predict](RegressionTree%20Predict.md)

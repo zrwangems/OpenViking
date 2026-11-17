@@ -1,5 +1,7 @@
 # CResetIntegrator
 
+[← Parent: DYN](../index.md)
+
 - [1stOrder](1stOrder.md)
 - [1stOrder1](1stOrder1.md)
 - [NthOrder](NthOrder.md)

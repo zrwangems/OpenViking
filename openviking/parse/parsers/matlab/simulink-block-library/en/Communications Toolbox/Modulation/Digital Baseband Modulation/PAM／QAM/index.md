@@ -1,10 +1,12 @@
 # PAM/QAM
 
-- [General QAM Demodulator Baseband](General QAM Demodulator Baseband.md)
-- [General QAM Modulator Baseband](General QAM Modulator Baseband.md)
-- [M-PAM Demodulator Baseband](M-PAM Demodulator Baseband.md)
-- [M-PAM Modulator Baseband](M-PAM Modulator Baseband.md)
-- [MIL-188 QAM Demodulator Baseband](MIL-188 QAM Demodulator Baseband.md)
-- [MIL-188 QAM Modulator Baseband](MIL-188 QAM Modulator Baseband.md)
-- [Rectangular QAM Demodulator Baseband](Rectangular QAM Demodulator Baseband.md)
-- [Rectangular QAM Modulator Baseband](Rectangular QAM Modulator Baseband.md)
+[← Parent: Digital Baseband Modulation](../index.md)
+
+- [General QAM Demodulator Baseband](General%20QAM%20Demodulator%20Baseband.md)
+- [General QAM Modulator Baseband](General%20QAM%20Modulator%20Baseband.md)
+- [M-PAM Demodulator Baseband](M-PAM%20Demodulator%20Baseband.md)
+- [M-PAM Modulator Baseband](M-PAM%20Modulator%20Baseband.md)
+- [MIL-188 QAM Demodulator Baseband](MIL-188%20QAM%20Demodulator%20Baseband.md)
+- [MIL-188 QAM Modulator Baseband](MIL-188%20QAM%20Modulator%20Baseband.md)
+- [Rectangular QAM Demodulator Baseband](Rectangular%20QAM%20Demodulator%20Baseband.md)
+- [Rectangular QAM Modulator Baseband](Rectangular%20QAM%20Modulator%20Baseband.md)

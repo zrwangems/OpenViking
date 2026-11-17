@@ -1,3 +1,5 @@
 # Alternator
 
-- [Reduced Lundell Alternator](Reduced Lundell Alternator.md)
+[← Parent: Energy Storage and Auxiliary Drive](../index.md)
+
+- [Reduced Lundell Alternator](Reduced%20Lundell%20Alternator.md)

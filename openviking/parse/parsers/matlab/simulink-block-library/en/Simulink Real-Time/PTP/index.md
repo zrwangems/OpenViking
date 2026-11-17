@@ -1,3 +1,5 @@
 # PTP
 
-- [IEEE 1588 Read Parameter](IEEE 1588 Read Parameter.md)
+[← Parent: Simulink Real-Time](../index.md)
+
+- [IEEE 1588 Read Parameter](IEEE%201588%20Read%20Parameter.md)

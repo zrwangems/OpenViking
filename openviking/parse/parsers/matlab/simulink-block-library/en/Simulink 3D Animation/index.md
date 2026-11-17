@@ -1,3 +1,5 @@
 # Simulink 3D Animation
 
-- [Simulation 3D](Simulation 3D/index.md)
+[← Parent: Simulink Library Browser](../index.md)
+
+- [Simulation 3D](Simulation%203D/index.md)

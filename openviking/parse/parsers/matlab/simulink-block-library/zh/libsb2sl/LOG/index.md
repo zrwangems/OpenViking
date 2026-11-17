@@ -1,5 +1,7 @@
 # LOG
 
+[← 上级：libsb2sl](../index.md)
+
 - [Decoder](Decoder.md)
 - [Encoder](Encoder.md)
 - [EQV](EQV.md)

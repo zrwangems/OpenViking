@@ -1,4 +1,6 @@
 # Normalization Layers
 
-- [Batch Normalization Layer](Batch Normalization Layer.md)
-- [Layer Normalization Layer](Layer Normalization Layer.md)
+[← 上级：Deep Learning Layers](../index.md)
+
+- [Batch Normalization Layer](Batch%20Normalization%20Layer.md)
+- [Layer Normalization Layer](Layer%20Normalization%20Layer.md)

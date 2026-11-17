@@ -1,7 +1,9 @@
 # Matrix Factorizations
 
-- [Cholesky Factorization](Cholesky Factorization.md)
-- [LDL Factorization](LDL Factorization.md)
-- [LU Factorization](LU Factorization.md)
-- [QR Factorization](QR Factorization.md)
-- [Singular Value Decomposition](Singular Value Decomposition.md)
+[← 上级：Matrices and Linear Algebra](../index.md)
+
+- [Cholesky Factorization](Cholesky%20Factorization.md)
+- [LDL Factorization](LDL%20Factorization.md)
+- [LU Factorization](LU%20Factorization.md)
+- [QR Factorization](QR%20Factorization.md)
+- [Singular Value Decomposition](Singular%20Value%20Decomposition.md)

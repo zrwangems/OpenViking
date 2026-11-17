@@ -1,4 +1,6 @@
 # Turbine-Governors
 
-- [Governor Type 1](Governor Type 1.md)
-- [Governor Type 3](Governor Type 3.md)
+[← Parent: Control](../index.md)
+
+- [Governor Type 1](Governor%20Type%201.md)
+- [Governor Type 3](Governor%20Type%203.md)

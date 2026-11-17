@@ -1,11 +1,13 @@
 # Math Operations
 
-- [Complex Divide HDL Optimized](Complex Divide HDL Optimized.md)
-- [CORDIC Sigmoid HDL Optimized](CORDIC Sigmoid HDL Optimized.md)
-- [CORDIC Square Root HDL Optimized](CORDIC Square Root HDL Optimized.md)
-- [Divide by Constant HDL Optimized](Divide by Constant HDL Optimized.md)
-- [Hyperbolic Tangent HDL Optimized](Hyperbolic Tangent HDL Optimized.md)
-- [Modulo by Constant HDL Optimized](Modulo by Constant HDL Optimized.md)
-- [Normalized Reciprocal HDL Optimized](Normalized Reciprocal HDL Optimized.md)
-- [Real Divide HDL Optimized](Real Divide HDL Optimized.md)
-- [Real Reciprocal HDL Optimized](Real Reciprocal HDL Optimized.md)
+[← Parent: Fixed-Point Designer HDL Support](../index.md)
+
+- [Complex Divide HDL Optimized](Complex%20Divide%20HDL%20Optimized.md)
+- [CORDIC Sigmoid HDL Optimized](CORDIC%20Sigmoid%20HDL%20Optimized.md)
+- [CORDIC Square Root HDL Optimized](CORDIC%20Square%20Root%20HDL%20Optimized.md)
+- [Divide by Constant HDL Optimized](Divide%20by%20Constant%20HDL%20Optimized.md)
+- [Hyperbolic Tangent HDL Optimized](Hyperbolic%20Tangent%20HDL%20Optimized.md)
+- [Modulo by Constant HDL Optimized](Modulo%20by%20Constant%20HDL%20Optimized.md)
+- [Normalized Reciprocal HDL Optimized](Normalized%20Reciprocal%20HDL%20Optimized.md)
+- [Real Divide HDL Optimized](Real%20Divide%20HDL%20Optimized.md)
+- [Real Reciprocal HDL Optimized](Real%20Reciprocal%20HDL%20Optimized.md)

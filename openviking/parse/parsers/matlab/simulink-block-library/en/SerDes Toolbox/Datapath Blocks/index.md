@@ -1,5 +1,7 @@
 # Datapath Blocks
 
+[← Parent: SerDes Toolbox](../index.md)
+
 - [AGC](AGC.md)
 - [CDR](CDR.md)
 - [CTLE](CTLE.md)

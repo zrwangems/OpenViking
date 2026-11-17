@@ -1,5 +1,7 @@
 # Actuators
 
-- [Air Muscle Actuator (G)](Air Muscle Actuator (G).md)
-- [Double-Acting Actuator (G)](Double-Acting Actuator (G).md)
-- [Single-Acting Actuator (G)](Single-Acting Actuator (G).md)
+[← 上级：Gas](../index.md)
+
+- [Air Muscle Actuator (G)](Air%20Muscle%20Actuator%20%28G%29.md)
+- [Double-Acting Actuator (G)](Double-Acting%20Actuator%20%28G%29.md)
+- [Single-Acting Actuator (G)](Single-Acting%20Actuator%20%28G%29.md)

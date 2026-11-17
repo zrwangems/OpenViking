@@ -1,3 +1,5 @@
 # Thermodynamic Cycles
 
-- [System-Level Refrigeration Cycle (2P)](System-Level Refrigeration Cycle (2P).md)
+[← 上级：Two-Phase Fluid](../index.md)
+
+- [System-Level Refrigeration Cycle (2P)](System-Level%20Refrigeration%20Cycle%20%282P%29.md)

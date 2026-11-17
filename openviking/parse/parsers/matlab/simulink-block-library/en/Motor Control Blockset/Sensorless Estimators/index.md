@@ -1,6 +1,8 @@
 # Sensorless Estimators
 
-- [Extended EMF Observer](Extended EMF Observer.md)
-- [Flux Observer](Flux Observer.md)
-- [Pulsating High Freq Observer](Pulsating High Freq Observer.md)
-- [Sliding Mode Observer](Sliding Mode Observer.md)
+[← Parent: Motor Control Blockset](../index.md)
+
+- [Extended EMF Observer](Extended%20EMF%20Observer.md)
+- [Flux Observer](Flux%20Observer.md)
+- [Pulsating High Freq Observer](Pulsating%20High%20Freq%20Observer.md)
+- [Sliding Mode Observer](Sliding%20Mode%20Observer.md)

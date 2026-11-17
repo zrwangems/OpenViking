@@ -1,5 +1,7 @@
 # PEL
 
-- [Constant\*\*u](Constant\*\*u.md)
+[← Parent: libsb2sl](../index.md)
+
+- [Constant\*\*u](Constant%5C%2A%5C%2Au.md)
 - [SignedSqrt](SignedSqrt.md)
-- [u\*\*Constant](u\*\*Constant.md)
+- [u\*\*Constant](u%5C%2A%5C%2AConstant.md)

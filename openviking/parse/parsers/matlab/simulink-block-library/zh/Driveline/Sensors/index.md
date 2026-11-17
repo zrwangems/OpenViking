@@ -1,4 +1,6 @@
 # Sensors
 
-- [Rotational Power Sensor](Rotational Power Sensor.md)
-- [Translational Power Sensor](Translational Power Sensor.md)
+[← 上级：Driveline](../index.md)
+
+- [Rotational Power Sensor](Rotational%20Power%20Sensor.md)
+- [Translational Power Sensor](Translational%20Power%20Sensor.md)

@@ -1,5 +1,7 @@
 # SNG
 
+[← 上级：libsb2sl](../index.md)
+
 - [CNormalRandom](CNormalRandom.md)
 - [CUniformRandom](CUniformRandom.md)
 - [DNormalRandom](DNormalRandom.md)

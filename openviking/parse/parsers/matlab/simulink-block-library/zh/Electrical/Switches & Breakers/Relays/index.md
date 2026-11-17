@@ -1,4 +1,6 @@
 # Relays
 
-- [SPDT Relay](SPDT Relay.md)
-- [SPST Relay](SPST Relay.md)
+[← 上级：Switches & Breakers](../index.md)
+
+- [SPDT Relay](SPDT%20Relay.md)
+- [SPST Relay](SPST%20Relay.md)

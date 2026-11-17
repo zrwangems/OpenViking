@@ -1,10 +1,12 @@
 # Model Predictive Control Toolbox
 
-- [Automated Driving](Automated Driving/index.md)
-- [Adaptive MPC Controller](Adaptive MPC Controller.md)
-- [Explicit MPC Controller](Explicit MPC Controller.md)
-- [MPC Controller](MPC Controller.md)
-- [Multiple Explicit MPC Controllers](Multiple Explicit MPC Controllers.md)
-- [Multiple MPC Controllers](Multiple MPC Controllers.md)
-- [Multistage Nonlinear MPC](Multistage Nonlinear MPC.md)
-- [Nonlinear MPC Controller](Nonlinear MPC Controller.md)
+[← 上级：Simulink 库浏览器](../index.md)
+
+- [Automated Driving](Automated%20Driving/index.md)
+- [Adaptive MPC Controller](Adaptive%20MPC%20Controller.md)
+- [Explicit MPC Controller](Explicit%20MPC%20Controller.md)
+- [MPC Controller](MPC%20Controller.md)
+- [Multiple Explicit MPC Controllers](Multiple%20Explicit%20MPC%20Controllers.md)
+- [Multiple MPC Controllers](Multiple%20MPC%20Controllers.md)
+- [Multistage Nonlinear MPC](Multistage%20Nonlinear%20MPC.md)
+- [Nonlinear MPC Controller](Nonlinear%20MPC%20Controller.md)

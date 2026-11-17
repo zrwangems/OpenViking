@@ -1,3 +1,5 @@
 # Fundamental Components
 
-- [Fundamental Friction Clutch](Fundamental Friction Clutch.md)
+[← Parent: Clutches](../index.md)
+
+- [Fundamental Friction Clutch](Fundamental%20Friction%20Clutch.md)

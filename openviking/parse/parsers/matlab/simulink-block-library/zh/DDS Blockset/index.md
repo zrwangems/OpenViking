@@ -1,4 +1,6 @@
 # DDS Blockset
 
-- [Take DDS Sample](Take DDS Sample.md)
-- [Write DDS Sample](Write DDS Sample.md)
+[← 上级：Simulink 库浏览器](../index.md)
+
+- [Take DDS Sample](Take%20DDS%20Sample.md)
+- [Write DDS Sample](Write%20DDS%20Sample.md)

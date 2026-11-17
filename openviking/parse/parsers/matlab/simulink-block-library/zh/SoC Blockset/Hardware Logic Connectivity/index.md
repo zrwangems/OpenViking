@@ -1,8 +1,10 @@
 # Hardware Logic Connectivity
 
-- [SoC Bus Creator](SoC Bus Creator.md)
-- [SoC Bus Selector](SoC Bus Selector.md)
-- [Stream Connector](Stream Connector.md)
-- [Stream FIFO](Stream FIFO.md)
-- [Video Stream Connector](Video Stream Connector.md)
-- [Video Stream FIFO](Video Stream FIFO.md)
+[← 上级：SoC Blockset](../index.md)
+
+- [SoC Bus Creator](SoC%20Bus%20Creator.md)
+- [SoC Bus Selector](SoC%20Bus%20Selector.md)
+- [Stream Connector](Stream%20Connector.md)
+- [Stream FIFO](Stream%20FIFO.md)
+- [Video Stream Connector](Video%20Stream%20Connector.md)
+- [Video Stream FIFO](Video%20Stream%20FIFO.md)

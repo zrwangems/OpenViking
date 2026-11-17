@@ -1,6 +1,8 @@
 # Control System Toolbox
 
-- [Linear Parameter Varying](Linear Parameter Varying/index.md)
-- [State Estimation](State Estimation/index.md)
-- [LTI System](LTI System.md)
-- [Sparse Second Order](Sparse Second Order.md)
+[← Parent: Simulink Library Browser](../index.md)
+
+- [Linear Parameter Varying](Linear%20Parameter%20Varying/index.md)
+- [State Estimation](State%20Estimation/index.md)
+- [LTI System](LTI%20System.md)
+- [Sparse Second Order](Sparse%20Second%20Order.md)

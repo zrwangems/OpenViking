@@ -1,7 +1,9 @@
 # Valve Actuators & Forces
 
-- [Cartridge Valve Actuator (IL)](Cartridge Valve Actuator (IL).md)
-- [Double-Acting Servo Valve Actuator (IL)](Double-Acting Servo Valve Actuator (IL).md)
-- [Pilot Valve Actuator (IL)](Pilot Valve Actuator (IL).md)
-- [Spool Orifice Flow Force (IL)](Spool Orifice Flow Force (IL).md)
-- [Valve Actuators](Valve Actuators.md)
+[← Parent: Valves & Orifices](../index.md)
+
+- [Cartridge Valve Actuator (IL)](Cartridge%20Valve%20Actuator%20%28IL%29.md)
+- [Double-Acting Servo Valve Actuator (IL)](Double-Acting%20Servo%20Valve%20Actuator%20%28IL%29.md)
+- [Pilot Valve Actuator (IL)](Pilot%20Valve%20Actuator%20%28IL%29.md)
+- [Spool Orifice Flow Force (IL)](Spool%20Orifice%20Flow%20Force%20%28IL%29.md)
+- [Valve Actuators](Valve%20Actuators.md)

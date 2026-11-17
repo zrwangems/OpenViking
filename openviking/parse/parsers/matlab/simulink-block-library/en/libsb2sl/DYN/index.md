@@ -1,5 +1,7 @@
 # DYN
 
+[← Parent: libsb2sl](../index.md)
+
 - [CIntegrator](CIntegrator/index.md)
 - [CResetIntegrator](CResetIntegrator/index.md)
 - [DIntegrator](DIntegrator/index.md)

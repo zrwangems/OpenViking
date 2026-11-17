@@ -1,6 +1,8 @@
 # Variable Mass
 
-- [General Variable Mass](General Variable Mass.md)
-- [Variable Brick Solid](Variable Brick Solid.md)
-- [Variable Cylindrical Solid](Variable Cylindrical Solid.md)
-- [Variable Spherical Solid](Variable Spherical Solid.md)
+[← 上级：Body Elements](../index.md)
+
+- [General Variable Mass](General%20Variable%20Mass.md)
+- [Variable Brick Solid](Variable%20Brick%20Solid.md)
+- [Variable Cylindrical Solid](Variable%20Cylindrical%20Solid.md)
+- [Variable Spherical Solid](Variable%20Spherical%20Solid.md)

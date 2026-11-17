@@ -8,6 +8,12 @@ import re
 import shutil
 import sys
 from pathlib import Path
+from urllib.parse import quote
+
+
+def markdown_link(label: str, target: str) -> str:
+    """Render a CommonMark-compatible relative link to a local resource."""
+    return f"[{label}]({quote(target, safe='/')})"
 
 
 def normalize_block_document(document: str, language: str) -> str:
@@ -159,6 +165,18 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                     if len(candidate) == len(key) + 1 and candidate[:-1] == key
                 ]
                 lines = [f"# {node['name']}", ""]
+                if len(key) > 1:
+                    parent_name = nodes[key[:-1]]["name"]
+                    label = (
+                        f"← 上级：{parent_name}" if language == "zh" else f"← Parent: {parent_name}"
+                    )
+                    lines.extend([markdown_link(label, "../index.md"), ""])
+                elif language == "en":
+                    lines.extend(
+                        [markdown_link("← Parent: Simulink Library Browser", "../index.md"), ""]
+                    )
+                else:
+                    lines.extend([markdown_link("← 上级：Simulink 库浏览器", "../index.md"), ""])
                 if not node["blocks"] and not children:
                     lines.append(
                         "- 实机 R2025b 树中的空目录（0 块）。"
@@ -166,15 +184,16 @@ def write_browser_tree(manifest: dict, root: Path) -> None:
                         else "- Empty directory in the local R2025b tree (0 blocks)."
                     )
                 lines.extend(
-                    f"- [{nodes[child]['name']}]({child[-1]}/index.md)" for child in children
+                    f"- {markdown_link(nodes[child]['name'], child[-1] + '/index.md')}"
+                    for child in children
                 )
                 for block in node["blocks"]:
                     filename = block.get("resource_name", resource_component(block["name"]) + ".md")
-                    lines.append(f"- [{block['name']}]({filename})")
+                    lines.append(f"- {markdown_link(block['name'], filename)}")
                 (directory / "index.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
         for product in products:
             directory = resource_component(product["name"])
-            root_index.append(f"- [{product['name']}]({directory}/index.md)")
+            root_index.append(f"- {markdown_link(product['name'], directory + '/index.md')}")
         (browser_root / "index.md").write_text("\n".join(root_index) + "\n", encoding="utf-8")
 
     totals = manifest["totals"]

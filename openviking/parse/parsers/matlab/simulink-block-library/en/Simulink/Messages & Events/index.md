@@ -1,11 +1,13 @@
 # Messages & Events
 
-- [Hit Crossing Probe](Hit Crossing Probe.md)
-- [Hit Scheduler](Hit Scheduler.md)
-- [Message Merge](Message Merge.md)
-- [Message Polling Subsystem](Message Polling Subsystem.md)
-- [Message Triggered Subsystem](Message Triggered Subsystem.md)
+[← Parent: Simulink](../index.md)
+
+- [Hit Crossing Probe](Hit%20Crossing%20Probe.md)
+- [Hit Scheduler](Hit%20Scheduler.md)
+- [Message Merge](Message%20Merge.md)
+- [Message Polling Subsystem](Message%20Polling%20Subsystem.md)
+- [Message Triggered Subsystem](Message%20Triggered%20Subsystem.md)
 - [Queue](Queue.md)
 - [Receive](Receive.md)
 - [Send](Send.md)
-- [Sequence Viewer](Sequence Viewer.md)
+- [Sequence Viewer](Sequence%20Viewer.md)

@@ -1,4 +1,6 @@
 # Sources
 
-- [Flow Rate Source (G)](Flow Rate Source (G).md)
-- [Pressure Source (G)](Pressure Source (G).md)
+[← Parent: Gas](../index.md)
+
+- [Flow Rate Source (G)](Flow%20Rate%20Source%20%28G%29.md)
+- [Pressure Source (G)](Pressure%20Source%20%28G%29.md)

@@ -1,9 +1,11 @@
 # Lines
 
-- [AC Cable (Three-Phase)](AC Cable (Three-Phase).md)
-- [Coupled Lines (Three-Phase)](Coupled Lines (Three-Phase).md)
-- [Coupled Lines (Pair)](Coupled Lines (Pair).md)
-- [DC Cable](DC Cable.md)
-- [Frequency-Dependent Overhead Line (Three-Phase)](Frequency-Dependent Overhead Line (Three-Phase).md)
-- [Transmission Line (Three-Phase)](Transmission Line (Three-Phase).md)
-- [Transmission Line](Transmission Line.md)
+[← 上级：Passive](../index.md)
+
+- [AC Cable (Three-Phase)](AC%20Cable%20%28Three-Phase%29.md)
+- [Coupled Lines (Three-Phase)](Coupled%20Lines%20%28Three-Phase%29.md)
+- [Coupled Lines (Pair)](Coupled%20Lines%20%28Pair%29.md)
+- [DC Cable](DC%20Cable.md)
+- [Frequency-Dependent Overhead Line (Three-Phase)](Frequency-Dependent%20Overhead%20Line%20%28Three-Phase%29.md)
+- [Transmission Line (Three-Phase)](Transmission%20Line%20%28Three-Phase%29.md)
+- [Transmission Line](Transmission%20Line.md)

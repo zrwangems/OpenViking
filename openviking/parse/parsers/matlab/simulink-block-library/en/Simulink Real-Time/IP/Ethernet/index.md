@@ -1,3 +1,5 @@
 # Ethernet
 
-- [Ethernet Receive](Ethernet Receive.md)
+[← Parent: IP](../index.md)
+
+- [Ethernet Receive](Ethernet%20Receive.md)

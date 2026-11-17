@@ -1,8 +1,10 @@
 # PM
 
-- [BPSK Demodulator Baseband](BPSK Demodulator Baseband.md)
-- [BPSK Modulator Baseband](BPSK Modulator Baseband.md)
-- [M-PSK Demodulator Baseband](M-PSK Demodulator Baseband.md)
-- [M-PSK Modulator Baseband](M-PSK Modulator Baseband.md)
-- [QPSK Demodulator Baseband](QPSK Demodulator Baseband.md)
-- [QPSK Modulator Baseband](QPSK Modulator Baseband.md)
+[← Parent: Modulation](../index.md)
+
+- [BPSK Demodulator Baseband](BPSK%20Demodulator%20Baseband.md)
+- [BPSK Modulator Baseband](BPSK%20Modulator%20Baseband.md)
+- [M-PSK Demodulator Baseband](M-PSK%20Demodulator%20Baseband.md)
+- [M-PSK Modulator Baseband](M-PSK%20Modulator%20Baseband.md)
+- [QPSK Demodulator Baseband](QPSK%20Demodulator%20Baseband.md)
+- [QPSK Modulator Baseband](QPSK%20Modulator%20Baseband.md)

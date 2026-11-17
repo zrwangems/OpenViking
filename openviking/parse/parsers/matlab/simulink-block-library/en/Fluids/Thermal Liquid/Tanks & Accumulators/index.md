@@ -1,5 +1,7 @@
 # Tanks & Accumulators
 
-- [Gas-Charged Accumulator (TL)](Gas-Charged Accumulator (TL).md)
-- [Tank (G-TL)](Tank (G-TL).md)
-- [Tank (TL)](Tank (TL).md)
+[← Parent: Thermal Liquid](../index.md)
+
+- [Gas-Charged Accumulator (TL)](Gas-Charged%20Accumulator%20%28TL%29.md)
+- [Tank (G-TL)](Tank%20%28G-TL%29.md)
+- [Tank (TL)](Tank%20%28TL%29.md)

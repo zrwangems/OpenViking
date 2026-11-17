@@ -1,5 +1,7 @@
 # CAN
 
-- [XCP CAN Configuration](XCP CAN Configuration.md)
-- [XCP CAN Data Acquisition](XCP CAN Data Acquisition.md)
-- [XCP CAN Data Stimulation](XCP CAN Data Stimulation.md)
+[← Parent: XCP](../index.md)
+
+- [XCP CAN Configuration](XCP%20CAN%20Configuration.md)
+- [XCP CAN Data Acquisition](XCP%20CAN%20Data%20Acquisition.md)
+- [XCP CAN Data Stimulation](XCP%20CAN%20Data%20Stimulation.md)

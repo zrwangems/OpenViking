@@ -1,5 +1,7 @@
 # libsb2sl
 
+[← Parent: Simulink Library Browser](../index.md)
+
 - [ALG](ALG/index.md)
 - [ARC](ARC/index.md)
 - [DYN](DYN/index.md)

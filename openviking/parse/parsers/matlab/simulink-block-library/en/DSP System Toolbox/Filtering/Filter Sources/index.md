@@ -1,10 +1,12 @@
 # Filter Sources
 
-- [Bandpass FIR Filter Design](Bandpass FIR Filter Design.md)
-- [Bandpass IIR Filter Design](Bandpass IIR Filter Design.md)
-- [Bandstop FIR Filter Design](Bandstop FIR Filter Design.md)
-- [Bandstop IIR Filter Design](Bandstop IIR Filter Design.md)
-- [Highpass FIR Filter Design](Highpass FIR Filter Design.md)
-- [Highpass IIR Filter Design](Highpass IIR Filter Design.md)
-- [Lowpass FIR Filter Design](Lowpass FIR Filter Design.md)
-- [Lowpass IIR Filter Design](Lowpass IIR Filter Design.md)
+[← Parent: Filtering](../index.md)
+
+- [Bandpass FIR Filter Design](Bandpass%20FIR%20Filter%20Design.md)
+- [Bandpass IIR Filter Design](Bandpass%20IIR%20Filter%20Design.md)
+- [Bandstop FIR Filter Design](Bandstop%20FIR%20Filter%20Design.md)
+- [Bandstop IIR Filter Design](Bandstop%20IIR%20Filter%20Design.md)
+- [Highpass FIR Filter Design](Highpass%20FIR%20Filter%20Design.md)
+- [Highpass IIR Filter Design](Highpass%20IIR%20Filter%20Design.md)
+- [Lowpass FIR Filter Design](Lowpass%20FIR%20Filter%20Design.md)
+- [Lowpass IIR Filter Design](Lowpass%20IIR%20Filter%20Design.md)

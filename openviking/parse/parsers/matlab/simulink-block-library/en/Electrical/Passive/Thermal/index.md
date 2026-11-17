@@ -1,6 +1,8 @@
 # Thermal
 
-- [Cauer Thermal Model](Cauer Thermal Model.md)
-- [Foster Thermal Model](Foster Thermal Model.md)
+[← Parent: Passive](../index.md)
+
+- [Cauer Thermal Model](Cauer%20Thermal%20Model.md)
+- [Foster Thermal Model](Foster%20Thermal%20Model.md)
 - [Heatsink](Heatsink.md)
-- [Thermal Resistor](Thermal Resistor.md)
+- [Thermal Resistor](Thermal%20Resistor.md)

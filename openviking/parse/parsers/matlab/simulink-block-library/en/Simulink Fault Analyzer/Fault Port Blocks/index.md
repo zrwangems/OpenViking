@@ -1,5 +1,7 @@
 # Fault Port Blocks
 
-- [Fault Data Inport](Fault Data Inport.md)
-- [Fault Inport](Fault Inport.md)
-- [Fault Outport](Fault Outport.md)
+[← Parent: Simulink Fault Analyzer](../index.md)
+
+- [Fault Data Inport](Fault%20Data%20Inport.md)
+- [Fault Inport](Fault%20Inport.md)
+- [Fault Outport](Fault%20Outport.md)

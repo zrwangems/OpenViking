@@ -1,3 +1,5 @@
 # Kernel
 
-- [IncrementalRegressionKernel Predict](IncrementalRegressionKernel Predict.md)
+[← Parent: Regression](../index.md)
+
+- [IncrementalRegressionKernel Predict](IncrementalRegressionKernel%20Predict.md)

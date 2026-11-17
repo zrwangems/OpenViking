@@ -1,3 +1,5 @@
 # Supervisory Controllers
 
-- [Equivalent Consumption Minimization Strategy](Equivalent Consumption Minimization Strategy.md)
+[← Parent: Propulsion](../index.md)
+
+- [Equivalent Consumption Minimization Strategy](Equivalent%20Consumption%20Minimization%20Strategy.md)

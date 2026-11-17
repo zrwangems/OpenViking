@@ -1,4 +1,6 @@
 # CRC
 
-- [General CRC Generator](General CRC Generator.md)
-- [General CRC Syndrome Detector](General CRC Syndrome Detector.md)
+[← Parent: Error Detection and Correction](../index.md)
+
+- [General CRC Generator](General%20CRC%20Generator.md)
+- [General CRC Syndrome Detector](General%20CRC%20Syndrome%20Detector.md)

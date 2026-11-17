@@ -1,6 +1,8 @@
 # Magnetic Sources
 
-- [Controlled Flux Source](Controlled Flux Source.md)
-- [Controlled MMF Source](Controlled MMF Source.md)
-- [Flux Source](Flux Source.md)
-- [MMF Source](MMF Source.md)
+[← Parent: Magnetic](../index.md)
+
+- [Controlled Flux Source](Controlled%20Flux%20Source.md)
+- [Controlled MMF Source](Controlled%20MMF%20Source.md)
+- [Flux Source](Flux%20Source.md)
+- [MMF Source](MMF%20Source.md)

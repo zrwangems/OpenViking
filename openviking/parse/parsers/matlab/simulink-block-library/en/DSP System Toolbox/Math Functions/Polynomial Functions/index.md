@@ -1,5 +1,7 @@
 # Polynomial Functions
 
-- [Least Squares Polynomial Fit](Least Squares Polynomial Fit.md)
-- [Polynomial Evaluation](Polynomial Evaluation.md)
-- [Polynomial Stability Test](Polynomial Stability Test.md)
+[← Parent: Math Functions](../index.md)
+
+- [Least Squares Polynomial Fit](Least%20Squares%20Polynomial%20Fit.md)
+- [Polynomial Evaluation](Polynomial%20Evaluation.md)
+- [Polynomial Stability Test](Polynomial%20Stability%20Test.md)

@@ -1,4 +1,6 @@
 # Function Inhibition Manager (FiM)
 
-- [Control Function Available Caller](Control Function Available Caller.md)
-- [Function Inhibition Caller](Function Inhibition Caller.md)
+[← Parent: Basic Software](../index.md)
+
+- [Control Function Available Caller](Control%20Function%20Available%20Caller.md)
+- [Function Inhibition Caller](Function%20Inhibition%20Caller.md)

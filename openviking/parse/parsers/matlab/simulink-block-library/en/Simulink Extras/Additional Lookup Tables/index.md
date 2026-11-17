@@ -1,3 +1,5 @@
 # Additional Lookup Tables
 
-- [Matrix Interpolation](Matrix Interpolation.md)
+[← Parent: Simulink Extras](../index.md)
+
+- [Matrix Interpolation](Matrix%20Interpolation.md)

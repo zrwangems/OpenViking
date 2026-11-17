@@ -1,5 +1,7 @@
 # NTP
 
+[← 上级：libsb2sl](../index.md)
+
 - [BiCubicInterp](BiCubicInterp.md)
 - [BiLinearInterp](BiLinearInterp.md)
 - [ConstantInterp](ConstantInterp.md)

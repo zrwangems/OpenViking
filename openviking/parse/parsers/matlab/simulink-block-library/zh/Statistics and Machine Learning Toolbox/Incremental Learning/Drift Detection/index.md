@@ -1,4 +1,6 @@
 # Drift Detection
 
-- [Detect Drift](Detect Drift.md)
-- [Per Observation Loss](Per Observation Loss.md)
+[← 上级：Incremental Learning](../index.md)
+
+- [Detect Drift](Detect%20Drift.md)
+- [Per Observation Loss](Per%20Observation%20Loss.md)

@@ -1,3 +1,5 @@
 # Lidar Toolbox
 
-- [Lidar Sensor](Lidar Sensor.md)
+[← Parent: Simulink Library Browser](../index.md)
+
+- [Lidar Sensor](Lidar%20Sensor.md)

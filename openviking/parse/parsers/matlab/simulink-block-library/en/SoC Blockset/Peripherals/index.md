@@ -1,9 +1,11 @@
 # Peripherals
 
-- [ADC Interface](ADC Interface.md)
-- [Audio Capture Interface](Audio Capture Interface.md)
-- [Audio Playback Interface](Audio Playback Interface.md)
-- [Digital IO Interface](Digital IO Interface.md)
-- [PWM Interface](PWM Interface.md)
-- [Video Capture Interface](Video Capture Interface.md)
-- [Video Display Interface](Video Display Interface.md)
+[← Parent: SoC Blockset](../index.md)
+
+- [ADC Interface](ADC%20Interface.md)
+- [Audio Capture Interface](Audio%20Capture%20Interface.md)
+- [Audio Playback Interface](Audio%20Playback%20Interface.md)
+- [Digital IO Interface](Digital%20IO%20Interface.md)
+- [PWM Interface](PWM%20Interface.md)
+- [Video Capture Interface](Video%20Capture%20Interface.md)
+- [Video Display Interface](Video%20Display%20Interface.md)

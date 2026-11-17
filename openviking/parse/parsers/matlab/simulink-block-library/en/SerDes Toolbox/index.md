@@ -1,4 +1,6 @@
 # SerDes Toolbox
 
-- [Datapath Blocks](Datapath Blocks/index.md)
+[← Parent: Simulink Library Browser](../index.md)
+
+- [Datapath Blocks](Datapath%20Blocks/index.md)
 - [Utilities](Utilities/index.md)

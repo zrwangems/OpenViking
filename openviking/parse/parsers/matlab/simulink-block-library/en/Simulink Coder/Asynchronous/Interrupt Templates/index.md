@@ -1,4 +1,6 @@
 # Interrupt Templates
 
-- [Async Interrupt](Async Interrupt.md)
-- [Task Sync](Task Sync.md)
+[← Parent: Asynchronous](../index.md)
+
+- [Async Interrupt](Async%20Interrupt.md)
+- [Task Sync](Task%20Sync.md)

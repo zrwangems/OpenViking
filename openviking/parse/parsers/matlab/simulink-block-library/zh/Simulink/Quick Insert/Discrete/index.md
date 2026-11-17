@@ -1,10 +1,12 @@
 # Discrete
 
+[← 上级：Quick Insert](../index.md)
+
 - [Accumulator](Accumulator.md)
-- [Delay One Step](Delay One Step.md)
+- [Delay One Step](Delay%20One%20Step.md)
 - [Difference](Difference.md)
-- [Discrete Transfer Fcn](Discrete Transfer Fcn.md)
-- [Discrete Zero-Pole](Discrete Zero-Pole.md)
-- [Discrete Derivative](Discrete Derivative.md)
-- [Discrete Filter](Discrete Filter.md)
-- [Discrete State-Space](Discrete State-Space.md)
+- [Discrete Transfer Fcn](Discrete%20Transfer%20Fcn.md)
+- [Discrete Zero-Pole](Discrete%20Zero-Pole.md)
+- [Discrete Derivative](Discrete%20Derivative.md)
+- [Discrete Filter](Discrete%20Filter.md)
+- [Discrete State-Space](Discrete%20State-Space.md)

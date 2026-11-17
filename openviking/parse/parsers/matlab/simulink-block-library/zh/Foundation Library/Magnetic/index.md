@@ -1,5 +1,7 @@
 # Magnetic
 
-- [Magnetic Elements](Magnetic Elements/index.md)
-- [Magnetic Sensors](Magnetic Sensors/index.md)
-- [Magnetic Sources](Magnetic Sources/index.md)
+[← 上级：Foundation Library](../index.md)
+
+- [Magnetic Elements](Magnetic%20Elements/index.md)
+- [Magnetic Sensors](Magnetic%20Sensors/index.md)
+- [Magnetic Sources](Magnetic%20Sources/index.md)

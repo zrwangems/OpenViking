@@ -1,3 +1,5 @@
 # Utilities
 
-- [Thermal Liquid Settings (TL)](Thermal Liquid Settings (TL).md)
+[← Parent: Thermal Liquid](../index.md)
+
+- [Thermal Liquid Settings (TL)](Thermal%20Liquid%20Settings%20%28TL%29.md)

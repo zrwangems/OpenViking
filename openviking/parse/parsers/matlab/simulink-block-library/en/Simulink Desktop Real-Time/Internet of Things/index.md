@@ -1,4 +1,6 @@
 # Internet of Things
 
-- [ThingSpeak Input](ThingSpeak Input.md)
-- [ThingSpeak Output](ThingSpeak Output.md)
+[← Parent: Simulink Desktop Real-Time](../index.md)
+
+- [ThingSpeak Input](ThingSpeak%20Input.md)
+- [ThingSpeak Output](ThingSpeak%20Output.md)

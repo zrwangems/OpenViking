@@ -1,3 +1,5 @@
 # Signal Routing
 
-- [Signal Invalidation](Signal Invalidation.md)
+[← Parent: Classic Platform](../index.md)
+
+- [Signal Invalidation](Signal%20Invalidation.md)

@@ -1,5 +1,7 @@
 # Sensors
 
+[← Parent: C2000 Microcontroller Blockset](../index.md)
+
 - [ADXL34x](ADXL34x.md)
 - [BME280](BME280.md)
 - [BMI160](BMI160.md)

@@ -1,5 +1,7 @@
 # Animation Support Utilities
 
-- [Pilot Joystick](Pilot Joystick.md)
-- [Pilot Joystick All](Pilot Joystick All.md)
-- [Simulation Pace](Simulation Pace.md)
+[← Parent: Animation](../index.md)
+
+- [Pilot Joystick](Pilot%20Joystick.md)
+- [Pilot Joystick All](Pilot%20Joystick%20All.md)
+- [Simulation Pace](Simulation%20Pace.md)

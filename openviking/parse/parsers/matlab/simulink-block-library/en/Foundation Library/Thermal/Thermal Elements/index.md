@@ -1,11 +1,13 @@
 # Thermal Elements
 
-- [Conductive Heat Transfer](Conductive Heat Transfer.md)
-- [Convective Heat Transfer](Convective Heat Transfer.md)
-- [Infinite Thermal Resistance](Infinite Thermal Resistance.md)
-- [Perfect Insulator](Perfect Insulator.md)
-- [Radiative Heat Transfer](Radiative Heat Transfer.md)
-- [Thermal Mass](Thermal Mass.md)
-- [Thermal Reference](Thermal Reference.md)
-- [Thermal Resistance](Thermal Resistance.md)
-- [Variable Thermal Resistance](Variable Thermal Resistance.md)
+[← Parent: Thermal](../index.md)
+
+- [Conductive Heat Transfer](Conductive%20Heat%20Transfer.md)
+- [Convective Heat Transfer](Convective%20Heat%20Transfer.md)
+- [Infinite Thermal Resistance](Infinite%20Thermal%20Resistance.md)
+- [Perfect Insulator](Perfect%20Insulator.md)
+- [Radiative Heat Transfer](Radiative%20Heat%20Transfer.md)
+- [Thermal Mass](Thermal%20Mass.md)
+- [Thermal Reference](Thermal%20Reference.md)
+- [Thermal Resistance](Thermal%20Resistance.md)
+- [Variable Thermal Resistance](Variable%20Thermal%20Resistance.md)

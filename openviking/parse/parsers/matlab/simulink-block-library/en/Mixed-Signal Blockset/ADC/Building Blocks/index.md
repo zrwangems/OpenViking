@@ -1,5 +1,7 @@
 # Building Blocks
 
-- [Continuous Time Delta Sigma Modulator](Continuous Time Delta Sigma Modulator.md)
-- [Delta Sigma Modulator](Delta Sigma Modulator.md)
-- [Sampling Clock Source](Sampling Clock Source.md)
+[← Parent: ADC](../index.md)
+
+- [Continuous Time Delta Sigma Modulator](Continuous%20Time%20Delta%20Sigma%20Modulator.md)
+- [Delta Sigma Modulator](Delta%20Sigma%20Modulator.md)
+- [Sampling Clock Source](Sampling%20Clock%20Source.md)

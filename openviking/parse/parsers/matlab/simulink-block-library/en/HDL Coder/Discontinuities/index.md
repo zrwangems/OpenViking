@@ -1,11 +1,13 @@
 # Discontinuities
 
+[← Parent: HDL Coder](../index.md)
+
 - [Backlash](Backlash.md)
-- [Coulomb & Viscous Friction](Coulomb & Viscous Friction.md)
-- [Dead Zone](Dead Zone.md)
-- [Dead Zone Dynamic](Dead Zone Dynamic.md)
-- [Hit Crossing](Hit Crossing.md)
+- [Coulomb & Viscous Friction](Coulomb%20%26%20Viscous%20Friction.md)
+- [Dead Zone](Dead%20Zone.md)
+- [Dead Zone Dynamic](Dead%20Zone%20Dynamic.md)
+- [Hit Crossing](Hit%20Crossing.md)
 - [Relay](Relay.md)
 - [Saturation](Saturation.md)
-- [Saturation Dynamic](Saturation Dynamic.md)
-- [Wrap To Zero](Wrap To Zero.md)
+- [Saturation Dynamic](Saturation%20Dynamic.md)
+- [Wrap To Zero](Wrap%20To%20Zero.md)

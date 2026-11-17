@@ -1,5 +1,7 @@
 # Control Systems
 
-- [NARMA-L2 Controller](NARMA-L2 Controller.md)
-- [NN Predictive Controller](NN Predictive Controller.md)
-- [X(2Y) Graph](X(2Y) Graph.md)
+[← 上级：Shallow Neural Networks](../index.md)
+
+- [NARMA-L2 Controller](NARMA-L2%20Controller.md)
+- [NN Predictive Controller](NN%20Predictive%20Controller.md)
+- [X(2Y) Graph](X%282Y%29%20Graph.md)

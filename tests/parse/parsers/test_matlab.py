@@ -7,8 +7,10 @@ import json
 import re
 import zipfile
 from pathlib import Path
+from urllib.parse import unquote
 
 import pytest
+from markdown_it import MarkdownIt
 
 from openviking.parse.output import LocalParseOutputStore
 from openviking.parse.parsers.directory import DirectoryParser
@@ -477,6 +479,49 @@ def test_library_browser_manifest_counts_and_canonical_layout():
                     assert resource.read_bytes() == path.read_bytes()
     assert tree_only_occurrences == 2 * totals["tree_only_occurrences"]
     assert len(unique_documents) == 2 * totals["unique_product_document_paths"]
+
+
+def test_block_library_indexes_render_complete_navigation():
+    root = (
+        Path(__file__).parents[3]
+        / "openviking"
+        / "parse"
+        / "parsers"
+        / "matlab"
+        / "simulink-block-library"
+    )
+    parser = MarkdownIt("commonmark")
+    indexes = sorted(root.glob("*/**/index.md"))
+    assert len(indexes) == 1634
+
+    for index in indexes:
+        text = index.read_text(encoding="utf-8")
+        tokens = parser.parse(text)
+        links = [
+            child
+            for token in tokens
+            if token.type == "inline"
+            for child in (token.children or [])
+            if child.type == "link_open"
+        ]
+        expected_children = {
+            path.relative_to(index.parent).as_posix() + "/index.md"
+            for path in index.parent.iterdir()
+            if path.is_dir()
+        } | {path.name for path in index.parent.glob("*.md") if path.name != "index.md"}
+        actual_children = {
+            unquote(link.attrGet("href")) for link in links if link.attrGet("href") != "../index.md"
+        }
+        assert actual_children == expected_children, index
+        assert len(links) == len(expected_children) + (index.parent.name not in {"en", "zh"}), index
+
+        for link in links:
+            href = link.attrGet("href")
+            assert not re.search(r"\s", href), (index, href)
+            assert (index.parent / unquote(href)).is_file(), (index, href)
+
+        if index.parent.name not in {"en", "zh"}:
+            assert any(link.attrGet("href") == "../index.md" for link in links), index
 
 
 def test_toolbox_matching_uses_original_product_and_library_path():

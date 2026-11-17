@@ -1,3 +1,5 @@
 # Cosimulation
 
-- [SIMetrix Cosimulation Interface](SIMetrix Cosimulation Interface.md)
+[← Parent: Additional Components](../index.md)
+
+- [SIMetrix Cosimulation Interface](SIMetrix%20Cosimulation%20Interface.md)

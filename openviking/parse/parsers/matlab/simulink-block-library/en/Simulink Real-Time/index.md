@@ -1,5 +1,7 @@
 # Simulink Real-Time
 
+[← Parent: Simulink Library Browser](../index.md)
+
 - [Async](Async/index.md)
 - [CAN](CAN/index.md)
 - [DDS](DDS/index.md)
@@ -8,11 +10,11 @@
 - [J1939](J1939/index.md)
 - [LIN](LIN/index.md)
 - [Logging](Logging/index.md)
-- [Logitech G29](Logitech G29/index.md)
+- [Logitech G29](Logitech%20G29/index.md)
 - [Profiling](Profiling/index.md)
 - [PTP](PTP/index.md)
 - [RS232](RS232/index.md)
-- [Shared Memory](Shared Memory/index.md)
-- [Target Management](Target Management/index.md)
+- [Shared Memory](Shared%20Memory/index.md)
+- [Target Management](Target%20Management/index.md)
 - [Utilities](Utilities/index.md)
 - [XCP](XCP/index.md)

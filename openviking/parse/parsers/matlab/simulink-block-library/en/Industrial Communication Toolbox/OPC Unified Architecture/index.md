@@ -1,4 +1,6 @@
 # OPC Unified Architecture
 
-- [OPC UA Read](OPC UA Read.md)
-- [OPC UA Write](OPC UA Write.md)
+[← Parent: Industrial Communication Toolbox](../index.md)
+
+- [OPC UA Read](OPC%20UA%20Read.md)
+- [OPC UA Write](OPC%20UA%20Write.md)

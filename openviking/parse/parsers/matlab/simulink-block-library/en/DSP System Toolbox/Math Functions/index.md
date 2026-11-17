@@ -1,5 +1,7 @@
 # Math Functions
 
-- [Math Operations](Math Operations/index.md)
-- [Matrices and Linear Algebra](Matrices and Linear Algebra/index.md)
-- [Polynomial Functions](Polynomial Functions/index.md)
+[← Parent: DSP System Toolbox](../index.md)
+
+- [Math Operations](Math%20Operations/index.md)
+- [Matrices and Linear Algebra](Matrices%20and%20Linear%20Algebra/index.md)
+- [Polynomial Functions](Polynomial%20Functions/index.md)

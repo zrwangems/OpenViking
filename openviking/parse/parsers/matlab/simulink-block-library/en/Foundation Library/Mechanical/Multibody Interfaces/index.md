@@ -1,4 +1,6 @@
 # Multibody Interfaces
 
-- [Rotational Multibody Interface](Rotational Multibody Interface.md)
-- [Translational Multibody Interface](Translational Multibody Interface.md)
+[← Parent: Mechanical](../index.md)
+
+- [Rotational Multibody Interface](Rotational%20Multibody%20Interface.md)
+- [Translational Multibody Interface](Translational%20Multibody%20Interface.md)

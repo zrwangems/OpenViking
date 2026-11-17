@@ -1,3 +1,5 @@
 # Sinks
 
-- [PS Terminator](PS Terminator.md)
+[← 上级：Physical Signals](../index.md)
+
+- [PS Terminator](PS%20Terminator.md)

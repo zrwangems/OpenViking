@@ -1,8 +1,10 @@
 # Linear Analysis Plots
 
-- [Bode Plot](Bode Plot.md)
-- [Gain and Phase Margin Plot](Gain and Phase Margin Plot.md)
-- [Linear Step Response Plot](Linear Step Response Plot.md)
-- [Nichols Plot](Nichols Plot.md)
-- [Pole-Zero Plot](Pole-Zero Plot.md)
-- [Singular Value Plot](Singular Value Plot.md)
+[← Parent: Simulink Control Design](../index.md)
+
+- [Bode Plot](Bode%20Plot.md)
+- [Gain and Phase Margin Plot](Gain%20and%20Phase%20Margin%20Plot.md)
+- [Linear Step Response Plot](Linear%20Step%20Response%20Plot.md)
+- [Nichols Plot](Nichols%20Plot.md)
+- [Pole-Zero Plot](Pole-Zero%20Plot.md)
+- [Singular Value Plot](Singular%20Value%20Plot.md)

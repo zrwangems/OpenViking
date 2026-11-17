@@ -1,6 +1,8 @@
 # Auxiliary Components
 
-- [Cylinder Cushion (IL)](Cylinder Cushion (IL).md)
-- [Cylinder Friction (IL)](Cylinder Friction (IL).md)
-- [Rotating Channel (IL)](Rotating Channel (IL).md)
-- [Rotating Cylinder Force (IL)](Rotating Cylinder Force (IL).md)
+[← 上级：Actuators](../index.md)
+
+- [Cylinder Cushion (IL)](Cylinder%20Cushion%20%28IL%29.md)
+- [Cylinder Friction (IL)](Cylinder%20Friction%20%28IL%29.md)
+- [Rotating Channel (IL)](Rotating%20Channel%20%28IL%29.md)
+- [Rotating Cylinder Force (IL)](Rotating%20Cylinder%20Force%20%28IL%29.md)

@@ -1,4 +1,6 @@
 # Combustion Engine Controllers
 
-- [CI Controller](CI Controller.md)
-- [SI Controller](SI Controller.md)
+[← 上级：Propulsion](../index.md)
+
+- [CI Controller](CI%20Controller.md)
+- [SI Controller](SI%20Controller.md)

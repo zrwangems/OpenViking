@@ -1,6 +1,8 @@
 # Measurements & Testbenches
 
-- [ADC AC Measurement](ADC AC Measurement.md)
-- [ADC DC Measurement](ADC DC Measurement.md)
-- [ADC Testbench](ADC Testbench.md)
-- [Aperture Jitter Measurement](Aperture Jitter Measurement.md)
+[← Parent: ADC](../index.md)
+
+- [ADC AC Measurement](ADC%20AC%20Measurement.md)
+- [ADC DC Measurement](ADC%20DC%20Measurement.md)
+- [ADC Testbench](ADC%20Testbench.md)
+- [Aperture Jitter Measurement](Aperture%20Jitter%20Measurement.md)

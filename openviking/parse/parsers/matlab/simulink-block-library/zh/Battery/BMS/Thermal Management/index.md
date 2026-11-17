@@ -1,3 +1,5 @@
 # Thermal Management
 
-- [Battery Heater Control](Battery Heater Control.md)
+[← 上级：BMS](../index.md)
+
+- [Battery Heater Control](Battery%20Heater%20Control.md)

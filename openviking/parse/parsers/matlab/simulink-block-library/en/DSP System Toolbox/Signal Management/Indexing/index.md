@@ -1,7 +1,9 @@
 # Indexing
 
+[← Parent: Signal Management](../index.md)
+
 - [Flip](Flip.md)
-- [Multiport Selector](Multiport Selector.md)
-- [Overwrite Values](Overwrite Values.md)
+- [Multiport Selector](Multiport%20Selector.md)
+- [Overwrite Values](Overwrite%20Values.md)
 - [Selector](Selector.md)
-- [Variable Selector](Variable Selector.md)
+- [Variable Selector](Variable%20Selector.md)

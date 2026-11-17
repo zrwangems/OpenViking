@@ -1,5 +1,7 @@
 # Sinks
 
-- [Audio Device Writer](Audio Device Writer.md)
-- [Spectrum Analyzer](Spectrum Analyzer.md)
-- [To Multimedia File](To Multimedia File.md)
+[← Parent: Audio Toolbox](../index.md)
+
+- [Audio Device Writer](Audio%20Device%20Writer.md)
+- [Spectrum Analyzer](Spectrum%20Analyzer.md)
+- [To Multimedia File](To%20Multimedia%20File.md)

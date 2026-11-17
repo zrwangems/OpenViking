@@ -1,3 +1,5 @@
 # Embedded Targets
 
-- [Host Communication](Host Communication/index.md)
+[← 上级：Embedded Coder](../index.md)
+
+- [Host Communication](Host%20Communication/index.md)

@@ -1,5 +1,7 @@
 # SNG
 
+[← Parent: libsb2sl](../index.md)
+
 - [CNormalRandom](CNormalRandom.md)
 - [CUniformRandom](CUniformRandom.md)
 - [DNormalRandom](DNormalRandom.md)

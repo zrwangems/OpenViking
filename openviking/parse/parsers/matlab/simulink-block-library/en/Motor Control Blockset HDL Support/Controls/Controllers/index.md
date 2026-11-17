@@ -1,4 +1,6 @@
 # Controllers
 
-- [Derating Function](Derating Function.md)
-- [PI Controller](PI Controller.md)
+[← Parent: Controls](../index.md)
+
+- [Derating Function](Derating%20Function.md)
+- [PI Controller](PI%20Controller.md)

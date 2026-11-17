@@ -1,5 +1,7 @@
 # Basic Shape Icons
 
+[← Parent: Dashboard](../index.md)
+
 - [Check1](Check1.md)
 - [Check2](Check2.md)
 - [Check3](Check3.md)
@@ -17,9 +19,9 @@
 - [Rectangle](Rectangle.md)
 - [Smile1](Smile1.md)
 - [Smile2](Smile2.md)
-- [Solid Face](Solid Face.md)
-- [Solid Frown2](Solid Frown2.md)
-- [Solid Smile1](Solid Smile1.md)
-- [Solid Smile2](Solid Smile2.md)
+- [Solid Face](Solid%20Face.md)
+- [Solid Frown2](Solid%20Frown2.md)
+- [Solid Smile1](Solid%20Smile1.md)
+- [Solid Smile2](Solid%20Smile2.md)
 - [Square](Square.md)
 - [Triangle](Triangle.md)

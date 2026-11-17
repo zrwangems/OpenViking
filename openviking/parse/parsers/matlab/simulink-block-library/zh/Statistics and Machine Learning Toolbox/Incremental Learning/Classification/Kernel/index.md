@@ -1,3 +1,5 @@
 # Kernel
 
-- [IncrementalClassificationKernel Predict](IncrementalClassificationKernel Predict.md)
+[← 上级：Classification](../index.md)
+
+- [IncrementalClassificationKernel Predict](IncrementalClassificationKernel%20Predict.md)

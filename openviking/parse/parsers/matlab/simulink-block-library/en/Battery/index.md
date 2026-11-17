@@ -1,5 +1,7 @@
 # Battery
 
+[← Parent: Simulink Library Browser](../index.md)
+
 - [BMS](BMS/index.md)
 - [Cells](Cells/index.md)
 - [Connectors](Connectors/index.md)

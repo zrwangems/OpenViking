@@ -1,5 +1,7 @@
 # Input/Output Ports
 
-- [Connection Port](Connection Port.md)
-- [Input Port](Input Port.md)
-- [Output Port](Output Port.md)
+[← Parent: Equivalent Baseband](../index.md)
+
+- [Connection Port](Connection%20Port.md)
+- [Input Port](Input%20Port.md)
+- [Output Port](Output%20Port.md)

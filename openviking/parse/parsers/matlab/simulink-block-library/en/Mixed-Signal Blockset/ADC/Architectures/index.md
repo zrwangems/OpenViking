@@ -1,5 +1,7 @@
 # Architectures
 
-- [Flash ADC](Flash ADC.md)
-- [Interleaved ADC](Interleaved ADC.md)
-- [SAR ADC](SAR ADC.md)
+[← Parent: ADC](../index.md)
+
+- [Flash ADC](Flash%20ADC.md)
+- [Interleaved ADC](Interleaved%20ADC.md)
+- [SAR ADC](SAR%20ADC.md)

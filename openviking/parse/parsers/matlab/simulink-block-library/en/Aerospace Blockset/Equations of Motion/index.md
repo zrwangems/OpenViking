@@ -1,5 +1,7 @@
 # Equations of Motion
 
-- [3DOF ](3DOF /index.md)
-- [Point Mass](Point Mass/index.md)
+[← Parent: Aerospace Blockset](../index.md)
+
+- [3DOF ](3DOF%20/index.md)
+- [Point Mass](Point%20Mass/index.md)
 - [6DOF](6DOF.md)

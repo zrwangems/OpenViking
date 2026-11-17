@@ -1,3 +1,5 @@
 # Comm Sources
 
-- [PN Sequence Generator](PN Sequence Generator.md)
+[← 上级：Communications Toolbox HDL Support](../index.md)
+
+- [PN Sequence Generator](PN%20Sequence%20Generator.md)

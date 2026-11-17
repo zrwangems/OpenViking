@@ -1,4 +1,6 @@
 # Utilities
 
-- [Interface (PB-Translational)](Interface (PB-Translational).md)
-- [Mechanical Translational Properties (PB)](Mechanical Translational Properties (PB).md)
+[← Parent: Translational](../index.md)
+
+- [Interface (PB-Translational)](Interface%20%28PB-Translational%29.md)
+- [Mechanical Translational Properties (PB)](Mechanical%20Translational%20Properties%20%28PB%29.md)

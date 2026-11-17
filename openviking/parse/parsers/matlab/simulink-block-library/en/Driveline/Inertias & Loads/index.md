@@ -1,5 +1,7 @@
 # Inertias & Loads
 
-- [Unbalanced Load](Unbalanced Load.md)
-- [Variable Inertia](Variable Inertia.md)
-- [Variable Mass](Variable Mass.md)
+[← Parent: Driveline](../index.md)
+
+- [Unbalanced Load](Unbalanced%20Load.md)
+- [Variable Inertia](Variable%20Inertia.md)
+- [Variable Mass](Variable%20Mass.md)

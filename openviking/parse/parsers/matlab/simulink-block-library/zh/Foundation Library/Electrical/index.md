@@ -1,5 +1,7 @@
 # Electrical
 
-- [Electrical Elements](Electrical Elements/index.md)
-- [Electrical Sensors](Electrical Sensors/index.md)
-- [Electrical Sources](Electrical Sources/index.md)
+[← 上级：Foundation Library](../index.md)
+
+- [Electrical Elements](Electrical%20Elements/index.md)
+- [Electrical Sensors](Electrical%20Sensors/index.md)
+- [Electrical Sources](Electrical%20Sources/index.md)

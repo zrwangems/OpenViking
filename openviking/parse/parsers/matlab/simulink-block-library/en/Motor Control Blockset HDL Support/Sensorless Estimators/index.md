@@ -1,3 +1,5 @@
 # Sensorless Estimators
 
-- [Flux Observer](Flux Observer.md)
+[← Parent: Motor Control Blockset HDL Support](../index.md)
+
+- [Flux Observer](Flux%20Observer.md)

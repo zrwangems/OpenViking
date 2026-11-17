@@ -1,10 +1,12 @@
 # Clutches
 
-- [Fundamental Components](Fundamental Components/index.md)
-- [Cone Clutch](Cone Clutch.md)
-- [Disc Friction Clutch](Disc Friction Clutch.md)
-- [Dog Clutch](Dog Clutch.md)
-- [Double-Sided Synchronizer](Double-Sided Synchronizer.md)
-- [Logic-Controlled Clutch](Logic-Controlled Clutch.md)
+[← 上级：Driveline](../index.md)
+
+- [Fundamental Components](Fundamental%20Components/index.md)
+- [Cone Clutch](Cone%20Clutch.md)
+- [Disc Friction Clutch](Disc%20Friction%20Clutch.md)
+- [Dog Clutch](Dog%20Clutch.md)
+- [Double-Sided Synchronizer](Double-Sided%20Synchronizer.md)
+- [Logic-Controlled Clutch](Logic-Controlled%20Clutch.md)
 - [Synchronizer](Synchronizer.md)
-- [Unidirectional Clutch](Unidirectional Clutch.md)
+- [Unidirectional Clutch](Unidirectional%20Clutch.md)

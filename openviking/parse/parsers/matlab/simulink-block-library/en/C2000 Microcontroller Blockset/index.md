@@ -1,5 +1,7 @@
 # C2000 Microcontroller Blockset
 
+[← Parent: Simulink Library Browser](../index.md)
+
 - [C2802x](C2802x/index.md)
 - [C2803x](C2803x/index.md)
 - [C2805x](C2805x/index.md)
@@ -22,11 +24,11 @@
 - [F28p55x](F28p55x/index.md)
 - [F28p65x](F28p65x/index.md)
 - [F29H85x](F29H85x/index.md)
-- [Host Communication](Host Communication/index.md)
-- [Memory Operations](Memory Operations/index.md)
+- [Host Communication](Host%20Communication/index.md)
+- [Memory Operations](Memory%20Operations/index.md)
 - [Optimization](Optimization/index.md)
 - [Scheduling](Scheduling/index.md)
 - [Sensors](Sensors/index.md)
-- [Target Communication](Target Communication/index.md)
-- [Test Bench Blocks](Test Bench Blocks/index.md)
-- [Blockset Name2](Blockset Name2.md)
+- [Target Communication](Target%20Communication/index.md)
+- [Test Bench Blocks](Test%20Bench%20Blocks/index.md)
+- [Blockset Name2](Blockset%20Name2.md)

@@ -1,10 +1,12 @@
 # Simulink Extras
 
-- [Additional Discrete](Additional Discrete/index.md)
-- [Additional Linear](Additional Linear/index.md)
-- [Additional Lookup Tables](Additional Lookup Tables/index.md)
-- [Additional Sinks](Additional Sinks/index.md)
-- [Flip Flops](Flip Flops/index.md)
-- [FMU Import](FMU Import/index.md)
+[← Parent: Simulink Library Browser](../index.md)
+
+- [Additional Discrete](Additional%20Discrete/index.md)
+- [Additional Linear](Additional%20Linear/index.md)
+- [Additional Lookup Tables](Additional%20Lookup%20Tables/index.md)
+- [Additional Sinks](Additional%20Sinks/index.md)
+- [Flip Flops](Flip%20Flops/index.md)
+- [FMU Import](FMU%20Import/index.md)
 - [Linearization](Linearization/index.md)
 - [Transformations](Transformations/index.md)

@@ -1,4 +1,6 @@
 # For Use with Synopsys VCS
 
-- [HDL Cosimulation](HDL Cosimulation.md)
-- [To VCD File](To VCD File.md)
+[← Parent: HDL Verifier](../index.md)
+
+- [HDL Cosimulation](HDL%20Cosimulation.md)
+- [To VCD File](To%20VCD%20File.md)

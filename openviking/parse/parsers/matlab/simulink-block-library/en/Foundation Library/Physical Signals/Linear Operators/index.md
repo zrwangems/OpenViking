@@ -1,5 +1,7 @@
 # Linear Operators
 
-- [PS Integrator](PS Integrator.md)
-- [PS State-Space](PS State-Space.md)
-- [PS Transfer Function](PS Transfer Function.md)
+[← Parent: Physical Signals](../index.md)
+
+- [PS Integrator](PS%20Integrator.md)
+- [PS State-Space](PS%20State-Space.md)
+- [PS Transfer Function](PS%20Transfer%20Function.md)

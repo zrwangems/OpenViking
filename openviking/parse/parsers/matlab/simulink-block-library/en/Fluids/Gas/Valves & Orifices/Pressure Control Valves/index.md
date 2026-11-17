@@ -1,4 +1,6 @@
 # Pressure Control Valves
 
-- [Pressure Reducing Valve (G)](Pressure Reducing Valve (G).md)
-- [Pressure Relief Valve (G)](Pressure Relief Valve (G).md)
+[← Parent: Valves & Orifices](../index.md)
+
+- [Pressure Reducing Valve (G)](Pressure%20Reducing%20Valve%20%28G%29.md)
+- [Pressure Relief Valve (G)](Pressure%20Relief%20Valve%20%28G%29.md)

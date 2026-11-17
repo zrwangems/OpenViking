@@ -1,5 +1,7 @@
 # Shared Memory
 
-- [Change endianess](Change endianess.md)
-- [Shared Memory Pack](Shared Memory Pack.md)
-- [Shared Memory Unpack](Shared Memory Unpack.md)
+[← Parent: Simulink Real-Time](../index.md)
+
+- [Change endianess](Change%20endianess.md)
+- [Shared Memory Pack](Shared%20Memory%20Pack.md)
+- [Shared Memory Unpack](Shared%20Memory%20Unpack.md)

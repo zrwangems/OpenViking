@@ -1,3 +1,5 @@
 # ECOC
 
-- [IncrementalClassificationECOC Predict](IncrementalClassificationECOC Predict.md)
+[← 上级：Classification](../index.md)
+
+- [IncrementalClassificationECOC Predict](IncrementalClassificationECOC%20Predict.md)

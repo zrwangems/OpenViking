@@ -1,8 +1,10 @@
 # Data Acquisition Toolbox
 
-- [Analog Input](Analog Input.md)
-- [Analog Input (Single Sample)](Analog Input (Single Sample).md)
-- [Analog Output](Analog Output.md)
-- [Analog Output (Single Sample)](Analog Output (Single Sample).md)
-- [Digital Input (Single Sample)](Digital Input (Single Sample).md)
-- [Digital Output (Single Sample)](Digital Output (Single Sample).md)
+[← 上级：Simulink 库浏览器](../index.md)
+
+- [Analog Input](Analog%20Input.md)
+- [Analog Input (Single Sample)](Analog%20Input%20%28Single%20Sample%29.md)
+- [Analog Output](Analog%20Output.md)
+- [Analog Output (Single Sample)](Analog%20Output%20%28Single%20Sample%29.md)
+- [Digital Input (Single Sample)](Digital%20Input%20%28Single%20Sample%29.md)
+- [Digital Output (Single Sample)](Digital%20Output%20%28Single%20Sample%29.md)

@@ -1,3 +1,5 @@
 # S-Function Target
 
-- [Generated S-Function](Generated S-Function.md)
+[← Parent: Simulink Coder](../index.md)
+
+- [Generated S-Function](Generated%20S-Function.md)

@@ -1,6 +1,8 @@
 # Matrices and Linear Algebra
 
-- [Linear System Solvers](Linear System Solvers/index.md)
-- [Matrix Factorizations](Matrix Factorizations/index.md)
-- [Matrix Inverses](Matrix Inverses/index.md)
-- [Matrix Operations](Matrix Operations/index.md)
+[← Parent: Math Functions](../index.md)
+
+- [Linear System Solvers](Linear%20System%20Solvers/index.md)
+- [Matrix Factorizations](Matrix%20Factorizations/index.md)
+- [Matrix Inverses](Matrix%20Inverses/index.md)
+- [Matrix Operations](Matrix%20Operations/index.md)

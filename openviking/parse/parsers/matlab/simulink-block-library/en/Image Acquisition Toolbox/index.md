@@ -1,3 +1,5 @@
 # Image Acquisition Toolbox
 
-- [From Video Device](From Video Device.md)
+[← Parent: Simulink Library Browser](../index.md)
+
+- [From Video Device](From%20Video%20Device.md)
