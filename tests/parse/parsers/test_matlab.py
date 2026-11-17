@@ -149,83 +149,59 @@ def test_block_type_cells_link_to_the_downloadable_block_library():
     assert "div0protect - poly](viking://" not in external_power
 
 
-def test_block_library_resource_pack_carries_l0_l1_pages(tmp_path):
+def test_block_library_resource_pack_keeps_block_documents_only(tmp_path):
+    """The resource carries block pages: no hand-written index, no rule-based L0/L1."""
+
     from openviking.parse.parsers.matlab.library_pack import build_tree, pack
 
     library = tmp_path / "library"
     operations = library / "zh" / "Simulink" / "Math Operations"
     operations.mkdir(parents=True)
-    (library / "zh" / "index.md").write_text(
-        "# Simulink Library Browser\n\n- [Math Operations](Simulink/Math%20Operations/index.md)\n",
-        encoding="utf-8",
-    )
-    (library / "zh" / "Simulink" / "index.md").write_text(
-        "# Simulink\n\n- [Math Operations](Math%20Operations/index.md)\n",
-        encoding="utf-8",
-    )
-    (operations / "index.md").write_text("# Math Operations\n\n- [Abs](Abs.md)\n", encoding="utf-8")
+    (library / "zh" / "index.md").write_text("# Library\n", encoding="utf-8")
+    (library / "zh" / "Simulink" / "index.md").write_text("# Simulink\n", encoding="utf-8")
+    (operations / "index.md").write_text("# Math Operations\n", encoding="utf-8")
     (operations / "Abs.md").write_text(
         "---\ntype: simulink-block\n---\n\n# Abs\n\n## 描述\n\n输出输入信号的绝对值。\n",
         encoding="utf-8",
     )
 
-    built = build_tree(library, tmp_path / "stage", "simulink-block-library")
-    assert built == 4
+    build_tree(library, tmp_path / "stage", "simulink-block-library")
     staged = tmp_path / "stage" / "simulink-block-library"
-    abstract = (staged / "zh" / "Simulink" / "Math Operations" / ".abstract.md").read_text(
-        encoding="utf-8"
-    )
-    assert "directory: viking://resources/simulink-block-library/zh/Simulink/Math Operations/" in (
-        abstract
-    )
-    assert "Math Operations 收录 1 个条目，例如 Abs。" in abstract
-    overview = (staged / "zh" / "Simulink" / "Math Operations" / ".overview.md").read_text(
-        encoding="utf-8"
-    )
-    assert "- [Abs](Abs.md) — 输出输入信号的绝对值。" in overview
-    assert ".abstract.md" not in (staged / "zh" / "index.md").read_text(encoding="utf-8")
+    assert (staged / "zh" / "Simulink" / "Math Operations" / "Abs.md").is_file()
+    assert not list(staged.rglob("index.md"))
+    assert not list(staged.rglob(".abstract.md"))
+    assert not list(staged.rglob(".overview.md"))
 
     result = pack(staged, tmp_path / "simulink-block-library.ovpack", "simulink-block-library")
     assert result["root_uri"] == "viking://resources/simulink-block-library"
-    assert result["abstracts"] == built
-    assert result["overviews"] == built
-    assert result["members_validated"] > built
+    assert result["abstracts"] == 0
+    assert result["members_validated"] > 0
 
 
-def test_block_library_sidecars_survive_colons_in_directory_names(tmp_path):
-    """Library Browser folders like "Additional Math: Increment - Decrement".
+def test_block_library_language_pack_puts_products_at_the_root(tmp_path):
+    """A single-language pack must not nest everything under ``zh/``."""
 
-    Hand-joined ``directory:`` lines made these sidecars invalid YAML, so
-    OpenViking rejected them with "mapping values are not allowed here".
-    """
     from openviking.parse.parsers.matlab.library_pack import build_tree
-    from openviking.storage.abstract_overview import parse_abstract_overview
 
     library = tmp_path / "library"
-    leaf = library / "zh" / "Additional Math & Discrete" / "Additional Math: Increment - Decrement"
-    leaf.mkdir(parents=True)
-    (library / "zh" / "index.md").write_text(
-        "# Simulink Library Browser\n\n- [Additional Math & Discrete](Additional%20Math%20%26%20Discrete/index.md)\n",
-        encoding="utf-8",
-    )
-    (library / "zh" / "Additional Math & Discrete" / "index.md").write_text(
-        "# Additional Math & Discrete\n\n"
-        "- [Additional Math: Increment - Decrement](Additional%20Math:%20Increment%20-%20Decrement/index.md)\n",
-        encoding="utf-8",
-    )
-    (leaf / "index.md").write_text(
-        "# Additional Math: Increment - Decrement\n\n## 描述\n\n对信号做加减一。\n",
-        encoding="utf-8",
-    )
+    for language in ("zh", "en"):
+        product = library / language / "Simulink"
+        product.mkdir(parents=True)
+        (library / language / "index.md").write_text(
+            f"# Library ({language})\n", encoding="utf-8"
+        )
+        (product / "index.md").write_text("# Simulink\n", encoding="utf-8")
+        (product / "Abs.md").write_text(
+            "---\ntype: simulink-block\n---\n\n# Abs\n\n## 描述\n\n绝对值。\n",
+            encoding="utf-8",
+        )
 
-    build_tree(library, tmp_path / "stage", "simulink-block-library")
-    staged = tmp_path / "stage" / "simulink-block-library"
-    sidecars = sorted(staged.rglob(".abstract.md")) + sorted(staged.rglob(".overview.md"))
-    assert sidecars
-    for sidecar in sidecars:
-        document = parse_abstract_overview(sidecar.read_text(encoding="utf-8"))
-        assert document.metadata["directory"].startswith("viking://resources/simulink-block-library/")
-        assert "Additional Math: Increment - Decrement" in document.body or sidecar.parent.name
+    build_tree(library, tmp_path / "stage", "simulink-block-library-zh", language="zh")
+    staged = tmp_path / "stage" / "simulink-block-library-zh"
+    assert (staged / "Simulink" / "Abs.md").is_file()
+    assert not (staged / "zh").exists()
+    assert not (staged / "en").exists()
+    assert not list(staged.rglob("index.md"))
 
 
 def test_slx_deduplicates_colliding_directory_names():
