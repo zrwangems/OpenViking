@@ -7,8 +7,10 @@ from __future__ import annotations
 import re
 import zipfile
 from dataclasses import dataclass, field
+from functools import lru_cache
 from pathlib import Path
 from typing import Iterable
+from urllib.parse import quote
 
 from defusedxml import ElementTree as ET
 
@@ -300,14 +302,45 @@ def _child_directory(system: System) -> str:
     return _slug(system.name) + suffix
 
 
+BLOCK_LIBRARY_RESOURCE = "simulink-block-library"
+"""Resource name of the downloadable R2025b block library package."""
+
+
+@lru_cache(maxsize=4096)
+def _block_library_link(block_type: str, source_block: str, language: str) -> str:
+    """Viking URI of the library page describing this block, if one exists."""
+    if not block_type:
+        return ""
+    from openviking.parse.parsers.matlab.catalog import find_block_reference
+    from openviking.parse.parsers.matlab.library import library_root
+
+    reference = find_block_reference(block_type, source_block)
+    if reference is None:
+        return ""
+    key = "zh" if str(language).lower().startswith("zh") else "en"
+    path = reference.resource_path(key)
+    if not path or not (library_root() / path).is_file():
+        return ""
+    return f"viking://resources/{BLOCK_LIBRARY_RESOURCE}/{quote(path, safe='/')}"
+
+
+def _block_type_cell(block: Block, language: str) -> str:
+    """Type name (and library source) linked to its block-library page."""
+    label = _cell(block.block_type)
+    if block.source_block:
+        label += f" / `{_cell(block.source_block)}`"
+    target = _block_library_link(block.block_type, block.source_block, language)
+    return f"[{label}]({target})" if target else label
+
+
 def system_documents(model: System, language: str = "en") -> dict[str, str]:
     """Return compact system pages with directories only for nested systems.
 
     The model root and systems with children use ``main.md``. A leaf system is
     one sibling Markdown file, for example ``xCU/xCU_Output.md``.
     """
-    del language  # Model identifiers and values are never localized.
     documents: dict[str, str] = {}
+    resolved_language = "zh-CN" if str(language).lower().startswith("zh") else "en"
 
     def visit(system: System, directory: str, is_root: bool = False) -> None:
         if is_root:
@@ -316,7 +349,7 @@ def system_documents(model: System, language: str = "en") -> dict[str, str]:
             path = f"{directory}/main.md"
         else:
             path = f"{directory}.md"
-        documents[path] = _render_system(system, is_root)
+        documents[path] = _render_system(system, is_root, resolved_language)
         for child in system.children:
             child_dir = (
                 f"{directory}/{_child_directory(child)}" if directory else _child_directory(child)
@@ -327,8 +360,8 @@ def system_documents(model: System, language: str = "en") -> dict[str, str]:
     return documents
 
 
-def _render_system(system: System, is_root: bool) -> str:
-    """Render the graph, model contract, and every block's parameters."""
+def _render_system(system: System, is_root: bool, language: str = "en") -> str:
+    """Render the graph and every block's parameters."""
     blocks = {block.sid: block for block in system.blocks}
     lines = [
         "---",
@@ -405,10 +438,7 @@ def _render_system(system: System, is_root: bool) -> str:
         param_text = "<br>".join(
             f"`{_cell(key)}` = `{_cell(value)}`" for key, value in sorted(params.items())
         )
-        source = block.block_type + (
-            f" / `{_cell(block.source_block)}`" if block.source_block else ""
-        )
-        lines.append(f"| {name} | {source} | {param_text or '-'} |")
+        lines.append(f"| {name} | {_block_type_cell(block, language)} | {param_text or '-'} |")
         rows += 1
     if not rows:
         lines.append("| - | 无内部节点 | - | - |")

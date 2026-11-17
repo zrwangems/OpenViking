@@ -113,6 +113,85 @@ def test_model_pages_stay_compact_and_keep_instance_parameters():
     assert "Datasheet Battery" in battery
 
 
+def test_block_type_cells_link_to_the_downloadable_block_library():
+    model = parse_slx(SAMPLE / "DRLHevIps.slx")
+    chinese = system_documents(model, language="zh-CN")
+    power = chinese[
+        next(path for path in chinese if path.endswith("Mech_to_Elec_Power_Estimate.md"))
+    ]
+    # The cell keeps the block type as its text and links to the library page.
+    assert (
+        "| Abs | [Abs](viking://resources/simulink-block-library/zh/Simulink/"
+        "Math%20Operations/Abs.md) |" in power
+    )
+    assert "| Eff Map | [Lookup_n-D](viking://resources/simulink-block-library/zh/" in power
+    # No local copy of the library is needed to write the link.
+    assert "## 块参数" in power
+
+    english = system_documents(model, language="en")
+    english_power = english[
+        next(path for path in english if path.endswith("Mech_to_Elec_Power_Estimate.md"))
+    ]
+    assert "viking://resources/simulink-block-library/en/" in english_power
+
+    # Blocks outside the packaged library keep the plain type text.
+    external = system_documents(model)
+    external_power = external[
+        next(
+            path
+            for path in external
+            if path.endswith(
+                "Motor_Torque_Arbitration_and_Power_Management/Power_Management/main.md"
+            )
+        )
+    ]
+    assert "| div0protect - poly | Reference /" in external_power
+    assert "div0protect - poly](viking://" not in external_power
+
+
+def test_block_library_resource_pack_carries_l0_l1_pages(tmp_path):
+    from openviking.parse.parsers.matlab.library_pack import build_tree, pack
+
+    library = tmp_path / "library"
+    operations = library / "zh" / "Simulink" / "Math Operations"
+    operations.mkdir(parents=True)
+    (library / "zh" / "index.md").write_text(
+        "# Simulink Library Browser\n\n- [Math Operations](Simulink/Math%20Operations/index.md)\n",
+        encoding="utf-8",
+    )
+    (library / "zh" / "Simulink" / "index.md").write_text(
+        "# Simulink\n\n- [Math Operations](Math%20Operations/index.md)\n",
+        encoding="utf-8",
+    )
+    (operations / "index.md").write_text("# Math Operations\n\n- [Abs](Abs.md)\n", encoding="utf-8")
+    (operations / "Abs.md").write_text(
+        "---\ntype: simulink-block\n---\n\n# Abs\n\n## 描述\n\n输出输入信号的绝对值。\n",
+        encoding="utf-8",
+    )
+
+    built = build_tree(library, tmp_path / "stage", "simulink-block-library")
+    assert built == 4
+    staged = tmp_path / "stage" / "simulink-block-library"
+    abstract = (staged / "zh" / "Simulink" / "Math Operations" / ".abstract.md").read_text(
+        encoding="utf-8"
+    )
+    assert "directory: viking://resources/simulink-block-library/zh/Simulink/Math Operations/" in (
+        abstract
+    )
+    assert "Math Operations 收录 1 个条目，例如 Abs。" in abstract
+    overview = (staged / "zh" / "Simulink" / "Math Operations" / ".overview.md").read_text(
+        encoding="utf-8"
+    )
+    assert "- [Abs](Abs.md) — 输出输入信号的绝对值。" in overview
+    assert ".abstract.md" not in (staged / "zh" / "index.md").read_text(encoding="utf-8")
+
+    result = pack(staged, tmp_path / "simulink-block-library.ovpack", "simulink-block-library")
+    assert result["root_uri"] == "viking://resources/simulink-block-library"
+    assert result["abstracts"] == built
+    assert result["overviews"] == built
+    assert result["members_validated"] > built
+
+
 def test_slx_deduplicates_colliding_directory_names():
     model = parse_slx(SAMPLE / "DRLHevIps.slx")
     documents = system_documents(model)
@@ -271,6 +350,9 @@ async def test_builtin_parser_writes_real_nested_artifact(tmp_path):
     for document in docs:
         content = document.read_text(encoding="utf-8")
         for link in re.findall(r"\]\(([^)]+\.md)\)", content):
+            if link.startswith("viking://"):
+                # Block-type cells point into the separate downloadable library resource.
+                continue
             assert (document.parent / link).resolve().is_file(), (document, link)
     assert (root / ".artifact_manifest.json").is_file()
     assert result.parser_name == "MatlabParser"
@@ -840,10 +922,12 @@ def test_subsystem_types_controls_variant_choices_and_physical_ports(tmp_path):
     assert "StatesWhenEnabling" in documents["Enabled.md"]
     assert "VariantControlMode" in documents["Variants/main.md"]
     assert "VariantControl` = `V == 1" in documents["Variants/main.md"]
-    assert "| Electrical + | ConnectionPort |" in root
+    assert (
+        "| Electrical + | [ConnectionPort](" in root or "| Electrical + | ConnectionPort |" in root
+    )
     assert "Domain` = `electrical" in root
     assert "`Port` = `1`" in root
-    assert "| Torque | PMIOPort |" in root
+    assert "| Torque | [PMIOPort](" in root or "| Torque | PMIOPort |" in root
     assert "bidirectional / conserving" in root
 
 
