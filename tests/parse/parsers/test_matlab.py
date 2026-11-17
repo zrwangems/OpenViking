@@ -192,6 +192,42 @@ def test_block_library_resource_pack_carries_l0_l1_pages(tmp_path):
     assert result["members_validated"] > built
 
 
+def test_block_library_sidecars_survive_colons_in_directory_names(tmp_path):
+    """Library Browser folders like "Additional Math: Increment - Decrement".
+
+    Hand-joined ``directory:`` lines made these sidecars invalid YAML, so
+    OpenViking rejected them with "mapping values are not allowed here".
+    """
+    from openviking.parse.parsers.matlab.library_pack import build_tree
+    from openviking.storage.abstract_overview import parse_abstract_overview
+
+    library = tmp_path / "library"
+    leaf = library / "zh" / "Additional Math & Discrete" / "Additional Math: Increment - Decrement"
+    leaf.mkdir(parents=True)
+    (library / "zh" / "index.md").write_text(
+        "# Simulink Library Browser\n\n- [Additional Math & Discrete](Additional%20Math%20%26%20Discrete/index.md)\n",
+        encoding="utf-8",
+    )
+    (library / "zh" / "Additional Math & Discrete" / "index.md").write_text(
+        "# Additional Math & Discrete\n\n"
+        "- [Additional Math: Increment - Decrement](Additional%20Math:%20Increment%20-%20Decrement/index.md)\n",
+        encoding="utf-8",
+    )
+    (leaf / "index.md").write_text(
+        "# Additional Math: Increment - Decrement\n\n## 描述\n\n对信号做加减一。\n",
+        encoding="utf-8",
+    )
+
+    build_tree(library, tmp_path / "stage", "simulink-block-library")
+    staged = tmp_path / "stage" / "simulink-block-library"
+    sidecars = sorted(staged.rglob(".abstract.md")) + sorted(staged.rglob(".overview.md"))
+    assert sidecars
+    for sidecar in sidecars:
+        document = parse_abstract_overview(sidecar.read_text(encoding="utf-8"))
+        assert document.metadata["directory"].startswith("viking://resources/simulink-block-library/")
+        assert "Additional Math: Increment - Decrement" in document.body or sidecar.parent.name
+
+
 def test_slx_deduplicates_colliding_directory_names():
     model = parse_slx(SAMPLE / "DRLHevIps.slx")
     documents = system_documents(model)
