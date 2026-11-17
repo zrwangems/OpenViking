@@ -65,13 +65,23 @@ def test_slx_nested_systems_ports_parameters_and_branches():
             assert content.startswith("---\ntype: simulink-subsystem\n"), path
         assert [line for line in content.splitlines() if line.startswith("## ")] == [
             "## 逻辑流程图",
-            "## 模型说明",
+            "## 系统说明",
             "## 块参数",
         ]
-        assert content.index("## 逻辑流程图") < content.index("## 模型说明")
+        assert content.index("## 逻辑流程图") < content.index("## 系统说明")
         assert "## 块知识模板" not in content
         assert "## 连接表" not in content
         assert "```mermaid" in content
+        # The system explanation talks about signals, not block counts.
+        assert "该层包含" not in content
+        assert "未命名信号" not in content
+        # SIDs are wiring internals; the reader-facing tables no longer show them.
+        assert "| SID |" not in content
+        assert "## 系统说明\n\n" in content
+        assert "该层包含" not in content
+        # Node labels carry only the block name; the type is in the block table.
+        for block_type in ("Inport", "Outport", "SubSystem", "Product", "Switch", "Saturate"):
+            assert f' / {block_type}"' not in content
     assert any("DRL_single" in path for path in documents)
 
     battery = parse_slx(SAMPLE / "Bat" / "Bat.slx")
@@ -80,9 +90,10 @@ def test_slx_nested_systems_ports_parameters_and_branches():
     assert "BattSoc" in battery_doc
     assert "Bidirectional DC-DC" in battery_doc
     assert "Plimit" in battery_doc
-    # Every parsed edge remains in Mermaid, including unresolved endpoints.
+    # Every parsed edge remains in Mermaid, including unresolved endpoints and
+    # unlabeled signals (an unnamed line is drawn without a label).
     mermaid = battery_doc.split("```mermaid", 1)[1].split("```", 1)[0]
-    assert sum(" -->|" in line or " ---|" in line for line in mermaid.splitlines()) == len(
+    assert sum(" -->" in line or " ---" in line for line in mermaid.splitlines()) == len(
         battery.edges
     )
     # Branch elements must become independent destinations, not disappear.
@@ -782,8 +793,11 @@ def test_real_simscape_model_preserves_conserving_network_semantics():
     assert len(model.edges) == 8
     assert all(edge.kind == "physical-conserving" for edge in model.edges)
     document = system_documents(model)["main.md"]
-    assert "---|未命名守恒连接 · rconn:1 ↔ lconn:1|" in document
-    assert "守恒连接（双向）" in document
+    assert "未命名守恒连接" not in document
+    assert "--- " in document
+    assert "守恒连接（双向）：" in document
+    assert "| 守恒连接（双向） |" in document
+    assert "未命名：" not in document
     assert not any("conn:" in line and "-->" in line for line in document.splitlines())
     assert "## 块参数" in document
     assert "SimscapeComponentBlock" in document
@@ -830,9 +844,10 @@ def test_subsystem_types_controls_variant_choices_and_physical_ports(tmp_path):
     assert "StatesWhenEnabling" in documents["Enabled.md"]
     assert "VariantControlMode" in documents["Variants/main.md"]
     assert "VariantControl` = `V == 1" in documents["Variants/main.md"]
-    assert "| Electrical + | ConnectionPort | 3 |" in root
+    assert "| Electrical + | ConnectionPort |" in root
     assert "Domain` = `electrical" in root
-    assert "| Torque | PMIOPort | 5 |" in root
+    assert "`Port` = `1`" in root
+    assert "| Torque | PMIOPort |" in root
     assert "bidirectional / conserving" in root
 
 

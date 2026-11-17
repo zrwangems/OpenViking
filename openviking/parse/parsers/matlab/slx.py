@@ -327,6 +327,310 @@ def system_documents(model: System, language: str = "en") -> dict[str, str]:
     return documents
 
 
+_FLOW_ITEM_LIMIT = 40
+
+_MATH_TEMPLATES = {
+    "exp": "e^({0})",
+    "log": "ln({0})",
+    "log10": "log10({0})",
+    "log2": "log2({0})",
+    "sqrt": "√({0})",
+    "square": "({0})^2",
+    "reciprocal": "1 / ({0})",
+    "magnitude^2": "|{0}|^2",
+    "pow": "{0} ^ {1}",
+}
+
+
+def _code(value: str) -> str:
+    """Inline code for one model identifier."""
+    cleaned = (value or "").replace("`", "'").replace("\n", " ").replace("\r", "").strip()
+    return f"`{cleaned}`"
+
+
+def _linked(block: Block, child: System | None) -> str:
+    if child is None:
+        return _code(block.name)
+    base = _child_directory(child)
+    target = f"{base}/main.md" if child.children else f"{base}.md"
+    return f"[{block.name}]({target})"
+
+
+def _child_port(child: System | None, direction: str, port: str) -> str:
+    if child is None:
+        return ""
+    ports = child.inputs if direction == "in" else child.outputs
+    for item in ports:
+        if item.parameters.get("Port", "1") == port:
+            return item.name
+    return ""
+
+
+def _port_order(ports: Iterable[str]) -> list[str]:
+    return sorted(ports, key=lambda port: (0, int(port)) if port.isdigit() else (1, port))
+
+
+def _unique(values: Iterable[str]) -> list[str]:
+    seen: set[str] = set()
+    ordered: list[str] = []
+    for value in values:
+        if value not in seen:
+            seen.add(value)
+            ordered.append(value)
+    return ordered
+
+
+def _processing_order(system: System) -> list[Block]:
+    """Blocks from sources to sinks; cycles keep their declaration order."""
+    by_sid = {block.sid: block for block in system.blocks}
+    fans_out: dict[str, list[str]] = {}
+    waiting = {block.sid: 0 for block in system.blocks}
+    for edge in system.edges:
+        source, _ = _endpoint(edge.source)
+        destination, _ = _endpoint(edge.destination)
+        if source not in by_sid or destination not in by_sid:
+            continue
+        fans_out.setdefault(source, []).append(destination)
+        waiting[destination] += 1
+    ready = [block.sid for block in system.blocks if waiting[block.sid] == 0]
+    ordered: list[Block] = []
+    visited: set[str] = set()
+    while ready:
+        sid = ready.pop(0)
+        if sid in visited:
+            continue
+        visited.add(sid)
+        ordered.append(by_sid[sid])
+        for destination in fans_out.get(sid, []):
+            waiting[destination] -= 1
+            if waiting[destination] == 0:
+                ready.append(destination)
+    ordered.extend(block for block in system.blocks if block.sid not in visited)
+    # Read top to bottom: a block is described after the blocks feeding it.
+    position = {block.sid: index for index, block in enumerate(system.blocks)}
+    depth = {block.sid: 0 for block in system.blocks}
+    for block in ordered:
+        for edge in system.edges:
+            source, _ = _endpoint(edge.source)
+            destination, _ = _endpoint(edge.destination)
+            if destination == block.sid and source in depth and source != destination:
+                depth[block.sid] = max(depth[block.sid], depth[source] + 1)
+    return sorted(ordered, key=lambda block: (depth[block.sid], position[block.sid]))
+
+
+def _source_expression(block: Block) -> str:
+    parameters = block.parameters
+    if block.block_type == "Constant":
+        return f"常量 {_code(parameters.get('Value', '1'))}"
+    if block.block_type == "Ground":
+        return "常量 0"
+    if block.block_type == "From":
+        return f"取 {_code(parameters.get('GotoTag', ''))}"
+    if block.block_type == "Clock":
+        return "仿真时间"
+    return ""
+
+
+def _operation(block: Block, arguments: list[str]) -> str:
+    """Describe what one block computes from its input expressions."""
+    kind = block.block_type
+    parameters = block.parameters
+    if kind == "Sum":
+        signs = (parameters.get("Inputs") or "++").replace("|", "").replace(" ", "")
+        expression = ""
+        for index, argument in enumerate(arguments):
+            sign = signs[index] if index < len(signs) else "+"
+            if index == 0:
+                expression = f"−{argument}" if sign == "-" else argument
+            else:
+                expression += (" − " if sign == "-" else " + ") + argument
+        return expression
+    if kind == "Product":
+        signs = parameters.get("Inputs") or "*"
+        expression = arguments[0] if arguments else "?"
+        for index, argument in enumerate(arguments[1:], start=1):
+            sign = signs[index] if index < len(signs) else "*"
+            expression += (" ÷ " if sign == "/" else " × ") + argument
+        return expression
+    if kind == "Gain":
+        gain = parameters.get("Gain", "1")
+        return arguments[0] if gain in {"", "1"} else f"{_code(gain)} × {arguments[0]}"
+    if kind == "Saturate":
+        lower = parameters.get("LowerLimit", "-inf")
+        upper = parameters.get("UpperLimit", "inf")
+        return f"{arguments[0]} 限制在 [{_code(lower)}, {_code(upper)}]"
+    if kind == "Switch":
+        criteria = parameters.get("Criteria", "u2 >= Threshold")
+        if len(arguments) < 3:
+            return f"按 {_code(criteria)} 在输入之间切换（{', '.join(arguments)}）"
+        return (
+            f"控制量 {arguments[1]}满足 {_code(criteria)} 时取 {arguments[0]}，"
+            f"否则取 {arguments[2]}"
+        )
+    if kind == "Abs":
+        return f"|{arguments[0]}|"
+    if kind == "Signum":
+        return f"sign({arguments[0]})"
+    if kind == "Math":
+        operator = parameters.get("Operator", "")
+        template = _MATH_TEMPLATES.get(operator)
+        if template:
+            return template.format(*arguments)
+        return f"{operator}({', '.join(arguments)})"
+    if kind == "Lookup_n-D":
+        table = parameters.get("Table", "?")
+        text = f"按（{', '.join(arguments)}）查表 {_code(table)}"
+        extrapolation = parameters.get("ExtrapMethod")
+        return text + (f"，外插方式 {_code(extrapolation)}" if extrapolation else "")
+    if kind == "RelationalOperator":
+        return f"{arguments[0]} {parameters.get('Operator', '')} {arguments[1]}"
+    if kind == "Logic":
+        operator = parameters.get("Operator", "AND")
+        operator = {"AND": "且", "OR": "或", "NAND": "与非", "NOR": "或非"}.get(operator, operator)
+        return f" {operator} ".join(arguments)
+    if kind == "MinMax":
+        function = parameters.get("Function", "min")
+        return f"{function}({', '.join(arguments)})"
+    if kind == "Bias":
+        return f"{arguments[0]} + {_code(parameters.get('Bias', '0'))}"
+    if kind == "CheckDynamicLowerBound":
+        return f"{arguments[0]} 与动态下限比较"
+    if kind == "DataTypeConversion":
+        return f"{arguments[0]} 转为 {_code(parameters.get('OutDataTypeStr', ''))}"
+    if kind in {"UnitDelay", "Memory"}:
+        return f"{arguments[0]} 延后一步"
+    if kind == "Trigonometry":
+        return f"{parameters.get('Operator', 'sin')}({', '.join(arguments)})"
+    if kind == "Rounding Function":
+        return f"按 {_code(parameters.get('Operator', ''))} 取整 {arguments[0]}"
+    return ""
+
+
+def _system_explanation(system: System) -> list[str]:
+    """Explain how signals flow and are computed, not how many blocks exist."""
+    blocks = {block.sid: block for block in system.blocks}
+    children = {child.owner.sid: child for child in system.children if child.owner}
+    signal_edges = [edge for edge in system.edges if edge.kind != "physical-conserving"]
+    conserved_edges = [edge for edge in system.edges if edge.kind == "physical-conserving"]
+    signal_blocks: set[str] = set()
+    for edge in signal_edges:
+        signal_blocks.update((_endpoint(edge.source)[0], _endpoint(edge.destination)[0]))
+    input_ports: dict[str, set[str]] = {}
+    output_ports: dict[str, set[str]] = {}
+    for edge in signal_edges:
+        source_sid, source_port = _endpoint(edge.source)
+        destination_sid, destination_port = _endpoint(edge.destination)
+        input_ports.setdefault(destination_sid, set()).add(destination_port)
+        output_ports.setdefault(source_sid, set()).add(source_port)
+
+    def destination_text(sid: str, port: str) -> str:
+        block = blocks.get(sid)
+        if block is None:
+            return f"端点 {_code(sid)}"
+        if block.block_type == "Outport":
+            return f"输出 {_code(block.name)}"
+        child = children.get(sid)
+        text = _linked(block, child)
+        port_name = _child_port(child, "in", port)
+        if port_name:
+            return f"{text} 的 {_code(port_name)} 口"
+        if len(input_ports.get(sid, ())) > 1:
+            return f"{text} 的 {port} 口"
+        return text
+
+    arguments: dict[str, dict[str, str]] = {}
+    destinations: dict[str, list[str]] = {}
+    outputs_of: dict[tuple[str, str], list[str]] = {}
+    for edge in signal_edges:
+        source_sid, source_port = _endpoint(edge.source)
+        destination_sid, destination_port = _endpoint(edge.destination)
+        if destination_sid not in blocks:
+            continue
+        text = destination_text(destination_sid, destination_port)
+        if source_sid in blocks:
+            source = _linked(blocks[source_sid], children.get(source_sid))
+            label = _child_port(children.get(source_sid), "out", source_port)
+            if label:
+                source += f" 的 {_code(label)} 口"
+            elif len(output_ports.get(source_sid, ())) > 1:
+                source += f" 的 {source_port} 口"
+            arguments.setdefault(destination_sid, {})[destination_port] = source
+            destinations.setdefault(source_sid, []).append(text)
+            outputs_of.setdefault((source_sid, source_port), []).append(text)
+
+    items: list[str] = []
+    for block in _processing_order(system):
+        if conserved_edges and block.sid not in signal_blocks:
+            continue
+        ports = arguments.get(block.sid, {})
+        names = [ports[port] for port in _port_order(ports)]
+        if block.block_type == "Outport":
+            continue
+        if block.block_type == "Inport":
+            targets = _unique(destinations.get(block.sid, []))
+            suffix = f" → {'、'.join(targets)}" if targets else "（未连接）"
+            items.append(f"输入 {_code(block.name)}{suffix}")
+            continue
+        if block.block_type in {"ConnectionPort", "PMIOPort"}:
+            targets = _unique(destinations.get(block.sid, []))
+            suffix = f" ↔ {'、'.join(targets)}" if targets else ""
+            items.append(f"守恒端口 {_code(block.name)}{suffix}")
+            continue
+        child = children.get(block.sid)
+        if child is not None:
+            parts: list[str] = []
+            if names:
+                parts.append(f"输入 {'、'.join(names)}")
+            output_ports = {port.parameters.get("Port", "1") for port in child.outputs}
+            for port in _port_order(output_ports | set(outputs_of.get((block.sid, ""), []))):
+                targets = _unique(outputs_of.get((block.sid, port), []))
+                label = _child_port(child, "out", port)
+                head = f"{port} 口" + (f"（{_code(label)}）" if label else "")
+                parts.append(f"{head} → {'、'.join(targets)}" if targets else f"{head}（无下游）")
+            items.append(f"{_linked(block, child)}：{'；'.join(parts)}")
+            continue
+        if not names:
+            operation = _source_expression(block)
+            if not operation:
+                # Nothing to explain without inputs and a known source; the
+                # block table below still lists it.
+                continue
+        elif block.block_type in {"Scope", "Display", "ToWorkspace", "Terminator"}:
+            operation = f"接收 {'、'.join(names)}"
+        else:
+            operation = _operation(block, names) or "、".join(names)
+        targets = _unique(destinations.get(block.sid, []))
+        suffix = f" → {'、'.join(targets)}" if targets else ""
+        items.append(f"{_linked(block, child)}：{operation}{suffix}")
+
+    lines: list[str] = []
+    if conserved_edges:
+        links = []
+        for edge in conserved_edges:
+            source_sid, _ = _endpoint(edge.source)
+            destination_sid, _ = _endpoint(edge.destination)
+            source = (
+                _linked(blocks[source_sid], children.get(source_sid))
+                if source_sid in blocks
+                else _code(source_sid)
+            )
+            destination = (
+                _linked(blocks[destination_sid], children.get(destination_sid))
+                if destination_sid in blocks
+                else _code(destination_sid)
+            )
+            links.append(f"{source} ↔ {destination}")
+        if links:
+            lines.append(f"守恒连接（双向）：{'、'.join(_unique(links))}。")
+    if items:
+        if lines:
+            lines.append("")
+        lines.extend(f"- {item}" for item in items[:_FLOW_ITEM_LIMIT])
+        if len(items) > _FLOW_ITEM_LIMIT:
+            lines.append(f"- 其余 {len(items) - _FLOW_ITEM_LIMIT} 个节点的处理见流程图。")
+    return lines
+
+
 def _render_system(system: System, is_root: bool) -> str:
     """Render the graph, model contract, and every block's parameters."""
     blocks = {block.sid: block for block in system.blocks}
@@ -349,8 +653,8 @@ def _render_system(system: System, is_root: bool) -> str:
         shape_left, shape_right = (
             ("([", "])") if block.block_type in {"Inport", "Outport"} else ("[", "]")
         )
-        label = f"{block.name} / {block.block_type}"
-        lines.append(f'  {node}{shape_left}"{_mermaid_text(label)}"{shape_right}')
+        # Only the block name: the type is already in the block table below.
+        lines.append(f'  {node}{shape_left}"{_mermaid_text(block.name)}"{shape_right}')
     unresolved: dict[str, str] = {}
     for edge in system.edges:
         source_sid, source_port = _endpoint(edge.source)
@@ -361,32 +665,20 @@ def _render_system(system: System, is_root: bool) -> str:
     for sid, endpoint in unresolved.items():
         lines.append(f'  b{_slug(sid)}["未解析端点 / {_mermaid_text(endpoint)}"]')
     for edge in system.edges:
-        source_sid, source_port = _endpoint(edge.source)
-        destination_sid, destination_port = _endpoint(edge.destination)
-        if edge.kind == "physical-conserving":
-            label = edge.name or (
-                f"未命名守恒连接 · {_endpoint_kind(edge.source)}:{source_port} ↔ "
-                f"{_endpoint_kind(edge.destination)}:{destination_port}"
-            )
-            lines.append(
-                f"  b{_slug(source_sid)} ---|{_mermaid_text(label)}| b{_slug(destination_sid)}"
-            )
-        else:
-            label = edge.name or f"未命名信号 · out:{source_port} → in:{destination_port}"
-            lines.append(
-                f"  b{_slug(source_sid)} -->|{_mermaid_text(label)}| b{_slug(destination_sid)}"
-            )
+        source_sid, _ = _endpoint(edge.source)
+        destination_sid, _ = _endpoint(edge.destination)
+        connector = "---" if edge.kind == "physical-conserving" else "-->"
+        # Unnamed signals stay unlabeled: the graph already shows the wiring and
+        # the system explanation names the ports each value enters.
+        label = f"|{_mermaid_text(edge.name)}|" if edge.name else ""
+        lines.append(f"  b{_slug(source_sid)} {connector}{label} b{_slug(destination_sid)}")
+    lines.extend(["```", "", "## 系统说明", ""])
+    lines.extend(_system_explanation(system))
     lines.extend(
         [
-            "```",
             "",
-            "## 模型说明",
-            "",
-            f"该层包含 {len(system.blocks)} 个块和 {len(system.edges)} 条连接。"
-            "有向信号与无向守恒连接均按 SLX 连线绘制。",
-            "",
-            "| 接口类别 | 端口 | 名称 | SID |",
-            "| --- | --- | --- | --- |",
+            "| 接口类别 | 端口 | 名称 |",
+            "| --- | --- | --- |",
         ]
     )
     for category, ports in (
@@ -397,8 +689,7 @@ def _render_system(system: System, is_root: bool) -> str:
     ):
         for port in ports:
             lines.append(
-                f"| {category} | {_cell(port.parameters.get('Port', '1'))} "
-                f"| {_cell(port.name)} | {port.sid} |"
+                f"| {category} | {_cell(port.parameters.get('Port', '1'))} | {_cell(port.name)} |"
             )
     for edge in system.edges:
         if edge.kind != "physical-conserving":
@@ -409,10 +700,10 @@ def _render_system(system: System, is_root: bool) -> str:
         destination_name = (
             blocks[destination_sid].name if destination_sid in blocks else edge.destination
         )
+        name = f"{_cell(edge.name)}：" if edge.name else ""
         lines.append(
             f"| 守恒连接（双向） | {_cell(source_port)} ↔ {_cell(destination_port)} "
-            f"| {_cell(edge.name or '未命名')}：{_cell(source_name)} ↔ {_cell(destination_name)} "
-            f"| {_cell(source_sid)} ↔ {_cell(destination_sid)} |"
+            f"| {name}{_cell(source_name)} ↔ {_cell(destination_name)} |"
         )
     if not any(
         (
@@ -423,19 +714,17 @@ def _render_system(system: System, is_root: bool) -> str:
             any(edge.kind == "physical-conserving" for edge in system.edges),
         )
     ):
-        lines.append("| - | - | 无显式接口端口 | - |")
+        lines.append("| - | - | 无显式接口端口 |")
     lines.extend(
         [
             "",
             f"执行语义：`{', '.join(system.subsystem_types)}`。"
             "具体调度由 Simulink 求解器、采样时间和控制端口共同决定，流程图布局不表示执行顺序。",
             "",
-            "模型目的：源模型未提供显式用途说明，不从块名推断工程目的。",
-            "",
             "## 块参数",
             "",
-            "| 块 | 类型 | SID | 参数 |",
-            "| --- | --- | --- | --- |",
+            "| 块 | 类型 | 参数 |",
+            "| --- | --- | --- |",
         ]
     )
     children = {child.owner.sid: child for child in system.children if child.owner}
@@ -448,7 +737,7 @@ def _render_system(system: System, is_root: bool) -> str:
             )
             lines.append(
                 f"| 当前子系统 / {_cell(system.owner.name)} | {system.owner.block_type} "
-                f"| {system.owner.sid} | {param_text} |"
+                f"| {param_text} |"
             )
             rows += 1
     for block in system.blocks:
@@ -469,7 +758,7 @@ def _render_system(system: System, is_root: bool) -> str:
         source = block.block_type + (
             f" / `{_cell(block.source_block)}`" if block.source_block else ""
         )
-        lines.append(f"| {name} | {source} | {block.sid} | {param_text or '-'} |")
+        lines.append(f"| {name} | {source} | {param_text or '-'} |")
         rows += 1
     if not rows:
         lines.append("| - | 无内部节点 | - | - |")
