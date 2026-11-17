@@ -17,13 +17,18 @@ def _flatten(system: System):
         yield from _flatten(child)
 
 
+def _one_line(value: str) -> str:
+    """SLX wraps long SourceBlock values; keep the identifier on one line."""
+    return " ".join(value.split())
+
+
 def render_coverage(path: str | Path, model: System) -> str:
     path = Path(path)
     systems = list(_flatten(model))
     source_blocks = {
-        block.source_block: (
+        _one_line(block.source_block): (
             block.block_type,
-            find_block_reference(block.block_type, block.source_block),
+            find_block_reference(block.block_type, _one_line(block.source_block)),
         )
         for system in systems
         for block in system.blocks

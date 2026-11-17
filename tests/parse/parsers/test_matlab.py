@@ -16,6 +16,7 @@ from openviking.parse.output import LocalParseOutputStore
 from openviking.parse.parsers.directory import DirectoryParser
 from openviking.parse.parsers.matlab._zip import read_xml_member
 from openviking.parse.parsers.matlab.catalog import find_block, find_block_reference
+from openviking.parse.parsers.matlab.coverage import render_coverage
 from openviking.parse.parsers.matlab.formats import parse_additional
 from openviking.parse.parsers.matlab.library import (
     block_references,
@@ -338,6 +339,14 @@ def test_block_templates_follow_resource_language():
     assert "Abs 模块输出输入信号的绝对值" in chinese
     assert "Output absolute value of input" in english
     assert "Abs 模块输出输入信号的绝对值" not in english
+
+
+def test_coverage_keeps_wrapped_library_paths_on_one_line():
+    model = parse_slx(SAMPLE / "DRLHevIps.slx")
+    coverage = render_coverage(SAMPLE / "DRLHevIps.slx", model)
+    assert "- `simulink/Discontinuities/Saturation Dynamic`：" in coverage
+    assert "- `simulink/Logic and Bit Operations/Compare To Constant`：" in coverage
+    assert "\nDynamic`：" not in coverage
 
 
 def test_standard_library_and_external_library_matching():
