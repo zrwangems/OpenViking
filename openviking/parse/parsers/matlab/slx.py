@@ -328,7 +328,7 @@ def system_documents(model: System, language: str = "en") -> dict[str, str]:
 
 
 def _render_system(system: System, is_root: bool) -> str:
-    """Render only the signal graph, interface ports, and node parameters."""
+    """Render the graph, model contract, and every block's parameters."""
     blocks = {block.sid: block for block in system.blocks}
     lines = [
         "---",
@@ -339,7 +339,7 @@ def _render_system(system: System, is_root: bool) -> str:
         "",
         f"# {system.name}",
         "",
-        "## 信号流程图",
+        "## 逻辑流程图",
         "",
         "```mermaid",
         "flowchart LR",
@@ -351,21 +351,28 @@ def _render_system(system: System, is_root: bool) -> str:
         )
         label = f"{block.name} / {block.block_type}"
         lines.append(f'  {node}{shape_left}"{_mermaid_text(label)}"{shape_right}')
+    unresolved: dict[str, str] = {}
     for edge in system.edges:
         source_sid, source_port = _endpoint(edge.source)
         destination_sid, destination_port = _endpoint(edge.destination)
-        if source_sid not in blocks or destination_sid not in blocks:
-            continue
+        for sid, endpoint in ((source_sid, edge.source), (destination_sid, edge.destination)):
+            if sid not in blocks:
+                unresolved.setdefault(sid, endpoint)
+    for sid, endpoint in unresolved.items():
+        lines.append(f'  b{_slug(sid)}["未解析端点 / {_mermaid_text(endpoint)}"]')
+    for edge in system.edges:
+        source_sid, source_port = _endpoint(edge.source)
+        destination_sid, destination_port = _endpoint(edge.destination)
         if edge.kind == "physical-conserving":
-            label = (
-                edge.name
-                or f"{_endpoint_kind(edge.source)}:{source_port} ↔ {_endpoint_kind(edge.destination)}:{destination_port}"
+            label = edge.name or (
+                f"未命名守恒连接 · {_endpoint_kind(edge.source)}:{source_port} ↔ "
+                f"{_endpoint_kind(edge.destination)}:{destination_port}"
             )
             lines.append(
                 f"  b{_slug(source_sid)} ---|{_mermaid_text(label)}| b{_slug(destination_sid)}"
             )
         else:
-            label = edge.name or f"out:{source_port} → in:{destination_port}"
+            label = edge.name or f"未命名信号 · out:{source_port} → in:{destination_port}"
             lines.append(
                 f"  b{_slug(source_sid)} -->|{_mermaid_text(label)}| b{_slug(destination_sid)}"
             )
@@ -373,33 +380,65 @@ def _render_system(system: System, is_root: bool) -> str:
         [
             "```",
             "",
-            "## 输入",
+            "## 模型说明",
             "",
-            "| 端口 | 信号 | SID |",
-            "| --- | --- | --- |",
-        ]
-    )
-    for port in system.inputs:
-        lines.append(f"| {port.parameters.get('Port', '1')} | {_cell(port.name)} | {port.sid} |")
-    if not system.inputs:
-        lines.append("| - | 无显式 Inport | - |")
-
-    lines.extend(["", "## 输出", "", "| 端口 | 信号 | SID |", "| --- | --- | --- |"])
-    for port in system.outputs:
-        lines.append(f"| {port.parameters.get('Port', '1')} | {_cell(port.name)} | {port.sid} |")
-    if not system.outputs:
-        lines.append("| - | 无显式 Outport | - |")
-
-    children = {child.owner.sid: child for child in system.children if child.owner}
-    lines.extend(
-        [
+            f"该层包含 {len(system.blocks)} 个块和 {len(system.edges)} 条连接。"
+            "有向信号与无向守恒连接均按 SLX 连线绘制。",
             "",
-            "## 节点",
-            "",
-            "| 节点 | 类型 | SID | 参数 |",
+            "| 接口类别 | 端口 | 名称 | SID |",
             "| --- | --- | --- | --- |",
         ]
     )
+    for category, ports in (
+        ("输入", system.inputs),
+        ("输出", system.outputs),
+        ("守恒端口（双向）", system.physical_ports),
+        ("执行控制", system.control_ports),
+    ):
+        for port in ports:
+            lines.append(
+                f"| {category} | {_cell(port.parameters.get('Port', '1'))} "
+                f"| {_cell(port.name)} | {port.sid} |"
+            )
+    for edge in system.edges:
+        if edge.kind != "physical-conserving":
+            continue
+        source_sid, source_port = _endpoint(edge.source)
+        destination_sid, destination_port = _endpoint(edge.destination)
+        source_name = blocks[source_sid].name if source_sid in blocks else edge.source
+        destination_name = (
+            blocks[destination_sid].name if destination_sid in blocks else edge.destination
+        )
+        lines.append(
+            f"| 守恒连接（双向） | {_cell(source_port)} ↔ {_cell(destination_port)} "
+            f"| {_cell(edge.name or '未命名')}：{_cell(source_name)} ↔ {_cell(destination_name)} "
+            f"| {_cell(source_sid)} ↔ {_cell(destination_sid)} |"
+        )
+    if not any(
+        (
+            system.inputs,
+            system.outputs,
+            system.physical_ports,
+            system.control_ports,
+            any(edge.kind == "physical-conserving" for edge in system.edges),
+        )
+    ):
+        lines.append("| - | - | 无显式接口端口 | - |")
+    lines.extend(
+        [
+            "",
+            f"执行语义：`{', '.join(system.subsystem_types)}`。"
+            "具体调度由 Simulink 求解器、采样时间和控制端口共同决定，流程图布局不表示执行顺序。",
+            "",
+            "模型目的：源模型未提供显式用途说明，不从块名推断工程目的。",
+            "",
+            "## 块参数",
+            "",
+            "| 块 | 类型 | SID | 参数 |",
+            "| --- | --- | --- | --- |",
+        ]
+    )
+    children = {child.owner.sid: child for child in system.children if child.owner}
     rows = 0
     if system.owner:
         owner_params = _display_parameters(system.owner)
@@ -413,8 +452,6 @@ def _render_system(system: System, is_root: bool) -> str:
             )
             rows += 1
     for block in system.blocks:
-        if block.block_type in {"Inport", "Outport"}:
-            continue
         child = children.get(block.sid)
         if child:
             child_path = f"{_child_directory(child)}/{'main.md' if child.children else ''}"

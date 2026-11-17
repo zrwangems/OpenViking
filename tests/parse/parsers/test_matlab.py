@@ -55,12 +55,11 @@ def test_slx_nested_systems_ports_parameters_and_branches():
         if path != "main.md":
             assert content.startswith("---\ntype: simulink-subsystem\n"), path
         assert [line for line in content.splitlines() if line.startswith("## ")] == [
-            "## 信号流程图",
-            "## 输入",
-            "## 输出",
-            "## 节点",
+            "## 逻辑流程图",
+            "## 模型说明",
+            "## 块参数",
         ]
-        assert content.index("## 信号流程图") < content.index("## 输入")
+        assert content.index("## 逻辑流程图") < content.index("## 模型说明")
         assert "## 块知识模板" not in content
         assert "## 连接表" not in content
         assert "```mermaid" in content
@@ -72,6 +71,11 @@ def test_slx_nested_systems_ports_parameters_and_branches():
     assert "BattSoc" in battery_doc
     assert "Bidirectional DC-DC" in battery_doc
     assert "Plimit" in battery_doc
+    # Every parsed edge remains in Mermaid, including unresolved endpoints.
+    mermaid = battery_doc.split("```mermaid", 1)[1].split("```", 1)[0]
+    assert sum(" -->|" in line or " ---|" in line for line in mermaid.splitlines()) == len(
+        battery.edges
+    )
     # Branch elements must become independent destinations, not disappear.
     assert sum(edge.destination == "465#in:1" for edge in battery.edges) == 1
     assert "464#out:1" in {edge.source for edge in battery.edges}
@@ -642,9 +646,10 @@ def test_real_simscape_model_preserves_conserving_network_semantics():
     assert len(model.edges) == 8
     assert all(edge.kind == "physical-conserving" for edge in model.edges)
     document = system_documents(model)["main.md"]
-    assert "---|rconn:1 ↔ lconn:1|" in document
+    assert "---|未命名守恒连接 · rconn:1 ↔ lconn:1|" in document
+    assert "守恒连接（双向）" in document
     assert not any("conn:" in line and "-->" in line for line in document.splitlines())
-    assert "## 节点" in document
+    assert "## 块参数" in document
     assert "SimscapeComponentBlock" in document
 
 
